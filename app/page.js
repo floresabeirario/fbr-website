@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <main>
-      {/* HERO SECTION (O fundo para o título centralizado) */}
+      {/* 1. HERO SECTION (Apenas o fundo) */}
       <section style={{ height: '100vh', position: 'relative', overflow: 'hidden' }}>
         <video autoPlay loop muted playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}>
           <source src="/hero-video.mp4" type="video/mp4" />
@@ -45,10 +45,20 @@ export default function Home() {
       <section style={{ padding: '120px 20px', backgroundColor: '#1a1a1a', color: '#FCFBF9', textAlign: 'center' }}>
         <h2 style={{ fontSize: '3rem', marginBottom: '40px' }}>O que dizem as nossas noivas</h2>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <p style={{ fontSize: '2rem', lineHeight: '1.3', fontStyle: 'italic', fontFamily: "'TAN-MEMORIES', serif" }}>
+          <p className="italic" style={{ fontSize: '2rem', lineHeight: '1.3', fontFamily: "'TAN-MEMORIES', serif" }}>
             "Fiquei sem palavras quando recebi o meu quadro. A delicadeza da preservação é incrível, as cores mantiveram-se vibrantes. Uma equipa fantástica!"
           </p>
           <div style={{ marginTop: '30px', opacity: 0.4, letterSpacing: '2px', fontSize: '0.8rem' }}>GOOGLE REVIEWS ★★★★★</div>
+        </div>
+      </section>
+
+      {/* 4. SUSTENTABILIDADE */}
+      <section style={{ padding: '120px 20px', textAlign: 'center', backgroundColor: '#F4F1EE' }}>
+        <div style={{ maxWidth: '850px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '3.5rem', marginBottom: '30px' }}>Beira-Rio: Preservação Consciente</h2>
+          <p style={{ fontSize: '1.2rem', lineHeight: '2', color: '#333' }}>
+            A natureza não precisa de plásticos. Enquanto a resina epóxi é um polímero sintético, a nossa <strong>prensagem botânica</strong> celebra a alma da flor de forma 100% orgânica.
+          </p>
         </div>
       </section>
 
@@ -67,7 +77,9 @@ export default function Home() {
             <a href="#" style={{ color: '#FCFBF9' }}><IconWhatsApp /></a>
             <a href="#" style={{ color: '#FCFBF9' }}><IconEmail /></a>
           </div>
-          <p style={{ fontSize: '0.7rem', opacity: 0.5 }}>© 2026 FLORES À BEIRA-RIO. COIMBRA, PORTUGAL.</p>
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '40px', opacity: 0.5, fontSize: '0.7rem' }}>
+            © 2026 FLORES À BEIRA-RIO. COIMBRA, PORTUGAL.
+          </div>
         </div>
       </footer>
     </main>
