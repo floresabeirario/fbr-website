@@ -66,11 +66,18 @@ export default function RootLayout({ children }) {
             
             <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1 }}>
               {menuLeft.map((item) => (
-                <a key={item.name} href={item.href} style={{ 
-                  textDecoration: 'none', fontSize: '0.7rem', fontWeight: '500', 
-                  textTransform: 'uppercase', letterSpacing: '1.5px',
-                  color: scrolled ? '#1a1a1a' : '#fff'
-                }}>{item.name}</a>
+                <a 
+                  key={item.name} 
+                  href={item.href} 
+                  className="underline decoration-transparent hover:decoration-current transition-all duration-300 underline-offset-4"
+                  style={{ 
+                    fontSize: '0.7rem', fontWeight: '500', 
+                    textTransform: 'uppercase', letterSpacing: '1.5px',
+                    color: scrolled ? '#1a1a1a' : '#fff'
+                  }}
+                >
+                  {item.name}
+                </a>
               ))}
             </div>
 
@@ -89,12 +96,17 @@ export default function RootLayout({ children }) {
 
             <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
               {menuRight.map((item) => (
-                <a key={item.name} href={item.href} style={{ 
-                  textDecoration: 'none', fontSize: '0.7rem', fontWeight: '500', 
-                  textTransform: 'uppercase', letterSpacing: '1.5px',
-                  color: scrolled ? '#1a1a1a' : '#fff',
-                  display: 'flex', alignItems: 'center'
-                }}>
+                <a 
+                  key={item.name} 
+                  href={item.href} 
+                  className="underline decoration-transparent hover:decoration-current transition-all duration-300 underline-offset-4"
+                  style={{ 
+                    fontSize: '0.7rem', fontWeight: '500', 
+                    textTransform: 'uppercase', letterSpacing: '1.5px',
+                    color: scrolled ? '#1a1a1a' : '#fff',
+                    display: 'flex', alignItems: 'center'
+                  }}
+                >
                   {item.name} {item.hasFlag && <FlagEN />}
                 </a>
               ))}
@@ -116,9 +128,15 @@ export default function RootLayout({ children }) {
               style={{ position: 'fixed', inset: 0, backgroundColor: '#FCFBF9', zIndex: 200, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
               <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '0.8rem', letterSpacing: '2px', cursor: 'pointer' }}>FECHAR</button>
               {[...menuLeft, ...menuRight].map((item) => (
-                <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} style={{ 
-                  textDecoration: 'none', color: '#1a1a1a', fontSize: '1.8rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif", display: 'flex', alignItems: 'center'
-                }}>
+                <a 
+                  key={item.name} 
+                  href={item.href} 
+                  onClick={() => setIsOpen(false)} 
+                  className="underline decoration-transparent hover:decoration-current transition-all duration-300 underline-offset-8"
+                  style={{ 
+                    color: '#1a1a1a', fontSize: '1.8rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif", display: 'flex', alignItems: 'center'
+                  }}
+                >
                   {item.name} {item.hasFlag && <FlagEN />}
                 </a>
               ))}
