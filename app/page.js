@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Script from "next/script"; // <-- Adicionámos o componente Script do Next.js
 
 const IconInstagram = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>;
 const IconFacebook = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>;
@@ -15,9 +14,21 @@ export default function Home() {
   const titleScale = useTransform(scrollY, [0, 150], [1, 0.7]);
   const titleY = useTransform(scrollY, [0, 150], [0, -50]);
 
+  // Criamos uma referência para a caixa onde queremos as reviews
+  const reviewRef = useRef(null);
+
   useEffect(() => {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
+
+    // Injetar o script do Trustindex EXATAMENTE dentro da nossa caixa
+    if (reviewRef.current && !reviewRef.current.querySelector("script")) {
+      const script = document.createElement("script");
+      script.src = "https://cdn.trustindex.io/loader.js?6897287659a84643ca864d340dd";
+      script.async = true;
+      script.defer = true;
+      reviewRef.current.appendChild(script);
+    }
   }, []);
 
   return (
@@ -60,15 +71,12 @@ export default function Home() {
       <section style={{ padding: '120px 20px', backgroundColor: '#1a1a1a', color: '#FCFBF9', textAlign: 'center' }}>
         <h2 style={{ fontSize: '3rem', marginBottom: '40px' }}>O que dizem as nossas noivas</h2>
         
-        {/* Adicionámos um minHeight para a página não "saltar" enquanto as reviews carregam */}
-        <div style={{ maxWidth: '1000px', margin: '0 auto', minHeight: '350px' }}>
-          
-          {/* Aqui está o teu Widget do Trustindex */}
-          <Script 
-            src="https://cdn.trustindex.io/loader.js?6897287659a84643ca864d340dd" 
-            strategy="lazyOnload" 
-          />
-          
+        {/* CAIXA ONDE VÃO APARECER AS REVIEWS (ref={reviewRef}) */}
+        <div 
+          ref={reviewRef} 
+          style={{ maxWidth: '1000px', margin: '0 auto', minHeight: '350px' }}
+        >
+          {/* O script do Trustindex será injetado aqui automaticamente */}
         </div>
       </section>
 
