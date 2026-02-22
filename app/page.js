@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Script from "next/script"; // <-- Adicionámos o componente Script do Next.js
 
 const IconInstagram = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>;
 const IconFacebook = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>;
@@ -27,7 +28,6 @@ export default function Home() {
         </video>
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.2)' }} />
         
-        {/* Adicionei 'width: 90%' aqui e a quebra controlada no h1 */}
         <motion.div style={{ zIndex: 2, textAlign: 'center', color: '#fff', opacity: titleOpacity, scale: titleScale, y: titleY, width: '90%', maxWidth: '1200px' }}>
           <h1 style={{ fontSize: 'clamp(4rem, 15vw, 8rem)', marginBottom: '10px' }}>
             Flores à <span style={{ whiteSpace: 'nowrap' }}>Beira&#8209;Rio</span>
@@ -59,11 +59,16 @@ export default function Home() {
       {/* 3. GOOGLE REVIEWS */}
       <section style={{ padding: '120px 20px', backgroundColor: '#1a1a1a', color: '#FCFBF9', textAlign: 'center' }}>
         <h2 style={{ fontSize: '3rem', marginBottom: '40px' }}>O que dizem as nossas noivas</h2>
-        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <p className="italic" style={{ fontSize: '2rem', lineHeight: '1.3', fontFamily: "'TAN-MEMORIES', serif" }}>
-            "Fiquei sem palavras quando recebi o meu quadro. A delicadeza da preservação é incrível, as cores mantiveram-se vibrantes. Uma equipa fantástica!"
-          </p>
-          <div style={{ marginTop: '30px', opacity: 0.4, letterSpacing: '2px', fontSize: '0.8rem' }}>GOOGLE REVIEWS ★★★★★</div>
+        
+        {/* Adicionámos um minHeight para a página não "saltar" enquanto as reviews carregam */}
+        <div style={{ maxWidth: '1000px', margin: '0 auto', minHeight: '350px' }}>
+          
+          {/* Aqui está o teu Widget do Trustindex */}
+          <Script 
+            src="https://cdn.trustindex.io/loader.js?6897287659a84643ca864d340dd" 
+            strategy="lazyOnload" 
+          />
+          
         </div>
       </section>
 
@@ -87,10 +92,10 @@ export default function Home() {
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '100px 20px 60px', textAlign: 'center' }}>
           <h2 style={{ fontSize: '4rem', marginBottom: '60px' }}>Flores à Beira-Rio</h2>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', marginBottom: '80px' }}>
-            <a href="#" style={{ color: '#FCFBF9' }}><IconInstagram /></a>
-            <a href="#" style={{ color: '#FCFBF9' }}><IconFacebook /></a>
-            <a href="#" style={{ color: '#FCFBF9' }}><IconWhatsApp /></a>
-            <a href="#" style={{ color: '#FCFBF9' }}><IconEmail /></a>
+            <a href="#" className="nav-link" style={{ color: '#FCFBF9' }}><IconInstagram /></a>
+            <a href="#" className="nav-link" style={{ color: '#FCFBF9' }}><IconFacebook /></a>
+            <a href="#" className="nav-link" style={{ color: '#FCFBF9' }}><IconWhatsApp /></a>
+            <a href="#" className="nav-link" style={{ color: '#FCFBF9' }}><IconEmail /></a>
           </div>
           <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '40px', opacity: 0.5, fontSize: '0.7rem', letterSpacing: '2px' }}>
             © 2026 FLORES À BEIRA-RIO. COIMBRA, PORTUGAL.
