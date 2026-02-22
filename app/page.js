@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 const IconInstagram = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>;
 const IconFacebook = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>;
@@ -9,11 +9,6 @@ const IconWhatsApp = () => <svg width="20" height="20" viewBox="0 0 24 24" fill=
 const IconEmail = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>;
 
 export default function Home() {
-  const { scrollY } = useScroll();
-  const titleOpacity = useTransform(scrollY, [0, 150], [1, 0]);
-  const titleScale = useTransform(scrollY, [0, 150], [1, 0.7]);
-  const titleY = useTransform(scrollY, [0, 150], [0, -50]);
-
   useEffect(() => {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
@@ -21,19 +16,12 @@ export default function Home() {
 
   return (
     <main>
-      {/* 1. HERO SECTION */}
-      <section style={{ height: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+      {/* 1. HERO SECTION (Apenas Vídeo) */}
+      <section style={{ height: '100vh', position: 'relative', overflow: 'hidden' }}>
         <video autoPlay loop muted playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}>
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.2)' }} />
-        
-        <motion.div style={{ zIndex: 2, textAlign: 'center', color: '#fff', opacity: titleOpacity, scale: titleScale, y: titleY }}>
-          <h1 style={{ fontSize: 'clamp(4rem, 15vw, 8rem)', marginBottom: '10px' }}>Flores à Beira-Rio</h1>
-          <p style={{ fontSize: '1.2rem', letterSpacing: '6px', textTransform: 'uppercase', fontWeight: '300' }}>
-            Especialistas em preservação de flores
-          </p>
-        </motion.div>
       </section>
 
       {/* 2. OS 3 PASSOS */}
@@ -54,7 +42,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. GOOGLE REVIEWS (TAN-MEMORIES Italic) */}
+      {/* 3. GOOGLE REVIEWS */}
       <section style={{ padding: '120px 20px', backgroundColor: '#1a1a1a', color: '#FCFBF9', textAlign: 'center' }}>
         <h2 style={{ fontSize: '3rem', marginBottom: '40px' }}>O que dizem as nossas noivas</h2>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
@@ -62,16 +50,6 @@ export default function Home() {
             "Fiquei sem palavras quando recebi o meu quadro. A delicadeza da preservação é incrível, as cores mantiveram-se vibrantes. Uma equipa fantástica!"
           </p>
           <div style={{ marginTop: '30px', opacity: 0.4, letterSpacing: '2px', fontSize: '0.8rem' }}>GOOGLE REVIEWS ★★★★★</div>
-        </div>
-      </section>
-
-      {/* 4. SUSTENTABILIDADE */}
-      <section style={{ padding: '120px 20px', textAlign: 'center', backgroundColor: '#F4F1EE' }}>
-        <div style={{ maxWidth: '850px', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '3.5rem', marginBottom: '30px' }}>Beira-Rio: Preservação Consciente</h2>
-          <p style={{ fontSize: '1.2rem', lineHeight: '2', color: '#333' }}>
-            A natureza não precisa de plásticos. Enquanto a resina epóxi é um polímero sintético, a nossa <strong>prensagem botânica</strong> celebra a alma da flor de forma 100% orgânica.
-          </p>
         </div>
       </section>
 
