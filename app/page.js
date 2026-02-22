@@ -5,15 +5,15 @@ import { useEffect } from "react";
 export default function Home() {
   return (
     <main>
-      {/* 1. HERO SECTION (Apenas o palco para o vídeo) */}
+      {/* 1. HERO SECTION (Fundo) */}
       <section style={{ height: '100vh', position: 'relative', overflow: 'hidden' }}>
         <video autoPlay loop muted playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}>
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
-        <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.25)' }} />
+        <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.3)' }} />
       </section>
 
-      {/* 2. CONTEÚDO RESTANTE */}
+      {/* 2. OS 3 PASSOS */}
       <section style={{ padding: '120px 20px', maxWidth: '1200px', margin: '0 auto' }}>
         <h2 style={{ fontSize: '3.5rem', textAlign: 'center', marginBottom: '80px' }}>Três passos para a sua arte</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '60px' }}>
