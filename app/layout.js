@@ -64,13 +64,15 @@ export default function RootLayout({ children }) {
             display: 'flex', justifyContent: 'space-between', alignItems: 'center' 
           }}>
             
+            {/* Menu Esquerdo */}
             <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1 }}>
               {menuLeft.map((item) => (
                 <a 
                   key={item.name} 
                   href={item.href} 
-                  className="underline decoration-transparent hover:decoration-current transition-all duration-300 underline-offset-4"
+                  className="hover:underline underline-offset-4 decoration-1 transition-all duration-300"
                   style={{ 
+                    textDecoration: 'none',
                     fontSize: '0.7rem', fontWeight: '500', 
                     textTransform: 'uppercase', letterSpacing: '1.5px',
                     color: scrolled ? '#1a1a1a' : '#fff'
@@ -81,6 +83,7 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
+            {/* Logo Central */}
             <motion.a 
               href="/" 
               initial={{ opacity: 0 }}
@@ -94,13 +97,15 @@ export default function RootLayout({ children }) {
               Flores à Beira-Rio
             </motion.a>
 
+            {/* Menu Direito */}
             <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
               {menuRight.map((item) => (
                 <a 
                   key={item.name} 
                   href={item.href} 
-                  className="underline decoration-transparent hover:decoration-current transition-all duration-300 underline-offset-4"
+                  className="hover:underline underline-offset-4 decoration-1 transition-all duration-300"
                   style={{ 
+                    textDecoration: 'none',
                     fontSize: '0.7rem', fontWeight: '500', 
                     textTransform: 'uppercase', letterSpacing: '1.5px',
                     color: scrolled ? '#1a1a1a' : '#fff',
@@ -112,6 +117,7 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
+            {/* Botão Mobile */}
             <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ 
               background: 'none', border: 'none', cursor: 'pointer',
               color: scrolled ? '#1a1a1a' : '#fff',
@@ -122,6 +128,7 @@ export default function RootLayout({ children }) {
           </div>
         </nav>
 
+        {/* Menu Mobile Aberto */}
         <AnimatePresence>
           {isOpen && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -132,8 +139,9 @@ export default function RootLayout({ children }) {
                   key={item.name} 
                   href={item.href} 
                   onClick={() => setIsOpen(false)} 
-                  className="underline decoration-transparent hover:decoration-current transition-all duration-300 underline-offset-8"
+                  className="hover:underline underline-offset-8 decoration-1 transition-all duration-300"
                   style={{ 
+                    textDecoration: 'none',
                     color: '#1a1a1a', fontSize: '1.8rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif", display: 'flex', alignItems: 'center'
                   }}
                 >
