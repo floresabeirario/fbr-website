@@ -8,12 +8,11 @@ export default function RootLayout({ children }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Divisão do menu conforme o teu pedido
   const menuLeft = [
     { name: "Opções e Preços", href: "/opcoes-e-precos" },
     { name: "Passo a Passo", href: "/passo-a-passo" },
@@ -71,16 +70,21 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
-            {/* LOGO CENTRAL */}
+            {/* LOGO CENTRAL - Agora só aparece ao fazer scroll */}
             <motion.a 
               href="/" 
-              animate={{ scale: scrolled ? 0.8 : 1 }}
+              initial={{ opacity: 0 }}
+              animate={{ 
+                opacity: scrolled ? 1 : 0,
+                scale: scrolled ? 0.8 : 1 
+              }}
               style={{ 
                 textDecoration: 'none', color: scrolled ? '#1a1a1a' : '#fff', 
                 fontSize: '1.6rem', fontFamily: "'TAN-MEMORIES', serif", 
-                textAlign: 'center', flex: '0 0 auto', padding: '0 40px'
+                textAlign: 'center', flex: '0 0 auto', padding: '0 40px',
+                pointerEvents: scrolled ? 'auto' : 'none'
               }}>
-              FLORES À BEIRA-RIO
+              Flores à Beira-Rio
             </motion.a>
 
             {/* MENU DIREITA (Desktop) */}
@@ -102,7 +106,6 @@ export default function RootLayout({ children }) {
           </div>
         </nav>
 
-        {/* MENU MOBILE OVERLAY */}
         <AnimatePresence>
           {isOpen && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
