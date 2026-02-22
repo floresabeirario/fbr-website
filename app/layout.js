@@ -7,23 +7,23 @@ export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  // Reset do scroll ao carregar a página para garantir que começa no topo
+  // Reset do scroll ao carregar a página
   useEffect(() => {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
   }, []);
 
-  // --- ANIMAÇÃO GOSHA-STYLE PRECISA ---
-  // 1. Posição Vertical: Começa em 50% (Centro onde puseste o retângulo) e vai para 40px (Nav)
-  const logoTop = useTransform(scrollY, [0, 400], ["50%", "40px"]);
+  // --- CONTROLO DA ANIMAÇÃO GOSHA ---
+  // 1. Posição Vertical: Começa no centro (50vh) e viaja para o centro da barra (40px)
+  const logoTop = useTransform(scrollY, [0, 400], ["50vh", "40px"]);
   
-  // 2. Tamanho: Começa GIGANTE e encolhe. Aumentei o máximo para 11rem.
-  const logoSize = useTransform(scrollY, [0, 400], ["clamp(4rem, 18vw, 11rem)", "1.6rem"]);
+  // 2. Tamanho: Começa imponente (9rem) e encolhe para o menu (1.6rem)
+  const logoSize = useTransform(scrollY, [0, 400], ["clamp(3.5rem, 12vw, 9rem)", "1.6rem"]);
   
-  // 3. Cor: Branco (Hero) para Preto (Menu)
+  // 3. Cor: Branco absoluto sobre o vídeo, Preto sólido no menu
   const logoColor = useTransform(scrollY, [0, 300], ["#ffffff", "#1a1a1a"]);
   
-  // 4. Opacidade do Subtítulo e Fundo da Nav
+  // 4. Subtítulo e Fundo da Nav
   const subtitleOpacity = useTransform(scrollY, [0, 150], [1, 0]);
   const navBg = useTransform(scrollY, [0, 400], ["rgba(252, 251, 249, 0)", "rgba(252, 251, 249, 0.98)"]);
   const linkColor = useTransform(scrollY, [0, 300], ["#ffffff", "#1a1a1a"]);
@@ -60,7 +60,7 @@ export default function RootLayout({ children }) {
       </head>
       <body style={{ margin: 0, backgroundColor: '#FCFBF9', color: '#1a1a1a', fontFamily: "'Inter', sans-serif", overflowX: 'hidden' }}>
         
-        {/* NAVEGAÇÃO DIVIDIDA */}
+        {/* NAVEGAÇÃO DIVIDIDA FIXA */}
         <motion.nav style={{ 
           position: 'fixed', top: 0, width: '100%', zIndex: 100, 
           height: '80px', backgroundColor: navBg,
@@ -75,12 +75,16 @@ export default function RootLayout({ children }) {
                 <motion.a key={item.name} href={item.href} style={{ textDecoration: 'none', fontSize: '0.75rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '2px', color: linkColor }}>{item.name}</motion.a>
               ))}
             </div>
+            
+            {/* Espaço central reservado para o logo */}
             <div style={{ width: '450px' }} className="desktop-only" />
+
             <div className="desktop-only" style={{ display: 'flex', gap: '30px', flex: 1, justifyContent: 'flex-end' }}>
               {menuRight.map((item) => (
                 <motion.a key={item.name} href={item.href} style={{ textDecoration: 'none', fontSize: '0.75rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '2px', color: linkColor }}>{item.name}</motion.a>
               ))}
             </div>
+
             <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
               <motion.div style={{ width: '25px', height: '1.5px', backgroundColor: linkColor, margin: '6px 0' }} />
               <motion.div style={{ width: '25px', height: '1.5px', backgroundColor: linkColor, margin: '6px 0' }} />
@@ -88,24 +92,40 @@ export default function RootLayout({ children }) {
           </div>
         </motion.nav>
 
-        {/* LOGOTIPO VIAJANTE (O ELEMENTO ÚNICO CENTRADO NO RECTÂNGULO VERMELHO) */}
+        {/* LOGO QUE VIAJA (COMEÇA NO CENTRO DO ECRÃ) */}
         <motion.div style={{ 
-          position: 'fixed', left: '50%', x: '-50%', zIndex: 110,
-          top: logoTop, y: "-50%", 
-          textAlign: 'center', pointerEvents: 'none', width: '100%'
+          position: 'fixed', 
+          left: '50%', 
+          top: logoTop,
+          x: '-50%', 
+          y: '-50%',
+          zIndex: 110,
+          textAlign: 'center', 
+          pointerEvents: 'none', 
+          width: '100%'
         }}>
           <motion.a href="/" style={{ 
-            textDecoration: 'none', fontFamily: "'TAN-MEMORIES', serif", 
-            fontSize: logoSize, color: logoColor, whiteSpace: 'nowrap',
-            pointerEvents: 'auto', display: 'inline-block', lineHeight: '1'
+            textDecoration: 'none', 
+            fontFamily: "'TAN-MEMORIES', serif", 
+            fontSize: logoSize, 
+            color: logoColor, 
+            whiteSpace: 'nowrap',
+            pointerEvents: 'auto', 
+            display: 'inline-block',
+            lineHeight: '1.1'
           }}>
             Flores à Beira-Rio
           </motion.a>
           
           <motion.p style={{ 
-            opacity: subtitleOpacity, color: '#ffffff', textTransform: 'uppercase', 
-            letterSpacing: '10px', fontSize: '1.2rem', marginTop: '30px', fontWeight: '300',
-            textShadow: '0 2px 10px rgba(0,0,0,0.2)'
+            opacity: subtitleOpacity, 
+            color: '#ffffff', 
+            textTransform: 'uppercase', 
+            letterSpacing: '10px', 
+            fontSize: '1rem', 
+            marginTop: '30px', 
+            fontWeight: '300',
+            textShadow: '0 2px 15px rgba(0,0,0,0.3)'
           }}>
             Especialistas em preservação de flores
           </motion.p>
