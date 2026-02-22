@@ -20,11 +20,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt">
       <head>
-        {/* Este bloco de estilo carrega a tua fonte Tay-Bea oficial */}
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
-            font-family: 'Tay-Bea';
-            src: url('/Tay-Bea.otf') format('opentype');
+            font-family: 'TAN-MEMORIES';
+            src: url('/TAN-MEMORIES.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
             font-display: swap;
@@ -53,7 +52,7 @@ export default function RootLayout({ children }) {
               color: '#fff', 
               fontWeight: '400', 
               fontSize: '1.4rem', 
-              fontFamily: "'Tay-Bea', serif",
+              fontFamily: "'TAN-MEMORIES', serif",
               letterSpacing: '1px' 
             }}>
               FLORES À BEIRA-RIO
@@ -68,7 +67,7 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
-            {/* Hamburger (Branco) */}
+            {/* Hamburger Button (Branco) */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
               style={{ background: 'none', border: 'none', cursor: 'pointer', zIndex: 101, padding: '10px' }}
@@ -87,7 +86,7 @@ export default function RootLayout({ children }) {
             >
               <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '25px', right: '20px', background: 'none', border: 'none', fontSize: '2rem', cursor: 'pointer', color: '#1a1a1a' }}>×</button>
               {menuItems.map((item, i) => (
-                <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} style={{ textDecoration: 'none', color: '#1a1a1a', fontSize: '2rem', margin: '10px 0', fontFamily: "'Tay-Bea', serif" }}>
+                <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} style={{ textDecoration: 'none', color: '#1a1a1a', fontSize: '2rem', margin: '10px 0', fontFamily: "'TAN-MEMORIES', serif" }}>
                   {item.name}
                 </a>
               ))}
@@ -102,10 +101,10 @@ export default function RootLayout({ children }) {
             .desktop-menu { display: flex !important; }
             nav button { display: none !important; }
           }
-          /* Aplica a tua fonte Tay-Bea a todos os títulos do site */
           h1, h2, h3, .serif { 
-            font-family: 'Tay-Bea', serif !important; 
+            font-family: 'TAN-MEMORIES', serif !important; 
             font-weight: 400; 
+            line-height: 1.1;
           }
         `}</style>
       </body>
