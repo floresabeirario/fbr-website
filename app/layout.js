@@ -20,54 +20,40 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt">
       <head>
-        {/* Importação da Montserrat para o corpo de texto */}
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+        {/* Fonte Inter (A "Helvetica" do Google) */}
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
             font-family: 'TAN-MEMORIES';
             src: url('/TAN-MEMORIES.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
+            font-weight: normal; font-style: normal; font-display: swap;
           }
           @font-face {
             font-family: 'TAN-MEMORIES';
             src: url('/TAN-MEMORIES-Italic.otf') format('opentype');
-            font-weight: normal;
-            font-style: italic;
-            font-display: swap;
+            font-weight: normal; font-style: italic; font-display: swap;
           }
         `}} />
       </head>
-      <body style={{ margin: 0, fontFamily: "'Montserrat', sans-serif", backgroundColor: '#FCFBF9', color: '#1a1a1a' }}>
+      <body style={{ margin: 0, fontFamily: "'Inter', sans-serif", backgroundColor: '#FCFBF9', color: '#1a1a1a' }}>
         
         <nav style={{ 
-          position: 'fixed', // Agora o menu fica sempre no topo
-          top: 0, 
-          width: '100%', 
-          zIndex: 100, 
-          backgroundColor: 'rgba(26, 26, 26, 0.05)', // Quase transparente
-          backdropFilter: 'blur(5px)', // Efeito de vidro elegante ao fazer scroll
+          position: 'fixed', 
+          top: 0, width: '100%', zIndex: 100, 
+          backgroundColor: 'rgba(26, 26, 26, 0.05)', 
+          backdropFilter: 'blur(8px)', 
         }}>
           <div style={{ 
-            maxWidth: '1200px', 
-            margin: '0 auto', 
-            padding: '20px 20px', 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center' 
+            maxWidth: '1200px', margin: '0 auto', padding: '20px 20px', 
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center' 
           }}>
             <a href="/" style={{ 
-              textDecoration: 'none', 
-              color: '#fff', 
-              fontSize: '1.4rem', 
-              fontFamily: "'TAN-MEMORIES', serif",
-              letterSpacing: '1px' 
+              textDecoration: 'none', color: '#fff', fontSize: '1.4rem', 
+              fontFamily: "'TAN-MEMORIES', serif", letterSpacing: '1px' 
             }}>
               FLORES À BEIRA-RIO
             </a>
 
-            {/* Desktop Menu */}
             <div className="desktop-menu" style={{ display: 'none', gap: '20px' }}>
               {menuItems.map((item) => (
                 <a key={item.name} href={item.href} style={{ textDecoration: 'none', color: '#fff', fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '2px' }}>
@@ -76,11 +62,7 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
-            {/* Hamburger Button */}
-            <button 
-              onClick={() => setIsOpen(!isOpen)}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', zIndex: 101, padding: '10px' }}
-            >
+            <button onClick={() => setIsOpen(!isOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', zIndex: 101, padding: '10px' }}>
               <div style={{ width: '25px', height: '1.5px', backgroundColor: '#fff', margin: '5px 0' }} />
               <div style={{ width: '25px', height: '1.5px', backgroundColor: '#fff', margin: '5px 0' }} />
             </button>
@@ -112,13 +94,11 @@ export default function RootLayout({ children }) {
           }
           h1, h2, h3, .serif { 
             font-family: 'TAN-MEMORIES', serif !important; 
-            font-weight: 400; 
-            line-height: 1.1;
-            letter-spacing: -0.5px;
+            font-weight: 400; line-height: 1.1; letter-spacing: -0.5px;
           }
           p, span, a, button {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
+            font-family: 'Inter', Helvetica, Arial, sans-serif;
+            font-weight: 400;
           }
         `}</style>
       </body>
