@@ -68,13 +68,15 @@ export default function Home() {
       </section>
 
       {/* 3. GOOGLE REVIEWS */}
-      <section style={{ padding: '120px 20px', backgroundColor: '#1a1a1a', color: '#FCFBF9', textAlign: 'center' }}>
-        <h2 style={{ fontSize: '3rem', marginBottom: '40px' }}>O que dizem as nossas noivas</h2>
+      {/* Reduzi o padding de 120px para 60px para encolher a faixa preta */}
+      <section style={{ padding: '60px 20px', backgroundColor: '#1a1a1a', color: '#FCFBF9', textAlign: 'center' }}>
+        <h2 style={{ fontSize: '3rem', marginBottom: '30px' }}>O que dizem os nossos clientes</h2>
         
-        {/* CAIXA ONDE VÃO APARECER AS REVIEWS (ref={reviewRef}) */}
+        {/* CAIXA ONDE VÃO APARECER AS REVIEWS */}
+        {/* Reduzi o minHeight de 350px para 200px */}
         <div 
           ref={reviewRef} 
-          style={{ maxWidth: '1000px', margin: '0 auto', minHeight: '350px' }}
+          style={{ maxWidth: '1000px', margin: '0 auto', minHeight: '200px' }}
         >
           {/* O script do Trustindex será injetado aqui automaticamente */}
         </div>
