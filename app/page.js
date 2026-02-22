@@ -10,15 +10,9 @@ const IconEmail = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="no
 
 export default function Home() {
   const { scrollY } = useScroll();
-  
-  // Opacidade: Totalmente visível no topo, desaparece aos 150px de scroll
   const titleOpacity = useTransform(scrollY, [0, 150], [1, 0]);
-  
-  // Escala: Começa no tamanho real e encolhe ligeiramente enquanto sobe
   const titleScale = useTransform(scrollY, [0, 150], [1, 0.7]);
-  
-  // Posição Y: Começa 100px abaixo do centro (no retângulo vermelho) e sobe para -50px
-  const titleY = useTransform(scrollY, [0, 150], [100, -50]);
+  const titleY = useTransform(scrollY, [0, 150], [0, -50]);
 
   useEffect(() => {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -34,7 +28,6 @@ export default function Home() {
         </video>
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.2)' }} />
         
-        {/* TÍTULO HERO - Posicionado mais abaixo via titleY */}
         <motion.div style={{ zIndex: 2, textAlign: 'center', color: '#fff', opacity: titleOpacity, scale: titleScale, y: titleY }}>
           <h1 style={{ fontSize: 'clamp(4rem, 15vw, 8rem)', marginBottom: '10px' }}>Flores à Beira-Rio</h1>
           <p style={{ fontSize: '1.2rem', letterSpacing: '6px', textTransform: 'uppercase', fontWeight: '300' }}>
