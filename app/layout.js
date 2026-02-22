@@ -3,12 +3,19 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Ícone da Bandeira (SVG para funcionar em todos os dispositivos)
+const FlagEN = () => (
+  <svg width="16" height="12" viewBox="0 0 640 480" style={{ marginLeft: '8px', borderRadius: '2px', verticalAlign: 'middle' }}>
+    <path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 245 180L565 0h75v56L396 240l244 184v56h-75L320 300 75 480H0v-56l244-184L0 56V0h75z"/><path fill="#C8102E" d="m424 281 216 159v40L369 281h55zM216 199 0 40V0l271 199h-55zm-216 241 216-159h55L0 480v-40zm640 0L424 281h55l161 119v40zM0 190h640v100H0z"/><path fill="#FFF" d="M270 0h100v480H270z"/><path fill="#C8102E" d="M0 210h640v60H0zM300 0h40v480h-40z"/>
+  </svg>
+);
+
 export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -23,10 +30,8 @@ export default function RootLayout({ children }) {
     { name: "Vale-Presente", href: "/vale-presente" },
     { name: "FAQ", href: "/faq" },
     { name: "Contactos e Equipa", href: "/contactos" },
-    { name: "EN 🇬🇧", href: "/en" }, // Adicionada a bandeira aqui
+    { name: "EN", href: "/en", hasFlag: true },
   ];
-
-  const allItems = [...menuLeft, ...menuRight];
 
   return (
     <html lang="pt">
@@ -59,7 +64,7 @@ export default function RootLayout({ children }) {
             display: 'flex', justifyContent: 'space-between', alignItems: 'center' 
           }}>
             
-            {/* MENU ESQUERDA (Desktop) */}
+            {/* MENU ESQUERDA */}
             <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1 }}>
               {menuLeft.map((item) => (
                 <a key={item.name} href={item.href} style={{ 
@@ -70,14 +75,11 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
-            {/* LOGO CENTRAL - Opacidade 0 no início para não duplicar com o Hero */}
+            {/* LOGO CENTRAL (Escondido no topo para não duplicar) */}
             <motion.a 
               href="/" 
               initial={{ opacity: 0 }}
-              animate={{ 
-                opacity: scrolled ? 1 : 0,
-                scale: scrolled ? 0.8 : 1 
-              }}
+              animate={{ opacity: scrolled ? 1 : 0 }}
               style={{ 
                 textDecoration: 'none', color: scrolled ? '#1a1a1a' : '#fff', 
                 fontSize: '1.6rem', fontFamily: "'TAN-MEMORIES', serif", 
@@ -87,23 +89,25 @@ export default function RootLayout({ children }) {
               Flores à Beira-Rio
             </motion.a>
 
-            {/* MENU DIREITA (Desktop) */}
-            <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1, justifyContent: 'flex-end' }}>
+            {/* MENU DIREITA */}
+            <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
               {menuRight.map((item) => (
                 <a key={item.name} href={item.href} style={{ 
                   textDecoration: 'none', fontSize: '0.7rem', fontWeight: '500', 
                   textTransform: 'uppercase', letterSpacing: '1.5px',
-                  color: scrolled ? '#1a1a1a' : '#fff'
-                }}>{item.name}</a>
+                  color: scrolled ? '#1a1a1a' : '#fff',
+                  display: 'flex', alignItems: 'center'
+                }}>
+                  {item.name} {item.hasFlag && <FlagEN />}
+                </a>
               ))}
             </div>
 
-            {/* BOTÃO MENU (Mobile) - Texto em vez de Hamburger */}
+            {/* BOTÃO MENU MOBILE (Texto) */}
             <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ 
               background: 'none', border: 'none', cursor: 'pointer',
               color: scrolled ? '#1a1a1a' : '#fff',
-              fontSize: '0.8rem', fontWeight: '500', letterSpacing: '2px',
-              textTransform: 'uppercase'
+              fontSize: '0.8rem', fontWeight: '500', letterSpacing: '2px'
             }}>
               MENU
             </button>
@@ -115,11 +119,13 @@ export default function RootLayout({ children }) {
           {isOpen && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               style={{ position: 'fixed', inset: 0, backgroundColor: '#FCFBF9', zIndex: 200, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '1.2rem', letterSpacing: '2px', cursor: 'pointer' }}>FECHAR</button>
-              {allItems.map((item) => (
+              <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '0.8rem', letterSpacing: '2px', cursor: 'pointer' }}>FECHAR</button>
+              {[...menuLeft, ...menuRight].map((item) => (
                 <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} style={{ 
-                  textDecoration: 'none', color: '#1a1a1a', fontSize: '1.8rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif" 
-                }}>{item.name}</a>
+                  textDecoration: 'none', color: '#1a1a1a', fontSize: '1.8rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif", display: 'flex', alignItems: 'center'
+                }}>
+                  {item.name} {item.hasFlag && <FlagEN />}
+                </a>
               ))}
             </motion.div>
           )}
