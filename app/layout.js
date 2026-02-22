@@ -8,7 +8,7 @@ export default function RootLayout({ children }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 80);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
     { name: "Vale-Presente", href: "/vale-presente" },
     { name: "FAQ", href: "/faq" },
     { name: "Contactos e Equipa", href: "/contactos" },
-    { name: "EN", href: "/en" },
+    { name: "EN 🇬🇧", href: "/en" }, // Adicionada a bandeira aqui
   ];
 
   const allItems = [...menuLeft, ...menuRight];
@@ -70,7 +70,7 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
-            {/* LOGO CENTRAL - Agora só aparece ao fazer scroll */}
+            {/* LOGO CENTRAL - Opacidade 0 no início para não duplicar com o Hero */}
             <motion.a 
               href="/" 
               initial={{ opacity: 0 }}
@@ -98,19 +98,24 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
-            {/* HAMBURGER (Mobile) */}
-            <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-              <div style={{ width: '25px', height: '1px', backgroundColor: scrolled ? '#1a1a1a' : '#fff', margin: '6px 0' }} />
-              <div style={{ width: '25px', height: '1px', backgroundColor: scrolled ? '#1a1a1a' : '#fff', margin: '6px 0' }} />
+            {/* BOTÃO MENU (Mobile) - Texto em vez de Hamburger */}
+            <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ 
+              background: 'none', border: 'none', cursor: 'pointer',
+              color: scrolled ? '#1a1a1a' : '#fff',
+              fontSize: '0.8rem', fontWeight: '500', letterSpacing: '2px',
+              textTransform: 'uppercase'
+            }}>
+              MENU
             </button>
           </div>
         </nav>
 
+        {/* MENU MOBILE OVERLAY */}
         <AnimatePresence>
           {isOpen && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               style={{ position: 'fixed', inset: 0, backgroundColor: '#FCFBF9', zIndex: 200, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '2rem' }}>×</button>
+              <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '1.2rem', letterSpacing: '2px', cursor: 'pointer' }}>FECHAR</button>
               {allItems.map((item) => (
                 <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} style={{ 
                   textDecoration: 'none', color: '#1a1a1a', fontSize: '1.8rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif" 
