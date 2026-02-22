@@ -1,17 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 80);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // Transformações para o título central (Hero -> Nav)
+  // No topo (0): top 50%, tamanho grande. No scroll (200): top 25px, tamanho pequeno.
+  const logoTop = useTransform(scrollY, [0, 200], ["50%", "25px"]);
+  const logoSize = useTransform(scrollY, [0, 200], ["clamp(3.5rem, 10vw, 7rem)", "1.5rem"]);
+  const subtitleOpacity = useTransform(scrollY, [0, 100], [1, 0]);
+  const navBg = useTransform(scrollY, [0, 200], ["rgba(252, 251, 249, 0)", "rgba(252, 251, 249, 0.95)"]);
+  const navShadow = useTransform(scrollY, [0, 200], ["none", "0 2px 10px rgba(0,0,0,0.05)"]);
+  const linkColor = useTransform(scrollY, [0, 200], ["#fff", "#1a1a1a"]);
 
   const menuLeft = [
     { name: "Opções e Preços", href: "/opcoes-e-precos" },
@@ -29,7 +32,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt">
       <head>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
             font-family: 'TAN-MEMORIES';
@@ -45,75 +48,74 @@ export default function RootLayout({ children }) {
       </head>
       <body style={{ margin: 0, backgroundColor: '#FCFBF9', color: '#1a1a1a', fontFamily: "'Inter', sans-serif" }}>
         
-        <nav style={{ 
+        {/* NAV FIXA COM MENU DIVIDIDO */}
+        <motion.nav style={{ 
           position: 'fixed', top: 0, width: '100%', zIndex: 100, 
-          height: scrolled ? '80px' : '100vh',
-          backgroundColor: scrolled ? 'rgba(252, 251, 249, 0.95)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(10px)' : 'none',
-          transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-          display: 'flex', alignItems: 'center', pointerEvents: 'none'
+          height: '80px', backgroundColor: navBg, boxShadow: navShadow,
+          display: 'flex', alignItems: 'center'
         }}>
           <div style={{ 
             maxWidth: '1400px', margin: '0 auto', width: '100%', padding: '0 40px', 
-            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-            pointerEvents: 'auto'
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center'
           }}>
             
-            {/* MENU ESQUERDA */}
-            <div className="desktop-only" style={{ display: 'flex', gap: '30px', flex: 1, opacity: scrolled ? 1 : 0, transition: '0.4s' }}>
+            {/* LADO ESQUERDO */}
+            <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1 }}>
               {menuLeft.map((item) => (
-                <a key={item.name} href={item.href} style={{ textDecoration: 'none', color: scrolled ? '#1a1a1a' : '#fff', fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px' }}>{item.name}</a>
+                <motion.a key={item.name} href={item.href} style={{ 
+                  textDecoration: 'none', fontSize: '0.7rem', fontWeight: '500', 
+                  textTransform: 'uppercase', letterSpacing: '2px', color: linkColor 
+                }}>{item.name}</motion.a>
               ))}
             </div>
 
-            {/* LOGO CENTRAL (O Título que viaja) */}
-            <motion.div
-              style={{ 
-                position: scrolled ? 'relative' : 'absolute',
-                left: scrolled ? 'auto' : '50%',
-                top: scrolled ? 'auto' : '50%',
-                transform: scrolled ? 'none' : 'translate(-50%, -50%)',
-                textAlign: 'center', zIndex: 105
-              }}
-              animate={{ 
-                scale: scrolled ? 0.6 : 1,
-                y: scrolled ? 0 : 0, 
-              }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <a href="/" style={{ 
-                textDecoration: 'none', 
-                color: scrolled ? '#1a1a1a' : '#fff', 
-                fontSize: scrolled ? '2rem' : 'clamp(3.5rem, 10vw, 7rem)', 
-                fontFamily: "'TAN-MEMORIES', serif",
-                whiteSpace: 'nowrap',
-                transition: 'color 0.4s'
-              }}>
-                Flores à Beira-Rio
-              </a>
-              {!scrolled && (
-                <motion.p 
-                  initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                  style={{ color: '#fff', textTransform: 'uppercase', letterSpacing: '6px', fontSize: '1rem', marginTop: '20px', fontWeight: '300' }}>
-                  Especialistas em preservação de flores
-                </motion.p>
-              )}
-            </motion.div>
+            {/* ESPAÇO PARA O LOGO NO MEIO (Placeholder) */}
+            <div style={{ width: '300px' }} className="desktop-only" />
 
-            {/* MENU DIREITA */}
-            <div className="desktop-only" style={{ display: 'flex', gap: '30px', flex: 1, justifyContent: 'flex-end', opacity: scrolled ? 1 : 0, transition: '0.4s' }}>
+            {/* LADO DIREITO */}
+            <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1, justifyContent: 'flex-end' }}>
               {menuRight.map((item) => (
-                <a key={item.name} href={item.href} style={{ textDecoration: 'none', color: scrolled ? '#1a1a1a' : '#fff', fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px' }}>{item.name}</a>
+                <motion.a key={item.name} href={item.href} style={{ 
+                  textDecoration: 'none', fontSize: '0.7rem', fontWeight: '500', 
+                  textTransform: 'uppercase', letterSpacing: '2px', color: linkColor 
+                }}>{item.name}</motion.a>
               ))}
             </div>
 
             {/* HAMBURGER (Mobile) */}
             <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-              <div style={{ width: '25px', height: '1px', backgroundColor: scrolled ? '#1a1a1a' : '#fff', margin: '6px 0' }} />
-              <div style={{ width: '25px', height: '1px', backgroundColor: scrolled ? '#1a1a1a' : '#fff', margin: '6px 0' }} />
+              <div style={{ width: '25px', height: '1.5px', backgroundColor: '#1a1a1a', margin: '6px 0' }} />
+              <div style={{ width: '25px', height: '1.5px', backgroundColor: '#1a1a1a', margin: '6px 0' }} />
             </button>
           </div>
-        </nav>
+        </motion.nav>
+
+        {/* O TÍTULO QUE VIAJA (Este é o único título do topo) */}
+        <motion.div style={{ 
+          position: 'fixed', left: '50%', x: '-50%', zIndex: 105,
+          top: logoTop, textAlign: 'center', pointerEvents: 'none'
+        }}>
+          <motion.a href="/" style={{ 
+            textDecoration: 'none', 
+            fontFamily: "'TAN-MEMORIES', serif", 
+            fontSize: logoSize,
+            color: '#1a1a1a', // Mudar para branco se quiseres sobre o vídeo inicialmente
+            whiteSpace: 'nowrap',
+            pointerEvents: 'auto',
+            // Dinâmica de cor: começa branco no vídeo, fica preto na nav
+          }}
+          animate={{ color: scrollY.get() > 150 ? "#1a1a1a" : "#ffffff" }}
+          >
+            Flores à Beira-Rio
+          </motion.a>
+          
+          <motion.p style={{ 
+            opacity: subtitleOpacity, color: '#fff', textTransform: 'uppercase', 
+            letterSpacing: '6px', fontSize: '1.2rem', marginTop: '20px', fontWeight: '300' 
+          }}>
+            Especialistas em preservação de flores
+          </motion.p>
+        </motion.div>
 
         <AnimatePresence>
           {isOpen && (
@@ -132,8 +134,8 @@ export default function RootLayout({ children }) {
         <style jsx global>{`
           @media (max-width: 1023px) { .desktop-only { display: none !important; } }
           @media (min-width: 1024px) { .mobile-only { display: none !important; } }
-          h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; }
-          .italic { font-style: italic !important; }
+          h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
+          p, span, a { font-family: 'Inter', sans-serif; }
         `}</style>
       </body>
     </html>
