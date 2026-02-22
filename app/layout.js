@@ -8,12 +8,11 @@ export default function RootLayout({ children }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Divisão do menu conforme o teu pedido
   const menuLeft = [
     { name: "Opções e Preços", href: "/opcoes-e-precos" },
     { name: "Passo a Passo", href: "/passo-a-passo" },
@@ -26,8 +25,6 @@ export default function RootLayout({ children }) {
     { name: "Contactos e Equipa", href: "/contactos" },
     { name: "EN", href: "/en" },
   ];
-
-  const allItems = [...menuLeft, ...menuRight];
 
   return (
     <html lang="pt">
@@ -50,47 +47,63 @@ export default function RootLayout({ children }) {
         
         <nav style={{ 
           position: 'fixed', top: 0, width: '100%', zIndex: 100, 
+          height: scrolled ? '80px' : '100vh',
           backgroundColor: scrolled ? 'rgba(252, 251, 249, 0.95)' : 'transparent',
           backdropFilter: scrolled ? 'blur(10px)' : 'none',
-          transition: 'all 0.4s ease',
-          padding: scrolled ? '15px 0' : '30px 0'
+          transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+          display: 'flex', alignItems: 'center', pointerEvents: 'none'
         }}>
           <div style={{ 
-            maxWidth: '1400px', margin: '0 auto', padding: '0 40px', 
-            display: 'flex', justifyContent: 'space-between', alignItems: 'center' 
+            maxWidth: '1400px', margin: '0 auto', width: '100%', padding: '0 40px', 
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+            pointerEvents: 'auto'
           }}>
             
-            {/* MENU ESQUERDA (Desktop) */}
-            <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1 }}>
+            {/* MENU ESQUERDA */}
+            <div className="desktop-only" style={{ display: 'flex', gap: '30px', flex: 1, opacity: scrolled ? 1 : 0, transition: '0.4s' }}>
               {menuLeft.map((item) => (
-                <a key={item.name} href={item.href} style={{ 
-                  textDecoration: 'none', fontSize: '0.7rem', fontWeight: '500', 
-                  textTransform: 'uppercase', letterSpacing: '1.5px',
-                  color: scrolled ? '#1a1a1a' : '#fff'
-                }}>{item.name}</a>
+                <a key={item.name} href={item.href} style={{ textDecoration: 'none', color: scrolled ? '#1a1a1a' : '#fff', fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px' }}>{item.name}</a>
               ))}
             </div>
 
-            {/* LOGO CENTRAL */}
-            <motion.a 
-              href="/" 
-              animate={{ scale: scrolled ? 0.8 : 1 }}
+            {/* LOGO CENTRAL (O Título que viaja) */}
+            <motion.div
               style={{ 
-                textDecoration: 'none', color: scrolled ? '#1a1a1a' : '#fff', 
-                fontSize: '1.6rem', fontFamily: "'TAN-MEMORIES', serif", 
-                textAlign: 'center', flex: '0 0 auto', padding: '0 40px'
+                position: scrolled ? 'relative' : 'absolute',
+                left: scrolled ? 'auto' : '50%',
+                top: scrolled ? 'auto' : '50%',
+                transform: scrolled ? 'none' : 'translate(-50%, -50%)',
+                textAlign: 'center', zIndex: 105
+              }}
+              animate={{ 
+                scale: scrolled ? 0.6 : 1,
+                y: scrolled ? 0 : 0, 
+              }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <a href="/" style={{ 
+                textDecoration: 'none', 
+                color: scrolled ? '#1a1a1a' : '#fff', 
+                fontSize: scrolled ? '2rem' : 'clamp(3.5rem, 10vw, 7rem)', 
+                fontFamily: "'TAN-MEMORIES', serif",
+                whiteSpace: 'nowrap',
+                transition: 'color 0.4s'
               }}>
-              FLORES À BEIRA-RIO
-            </motion.a>
+                Flores à Beira-Rio
+              </a>
+              {!scrolled && (
+                <motion.p 
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                  style={{ color: '#fff', textTransform: 'uppercase', letterSpacing: '6px', fontSize: '1rem', marginTop: '20px', fontWeight: '300' }}>
+                  Especialistas em preservação de flores
+                </motion.p>
+              )}
+            </motion.div>
 
-            {/* MENU DIREITA (Desktop) */}
-            <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1, justifyContent: 'flex-end' }}>
+            {/* MENU DIREITA */}
+            <div className="desktop-only" style={{ display: 'flex', gap: '30px', flex: 1, justifyContent: 'flex-end', opacity: scrolled ? 1 : 0, transition: '0.4s' }}>
               {menuRight.map((item) => (
-                <a key={item.name} href={item.href} style={{ 
-                  textDecoration: 'none', fontSize: '0.7rem', fontWeight: '500', 
-                  textTransform: 'uppercase', letterSpacing: '1.5px',
-                  color: scrolled ? '#1a1a1a' : '#fff'
-                }}>{item.name}</a>
+                <a key={item.name} href={item.href} style={{ textDecoration: 'none', color: scrolled ? '#1a1a1a' : '#fff', fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px' }}>{item.name}</a>
               ))}
             </div>
 
@@ -102,16 +115,13 @@ export default function RootLayout({ children }) {
           </div>
         </nav>
 
-        {/* MENU MOBILE OVERLAY */}
         <AnimatePresence>
           {isOpen && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               style={{ position: 'fixed', inset: 0, backgroundColor: '#FCFBF9', zIndex: 200, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
               <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '2rem' }}>×</button>
-              {allItems.map((item) => (
-                <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} style={{ 
-                  textDecoration: 'none', color: '#1a1a1a', fontSize: '1.8rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif" 
-                }}>{item.name}</a>
+              {[...menuLeft, ...menuRight].map((item) => (
+                <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} style={{ textDecoration: 'none', color: '#1a1a1a', fontSize: '2rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif" }}>{item.name}</a>
               ))}
             </motion.div>
           )}
@@ -122,7 +132,7 @@ export default function RootLayout({ children }) {
         <style jsx global>{`
           @media (max-width: 1023px) { .desktop-only { display: none !important; } }
           @media (min-width: 1024px) { .mobile-only { display: none !important; } }
-          h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
+          h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; }
           .italic { font-style: italic !important; }
         `}</style>
       </body>
