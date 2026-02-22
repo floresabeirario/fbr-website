@@ -7,16 +7,20 @@ export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  // --- TRANSFORMAÇÕES DE SCROLL ---
-  // 1. Posição: De 50% (centro do ecrã) para 25px (centro da barra de menu)
-  const logoTop = useTransform(scrollY, [0, 300], ["50%", "30px"]);
-  // 2. Tamanho: De 7rem (Gigante no Hero) para 1.5rem (Elegante no Menu)
-  const logoSize = useTransform(scrollY, [0, 300], ["clamp(3.5rem, 10vw, 7.5rem)", "1.6rem"]);
+  // --- TRANSFORMAÇÕES DE SCROLL CORRIGIDAS ---
+  // 1. Posição: Começa em 55vh (mais para baixo que o centro) e vai para 40px (meio da barra)
+  const logoTop = useTransform(scrollY, [0, 300], ["55vh", "40px"]);
+  
+  // 2. Tamanho: AUMENTADO. Começa gigante e encolhe para o menu.
+  const logoSize = useTransform(scrollY, [0, 300], ["clamp(4.5rem, 15vw, 9.5rem)", "1.6rem"]);
+  
   // 3. Cor: De Branco (#fff) para Preto (#1a1a1a)
   const logoColor = useTransform(scrollY, [0, 300], ["#ffffff", "#1a1a1a"]);
-  // 4. Subtítulo: Desaparece rápido ao fazer scroll
+  
+  // 4. Subtítulo: Desaparece rápido
   const subtitleOpacity = useTransform(scrollY, [0, 100], [1, 0]);
-  // 5. Fundo do Menu: Fica visível apenas após o scroll
+  
+  // 5. Fundo do Menu
   const navBg = useTransform(scrollY, [0, 300], ["rgba(252, 251, 249, 0)", "rgba(252, 251, 249, 0.98)"]);
   const linkColor = useTransform(scrollY, [0, 300], ["#ffffff", "#1a1a1a"]);
 
@@ -72,7 +76,7 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
-            {/* ESPAÇO CENTRAL PARA O LOGO QUE VIAJA */}
+            {/* ESPAÇO CENTRAL VAZIO PARA O LOGO ENCAIXAR */}
             <div style={{ width: '350px' }} className="desktop-only" />
 
             {/* LINKS DIREITA */}
@@ -93,11 +97,11 @@ export default function RootLayout({ children }) {
           </div>
         </motion.nav>
 
-        {/* O TÍTULO GOSHA-STYLE (O elemento que viaja e muda de cor) */}
+        {/* O TÍTULO GOSHA-STYLE (Viajante) */}
         <motion.div style={{ 
           position: 'fixed', left: '50%', x: '-50%', zIndex: 110,
-          top: logoTop, y: "-50%", // Garante que o centro do texto é o ponto de referência
-          textAlign: 'center', pointerEvents: 'none'
+          top: logoTop, y: "-50%", // Garante o centro vertical exato no ponto definido pelo 'top'
+          textAlign: 'center', pointerEvents: 'none', width: '100%'
         }}>
           <motion.a href="/" style={{ 
             textDecoration: 'none', 
@@ -105,14 +109,16 @@ export default function RootLayout({ children }) {
             fontSize: logoSize,
             color: logoColor,
             whiteSpace: 'nowrap',
-            pointerEvents: 'auto'
+            pointerEvents: 'auto',
+            display: 'block',
+            marginBottom: '0'
           }}>
             Flores à Beira-Rio
           </motion.a>
           
           <motion.p style={{ 
             opacity: subtitleOpacity, color: '#fff', textTransform: 'uppercase', 
-            letterSpacing: '8px', fontSize: '1.2rem', marginTop: '30px', fontWeight: '300' 
+            letterSpacing: '8px', fontSize: '1.2rem', marginTop: '20px', fontWeight: '300' 
           }}>
             Especialistas em preservação de flores
           </motion.p>
