@@ -20,6 +20,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt">
       <head>
+        {/* Importação da Montserrat para o corpo de texto */}
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
             font-family: 'TAN-MEMORIES';
@@ -28,21 +30,29 @@ export default function RootLayout({ children }) {
             font-style: normal;
             font-display: swap;
           }
+          @font-face {
+            font-family: 'TAN-MEMORIES';
+            src: url('/TAN-MEMORIES-Italic.otf') format('opentype');
+            font-weight: normal;
+            font-style: italic;
+            font-display: swap;
+          }
         `}} />
       </head>
-      <body style={{ margin: 0, fontFamily: 'system-ui, sans-serif', backgroundColor: '#FCFBF9' }}>
+      <body style={{ margin: 0, fontFamily: "'Montserrat', sans-serif", backgroundColor: '#FCFBF9', color: '#1a1a1a' }}>
         
         <nav style={{ 
-          position: 'absolute', 
+          position: 'fixed', // Agora o menu fica sempre no topo
           top: 0, 
           width: '100%', 
           zIndex: 100, 
-          backgroundColor: 'transparent',
+          backgroundColor: 'rgba(26, 26, 26, 0.05)', // Quase transparente
+          backdropFilter: 'blur(5px)', // Efeito de vidro elegante ao fazer scroll
         }}>
           <div style={{ 
             maxWidth: '1200px', 
             margin: '0 auto', 
-            padding: '25px 20px', 
+            padding: '20px 20px', 
             display: 'flex', 
             justifyContent: 'space-between', 
             alignItems: 'center' 
@@ -50,7 +60,6 @@ export default function RootLayout({ children }) {
             <a href="/" style={{ 
               textDecoration: 'none', 
               color: '#fff', 
-              fontWeight: '400', 
               fontSize: '1.4rem', 
               fontFamily: "'TAN-MEMORIES', serif",
               letterSpacing: '1px' 
@@ -61,13 +70,13 @@ export default function RootLayout({ children }) {
             {/* Desktop Menu */}
             <div className="desktop-menu" style={{ display: 'none', gap: '20px' }}>
               {menuItems.map((item) => (
-                <a key={item.name} href={item.href} style={{ textDecoration: 'none', color: '#fff', fontSize: '0.75rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                <a key={item.name} href={item.href} style={{ textDecoration: 'none', color: '#fff', fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '2px' }}>
                   {item.name}
                 </a>
               ))}
             </div>
 
-            {/* Hamburger Button (Branco) */}
+            {/* Hamburger Button */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
               style={{ background: 'none', border: 'none', cursor: 'pointer', zIndex: 101, padding: '10px' }}
@@ -105,6 +114,11 @@ export default function RootLayout({ children }) {
             font-family: 'TAN-MEMORIES', serif !important; 
             font-weight: 400; 
             line-height: 1.1;
+            letter-spacing: -0.5px;
+          }
+          p, span, a, button {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
           }
         `}</style>
       </body>
