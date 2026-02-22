@@ -7,21 +7,19 @@ export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  // --- TRANSFORMAÇÕES DE SCROLL CORRIGIDAS ---
-  // 1. Posição: Começa em 55vh (mais para baixo que o centro) e vai para 40px (meio da barra)
-  const logoTop = useTransform(scrollY, [0, 300], ["55vh", "40px"]);
+  // --- CONTROLO DE ANIMAÇÃO GOSHA-STYLE ---
+  // 1. Posição Vertical: Começa no centro exato (50vh) e viaja para o topo (40px)
+  const logoTop = useTransform(scrollY, [0, 400], ["50vh", "40px"]);
   
-  // 2. Tamanho: AUMENTADO. Começa gigante e encolhe para o menu.
-  const logoSize = useTransform(scrollY, [0, 300], ["clamp(4.5rem, 15vw, 9.5rem)", "1.6rem"]);
+  // 2. Tamanho: Começa imponente e encolhe para caber no menu
+  const logoSize = useTransform(scrollY, [0, 400], ["clamp(4rem, 15vw, 10rem)", "1.5rem"]);
   
-  // 3. Cor: De Branco (#fff) para Preto (#1a1a1a)
+  // 3. Cor: Começa branco (sobre o vídeo) e torna-se preto (na barra de navegação)
   const logoColor = useTransform(scrollY, [0, 300], ["#ffffff", "#1a1a1a"]);
   
-  // 4. Subtítulo: Desaparece rápido
-  const subtitleOpacity = useTransform(scrollY, [0, 100], [1, 0]);
-  
-  // 5. Fundo do Menu
-  const navBg = useTransform(scrollY, [0, 300], ["rgba(252, 251, 249, 0)", "rgba(252, 251, 249, 0.98)"]);
+  // 4. Elementos de suporte (Subtítulo e Fundo da Barra)
+  const subtitleOpacity = useTransform(scrollY, [0, 150], [1, 0]);
+  const navBg = useTransform(scrollY, [0, 400], ["rgba(252, 251, 249, 0)", "rgba(252, 251, 249, 0.98)"]);
   const linkColor = useTransform(scrollY, [0, 300], ["#ffffff", "#1a1a1a"]);
 
   const menuLeft = [
@@ -54,19 +52,20 @@ export default function RootLayout({ children }) {
           }
         `}} />
       </head>
-      <body style={{ margin: 0, backgroundColor: '#FCFBF9', color: '#1a1a1a', fontFamily: "'Inter', sans-serif" }}>
+      <body style={{ margin: 0, backgroundColor: '#FCFBF9', color: '#1a1a1a', fontFamily: "'Inter', sans-serif", overflowX: 'hidden' }}>
         
-        {/* BARRA DE NAVEGAÇÃO FIXA */}
+        {/* NAVEGAÇÃO DIVIDIDA */}
         <motion.nav style={{ 
           position: 'fixed', top: 0, width: '100%', zIndex: 100, 
           height: '80px', backgroundColor: navBg,
           display: 'flex', alignItems: 'center'
         }}>
           <div style={{ 
-            maxWidth: '1400px', margin: '0 auto', width: '100%', padding: '0 40px', 
+            maxWidth: '1450px', margin: '0 auto', width: '100%', padding: '0 40px', 
             display: 'flex', justifyContent: 'space-between', alignItems: 'center'
           }}>
-            {/* LINKS ESQUERDA */}
+            
+            {/* LADO ESQUERDO */}
             <div className="desktop-only" style={{ display: 'flex', gap: '30px', flex: 1 }}>
               {menuLeft.map((item) => (
                 <motion.a key={item.name} href={item.href} style={{ 
@@ -76,10 +75,10 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
-            {/* ESPAÇO CENTRAL VAZIO PARA O LOGO ENCAIXAR */}
-            <div style={{ width: '350px' }} className="desktop-only" />
+            {/* ESPAÇO CENTRAL (Reservado para o logo que viaja) */}
+            <div style={{ width: '400px' }} className="desktop-only" />
 
-            {/* LINKS DIREITA */}
+            {/* LADO DIREITO */}
             <div className="desktop-only" style={{ display: 'flex', gap: '30px', flex: 1, justifyContent: 'flex-end' }}>
               {menuRight.map((item) => (
                 <motion.a key={item.name} href={item.href} style={{ 
@@ -89,7 +88,7 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
-            {/* MOBILE HAMBURGER */}
+            {/* HAMBURGER MOBILE */}
             <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
               <div style={{ width: '25px', height: '1px', backgroundColor: '#1a1a1a', margin: '6px 0' }} />
               <div style={{ width: '25px', height: '1px', backgroundColor: '#1a1a1a', margin: '6px 0' }} />
@@ -97,10 +96,10 @@ export default function RootLayout({ children }) {
           </div>
         </motion.nav>
 
-        {/* O TÍTULO GOSHA-STYLE (Viajante) */}
+        {/* LOGOTIPO VIAJANTE (O ELEMENTO ÚNICO) */}
         <motion.div style={{ 
           position: 'fixed', left: '50%', x: '-50%', zIndex: 110,
-          top: logoTop, y: "-50%", // Garante o centro vertical exato no ponto definido pelo 'top'
+          top: logoTop, y: "-50%", 
           textAlign: 'center', pointerEvents: 'none', width: '100%'
         }}>
           <motion.a href="/" style={{ 
@@ -110,15 +109,14 @@ export default function RootLayout({ children }) {
             color: logoColor,
             whiteSpace: 'nowrap',
             pointerEvents: 'auto',
-            display: 'block',
-            marginBottom: '0'
+            display: 'inline-block'
           }}>
             Flores à Beira-Rio
           </motion.a>
           
           <motion.p style={{ 
             opacity: subtitleOpacity, color: '#fff', textTransform: 'uppercase', 
-            letterSpacing: '8px', fontSize: '1.2rem', marginTop: '20px', fontWeight: '300' 
+            letterSpacing: '8px', fontSize: '1rem', marginTop: '30px', fontWeight: '300' 
           }}>
             Especialistas em preservação de flores
           </motion.p>
@@ -142,7 +140,7 @@ export default function RootLayout({ children }) {
           @media (max-width: 1023px) { .desktop-only { display: none !important; } }
           @media (min-width: 1024px) { .mobile-only { display: none !important; } }
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
-          p, span, a, div { font-family: 'Inter', Helvetica, sans-serif; }
+          p, span, a { font-family: 'Inter', sans-serif; }
         `}</style>
       </body>
     </html>
