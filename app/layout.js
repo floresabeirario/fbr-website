@@ -1,33 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
-  const { scrollY } = useScroll();
+  const [scrolled, setScrolled] = useState(false);
 
-  // Reset do scroll ao carregar a página
   useEffect(() => {
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // --- CONTROLO DA ANIMAÇÃO GOSHA ---
-  // 1. Posição Vertical: Começa no centro (50vh) e viaja para o centro da barra (40px)
-  const logoTop = useTransform(scrollY, [0, 400], ["50vh", "40px"]);
-  
-  // 2. Tamanho: Começa imponente (9rem) e encolhe para o menu (1.6rem)
-  const logoSize = useTransform(scrollY, [0, 400], ["clamp(3.5rem, 12vw, 9rem)", "1.6rem"]);
-  
-  // 3. Cor: Branco absoluto sobre o vídeo, Preto sólido no menu
-  const logoColor = useTransform(scrollY, [0, 300], ["#ffffff", "#1a1a1a"]);
-  
-  // 4. Subtítulo e Fundo da Nav
-  const subtitleOpacity = useTransform(scrollY, [0, 150], [1, 0]);
-  const navBg = useTransform(scrollY, [0, 400], ["rgba(252, 251, 249, 0)", "rgba(252, 251, 249, 0.98)"]);
-  const linkColor = useTransform(scrollY, [0, 300], ["#ffffff", "#1a1a1a"]);
-
+  // Divisão do menu conforme o teu pedido
   const menuLeft = [
     { name: "Opções e Preços", href: "/opcoes-e-precos" },
     { name: "Passo a Passo", href: "/passo-a-passo" },
@@ -41,10 +27,12 @@ export default function RootLayout({ children }) {
     { name: "EN", href: "/en" },
   ];
 
+  const allItems = [...menuLeft, ...menuRight];
+
   return (
     <html lang="pt">
       <head>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
             font-family: 'TAN-MEMORIES';
@@ -58,86 +46,72 @@ export default function RootLayout({ children }) {
           }
         `}} />
       </head>
-      <body style={{ margin: 0, backgroundColor: '#FCFBF9', color: '#1a1a1a', fontFamily: "'Inter', sans-serif", overflowX: 'hidden' }}>
+      <body style={{ margin: 0, backgroundColor: '#FCFBF9', color: '#1a1a1a', fontFamily: "'Inter', sans-serif" }}>
         
-        {/* NAVEGAÇÃO DIVIDIDA FIXA */}
-        <motion.nav style={{ 
+        <nav style={{ 
           position: 'fixed', top: 0, width: '100%', zIndex: 100, 
-          height: '80px', backgroundColor: navBg,
-          display: 'flex', alignItems: 'center'
+          backgroundColor: scrolled ? 'rgba(252, 251, 249, 0.95)' : 'transparent',
+          backdropFilter: scrolled ? 'blur(10px)' : 'none',
+          transition: 'all 0.4s ease',
+          padding: scrolled ? '15px 0' : '30px 0'
         }}>
           <div style={{ 
-            maxWidth: '1450px', margin: '0 auto', width: '100%', padding: '0 40px', 
-            display: 'flex', justifyContent: 'space-between', alignItems: 'center'
+            maxWidth: '1400px', margin: '0 auto', padding: '0 40px', 
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center' 
           }}>
-            <div className="desktop-only" style={{ display: 'flex', gap: '30px', flex: 1 }}>
-              {menuLeft.map((item) => (
-                <motion.a key={item.name} href={item.href} style={{ textDecoration: 'none', fontSize: '0.75rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '2px', color: linkColor }}>{item.name}</motion.a>
-              ))}
-            </div>
             
-            {/* Espaço central reservado para o logo */}
-            <div style={{ width: '450px' }} className="desktop-only" />
-
-            <div className="desktop-only" style={{ display: 'flex', gap: '30px', flex: 1, justifyContent: 'flex-end' }}>
-              {menuRight.map((item) => (
-                <motion.a key={item.name} href={item.href} style={{ textDecoration: 'none', fontSize: '0.75rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '2px', color: linkColor }}>{item.name}</motion.a>
+            {/* MENU ESQUERDA (Desktop) */}
+            <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1 }}>
+              {menuLeft.map((item) => (
+                <a key={item.name} href={item.href} style={{ 
+                  textDecoration: 'none', fontSize: '0.7rem', fontWeight: '500', 
+                  textTransform: 'uppercase', letterSpacing: '1.5px',
+                  color: scrolled ? '#1a1a1a' : '#fff'
+                }}>{item.name}</a>
               ))}
             </div>
 
+            {/* LOGO CENTRAL */}
+            <motion.a 
+              href="/" 
+              animate={{ scale: scrolled ? 0.8 : 1 }}
+              style={{ 
+                textDecoration: 'none', color: scrolled ? '#1a1a1a' : '#fff', 
+                fontSize: '1.6rem', fontFamily: "'TAN-MEMORIES', serif", 
+                textAlign: 'center', flex: '0 0 auto', padding: '0 40px'
+              }}>
+              FLORES À BEIRA-RIO
+            </motion.a>
+
+            {/* MENU DIREITA (Desktop) */}
+            <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1, justifyContent: 'flex-end' }}>
+              {menuRight.map((item) => (
+                <a key={item.name} href={item.href} style={{ 
+                  textDecoration: 'none', fontSize: '0.7rem', fontWeight: '500', 
+                  textTransform: 'uppercase', letterSpacing: '1.5px',
+                  color: scrolled ? '#1a1a1a' : '#fff'
+                }}>{item.name}</a>
+              ))}
+            </div>
+
+            {/* HAMBURGER (Mobile) */}
             <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-              <motion.div style={{ width: '25px', height: '1.5px', backgroundColor: linkColor, margin: '6px 0' }} />
-              <motion.div style={{ width: '25px', height: '1.5px', backgroundColor: linkColor, margin: '6px 0' }} />
+              <div style={{ width: '25px', height: '1px', backgroundColor: scrolled ? '#1a1a1a' : '#fff', margin: '6px 0' }} />
+              <div style={{ width: '25px', height: '1px', backgroundColor: scrolled ? '#1a1a1a' : '#fff', margin: '6px 0' }} />
             </button>
           </div>
-        </motion.nav>
+        </nav>
 
-        {/* LOGO QUE VIAJA (COMEÇA NO CENTRO DO ECRÃ) */}
-        <motion.div style={{ 
-          position: 'fixed', 
-          left: '50%', 
-          top: logoTop,
-          x: '-50%', 
-          y: '-50%',
-          zIndex: 110,
-          textAlign: 'center', 
-          pointerEvents: 'none', 
-          width: '100%'
-        }}>
-          <motion.a href="/" style={{ 
-            textDecoration: 'none', 
-            fontFamily: "'TAN-MEMORIES', serif", 
-            fontSize: logoSize, 
-            color: logoColor, 
-            whiteSpace: 'nowrap',
-            pointerEvents: 'auto', 
-            display: 'inline-block',
-            lineHeight: '1.1'
-          }}>
-            Flores à Beira-Rio
-          </motion.a>
-          
-          <motion.p style={{ 
-            opacity: subtitleOpacity, 
-            color: '#ffffff', 
-            textTransform: 'uppercase', 
-            letterSpacing: '10px', 
-            fontSize: '1rem', 
-            marginTop: '30px', 
-            fontWeight: '300',
-            textShadow: '0 2px 15px rgba(0,0,0,0.3)'
-          }}>
-            Especialistas em preservação de flores
-          </motion.p>
-        </motion.div>
-
+        {/* MENU MOBILE OVERLAY */}
         <AnimatePresence>
           {isOpen && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               style={{ position: 'fixed', inset: 0, backgroundColor: '#FCFBF9', zIndex: 200, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
               <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '2rem' }}>×</button>
-              {[...menuLeft, ...menuRight].map((item) => (
-                <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} style={{ textDecoration: 'none', color: '#1a1a1a', fontSize: '2rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif" }}>{item.name}</a>
+              {allItems.map((item) => (
+                <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} style={{ 
+                  textDecoration: 'none', color: '#1a1a1a', fontSize: '1.8rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif" 
+                }}>{item.name}</a>
               ))}
             </motion.div>
           )}
@@ -149,6 +123,7 @@ export default function RootLayout({ children }) {
           @media (max-width: 1023px) { .desktop-only { display: none !important; } }
           @media (min-width: 1024px) { .mobile-only { display: none !important; } }
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
+          .italic { font-style: italic !important; }
         `}</style>
       </body>
     </html>
