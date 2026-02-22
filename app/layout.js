@@ -20,16 +20,25 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt">
       <head>
-        <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+        {/* Este bloco de estilo carrega a tua fonte Tay-Bea oficial */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          @font-face {
+            font-family: 'Tay-Bea';
+            src: url('/Tay-Bea.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+          }
+        `}} />
       </head>
       <body style={{ margin: 0, fontFamily: 'system-ui, sans-serif', backgroundColor: '#FCFBF9' }}>
         
         <nav style={{ 
-          position: 'absolute', // Mudança para o vídeo ir para trás do menu
+          position: 'absolute', 
           top: 0, 
           width: '100%', 
           zIndex: 100, 
-          backgroundColor: 'transparent', // Transparência total para tirar o branco
+          backgroundColor: 'transparent',
         }}>
           <div style={{ 
             maxWidth: '1200px', 
@@ -41,10 +50,10 @@ export default function RootLayout({ children }) {
           }}>
             <a href="/" style={{ 
               textDecoration: 'none', 
-              color: '#fff', // Branco para contrastar com o vídeo
+              color: '#fff', 
               fontWeight: '400', 
               fontSize: '1.4rem', 
-              fontFamily: "'Instrument Serif', serif",
+              fontFamily: "'Tay-Bea', serif",
               letterSpacing: '1px' 
             }}>
               FLORES À BEIRA-RIO
@@ -59,10 +68,10 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
-            {/* Hamburger (Branco para o vídeo) */}
+            {/* Hamburger (Branco) */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', zIndex: 101 }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', zIndex: 101, padding: '10px' }}
             >
               <div style={{ width: '25px', height: '1.5px', backgroundColor: '#fff', margin: '5px 0' }} />
               <div style={{ width: '25px', height: '1.5px', backgroundColor: '#fff', margin: '5px 0' }} />
@@ -74,11 +83,11 @@ export default function RootLayout({ children }) {
           {isOpen && (
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', backgroundColor: '#FCFBF9', zIndex: 150, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+              style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', backgroundColor: '#FCFBF9', zIndex: 150, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}
             >
-              <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '25px', right: '20px', background: 'none', border: 'none', fontSize: '2rem', cursor: 'pointer' }}>×</button>
+              <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '25px', right: '20px', background: 'none', border: 'none', fontSize: '2rem', cursor: 'pointer', color: '#1a1a1a' }}>×</button>
               {menuItems.map((item, i) => (
-                <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} style={{ textDecoration: 'none', color: '#1a1a1a', fontSize: '2rem', margin: '10px 0', fontFamily: "'Instrument Serif', serif" }}>
+                <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} style={{ textDecoration: 'none', color: '#1a1a1a', fontSize: '2rem', margin: '10px 0', fontFamily: "'Tay-Bea', serif" }}>
                   {item.name}
                 </a>
               ))}
@@ -86,7 +95,6 @@ export default function RootLayout({ children }) {
           )}
         </AnimatePresence>
 
-        {/* Removido o padding top para o vídeo colar no topo */}
         <main>{children}</main>
 
         <style jsx global>{`
@@ -94,7 +102,11 @@ export default function RootLayout({ children }) {
             .desktop-menu { display: flex !important; }
             nav button { display: none !important; }
           }
-          h1, h2, h3, .serif { font-family: 'Instrument Serif', serif !important; font-weight: 400; }
+          /* Aplica a tua fonte Tay-Bea a todos os títulos do site */
+          h1, h2, h3, .serif { 
+            font-family: 'Tay-Bea', serif !important; 
+            font-weight: 400; 
+          }
         `}</style>
       </body>
     </html>
