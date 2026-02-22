@@ -27,15 +27,18 @@ export default function Home() {
         </video>
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.2)' }} />
         
-        <motion.div style={{ zIndex: 2, textAlign: 'center', color: '#fff', opacity: titleOpacity, scale: titleScale, y: titleY }}>
-          <h1 style={{ fontSize: 'clamp(4rem, 15vw, 8rem)', marginBottom: '10px' }}>Flores à Beira-Rio</h1>
+        {/* Adicionei 'width: 90%' aqui e a quebra controlada no h1 */}
+        <motion.div style={{ zIndex: 2, textAlign: 'center', color: '#fff', opacity: titleOpacity, scale: titleScale, y: titleY, width: '90%', maxWidth: '1200px' }}>
+          <h1 style={{ fontSize: 'clamp(4rem, 15vw, 8rem)', marginBottom: '10px' }}>
+            Flores à <span style={{ whiteSpace: 'nowrap' }}>Beira&#8209;Rio</span>
+          </h1>
           <p style={{ fontSize: '1.2rem', letterSpacing: '6px', textTransform: 'uppercase', fontWeight: '300' }}>
             Especialistas em preservação de flores
           </p>
         </motion.div>
       </section>
 
-      {/* RESTO DO CONTEÚDO IGUAL */}
+      {/* 2. OS 3 PASSOS */}
       <section style={{ padding: '120px 20px', maxWidth: '1200px', margin: '0 auto' }}>
         <h2 style={{ fontSize: '3.5rem', textAlign: 'center', marginBottom: '80px' }}>Três passos para a sua arte</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '60px' }}>
@@ -53,6 +56,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 3. GOOGLE REVIEWS */}
+      <section style={{ padding: '120px 20px', backgroundColor: '#1a1a1a', color: '#FCFBF9', textAlign: 'center' }}>
+        <h2 style={{ fontSize: '3rem', marginBottom: '40px' }}>O que dizem as nossas noivas</h2>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <p className="italic" style={{ fontSize: '2rem', lineHeight: '1.3', fontFamily: "'TAN-MEMORIES', serif" }}>
+            "Fiquei sem palavras quando recebi o meu quadro. A delicadeza da preservação é incrível, as cores mantiveram-se vibrantes. Uma equipa fantástica!"
+          </p>
+          <div style={{ marginTop: '30px', opacity: 0.4, letterSpacing: '2px', fontSize: '0.8rem' }}>GOOGLE REVIEWS ★★★★★</div>
+        </div>
+      </section>
+
+      {/* 4. SUSTENTABILIDADE */}
+      <section style={{ padding: '120px 20px', textAlign: 'center', backgroundColor: '#F4F1EE' }}>
+        <div style={{ maxWidth: '850px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '3.5rem', marginBottom: '30px' }}>Beira-Rio: Preservação Consciente</h2>
+          <p style={{ fontSize: '1.2rem', lineHeight: '2', color: '#333' }}>
+            A natureza não precisa de plásticos. Enquanto a resina epóxi é um polímero sintético, a nossa <strong>prensagem botânica</strong> celebra a alma da flor de forma 100% orgânica.
+          </p>
+        </div>
+      </section>
+
+      {/* RODAPÉ */}
       <footer style={{ position: 'relative', backgroundColor: '#1a1a1a', color: '#FCFBF9', marginTop: '120px' }}>
         <div style={{ position: 'absolute', top: '-48px', left: 0, width: '100%', overflow: 'hidden', lineHeight: 0 }}>
           <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style={{ width: '100%', height: '50px' }}>
@@ -61,7 +86,13 @@ export default function Home() {
         </div>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '100px 20px 60px', textAlign: 'center' }}>
           <h2 style={{ fontSize: '4rem', marginBottom: '60px' }}>Flores à Beira-Rio</h2>
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '40px', opacity: 0.5, fontSize: '0.7rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', marginBottom: '80px' }}>
+            <a href="#" style={{ color: '#FCFBF9' }}><IconInstagram /></a>
+            <a href="#" style={{ color: '#FCFBF9' }}><IconFacebook /></a>
+            <a href="#" style={{ color: '#FCFBF9' }}><IconWhatsApp /></a>
+            <a href="#" style={{ color: '#FCFBF9' }}><IconEmail /></a>
+          </div>
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '40px', opacity: 0.5, fontSize: '0.7rem', letterSpacing: '2px' }}>
             © 2026 FLORES À BEIRA-RIO. COIMBRA, PORTUGAL.
           </div>
         </div>
