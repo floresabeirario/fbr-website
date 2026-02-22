@@ -7,20 +7,24 @@ export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  // --- O SEGREDO DO EFEITO GOSHA ---
-  // 1. Vertical: Começa em 50vh (centro exato do ecrã) e vai para 40px (centro da barra de navegação)
-  const logoTop = useTransform(scrollY, [0, 400], ["50vh", "40px"]);
+  // Reset do scroll ao carregar a página para garantir que começa no topo
+  useEffect(() => {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+  }, []);
+
+  // --- ANIMAÇÃO GOSHA-STYLE PRECISA ---
+  // 1. Posição Vertical: Começa em 50% (Centro onde puseste o retângulo) e vai para 40px (Nav)
+  const logoTop = useTransform(scrollY, [0, 400], ["50%", "40px"]);
   
-  // 2. Tamanho: Começa GIGANTE (8.5rem no PC) e encolhe para o tamanho do menu (1.6rem)
-  const logoSize = useTransform(scrollY, [0, 400], ["clamp(3rem, 10vw, 8.5rem)", "1.6rem"]);
+  // 2. Tamanho: Começa GIGANTE e encolhe. Aumentei o máximo para 11rem.
+  const logoSize = useTransform(scrollY, [0, 400], ["clamp(4rem, 18vw, 11rem)", "1.6rem"]);
   
-  // 3. Cor: Branco absoluto sobre o vídeo, Preto no menu
+  // 3. Cor: Branco (Hero) para Preto (Menu)
   const logoColor = useTransform(scrollY, [0, 300], ["#ffffff", "#1a1a1a"]);
   
-  // 4. Subtítulo: Desaparece nos primeiros 150px de scroll
+  // 4. Opacidade do Subtítulo e Fundo da Nav
   const subtitleOpacity = useTransform(scrollY, [0, 150], [1, 0]);
-  
-  // 5. Fundo da Barra: Fica branca/bege sólida quando o título aterra
   const navBg = useTransform(scrollY, [0, 400], ["rgba(252, 251, 249, 0)", "rgba(252, 251, 249, 0.98)"]);
   const linkColor = useTransform(scrollY, [0, 300], ["#ffffff", "#1a1a1a"]);
 
@@ -56,7 +60,7 @@ export default function RootLayout({ children }) {
       </head>
       <body style={{ margin: 0, backgroundColor: '#FCFBF9', color: '#1a1a1a', fontFamily: "'Inter', sans-serif", overflowX: 'hidden' }}>
         
-        {/* BARRA DE NAVEGAÇÃO DIVIDIDA */}
+        {/* NAVEGAÇÃO DIVIDIDA */}
         <motion.nav style={{ 
           position: 'fixed', top: 0, width: '100%', zIndex: 100, 
           height: '80px', backgroundColor: navBg,
@@ -66,67 +70,47 @@ export default function RootLayout({ children }) {
             maxWidth: '1450px', margin: '0 auto', width: '100%', padding: '0 40px', 
             display: 'flex', justifyContent: 'space-between', alignItems: 'center'
           }}>
-            
-            {/* LINKS ESQUERDA */}
             <div className="desktop-only" style={{ display: 'flex', gap: '30px', flex: 1 }}>
               {menuLeft.map((item) => (
-                <motion.a key={item.name} href={item.href} style={{ 
-                  textDecoration: 'none', fontSize: '0.7rem', fontWeight: '500', 
-                  textTransform: 'uppercase', letterSpacing: '2px', color: linkColor 
-                }}>{item.name}</motion.a>
+                <motion.a key={item.name} href={item.href} style={{ textDecoration: 'none', fontSize: '0.75rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '2px', color: linkColor }}>{item.name}</motion.a>
               ))}
             </div>
-
-            {/* O "NINHO" CENTRAL VAZIO */}
-            <div style={{ width: '400px' }} className="desktop-only" />
-
-            {/* LINKS DIREITA */}
+            <div style={{ width: '450px' }} className="desktop-only" />
             <div className="desktop-only" style={{ display: 'flex', gap: '30px', flex: 1, justifyContent: 'flex-end' }}>
               {menuRight.map((item) => (
-                <motion.a key={item.name} href={item.href} style={{ 
-                  textDecoration: 'none', fontSize: '0.7rem', fontWeight: '500', 
-                  textTransform: 'uppercase', letterSpacing: '2px', color: linkColor 
-                }}>{item.name}</motion.a>
+                <motion.a key={item.name} href={item.href} style={{ textDecoration: 'none', fontSize: '0.75rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '2px', color: linkColor }}>{item.name}</motion.a>
               ))}
             </div>
-
-            {/* HAMBURGER MOBILE */}
-            <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', zIndex: 101 }}>
+            <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
               <motion.div style={{ width: '25px', height: '1.5px', backgroundColor: linkColor, margin: '6px 0' }} />
               <motion.div style={{ width: '25px', height: '1.5px', backgroundColor: linkColor, margin: '6px 0' }} />
             </button>
           </div>
         </motion.nav>
 
-        {/* O TÍTULO QUE VOA (Livre de cortes, 100% centrado) */}
+        {/* LOGOTIPO VIAJANTE (O ELEMENTO ÚNICO CENTRADO NO RECTÂNGULO VERMELHO) */}
         <motion.div style={{ 
           position: 'fixed', left: '50%', x: '-50%', zIndex: 110,
-          top: logoTop, y: "-50%", // y:-50% garante que o meio exato do texto fica na linha dos 50vh
+          top: logoTop, y: "-50%", 
           textAlign: 'center', pointerEvents: 'none', width: '100%'
         }}>
           <motion.a href="/" style={{ 
-            textDecoration: 'none', 
-            fontFamily: "'TAN-MEMORIES', serif", 
-            fontSize: logoSize,
-            color: logoColor,
-            whiteSpace: 'nowrap',
-            pointerEvents: 'auto',
-            display: 'inline-block',
-            lineHeight: '1.2', // Evita que fontes customizadas cortem o topo das letras
-            paddingTop: '10px'
+            textDecoration: 'none', fontFamily: "'TAN-MEMORIES', serif", 
+            fontSize: logoSize, color: logoColor, whiteSpace: 'nowrap',
+            pointerEvents: 'auto', display: 'inline-block', lineHeight: '1'
           }}>
             Flores à Beira-Rio
           </motion.a>
           
           <motion.p style={{ 
-            opacity: subtitleOpacity, color: '#fff', textTransform: 'uppercase', 
-            letterSpacing: '8px', fontSize: '1.1rem', marginTop: '15px', fontWeight: '300' 
+            opacity: subtitleOpacity, color: '#ffffff', textTransform: 'uppercase', 
+            letterSpacing: '10px', fontSize: '1.2rem', marginTop: '30px', fontWeight: '300',
+            textShadow: '0 2px 10px rgba(0,0,0,0.2)'
           }}>
             Especialistas em preservação de flores
           </motion.p>
         </motion.div>
 
-        {/* MENU MOBILE OVERLAY */}
         <AnimatePresence>
           {isOpen && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -145,7 +129,6 @@ export default function RootLayout({ children }) {
           @media (max-width: 1023px) { .desktop-only { display: none !important; } }
           @media (min-width: 1024px) { .mobile-only { display: none !important; } }
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
-          p, span, a, div { font-family: 'Inter', Helvetica, sans-serif; }
         `}</style>
       </body>
     </html>
