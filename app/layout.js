@@ -7,14 +7,18 @@ export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  // Transformações para o título central (Hero -> Nav)
-  // No topo (0): top 50%, tamanho grande. No scroll (200): top 25px, tamanho pequeno.
-  const logoTop = useTransform(scrollY, [0, 200], ["50%", "25px"]);
-  const logoSize = useTransform(scrollY, [0, 200], ["clamp(3.5rem, 10vw, 7rem)", "1.5rem"]);
+  // --- TRANSFORMAÇÕES DE SCROLL ---
+  // 1. Posição: De 50% (centro do ecrã) para 25px (centro da barra de menu)
+  const logoTop = useTransform(scrollY, [0, 300], ["50%", "30px"]);
+  // 2. Tamanho: De 7rem (Gigante no Hero) para 1.5rem (Elegante no Menu)
+  const logoSize = useTransform(scrollY, [0, 300], ["clamp(3.5rem, 10vw, 7.5rem)", "1.6rem"]);
+  // 3. Cor: De Branco (#fff) para Preto (#1a1a1a)
+  const logoColor = useTransform(scrollY, [0, 300], ["#ffffff", "#1a1a1a"]);
+  // 4. Subtítulo: Desaparece rápido ao fazer scroll
   const subtitleOpacity = useTransform(scrollY, [0, 100], [1, 0]);
-  const navBg = useTransform(scrollY, [0, 200], ["rgba(252, 251, 249, 0)", "rgba(252, 251, 249, 0.95)"]);
-  const navShadow = useTransform(scrollY, [0, 200], ["none", "0 2px 10px rgba(0,0,0,0.05)"]);
-  const linkColor = useTransform(scrollY, [0, 200], ["#fff", "#1a1a1a"]);
+  // 5. Fundo do Menu: Fica visível apenas após o scroll
+  const navBg = useTransform(scrollY, [0, 300], ["rgba(252, 251, 249, 0)", "rgba(252, 251, 249, 0.98)"]);
+  const linkColor = useTransform(scrollY, [0, 300], ["#ffffff", "#1a1a1a"]);
 
   const menuLeft = [
     { name: "Opções e Preços", href: "/opcoes-e-precos" },
@@ -48,19 +52,18 @@ export default function RootLayout({ children }) {
       </head>
       <body style={{ margin: 0, backgroundColor: '#FCFBF9', color: '#1a1a1a', fontFamily: "'Inter', sans-serif" }}>
         
-        {/* NAV FIXA COM MENU DIVIDIDO */}
+        {/* BARRA DE NAVEGAÇÃO FIXA */}
         <motion.nav style={{ 
           position: 'fixed', top: 0, width: '100%', zIndex: 100, 
-          height: '80px', backgroundColor: navBg, boxShadow: navShadow,
+          height: '80px', backgroundColor: navBg,
           display: 'flex', alignItems: 'center'
         }}>
           <div style={{ 
             maxWidth: '1400px', margin: '0 auto', width: '100%', padding: '0 40px', 
             display: 'flex', justifyContent: 'space-between', alignItems: 'center'
           }}>
-            
-            {/* LADO ESQUERDO */}
-            <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1 }}>
+            {/* LINKS ESQUERDA */}
+            <div className="desktop-only" style={{ display: 'flex', gap: '30px', flex: 1 }}>
               {menuLeft.map((item) => (
                 <motion.a key={item.name} href={item.href} style={{ 
                   textDecoration: 'none', fontSize: '0.7rem', fontWeight: '500', 
@@ -69,11 +72,11 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
-            {/* ESPAÇO PARA O LOGO NO MEIO (Placeholder) */}
-            <div style={{ width: '300px' }} className="desktop-only" />
+            {/* ESPAÇO CENTRAL PARA O LOGO QUE VIAJA */}
+            <div style={{ width: '350px' }} className="desktop-only" />
 
-            {/* LADO DIREITO */}
-            <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1, justifyContent: 'flex-end' }}>
+            {/* LINKS DIREITA */}
+            <div className="desktop-only" style={{ display: 'flex', gap: '30px', flex: 1, justifyContent: 'flex-end' }}>
               {menuRight.map((item) => (
                 <motion.a key={item.name} href={item.href} style={{ 
                   textDecoration: 'none', fontSize: '0.7rem', fontWeight: '500', 
@@ -82,36 +85,34 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
-            {/* HAMBURGER (Mobile) */}
+            {/* MOBILE HAMBURGER */}
             <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-              <div style={{ width: '25px', height: '1.5px', backgroundColor: '#1a1a1a', margin: '6px 0' }} />
-              <div style={{ width: '25px', height: '1.5px', backgroundColor: '#1a1a1a', margin: '6px 0' }} />
+              <div style={{ width: '25px', height: '1px', backgroundColor: '#1a1a1a', margin: '6px 0' }} />
+              <div style={{ width: '25px', height: '1px', backgroundColor: '#1a1a1a', margin: '6px 0' }} />
             </button>
           </div>
         </motion.nav>
 
-        {/* O TÍTULO QUE VIAJA (Este é o único título do topo) */}
+        {/* O TÍTULO GOSHA-STYLE (O elemento que viaja e muda de cor) */}
         <motion.div style={{ 
-          position: 'fixed', left: '50%', x: '-50%', zIndex: 105,
-          top: logoTop, textAlign: 'center', pointerEvents: 'none'
+          position: 'fixed', left: '50%', x: '-50%', zIndex: 110,
+          top: logoTop, y: "-50%", // Garante que o centro do texto é o ponto de referência
+          textAlign: 'center', pointerEvents: 'none'
         }}>
           <motion.a href="/" style={{ 
             textDecoration: 'none', 
             fontFamily: "'TAN-MEMORIES', serif", 
             fontSize: logoSize,
-            color: '#1a1a1a', // Mudar para branco se quiseres sobre o vídeo inicialmente
+            color: logoColor,
             whiteSpace: 'nowrap',
-            pointerEvents: 'auto',
-            // Dinâmica de cor: começa branco no vídeo, fica preto na nav
-          }}
-          animate={{ color: scrollY.get() > 150 ? "#1a1a1a" : "#ffffff" }}
-          >
+            pointerEvents: 'auto'
+          }}>
             Flores à Beira-Rio
           </motion.a>
           
           <motion.p style={{ 
             opacity: subtitleOpacity, color: '#fff', textTransform: 'uppercase', 
-            letterSpacing: '6px', fontSize: '1.2rem', marginTop: '20px', fontWeight: '300' 
+            letterSpacing: '8px', fontSize: '1.2rem', marginTop: '30px', fontWeight: '300' 
           }}>
             Especialistas em preservação de flores
           </motion.p>
@@ -135,7 +136,7 @@ export default function RootLayout({ children }) {
           @media (max-width: 1023px) { .desktop-only { display: none !important; } }
           @media (min-width: 1024px) { .mobile-only { display: none !important; } }
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
-          p, span, a { font-family: 'Inter', sans-serif; }
+          p, span, a, div { font-family: 'Inter', Helvetica, sans-serif; }
         `}</style>
       </body>
     </html>
