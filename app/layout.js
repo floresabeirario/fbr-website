@@ -1,10 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Detetar o scroll para mostrar/esconder o nome no menu
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 100);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const menuItems = [
     { name: "Início", href: "/" },
@@ -20,7 +30,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt">
       <head>
-        {/* Fonte Inter (A "Helvetica" do Google) */}
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
@@ -40,31 +49,43 @@ export default function RootLayout({ children }) {
         <nav style={{ 
           position: 'fixed', 
           top: 0, width: '100%', zIndex: 100, 
-          backgroundColor: 'rgba(26, 26, 26, 0.05)', 
-          backdropFilter: 'blur(8px)', 
+          backgroundColor: scrolled ? 'rgba(252, 251, 249, 0.9)' : 'transparent', 
+          backdropFilter: scrolled ? 'blur(10px)' : 'none',
+          transition: 'all 0.5s ease'
         }}>
           <div style={{ 
             maxWidth: '1200px', margin: '0 auto', padding: '20px 20px', 
             display: 'flex', justifyContent: 'space-between', alignItems: 'center' 
           }}>
-            <a href="/" style={{ 
-              textDecoration: 'none', color: '#fff', fontSize: '1.4rem', 
-              fontFamily: "'TAN-MEMORIES', serif", letterSpacing: '1px' 
-            }}>
+            {/* O Nome no menu só aparece quando fazes scroll */}
+            <motion.a 
+              href="/" 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: scrolled ? 1 : 0 }}
+              transition={{ duration: 0.3 }}
+              style={{ 
+                textDecoration: 'none', color: '#1a1a1a', fontSize: '1.2rem', 
+                fontFamily: "'TAN-MEMORIES', serif", letterSpacing: '1px' 
+              }}>
               FLORES À BEIRA-RIO
-            </a>
+            </motion.a>
 
             <div className="desktop-menu" style={{ display: 'none', gap: '20px' }}>
               {menuItems.map((item) => (
-                <a key={item.name} href={item.href} style={{ textDecoration: 'none', color: '#fff', fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '2px' }}>
+                <a key={item.name} href={item.href} style={{ 
+                  textDecoration: 'none', 
+                  color: scrolled ? '#1a1a1a' : '#fff', 
+                  fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '2px',
+                  transition: 'color 0.3s ease'
+                }}>
                   {item.name}
                 </a>
               ))}
             </div>
 
             <button onClick={() => setIsOpen(!isOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', zIndex: 101, padding: '10px' }}>
-              <div style={{ width: '25px', height: '1.5px', backgroundColor: '#fff', margin: '5px 0' }} />
-              <div style={{ width: '25px', height: '1.5px', backgroundColor: '#fff', margin: '5px 0' }} />
+              <div style={{ width: '25px', height: '1.5px', backgroundColor: scrolled ? '#1a1a1a' : '#fff', margin: '5px 0' }} />
+              <div style={{ width: '25px', height: '1.5px', backgroundColor: scrolled ? '#1a1a1a' : '#fff', margin: '5px 0' }} />
             </button>
           </div>
         </nav>
@@ -92,14 +113,8 @@ export default function RootLayout({ children }) {
             .desktop-menu { display: flex !important; }
             nav button { display: none !important; }
           }
-          h1, h2, h3, .serif { 
-            font-family: 'TAN-MEMORIES', serif !important; 
-            font-weight: 400; line-height: 1.1; letter-spacing: -0.5px;
-          }
-          p, span, a, button {
-            font-family: 'Inter', Helvetica, Arial, sans-serif;
-            font-weight: 400;
-          }
+          h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; letter-spacing: -0.5px; }
+          p, span, a, button { font-family: 'Inter', sans-serif; font-weight: 400; }
         `}</style>
       </body>
     </html>
