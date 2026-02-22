@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
                 <a 
                   key={item.name} 
                   href={item.href} 
-                  className="no-underline hover:underline underline-offset-4 decoration-1 transition-all duration-300"
+                  className="nav-link"
                   style={{ 
                     fontSize: '0.7rem', fontWeight: '500', 
                     textTransform: 'uppercase', letterSpacing: '1.5px',
@@ -85,7 +85,7 @@ export default function RootLayout({ children }) {
               href="/" 
               initial={{ opacity: 0 }}
               animate={{ opacity: scrolled ? 1 : 0 }}
-              className="no-underline"
+              className="nav-link"
               style={{ 
                 color: scrolled ? '#1a1a1a' : '#fff', 
                 fontSize: '1.6rem', fontFamily: "'TAN-MEMORIES', serif", 
@@ -100,7 +100,7 @@ export default function RootLayout({ children }) {
                 <a 
                   key={item.name} 
                   href={item.href} 
-                  className="no-underline hover:underline underline-offset-4 decoration-1 transition-all duration-300"
+                  className="nav-link"
                   style={{ 
                     fontSize: '0.7rem', fontWeight: '500', 
                     textTransform: 'uppercase', letterSpacing: '1.5px',
@@ -133,7 +133,7 @@ export default function RootLayout({ children }) {
                   key={item.name} 
                   href={item.href} 
                   onClick={() => setIsOpen(false)} 
-                  className="no-underline hover:underline underline-offset-8 decoration-1 transition-all duration-300"
+                  className="nav-link"
                   style={{ 
                     color: '#1a1a1a', fontSize: '1.8rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif", display: 'flex', alignItems: 'center'
                   }}
@@ -152,6 +152,17 @@ export default function RootLayout({ children }) {
           @media (min-width: 1024px) { .mobile-only { display: none !important; } }
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
           .italic { font-style: italic !important; }
+          
+          /* O SEGREDO ESTÁ AQUI: Controlamos o sublinhado à força no CSS */
+          .nav-link {
+            text-decoration: none !important; 
+            text-underline-offset: 6px;
+            text-decoration-thickness: 1px;
+            transition: all 0.3s ease;
+          }
+          .nav-link:hover {
+            text-decoration: underline !important;
+          }
         `}</style>
       </body>
     </html>
