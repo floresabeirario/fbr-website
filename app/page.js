@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 
 // --- ÍCONES SVG ---
@@ -9,6 +10,15 @@ const IconWhatsApp = () => <svg width="22" height="22" viewBox="0 0 24 24" fill=
 const IconEmail = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>;
 
 export default function Home() {
+  
+  // Forçar o scroll para o topo ao carregar/fazer refresh
+  useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <main style={{ color: '#1a1a1a', backgroundColor: '#FCFBF9' }}>
       
@@ -38,7 +48,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. GOOGLE REVIEWS (Subiu para 3º lugar conforme pedido) */}
+      {/* 2. GOOGLE REVIEWS */}
       <section style={{ padding: '80px 20px', backgroundColor: '#1a1a1a', color: '#FCFBF9', textAlign: 'center' }}>
         <h2 style={{ fontFamily: "'Instrument Serif', serif", fontSize: '2.5rem', marginBottom: '40px', fontWeight: '400' }}>O que dizem as nossas noivas</h2>
         <motion.div 
@@ -113,10 +123,10 @@ export default function Home() {
           <h2 style={{ fontFamily: "'Instrument Serif', serif", fontSize: '3rem', marginBottom: '40px', fontWeight: '400' }}>Flores à Beira-Rio</h2>
           
           <div style={{ display: 'flex', justifyContent: 'center', gap: '35px', marginBottom: '60px' }}>
-            <a href="#" style={{ color: '#FCFBF9', transition: '0.3s' }}><IconInstagram /></a>
-            <a href="#" style={{ color: '#FCFBF9', transition: '0.3s' }}><IconFacebook /></a>
-            <a href="#" style={{ color: '#FCFBF9', transition: '0.3s' }}><IconWhatsApp /></a>
-            <a href="#" style={{ color: '#FCFBF9', transition: '0.3s' }}><IconEmail /></a>
+            <a href="#" style={{ color: '#FCFBF9' }}><IconInstagram /></a>
+            <a href="#" style={{ color: '#FCFBF9' }}><IconFacebook /></a>
+            <a href="#" style={{ color: '#FCFBF9' }}><IconWhatsApp /></a>
+            <a href="#" style={{ color: '#FCFBF9' }}><IconEmail /></a>
           </div>
 
           <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '40px' }}>
