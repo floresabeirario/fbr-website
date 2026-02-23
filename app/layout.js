@@ -57,25 +57,15 @@ export default function RootLayout({ children }) {
           backgroundColor: scrolled ? 'rgba(252, 251, 249, 0.95)' : 'transparent',
           backdropFilter: scrolled ? 'blur(10px)' : 'none',
           transition: 'all 0.4s ease',
-          padding: scrolled ? '15px 0' : '30px 0'
+          padding: scrolled ? '15px 0' : '25px 0'
         }}>
-          <div style={{ 
-            maxWidth: '1400px', margin: '0 auto', padding: '0 40px', 
-            display: 'flex', justifyContent: 'space-between', alignItems: 'center' 
-          }}>
+          {/* Usei a classe 'nav-container' que defini no fundo do ficheiro */}
+          <div className="nav-container">
             
             <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1 }}>
               {menuLeft.map((item) => (
-                <a 
-                  key={item.name} 
-                  href={item.href} 
-                  className="nav-link"
-                  style={{ 
-                    fontSize: '0.7rem', fontWeight: '500', 
-                    textTransform: 'uppercase', letterSpacing: '1.5px',
-                    color: scrolled ? '#1a1a1a' : '#fff'
-                  }}
-                >
+                <a key={item.name} href={item.href} className="nav-link"
+                  style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: scrolled ? '#1a1a1a' : '#fff' }}>
                   {item.name}
                 </a>
               ))}
@@ -85,11 +75,11 @@ export default function RootLayout({ children }) {
               href="/" 
               initial={{ opacity: 0 }}
               animate={{ opacity: scrolled ? 1 : 0 }}
-              className="nav-link"
+              className="nav-link logo-central"
               style={{ 
                 color: scrolled ? '#1a1a1a' : '#fff', 
                 fontSize: '1.6rem', fontFamily: "'TAN-MEMORIES', serif", 
-                textAlign: 'center', flex: '0 0 auto', padding: '0 40px',
+                textAlign: 'center', flex: '0 0 auto',
                 pointerEvents: scrolled ? 'auto' : 'none'
               }}>
               Flores à Beira-Rio
@@ -97,17 +87,8 @@ export default function RootLayout({ children }) {
 
             <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
               {menuRight.map((item) => (
-                <a 
-                  key={item.name} 
-                  href={item.href} 
-                  className="nav-link"
-                  style={{ 
-                    fontSize: '0.7rem', fontWeight: '500', 
-                    textTransform: 'uppercase', letterSpacing: '1.5px',
-                    color: scrolled ? '#1a1a1a' : '#fff',
-                    display: 'flex', alignItems: 'center'
-                  }}
-                >
+                <a key={item.name} href={item.href} className="nav-link"
+                  style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: scrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center' }}>
                   {item.name} {item.hasFlag && <FlagEN />}
                 </a>
               ))}
@@ -116,7 +97,8 @@ export default function RootLayout({ children }) {
             <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ 
               background: 'none', border: 'none', cursor: 'pointer',
               color: scrolled ? '#1a1a1a' : '#fff',
-              fontSize: '0.8rem', fontWeight: '500', letterSpacing: '2px'
+              fontSize: '0.8rem', fontWeight: '600', letterSpacing: '2px',
+              padding: '10px 0'
             }}>
               MENU
             </button>
@@ -129,15 +111,8 @@ export default function RootLayout({ children }) {
               style={{ position: 'fixed', inset: 0, backgroundColor: '#FCFBF9', zIndex: 200, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
               <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '0.8rem', letterSpacing: '2px', cursor: 'pointer' }}>FECHAR</button>
               {[...menuLeft, ...menuRight].map((item) => (
-                <a 
-                  key={item.name} 
-                  href={item.href} 
-                  onClick={() => setIsOpen(false)} 
-                  className="nav-link"
-                  style={{ 
-                    color: '#1a1a1a', fontSize: '1.8rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif", display: 'flex', alignItems: 'center'
-                  }}
-                >
+                <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} className="nav-link"
+                  style={{ color: '#1a1a1a', fontSize: '1.8rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif", display: 'flex', alignItems: 'center' }}>
                   {item.name} {item.hasFlag && <FlagEN />}
                 </a>
               ))}
@@ -150,10 +125,36 @@ export default function RootLayout({ children }) {
         <style jsx global>{`
           @media (max-width: 1023px) { .desktop-only { display: none !important; } }
           @media (min-width: 1024px) { .mobile-only { display: none !important; } }
+          
+          /* RESOLUÇÃO DO PROBLEMA DO MENU CORTADO */
+          .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px; /* Padding menor para mobile */
+          }
+
+          @media (min-width: 1024px) {
+            .nav-container {
+              padding: 0 40px; /* Padding original para desktop */
+            }
+          }
+
+          .logo-central {
+             padding: 0 20px;
+          }
+          
+          @media (max-width: 1023px) {
+            .logo-central {
+              display: ${scrolled ? 'block' : 'none'}; /* Esconde o espaço do logo no mobile se não houver scroll */
+            }
+          }
+
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
           .italic { font-style: italic !important; }
           
-          /* O SEGREDO ESTÁ AQUI: Controlamos o sublinhado à força no CSS */
           .nav-link {
             text-decoration: none !important; 
             text-underline-offset: 6px;
