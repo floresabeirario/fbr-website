@@ -59,18 +59,21 @@ export default function RootLayout({ children }) {
           transition: 'all 0.4s ease',
           padding: scrolled ? '15px 0' : '25px 0'
         }}>
-          {/* Usei a classe 'nav-container' que defini no fundo do ficheiro */}
           <div className="nav-container">
             
-            <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1 }}>
-              {menuLeft.map((item) => (
-                <a key={item.name} href={item.href} className="nav-link"
-                  style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: scrolled ? '#1a1a1a' : '#fff' }}>
-                  {item.name}
-                </a>
-              ))}
+            {/* COLUNA ESQUERDA (Vazia no mobile) */}
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+              <div className="desktop-only" style={{ display: 'flex', gap: '25px' }}>
+                {menuLeft.map((item) => (
+                  <a key={item.name} href={item.href} className="nav-link"
+                    style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: scrolled ? '#1a1a1a' : '#fff' }}>
+                    {item.name}
+                  </a>
+                ))}
+              </div>
             </div>
 
+            {/* COLUNA CENTRAL (Logotipo) */}
             <motion.a 
               href="/" 
               initial={{ opacity: 0 }}
@@ -80,28 +83,33 @@ export default function RootLayout({ children }) {
                 color: scrolled ? '#1a1a1a' : '#fff', 
                 fontSize: '1.6rem', fontFamily: "'TAN-MEMORIES', serif", 
                 textAlign: 'center', flex: '0 0 auto',
-                pointerEvents: scrolled ? 'auto' : 'none'
+                pointerEvents: scrolled ? 'auto' : 'none',
+                display: scrolled ? 'block' : 'none' 
               }}>
               Flores à Beira-Rio
             </motion.a>
 
-            <div className="desktop-only" style={{ display: 'flex', gap: '25px', flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
-              {menuRight.map((item) => (
-                <a key={item.name} href={item.href} className="nav-link"
-                  style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: scrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center' }}>
-                  {item.name} {item.hasFlag && <FlagEN />}
-                </a>
-              ))}
+            {/* COLUNA DIREITA (Menu Right + Botão Mobile) */}
+            <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+              <div className="desktop-only" style={{ display: 'flex', gap: '25px', alignItems: 'center' }}>
+                {menuRight.map((item) => (
+                  <a key={item.name} href={item.href} className="nav-link"
+                    style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: scrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center' }}>
+                    {item.name} {item.hasFlag && <FlagEN />}
+                  </a>
+                ))}
+              </div>
+              
+              <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ 
+                background: 'none', border: 'none', cursor: 'pointer',
+                color: scrolled ? '#1a1a1a' : '#fff',
+                fontSize: '0.8rem', fontWeight: '600', letterSpacing: '2px',
+                padding: '10px 0'
+              }}>
+                MENU
+              </button>
             </div>
 
-            <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ 
-              background: 'none', border: 'none', cursor: 'pointer',
-              color: scrolled ? '#1a1a1a' : '#fff',
-              fontSize: '0.8rem', fontWeight: '600', letterSpacing: '2px',
-              padding: '10px 0'
-            }}>
-              MENU
-            </button>
           </div>
         </nav>
 
@@ -126,32 +134,21 @@ export default function RootLayout({ children }) {
           @media (max-width: 1023px) { .desktop-only { display: none !important; } }
           @media (min-width: 1024px) { .mobile-only { display: none !important; } }
           
-          /* RESOLUÇÃO DO PROBLEMA DO MENU CORTADO */
           .nav-container {
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px; /* Padding menor para mobile */
+            padding: 0 20px;
           }
 
           @media (min-width: 1024px) {
-            .nav-container {
-              padding: 0 40px; /* Padding original para desktop */
-            }
+            .nav-container { padding: 0 40px; }
           }
 
-          .logo-central {
-             padding: 0 20px;
-          }
+          .logo-central { padding: 0 20px; }
           
-          @media (max-width: 1023px) {
-            .logo-central {
-              display: ${scrolled ? 'block' : 'none'}; /* Esconde o espaço do logo no mobile se não houver scroll */
-            }
-          }
-
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
           .italic { font-style: italic !important; }
           
