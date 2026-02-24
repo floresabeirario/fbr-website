@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "mramer-motion";
+import { motion, useScroll, useTransform } from "framer-motion"; // Corrigido aqui!
 
 // --- ÍCONES (SVGs leves para o build do Vercel) ---
 const IconInstagram = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>;
@@ -87,7 +87,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. RODAPÉ CORRIGIDO */}
+      {/* 5. RODAPÉ */}
       <footer style={{ backgroundColor: footerBg, color: footerText, position: 'relative', marginTop: '120px' }}>
         <div style={{ position: 'absolute', top: '-48px', left: 0, width: '100%', overflow: 'hidden', lineHeight: 0 }}>
           <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style={{ width: '100%', height: '50px' }}>
@@ -128,7 +128,6 @@ export default function Home() {
           <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '30px', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px', fontSize: '0.65rem', letterSpacing: '1px', opacity: 0.5 }}>
             <span>© 2026 FLORES À BEIRA-RIO. TODOS OS DIREITOS RESERVADOS.</span>
             <div style={{ display: 'flex', gap: '25px' }}>
-              {/* Texto alterado conforme pedido */}
               <a href="/politica-de-privacidade" className="nav-link" style={{ color: footerText }}>POLÍTICA DE PRIVACIDADE</a>
               <a href="/termos-e-condicoes" className="nav-link" style={{ color: footerText }}>TERMOS E CONDIÇÕES</a>
             </div>
