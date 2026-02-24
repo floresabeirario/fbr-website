@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
 
   const menuRight = [
     { name: "Vale-Presente", href: "/vale-presente" },
-    { name: "FAQ", href: "/faq" },
+    { name: "Perguntas Frequentes", href: "/perguntas-frequentes" }, // <-- Nome e link atualizados
     { name: "Contactos e Equipa", href: "/contactos" },
     { name: "EN", href: "/en", hasFlag: true },
   ];
@@ -60,8 +60,6 @@ export default function RootLayout({ children }) {
           padding: scrolled ? '15px 0' : '25px 0'
         }}>
           <div className="nav-container">
-            
-            {/* COLUNA ESQUERDA (Vazia no mobile) */}
             <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
               <div className="desktop-only" style={{ display: 'flex', gap: '25px' }}>
                 {menuLeft.map((item) => (
@@ -73,7 +71,6 @@ export default function RootLayout({ children }) {
               </div>
             </div>
 
-            {/* COLUNA CENTRAL (Logotipo) */}
             <motion.a 
               href="/" 
               initial={{ opacity: 0 }}
@@ -89,7 +86,6 @@ export default function RootLayout({ children }) {
               Flores à Beira-Rio
             </motion.a>
 
-            {/* COLUNA DIREITA (Menu Right + Botão Mobile) */}
             <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
               <div className="desktop-only" style={{ display: 'flex', gap: '25px', alignItems: 'center' }}>
                 {menuRight.map((item) => (
@@ -109,7 +105,6 @@ export default function RootLayout({ children }) {
                 MENU
               </button>
             </div>
-
           </div>
         </nav>
 
@@ -133,34 +128,13 @@ export default function RootLayout({ children }) {
         <style jsx global>{`
           @media (max-width: 1023px) { .desktop-only { display: none !important; } }
           @media (min-width: 1024px) { .mobile-only { display: none !important; } }
-          
-          .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-          }
-
-          @media (min-width: 1024px) {
-            .nav-container { padding: 0 40px; }
-          }
-
+          .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+          @media (min-width: 1024px) { .nav-container { padding: 0 40px; } }
           .logo-central { padding: 0 20px; }
-          
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
           .italic { font-style: italic !important; }
-          
-          .nav-link {
-            text-decoration: none !important; 
-            text-underline-offset: 6px;
-            text-decoration-thickness: 1px;
-            transition: all 0.3s ease;
-          }
-          .nav-link:hover {
-            text-decoration: underline !important;
-          }
+          .nav-link { text-decoration: none !important; text-underline-offset: 6px; text-decoration-thickness: 1px; transition: all 0.3s ease; }
+          .nav-link:hover { text-decoration: underline !important; }
         `}</style>
       </body>
     </html>
