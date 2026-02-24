@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation"; // <-- Novo: Para detetar a página atual
 import { motion, AnimatePresence } from "framer-motion";
 
 // Ícone da Bandeira (SVG)
@@ -13,6 +14,10 @@ const FlagEN = () => (
 export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname(); // Obtém o caminho da página atual
+
+  // Verifica se estamos na página inicial
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80);
@@ -28,10 +33,14 @@ export default function RootLayout({ children }) {
 
   const menuRight = [
     { name: "Vale-Presente", href: "/vale-presente" },
-    { name: "Perguntas Frequentes", href: "/perguntas-frequentes" }, // <-- Nome e link atualizados
+    { name: "Perguntas Frequentes", href: "/perguntas-frequentes" },
     { name: "Contactos e Equipa", href: "/contactos" },
     { name: "EN", href: "/en", hasFlag: true },
   ];
+
+  // Definimos se o menu deve "parecer" scrolled (escuro) ou não
+  // Se não for a Home, ele está SEMPRE no modo escuro/visível.
+  const shouldShowScrolled = scrolled || !isHome;
 
   return (
     <html lang="pt">
@@ -54,43 +63,47 @@ export default function RootLayout({ children }) {
         
         <nav style={{ 
           position: 'fixed', top: 0, width: '100%', zIndex: 100, 
-          backgroundColor: scrolled ? 'rgba(252, 251, 249, 0.95)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(10px)' : 'none',
+          backgroundColor: shouldShowScrolled ? 'rgba(252, 251, 249, 0.95)' : 'transparent',
+          backdropFilter: shouldShowScrolled ? 'blur(10px)' : 'none',
           transition: 'all 0.4s ease',
-          padding: scrolled ? '15px 0' : '25px 0'
+          padding: shouldShowScrolled ? '15px 0' : '25px 0'
         }}>
           <div className="nav-container">
+            
+            {/* COLUNA ESQUERDA */}
             <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
               <div className="desktop-only" style={{ display: 'flex', gap: '25px' }}>
                 {menuLeft.map((item) => (
                   <a key={item.name} href={item.href} className="nav-link"
-                    style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: scrolled ? '#1a1a1a' : '#fff' }}>
+                    style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff' }}>
                     {item.name}
                   </a>
                 ))}
               </div>
             </div>
 
+            {/* COLUNA CENTRAL (Logotipo) */}
             <motion.a 
               href="/" 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: scrolled ? 1 : 0 }}
+              initial={{ opacity: isHome ? 0 : 1 }}
+              animate={{ opacity: shouldShowScrolled ? 1 : 0 }}
               className="nav-link logo-central"
               style={{ 
-                color: scrolled ? '#1a1a1a' : '#fff', 
+                color: shouldShowScrolled ? '#1a1a1a' : '#fff', 
                 fontSize: '1.6rem', fontFamily: "'TAN-MEMORIES', serif", 
                 textAlign: 'center', flex: '0 0 auto',
-                pointerEvents: scrolled ? 'auto' : 'none',
-                display: scrolled ? 'block' : 'none' 
+                pointerEvents: shouldShowScrolled ? 'auto' : 'none',
+                display: shouldShowScrolled ? 'block' : 'none' 
               }}>
               Flores à Beira-Rio
             </motion.a>
 
+            {/* COLUNA DIREITA */}
             <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
               <div className="desktop-only" style={{ display: 'flex', gap: '25px', alignItems: 'center' }}>
                 {menuRight.map((item) => (
                   <a key={item.name} href={item.href} className="nav-link"
-                    style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: scrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center' }}>
+                    style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center' }}>
                     {item.name} {item.hasFlag && <FlagEN />}
                   </a>
                 ))}
@@ -98,13 +111,14 @@ export default function RootLayout({ children }) {
               
               <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ 
                 background: 'none', border: 'none', cursor: 'pointer',
-                color: scrolled ? '#1a1a1a' : '#fff',
+                color: shouldShowScrolled ? '#1a1a1a' : '#fff',
                 fontSize: '0.8rem', fontWeight: '600', letterSpacing: '2px',
                 padding: '10px 0'
               }}>
                 MENU
               </button>
             </div>
+
           </div>
         </nav>
 
