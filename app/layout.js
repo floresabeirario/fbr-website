@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation"; // <-- Novo: Para detetar a página atual
+import { usePathname } from "next/navigation"; 
 import { motion, AnimatePresence } from "framer-motion";
 
 // Ícone da Bandeira (SVG)
@@ -14,9 +14,8 @@ const FlagEN = () => (
 export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname(); // Obtém o caminho da página atual
+  const pathname = usePathname();
 
-  // Verifica se estamos na página inicial
   const isHome = pathname === "/";
 
   useEffect(() => {
@@ -38,8 +37,6 @@ export default function RootLayout({ children }) {
     { name: "EN", href: "/en", hasFlag: true },
   ];
 
-  // Definimos se o menu deve "parecer" scrolled (escuro) ou não
-  // Se não for a Home, ele está SEMPRE no modo escuro/visível.
   const shouldShowScrolled = scrolled || !isHome;
 
   return (
@@ -70,7 +67,6 @@ export default function RootLayout({ children }) {
         }}>
           <div className="nav-container">
             
-            {/* COLUNA ESQUERDA */}
             <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
               <div className="desktop-only" style={{ display: 'flex', gap: '25px' }}>
                 {menuLeft.map((item) => (
@@ -82,7 +78,6 @@ export default function RootLayout({ children }) {
               </div>
             </div>
 
-            {/* COLUNA CENTRAL (Logotipo) */}
             <motion.a 
               href="/" 
               initial={{ opacity: isHome ? 0 : 1 }}
@@ -98,7 +93,6 @@ export default function RootLayout({ children }) {
               Flores à Beira-Rio
             </motion.a>
 
-            {/* COLUNA DIREITA */}
             <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
               <div className="desktop-only" style={{ display: 'flex', gap: '25px', alignItems: 'center' }}>
                 {menuRight.map((item) => (
@@ -118,7 +112,6 @@ export default function RootLayout({ children }) {
                 MENU
               </button>
             </div>
-
           </div>
         </nav>
 
@@ -147,8 +140,19 @@ export default function RootLayout({ children }) {
           .logo-central { padding: 0 20px; }
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
           .italic { font-style: italic !important; }
-          .nav-link { text-decoration: none !important; text-underline-offset: 6px; text-decoration-thickness: 1px; transition: all 0.3s ease; }
-          .nav-link:hover { text-decoration: underline !important; }
+          
+          /* AJUSTE DO SUBINHADO PARA TEXTO EMPILHADO */
+          .nav-link {
+            text-decoration: none !important; 
+            transition: all 0.3s ease;
+            display: inline-block; /* Garante que o link é tratado como um bloco único */
+            border-bottom: 1px solid transparent; /* Cria uma linha invisível na base */
+            line-height: 1.4; /* Dá espaço entre as linhas para não amontoar */
+            padding-bottom: 2px; /* Afasta ligeiramente a linha do texto */
+          }
+          .nav-link:hover {
+            border-bottom: 1px solid currentColor; /* Mostra a linha apenas no hover */
+          }
         `}</style>
       </body>
     </html>
