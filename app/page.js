@@ -95,15 +95,16 @@ export default function Home() {
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '100px 20px 60px', textAlign: 'center' }}>
           <h2 style={{ fontSize: '4rem', marginBottom: '60px' }}>Flores à Beira-Rio</h2>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', marginBottom: '80px' }}>
-            <a href="https://instagram.com" className="nav-link" style={{ color: '#FCFBF9' }}><IconInstagram /></a>
-            <a href="https://facebook.com" className="nav-link" style={{ color: '#FCFBF9' }}><IconFacebook /></a>
-            <a href="https://wa.me/351" className="nav-link" style={{ color: '#FCFBF9' }}><IconWhatsApp /></a>
+            <a href="https://instagram.com/floresabeirario" target="_blank" className="nav-link" style={{ color: '#FCFBF9' }}><IconInstagram /></a>
+            <a href="https://facebook.com/floresabeirario" target="_blank" className="nav-link" style={{ color: '#FCFBF9' }}><IconFacebook /></a>
+            <a href="https://wa.me/351912345678" target="_blank" className="nav-link" style={{ color: '#FCFBF9' }}><IconWhatsApp /></a>
             <a href="mailto:info@floresabeirario.pt" className="nav-link" style={{ color: '#FCFBF9' }}><IconEmail /></a>
           </div>
           <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '40px', opacity: 0.5, fontSize: '0.7rem', letterSpacing: '2px' }}>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap', alignItems: 'center' }}>
               <span>© 2026 FLORES À BEIRA-RIO. COIMBRA, PORTUGAL.</span>
               <a href="/politica-de-privacidade" className="nav-link" style={{ color: '#FCFBF9' }}>POLÍTICA DE PRIVACIDADE</a>
+              <a href="/termos-e-condicoes" className="nav-link" style={{ color: '#FCFBF9' }}>TERMOS E CONDIÇÕES</a>
             </div>
           </div>
         </div>
