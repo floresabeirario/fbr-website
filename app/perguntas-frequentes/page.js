@@ -3,52 +3,61 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// --- ÍCONE DIVERTIDO E BOLD ---
 const PlusIcon = ({ isOpen }) => (
-  <motion.svg 
-    width="20" height="20" viewBox="0 0 20 20" fill="none" 
-    initial={false}
-    animate={{ rotate: isOpen ? 45 : 0 }}
-    transition={{ duration: 0.3, ease: "easeInOut" }}
-    style={{ marginLeft: '15px', flexShrink: 0, color: '#1a1a1a' }}
+  <motion.div
+    animate={{ 
+      backgroundColor: isOpen ? '#1a1a1a' : '#FCFBF9',
+      rotate: isOpen ? 135 : 0 // Roda mais para dar um efeito "bouncy" divertido
+    }}
+    transition={{ type: "spring", stiffness: 200, damping: 15 }}
+    style={{ 
+      width: '40px', height: '40px', borderRadius: '50%', 
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      border: '2px solid #1a1a1a', flexShrink: 0, marginLeft: '20px'
+    }}
   >
-    <path d="M10 4V16M4 10H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-  </motion.svg>
+    <motion.svg 
+      width="16" height="16" viewBox="0 0 20 20" fill="none" 
+      animate={{ color: isOpen ? '#fff' : '#1a1a1a' }}
+    >
+      <path d="M10 3V17M3 10H17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+    </motion.svg>
+  </motion.div>
 );
 
+// --- COMPONENTE DA PERGUNTA ---
 const FAQItem = ({ q, a, index }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 20 }}
+      className="faq-item-wrapper"
+      initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05 }}
+      transition={{ delay: index * 0.05, type: "spring", stiffness: 100 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{ 
-        borderRadius: '4px',
-        backgroundColor: '#fff', // Fundo branco na caixa para contrastar com a página
-        border: '1px solid rgba(26, 26, 26, 0.08)',
+        backgroundColor: '#fff',
+        borderRadius: '24px', // Cantos bem arredondados (Moderno)
+        border: isHovered || isOpen ? '2px solid #1a1a1a' : '2px solid rgba(26, 26, 26, 0.08)',
+        boxShadow: isHovered ? '0 10px 30px rgba(0,0,0,0.05)' : 'none',
         overflow: 'hidden',
-        boxShadow: '0 4px 15px rgba(0,0,0,0.02)' // Sombra muito subtil
+        transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+        cursor: 'pointer'
       }}
+      onClick={() => setIsOpen(!isOpen)}
     >
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        style={{
-          width: '100%',
-          textAlign: 'left',
-          padding: '20px 25px',
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          backgroundColor: isOpen ? '#FCFBF9' : '#fff',
-          transition: 'background-color 0.3s ease'
-        }}
-      >
+      <div style={{
+        padding: '25px 30px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}>
         <h3 style={{ 
-          fontSize: '1.2rem', 
+          fontSize: '1.3rem', 
           margin: 0, 
           color: '#1a1a1a',
           fontFamily: "'TAN-MEMORIES', serif",
@@ -57,7 +66,7 @@ const FAQItem = ({ q, a, index }) => {
           {q}
         </h3>
         <PlusIcon isOpen={isOpen} />
-      </button>
+      </div>
 
       <AnimatePresence>
         {isOpen && (
@@ -67,13 +76,14 @@ const FAQItem = ({ q, a, index }) => {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div style={{ padding: '0 25px 25px 25px', borderTop: '1px solid rgba(26, 26, 26, 0.05)' }}>
+            <div style={{ padding: '0 30px 30px 30px' }}>
               <div style={{ 
                 color: '#444', 
-                lineHeight: '1.7', 
-                fontSize: '1rem',
+                lineHeight: '1.8', 
+                fontSize: '1.05rem',
                 fontWeight: '400',
-                marginTop: '15px',
+                borderTop: '2px dashed rgba(26,26,26,0.1)', // Um detalhe divertido na separação
+                paddingTop: '20px',
                 whiteSpace: 'pre-line' 
               }}>
                 {a}
@@ -131,28 +141,42 @@ export default function PerguntasFrequentes() {
   ];
 
   return (
-    // Nova cor de fundo (#F4F1EE) aplicada na main
     <main style={{ paddingTop: '110px', paddingBottom: '120px', backgroundColor: '#F4F1EE', minHeight: '100vh' }}>
-      {/* Max width aumentado para 1000px para as duas colunas respirarem bem */}
+      
+      {/* Estilos Globais Injetados para o Masonry Layout perfeito */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        .faq-masonry {
+          column-count: 1;
+          column-gap: 24px;
+        }
+        @media (min-width: 800px) {
+          .faq-masonry {
+            column-count: 2;
+          }
+        }
+        .faq-item-wrapper {
+          break-inside: avoid;
+          page-break-inside: avoid;
+          -webkit-column-break-inside: avoid;
+          margin-bottom: 24px;
+          display: inline-block;
+          width: 100%;
+        }
+      `}} />
+
       <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 20px' }}>
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          style={{ textAlign: 'center', marginBottom: '60px' }}
+          style={{ textAlign: 'center', marginBottom: '70px' }}
         >
-          {/* Subtítulo removido */}
-          <h1 style={{ fontSize: 'clamp(2.5rem, 7vw, 4rem)', margin: 0 }}>
+          <h1 style={{ fontSize: 'clamp(3rem, 8vw, 5rem)', margin: 0, letterSpacing: '-1px' }}>
             Perguntas Frequentes
           </h1>
         </motion.div>
         
-        {/* Nova Grelha Responsiva (2 colunas no PC, 1 no Telemóvel) */}
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', 
-          gap: '20px',
-          alignItems: 'start' // Garante que a abertura de um não estica a caixa do lado
-        }}>
+        {/* Usamos a classe faq-masonry aqui */}
+        <div className="faq-masonry">
           {faqs.map((item, index) => (
             <FAQItem key={index} q={item.q} a={item.a} index={index} />
           ))}
