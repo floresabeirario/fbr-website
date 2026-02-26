@@ -137,7 +137,17 @@ export default function PerguntasFrequentes() {
   ];
 
   return (
-    <main style={{ paddingTop: '100px', paddingBottom: '100px', backgroundColor: '#B85D4B', minHeight: '100vh' }}>
+    <main style={{ 
+      paddingTop: '120px', 
+      paddingBottom: '100px', 
+      // A MAGIA ACONTECE AQUI: O linear-gradient escurece a foto ligeiramente para o texto branco sobressair
+      backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/faq-background.jpg)', 
+      backgroundSize: 'cover', 
+      backgroundPosition: 'center', 
+      backgroundRepeat: 'no-repeat', 
+      backgroundAttachment: 'fixed', // Efeito paralaxe elegante no scroll
+      minHeight: '100vh' 
+    }}>
       
       <style dangerouslySetInnerHTML={{ __html: `
         /* 1. BASE (TELEMOVEL) - 1 Coluna */
@@ -152,7 +162,12 @@ export default function PerguntasFrequentes() {
         .faq-answer { padding: 0 16px 16px 16px; font-size: 0.9rem; } 
         .plus-icon-wrapper { width: 28px; height: 28px; margin-left: 12px; } 
 
-        .faq-header-title { font-size: 2.2rem; color: #FCFBF9; } 
+        /* Título a branco com uma leve sombra para garantir leitura em cima da foto */
+        .faq-header-title { 
+          font-size: 2.2rem; 
+          color: #FCFBF9; 
+          text-shadow: 0px 2px 10px rgba(0,0,0,0.3);
+        } 
         .faq-header-container { margin-bottom: 30px; }
         
         .faq-answer strong { color: #1a1a1a; font-weight: 600; }
@@ -182,7 +197,6 @@ export default function PerguntasFrequentes() {
         }
       `}} />
 
-      {/* Ajustei o maxWidth para 1300px para que as 3 colunas tenham espaço para respirar bem no PC */}
       <div style={{ maxWidth: '1300px', margin: '0 auto', padding: '0 16px' }}>
         <motion.div 
           className="faq-header-container"
