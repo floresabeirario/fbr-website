@@ -1,13 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation"; 
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Ícone da Bandeira (SVG)
-const FlagEN = () => (
-  <svg width="16" height="12" viewBox="0 0 640 480" style={{ marginLeft: '8px', borderRadius: '2px', verticalAlign: 'middle' }}>
-    <path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 245 180L565 0h75v56L396 240l244 184v56h-75L320 300 75 480H0v-56l244-184L0 56V0h75z"/><path fill="#C8102E" d="m424 281 216 159v40L369 281h55zM216 199 0 40V0l271 199h-55zm-216 241 216-159h55L0 480v-40zm640 0L424 281h55l161 119v40zM0 190h640v100H0z"/><path fill="#FFF" d="M270 0h100v480H270z"/><path fill="#C8102E" d="M0 210h640v60H0zM300 0h40v480h-40z"/>
+// Ícone da Bandeira de Portugal (SVG Simplificado)
+const FlagPT = () => (
+  <svg width="16" height="12" viewBox="0 0 600 400" style={{ marginLeft: '8px', borderRadius: '2px', verticalAlign: 'middle' }}>
+    <rect width="240" height="400" fill="#006600"/>
+    <rect x="240" width="360" height="400" fill="#ff0000"/>
+    {/* Versão simplificada do brasão para tamanho pequeno */}
+    <circle cx="240" cy="200" r="80" fill="#ffff00"/>
+    <circle cx="240" cy="200" r="50" fill="#ffffff"/>
+    <path d="M240 160 v80 M210 200 h60" stroke="#ff0000" strokeWidth="10"/>
   </svg>
 );
 
@@ -34,7 +39,7 @@ export default function RootLayout({ children }) {
     { name: "Vale-Presente", href: "/vale-presente" },
     { name: "Perguntas Frequentes", href: "/perguntas-frequentes" },
     { name: "Contactos e Equipa", href: "/contactos" },
-    { name: "EN", href: "/en", hasFlag: true },
+    { name: "PT", href: "/pt", hasFlag: true }, // Alterado para PT com bandeira portuguesa
   ];
 
   const shouldShowScrolled = scrolled || !isHome;
@@ -98,7 +103,7 @@ export default function RootLayout({ children }) {
                 {menuRight.map((item) => (
                   <a key={item.name} href={item.href} className="nav-link"
                     style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center' }}>
-                    {item.name} {item.hasFlag && <FlagEN />}
+                    {item.name} {item.hasFlag && <FlagPT />}
                   </a>
                 ))}
               </div>
@@ -123,7 +128,7 @@ export default function RootLayout({ children }) {
               {[...menuLeft, ...menuRight].map((item) => (
                 <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} className="nav-link"
                   style={{ color: '#1a1a1a', fontSize: '1.8rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif", display: 'flex', alignItems: 'center' }}>
-                  {item.name} {item.hasFlag && <FlagEN />}
+                  {item.name} {item.hasFlag && <FlagPT />}
                 </a>
               ))}
             </motion.div>
@@ -140,18 +145,16 @@ export default function RootLayout({ children }) {
           .logo-central { padding: 0 20px; }
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
           .italic { font-style: italic !important; }
-          
-          /* AJUSTE DO SUBINHADO PARA TEXTO EMPILHADO */
           .nav-link {
             text-decoration: none !important; 
             transition: all 0.3s ease;
-            display: inline-block; /* Garante que o link é tratado como um bloco único */
-            border-bottom: 1px solid transparent; /* Cria uma linha invisível na base */
-            line-height: 1.4; /* Dá espaço entre as linhas para não amontoar */
-            padding-bottom: 2px; /* Afasta ligeiramente a linha do texto */
+            display: inline-block;
+            border-bottom: 1px solid transparent;
+            line-height: 1.4;
+            padding-bottom: 2px;
           }
           .nav-link:hover {
-            border-bottom: 1px solid currentColor; /* Mostra a linha apenas no hover */
+            border-bottom: 1px solid currentColor;
           }
         `}</style>
       </body>
