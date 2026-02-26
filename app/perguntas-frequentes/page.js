@@ -3,25 +3,32 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// --- ÍCONE DIVERTIDO E BOLD ---
-const PlusIcon = ({ isOpen }) => (
+// --- ÍCONE DE FLOR MINIMALISTA ---
+const FlowerIcon = ({ isOpen }) => (
   <motion.div
     animate={{ 
       backgroundColor: isOpen ? '#1a1a1a' : '#FCFBF9',
-      rotate: isOpen ? 135 : 0 // Roda mais para dar um efeito "bouncy" divertido
+      rotate: isOpen ? 90 : 0 // A flor roda 90 graus suavemente
     }}
     transition={{ type: "spring", stiffness: 200, damping: 15 }}
+    className="flower-icon-wrapper"
     style={{ 
-      width: '40px', height: '40px', borderRadius: '50%', 
+      borderRadius: '50%', 
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      border: '2px solid #1a1a1a', flexShrink: 0, marginLeft: '20px'
+      border: '2px solid #1a1a1a', flexShrink: 0
     }}
   >
     <motion.svg 
-      width="16" height="16" viewBox="0 0 20 20" fill="none" 
+      width="55%" height="55%" viewBox="0 0 24 24" fill="none" 
       animate={{ color: isOpen ? '#fff' : '#1a1a1a' }}
+      stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
     >
-      <path d="M10 3V17M3 10H17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+      {/* Desenho geométrico e moderno de uma flor */}
+      <path d="M12 2c-1.5 0-2.5 2-2.5 4s1 4 2.5 4 2.5-2 2.5-4-1-4-2.5-4z"/>
+      <path d="M12 22c-1.5 0-2.5-2-2.5-4s1-4 2.5-4 2.5 2 2.5 4-1 4-2.5 4z"/>
+      <path d="M2 12c0-1.5 2-2.5 4-2.5s4 1 4 2.5-2 2.5-4 2.5-4-1-4-2.5z"/>
+      <path d="M22 12c0-1.5-2-2.5-4-2.5s-4 1-4 2.5 2 2.5 4 2.5 4-1 4-2.5z"/>
+      <circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/>
     </motion.svg>
   </motion.div>
 );
@@ -34,14 +41,14 @@ const FAQItem = ({ q, a, index }) => {
   return (
     <motion.div 
       className="faq-item-wrapper"
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05, type: "spring", stiffness: 100 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ 
         backgroundColor: '#fff',
-        borderRadius: '24px', // Cantos bem arredondados (Moderno)
+        borderRadius: '16px', // Ligeiramente menos arredondado para encaixar melhor no mobile
         border: isHovered || isOpen ? '2px solid #1a1a1a' : '2px solid rgba(26, 26, 26, 0.08)',
         boxShadow: isHovered ? '0 10px 30px rgba(0,0,0,0.05)' : 'none',
         overflow: 'hidden',
@@ -50,22 +57,22 @@ const FAQItem = ({ q, a, index }) => {
       }}
       onClick={() => setIsOpen(!isOpen)}
     >
-      <div style={{
-        padding: '25px 30px',
+      <div className="faq-btn" style={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        backgroundColor: isOpen ? '#FCFBF9' : 'transparent',
+        transition: 'background-color 0.3s ease'
       }}>
-        <h3 style={{ 
-          fontSize: '1.3rem', 
+        <h3 className="faq-title" style={{ 
           margin: 0, 
           color: '#1a1a1a',
           fontFamily: "'TAN-MEMORIES', serif",
-          lineHeight: '1.4'
+          lineHeight: '1.3'
         }}>
           {q}
         </h3>
-        <PlusIcon isOpen={isOpen} />
+        <FlowerIcon isOpen={isOpen} />
       </div>
 
       <AnimatePresence>
@@ -76,14 +83,13 @@ const FAQItem = ({ q, a, index }) => {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div style={{ padding: '0 30px 30px 30px' }}>
+            <div className="faq-answer">
               <div style={{ 
                 color: '#444', 
-                lineHeight: '1.8', 
-                fontSize: '1.05rem',
+                lineHeight: '1.7', 
                 fontWeight: '400',
-                borderTop: '2px dashed rgba(26,26,26,0.1)', // Um detalhe divertido na separação
-                paddingTop: '20px',
+                borderTop: '1px dashed rgba(26,26,26,0.15)', // Linha mais subtil no mobile
+                paddingTop: '16px',
                 whiteSpace: 'pre-line' 
               }}>
                 {a}
@@ -141,41 +147,49 @@ export default function PerguntasFrequentes() {
   ];
 
   return (
-    <main style={{ paddingTop: '110px', paddingBottom: '120px', backgroundColor: '#F4F1EE', minHeight: '100vh' }}>
+    <main style={{ paddingTop: '110px', paddingBottom: '100px', backgroundColor: '#F4F1EE', minHeight: '100vh' }}>
       
-      {/* Estilos Globais Injetados para o Masonry Layout perfeito */}
+      {/* LÓGICA RESPONSIVA (MOBILE-FIRST) */}
       <style dangerouslySetInnerHTML={{ __html: `
-        .faq-masonry {
-          column-count: 1;
-          column-gap: 24px;
-        }
-        @media (min-width: 800px) {
-          .faq-masonry {
-            column-count: 2;
-          }
-        }
-        .faq-item-wrapper {
-          break-inside: avoid;
-          page-break-inside: avoid;
-          -webkit-column-break-inside: avoid;
-          margin-bottom: 24px;
-          display: inline-block;
-          width: 100%;
+        /* BASE (TELEMOVEL): Muito compacto, limpo, fonte menor */
+        .faq-masonry { column-count: 1; column-gap: 16px; }
+        .faq-item-wrapper { break-inside: avoid; margin-bottom: 12px; display: inline-block; width: 100%; }
+        
+        .faq-btn { padding: 16px; }
+        .faq-title { font-size: 1.1rem; }
+        .flower-icon-wrapper { width: 32px; height: 32px; margin-left: 12px; }
+        .faq-answer { padding: 0 16px 16px 16px; font-size: 0.95rem; }
+
+        .faq-header-title { font-size: 2.2rem; }
+        .faq-header-container { margin-bottom: 40px; }
+
+        /* DESKTOP: Volta a ganhar espaço, margens e fontes maiores */
+        @media (min-width: 768px) {
+          .faq-masonry { column-count: 2; column-gap: 24px; }
+          .faq-item-wrapper { margin-bottom: 24px; }
+          
+          .faq-btn { padding: 25px 30px; }
+          .faq-title { font-size: 1.3rem; }
+          .flower-icon-wrapper { width: 40px; height: 40px; margin-left: 20px; }
+          .faq-answer { padding: 0 30px 30px 30px; font-size: 1.05rem; }
+
+          .faq-header-title { font-size: clamp(3rem, 6vw, 4.5rem); }
+          .faq-header-container { margin-bottom: 70px; }
         }
       `}} />
 
       <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 20px' }}>
         <motion.div 
+          className="faq-header-container"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          style={{ textAlign: 'center', marginBottom: '70px' }}
+          style={{ textAlign: 'center' }}
         >
-          <h1 style={{ fontSize: 'clamp(3rem, 8vw, 5rem)', margin: 0, letterSpacing: '-1px' }}>
+          <h1 className="faq-header-title" style={{ margin: 0, letterSpacing: '-1px' }}>
             Perguntas Frequentes
           </h1>
         </motion.div>
         
-        {/* Usamos a classe faq-masonry aqui */}
         <div className="faq-masonry">
           {faqs.map((item, index) => (
             <FAQItem key={index} q={item.q} a={item.a} index={index} />
