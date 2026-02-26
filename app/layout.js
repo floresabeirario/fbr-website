@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
     { name: "Vale-Presente", href: "/vale-presente" },
     { name: "Perguntas Frequentes", href: "/perguntas-frequentes" },
     { name: "Contactos e Equipa", href: "/contactos" },
-    { name: "PT", href: "/pt", isLang: true }, // Marcador especial para os idiomas
+    { name: "PT", href: "/pt", isLang: true }, 
   ];
 
   const shouldShowScrolled = scrolled || !isHome;
@@ -106,7 +106,6 @@ export default function RootLayout({ children }) {
             <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
               <div className="desktop-only" style={{ display: 'flex', gap: '25px', alignItems: 'center' }}>
                 {menuRight.map((item) => {
-                  // Se for o botão de Idioma (PT), criamos a estrutura do Dropdown
                   if (item.isLang) {
                     return (
                       <div key={item.name} className="lang-container" style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
@@ -115,14 +114,20 @@ export default function RootLayout({ children }) {
                           {item.name} <FlagPT />
                         </a>
                         
-                        {/* A caixa flutuante com a opção EN */}
+                        {/* Dropdown com Efeito Vidro Fosco (Glassmorphism) */}
                         <div className="lang-dropdown">
-                          <a href="/en" className="nav-link" style={{ 
+                          <a href="/en" className="lang-dropdown-item" style={{ 
                             fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', 
-                            color: '#1a1a1a', display: 'flex', alignItems: 'center', 
-                            background: '#FCFBF9', padding: '12px 20px', 
-                            border: '1px solid rgba(26,26,26,0.08)', borderRadius: '4px',
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+                            display: 'flex', alignItems: 'center', 
+                            color: shouldShowScrolled ? '#1a1a1a' : '#fff', // Texto adapta-se ao scroll
+                            background: shouldShowScrolled ? 'rgba(252, 251, 249, 0.7)' : 'rgba(0, 0, 0, 0.15)', // Fundo adapta-se ao scroll
+                            backdropFilter: 'blur(12px)',
+                            WebkitBackdropFilter: 'blur(12px)', // Para funcionar no Safari
+                            padding: '10px 16px', 
+                            borderRadius: '4px',
+                            border: `1px solid ${shouldShowScrolled ? 'rgba(26,26,26,0.06)' : 'rgba(255,255,255,0.1)'}`, // Borda muito subtil
+                            textDecoration: 'none',
+                            transition: 'background 0.3s ease'
                           }}>
                             EN <FlagEN />
                           </a>
@@ -131,7 +136,6 @@ export default function RootLayout({ children }) {
                     );
                   }
 
-                  // Renderização normal para os outros links
                   return (
                     <a key={item.name} href={item.href} className="nav-link"
                       style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center' }}>
@@ -159,7 +163,6 @@ export default function RootLayout({ children }) {
               style={{ position: 'fixed', inset: 0, backgroundColor: '#FCFBF9', zIndex: 200, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
               <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '0.8rem', letterSpacing: '2px', cursor: 'pointer' }}>FECHAR</button>
               
-              {/* Renderiza todos os links normais */}
               {[...menuLeft, ...menuRight.filter(i => !i.isLang)].map((item) => (
                 <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} className="nav-link"
                   style={{ color: '#1a1a1a', fontSize: '1.8rem', margin: '15px 0', fontFamily: "'TAN-MEMORIES', serif", display: 'flex', alignItems: 'center' }}>
@@ -167,7 +170,6 @@ export default function RootLayout({ children }) {
                 </a>
               ))}
 
-              {/* Opções de idioma lado a lado no Mobile */}
               <div style={{ display: 'flex', gap: '30px', marginTop: '40px', borderTop: '1px solid rgba(26,26,26,0.1)', paddingTop: '30px' }}>
                 <a href="/pt" className="nav-link" style={{ color: '#1a1a1a', fontSize: '1.3rem', fontFamily: "'TAN-MEMORIES', serif", display: 'flex', alignItems: 'center' }}>
                   PT <FlagPT />
@@ -201,23 +203,27 @@ export default function RootLayout({ children }) {
           }
           .nav-link:hover { border-bottom: 1px solid currentColor; }
 
-          /* --- ESTILOS DO DROPDOWN DE IDIOMA --- */
+          /* --- ESTILOS DO DROPDOWN --- */
           .lang-dropdown {
             position: absolute;
             top: 100%;
             right: 0;
-            padding-top: 15px; /* Cria a ponte invisível para o rato não "cair" */
+            padding-top: 12px; /* Ponte invisível para o rato */
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            pointer-events: none; /* Evita cliques acidentais quando está invisível */
+            transform: translateY(-8px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
           }
           .lang-container:hover .lang-dropdown {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
-            pointer-events: auto; /* Reativa os cliques */
+            pointer-events: auto;
+          }
+          /* Pequeno brilho quando se passa o rato diretamente no EN */
+          .lang-dropdown-item:hover {
+            background: ${shouldShowScrolled ? 'rgba(252, 251, 249, 0.95)' : 'rgba(255, 255, 255, 0.15)'} !important;
           }
         `}</style>
       </body>
