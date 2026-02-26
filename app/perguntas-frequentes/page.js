@@ -140,12 +140,11 @@ export default function PerguntasFrequentes() {
     <main style={{ 
       paddingTop: '120px', 
       paddingBottom: '100px', 
-      // A MAGIA ACONTECE AQUI: O linear-gradient escurece a foto ligeiramente para o texto branco sobressair
       backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/faq-background.jpg)', 
       backgroundSize: 'cover', 
       backgroundPosition: 'center', 
       backgroundRepeat: 'no-repeat', 
-      backgroundAttachment: 'fixed', // Efeito paralaxe elegante no scroll
+      // Paralaxe removido para garantir total estabilidade
       minHeight: '100vh' 
     }}>
       
@@ -162,7 +161,6 @@ export default function PerguntasFrequentes() {
         .faq-answer { padding: 0 16px 16px 16px; font-size: 0.9rem; } 
         .plus-icon-wrapper { width: 28px; height: 28px; margin-left: 12px; } 
 
-        /* Título a branco com uma leve sombra para garantir leitura em cima da foto */
         .faq-header-title { 
           font-size: 2.2rem; 
           color: #FCFBF9; 
