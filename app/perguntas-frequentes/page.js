@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// --- ÍCONE SIMPLES E ELEGANTE (+) ---
+// --- ÍCONE SIMPLES ---
 const PlusIcon = ({ isOpen }) => (
   <motion.div
     animate={{ 
@@ -27,8 +27,8 @@ const PlusIcon = ({ isOpen }) => (
   </motion.div>
 );
 
-// --- COMPONENTE DA PERGUNTA ---
-const FAQItem = ({ q, a, index }) => {
+// --- COMPONENTE DA PERGUNTA (AGORA COM COR DINÂMICA) ---
+const FAQItem = ({ q, a, index, bgColor, borderColor }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -41,10 +41,10 @@ const FAQItem = ({ q, a, index }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ 
-        backgroundColor: '#fff',
+        backgroundColor: bgColor, // A cor muda consoante a categoria!
         borderRadius: '16px',
-        border: isHovered || isOpen ? '1.5px solid #1a1a1a' : '1.5px solid rgba(26, 26, 26, 0.08)',
-        boxShadow: isHovered ? '0 10px 30px rgba(0,0,0,0.05)' : 'none',
+        border: isHovered || isOpen ? '1.5px solid #1a1a1a' : `1.5px solid ${borderColor}`,
+        boxShadow: isHovered ? '0 8px 25px rgba(0,0,0,0.06)' : 'none',
         overflow: 'hidden',
         transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
         cursor: 'pointer',
@@ -56,8 +56,6 @@ const FAQItem = ({ q, a, index }) => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: isOpen ? '#FCFBF9' : 'transparent',
-        transition: 'background-color 0.3s ease'
       }}>
         <h3 className="faq-title" style={{ 
           margin: 0, 
@@ -80,7 +78,7 @@ const FAQItem = ({ q, a, index }) => {
           >
             <div className="faq-answer">
               <div style={{ 
-                color: '#444', 
+                color: '#333', 
                 lineHeight: '1.6', 
                 fontWeight: '400',
                 borderTop: '1px dashed rgba(26,26,26,0.15)',
@@ -98,10 +96,12 @@ const FAQItem = ({ q, a, index }) => {
 };
 
 export default function PerguntasFrequentes() {
-  // Dados divididos por categorias para facilitar a leitura
+  // Categorias com paletas de cores específicas!
   const faqCategories = [
     {
       title: "O Processo & As Flores",
+      bgColor: "#E8F0E4", // Verde Sálvia suave
+      borderColor: "#D3E0CD",
       items: [
         {
           q: "Apenas preservam bouquets de casamento?",
@@ -123,6 +123,8 @@ export default function PerguntasFrequentes() {
     },
     {
       title: "Reservas & Envios",
+      bgColor: "#FDECEF", // Rosa suave / Pêssego
+      borderColor: "#F4D8DF",
       items: [
         {
           q: "Quando devo agendar a preservação das minhas flores?",
@@ -140,6 +142,8 @@ export default function PerguntasFrequentes() {
     },
     {
       title: "Detalhes & Valores",
+      bgColor: "#E6F0F9", // Azul / Lilás suave
+      borderColor: "#D3E4F4",
       items: [
         {
           q: "E se eu quiser adicionar algo especial no quadro?",
@@ -158,34 +162,44 @@ export default function PerguntasFrequentes() {
   ];
 
   return (
-    <main style={{ paddingTop: '110px', paddingBottom: '100px', backgroundColor: '#F4F1EE', minHeight: '100vh' }}>
+    <main style={{ paddingTop: '110px', paddingBottom: '100px', backgroundColor: '#FCFBF9', minHeight: '100vh' }}>
       
-      {/* LÓGICA RESPONSIVA (MOBILE-FIRST) */}
+      {/* LÓGICA RESPONSIVA E DE DESIGN */}
       <style dangerouslySetInnerHTML={{ __html: `
-        /* BASE (TELEMOVEL): Muito compacto, limpo, fonte menor */
+        /* BASE (TELEMOVEL) */
         .faq-grid { 
           display: grid;
           grid-template-columns: 1fr;
-          gap: 16px;
-          align-items: start; /* Impede que um lado estique o outro */
+          gap: 14px;
+          align-items: start;
         }
         
-        .faq-btn { padding: 16px; }
-        .faq-title { font-size: 1.1rem; }
+        .faq-btn { padding: 18px 20px; }
+        .faq-title { font-size: 1.15rem; }
         .plus-icon-wrapper { width: 30px; height: 30px; margin-left: 12px; }
-        .faq-answer { padding: 0 16px 16px 16px; font-size: 0.95rem; }
+        .faq-answer { padding: 0 20px 20px 20px; font-size: 0.95rem; }
 
-        .faq-header-title { font-size: 2.5rem; }
-        .faq-header-container { margin-bottom: 40px; }
+        .faq-header-title { font-size: 2.8rem; }
+        .faq-header-container { margin-bottom: 50px; }
         
-        .category-title { font-size: 1.8rem; margin-bottom: 20px; color: #1a1a1a; font-family: 'TAN-MEMORIES', serif; border-bottom: 1px solid rgba(26,26,26,0.1); padding-bottom: 10px; }
-        .category-section { margin-bottom: 60px; }
+        /* NOVO ESTILO DA CATEGORIA: Pequeno, moderno, não ocupa espaço */
+        .category-title { 
+          font-size: 0.75rem; 
+          text-transform: uppercase; 
+          letter-spacing: 2px; 
+          font-weight: 600;
+          color: #1a1a1a; 
+          opacity: 0.5;
+          margin-bottom: 16px; 
+          padding-left: 8px;
+        }
+        .category-section { margin-bottom: 50px; }
 
-        /* DESKTOP: Volta a ganhar espaço e as 2 colunas ativam-se */
+        /* DESKTOP */
         @media (min-width: 768px) {
           .faq-grid { 
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px; 
+            gap: 20px; 
           }
           
           .faq-btn { padding: 22px 28px; }
@@ -193,11 +207,11 @@ export default function PerguntasFrequentes() {
           .plus-icon-wrapper { width: 34px; height: 34px; margin-left: 20px; }
           .faq-answer { padding: 0 28px 28px 28px; font-size: 1.05rem; }
 
-          .faq-header-title { font-size: clamp(3rem, 6vw, 4.5rem); }
-          .faq-header-container { margin-bottom: 70px; }
+          .faq-header-title { font-size: clamp(3.5rem, 6vw, 5rem); }
+          .faq-header-container { margin-bottom: 80px; }
           
-          .category-title { font-size: 2.2rem; margin-bottom: 30px; }
-          .category-section { margin-bottom: 80px; }
+          .category-title { font-size: 0.85rem; margin-bottom: 24px; }
+          .category-section { margin-bottom: 70px; }
         }
       `}} />
 
@@ -213,7 +227,6 @@ export default function PerguntasFrequentes() {
           </h1>
         </motion.div>
         
-        {/* Renderiza cada categoria com as suas respetivas perguntas */}
         {faqCategories.map((category, catIndex) => (
           <motion.div 
             key={catIndex} 
@@ -223,10 +236,18 @@ export default function PerguntasFrequentes() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5 }}
           >
+            {/* O novo título de categoria discreto */}
             <h2 className="category-title">{category.title}</h2>
             <div className="faq-grid">
               {category.items.map((item, index) => (
-                <FAQItem key={index} q={item.q} a={item.a} index={index} />
+                <FAQItem 
+                  key={index} 
+                  q={item.q} 
+                  a={item.a} 
+                  index={index} 
+                  bgColor={category.bgColor} 
+                  borderColor={category.borderColor}
+                />
               ))}
             </div>
           </motion.div>
