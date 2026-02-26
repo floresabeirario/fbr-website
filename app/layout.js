@@ -52,8 +52,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt">
       <head>
-        {/* CARREGAR A NOVA FONTE URBANIST DO GOOGLE FONTS */}
-        <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+        {/* NOVA FONTE: HOST GROTESK DO GOOGLE FONTS */}
+        <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
             font-family: 'TAN-MEMORIES';
@@ -67,8 +67,8 @@ export default function RootLayout({ children }) {
           }
         `}} />
       </head>
-      {/* APLICAR A URBANIST COMO FONTE PRINCIPAL DE TODO O SITE */}
-      <body style={{ margin: 0, backgroundColor: '#FCFBF9', color: '#1a1a1a', fontFamily: "'Urbanist', sans-serif" }}>
+      {/* APLICAR A HOST GROTESK AO BODY */}
+      <body style={{ margin: 0, backgroundColor: '#FCFBF9', color: '#1a1a1a', fontFamily: "'Host Grotesk', sans-serif" }}>
         
         <nav style={{ 
           position: 'fixed', top: 0, width: '100%', zIndex: 100, 
@@ -150,7 +150,7 @@ export default function RootLayout({ children }) {
                 background: 'none', border: 'none', cursor: 'pointer',
                 color: shouldShowScrolled ? '#1a1a1a' : '#fff',
                 fontSize: '0.85rem', fontWeight: '600', letterSpacing: '2px',
-                padding: '10px 0', fontFamily: "'Urbanist', sans-serif"
+                padding: '10px 0', fontFamily: "'Host Grotesk', sans-serif"
               }}>
                 MENU
               </button>
@@ -162,7 +162,7 @@ export default function RootLayout({ children }) {
           {isOpen && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               style={{ position: 'fixed', inset: 0, backgroundColor: '#FCFBF9', zIndex: 200, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '0.85rem', fontWeight: '600', letterSpacing: '2px', cursor: 'pointer', fontFamily: "'Urbanist', sans-serif" }}>FECHAR</button>
+              <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '0.85rem', fontWeight: '600', letterSpacing: '2px', cursor: 'pointer', fontFamily: "'Host Grotesk', sans-serif" }}>FECHAR</button>
               
               {[...menuLeft, ...menuRight.filter(i => !i.isLang)].map((item) => (
                 <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} className="nav-link"
