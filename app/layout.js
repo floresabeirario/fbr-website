@@ -52,7 +52,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt">
       <head>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+        {/* CARREGAR A NOVA FONTE URBANIST DO GOOGLE FONTS */}
+        <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600&display=swap" rel="stylesheet" />
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
             font-family: 'TAN-MEMORIES';
@@ -66,7 +67,8 @@ export default function RootLayout({ children }) {
           }
         `}} />
       </head>
-      <body style={{ margin: 0, backgroundColor: '#FCFBF9', color: '#1a1a1a', fontFamily: "'Inter', sans-serif" }}>
+      {/* APLICAR A URBANIST COMO FONTE PRINCIPAL DE TODO O SITE */}
+      <body style={{ margin: 0, backgroundColor: '#FCFBF9', color: '#1a1a1a', fontFamily: "'Urbanist', sans-serif" }}>
         
         <nav style={{ 
           position: 'fixed', top: 0, width: '100%', zIndex: 100, 
@@ -81,7 +83,7 @@ export default function RootLayout({ children }) {
               <div className="desktop-only" style={{ display: 'flex', gap: '25px' }}>
                 {menuLeft.map((item) => (
                   <a key={item.name} href={item.href} className="nav-link"
-                    style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff' }}>
+                    style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff' }}>
                     {item.name}
                   </a>
                 ))}
@@ -110,22 +112,21 @@ export default function RootLayout({ children }) {
                     return (
                       <div key={item.name} className="lang-container" style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
                         <a href={item.href} className="nav-link"
-                          style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                          style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
                           {item.name} <FlagPT />
                         </a>
                         
-                        {/* Dropdown com Efeito Vidro Fosco (Glassmorphism) */}
                         <div className="lang-dropdown">
                           <a href="/en" className="lang-dropdown-item" style={{ 
-                            fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', 
+                            fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1.5px', 
                             display: 'flex', alignItems: 'center', 
-                            color: shouldShowScrolled ? '#1a1a1a' : '#fff', // Texto adapta-se ao scroll
-                            background: shouldShowScrolled ? 'rgba(252, 251, 249, 0.7)' : 'rgba(0, 0, 0, 0.15)', // Fundo adapta-se ao scroll
+                            color: shouldShowScrolled ? '#1a1a1a' : '#fff',
+                            background: shouldShowScrolled ? 'rgba(252, 251, 249, 0.7)' : 'rgba(0, 0, 0, 0.15)',
                             backdropFilter: 'blur(12px)',
-                            WebkitBackdropFilter: 'blur(12px)', // Para funcionar no Safari
+                            WebkitBackdropFilter: 'blur(12px)',
                             padding: '10px 16px', 
                             borderRadius: '4px',
-                            border: `1px solid ${shouldShowScrolled ? 'rgba(26,26,26,0.06)' : 'rgba(255,255,255,0.1)'}`, // Borda muito subtil
+                            border: `1px solid ${shouldShowScrolled ? 'rgba(26,26,26,0.06)' : 'rgba(255,255,255,0.1)'}`,
                             textDecoration: 'none',
                             transition: 'background 0.3s ease'
                           }}>
@@ -138,7 +139,7 @@ export default function RootLayout({ children }) {
 
                   return (
                     <a key={item.name} href={item.href} className="nav-link"
-                      style={{ fontSize: '0.7rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center' }}>
+                      style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center' }}>
                       {item.name}
                     </a>
                   );
@@ -148,8 +149,8 @@ export default function RootLayout({ children }) {
               <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ 
                 background: 'none', border: 'none', cursor: 'pointer',
                 color: shouldShowScrolled ? '#1a1a1a' : '#fff',
-                fontSize: '0.8rem', fontWeight: '600', letterSpacing: '2px',
-                padding: '10px 0'
+                fontSize: '0.85rem', fontWeight: '600', letterSpacing: '2px',
+                padding: '10px 0', fontFamily: "'Urbanist', sans-serif"
               }}>
                 MENU
               </button>
@@ -161,7 +162,7 @@ export default function RootLayout({ children }) {
           {isOpen && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               style={{ position: 'fixed', inset: 0, backgroundColor: '#FCFBF9', zIndex: 200, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '0.8rem', letterSpacing: '2px', cursor: 'pointer' }}>FECHAR</button>
+              <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '0.85rem', fontWeight: '600', letterSpacing: '2px', cursor: 'pointer', fontFamily: "'Urbanist', sans-serif" }}>FECHAR</button>
               
               {[...menuLeft, ...menuRight.filter(i => !i.isLang)].map((item) => (
                 <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} className="nav-link"
@@ -208,7 +209,7 @@ export default function RootLayout({ children }) {
             position: absolute;
             top: 100%;
             right: 0;
-            padding-top: 12px; /* Ponte invisível para o rato */
+            padding-top: 12px;
             opacity: 0;
             visibility: hidden;
             transform: translateY(-8px);
@@ -221,7 +222,6 @@ export default function RootLayout({ children }) {
             transform: translateY(0);
             pointer-events: auto;
           }
-          /* Pequeno brilho quando se passa o rato diretamente no EN */
           .lang-dropdown-item:hover {
             background: ${shouldShowScrolled ? 'rgba(252, 251, 249, 0.95)' : 'rgba(255, 255, 255, 0.15)'} !important;
           }
