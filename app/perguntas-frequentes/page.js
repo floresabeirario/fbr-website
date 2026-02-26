@@ -3,33 +3,27 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// --- ÍCONE DE FLOR MINIMALISTA ---
-const FlowerIcon = ({ isOpen }) => (
+// --- ÍCONE SIMPLES E ELEGANTE (+) ---
+const PlusIcon = ({ isOpen }) => (
   <motion.div
     animate={{ 
-      backgroundColor: isOpen ? '#1a1a1a' : '#FCFBF9',
-      rotate: isOpen ? 90 : 0 // A flor roda 90 graus suavemente
+      backgroundColor: isOpen ? '#1a1a1a' : 'transparent',
+      rotate: isOpen ? 45 : 0 
     }}
     transition={{ type: "spring", stiffness: 200, damping: 15 }}
-    className="flower-icon-wrapper"
+    className="plus-icon-wrapper"
     style={{ 
       borderRadius: '50%', 
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      border: '2px solid #1a1a1a', flexShrink: 0
+      border: '1.5px solid #1a1a1a', flexShrink: 0
     }}
   >
-    <motion.svg 
-      width="55%" height="55%" viewBox="0 0 24 24" fill="none" 
-      animate={{ color: isOpen ? '#fff' : '#1a1a1a' }}
-      stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+    <svg 
+      width="14" height="14" viewBox="0 0 20 20" fill="none" 
+      stroke={isOpen ? '#fff' : '#1a1a1a'} strokeWidth="2" strokeLinecap="round"
     >
-      {/* Desenho geométrico e moderno de uma flor */}
-      <path d="M12 2c-1.5 0-2.5 2-2.5 4s1 4 2.5 4 2.5-2 2.5-4-1-4-2.5-4z"/>
-      <path d="M12 22c-1.5 0-2.5-2-2.5-4s1-4 2.5-4 2.5 2 2.5 4-1 4-2.5 4z"/>
-      <path d="M2 12c0-1.5 2-2.5 4-2.5s4 1 4 2.5-2 2.5-4 2.5-4-1-4-2.5z"/>
-      <path d="M22 12c0-1.5-2-2.5-4-2.5s-4 1-4 2.5 2 2.5 4 2.5 4-1 4-2.5z"/>
-      <circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/>
-    </motion.svg>
+      <path d="M10 4V16M4 10H16"/>
+    </svg>
   </motion.div>
 );
 
@@ -48,12 +42,13 @@ const FAQItem = ({ q, a, index }) => {
       onMouseLeave={() => setIsHovered(false)}
       style={{ 
         backgroundColor: '#fff',
-        borderRadius: '16px', // Ligeiramente menos arredondado para encaixar melhor no mobile
-        border: isHovered || isOpen ? '2px solid #1a1a1a' : '2px solid rgba(26, 26, 26, 0.08)',
+        borderRadius: '16px',
+        border: isHovered || isOpen ? '1.5px solid #1a1a1a' : '1.5px solid rgba(26, 26, 26, 0.08)',
         boxShadow: isHovered ? '0 10px 30px rgba(0,0,0,0.05)' : 'none',
         overflow: 'hidden',
         transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        width: '100%'
       }}
       onClick={() => setIsOpen(!isOpen)}
     >
@@ -72,7 +67,7 @@ const FAQItem = ({ q, a, index }) => {
         }}>
           {q}
         </h3>
-        <FlowerIcon isOpen={isOpen} />
+        <PlusIcon isOpen={isOpen} />
       </div>
 
       <AnimatePresence>
@@ -86,9 +81,9 @@ const FAQItem = ({ q, a, index }) => {
             <div className="faq-answer">
               <div style={{ 
                 color: '#444', 
-                lineHeight: '1.7', 
+                lineHeight: '1.6', 
                 fontWeight: '400',
-                borderTop: '1px dashed rgba(26,26,26,0.15)', // Linha mais subtil no mobile
+                borderTop: '1px dashed rgba(26,26,26,0.15)',
                 paddingTop: '16px',
                 whiteSpace: 'pre-line' 
               }}>
@@ -103,46 +98,62 @@ const FAQItem = ({ q, a, index }) => {
 };
 
 export default function PerguntasFrequentes() {
-  const faqs = [
+  // Dados divididos por categorias para facilitar a leitura
+  const faqCategories = [
     {
-      q: "Quando devo agendar a preservação das minhas flores?",
-      a: "O ideal é agendar a preservação com antecedência, assim que souber a data do seu evento. As vagas são limitadas e, em épocas de maior procura, algumas datas esgotam rapidamente. \n\nSe o evento já tiver ocorrido e as flores não estiverem em bom estado, é possível fazermos uma recriação do bouquet com flores semelhantes."
+      title: "O Processo & As Flores",
+      items: [
+        {
+          q: "Apenas preservam bouquets de casamento?",
+          a: "Não, preservamos e emolduramos todos os tipos de flores de ocasiões especiais, incluindo: cerimónias de batizado, aniversários, comemorações de bodas, homenagens e cerimónias fúnebres, ramos oferecidos em datas marcantes ou flores espontâneas com valor sentimental."
+        },
+        {
+          q: "Preservam todo o tipo de flores?",
+          a: "A grande maioria das flores reage muito bem à prensagem e secagem. No entanto, algumas flores com elevado teor de água (como suculentas ou antúrios) ou formatos muito espessos podem ser mais desafiantes ou não manter a sua forma original. Caso tenha dúvidas sobre flores específicas, não hesite em contactar-nos."
+        },
+        {
+          q: "Como funciona o processo?",
+          a: "Tudo começa com a reserva da sua vaga. Depois, deve enviar ou entregar as flores até 2 a 3 dias após o evento. As flores são cuidadosamente prensadas e secas. Criamos uma composição e enviamos uma fotografia para aprovação antes de selarmos a moldura."
+        },
+        {
+          q: "As cores vão ser as mesmas quando estiverem secas?",
+          a: "Inevitavelmente, haverá alguma mudança de cor assim que toda a humidade for removida da flor. Algumas mantêm as cores vibrantes, outras desbotam (as rosas vermelhas tornam-se bordô, por exemplo). Esta é a beleza do processo: a essência natural para guardar para sempre."
+        }
+      ]
     },
     {
-      q: "Quanto tempo demora a preservação?",
-      a: "O nosso tempo médio de processamento desde o momento em que recebemos as suas flores é de aproximadamente até 6 meses. Faremos o possível para concluir o seu design o mais rapidamente possível, no entanto, o processo é delicado, pelo que nunca iremos sacrificar a qualidade do design final em favor da rapidez."
+      title: "Reservas & Envios",
+      items: [
+        {
+          q: "Quando devo agendar a preservação das minhas flores?",
+          a: "O ideal é agendar a preservação com antecedência, assim que souber a data do seu evento. As vagas são limitadas e, em épocas de maior procura, algumas datas esgotam rapidamente. \n\nSe o evento já tiver ocorrido e as flores não estiverem em bom estado, é possível fazermos uma recriação do bouquet com flores semelhantes."
+        },
+        {
+          q: "Como vos posso entregar as minhas flores?",
+          a: "Recomendamos que nos faça chegar as flores assim que possível, preferencialmente dentro de 2-3 dias e, no máximo, 5 dias após o evento. \n\n• Entrega em mãos em estúdio (Coimbra).\n• Envio por CTT/transportadora.\n• Recolha no evento (mediante custo adicional)."
+        },
+        {
+          q: "Quanto tempo demora a preservação?",
+          a: "O nosso tempo médio de processamento desde o momento em que recebemos as suas flores é de aproximadamente até 6 meses. Faremos o possível para concluir o seu design o mais rapidamente possível, no entanto, o processo é delicado, pelo que nunca iremos sacrificar a qualidade do design final em favor da rapidez."
+        }
+      ]
     },
     {
-      q: "Apenas preservam bouquets de casamento?",
-      a: "Não, preservamos e emolduramos todos os tipos de flores de ocasiões especiais, incluindo: cerimónias de batizado, aniversários, comemorações de bodas, homenagens e cerimónias fúnebres, ramos oferecidos em datas marcantes ou flores espontâneas com valor sentimental."
-    },
-    {
-      q: "Preservam todo o tipo de flores?",
-      a: "A grande maioria das flores reage muito bem à prensagem e secagem. No entanto, algumas flores com elevado teor de água (como suculentas ou antúrios) ou formatos muito espessos podem ser mais desafiantes ou não manter a sua forma original. Caso tenha dúvidas sobre flores específicas, não hesite em contactar-nos."
-    },
-    {
-      q: "Como vos posso entregar as minhas flores?",
-      a: "Recomendamos que nos faça chegar as flores assim que possível, preferencialmente dentro de 2-3 dias e, no máximo, 5 dias após o evento. \n\n• Entrega em mãos em estúdio (Coimbra).\n• Envio por CTT/transportadora.\n• Recolha no evento (mediante custo adicional)."
-    },
-    {
-      q: "Como funciona o processo?",
-      a: "Tudo começa com a reserva da sua vaga. Depois, deve enviar ou entregar as flores até 2 a 3 dias após o evento. As flores são cuidadosamente prensadas e secas. Criamos uma composição e enviamos uma fotografia para aprovação antes de selarmos a moldura."
-    },
-    {
-      q: "E se eu quiser adicionar algo especial no quadro?",
-      a: "Pode personalizar o seu quadro com elementos que tenham significado especial como fitas do bouquet, um pedaço de tecido do vestido, uma coleira, convites, cartas, ou até fotos impressas. Mencione este detalhe no formulário de reserva."
-    },
-    {
-      q: "As cores vão ser as mesmas quando estiverem secas?",
-      a: "Inevitavelmente, haverá alguma mudança de cor assim que toda a humidade for removida da flor. Algumas mantêm as cores vibrantes, outras desbotam (as rosas vermelhas tornam-se bordô, por exemplo). Esta é a beleza do processo: a essência natural para guardar para sempre."
-    },
-    {
-      q: "Posso devolver o quadro?",
-      a: "Infelizmente, não aceitamos devoluções em nenhum dos nossos pedidos personalizados. Cada peça exige muito tempo, cuidado e atenção para ser criada."
-    },
-    {
-      q: "Quanto é que um quadro custa?",
-      a: "O valor depende do tamanho e tipo de moldura. Os preços da preservação começam nos 300€, com emolduramento incluído. É necessário o pagamento de um sinal de 30% para garantir a vaga, que será deduzido no pagamento final."
+      title: "Detalhes & Valores",
+      items: [
+        {
+          q: "E se eu quiser adicionar algo especial no quadro?",
+          a: "Pode personalizar o seu quadro com elementos que tenham significado especial como fitas do bouquet, um pedaço de tecido do vestido, uma coleira, convites, cartas, ou até fotos impressas. Mencione este detalhe no formulário de reserva."
+        },
+        {
+          q: "Quanto é que um quadro custa?",
+          a: "O valor depende do tamanho e tipo de moldura. Os preços da preservação começam nos 300€, com emolduramento incluído. É necessário o pagamento de um sinal de 30% para garantir a vaga, que será deduzido no pagamento final."
+        },
+        {
+          q: "Posso devolver o quadro?",
+          a: "Infelizmente, não aceitamos devoluções em nenhum dos nossos pedidos personalizados. Cada peça exige muito tempo, cuidado e atenção para ser criada."
+        }
+      ]
     }
   ];
 
@@ -152,29 +163,41 @@ export default function PerguntasFrequentes() {
       {/* LÓGICA RESPONSIVA (MOBILE-FIRST) */}
       <style dangerouslySetInnerHTML={{ __html: `
         /* BASE (TELEMOVEL): Muito compacto, limpo, fonte menor */
-        .faq-masonry { column-count: 1; column-gap: 16px; }
-        .faq-item-wrapper { break-inside: avoid; margin-bottom: 12px; display: inline-block; width: 100%; }
+        .faq-grid { 
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 16px;
+          align-items: start; /* Impede que um lado estique o outro */
+        }
         
         .faq-btn { padding: 16px; }
         .faq-title { font-size: 1.1rem; }
-        .flower-icon-wrapper { width: 32px; height: 32px; margin-left: 12px; }
+        .plus-icon-wrapper { width: 30px; height: 30px; margin-left: 12px; }
         .faq-answer { padding: 0 16px 16px 16px; font-size: 0.95rem; }
 
-        .faq-header-title { font-size: 2.2rem; }
+        .faq-header-title { font-size: 2.5rem; }
         .faq-header-container { margin-bottom: 40px; }
+        
+        .category-title { font-size: 1.8rem; margin-bottom: 20px; color: #1a1a1a; font-family: 'TAN-MEMORIES', serif; border-bottom: 1px solid rgba(26,26,26,0.1); padding-bottom: 10px; }
+        .category-section { margin-bottom: 60px; }
 
-        /* DESKTOP: Volta a ganhar espaço, margens e fontes maiores */
+        /* DESKTOP: Volta a ganhar espaço e as 2 colunas ativam-se */
         @media (min-width: 768px) {
-          .faq-masonry { column-count: 2; column-gap: 24px; }
-          .faq-item-wrapper { margin-bottom: 24px; }
+          .faq-grid { 
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px; 
+          }
           
-          .faq-btn { padding: 25px 30px; }
-          .faq-title { font-size: 1.3rem; }
-          .flower-icon-wrapper { width: 40px; height: 40px; margin-left: 20px; }
-          .faq-answer { padding: 0 30px 30px 30px; font-size: 1.05rem; }
+          .faq-btn { padding: 22px 28px; }
+          .faq-title { font-size: 1.25rem; }
+          .plus-icon-wrapper { width: 34px; height: 34px; margin-left: 20px; }
+          .faq-answer { padding: 0 28px 28px 28px; font-size: 1.05rem; }
 
           .faq-header-title { font-size: clamp(3rem, 6vw, 4.5rem); }
           .faq-header-container { margin-bottom: 70px; }
+          
+          .category-title { font-size: 2.2rem; margin-bottom: 30px; }
+          .category-section { margin-bottom: 80px; }
         }
       `}} />
 
@@ -185,16 +208,29 @@ export default function PerguntasFrequentes() {
           animate={{ opacity: 1, y: 0 }}
           style={{ textAlign: 'center' }}
         >
-          <h1 className="faq-header-title" style={{ margin: 0, letterSpacing: '-1px' }}>
+          <h1 className="faq-header-title" style={{ margin: 0, letterSpacing: '-1px', fontFamily: "'TAN-MEMORIES', serif" }}>
             Perguntas Frequentes
           </h1>
         </motion.div>
         
-        <div className="faq-masonry">
-          {faqs.map((item, index) => (
-            <FAQItem key={index} q={item.q} a={item.a} index={index} />
-          ))}
-        </div>
+        {/* Renderiza cada categoria com as suas respetivas perguntas */}
+        {faqCategories.map((category, catIndex) => (
+          <motion.div 
+            key={catIndex} 
+            className="category-section"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="category-title">{category.title}</h2>
+            <div className="faq-grid">
+              {category.items.map((item, index) => (
+                <FAQItem key={index} q={item.q} a={item.a} index={index} />
+              ))}
+            </div>
+          </motion.div>
+        ))}
       </div>
     </main>
   );
