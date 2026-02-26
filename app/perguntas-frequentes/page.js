@@ -127,7 +127,8 @@ export default function PerguntasFrequentes() {
   ];
 
   return (
-    <main style={{ paddingTop: '160px', paddingBottom: '120px', backgroundColor: '#FCFBF9' }}>
+    // Reduzi o paddingTop de 160px para 110px aqui:
+    <main style={{ paddingTop: '110px', paddingBottom: '120px', backgroundColor: '#FCFBF9', minHeight: '100vh' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 20px' }}>
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
