@@ -52,8 +52,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt">
       <head>
-        {/* NOVA FONTE: HOST GROTESK DO GOOGLE FONTS */}
-        <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+        {/* NOVA FONTE: ROBOTO DO GOOGLE FONTS */}
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
             font-family: 'TAN-MEMORIES';
@@ -67,8 +67,8 @@ export default function RootLayout({ children }) {
           }
         `}} />
       </head>
-      {/* APLICAR A HOST GROTESK AO BODY */}
-      <body style={{ margin: 0, backgroundColor: '#FCFBF9', color: '#1a1a1a', fontFamily: "'Host Grotesk', sans-serif" }}>
+      {/* APLICAR A ROBOTO AO BODY */}
+      <body style={{ margin: 0, backgroundColor: '#FCFBF9', color: '#1a1a1a', fontFamily: "'Roboto', sans-serif" }}>
         
         <nav style={{ 
           position: 'fixed', top: 0, width: '100%', zIndex: 100, 
@@ -83,7 +83,7 @@ export default function RootLayout({ children }) {
               <div className="desktop-only" style={{ display: 'flex', gap: '25px' }}>
                 {menuLeft.map((item) => (
                   <a key={item.name} href={item.href} className="nav-link"
-                    style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff' }}>
+                    style={{ fontSize: '0.75rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff' }}>
                     {item.name}
                   </a>
                 ))}
@@ -112,13 +112,13 @@ export default function RootLayout({ children }) {
                     return (
                       <div key={item.name} className="lang-container" style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
                         <a href={item.href} className="nav-link"
-                          style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                          style={{ fontSize: '0.75rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
                           {item.name} <FlagPT />
                         </a>
                         
                         <div className="lang-dropdown">
                           <a href="/en" className="lang-dropdown-item" style={{ 
-                            fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1.5px', 
+                            fontSize: '0.75rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', 
                             display: 'flex', alignItems: 'center', 
                             color: shouldShowScrolled ? '#1a1a1a' : '#fff',
                             background: shouldShowScrolled ? 'rgba(252, 251, 249, 0.7)' : 'rgba(0, 0, 0, 0.15)',
@@ -139,7 +139,7 @@ export default function RootLayout({ children }) {
 
                   return (
                     <a key={item.name} href={item.href} className="nav-link"
-                      style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center' }}>
+                      style={{ fontSize: '0.75rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1.5px', color: shouldShowScrolled ? '#1a1a1a' : '#fff', display: 'flex', alignItems: 'center' }}>
                       {item.name}
                     </a>
                   );
@@ -149,8 +149,8 @@ export default function RootLayout({ children }) {
               <button className="mobile-only" onClick={() => setIsOpen(true)} style={{ 
                 background: 'none', border: 'none', cursor: 'pointer',
                 color: shouldShowScrolled ? '#1a1a1a' : '#fff',
-                fontSize: '0.85rem', fontWeight: '600', letterSpacing: '2px',
-                padding: '10px 0', fontFamily: "'Host Grotesk', sans-serif"
+                fontSize: '0.85rem', fontWeight: '500', letterSpacing: '2px',
+                padding: '10px 0', fontFamily: "'Roboto', sans-serif"
               }}>
                 MENU
               </button>
@@ -162,7 +162,7 @@ export default function RootLayout({ children }) {
           {isOpen && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               style={{ position: 'fixed', inset: 0, backgroundColor: '#FCFBF9', zIndex: 200, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '0.85rem', fontWeight: '600', letterSpacing: '2px', cursor: 'pointer', fontFamily: "'Host Grotesk', sans-serif" }}>FECHAR</button>
+              <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', fontSize: '0.85rem', fontWeight: '500', letterSpacing: '2px', cursor: 'pointer', fontFamily: "'Roboto', sans-serif" }}>FECHAR</button>
               
               {[...menuLeft, ...menuRight.filter(i => !i.isLang)].map((item) => (
                 <a key={item.name} href={item.href} onClick={() => setIsOpen(false)} className="nav-link"
