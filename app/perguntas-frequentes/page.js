@@ -40,8 +40,8 @@ const FAQItem = ({ q, a, index }) => {
       transition={{ delay: index * 0.05, type: "spring", stiffness: 100 }}
       style={{ 
         backgroundColor: '#FFFFFF', 
-        borderRadius: '12px', // Ligeiramente menos redondo para poupar espaço
-        boxShadow: '0 4px 15px rgba(0,0,0,0.08)', // Sombra super subtil
+        borderRadius: '12px', 
+        boxShadow: '0 4px 15px rgba(0,0,0,0.08)', 
         overflow: 'hidden',
         cursor: 'pointer',
         width: '100%',
@@ -72,12 +72,12 @@ const FAQItem = ({ q, a, index }) => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }} // Animação um bocadinho mais rápida para parecer mais ágil no telemóvel
+            transition={{ duration: 0.25, ease: "easeInOut" }} 
           >
             <div className="faq-answer">
               <div style={{ 
                 color: '#444', 
-                lineHeight: '1.5', // Reduzido ligeiramente para ocupar menos espaço
+                lineHeight: '1.5', 
                 fontWeight: '400',
                 borderTop: '1px solid rgba(26,26,26,0.06)', 
                 paddingTop: '14px'
@@ -137,52 +137,53 @@ export default function PerguntasFrequentes() {
   ];
 
   return (
-    // Fundo Terracota (#B85D4B)
     <main style={{ paddingTop: '100px', paddingBottom: '100px', backgroundColor: '#B85D4B', minHeight: '100vh' }}>
       
-      {/* OTIMIZAÇÃO EXTREMA MOBILE-FIRST */}
       <style dangerouslySetInnerHTML={{ __html: `
-        /* BASE (TELEMOVEL) - Altamente Compacto */
+        /* 1. BASE (TELEMOVEL) - 1 Coluna */
         .faq-masonry { 
           column-count: 1; 
           column-gap: 0; 
         }
         
-        .faq-item-wrapper { margin-bottom: 10px !important; } /* Caixas muito mais juntas no telemóvel */
-        .faq-btn { padding: 14px 16px; } /* Muito menos espaço desperdiçado */
-        .faq-title { font-size: 1.05rem; } /* Letra mais eficiente para não quebrar linhas */
-        .faq-answer { padding: 0 16px 16px 16px; font-size: 0.9rem; } /* Resposta bem arrumada */
-        .plus-icon-wrapper { width: 28px; height: 28px; margin-left: 12px; } /* Ícone menor */
+        .faq-item-wrapper { margin-bottom: 10px !important; } 
+        .faq-btn { padding: 14px 16px; } 
+        .faq-title { font-size: 1.05rem; } 
+        .faq-answer { padding: 0 16px 16px 16px; font-size: 0.9rem; } 
+        .plus-icon-wrapper { width: 28px; height: 28px; margin-left: 12px; } 
 
-        .faq-header-title { font-size: 2.2rem; color: #FCFBF9; } /* Título mais pequeno no mobile */
+        .faq-header-title { font-size: 2.2rem; color: #FCFBF9; } 
         .faq-header-container { margin-bottom: 30px; }
         
-        /* BOLD formatado */
-        .faq-answer strong {
-          color: #1a1a1a;
-          font-weight: 600;
+        .faq-answer strong { color: #1a1a1a; font-weight: 600; }
+
+        /* 2. TABLET E PORTÁTEIS (Ecrãs Médios) - 2 Colunas */
+        @media (min-width: 768px) {
+          .faq-masonry { column-count: 2; column-gap: 20px; }
+          .faq-item-wrapper { margin-bottom: 20px !important; border-radius: 16px; }
+          .faq-btn { padding: 20px 24px; }
+          .faq-title { font-size: 1.15rem; }
+          .faq-answer { padding: 0 24px 24px 24px; font-size: 0.95rem; }
+          .plus-icon-wrapper { width: 32px; height: 32px; margin-left: 16px; }
+          .faq-header-title { font-size: clamp(3rem, 5vw, 4rem); }
+          .faq-header-container { margin-bottom: 50px; }
         }
 
-        /* DESKTOP - Volta a respirar e abre em 2 colunas */
-        @media (min-width: 768px) {
-          .faq-masonry { 
-            column-count: 2; 
-            column-gap: 24px; 
-          }
-          
-          .faq-item-wrapper { margin-bottom: 24px !important; border-radius: 16px; }
-          .faq-btn { padding: 24px 30px; }
+        /* 3. MONITORES GRANDES (PC Desktop) - 3 Colunas */
+        @media (min-width: 1100px) {
+          .faq-masonry { column-count: 3; column-gap: 24px; }
+          .faq-item-wrapper { margin-bottom: 24px !important; }
+          .faq-btn { padding: 24px 28px; }
           .faq-title { font-size: 1.25rem; }
-          .faq-answer { padding: 0 30px 30px 30px; font-size: 1rem; }
+          .faq-answer { padding: 0 28px 28px 28px; font-size: 1rem; }
           .plus-icon-wrapper { width: 34px; height: 34px; margin-left: 20px; }
-
-          .faq-header-title { font-size: clamp(3.5rem, 6vw, 5rem); }
+          .faq-header-title { font-size: 4.5rem; }
           .faq-header-container { margin-bottom: 60px; }
         }
       `}} />
 
-      {/* Margens laterais no mobile reduzidas (padding 0 16px) para as caixas terem mais espaço */}
-      <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 16px' }}>
+      {/* Ajustei o maxWidth para 1300px para que as 3 colunas tenham espaço para respirar bem no PC */}
+      <div style={{ maxWidth: '1300px', margin: '0 auto', padding: '0 16px' }}>
         <motion.div 
           className="faq-header-container"
           initial={{ opacity: 0, y: -20 }}
