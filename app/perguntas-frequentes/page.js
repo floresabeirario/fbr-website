@@ -10,8 +10,8 @@ const PlusIcon = ({ isOpen }) => (
       rotate: isOpen ? 45 : 0 
     }}
     transition={{ type: "spring", stiffness: 200, damping: 15 }}
+    className="plus-icon-wrapper"
     style={{ 
-      width: '32px', height: '32px',
       borderRadius: '50%', 
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       backgroundColor: isOpen ? '#1a1a1a' : '#F4F1EE', 
@@ -34,18 +34,17 @@ const FAQItem = ({ q, a, index }) => {
   return (
     <motion.div 
       className="faq-item-wrapper"
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.05, type: "spring", stiffness: 100 }}
       style={{ 
-        backgroundColor: '#FFFFFF', // Caixa a branco puro
-        borderRadius: '16px',
-        boxShadow: '0 8px 24px rgba(0,0,0,0.15)', // Sombra um pouco mais forte para contrastar com o fundo escuro
+        backgroundColor: '#FFFFFF', 
+        borderRadius: '12px', // Ligeiramente menos redondo para poupar espaço
+        boxShadow: '0 4px 15px rgba(0,0,0,0.08)', // Sombra super subtil
         overflow: 'hidden',
         cursor: 'pointer',
         width: '100%',
-        marginBottom: '16px', 
         display: 'inline-block', 
         breakInside: 'avoid'
       }}
@@ -60,7 +59,7 @@ const FAQItem = ({ q, a, index }) => {
           margin: 0, 
           color: '#1a1a1a',
           fontFamily: "'TAN-MEMORIES', serif",
-          lineHeight: '1.3'
+          lineHeight: '1.25'
         }}>
           {q}
         </h3>
@@ -73,17 +72,16 @@ const FAQItem = ({ q, a, index }) => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.25, ease: "easeInOut" }} // Animação um bocadinho mais rápida para parecer mais ágil no telemóvel
           >
             <div className="faq-answer">
               <div style={{ 
                 color: '#444', 
-                lineHeight: '1.6', 
+                lineHeight: '1.5', // Reduzido ligeiramente para ocupar menos espaço
                 fontWeight: '400',
                 borderTop: '1px solid rgba(26,26,26,0.06)', 
-                paddingTop: '16px'
+                paddingTop: '14px'
               }}>
-                {/* O texto "a" já vem com os bolds formatados do array abaixo */}
                 {a}
               </div>
             </div>
@@ -95,7 +93,6 @@ const FAQItem = ({ q, a, index }) => {
 };
 
 export default function PerguntasFrequentes() {
-  // Lista com formatação de negrito (<strong>) nas palavras-chave
   const faqs = [
     {
       q: "Quando devo agendar a preservação das minhas flores?",
@@ -140,48 +137,52 @@ export default function PerguntasFrequentes() {
   ];
 
   return (
-    // Fundo Verde Escuro Elegante aplicado à página inteira
-    <main style={{ paddingTop: '110px', paddingBottom: '100px', backgroundColor: '#1E392A', minHeight: '100vh' }}>
+    // Fundo Terracota (#B85D4B)
+    <main style={{ paddingTop: '100px', paddingBottom: '100px', backgroundColor: '#B85D4B', minHeight: '100vh' }}>
       
-      {/* LÓGICA RESPONSIVA (Mobile-First + Masonry) */}
+      {/* OTIMIZAÇÃO EXTREMA MOBILE-FIRST */}
       <style dangerouslySetInnerHTML={{ __html: `
-        /* BASE (TELEMOVEL) - Coluna única */
+        /* BASE (TELEMOVEL) - Altamente Compacto */
         .faq-masonry { 
           column-count: 1; 
-          column-gap: 16px; 
+          column-gap: 0; 
         }
         
-        .faq-btn { padding: 18px 20px; }
-        .faq-title { font-size: 1.15rem; }
-        .faq-answer { padding: 0 20px 20px 20px; font-size: 0.95rem; }
+        .faq-item-wrapper { margin-bottom: 10px !important; } /* Caixas muito mais juntas no telemóvel */
+        .faq-btn { padding: 14px 16px; } /* Muito menos espaço desperdiçado */
+        .faq-title { font-size: 1.05rem; } /* Letra mais eficiente para não quebrar linhas */
+        .faq-answer { padding: 0 16px 16px 16px; font-size: 0.9rem; } /* Resposta bem arrumada */
+        .plus-icon-wrapper { width: 28px; height: 28px; margin-left: 12px; } /* Ícone menor */
 
-        .faq-header-title { font-size: 2.8rem; color: #FCFBF9; } /* Título a branco para contrastar com o verde */
-        .faq-header-container { margin-bottom: 40px; }
+        .faq-header-title { font-size: 2.2rem; color: #FCFBF9; } /* Título mais pequeno no mobile */
+        .faq-header-container { margin-bottom: 30px; }
         
-        /* O estilo visual do BOLD */
+        /* BOLD formatado */
         .faq-answer strong {
           color: #1a1a1a;
           font-weight: 600;
         }
 
-        /* DESKTOP - 2 Colunas */
+        /* DESKTOP - Volta a respirar e abre em 2 colunas */
         @media (min-width: 768px) {
           .faq-masonry { 
             column-count: 2; 
             column-gap: 24px; 
           }
           
-          .faq-item-wrapper { margin-bottom: 24px !important; }
+          .faq-item-wrapper { margin-bottom: 24px !important; border-radius: 16px; }
           .faq-btn { padding: 24px 30px; }
           .faq-title { font-size: 1.25rem; }
           .faq-answer { padding: 0 30px 30px 30px; font-size: 1rem; }
+          .plus-icon-wrapper { width: 34px; height: 34px; margin-left: 20px; }
 
           .faq-header-title { font-size: clamp(3.5rem, 6vw, 5rem); }
           .faq-header-container { margin-bottom: 60px; }
         }
       `}} />
 
-      <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 20px' }}>
+      {/* Margens laterais no mobile reduzidas (padding 0 16px) para as caixas terem mais espaço */}
+      <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 16px' }}>
         <motion.div 
           className="faq-header-container"
           initial={{ opacity: 0, y: -20 }}
@@ -193,7 +194,6 @@ export default function PerguntasFrequentes() {
           </h1>
         </motion.div>
         
-        {/* Renderização da lista */}
         <div className="faq-masonry">
           {faqs.map((item, index) => (
             <FAQItem 
