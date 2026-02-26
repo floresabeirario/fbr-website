@@ -24,11 +24,11 @@ const FAQItem = ({ q, a, index }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
       style={{ 
-        marginBottom: '15px', 
         borderRadius: '4px',
-        backgroundColor: '#fff',
+        backgroundColor: '#fff', // Fundo branco na caixa para contrastar com a página
         border: '1px solid rgba(26, 26, 26, 0.08)',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        boxShadow: '0 4px 15px rgba(0,0,0,0.02)' // Sombra muito subtil
       }}
     >
       <button
@@ -43,7 +43,7 @@ const FAQItem = ({ q, a, index }) => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          backgroundColor: isOpen ? '#F4F1EE' : '#fff',
+          backgroundColor: isOpen ? '#FCFBF9' : '#fff',
           transition: 'background-color 0.3s ease'
         }}
       >
@@ -72,7 +72,7 @@ const FAQItem = ({ q, a, index }) => {
                 color: '#444', 
                 lineHeight: '1.7', 
                 fontSize: '1rem',
-                fontWeight: '300',
+                fontWeight: '400',
                 marginTop: '15px',
                 whiteSpace: 'pre-line' 
               }}>
@@ -101,6 +101,10 @@ export default function PerguntasFrequentes() {
       a: "Não, preservamos e emolduramos todos os tipos de flores de ocasiões especiais, incluindo: cerimónias de batizado, aniversários, comemorações de bodas, homenagens e cerimónias fúnebres, ramos oferecidos em datas marcantes ou flores espontâneas com valor sentimental."
     },
     {
+      q: "Preservam todo o tipo de flores?",
+      a: "A grande maioria das flores reage muito bem à prensagem e secagem. No entanto, algumas flores com elevado teor de água (como suculentas ou antúrios) ou formatos muito espessos podem ser mais desafiantes ou não manter a sua forma original. Caso tenha dúvidas sobre flores específicas, não hesite em contactar-nos."
+    },
+    {
       q: "Como vos posso entregar as minhas flores?",
       a: "Recomendamos que nos faça chegar as flores assim que possível, preferencialmente dentro de 2-3 dias e, no máximo, 5 dias após o evento. \n\n• Entrega em mãos em estúdio (Coimbra).\n• Envio por CTT/transportadora.\n• Recolha no evento (mediante custo adicional)."
     },
@@ -127,23 +131,28 @@ export default function PerguntasFrequentes() {
   ];
 
   return (
-    // Reduzi o paddingTop de 160px para 110px aqui:
-    <main style={{ paddingTop: '110px', paddingBottom: '120px', backgroundColor: '#FCFBF9', minHeight: '100vh' }}>
-      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 20px' }}>
+    // Nova cor de fundo (#F4F1EE) aplicada na main
+    <main style={{ paddingTop: '110px', paddingBottom: '120px', backgroundColor: '#F4F1EE', minHeight: '100vh' }}>
+      {/* Max width aumentado para 1000px para as duas colunas respirarem bem */}
+      <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 20px' }}>
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           style={{ textAlign: 'center', marginBottom: '60px' }}
         >
-          <h1 style={{ fontSize: 'clamp(2.5rem, 7vw, 4rem)', marginBottom: '15px' }}>
+          {/* Subtítulo removido */}
+          <h1 style={{ fontSize: 'clamp(2.5rem, 7vw, 4rem)', margin: 0 }}>
             Perguntas Frequentes
           </h1>
-          <p style={{ fontSize: '1.1rem', color: '#666', fontWeight: '300' }}>
-            Esclareça as suas dúvidas sobre como eternizar as suas flores.
-          </p>
         </motion.div>
         
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        {/* Nova Grelha Responsiva (2 colunas no PC, 1 no Telemóvel) */}
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', 
+          gap: '20px',
+          alignItems: 'start' // Garante que a abertura de um não estica a caixa do lado
+        }}>
           {faqs.map((item, index) => (
             <FAQItem key={index} q={item.q} a={item.a} index={index} />
           ))}
