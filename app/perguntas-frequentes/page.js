@@ -3,32 +3,32 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// --- ÍCONE SIMPLES ---
+// --- ÍCONE BOLD ---
 const PlusIcon = ({ isOpen }) => (
   <motion.div
     animate={{ 
       backgroundColor: isOpen ? '#1a1a1a' : 'transparent',
-      rotate: isOpen ? 45 : 0 
+      rotate: isOpen ? 135 : 0 
     }}
     transition={{ type: "spring", stiffness: 200, damping: 15 }}
-    className="plus-icon-wrapper"
     style={{ 
+      width: '34px', height: '34px',
       borderRadius: '50%', 
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      border: '1.5px solid #1a1a1a', flexShrink: 0
+      border: '2px solid #1a1a1a', flexShrink: 0
     }}
   >
     <svg 
-      width="14" height="14" viewBox="0 0 20 20" fill="none" 
-      stroke={isOpen ? '#fff' : '#1a1a1a'} strokeWidth="2" strokeLinecap="round"
+      width="16" height="16" viewBox="0 0 20 20" fill="none" 
+      stroke={isOpen ? '#fff' : '#1a1a1a'} strokeWidth="2.5" strokeLinecap="round"
     >
-      <path d="M10 4V16M4 10H16"/>
+      <path d="M10 3V17M3 10H17"/>
     </svg>
   </motion.div>
 );
 
-// --- COMPONENTE DA PERGUNTA (AGORA COM COR DINÂMICA) ---
-const FAQItem = ({ q, a, index, bgColor, borderColor }) => {
+// --- COMPONENTE DA PERGUNTA (DESIGN NEO-BRUTALISTA) ---
+const FAQItem = ({ q, a, index, bgColor }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -41,14 +41,17 @@ const FAQItem = ({ q, a, index, bgColor, borderColor }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ 
-        backgroundColor: bgColor, // A cor muda consoante a categoria!
-        borderRadius: '16px',
-        border: isHovered || isOpen ? '1.5px solid #1a1a1a' : `1.5px solid ${borderColor}`,
-        boxShadow: isHovered ? '0 8px 25px rgba(0,0,0,0.06)' : 'none',
+        backgroundColor: bgColor, 
+        borderRadius: '12px', // Cantos ligeiramente mais retos para um look mais arrojado
+        border: '2px solid #1a1a1a', // Borda grossa preta (Super moderno)
+        // Sombra dura que reage ao rato para dar um efeito tátil
+        boxShadow: isHovered || isOpen ? '6px 6px 0px #1a1a1a' : '3px 3px 0px #1a1a1a',
+        transform: isHovered || isOpen ? 'translate(-3px, -3px)' : 'translate(0px, 0px)',
         overflow: 'hidden',
-        transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+        transition: 'box-shadow 0.2s ease, transform 0.2s ease',
         cursor: 'pointer',
-        width: '100%'
+        width: '100%',
+        marginBottom: '10px' // Espaço para a sombra não cortar
       }}
       onClick={() => setIsOpen(!isOpen)}
     >
@@ -61,7 +64,7 @@ const FAQItem = ({ q, a, index, bgColor, borderColor }) => {
           margin: 0, 
           color: '#1a1a1a',
           fontFamily: "'TAN-MEMORIES', serif",
-          lineHeight: '1.3'
+          lineHeight: '1.2'
         }}>
           {q}
         </h3>
@@ -78,10 +81,10 @@ const FAQItem = ({ q, a, index, bgColor, borderColor }) => {
           >
             <div className="faq-answer">
               <div style={{ 
-                color: '#333', 
+                color: '#1a1a1a', // Texto a preto para contraste máximo com as cores vibrantes
                 lineHeight: '1.6', 
-                fontWeight: '400',
-                borderTop: '1px dashed rgba(26,26,26,0.15)',
+                fontWeight: '500', // Um pouco mais forte para acompanhar o estilo bold
+                borderTop: '2px solid #1a1a1a', // Linha divisória sólida e arrojada
                 paddingTop: '16px',
                 whiteSpace: 'pre-line' 
               }}>
@@ -96,12 +99,10 @@ const FAQItem = ({ q, a, index, bgColor, borderColor }) => {
 };
 
 export default function PerguntasFrequentes() {
-  // Categorias com paletas de cores específicas!
   const faqCategories = [
     {
       title: "O Processo & As Flores",
-      bgColor: "#E8F0E4", // Verde Sálvia suave
-      borderColor: "#D3E0CD",
+      bgColor: "#00E676", // VERDE ELÉTRICO VIBRANTE
       items: [
         {
           q: "Apenas preservam bouquets de casamento?",
@@ -123,8 +124,7 @@ export default function PerguntasFrequentes() {
     },
     {
       title: "Reservas & Envios",
-      bgColor: "#FDECEF", // Rosa suave / Pêssego
-      borderColor: "#F4D8DF",
+      bgColor: "#FF2A85", // ROSA CHOQUE / MAGENTA VIBRANTE
       items: [
         {
           q: "Quando devo agendar a preservação das minhas flores?",
@@ -142,8 +142,7 @@ export default function PerguntasFrequentes() {
     },
     {
       title: "Detalhes & Valores",
-      bgColor: "#E6F0F9", // Azul / Lilás suave
-      borderColor: "#D3E4F4",
+      bgColor: "#00CCFF", // AZUL CIANO VIBRANTE
       items: [
         {
           q: "E se eu quiser adicionar algo especial no quadro?",
@@ -164,54 +163,57 @@ export default function PerguntasFrequentes() {
   return (
     <main style={{ paddingTop: '110px', paddingBottom: '100px', backgroundColor: '#FCFBF9', minHeight: '100vh' }}>
       
-      {/* LÓGICA RESPONSIVA E DE DESIGN */}
+      {/* LÓGICA RESPONSIVA E DE DESIGN BOLD */}
       <style dangerouslySetInnerHTML={{ __html: `
         /* BASE (TELEMOVEL) */
         .faq-grid { 
           display: grid;
           grid-template-columns: 1fr;
-          gap: 14px;
+          gap: 16px;
           align-items: start;
         }
         
         .faq-btn { padding: 18px 20px; }
-        .faq-title { font-size: 1.15rem; }
-        .plus-icon-wrapper { width: 30px; height: 30px; margin-left: 12px; }
-        .faq-answer { padding: 0 20px 20px 20px; font-size: 0.95rem; }
+        .faq-title { font-size: 1.25rem; }
+        .plus-icon-wrapper { margin-left: 12px; }
+        .faq-answer { padding: 0 20px 20px 20px; font-size: 1rem; }
 
         .faq-header-title { font-size: 2.8rem; }
         .faq-header-container { margin-bottom: 50px; }
         
-        /* NOVO ESTILO DA CATEGORIA: Pequeno, moderno, não ocupa espaço */
+        /* ETIQUETA DA CATEGORIA BOLD */
         .category-title { 
-          font-size: 0.75rem; 
+          display: inline-block;
+          font-size: 0.8rem; 
           text-transform: uppercase; 
           letter-spacing: 2px; 
-          font-weight: 600;
-          color: #1a1a1a; 
-          opacity: 0.5;
-          margin-bottom: 16px; 
-          padding-left: 8px;
+          font-weight: 700;
+          color: #fff; 
+          background-color: #1a1a1a;
+          padding: 8px 16px;
+          border-radius: 4px;
+          margin-bottom: 20px; 
+          box-shadow: 3px 3px 0px rgba(0,0,0,0.2);
         }
-        .category-section { margin-bottom: 50px; }
+        .category-section { margin-bottom: 60px; }
 
         /* DESKTOP */
         @media (min-width: 768px) {
           .faq-grid { 
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px; 
+            gap: 24px; 
           }
           
           .faq-btn { padding: 22px 28px; }
-          .faq-title { font-size: 1.25rem; }
-          .plus-icon-wrapper { width: 34px; height: 34px; margin-left: 20px; }
+          .faq-title { font-size: 1.35rem; }
+          .plus-icon-wrapper { margin-left: 20px; }
           .faq-answer { padding: 0 28px 28px 28px; font-size: 1.05rem; }
 
           .faq-header-title { font-size: clamp(3.5rem, 6vw, 5rem); }
           .faq-header-container { margin-bottom: 80px; }
           
-          .category-title { font-size: 0.85rem; margin-bottom: 24px; }
-          .category-section { margin-bottom: 70px; }
+          .category-title { font-size: 0.9rem; margin-bottom: 24px; }
+          .category-section { margin-bottom: 80px; }
         }
       `}} />
 
@@ -236,8 +238,9 @@ export default function PerguntasFrequentes() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5 }}
           >
-            {/* O novo título de categoria discreto */}
+            {/* Título de categoria estilo etiqueta preta bold */}
             <h2 className="category-title">{category.title}</h2>
+            
             <div className="faq-grid">
               {category.items.map((item, index) => (
                 <FAQItem 
@@ -246,7 +249,6 @@ export default function PerguntasFrequentes() {
                   a={item.a} 
                   index={index} 
                   bgColor={category.bgColor} 
-                  borderColor={category.borderColor}
                 />
               ))}
             </div>
