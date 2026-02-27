@@ -14,7 +14,7 @@ const PlusIcon = ({ isOpen }) => (
     style={{ 
       borderRadius: '50%', 
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      backgroundColor: isOpen ? '#1a1a1a' : '#F4F1EE', 
+      backgroundColor: isOpen ? '#1a1a1a' : '#E8E6E1', 
       flexShrink: 0
     }}
   >
@@ -41,7 +41,7 @@ const FAQItem = ({ q, a, index }) => {
       style={{ 
         backgroundColor: '#FFFFFF', 
         borderRadius: '12px', 
-        boxShadow: '0 4px 15px rgba(0,0,0,0.08)', 
+        boxShadow: '0 4px 15px rgba(0,0,0,0.04)', 
         overflow: 'hidden',
         cursor: 'pointer',
         width: '100%',
@@ -140,16 +140,12 @@ export default function PerguntasFrequentes() {
     <main style={{ 
       paddingTop: '120px', 
       paddingBottom: '100px', 
-      backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/faq-background.jpg)', 
-      backgroundSize: 'cover', 
-      backgroundPosition: 'center', 
-      backgroundRepeat: 'no-repeat', 
-      // Paralaxe removido para garantir total estabilidade
+      backgroundColor: '#F4F1EE', // Fundo neutro e tranquilo
       minHeight: '100vh' 
     }}>
       
       <style dangerouslySetInnerHTML={{ __html: `
-        /* 1. BASE (TELEMOVEL) - 1 Coluna */
+        /* 1. BASE (TELEMOVEL) */
         .faq-masonry { 
           column-count: 1; 
           column-gap: 0; 
@@ -163,14 +159,13 @@ export default function PerguntasFrequentes() {
 
         .faq-header-title { 
           font-size: 2.2rem; 
-          color: #FCFBF9; 
-          text-shadow: 0px 2px 10px rgba(0,0,0,0.3);
+          color: #1a1a1a; 
         } 
         .faq-header-container { margin-bottom: 30px; }
         
         .faq-answer strong { color: #1a1a1a; font-weight: 600; }
 
-        /* 2. TABLET E PORTÁTEIS (Ecrãs Médios) - 2 Colunas */
+        /* 2. TABLET E PORTÁTEIS */
         @media (min-width: 768px) {
           .faq-masonry { column-count: 2; column-gap: 20px; }
           .faq-item-wrapper { margin-bottom: 20px !important; border-radius: 16px; }
@@ -182,7 +177,7 @@ export default function PerguntasFrequentes() {
           .faq-header-container { margin-bottom: 50px; }
         }
 
-        /* 3. MONITORES GRANDES (PC Desktop) - 3 Colunas */
+        /* 3. MONITORES GRANDES */
         @media (min-width: 1100px) {
           .faq-masonry { column-count: 3; column-gap: 24px; }
           .faq-item-wrapper { margin-bottom: 24px !important; }
