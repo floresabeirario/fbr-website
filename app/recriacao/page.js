@@ -2,14 +2,8 @@
 
 import { motion } from "framer-motion";
 
-// --- ÍCONES ELEGANTES PARA OS PASSOS ---
-const IconCamera = () => <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>;
-const IconFlorist = () => <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2c-1.5 0-2.5 2-2.5 4s1 4 2.5 4 2.5-2 2.5-4-1-4-2.5-4z"/><path d="M12 22c-1.5 0-2.5-2-2.5-4s1-4 2.5-4 2.5 2 2.5 4-1 4-2.5 4z"/><path d="M2 12c0-1.5 2-2.5 4-2.5s4 1 4 2.5-2 2.5-4 2.5-4-1-4-2.5z"/><path d="M22 12c0-1.5-2-2.5-4-2.5s-4 1-4 2.5 2 2.5 4 2.5 4-1 4-2.5z"/></svg>;
-const IconPress = () => <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><line x1="4" y1="12" x2="20" y2="12"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>;
-const IconFrame = () => <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><rect x="7" y="7" width="10" height="10"></rect></svg>;
-
-// --- COMPONENTE DE PASSO ---
-const StepCard = ({ icon, number, title, desc, delay }) => (
+// --- COMPONENTE DE PASSO (AGORA COM FOTOGRAFIA) ---
+const StepCard = ({ imageSrc, number, title, desc, delay }) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -17,60 +11,86 @@ const StepCard = ({ icon, number, title, desc, delay }) => (
     transition={{ delay, duration: 0.5 }}
     style={{ 
       backgroundColor: '#FFFFFF', 
-      borderRadius: '16px', 
-      padding: '30px',
-      boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
+      borderRadius: '20px', // Cantos bem redondos e modernos
+      overflow: 'hidden', // Garante que a foto respeita os cantos redondos da caixa
+      boxShadow: '0 8px 30px rgba(0,0,0,0.04)',
       display: 'flex',
       flexDirection: 'column',
       height: '100%'
     }}
   >
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
-      <div style={{ backgroundColor: '#F4F1EE', padding: '12px', borderRadius: '50%' }}>
-        {icon}
+    {/* A FOTOGRAFIA DO PASSO */}
+    <div style={{ width: '100%', height: '240px', backgroundColor: '#F4F1EE', position: 'relative' }}>
+      <img 
+        src={imageSrc} 
+        alt={title}
+        style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+      />
+      {/* O Número a flutuar em cima da foto (toque super premium) */}
+      <div style={{
+        position: 'absolute',
+        top: '15px',
+        left: '15px',
+        backgroundColor: '#FFFFFF',
+        color: '#1a1a1a',
+        padding: '6px 14px',
+        borderRadius: '20px',
+        fontSize: '0.8rem',
+        fontWeight: '700',
+        fontFamily: "'TAN-MEMORIES', serif"
+      }}>
+        {number}
       </div>
-      <span style={{ fontSize: '0.9rem', fontWeight: '600', color: '#1a1a1a', opacity: 0.3 }}>{number}</span>
     </div>
-    <h3 style={{ fontSize: '1.4rem', fontFamily: "'TAN-MEMORIES', serif", marginBottom: '15px', color: '#1a1a1a' }}>{title}</h3>
-    <p style={{ color: '#555', lineHeight: '1.6', fontSize: '0.95rem', margin: 0 }}>{desc}</p>
+
+    {/* O TEXTO EXPLICATIVO */}
+    <div style={{ padding: '25px' }}>
+      <h3 style={{ fontSize: '1.4rem', fontFamily: "'TAN-MEMORIES', serif", marginBottom: '12px', color: '#1a1a1a' }}>
+        {title}
+      </h3>
+      <p style={{ color: '#555', lineHeight: '1.6', fontSize: '0.95rem', margin: 0 }}>
+        {desc}
+      </p>
+    </div>
   </motion.div>
 );
 
 export default function RecriacaoBouquet() {
+  // Array atualizado com os caminhos das tuas imagens
   const steps = [
     {
-      icon: <IconCamera />,
-      number: "01",
+      imageSrc: "/recriacao-passo1-foto.jpg",
+      number: "Passo 01",
       title: "A Fotografia",
       desc: "Envie-nos algumas fotografias originais do dia do evento onde o bouquet seja visível. Quantos mais detalhes conseguirmos ver, melhor será a recriação."
     },
     {
-      icon: <IconFlorist />,
-      number: "02",
+      imageSrc: "/recriacao-passo2-flores.jpg",
+      number: "Passo 02",
       title: "A Recriação",
       desc: "Trabalhamos em parceria com uma florista local de excelência. Analisamos a sua fotografia e enviamos-lhe o orçamento exato para a recriação com flores frescas."
     },
     {
-      icon: <IconPress />,
-      number: "03",
+      imageSrc: "/recriacao-passo3-prensagem.jpg",
+      number: "Passo 03",
       title: "A Prensagem",
-      desc: "Se aprovar o valor das flores, a florista cria a réplica e entrega-a diretamente no nosso estúdio, onde iniciamos imediatamente o processo de preservação."
+      desc: "Se aprovar o valor das flores, a florista cria a réplica e entrega-a diretamente no nosso estúdio, onde iniciamos imediatamente o delicado processo botânico."
     },
     {
-      icon: <IconFrame />,
-      number: "04",
+      imageSrc: "/recriacao-passo4-quadro.jpg",
+      number: "Passo 04",
       title: "A Arte Final",
-      desc: "Transformamos o novo bouquet numa obra de arte botânica emoldurada. Uma segunda oportunidade para guardar a memória de um dia feliz, para sempre."
+      desc: "Transformamos o novo bouquet numa obra de arte emoldurada. Uma segunda oportunidade para guardar a memória de um dia feliz, para sempre."
     }
   ];
 
   return (
     <main style={{ backgroundColor: '#F4F1EE', minHeight: '100vh', paddingBottom: '100px' }}>
       
-      {/* ESPAÇAMENTO RESPONSIVO DO TOPO */}
+      {/* ESPAÇAMENTO RESPONSIVO DO TOPO (MOBILE-FIRST) */}
       <style dangerouslySetInnerHTML={{ __html: `
-        .hero-padding { padding-top: 140px; }
-        .steps-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .hero-padding { padding-top: 130px; }
+        .steps-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
         
         .cta-button {
           display: inline-block;
@@ -90,12 +110,14 @@ export default function RecriacaoBouquet() {
           background-color: #333;
         }
 
+        /* TABLET */
         @media (min-width: 768px) {
-          .hero-padding { padding-top: 180px; }
+          .hero-padding { padding-top: 160px; }
           .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
         }
 
-        @media (min-width: 1024px) {
+        /* DESKTOP ECRÃS LARGOS */
+        @media (min-width: 1100px) {
           .steps-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
         }
       `}} />
@@ -116,13 +138,13 @@ export default function RecriacaoBouquet() {
         </motion.div>
       </section>
 
-      {/* HOW IT WORKS - 4 PASSOS */}
-      <section style={{ maxWidth: '1300px', margin: '0 auto', padding: '0 20px', marginBottom: '100px' }}>
+      {/* HOW IT WORKS - 4 PASSOS COM FOTOS */}
+      <section style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px', marginBottom: '100px' }}>
         <div className="steps-grid">
           {steps.map((step, index) => (
             <StepCard 
               key={index} 
-              icon={step.icon} 
+              imageSrc={step.imageSrc} 
               number={step.number} 
               title={step.title} 
               desc={step.desc} 
