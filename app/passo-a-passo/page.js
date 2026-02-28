@@ -103,28 +103,28 @@ export default function PassoAPasso() {
             <li><strong style={{color: '#2C2A28'}}>Envio por CTT:</strong> Correio frágil e urgente (custos a cargo do cliente).</li>
           </ul>
           <p style={{ margin: 0, fontSize: '0.85rem', opacity: 0.8 }}>
-            * Se este prazo já tiver passado, não conseguimos garantir a viabilidade da preservação e recomendamos o nosso serviço de <a href="/recriacao-de-bouquet" className="earthy-link">Recriação de Bouquet</a>.
+            * Se já tiverem passado mais de 5 dias após o evento, não conseguimos garantir a viabilidade da preservação e recomendamos o nosso serviço de <a href="/recriacao-de-bouquet" className="earthy-link">Recriação de Bouquet</a>.
           </p>
         </>
       )
     },
     {
       number: "4",
-      title: "Início do Processo e 2º Pagamento",
+      title: "Início da Preservação e 2º Pagamento",
       desc: (
         <>
-          <p style={{ margin: '0 0 10px 0' }}>Assim que as flores chegarem, avisamos por e-mail e iniciamos imediatamente o delicado processo de preservação. Nesta fase, será solicitado o <strong style={{color: '#2C2A28'}}>segundo pagamento (40%)</strong> da sua encomenda.</p>
-          <p style={{ margin: 0 }}><em>Nota importante:</em> As suas preferências de design devem ser enviadas por escrito <strong style={{color: '#2C2A28'}}>dentro da própria embalagem das flores</strong>, para garantir que nenhum detalhe se perde.</p>
+          <p style={{ margin: '0 0 10px 0' }}>Assim que as suas flores chegarem até nós, iniciaremos o processo de preservação. Se enviou por CTT, enviaremos um e-mail de confirmação da recepção.</p>
+          <p style={{ margin: 0 }}>O pagamento de <strong style={{color: '#2C2A28'}}>40%</strong> da sua encomenda será solicitado nesta fase.</p>
         </>
       )
     },
     {
       number: "5",
-      title: "Design Botânico e Aprovação",
+      title: "Aprovação da Composição",
       desc: (
         <>
-          <p style={{ margin: '0 0 10px 0' }}>Selecionamos as flores que melhor reagiram à preservação e criamos a composição da sua obra de arte. Receberá fotografias do design e terá <strong style={{color: '#2C2A28'}}>72 horas para aprovar</strong> ou pedir alterações.</p>
-          <p style={{ margin: 0 }}>Após a sua aprovação final, selamos a moldura e adicionamos todos os detalhes finais.</p>
+          <p style={{ margin: '0 0 10px 0' }}>Selecionamos as flores que melhor responderam à preservação e criamos a composição do quadro. Receberá fotografias do design e terá <strong style={{color: '#2C2A28'}}>72 horas para aprovar</strong> ou pedir alterações.</p>
+          <p style={{ margin: 0 }}>Após a sua aprovação final, colamos as flores, o quadro é emoldurado e preparado para a entrega.</p>
         </>
       )
     },
@@ -133,8 +133,8 @@ export default function PassoAPasso() {
       title: "Toque Final e Último Pagamento",
       desc: (
         <>
-          <p style={{ margin: '0 0 10px 0' }}>A sua peça está concluída! Enviamos-lhe as fotos do resultado final e solicitamos o pagamento da <strong style={{color: '#2C2A28'}}>3ª e última prestação (30%)</strong>.</p>
-          <p style={{ margin: 0 }}>Poderá escolher entre receber a encomenda comodamente em casa (via CTT com rastreio) ou levantar pessoalmente no nosso atelier em Coimbra.</p>
+          <p style={{ margin: '0 0 10px 0' }}>Chegou o momento de lhe enviarmos o seu quadro. Antes do envio ou da recolha, será solicitado o pagamento da 3ª e última prestação, <strong style={{color: '#2C2A28'}}>30% do valor total</strong>.</p>
+          <p style={{ margin: 0 }}>Poderá escolher entre receber a encomenda em casa (via CTT com rastreio e frágil) ou levantar pessoalmente no nosso atelier em Coimbra num horário a agendar.</p>
         </>
       )
     },
