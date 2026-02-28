@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-// --- COMPONENTE DE PASSO (Mantido com títulos pequenos e fotos quadradas) ---
+// --- COMPONENTE DE PASSO (Mantido intacto com os teus ajustes) ---
 const StepCard = ({ imageSrc, number, title, desc, delay }) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
@@ -73,8 +73,25 @@ export default function RecriacaoBouquet() {
     }
   ];
 
+  const stories = [
+    {
+      imageSrc: "/historia-casamento-antigo.jpg",
+      title: "Bodas de Ouro e Prata",
+      desc: "Um presente indescritível dos filhos para os pais, trazendo literalmente à vida o ramo de noiva de um casamento celebrado há décadas."
+    },
+    {
+      imageSrc: "/historia-casamento-recente.jpg",
+      title: "A Segunda Oportunidade",
+      desc: "Para as noivas que descobriram a preservação tarde demais ou cujo bouquet original, infelizmente, não sobreviveu ao dia do casamento."
+    },
+    {
+      imageSrc: "/historia-aniversario-flores.jpg",
+      title: "Aniversários & Surpresas",
+      desc: "O presente mais romântico e inesperado para oferecer à sua cara-metade no vosso aniversário. Uma surpresa que perpetua a promessa de amor."
+    }
+  ];
+
   return (
-    // Fundo com saturação reforçada
     <main style={{ 
       background: 'linear-gradient(to bottom, rgba(141, 185, 242, 0.7) 0%, rgba(231, 197, 224, 0.8) 25%, rgba(75, 131, 242, 0.6) 50%, rgba(151, 197, 64, 0.55) 75%, rgba(229, 203, 35, 0.6) 100%)',
       minHeight: '100vh', 
@@ -86,26 +103,26 @@ export default function RecriacaoBouquet() {
         .section-gap { margin-bottom: 100px; } 
         .steps-grid { display: grid; grid-template-columns: 1fr; gap: 70px 30px; } 
         
-        /* -- ESTILOS DA GRELHA EDITORIAL -- */
-        .editorial-highlight {
-          display: flex; flex-direction: column;
-          background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px);
-          border-radius: 20px; overflow: hidden; margin-bottom: 40px;
-          border: 1px solid rgba(255,255,255,0.9);
-          box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        /* -- ESTILOS DAS HISTÓRIAS CIRCULARES -- */
+        .circle-stories-grid { display: grid; grid-template-columns: 1fr; gap: 60px; }
+        
+        .circle-img-container {
+          width: 240px; /* Tamanho do círculo */
+          aspect-ratio: 1 / 1;
+          border-radius: 50%;
+          overflow: hidden;
+          margin: 0 auto 25px auto;
+          border: 6px solid rgba(255, 255, 255, 0.5); /* Moldura subtil branca */
+          box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+          transition: transform 0.4s ease;
         }
-        .editorial-highlight-img { width: 100%; aspect-ratio: 4/3; }
-        .editorial-highlight-text { padding: 40px 30px; text-align: center; display: flex; flex-direction: column; justify-content: center; }
-
-        .editorial-sub-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
-        .editorial-sub-card {
-          background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px);
-          border-radius: 20px; overflow: hidden;
-          border: 1px solid rgba(255,255,255,0.9);
-          box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        .circle-img-container:hover {
+          transform: scale(1.05); /* Efeito de zoom muito suave ao passar o rato */
         }
-        .editorial-sub-img { width: 100%; aspect-ratio: 4/3; }
-        .editorial-sub-text { padding: 30px 25px; text-align: center; }
+        .circle-story-text {
+          text-align: center;
+          padding: 0 15px;
+        }
 
         .cta-button {
           display: inline-block; background-color: #1a1a1a; color: #FCFBF9;
@@ -119,18 +136,12 @@ export default function RecriacaoBouquet() {
         @media (min-width: 768px) {
           .hero-section { padding-top: 180px; } 
           .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 80px 24px; }
-          
-          /* Ajustes de PC para Grelha Editorial */
-          .editorial-highlight { flex-direction: row; text-align: left; }
-          .editorial-highlight-img { width: 50%; aspect-ratio: auto; min-height: 400px; }
-          .editorial-highlight-text { width: 50%; text-align: left; padding: 50px; }
-          .editorial-sub-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+          .circle-stories-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
         }
 
         @media (min-width: 1024px) {
           .section-gap { margin-bottom: 160px; }
           .steps-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
-          .editorial-highlight-text { padding: 60px 80px; }
         }
       `}} />
 
@@ -159,67 +170,41 @@ export default function RecriacaoBouquet() {
         </div>
       </section>
 
-      {/* SECÇÃO HISTÓRIAS - GRELHA EDITORIAL */}
-      <section className="section-gap" style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+      {/* SECÇÃO HISTÓRIAS - FOTOGRAFIAS CIRCULARES FLUTUANTES */}
+      <section className="section-gap" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '70px' }}>
           <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a' }}>
             Histórias que merecem ser emolduradas
           </h2>
         </div>
         
-        {/* DESTAQUE PRINCIPAL (Bodas) */}
-        <motion.div 
-          className="editorial-highlight"
-          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-        >
-          <div className="editorial-highlight-img">
-            <img src="/historia-casamento-antigo.jpg" alt="Bodas de Ouro e Prata" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          </div>
-          <div className="editorial-highlight-text">
-            <h4 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: '2.2rem', color: '#1a1a1a', margin: '0 0 20px 0', lineHeight: '1.1' }}>
-              Bodas de Ouro e Prata
-            </h4>
-            <p style={{ color: '#333', fontSize: '1.1rem', lineHeight: '1.7', margin: 0 }}>
-              Um presente indescritível dos filhos para os pais, trazendo literalmente à vida o ramo de noiva de um casamento celebrado há décadas. Uma homenagem à família e à longevidade.
-            </p>
-          </div>
-        </motion.div>
-
-        {/* GRELHA SECUNDÁRIA (Lado a lado no PC) */}
-        <div className="editorial-sub-grid">
-          <motion.div 
-            className="editorial-sub-card"
-            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="editorial-sub-img">
-              <img src="/historia-casamento-recente.jpg" alt="A Segunda Oportunidade" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            </div>
-            <div className="editorial-sub-text">
-              <h4 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: '1.6rem', color: '#1a1a1a', margin: '0 0 15px 0' }}>
-                A Segunda Oportunidade
-              </h4>
-              <p style={{ color: '#444', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
-                Para as noivas que descobriram a preservação botânica tarde demais ou cujo bouquet original, infelizmente, não sobreviveu ao dia do casamento. Devolvemos-lhe essa memória.
-              </p>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            className="editorial-sub-card"
-            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <div className="editorial-sub-img">
-              <img src="/historia-aniversario-flores.jpg" alt="Aniversários e Surpresas" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            </div>
-            <div className="editorial-sub-text">
-              <h4 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: '1.6rem', color: '#1a1a1a', margin: '0 0 15px 0' }}>
-                Aniversários & Surpresas
-              </h4>
-              <p style={{ color: '#444', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
-                O presente mais romântico e inesperado para oferecer à sua cara-metade no vosso aniversário de casamento. Uma surpresa que perpetua a promessa de amor.
-              </p>
-            </div>
-          </motion.div>
+        <div className="circle-stories-grid">
+          {stories.map((story, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.2 }}
+            >
+              <div className="circle-img-container">
+                <img 
+                  src={story.imageSrc} 
+                  alt={story.title} 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
+                />
+              </div>
+              <div className="circle-story-text">
+                <h4 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: '1.6rem', color: '#1a1a1a', margin: '0 0 15px 0', lineHeight: '1.2' }}>
+                  {story.title}
+                </h4>
+                {/* O texto leva um peso ligeiramente maior (500) para ler bem sobre o gradiente */}
+                <p style={{ color: '#222', fontSize: '1.05rem', lineHeight: '1.6', margin: 0, fontWeight: '500' }}>
+                  {story.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
