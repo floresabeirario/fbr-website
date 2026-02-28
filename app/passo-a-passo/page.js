@@ -65,11 +65,28 @@ export default function PassoAPasso() {
     },
     {
       number: "2",
-      title: "Reserva e Pagamento do Sinal",
+      title: "Pedido de Reserva e Sinal",
       desc: (
         <>
-          <p style={{ margin: '0 0 10px 0' }}>O simples agendamento não confirma a reserva da data. Dentro de 3 dias, receberá um e-mail com a confirmação do orçamento e os dados para pagamento do <strong style={{color: '#2C2A28'}}>sinal de 30%</strong> (não reembolsável).</p>
-          <p style={{ margin: 0 }}>Para garantir a sua vaga, este valor deve ser liquidado num prazo de 24 horas.</p>
+          <p style={{ margin: '0 0 10px 0' }}>O primeiro passo é preencher o nosso formulário com os detalhes do seu evento. Assim que o recebermos, iremos verificar a nossa agenda e confirmar-lhe a disponibilidade para a data pretendida.</p>
+          <p style={{ margin: '0 0 15px 0' }}>Se tivermos vaga, receberá um e-mail com a confirmação do orçamento e os dados para o pagamento do <strong style={{color: '#2C2A28'}}>sinal de 30%</strong> (não reembolsável). Para garantir o seu lugar, este valor deve ser liquidado num prazo de 24 horas.</p>
+          <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer" style={{
+            display: 'inline-block',
+            backgroundColor: '#8C624A',
+            color: '#FCFBF9',
+            padding: '10px 24px',
+            borderRadius: '25px',
+            textDecoration: 'none',
+            fontWeight: '600',
+            fontSize: '0.85rem',
+            letterSpacing: '0.5px',
+            textTransform: 'uppercase',
+            boxShadow: '0 4px 12px rgba(140, 98, 74, 0.2)',
+            transition: 'all 0.3s ease',
+            border: '1px solid transparent'
+          }}>
+            Formulário de Reserva
+          </a>
         </>
       )
     },
@@ -140,7 +157,7 @@ export default function PassoAPasso() {
       <style dangerouslySetInnerHTML={{ __html: `
         /* ESPAÇAMENTOS REDUZIDOS (MOBILE FIRST) */
         .hero-padding { padding-top: 60px; } 
-        .section-margin { margin-bottom: 50px; } /* Ajustado para um meio-termo no telemóvel */
+        .section-margin { margin-bottom: 50px; } 
 
         .timeline-container {
           background-color: #FFFFFF;
@@ -172,7 +189,7 @@ export default function PassoAPasso() {
         /* TABLET & DESKTOP */
         @media (min-width: 768px) {
           .hero-padding { padding-top: 90px; }
-          .section-margin { margin-bottom: 75px; } /* Ajustado para um meio-termo no desktop */
+          .section-margin { margin-bottom: 75px; } 
           .timeline-container { padding: 80px; }
           
           .step-container { margin-bottom: 60px; }
@@ -227,7 +244,7 @@ export default function PassoAPasso() {
           }}>
             Ver Preços
           </a>
-          <a href="#" style={{
+          <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer" style={{
             display: 'inline-block', backgroundColor: '#8C624A', color: '#FCFBF9',
             padding: '16px 36px', borderRadius: '30px', textDecoration: 'none',
             fontWeight: '600', letterSpacing: '1px', textTransform: 'uppercase', fontSize: '0.85rem',
