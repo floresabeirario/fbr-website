@@ -17,33 +17,23 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
-      boxShadow: '0 8px 30px rgba(0,0,0,0.04)' // Sombra ligeiramente mais presente para descolar do fundo colorido
+      boxShadow: '0 8px 30px rgba(0,0,0,0.04)'
     }}
   >
-    {/* IMAGEM QUADRADA COM NÚMERO OVERLAY */}
     <div style={{ width: '100%', aspectRatio: '1/1', backgroundColor: '#F4F1EE', position: 'relative', overflow: 'hidden' }}>
       <img 
         src={imageSrc} 
         alt={title}
         style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
       />
-      {/* O Número Grande sobre a foto */}
       <div style={{
-        position: 'absolute',
-        top: '15px',
-        left: '20px',
-        color: '#FFFFFF',
-        fontSize: '4.5rem',
-        fontWeight: '400',
-        fontFamily: "'TAN-MEMORIES', serif",
-        lineHeight: '1',
-        textShadow: '0px 4px 15px rgba(0,0,0,0.4)'
+        position: 'absolute', top: '15px', left: '20px', color: '#FFFFFF',
+        fontSize: '4.5rem', fontWeight: '400', fontFamily: "'TAN-MEMORIES', serif",
+        lineHeight: '1', textShadow: '0px 4px 15px rgba(0,0,0,0.4)'
       }}>
         {number}
       </div>
     </div>
-
-    {/* TEXTO */}
     <div style={{ padding: '25px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
       <h3 style={{ fontSize: '1.4rem', fontFamily: "'TAN-MEMORIES', serif", marginBottom: '15px', color: '#1a1a1a' }}>
         {title}
@@ -84,59 +74,54 @@ export default function RecriacaoBouquet() {
   ];
 
   return (
-    // O GRADIENTE MÁGICO NO FUNDO DA PÁGINA
     <main style={{ 
       background: 'linear-gradient(to bottom, #F4F1EE 0%, #E6E9E3 30%, #EFE6E4 70%, #F4F1EE 100%)', 
       minHeight: '100vh', 
       paddingBottom: '100px' 
     }}>
       
-      {/* LÓGICA RESPONSIVA */}
       <style dangerouslySetInnerHTML={{ __html: `
         .hero-padding { padding-top: 130px; }
         
-        /* MOBILE (1 coluna) */
-        .steps-grid { 
-          display: grid; 
-          grid-template-columns: 1fr; 
-          gap: 20px; 
-        }
+        /* GRELHA DOS PASSOS */
+        .steps-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         
         .cta-button {
-          display: inline-block;
-          background-color: #1a1a1a;
-          color: #FCFBF9;
-          padding: 16px 36px;
-          border-radius: 30px;
-          text-decoration: none;
-          font-weight: 500;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          font-size: 0.85rem;
-          transition: transform 0.3s ease, background-color 0.3s ease;
+          display: inline-block; background-color: #1a1a1a; color: #FCFBF9;
+          padding: 16px 36px; border-radius: 30px; text-decoration: none;
+          font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+          font-size: 0.85rem; transition: transform 0.3s ease, background-color 0.3s ease;
         }
         .cta-button:hover { transform: translateY(-3px); background-color: #333; }
 
-        .dream-card {
-          background-color: rgba(255, 255, 255, 0.6); /* Ligeiramente transparente para mostrar o gradiente do fundo */
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255,255,255,0.8);
-          padding: 30px;
-          border-radius: 12px;
-          text-align: left;
-          height: 100%;
+        /* NOVA SECÇÃO DE INSPIRAÇÃO (MOBILE) */
+        .inspiration-container { display: flex; flexDirection: column; gap: 40px; }
+        .inspiration-item {
+          border-bottom: 1px solid rgba(26,26,26,0.1);
+          padding-bottom: 30px; margin-bottom: 30px;
         }
+        .inspiration-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .inspiration-title { fontFamily: 'TAN-MEMORIES', serif; font-size: 1.5rem; color: #1a1a1a; margin-bottom: 12px; }
+        .inspiration-desc { color: #555; font-size: 1rem; line-height: 1.6; margin: 0; }
 
-        /* TABLET (2 colunas) */
+        /* TABLET */
         @media (min-width: 768px) {
           .hero-padding { padding-top: 160px; }
           .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
         }
 
-        /* DESKTOP LARGOS (4 colunas) */
-        @media (min-width: 1100px) {
+        /* DESKTOP (Layout Editorial Dividido) */
+        @media (min-width: 1024px) {
           .steps-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
-          .dream-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+          
+          .inspiration-container { 
+            flex-direction: row; 
+            align-items: flex-start;
+            gap: 80px;
+          }
+          .inspiration-left { width: 40%; position: sticky; top: 120px; }
+          .inspiration-right { width: 60%; }
+          .inspiration-title { font-size: 1.8rem; }
         }
       `}} />
 
@@ -156,53 +141,8 @@ export default function RecriacaoBouquet() {
         </motion.div>
       </section>
 
-      {/* A MAGIA DE RECRIAR (SONHO) */}
-      <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px', marginBottom: '100px' }}>
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          style={{ textAlign: 'center', marginBottom: '40px' }}
-        >
-          <h2 style={{ fontSize: '2.2rem', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a', marginBottom: '15px' }}>
-            Quando a memória pede uma segunda oportunidade
-          </h2>
-          <p style={{ color: '#555', fontSize: '1.05rem', margin: '0 auto', maxWidth: '700px' }}>
-            A recriação é um dos serviços mais emocionantes do nosso estúdio. É a escolha perfeita para resgatar histórias únicas:
-          </p>
-        </motion.div>
-
-        <div className="dream-grid" style={{ display: 'grid', gap: '20px', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-          
-          <div className="dream-card">
-            <h4 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: '1.3rem', color: '#1a1a1a', margin: '0 0 10px 0' }}>A "Segunda Oportunidade"</h4>
-            <p style={{ color: '#555', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
-              Para as noivas que descobriram a preservação botânica tarde demais ou cujo bouquet não sobreviveu ao próprio dia do casamento.
-            </p>
-          </div>
-
-          <div className="dream-card">
-            <h4 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: '1.3rem', color: '#1a1a1a', margin: '0 0 10px 0' }}>Aniversários & Surpresas</h4>
-            <p style={{ color: '#555', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
-              O presente mais romântico e inesperado que pode oferecer à sua cara-metade no vosso primeiro (ou décimo!) aniversário de casamento.
-            </p>
-          </div>
-
-          <div className="dream-card">
-            <h4 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: '1.3rem', color: '#1a1a1a', margin: '0 0 10px 0' }}>Bodas de Ouro e Prata</h4>
-            <p style={{ color: '#555', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
-              Um presente indescritível dos filhos para os pais, trazendo à vida o ramo de noiva de um casamento celebrado há décadas.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* GRELHA DOS 4 PASSOS */}
-      <section style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px', marginBottom: '100px' }}>
-        <h2 style={{ textAlign: 'center', fontSize: '2rem', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a', marginBottom: '40px' }}>
-          Como funciona o processo?
-        </h2>
+      {/* GRELHA DOS 4 PASSOS (AGORA APARECE PRIMEIRO!) */}
+      <section style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px', marginBottom: '120px' }}>
         <div className="steps-grid">
           {steps.map((step, index) => (
             <StepCard 
@@ -215,6 +155,53 @@ export default function RecriacaoBouquet() {
             />
           ))}
         </div>
+      </section>
+
+      {/* NOVA SECÇÃO: HISTÓRIAS QUE MERECEM SER EMOLDURADAS (LAYOUT EDITORIAL) */}
+      <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px', marginBottom: '120px' }}>
+        <motion.div 
+          className="inspiration-container"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          {/* Lado Esquerdo (Fica fixo no PC enquanto o lado direito faz scroll) */}
+          <div className="inspiration-left">
+            <h2 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a', lineHeight: '1.1', marginBottom: '20px' }}>
+              Histórias que merecem ser emolduradas
+            </h2>
+            <p style={{ color: '#555', fontSize: '1.1rem', lineHeight: '1.7' }}>
+              A recriação é a escolha perfeita para resgatar memórias inesquecíveis que o tempo não conseguiu apagar.
+            </p>
+          </div>
+
+          {/* Lado Direito (A Lista Atraente) */}
+          <div className="inspiration-right">
+            
+            <div className="inspiration-item">
+              <h4 className="inspiration-title">A "Segunda Oportunidade"</h4>
+              <p className="inspiration-desc">
+                Para as noivas que descobriram a preservação botânica tarde demais ou cujo bouquet original, infelizmente, não sobreviveu ao próprio dia do casamento.
+              </p>
+            </div>
+
+            <div className="inspiration-item">
+              <h4 className="inspiration-title">Aniversários & Surpresas</h4>
+              <p className="inspiration-desc">
+                O presente mais romântico e inesperado que pode oferecer à sua cara-metade no vosso primeiro (ou décimo!) aniversário de casamento.
+              </p>
+            </div>
+
+            <div className="inspiration-item">
+              <h4 className="inspiration-title">Bodas de Ouro e Prata</h4>
+              <p className="inspiration-desc">
+                Um presente indescritível dos filhos para os pais, trazendo literalmente à vida o ramo de noiva de um casamento celebrado há décadas.
+              </p>
+            </div>
+
+          </div>
+        </motion.div>
       </section>
 
       {/* TRANSPARÊNCIA DE VALORES */}
