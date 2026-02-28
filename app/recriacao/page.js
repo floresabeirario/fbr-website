@@ -17,67 +17,60 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
       backgroundColor: '#FFFFFF',
       boxShadow: '0 8px 30px rgba(0,0,0,0.06)',
       border: '1px solid rgba(255,255,255,0.5)',
-      position: 'relative',
-      overflow: 'visible' // Necessário para a cápsula sair para fora da imagem
+      position: 'relative' // Mantém o card como referência
     }}
   >
-    {/* ÁREA DA IMAGEM - FORÇANDO QUADRADO 1:1 */}
+    {/* ÁREA DA IMAGEM - QUADRADO PERFEITO 1:1 */}
     <div style={{ 
       width: '100%', 
-      aspectRatio: '1 / 1', 
-      position: 'relative', 
-      borderRadius: '16px 16px 0 0',
-      overflow: 'hidden', // Corta a imagem dentro do quadrado
-      backgroundColor: '#f9f9f9'
+      aspectRatio: '1 / 1', // Força a área a ser quadrada
+      position: 'relative'
+      // O SEGREDO ESTÁ AQUI: Sem "overflow: hidden", para não cortar a cápsula!
     }}>
       <img 
         src={imageSrc} 
         alt={title}
         style={{ 
-          position: 'absolute',
-          top: 0,
-          left: 0,
           width: '100%', 
           height: '100%', 
-          objectFit: 'cover',
-          display: 'block'
+          objectFit: 'cover', // Corta a foto ao centro se ela não for quadrada
+          display: 'block',
+          borderRadius: '16px 16px 0 0' // Arredonda apenas os cantos superiores da foto
         }} 
       />
 
-      {/* CÁPSULA CENTRADA NA FRONTEIRA (FOTO/TEXTO) */}
+      {/* CÁPSULA CENTRADA (TÍTULO) */}
       <div style={{
         position: 'absolute',
-        bottom: '0', // Alinha com a base da imagem
+        bottom: '0', // Fica na linha exata de fundo da foto
         left: '50%',
-        transform: 'translate(-50%, 50%)', // Move 50% para baixo da linha da foto
+        transform: 'translate(-50%, 50%)', // Move metade para a direita e metade para BAIXO
         backgroundColor: '#FFFFFF',
-        color: '#1a1a1a',
-        padding: '12px 24px',
-        borderRadius: '40px', 
+        padding: '12px 30px',
+        borderRadius: '50px', 
         textAlign: 'center',
         whiteSpace: 'nowrap', 
-        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
-        zIndex: 20,
-        width: 'max-content',
-        maxWidth: '92%',
-        border: '1px solid rgba(0,0,0,0.05)'
+        boxShadow: '0 8px 25px rgba(0,0,0,0.08)', // Sombra ajustada para destacar no fundo branco
+        zIndex: 10,
+        width: 'max-content'
       }}>
         <span style={{ 
           display: 'block', 
-          fontSize: '0.65rem', 
+          fontSize: '0.7rem', 
           textTransform: 'uppercase', 
           letterSpacing: '2px', 
           fontWeight: '700', 
           color: '#8DB9F2', 
-          marginBottom: '2px' 
+          marginBottom: '4px' 
         }}>
           Passo {number}
         </span>
         <h3 style={{ 
-          fontSize: '1.2rem', 
+          fontSize: '1.6rem', // Aumentado para ficar mais fiel à sua imagem
           fontFamily: "'TAN-MEMORIES', serif", 
           margin: 0, 
-          lineHeight: '1.2' 
+          color: '#1a1a1a',
+          lineHeight: '1.1' 
         }}>
           {title}
         </h3>
@@ -86,13 +79,13 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
 
     {/* ÁREA DO TEXTO */}
     <div style={{ 
-      padding: '50px 20px 30px 20px', // Espaço extra no topo para compensar a cápsula
+      padding: '55px 25px 35px 25px', // Muito espaço em cima (55px) para a cápsula não bater no texto
       display: 'flex', 
       flexDirection: 'column', 
       flexGrow: 1,
       textAlign: 'center'
     }}>
-      <p style={{ color: '#555', lineHeight: '1.6', fontSize: '0.95rem', margin: 0 }}>
+      <p style={{ color: '#555', lineHeight: '1.7', fontSize: '0.95rem', margin: 0 }}>
         {desc}
       </p>
     </div>
@@ -131,15 +124,13 @@ export default function RecriacaoBouquet() {
     <main style={{ 
       background: 'linear-gradient(to bottom, rgba(141, 185, 242, 0.4) 0%, rgba(231, 197, 224, 0.5) 25%, rgba(75, 131, 242, 0.35) 50%, rgba(151, 197, 64, 0.3) 75%, rgba(229, 203, 35, 0.35) 100%)',
       minHeight: '100vh', 
-      paddingBottom: '100px',
-      overflow: 'hidden' // Evita scroll horizontal indesejado
+      paddingBottom: '100px'
     }}>
       
       <style dangerouslySetInnerHTML={{ __html: `
-        /* Aumentado o padding para o título não ficar cortado */
         .hero-section { padding-top: 140px; padding-bottom: 60px; }
         .section-gap { margin-bottom: 100px; } 
-        .steps-grid { display: grid; grid-template-columns: 1fr; gap: 50px; } 
+        .steps-grid { display: grid; grid-template-columns: 1fr; gap: 60px 30px; } /* Mais espaço vertical nas grelhas */
         
         .cta-button {
           display: inline-block; background-color: #1a1a1a; color: #FCFBF9;
@@ -152,7 +143,7 @@ export default function RecriacaoBouquet() {
 
         @media (min-width: 768px) {
           .hero-section { padding-top: 180px; } 
-          .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 70px 24px; }
+          .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 80px 24px; }
         }
 
         @media (min-width: 1024px) {
