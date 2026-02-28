@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-// --- COMPONENTE DE PASSO (Mantido igual) ---
+// --- COMPONENTE DE PASSO ---
 const StepCard = ({ imageSrc, number, title, desc, delay }) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
@@ -103,21 +103,20 @@ export default function RecriacaoBouquet() {
         .section-gap { margin-bottom: 100px; } 
         .steps-grid { display: grid; grid-template-columns: 1fr; gap: 70px 30px; } 
         
-        /* -- ESTILOS DAS HISTÓRIAS CIRCULARES SEM MOLDURA -- */
+        /* -- ESTILOS DAS HISTÓRIAS CIRCULARES -- */
         .circle-stories-grid { display: grid; grid-template-columns: 1fr; gap: 60px; }
         
         .circle-img-container {
-          width: 240px; /* Tamanho do círculo */
+          width: 240px; 
           aspect-ratio: 1 / 1;
           border-radius: 50%;
           overflow: hidden;
           margin: 0 auto 25px auto;
-          /* RETIRADA A MOLDURA BRANCA */
-          box-shadow: 0 15px 40px rgba(0,0,0,0.15); /* Sombra ligeiramente reforçada para destacar */
+          box-shadow: 0 15px 40px rgba(0,0,0,0.15); 
           transition: transform 0.4s ease;
         }
         .circle-img-container:hover {
-          transform: scale(1.03); /* Efeito de zoom mais contido */
+          transform: scale(1.03); 
         }
         .circle-story-text {
           text-align: center;
@@ -170,15 +169,14 @@ export default function RecriacaoBouquet() {
         </div>
       </section>
 
-      {/* SECÇÃO HISTÓRIAS - FOTOGRAFIAS CIRCULARES FLUTUANTES SEM CAIXAS */}
-      <section className="section-gap" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+      {/* SECÇÃO HISTÓRIAS - ESPAÇO EXTRA (marginTop: 80px) PARA EVITAR SOBREPOSIÇÃO */}
+      <section className="section-gap" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px', marginTop: '80px' }}>
         <div style={{ textAlign: 'center', marginBottom: '70px' }}>
-          {/* TÍTULO EM BRANCO COM SOMBRA DE TEXTO */}
+          {/* TÍTULO PRINCIPAL A PRETO */}
           <h2 style={{ 
             fontSize: 'clamp(2rem, 4vw, 3.2rem)', 
             fontFamily: "'TAN-MEMORIES', serif", 
-            color: '#FFFFFF', // Cor alterada para branco
-            textShadow: '0 2px 10px rgba(0,0,0,0.15)', // Sombra para legibilidade
+            color: '#1a1a1a', 
             margin: 0
           }}>
             Histórias que merecem ser emolduradas
@@ -202,27 +200,24 @@ export default function RecriacaoBouquet() {
                 />
               </div>
               <div className="circle-story-text">
-                {/* TÍTULOS COM NOVA FONTE E EM BRANCO COM SOMBRA */}
+                {/* TÍTULOS DAS HISTÓRIAS A PRETO, NEGRITO (700), NORMAL (S/ MAIÚSCULAS FORÇADAS) */}
                 <h4 style={{ 
-                  fontFamily: "'Avenir', sans-serif", // NOVA FONTE: Sans-serif limpa e sofisticada
-                  fontSize: '1.25rem', // Tamanho ajustado
-                  color: '#FFFFFF', // Cor alterada para branco
-                  textShadow: '0 2px 8px rgba(0,0,0,0.1)', // Sombra para legibilidade
+                  fontFamily: "'Avenir', sans-serif",
+                  fontSize: '1.25rem', 
+                  color: '#1a1a1a', 
                   margin: '0 0 15px 0', 
-                  fontWeight: '500', // Peso médio para sofisticação
-                  textTransform: 'uppercase', // Maiúsculas para elegância
-                  letterSpacing: '2px' // Maior espaçamento para sofisticação
+                  fontWeight: '700', 
+                  letterSpacing: '0.5px' 
                 }}>
                   {story.title}
                 </h4>
-                {/* TEXTO DESCRITIVO EM BRANCO COM SOMBRA */}
+                {/* TEXTO DESCRITIVO A PRETO/CINZA ESCURO */}
                 <p style={{ 
-                  color: '#FFFFFF', // Cor alterada para branco
-                  textShadow: '0 1px 6px rgba(0,0,0,0.1)', // Sombra para legibilidade
+                  color: '#222', 
                   fontSize: '1.05rem', 
                   lineHeight: '1.6', 
                   margin: 0, 
-                  fontWeight: '500' // Peso ligeiramente maior para legibilidade
+                  fontWeight: '500' 
                 }}>
                   {story.desc}
                 </p>
@@ -232,7 +227,7 @@ export default function RecriacaoBouquet() {
         </div>
       </section>
 
-      {/* TRANSPARÊNCIA (Mantida igual, pois é uma caixa branca) */}
+      {/* TRANSPARÊNCIA */}
       <section className="section-gap" style={{ padding: '0 20px' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(10px)', borderRadius: '16px', padding: '60px 40px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.9)', boxShadow: '0 8px 40px rgba(0,0,0,0.06)' }}>
