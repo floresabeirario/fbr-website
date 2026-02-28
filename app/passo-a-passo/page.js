@@ -68,8 +68,9 @@ export default function PassoAPasso() {
       title: "Pedido de Reserva e Sinal",
       desc: (
         <>
-          <p style={{ margin: '0 0 10px 0' }}>O primeiro passo é preencher o nosso formulário com os detalhes do seu evento. Assim que o recebermos, iremos verificar a nossa agenda e confirmar-lhe a disponibilidade para a data pretendida.</p>
-          <p style={{ margin: '0 0 15px 0' }}>Se tivermos vaga, receberá um e-mail com a confirmação do orçamento e os dados para o pagamento do <strong style={{color: '#2C2A28'}}>sinal de 30%</strong> (não reembolsável). Para garantir o seu lugar, este valor deve ser liquidado num prazo de 24 horas.</p>
+          <p style={{ margin: '0 0 10px 0' }}>O primeiro passo é preencher o nosso formulário com os detalhes do seu evento. <strong style={{color: '#2C2A28'}}>Atenção: o preenchimento do formulário não confirma a sua reserva.</strong> Assim que o recebermos, iremos verificar a nossa agenda e confirmar-lhe a disponibilidade para a data pretendida.</p>
+          <p style={{ margin: '0 0 10px 0' }}>Se tivermos vaga, receberá um e-mail com a confirmação do orçamento e os dados para pagamento do <strong style={{color: '#2C2A28'}}>sinal de 30% do valor final da peça</strong>.</p>
+          <p style={{ margin: '0 0 15px 0' }}>Este valor deve ser pago no prazo de <strong style={{color: '#2C2A28'}}>24 horas</strong> para garantir a sua reserva. Caso o pagamento não seja efetuado dentro desse prazo, entendemos que desistiu e o agendamento será cancelado. <em>O sinal não é reembolsável.</em></p>
           <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer" style={{
             display: 'inline-block',
             backgroundColor: '#8C624A',
