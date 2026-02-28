@@ -81,9 +81,9 @@ export default function RecriacaoBouquet() {
     }}>
       
       <style dangerouslySetInnerHTML={{ __html: `
-        /* ESPAÇAMENTOS (MUITO MAIS "AR" PARA RESPIRAR) */
-        .hero-padding { padding-top: 130px; }
-        .section-margin { margin-bottom: 100px; } /* Margem base mobile muito maior */
+        /* CABEÇALHO SUBIDO - Menos espaço no topo */
+        .hero-padding { padding-top: 100px; }
+        .section-margin { margin-bottom: 100px; } 
         
         /* GRELHA DOS PASSOS */
         .steps-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
@@ -96,61 +96,44 @@ export default function RecriacaoBouquet() {
         }
         .cta-button:hover { transform: translateY(-3px); background-color: #333; }
 
-        /* NOVO LAYOUT DE INSPIRAÇÃO (CAPÍTULOS) */
+        /* NOVO LAYOUT DE INSPIRAÇÃO (SEM NÚMEROS) */
         .dream-grid { 
           display: grid; 
           grid-template-columns: 1fr; 
-          gap: 40px; 
-          margin-top: 60px;
+          gap: 24px; 
+          margin-top: 50px;
         }
         .dream-item {
           text-align: center;
           padding: 40px 30px;
-          background: rgba(255, 255, 255, 0.5);
-          backdrop-filter: blur(10px);
-          border-radius: 20px;
-          border: 1px solid rgba(255, 255, 255, 0.8);
-          position: relative;
-        }
-        .roman-numeral {
-          font-family: 'TAN-MEMORIES', serif;
-          font-size: 5rem;
-          color: #1a1a1a;
-          opacity: 0.08; /* Super subtil e elegante */
-          position: absolute;
-          top: -10px;
-          left: 50%;
-          transform: translateX(-50%);
-          line-height: 1;
-          pointer-events: none;
+          background: #FFFFFF;
+          border-radius: 16px;
+          border: 1px solid rgba(26,26,26,0.03);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
         .dream-item-title {
           font-family: 'TAN-MEMORIES', serif;
-          font-size: 1.5rem;
+          font-size: 1.4rem;
           color: #1a1a1a;
-          margin: 20px 0 15px 0;
-          position: relative;
-          z-index: 2;
+          margin: 0 0 15px 0;
         }
         .dream-item-desc {
           color: #555;
           font-size: 1rem;
           line-height: 1.7;
           margin: 0;
-          position: relative;
-          z-index: 2;
         }
 
         /* TABLET */
         @media (min-width: 768px) {
-          .hero-padding { padding-top: 160px; }
-          .section-margin { margin-bottom: 140px; } /* Aumenta a separação */
+          .hero-padding { padding-top: 120px; } /* Cabeçalho mais subido também no tablet/PC */
+          .section-margin { margin-bottom: 140px; } 
           .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
         }
 
         /* DESKTOP (Ecrãs Largos) */
         @media (min-width: 1024px) {
-          .section-margin { margin-bottom: 180px; } /* Separação enorme e luxuosa no PC */
+          .section-margin { margin-bottom: 160px; } 
           .steps-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
           .dream-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
           .dream-item { padding: 50px 40px; }
@@ -189,7 +172,7 @@ export default function RecriacaoBouquet() {
         </div>
       </section>
 
-      {/* HISTÓRIAS QUE MERECEM SER EMOLDURADAS (LAYOUT CAPÍTULOS) */}
+      {/* HISTÓRIAS QUE MERECEM SER EMOLDURADAS (SEM NÚMEROS) */}
       <section className="section-margin" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -208,7 +191,6 @@ export default function RecriacaoBouquet() {
 
         <div className="dream-grid">
           <motion.div className="dream-item" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-            <span className="roman-numeral">I</span>
             <h4 className="dream-item-title">A "Segunda Oportunidade"</h4>
             <p className="dream-item-desc">
               Para as noivas que descobriram a preservação botânica tarde demais ou cujo bouquet original, infelizmente, não sobreviveu ao próprio dia do casamento.
@@ -216,7 +198,6 @@ export default function RecriacaoBouquet() {
           </motion.div>
 
           <motion.div className="dream-item" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            <span className="roman-numeral">II</span>
             <h4 className="dream-item-title">Aniversários & Surpresas</h4>
             <p className="dream-item-desc">
               O presente mais romântico e inesperado que pode oferecer à sua cara-metade no vosso primeiro (ou décimo!) aniversário de casamento.
@@ -224,7 +205,6 @@ export default function RecriacaoBouquet() {
           </motion.div>
 
           <motion.div className="dream-item" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
-            <span className="roman-numeral">III</span>
             <h4 className="dream-item-title">Bodas de Ouro e Prata</h4>
             <p className="dream-item-desc">
               Um presente indescritível dos filhos para os pais, trazendo literalmente à vida o ramo de noiva de um casamento celebrado há décadas.
