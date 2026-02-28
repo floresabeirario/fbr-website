@@ -17,7 +17,7 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
-      boxShadow: '0 4px 20px rgba(0,0,0,0.02)'
+      boxShadow: '0 8px 30px rgba(0,0,0,0.04)' // Sombra ligeiramente mais presente para descolar do fundo colorido
     }}
   >
     {/* IMAGEM QUADRADA COM NÚMERO OVERLAY */}
@@ -37,13 +37,13 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
         fontWeight: '400',
         fontFamily: "'TAN-MEMORIES', serif",
         lineHeight: '1',
-        textShadow: '0px 4px 15px rgba(0,0,0,0.4)' // Sombra para garantir leitura em fundos claros
+        textShadow: '0px 4px 15px rgba(0,0,0,0.4)'
       }}>
         {number}
       </div>
     </div>
 
-    {/* TEXTO REESCRITO E PREMIUM */}
+    {/* TEXTO */}
     <div style={{ padding: '25px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
       <h3 style={{ fontSize: '1.4rem', fontFamily: "'TAN-MEMORIES', serif", marginBottom: '15px', color: '#1a1a1a' }}>
         {title}
@@ -60,31 +60,36 @@ export default function RecriacaoBouquet() {
     {
       imageSrc: "/recriacao-passo1-foto.jpg",
       number: "1",
-      title: "O Resgate da Memória",
-      desc: "Envie-nos algumas fotografias originais do grande dia onde o seu bouquet seja visível. Quantos mais detalhes e ângulos conseguir reunir, mais fiel e exata será a nossa recriação."
+      title: "A Memória",
+      desc: "Envie-nos algumas fotografias do dia onde o bouquet seja visível. Quantos mais detalhes e ângulos conseguir reunir ou lembrar-se, mais fiel será a recriação."
     },
     {
       imageSrc: "/recriacao-passo2-flores.jpg",
       number: "2",
-      title: "As Novas Flores",
-      desc: "Em parceria com uma florista local de excelência, avaliamos as imagens e enviamos-lhe o orçamento exato das flores frescas. Após a sua aprovação, a florista cria a réplica perfeita e entrega-a diretamente no nosso estúdio."
+      title: "A Recriação das Flores",
+      desc: "Em parceria com uma florista local, enviamos as imagens e reencaminhamos-lhe o orçamento das flores frescas. Após a sua aprovação, a florista cria a réplica perfeita e entrega-a diretamente no nosso estúdio."
     },
     {
       imageSrc: "/recriacao-passo3-prensagem.jpg",
       number: "3",
       title: "A Preservação",
-      desc: "Assim que as flores chegam às nossas mãos, iniciamos o delicado processo de prensagem botânica, trabalhando com o máximo cuidado para eternizar a cor e o formato original de cada flor."
+      desc: "Quando as flores chegam às nossas mãos, iniciamos o delicado processo de prensagem de cada flor, trabalhando com o máximo cuidado para eternizar a cor e o formato original de cada elemento."
     },
     {
       imageSrc: "/recriacao-passo4-quadro.jpg",
       number: "4",
       title: "A Obra de Arte",
-      desc: "O design botânico da composição é meticulosamente criado e enviado para a sua aprovação. Só depois selamos as flores na moldura, devolvendo-lhe um pedaço de história para pendurar na parede."
+      desc: "Por fim, a composição é meticulosamente criada e enviada para a sua aprovação. Só depois o quadro é emoldurado, devolvendo-lhe um pedaço de história para pendurar na parede."
     }
   ];
 
   return (
-    <main style={{ backgroundColor: '#FCFBF9', minHeight: '100vh', paddingBottom: '100px' }}>
+    // O GRADIENTE MÁGICO NO FUNDO DA PÁGINA
+    <main style={{ 
+      background: 'linear-gradient(to bottom, #F4F1EE 0%, #E6E9E3 30%, #EFE6E4 70%, #F4F1EE 100%)', 
+      minHeight: '100vh', 
+      paddingBottom: '100px' 
+    }}>
       
       {/* LÓGICA RESPONSIVA */}
       <style dangerouslySetInnerHTML={{ __html: `
@@ -113,8 +118,9 @@ export default function RecriacaoBouquet() {
         .cta-button:hover { transform: translateY(-3px); background-color: #333; }
 
         .dream-card {
-          background-color: #FFFFFF;
-          border: 1px solid rgba(26,26,26,0.06);
+          background-color: rgba(255, 255, 255, 0.6); /* Ligeiramente transparente para mostrar o gradiente do fundo */
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255,255,255,0.8);
           padding: 30px;
           border-radius: 12px;
           text-align: left;
@@ -127,7 +133,7 @@ export default function RecriacaoBouquet() {
           .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
         }
 
-        /* DESKTOP LARGOS (4 colunas para passos, 3 para sonhos) */
+        /* DESKTOP LARGOS (4 colunas) */
         @media (min-width: 1100px) {
           .steps-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
           .dream-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -138,19 +144,19 @@ export default function RecriacaoBouquet() {
       <section className="hero-padding" style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center', paddingLeft: '20px', paddingRight: '20px', marginBottom: '80px' }}>
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <p style={{ textTransform: 'uppercase', letterSpacing: '3px', fontSize: '0.8rem', fontWeight: '600', color: '#1a1a1a', opacity: 0.5, marginBottom: '20px' }}>
-            O tempo não apaga emoções
+            Uma segunda oportunidade
           </p>
           <h1 style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a', margin: '0 0 25px 0', lineHeight: '1.1' }}>
             Recriação de Bouquet
           </h1>
           <p style={{ fontSize: 'clamp(1rem, 2vw, 1.15rem)', color: '#555', lineHeight: '1.8', margin: '0 auto', maxWidth: '700px' }}>
-            O seu evento já passou e não teve a oportunidade de preservar as suas flores? 
-            Com apenas uma fotografia, devolvemos-lhe a magia do seu ramo original e eternizamo-lo numa obra de arte botânica.
+            O seu dia especial já passou e não teve a oportunidade de preservar o seu bouquet? 
+            Com apenas uma fotografia, recriamos a magia do seu ramo com flores frescas e eternizamo-las numa obra de arte.
           </p>
         </motion.div>
       </section>
 
-      {/* A MAGIA DE RECRIAR (FAZER O CLIENTE SONHAR) */}
+      {/* A MAGIA DE RECRIAR (SONHO) */}
       <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px', marginBottom: '100px' }}>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -211,17 +217,19 @@ export default function RecriacaoBouquet() {
         </div>
       </section>
 
-      {/* TRANSPARÊNCIA DE VALORES (TEXTO CORRIGIDO E ELEGANTE) */}
+      {/* TRANSPARÊNCIA DE VALORES */}
       <section style={{ maxWidth: '900px', margin: '0 auto', padding: '0 20px', marginBottom: '80px' }}>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           style={{ 
-            backgroundColor: '#F4F1EE', 
+            backgroundColor: 'rgba(255, 255, 255, 0.8)', 
+            backdropFilter: 'blur(10px)',
             borderRadius: '16px', 
             padding: '50px 40px',
-            textAlign: 'center'
+            textAlign: 'center',
+            border: '1px solid rgba(255,255,255,0.9)'
           }}
         >
           <h3 style={{ fontSize: '1.8rem', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a', marginBottom: '20px' }}>
