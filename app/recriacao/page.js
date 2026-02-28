@@ -2,220 +2,188 @@
 
 import { motion } from "framer-motion";
 
-// --- COMPONENTE DE PASSO (ESTILO EDITORIAL / ALTERNADO) ---
-const StoryStep = ({ imageSrc, number, title, desc, index }) => {
-  const isEven = index % 2 === 0;
-
-  return (
-    <div className="story-step" style={{ 
-      display: 'flex', 
-      flexDirection: 'column', // Base mobile
-      alignItems: 'center',
-      marginBottom: '80px',
-      position: 'relative'
-    }}>
-      
-      {/* IMAGEM */}
-      <motion.div 
-        className="story-image-container"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6 }}
-      >
-        <img 
-          src={imageSrc} 
-          alt={title}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-        />
-        <div className="step-number">{number}</div>
-      </motion.div>
-
-      {/* TEXTO */}
-      <motion.div 
-        className="story-text-container"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <h3 style={{ fontSize: '1.8rem', fontFamily: "'TAN-MEMORIES', serif", marginBottom: '15px', color: '#1a1a1a' }}>
-          {title}
-        </h3>
-        <p style={{ color: '#444', lineHeight: '1.7', fontSize: '1.05rem', margin: 0 }}>
-          {desc}
-        </p>
-      </motion.div>
-
+// --- COMPONENTE DE PASSO (GRELHA PREMIUM) ---
+const StepCard = ({ imageSrc, number, title, desc, delay }) => (
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay, duration: 0.5 }}
+    style={{ 
+      backgroundColor: '#FFFFFF', 
+      borderRadius: '12px', 
+      border: '1px solid rgba(26,26,26,0.05)',
+      overflow: 'hidden', 
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100%'
+    }}
+  >
+    {/* IMAGEM UNIFORME */}
+    <div style={{ width: '100%', aspectRatio: '4/3', backgroundColor: '#F4F1EE', overflow: 'hidden' }}>
+      <img 
+        src={imageSrc} 
+        alt={title}
+        style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+      />
     </div>
-  );
-};
+
+    {/* TEXTO */}
+    <div style={{ padding: '25px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+      <span style={{ 
+        fontSize: '0.75rem', 
+        textTransform: 'uppercase', 
+        letterSpacing: '2px', 
+        fontWeight: '600', 
+        color: '#1a1a1a', 
+        opacity: 0.4,
+        marginBottom: '10px'
+      }}>
+        {number}
+      </span>
+      <h3 style={{ fontSize: '1.4rem', fontFamily: "'TAN-MEMORIES', serif", marginBottom: '15px', color: '#1a1a1a' }}>
+        {title}
+      </h3>
+      <p style={{ color: '#555', lineHeight: '1.6', fontSize: '0.95rem', margin: 0 }}>
+        {desc}
+      </p>
+    </div>
+  </motion.div>
+);
 
 export default function RecriacaoBouquet() {
+  // Os teus textos exatos e as imagens estáticas
   const steps = [
     {
       imageSrc: "/recriacao-passo1-foto.jpg",
-      number: "01",
+      number: "Passo 01",
       title: "A Fotografia",
-      desc: "Envie-nos algumas fotografias originais do dia do evento onde o bouquet seja visível. Quantos mais detalhes conseguirmos ver, ou se lembrar, mais fiel e exata será a recriação."
+      desc: "Envie-nos algumas fotografias originais do dia do evento onde o bouquet seja visível. Quantos mais detalhes conseguirmos ver, ou se lembrar, mais exata será a recriação."
     },
     {
       imageSrc: "/recriacao-passo2-flores.jpg",
-      number: "02",
+      number: "Passo 02",
       title: "A Recriação",
       desc: "Trabalhamos em parceria com uma florista local. Enviamos a fotografia e encaminhamos-lhe o orçamento exato para a recriação do bouquet com flores frescas. Se aprovar o valor das flores, a florista cria a réplica e entrega-a diretamente no nosso estúdio, sem ter que se preocupar com nada."
     },
     {
       imageSrc: "/recriacao-passo3-prensagem.jpg",
-      number: "03",
+      number: "Passo 03",
       title: "A Preservação",
-      desc: "Iniciamos o delicado processo de preservação das flores na nossa prensa para que mantenham a sua cor e o seu formato ao longo do tempo."
+      desc: "Iniciamos o delicado processo de preservação das flores para que mantenham a sua cor e formato originais."
     },
     {
       imageSrc: "/recriacao-passo4-quadro.jpg",
-      number: "04",
+      number: "Passo 04",
       title: "A Arte Final",
-      desc: "O design botânico é sempre aprovado pelo cliente antes de ser selado na moldura escolhida. O resultado é uma segunda oportunidade de eternizar um dia feliz."
+      desc: "O design é sempre aprovado pelo cliente antes de ser emoldurado. Uma obra de arte pensada para eternizar o seu dia."
     }
   ];
 
   return (
-    <main style={{ backgroundColor: '#FCFBF9', minHeight: '100vh', paddingBottom: '100px' }}>
+    <main style={{ backgroundColor: '#F4F1EE', minHeight: '100vh', paddingBottom: '100px' }}>
       
-      {/* LÓGICA RESPONSIVA (Mobile-First para o Layout Editorial) */}
+      {/* LÓGICA RESPONSIVA */}
       <style dangerouslySetInnerHTML={{ __html: `
         .hero-padding { padding-top: 130px; }
         
-        /* --- MOBILE --- */
-        .story-image-container {
-          width: 100%;
-          height: 350px;
-          border-radius: 16px;
-          overflow: hidden;
-          position: relative;
-          z-index: 1;
+        /* MOBILE (1 coluna) */
+        .steps-grid { 
+          display: grid; 
+          grid-template-columns: 1fr; 
+          gap: 20px; 
         }
-        .story-text-container {
-          width: 90%;
-          background-color: #FFFFFF;
-          padding: 30px 25px;
-          border-radius: 16px;
-          box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-          position: relative;
-          z-index: 2;
-          margin-top: -60px; /* Sobrepõe-se à imagem no mobile! Muito premium */
-          text-align: center;
-        }
-        .step-number {
-          position: absolute;
-          top: 15px; left: 15px;
-          background-color: #FFFFFF; color: #1a1a1a;
-          padding: 6px 14px; border-radius: 20px;
-          font-size: 0.85rem; font-weight: 700;
-          font-family: 'TAN-MEMORIES', serif;
-        }
-
+        
         .cta-button {
-          display: inline-block; background-color: #1a1a1a; color: #FCFBF9;
-          padding: 18px 40px; border-radius: 30px; text-decoration: none;
-          font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
-          font-size: 0.85rem; transition: all 0.3s ease;
+          display: inline-block;
+          background-color: #1a1a1a;
+          color: #FCFBF9;
+          padding: 16px 36px;
+          border-radius: 30px;
+          text-decoration: none;
+          font-weight: 500;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          font-size: 0.85rem;
+          transition: transform 0.3s ease, background-color 0.3s ease;
         }
         .cta-button:hover { transform: translateY(-3px); background-color: #333; }
 
-        /* --- DESKTOP --- */
-        @media (min-width: 900px) {
-          .hero-padding { padding-top: 180px; }
-          
-          /* Muda para layout lado-a-lado alternado */
-          .story-step {
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 120px;
-          }
-          
-          /* Inverte a ordem nos passos pares para criar o ziguezague */
-          .story-step:nth-child(even) {
-            flex-direction: row-reverse;
-          }
+        /* TABLET (2 colunas) */
+        @media (min-width: 768px) {
+          .hero-padding { padding-top: 160px; }
+          .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        }
 
-          .story-image-container {
-            width: 48%;
-            height: 500px;
-            margin-top: 0;
-            border-radius: 20px;
-          }
-          
-          .story-text-container {
-            width: 42%;
-            margin-top: 0;
-            box-shadow: none;
-            background-color: transparent;
-            padding: 0;
-            text-align: left;
-          }
+        /* DESKTOP LARGOS (4 colunas) */
+        @media (min-width: 1100px) {
+          .steps-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
         }
       `}} />
 
       {/* HERO SECTION */}
-      <section className="hero-padding" style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center', paddingLeft: '20px', paddingRight: '20px', marginBottom: '100px' }}>
+      <section className="hero-padding" style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center', paddingLeft: '20px', paddingRight: '20px', marginBottom: '80px' }}>
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <p style={{ textTransform: 'uppercase', letterSpacing: '3px', fontSize: '0.8rem', fontWeight: '600', color: '#1a1a1a', opacity: 0.6, marginBottom: '20px' }}>
             Uma segunda oportunidade
           </p>
-          <h1 style={{ fontSize: 'clamp(2.8rem, 6vw, 4.5rem)', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a', margin: '0 0 25px 0', lineHeight: '1.1' }}>
+          <h1 style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a', margin: '0 0 25px 0', lineHeight: '1.1' }}>
             Recriação de Bouquet
           </h1>
           <p style={{ fontSize: 'clamp(1rem, 2vw, 1.15rem)', color: '#555', lineHeight: '1.8', margin: '0 auto', maxWidth: '700px' }}>
-            O seu dia especial já passou e não teve a oportunidade de preservar o seu bouquet? 
-            Com apenas uma fotografia, resgatamos a magia do seu ramo.
+            O seu evento já passou e não teve a oportunidade de preservar o seu bouquet? 
+            Com apenas uma fotografia, recriamos a magia do seu ramo com flores frescas e eternizamo-las numa obra de arte.
           </p>
         </motion.div>
       </section>
 
-      {/* COMO FUNCIONA - STORYTELLING EDITORIAL */}
-      <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px', marginBottom: '80px' }}>
-        {steps.map((step, index) => (
-          <StoryStep 
-            key={index} 
-            index={index}
-            imageSrc={step.imageSrc} 
-            number={step.number} 
-            title={step.title} 
-            desc={step.desc} 
-          />
-        ))}
+      {/* GRELHA DOS 4 PASSOS */}
+      <section style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px', marginBottom: '100px' }}>
+        <div className="steps-grid">
+          {steps.map((step, index) => (
+            <StepCard 
+              key={index} 
+              imageSrc={step.imageSrc} 
+              number={step.number} 
+              title={step.title} 
+              desc={step.desc} 
+              delay={index * 0.15} 
+            />
+          ))}
+        </div>
       </section>
 
-      {/* CAIXA DE PREÇOS / COMO FUNCIONAM OS VALORES */}
-      <section style={{ maxWidth: '900px', margin: '0 auto', padding: '0 20px', marginBottom: '100px' }}>
+      {/* EXPLICAÇÃO DOS VALORES E MOLDURAS */}
+      <section style={{ maxWidth: '900px', margin: '0 auto', padding: '0 20px', marginBottom: '80px' }}>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           style={{ 
-            backgroundColor: '#F4F1EE', 
-            borderRadius: '20px', 
-            padding: '50px 40px',
+            backgroundColor: '#FFFFFF', 
+            borderRadius: '16px', 
+            padding: '40px',
             textAlign: 'center',
-            border: '1px solid rgba(26,26,26,0.05)'
+            boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
           }}
         >
           <h3 style={{ fontSize: '1.8rem', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a', marginBottom: '20px' }}>
-            Transparência nos Valores
+            Como funcionam os valores?
           </h3>
-          <p style={{ color: '#444', lineHeight: '1.7', fontSize: '1.05rem', margin: '0 auto', maxWidth: '700px', marginBottom: '30px' }}>
-            Acreditamos na simplicidade. O valor final do serviço de recriação corresponde exatamente à soma do <strong>orçamento das flores frescas</strong> (da florista) com o <strong>valor do quadro que escolher</strong> no nosso catálogo de Opções e Preços.
+          <p style={{ color: '#444', lineHeight: '1.7', fontSize: '1.05rem', margin: '0 auto', maxWidth: '700px', marginBottom: '20px' }}>
+            O valor final do serviço corresponde ao <strong>orçamento das flores frescas</strong> (da florista) mais o <strong>valor base do quadro</strong> que escolher no nosso catálogo.
           </p>
-          <p style={{ color: '#444', lineHeight: '1.7', fontSize: '0.95rem', margin: '0 auto', maxWidth: '600px', fontStyle: 'italic', opacity: 0.8 }}>
-            Todos os nossos quadros incluem a secagem profissional e a emolduração com acabamentos de excelência, incluindo Vidro Museu. Pode escolher o tamanho e formato ideal para a sua recriação.
+          <p style={{ color: '#444', lineHeight: '1.7', fontSize: '0.95rem', margin: '0 auto', maxWidth: '650px' }}>
+            Os preços e formatos dos quadros são exatamente os mesmos da nossa página de opções e preços. Pode escolher o tamanho que preferir, sabendo que todos os quadros já incluem vidro museu de proteção anti-reflexo e proteção UV.
           </p>
         </motion.div>
       </section>
 
-      {/* CTA FINAL */}
+      {/* INSPIRAÇÃO E CTA */}
       <section style={{ textAlign: 'center', padding: '0 20px' }}>
+        <p style={{ fontSize: '1.05rem', color: '#555', marginBottom: '30px' }}>
+          O presente perfeito para Bodas de Ouro, Aniversários de Casamento ou surpresas especiais.
+        </p>
         <a href="mailto:info@floresabeirario.pt?subject=Pedido de Orçamento - Recriação de Bouquet" className="cta-button">
           Pedir Orçamento para Recriação
         </a>
