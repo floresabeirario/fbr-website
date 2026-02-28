@@ -140,7 +140,7 @@ export default function PassoAPasso() {
       <style dangerouslySetInnerHTML={{ __html: `
         /* ESPAÇAMENTOS REDUZIDOS (MOBILE FIRST) */
         .hero-padding { padding-top: 60px; } 
-        .section-margin { margin-bottom: 75px; } /* Aumentado para dar mais espaço */
+        .section-margin { margin-bottom: 50px; } /* Ajustado para um meio-termo no telemóvel */
 
         .timeline-container {
           background-color: #FFFFFF;
@@ -172,7 +172,7 @@ export default function PassoAPasso() {
         /* TABLET & DESKTOP */
         @media (min-width: 768px) {
           .hero-padding { padding-top: 90px; }
-          .section-margin { margin-bottom: 115px; } /* Aumentado significativamente para desktop */
+          .section-margin { margin-bottom: 75px; } /* Ajustado para um meio-termo no desktop */
           .timeline-container { padding: 80px; }
           
           .step-container { margin-bottom: 60px; }
@@ -183,7 +183,6 @@ export default function PassoAPasso() {
       `}} />
 
       {/* HERO SECTION */}
-      {/* NOTA: margin: '0 auto' foi alterado para marginLeft e marginRight separados para permitir o margin-bottom funcionar */}
       <section className="hero-padding section-margin" style={{ maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto', textAlign: 'center', paddingLeft: '20px', paddingRight: '20px' }}>
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <p style={{ textTransform: 'uppercase', letterSpacing: '3px', fontSize: '0.8rem', fontWeight: '700', color: '#8C624A', marginBottom: '20px' }}>
