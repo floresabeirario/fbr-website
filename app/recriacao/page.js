@@ -17,15 +17,16 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
       backgroundColor: '#FFFFFF',
       boxShadow: '0 8px 30px rgba(0,0,0,0.06)',
       border: '1px solid rgba(255,255,255,0.5)',
-      position: 'relative' // Mantém o card como referência
+      position: 'relative'
     }}
   >
-    {/* ÁREA DA IMAGEM - QUADRADO PERFEITO 1:1 */}
+    {/* ÁREA DA IMAGEM - QUADRADO PERFEITO E BLINDADO */}
     <div style={{ 
       width: '100%', 
-      aspectRatio: '1 / 1', // Força a área a ser quadrada
-      position: 'relative'
-      // O SEGREDO ESTÁ AQUI: Sem "overflow: hidden", para não cortar a cápsula!
+      aspectRatio: '1 / 1', 
+      overflow: 'hidden', // Corta a foto perfeitamente
+      borderRadius: '16px 16px 0 0',
+      backgroundColor: '#f9f9f9'
     }}>
       <img 
         src={imageSrc} 
@@ -33,25 +34,26 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
         style={{ 
           width: '100%', 
           height: '100%', 
-          objectFit: 'cover', // Corta a foto ao centro se ela não for quadrada
-          display: 'block',
-          borderRadius: '16px 16px 0 0' // Arredonda apenas os cantos superiores da foto
+          objectFit: 'cover', // Preenche sem distorcer
+          display: 'block'
         }} 
       />
+    </div>
 
+    {/* ÂNCORA PARA A CÁPSULA - Fica exatamente na linha que separa a foto do texto */}
+    <div style={{ position: 'relative', zIndex: 10 }}>
       {/* CÁPSULA CENTRADA (TÍTULO) */}
       <div style={{
         position: 'absolute',
-        bottom: '0', // Fica na linha exata de fundo da foto
+        top: '0', 
         left: '50%',
-        transform: 'translate(-50%, 50%)', // Move metade para a direita e metade para BAIXO
+        transform: 'translate(-50%, -50%)', // O -50% no Y puxa a cápsula exatamente para o meio da linha
         backgroundColor: '#FFFFFF',
         padding: '12px 30px',
         borderRadius: '50px', 
         textAlign: 'center',
         whiteSpace: 'nowrap', 
-        boxShadow: '0 8px 25px rgba(0,0,0,0.08)', // Sombra ajustada para destacar no fundo branco
-        zIndex: 10,
+        boxShadow: '0 8px 25px rgba(0,0,0,0.08)', 
         width: 'max-content'
       }}>
         <span style={{ 
@@ -66,7 +68,7 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
           Passo {number}
         </span>
         <h3 style={{ 
-          fontSize: '1.6rem', // Aumentado para ficar mais fiel à sua imagem
+          fontSize: '1.6rem', 
           fontFamily: "'TAN-MEMORIES', serif", 
           margin: 0, 
           color: '#1a1a1a',
@@ -79,7 +81,7 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
 
     {/* ÁREA DO TEXTO */}
     <div style={{ 
-      padding: '55px 25px 35px 25px', // Muito espaço em cima (55px) para a cápsula não bater no texto
+      padding: '60px 25px 35px 25px', // Padding top de 60px garante que a cápsula não sobrepõe o texto
       display: 'flex', 
       flexDirection: 'column', 
       flexGrow: 1,
@@ -130,7 +132,7 @@ export default function RecriacaoBouquet() {
       <style dangerouslySetInnerHTML={{ __html: `
         .hero-section { padding-top: 140px; padding-bottom: 60px; }
         .section-gap { margin-bottom: 100px; } 
-        .steps-grid { display: grid; grid-template-columns: 1fr; gap: 60px 30px; } /* Mais espaço vertical nas grelhas */
+        .steps-grid { display: grid; grid-template-columns: 1fr; gap: 70px 30px; } 
         
         .cta-button {
           display: inline-block; background-color: #1a1a1a; color: #FCFBF9;
@@ -139,7 +141,7 @@ export default function RecriacaoBouquet() {
           font-size: 0.85rem; transition: all 0.3s ease;
           box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        .cta-button:hover { transform: translateY(-3px); background-color: #333; }
+        .cta-button:hover { transform: translateY(-3px); background-color: #333; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
 
         @media (min-width: 768px) {
           .hero-section { padding-top: 180px; } 
@@ -198,8 +200,8 @@ export default function RecriacaoBouquet() {
             { t: "Bodas de Ouro e Prata", d: "Um presente indescritível dos filhos para os pais, trazendo à vida o ramo de um casamento celebrado há décadas." }
           ].map((item, i) => (
             <div key={i} style={{ backgroundColor: '#FFFFFF', padding: '40px 30px', borderRadius: '16px', textAlign: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.03)' }}>
-              <h4 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: '1.4rem', marginBottom: '15px' }}>{item.t}</h4>
-              <p style={{ color: '#555', fontSize: '0.95rem', lineHeight: '1.6' }}>{item.d}</p>
+              <h4 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: '1.4rem', marginBottom: '15px', color: '#1a1a1a' }}>{item.t}</h4>
+              <p style={{ color: '#555', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>{item.d}</p>
             </div>
           ))}
         </div>
@@ -207,11 +209,18 @@ export default function RecriacaoBouquet() {
 
       {/* TRANSPARÊNCIA */}
       <section className="section-gap" style={{ padding: '0 20px' }}>
-        <div style={{ maxWidth: '850px', margin: '0 auto', backgroundColor: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(10px)', borderRadius: '20px', padding: '50px 30px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.8)' }}>
-          <h3 style={{ fontSize: '1.8rem', fontFamily: "'TAN-MEMORIES', serif", marginBottom: '20px' }}>Transparência nos Valores</h3>
-          <p style={{ color: '#444', lineHeight: '1.8' }}>
-            O valor da recriação divide-se no <strong>custo das flores frescas</strong> e no <strong>valor da preservação</strong> (exatamente igual ao preçário base do atelier).
-          </p>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(10px)', borderRadius: '16px', padding: '60px 30px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.9)', boxShadow: '0 8px 30px rgba(0,0,0,0.03)' }}>
+            <h3 style={{ fontSize: '1.8rem', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a', marginBottom: '20px' }}>
+              Transparência nos Valores
+            </h3>
+            <p style={{ color: '#444', lineHeight: '1.7', fontSize: '1.05rem', margin: '0 auto 20px auto', maxWidth: '700px' }}>
+              Acreditamos que a beleza está na transparência. O valor da recriação de um bouquet divide-se em duas partes simples: o <strong>custo das flores frescas</strong> (orçamentado pela nossa florista parceira) e o <strong>valor da preservação</strong>.
+            </p>
+            <p style={{ color: '#444', lineHeight: '1.7', fontSize: '1.05rem', margin: '0 auto', maxWidth: '700px' }}>
+              O custo da preservação é <strong>exatamente igual</strong> ao preçário base do nosso atelier. Tem total liberdade para escolher o tamanho e formato de moldura que preferir da nossa página de preços, sabendo que todas as peças já incluem o vidro museu de proteção anti-reflexo e proteção UV.
+            </p>
+          </div>
         </div>
       </section>
 
