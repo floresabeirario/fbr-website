@@ -67,8 +67,9 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
         }}>
           Passo {number}
         </span>
+        {/* TAMANHO DA LETRA REDUZIDO AQUI (de 1.6rem para 1.3rem) */}
         <h3 style={{ 
-          fontSize: '1.6rem', 
+          fontSize: '1.3rem', 
           fontFamily: "'TAN-MEMORIES', serif", 
           margin: 0, 
           color: '#1a1a1a',
