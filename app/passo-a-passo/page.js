@@ -132,21 +132,21 @@ export default function PassoAPasso() {
 
   return (
     <main style={{ 
-      backgroundColor: '#F9F6F0', // Tom mais quente/earthy
+      backgroundColor: '#F9F6F0', 
       minHeight: '100vh', 
       paddingBottom: '100px' 
     }}>
       
       <style dangerouslySetInnerHTML={{ __html: `
         /* ESPAÇAMENTOS REDUZIDOS (MOBILE FIRST) */
-        .hero-padding { padding-top: 60px; } /* Reduzido o espaço topo */
-        .section-margin { margin-bottom: 50px; } 
+        .hero-padding { padding-top: 60px; } 
+        .section-margin { margin-bottom: 75px; } /* Aumentado para dar mais espaço */
 
         .timeline-container {
           background-color: #FFFFFF;
           border: 1px solid rgba(140, 98, 74, 0.1);
           border-radius: 20px;
-          padding: 30px 15px; /* Reduzido no telemóvel */
+          padding: 30px 15px; 
           box-shadow: 0 10px 40px rgba(44, 42, 40, 0.04);
         }
 
@@ -155,7 +155,7 @@ export default function PassoAPasso() {
         .step-circle-wrapper { margin-right: 20px; }
         
         .step-number { width: 44px; height: 44px; font-size: 1.3rem; }
-        .step-line { left: 21px; top: 50px; bottom: -45px; } /* Ajustado para tamanho mobile */
+        .step-line { left: 21px; top: 50px; bottom: -45px; } 
 
         /* ESTILO DOS LINKS NO TEXTO */
         .earthy-link {
@@ -172,7 +172,7 @@ export default function PassoAPasso() {
         /* TABLET & DESKTOP */
         @media (min-width: 768px) {
           .hero-padding { padding-top: 90px; }
-          .section-margin { margin-bottom: 80px; } 
+          .section-margin { margin-bottom: 115px; } /* Aumentado significativamente para desktop */
           .timeline-container { padding: 80px; }
           
           .step-container { margin-bottom: 60px; }
@@ -183,7 +183,8 @@ export default function PassoAPasso() {
       `}} />
 
       {/* HERO SECTION */}
-      <section className="hero-padding section-margin" style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', paddingLeft: '20px', paddingRight: '20px' }}>
+      {/* NOTA: margin: '0 auto' foi alterado para marginLeft e marginRight separados para permitir o margin-bottom funcionar */}
+      <section className="hero-padding section-margin" style={{ maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto', textAlign: 'center', paddingLeft: '20px', paddingRight: '20px' }}>
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <p style={{ textTransform: 'uppercase', letterSpacing: '3px', fontSize: '0.8rem', fontWeight: '700', color: '#8C624A', marginBottom: '20px' }}>
             Como Trabalhamos
