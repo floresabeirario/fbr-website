@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-// --- COMPONENTE DE PASSO (Mantido intacto com os teus ajustes) ---
+// --- COMPONENTE DE PASSO (Mantido igual) ---
 const StepCard = ({ imageSrc, number, title, desc, delay }) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
@@ -103,7 +103,7 @@ export default function RecriacaoBouquet() {
         .section-gap { margin-bottom: 100px; } 
         .steps-grid { display: grid; grid-template-columns: 1fr; gap: 70px 30px; } 
         
-        /* -- ESTILOS DAS HISTÓRIAS CIRCULARES -- */
+        /* -- ESTILOS DAS HISTÓRIAS CIRCULARES SEM MOLDURA -- */
         .circle-stories-grid { display: grid; grid-template-columns: 1fr; gap: 60px; }
         
         .circle-img-container {
@@ -112,12 +112,12 @@ export default function RecriacaoBouquet() {
           border-radius: 50%;
           overflow: hidden;
           margin: 0 auto 25px auto;
-          border: 6px solid rgba(255, 255, 255, 0.5); /* Moldura subtil branca */
-          box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+          /* RETIRADA A MOLDURA BRANCA */
+          box-shadow: 0 15px 40px rgba(0,0,0,0.15); /* Sombra ligeiramente reforçada para destacar */
           transition: transform 0.4s ease;
         }
         .circle-img-container:hover {
-          transform: scale(1.05); /* Efeito de zoom muito suave ao passar o rato */
+          transform: scale(1.03); /* Efeito de zoom mais contido */
         }
         .circle-story-text {
           text-align: center;
@@ -136,7 +136,7 @@ export default function RecriacaoBouquet() {
         @media (min-width: 768px) {
           .hero-section { padding-top: 180px; } 
           .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 80px 24px; }
-          .circle-stories-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
+          .circle-stories-grid { grid-template-columns: repeat(3, 1fr); gap: 40px; }
         }
 
         @media (min-width: 1024px) {
@@ -170,10 +170,17 @@ export default function RecriacaoBouquet() {
         </div>
       </section>
 
-      {/* SECÇÃO HISTÓRIAS - FOTOGRAFIAS CIRCULARES FLUTUANTES */}
+      {/* SECÇÃO HISTÓRIAS - FOTOGRAFIAS CIRCULARES FLUTUANTES SEM CAIXAS */}
       <section className="section-gap" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
         <div style={{ textAlign: 'center', marginBottom: '70px' }}>
-          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a' }}>
+          {/* TÍTULO EM BRANCO COM SOMBRA DE TEXTO */}
+          <h2 style={{ 
+            fontSize: 'clamp(2rem, 4vw, 3.2rem)', 
+            fontFamily: "'TAN-MEMORIES', serif", 
+            color: '#FFFFFF', // Cor alterada para branco
+            textShadow: '0 2px 10px rgba(0,0,0,0.15)', // Sombra para legibilidade
+            margin: 0
+          }}>
             Histórias que merecem ser emolduradas
           </h2>
         </div>
@@ -195,11 +202,28 @@ export default function RecriacaoBouquet() {
                 />
               </div>
               <div className="circle-story-text">
-                <h4 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: '1.6rem', color: '#1a1a1a', margin: '0 0 15px 0', lineHeight: '1.2' }}>
+                {/* TÍTULOS COM NOVA FONTE E EM BRANCO COM SOMBRA */}
+                <h4 style={{ 
+                  fontFamily: "'Avenir', sans-serif", // NOVA FONTE: Sans-serif limpa e sofisticada
+                  fontSize: '1.25rem', // Tamanho ajustado
+                  color: '#FFFFFF', // Cor alterada para branco
+                  textShadow: '0 2px 8px rgba(0,0,0,0.1)', // Sombra para legibilidade
+                  margin: '0 0 15px 0', 
+                  fontWeight: '500', // Peso médio para sofisticação
+                  textTransform: 'uppercase', // Maiúsculas para elegância
+                  letterSpacing: '2px' // Maior espaçamento para sofisticação
+                }}>
                   {story.title}
                 </h4>
-                {/* O texto leva um peso ligeiramente maior (500) para ler bem sobre o gradiente */}
-                <p style={{ color: '#222', fontSize: '1.05rem', lineHeight: '1.6', margin: 0, fontWeight: '500' }}>
+                {/* TEXTO DESCRITIVO EM BRANCO COM SOMBRA */}
+                <p style={{ 
+                  color: '#FFFFFF', // Cor alterada para branco
+                  textShadow: '0 1px 6px rgba(0,0,0,0.1)', // Sombra para legibilidade
+                  fontSize: '1.05rem', 
+                  lineHeight: '1.6', 
+                  margin: 0, 
+                  fontWeight: '500' // Peso ligeiramente maior para legibilidade
+                }}>
                   {story.desc}
                 </p>
               </div>
@@ -208,7 +232,7 @@ export default function RecriacaoBouquet() {
         </div>
       </section>
 
-      {/* TRANSPARÊNCIA */}
+      {/* TRANSPARÊNCIA (Mantida igual, pois é uma caixa branca) */}
       <section className="section-gap" style={{ padding: '0 20px' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(10px)', borderRadius: '16px', padding: '60px 40px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.9)', boxShadow: '0 8px 40px rgba(0,0,0,0.06)' }}>
