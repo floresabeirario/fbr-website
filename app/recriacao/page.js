@@ -47,9 +47,9 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
         position: 'absolute',
         top: '0', 
         left: '50%',
-        transform: 'translate(-50%, -50%)', // O -50% no Y puxa a cápsula exatamente para o meio da linha
+        transform: 'translate(-50%, -50%)', 
         backgroundColor: '#FFFFFF',
-        padding: '12px 30px',
+        padding: '10px 28px', // Ligeiramente reduzido para acompanhar a letra mais pequena
         borderRadius: '50px', 
         textAlign: 'center',
         whiteSpace: 'nowrap', 
@@ -58,7 +58,7 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
       }}>
         <span style={{ 
           display: 'block', 
-          fontSize: '0.7rem', 
+          fontSize: '0.65rem', 
           textTransform: 'uppercase', 
           letterSpacing: '2px', 
           fontWeight: '700', 
@@ -67,9 +67,9 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
         }}>
           Passo {number}
         </span>
-        {/* TAMANHO DA LETRA REDUZIDO AQUI (de 1.6rem para 1.3rem) */}
+        {/* TITULO MENOR COMO PEDIDO (1.15rem) */}
         <h3 style={{ 
-          fontSize: '1.3rem', 
+          fontSize: '1.15rem', 
           fontFamily: "'TAN-MEMORIES', serif", 
           margin: 0, 
           color: '#1a1a1a',
@@ -80,15 +80,15 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
       </div>
     </div>
 
-    {/* ÁREA DO TEXTO */}
+    {/* ÁREA DO TEXTO - MENOS ESPAÇO VAZIO (PADDING REDUZIDO) */}
     <div style={{ 
-      padding: '60px 25px 35px 25px', // Padding top de 60px garante que a cápsula não sobrepõe o texto
+      padding: '45px 20px 25px 20px', // Reduzido o espaço no topo, fundo e lados
       display: 'flex', 
       flexDirection: 'column', 
       flexGrow: 1,
       textAlign: 'center'
     }}>
-      <p style={{ color: '#555', lineHeight: '1.7', fontSize: '0.95rem', margin: 0 }}>
+      <p style={{ color: '#555', lineHeight: '1.6', fontSize: '0.95rem', margin: 0 }}>
         {desc}
       </p>
     </div>
@@ -124,8 +124,9 @@ export default function RecriacaoBouquet() {
   ];
 
   return (
+    // FUNDO COM CORES MAIS SATURADAS (Opacidade aumentada)
     <main style={{ 
-      background: 'linear-gradient(to bottom, rgba(141, 185, 242, 0.4) 0%, rgba(231, 197, 224, 0.5) 25%, rgba(75, 131, 242, 0.35) 50%, rgba(151, 197, 64, 0.3) 75%, rgba(229, 203, 35, 0.35) 100%)',
+      background: 'linear-gradient(to bottom, rgba(141, 185, 242, 0.7) 0%, rgba(231, 197, 224, 0.8) 25%, rgba(75, 131, 242, 0.6) 50%, rgba(151, 197, 64, 0.55) 75%, rgba(229, 203, 35, 0.6) 100%)',
       minHeight: '100vh', 
       paddingBottom: '100px'
     }}>
