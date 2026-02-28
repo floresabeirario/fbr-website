@@ -98,11 +98,13 @@ export default function PassoAPasso() {
         <>
           <p style={{ margin: '0 0 10px 0' }}>Com a vaga confirmada, é hora de nos fazer chegar as flores (idealmente entre <strong style={{color: '#2C2A28'}}>1 a 3 dias</strong> após o evento, máximo 5 dias). Tem três opções:</p>
           <ul style={{ margin: '0 0 10px 0', paddingLeft: '20px' }}>
-            <li><strong style={{color: '#2C2A28'}}>Entrega em mãos:</strong> Gratuita, no nosso atelier em Coimbra (mediante agendamento).</li>
+            <li style={{ marginBottom: '8px' }}><strong style={{color: '#2C2A28'}}>Recolha no evento (Recomendado):</strong> Para sua total comodidade e para garantir que as flores nos chegam o mais frescas possível, deslocamo-nos ao local do evento ou hotel para fazer a recolha em mãos (mediante orçamento e disponibilidade).</li>
+            <li style={{ marginBottom: '8px' }}><strong style={{color: '#2C2A28'}}>Entrega em mãos:</strong> Gratuita, no nosso atelier em Coimbra (mediante agendamento).</li>
             <li><strong style={{color: '#2C2A28'}}>Envio por CTT:</strong> Correio frágil e urgente (custos a cargo do cliente).</li>
-            <li><strong style={{color: '#2C2A28'}}>Recolha no evento:</strong> Mediante orçamento e disponibilidade.</li>
           </ul>
-          <p style={{ margin: 0, fontSize: '0.85rem', opacity: 0.8 }}>* Após os 5 dias, se a viabilidade estiver comprometida, recomendamos o serviço de Recriação de Bouquet.</p>
+          <p style={{ margin: 0, fontSize: '0.85rem', opacity: 0.8 }}>
+            * Se este prazo já tiver passado, não conseguimos garantir a viabilidade da preservação e recomendamos o nosso serviço de <a href="/recriacao-de-bouquet" className="earthy-link">Recriação de Bouquet</a>.
+          </p>
         </>
       )
     },
