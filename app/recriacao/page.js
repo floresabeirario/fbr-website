@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-// --- COMPONENTE DE PASSO (DESIGN REFINADO COM CAIXA PEQUENA E CENTRADA) ---
+// --- COMPONENTE DE PASSO (COM CAIXA PEQUENA CENTRADA E FOTOS QUADRADAS) ---
 const StepCard = ({ imageSrc, number, title, desc, delay }) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
@@ -15,12 +15,12 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
       height: '100%',
       borderRadius: '16px',
       backgroundColor: '#FFFFFF',
-      boxShadow: '0 8px 30px rgba(0,0,0,0.06)', // Sombra suave para o cartão flutuar no fundo colorido
+      boxShadow: '0 8px 30px rgba(0,0,0,0.06)',
       border: '1px solid rgba(255,255,255,0.5)',
-      overflow: 'hidden' // Mantém os cantos redondos imaculados
+      overflow: 'hidden'
     }}
   >
-    {/* ÁREA DA IMAGEM */}
+    {/* ÁREA DA IMAGEM - QUADRADO PERFEITO (1:1) */}
     <div style={{ width: '100%', aspectRatio: '1/1', position: 'relative' }}>
       <img 
         src={imageSrc} 
@@ -31,15 +31,15 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
       {/* A CAIXA PEQUENA NA FRONTEIRA (50% FOTO / 50% TEXTO) */}
       <div style={{
         position: 'absolute',
-        bottom: '0', // Fica colado ao fundo da imagem
+        bottom: '0', 
         left: '50%',
-        transform: 'translate(-50%, 50%)', // O '50%' no Y empurra a caixa exatamente para o meio da fronteira
+        transform: 'translate(-50%, 50%)', 
         backgroundColor: '#FFFFFF',
         color: '#1a1a1a',
         padding: '10px 24px',
-        borderRadius: '30px', // Formato de "pílula" elegante
+        borderRadius: '30px', 
         textAlign: 'center',
-        whiteSpace: 'nowrap', // Impede que o texto quebre
+        whiteSpace: 'nowrap', 
         boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
         zIndex: 10,
         width: 'max-content',
@@ -56,7 +56,7 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
 
     {/* ÁREA DO TEXTO */}
     <div style={{ 
-      padding: '40px 20px 25px 20px', // O padding-top de 40px dá espaço para a caixa que está sobreposta
+      padding: '40px 20px 25px 20px', 
       display: 'flex', 
       flexDirection: 'column', 
       flexGrow: 1,
@@ -98,20 +98,19 @@ export default function RecriacaoBouquet() {
   ];
 
   return (
-    // O MÁGICO FUNDO EM TRANSIÇÃO COM AS TUAS CORES (COM OPACIDADE SUAVE)
-    // Cores usadas: Azul claro (#8DB9F2), Lilás (#E7C5E0), Azul (#4B83F2), Verde (#97C540), Amarelo (#E5CB23)
+    // FUNDO COM CORES MUITO MAIS SATURADAS E VIBRANTES
     <main style={{ 
-      background: 'linear-gradient(to bottom, rgba(141, 185, 242, 0.15) 0%, rgba(231, 197, 224, 0.25) 25%, rgba(75, 131, 242, 0.1) 50%, rgba(151, 197, 64, 0.12) 75%, rgba(229, 203, 35, 0.15) 100%)',
+      background: 'linear-gradient(to bottom, rgba(141, 185, 242, 0.4) 0%, rgba(231, 197, 224, 0.5) 25%, rgba(75, 131, 242, 0.35) 50%, rgba(151, 197, 64, 0.3) 75%, rgba(229, 203, 35, 0.35) 100%)',
       minHeight: '100vh', 
-      paddingBottom: '80px' 
+      paddingBottom: '100px' 
     }}>
       
       <style dangerouslySetInnerHTML={{ __html: `
-        /* OTIMIZAÇÃO MOBILE EXTREMA */
         .hero-padding { padding-top: 100px; }
-        .section-margin { margin-bottom: 70px; } 
         
-        /* GRELHA DOS PASSOS - 1 COLUNA NO MOBILE */
+        /* Margem base ajustada para garantir separação correta */
+        .section-gap { margin-bottom: 80px; } 
+        
         .steps-grid { display: grid; grid-template-columns: 1fr; gap: 30px; } 
         
         .cta-button {
@@ -126,19 +125,19 @@ export default function RecriacaoBouquet() {
         /* TABLET */
         @media (min-width: 768px) {
           .hero-padding { padding-top: 130px; } 
-          .section-margin { margin-bottom: 100px; } 
+          .section-gap { margin-bottom: 120px; } 
           .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; }
         }
 
         /* DESKTOP */
         @media (min-width: 1024px) {
-          .section-margin { margin-bottom: 130px; } 
+          .section-gap { margin-bottom: 160px; } /* Muito mais espaço entre as secções no PC */
           .steps-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
         }
       `}} />
 
       {/* CABEÇALHO */}
-      <section className="hero-padding section-margin" style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center', paddingLeft: '20px', paddingRight: '20px' }}>
+      <section className="hero-padding section-gap" style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center', paddingLeft: '20px', paddingRight: '20px' }}>
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <h1 style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a', margin: '0 0 20px 0', lineHeight: '1.1' }}>
             Recriação de Bouquet
@@ -151,7 +150,7 @@ export default function RecriacaoBouquet() {
       </section>
 
       {/* SECÇÃO DOS PASSOS */}
-      <section className="section-margin" style={{ maxWidth: '1300px', margin: '0 auto', padding: '0 20px' }}>
+      <section className="section-gap" style={{ maxWidth: '1300px', margin: '0 auto', padding: '0 20px' }}>
         <h2 style={{ textAlign: 'center', fontSize: '2.2rem', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a', marginBottom: '50px' }}>
           Como funciona
         </h2>
@@ -169,8 +168,8 @@ export default function RecriacaoBouquet() {
         </div>
       </section>
 
-      {/* SECÇÃO INFERIOR: HISTÓRIAS & DESTAQUE */}
-      <section className="section-margin" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+      {/* SECÇÃO INFERIOR: HISTÓRIAS (AGORA AS 3 CAIXAS SÃO IGUAIS) */}
+      <section className="section-gap" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: '50px' }}>
           <h2 style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a', lineHeight: '1.1' }}>
             Histórias que merecem ser emolduradas
@@ -179,10 +178,9 @@ export default function RecriacaoBouquet() {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
           
-          {/* CAIXA DE DESTAQUE (Com Borda Amarela da paleta) */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-            style={{ backgroundColor: '#FFFFFF', padding: '40px 30px', borderRadius: '16px', border: '2px solid #E5CB23', textAlign: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}
+            style={{ backgroundColor: '#FFFFFF', padding: '40px 30px', borderRadius: '16px', border: '1px solid rgba(26,26,26,0.05)', textAlign: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}
           >
             <h4 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: '1.4rem', color: '#1a1a1a', margin: '0 0 15px 0' }}>
               A "Segunda Oportunidade"
@@ -192,7 +190,6 @@ export default function RecriacaoBouquet() {
             </p>
           </motion.div>
 
-          {/* Outras Histórias (Brancas e limpas) */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
             style={{ backgroundColor: '#FFFFFF', padding: '40px 30px', borderRadius: '16px', border: '1px solid rgba(26,26,26,0.05)', textAlign: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}
@@ -216,32 +213,34 @@ export default function RecriacaoBouquet() {
         </div>
       </section>
 
-      {/* TRANSPARÊNCIA DE VALORES */}
-      <section className="section-margin" style={{ maxWidth: '900px', margin: '0 auto', padding: '0 20px' }}>
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          style={{ 
-            backgroundColor: 'rgba(255, 255, 255, 0.7)', 
-            backdropFilter: 'blur(10px)',
-            borderRadius: '16px', 
-            padding: '50px 30px',
-            textAlign: 'center',
-            border: '1px solid rgba(255,255,255,0.9)',
-            boxShadow: '0 8px 30px rgba(0,0,0,0.03)'
-          }}
-        >
-          <h3 style={{ fontSize: '1.8rem', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a', marginBottom: '20px' }}>
-            Transparência nos Valores
-          </h3>
-          <p style={{ color: '#444', lineHeight: '1.7', fontSize: '1.05rem', margin: '0 auto 20px auto', maxWidth: '700px' }}>
-            Acreditamos que a beleza está na transparência. O valor da recriação de um bouquet divide-se em duas partes simples: o <strong>custo das flores frescas</strong> (orçamentado pela nossa florista parceira) e o <strong>valor da preservação</strong>.
-          </p>
-          <p style={{ color: '#444', lineHeight: '1.7', fontSize: '1.05rem', margin: '0 auto', maxWidth: '700px' }}>
-            O custo da preservação é <strong>exatamente igual</strong> ao preçário base do nosso atelier. Tem total liberdade para escolher o tamanho e formato de moldura que preferir da nossa página de preços, sabendo que todas as peças já incluem o vidro museu de proteção anti-reflexo e proteção UV.
-          </p>
-        </motion.div>
+      {/* TRANSPARÊNCIA DE VALORES (AGORA COM BASTANTE ESPAÇO ACIMA) */}
+      <section className="section-gap" style={{ padding: '0 20px' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            style={{ 
+              backgroundColor: 'rgba(255, 255, 255, 0.7)', 
+              backdropFilter: 'blur(10px)',
+              borderRadius: '16px', 
+              padding: '60px 30px',
+              textAlign: 'center',
+              border: '1px solid rgba(255,255,255,0.9)',
+              boxShadow: '0 8px 30px rgba(0,0,0,0.03)'
+            }}
+          >
+            <h3 style={{ fontSize: '1.8rem', fontFamily: "'TAN-MEMORIES', serif", color: '#1a1a1a', marginBottom: '20px' }}>
+              Transparência nos Valores
+            </h3>
+            <p style={{ color: '#444', lineHeight: '1.7', fontSize: '1.05rem', margin: '0 auto 20px auto', maxWidth: '700px' }}>
+              Acreditamos que a beleza está na transparência. O valor da recriação de um bouquet divide-se em duas partes simples: o <strong>custo das flores frescas</strong> (orçamentado pela nossa florista parceira) e o <strong>valor da preservação</strong>.
+            </p>
+            <p style={{ color: '#444', lineHeight: '1.7', fontSize: '1.05rem', margin: '0 auto', maxWidth: '700px' }}>
+              O custo da preservação é <strong>exatamente igual</strong> ao preçário base do nosso atelier. Tem total liberdade para escolher o tamanho e formato de moldura que preferir da nossa página de preços, sabendo que todas as peças já incluem o vidro museu de proteção anti-reflexo e proteção UV.
+            </p>
+          </motion.div>
+        </div>
       </section>
 
       {/* CTA FINAL */}
