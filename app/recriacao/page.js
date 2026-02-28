@@ -17,7 +17,7 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
       backgroundColor: '#FFFFFF',
       boxShadow: '0 8px 30px rgba(0,0,0,0.06)',
       border: '1px solid rgba(255,255,255,0.5)',
-      overflow: 'hidden'
+      overflow: 'hidden' // GARANTE QUE A IMAGEM RESPEITE OS CANTOS ARREDONDADOS DO CARD
     }}
   >
     {/* ÁREA DA IMAGEM - QUADRADO PERFEITO (1:1) */}
@@ -33,7 +33,7 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
         position: 'absolute',
         bottom: '0', 
         left: '50%',
-        transform: 'translate(-50%, 50%)', 
+        transform: 'translate(-50%, 50%)', // CENTRALIZA A CÁPSULA PERFEITAMENTE
         backgroundColor: '#FFFFFF',
         color: '#1a1a1a',
         padding: '10px 24px',
