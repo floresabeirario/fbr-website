@@ -130,7 +130,7 @@ export default function PassoAPasso() {
     },
     {
       number: "6",
-      title: "Toque Final e Último Pagamento",
+      title: "Último Pagamento e Entrega do Quadro",
       desc: (
         <>
           <p style={{ margin: '0 0 10px 0' }}>Chegou o momento de lhe enviarmos o seu quadro. Antes do envio ou da recolha, será solicitado o pagamento da 3ª e última prestação, <strong style={{color: '#2C2A28'}}>30% do valor total</strong>.</p>
