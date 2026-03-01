@@ -97,7 +97,9 @@ export default function OpcoesClient() {
           </Reveal>
         </div>
 
+        {/* Wrapper com overflow:hidden para não vazar para a página */}
         {/* Track: scroll no mobile, grid no desktop */}
+        <div style={{ overflowX: "hidden" }}>
         <div className="fundos-track">
           {[
             {
@@ -166,6 +168,7 @@ export default function OpcoesClient() {
             </div>
           ))}
         </div>
+        </div>{/* fim do overflow:hidden wrapper */}
 
         <p className="slider-hint">deslize para ver mais</p>
 
