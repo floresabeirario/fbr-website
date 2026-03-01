@@ -37,7 +37,7 @@ export default function OpcoesClient() {
     <div style={{ backgroundColor: "#FAF7F0", color: "#1a1a1a", overflowX: "hidden" }}>
 
       {/* ════════════════════════════════════════════
-          HERO com IMAGEM DE FUNDO — fotoquadrocloseup2.webp
+          HERO com IMAGEM DE FUNDO — fotoquadrocloseup1.webp
       ════════════════════════════════════════════ */}
       <section style={{ position: "relative", minHeight: "92vh", display: "flex", alignItems: "flex-end", overflow: "hidden" }}>
 
@@ -50,10 +50,10 @@ export default function OpcoesClient() {
             backgroundPosition: "center",
             filter: "brightness(0.7)"
           }}/>
-          {/* Gradiente escuro em baixo para o texto */}
+          {/* Gradiente escuro em baixo para o texto - mais transparente no topo */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(to bottom, rgba(15,30,26,0.15) 0%, rgba(15,30,26,0.35) 40%, rgba(15,30,26,0.82) 100%)"
+            background: "linear-gradient(to bottom, rgba(15,30,26,0) 0%, rgba(15,30,26,0.2) 35%, rgba(15,30,26,0.75) 100%)"
           }} />
         </div>
 
@@ -84,14 +84,14 @@ export default function OpcoesClient() {
       </section>
 
       {/* ════════════════════════════════════════════
-          TIPOS DE FUNDO
+          TIPOS DE FUNDO - Fundo preto continuando o gradiente
       ════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(60px,10vw,100px) 0 clamp(60px,8vw,100px)" }}>
+      <section style={{ backgroundColor: "#0F1E1A", padding: "clamp(40px,7vw,70px) 0 clamp(50px,8vw,80px)" }}>
 
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px clamp(32px,5vw,48px)" }}>
           <Reveal>
-            <Label>Personalização</Label>
-            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem, 5vw, 3.8rem)", fontWeight: 400, margin: 0, lineHeight: 1.05 }}>
+            <Label light>Personalização</Label>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem, 5vw, 3.8rem)", fontWeight: 400, margin: 0, lineHeight: 1.05, color: "#FAF7F0" }}>
               Tipos de Fundo
             </h2>
           </Reveal>
@@ -150,14 +150,14 @@ export default function OpcoesClient() {
                 )}
               </div>
               <div style={{ padding: "18px 4px 0" }}>
-                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.2, color: "#1a1a1a" }}>
+                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.2, color: "#FAF7F0" }}>
                   {item.title}
                 </h3>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.82rem", lineHeight: 1.75, color: "rgba(26,26,26,0.58)", margin: 0 }}>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.82rem", lineHeight: 1.75, color: "rgba(250,247,240,0.55)", margin: 0 }}>
                   {item.desc}
                 </p>
                 {item.note && (
-                  <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.74rem", color: "rgba(26,26,26,0.36)", margin: "6px 0 0", fontStyle: "italic" }}>
+                  <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.74rem", color: "rgba(250,247,240,0.35)", margin: "6px 0 0", fontStyle: "italic" }}>
                     {item.note}
                   </p>
                 )}
@@ -167,7 +167,7 @@ export default function OpcoesClient() {
         </div>
         </div>
 
-        <p className="slider-hint" aria-live="polite">deslize para ver mais</p>
+        <p className="slider-hint" aria-live="polite" style={{ color: "rgba(250,247,240,0.3)" }}>deslize para ver mais</p>
 
       </section>
 
@@ -175,7 +175,7 @@ export default function OpcoesClient() {
           ELEMENTOS ADICIONAIS
       ════════════════════════════════════════════ */}
       <section style={{ backgroundColor: "#FAF7F0", borderTop: "1px solid rgba(26,26,26,0.08)" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "clamp(60px,10vw,120px) 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "clamp(50px,8vw,90px) 24px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 440px), 1fr))", gap: "clamp(40px, 6vw, 80px)", alignItems: "center" }}>
             <div>
               <Reveal>
@@ -217,10 +217,10 @@ export default function OpcoesClient() {
       {/* ════════════════════════════════════════════
           TAMANHOS E PREÇOS
       ════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: "#0F1E1A", padding: "clamp(60px,10vw,120px) 24px" }}>
+      <section style={{ backgroundColor: "#0F1E1A", padding: "clamp(50px,8vw,90px) 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
-            <div style={{ textAlign: "center", marginBottom: "64px" }}>
+            <div style={{ textAlign: "center", marginBottom: "48px" }}>
               <Label light>Investimento</Label>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 20px", lineHeight: 1.1, color: "#FAF7F0" }}>
                 Tamanhos & Preços
@@ -228,6 +228,91 @@ export default function OpcoesClient() {
               <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(250,247,240,0.5)", maxWidth: "440px", margin: "0 auto" }}>
                 Cada quadro que criamos é único. Feito à mão, com atenção aos detalhes e dedicação à história por detrás das flores.
               </p>
+            </div>
+          </Reveal>
+
+          {/* Representação visual dos tamanhos */}
+          <Reveal delay={0.1}>
+            <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", gap: "32px", marginBottom: "56px", padding: "0 20px" }}>
+              {/* 30x40 */}
+              <div style={{ textAlign: "center" }}>
+                <svg width="90" height="120" viewBox="0 0 90 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Moldura */}
+                  <rect x="2" y="2" width="86" height="116" fill="#3D2817" stroke="#2A1810" strokeWidth="1"/>
+                  <rect x="8" y="8" width="74" height="104" fill="#FAF7F0" stroke="#3D6B5E" strokeWidth="0.5"/>
+                  
+                  {/* Flores decorativas simples */}
+                  <circle cx="45" cy="45" r="8" fill="#8BA888" opacity="0.7"/>
+                  <circle cx="38" cy="52" r="6" fill="#5A6B60" opacity="0.6"/>
+                  <circle cx="52" cy="52" r="6" fill="#5A6B60" opacity="0.6"/>
+                  <circle cx="45" cy="58" r="5" fill="#3D6B5E" opacity="0.5"/>
+                  
+                  {/* Caule */}
+                  <line x1="45" y1="58" x2="45" y2="85" stroke="#5A6B60" strokeWidth="1.5" opacity="0.4"/>
+                  
+                  {/* Folhas */}
+                  <path d="M 45 70 Q 35 72 38 78" fill="none" stroke="#8BA888" strokeWidth="1.2" opacity="0.5"/>
+                  <path d="M 45 75 Q 55 77 52 83" fill="none" stroke="#8BA888" strokeWidth="1.2" opacity="0.5"/>
+                </svg>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.7rem", color: "rgba(250,247,240,0.4)", margin: "8px 0 0", letterSpacing: "1px" }}>30×40cm</p>
+              </div>
+
+              {/* 40x50 - Mais popular (maior destaque) */}
+              <div style={{ textAlign: "center" }}>
+                <svg width="120" height="150" viewBox="0 0 120 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Moldura */}
+                  <rect x="2" y="2" width="116" height="146" fill="#3D2817" stroke="#2A1810" strokeWidth="1.5"/>
+                  <rect x="9" y="9" width="102" height="132" fill="#FAF7F0" stroke="#B8954A" strokeWidth="1"/>
+                  
+                  {/* Flores decorativas - composição maior */}
+                  <circle cx="60" cy="55" r="11" fill="#8BA888" opacity="0.7"/>
+                  <circle cx="50" cy="64" r="9" fill="#5A6B60" opacity="0.6"/>
+                  <circle cx="70" cy="64" r="9" fill="#5A6B60" opacity="0.6"/>
+                  <circle cx="60" cy="72" r="7" fill="#3D6B5E" opacity="0.5"/>
+                  <circle cx="45" cy="70" r="6" fill="#8BA888" opacity="0.5"/>
+                  <circle cx="75" cy="70" r="6" fill="#8BA888" opacity="0.5"/>
+                  
+                  {/* Caule */}
+                  <line x1="60" y1="72" x2="60" y2="110" stroke="#5A6B60" strokeWidth="2" opacity="0.4"/>
+                  
+                  {/* Folhas */}
+                  <path d="M 60 85 Q 45 88 48 96" fill="none" stroke="#8BA888" strokeWidth="1.5" opacity="0.5"/>
+                  <path d="M 60 95 Q 75 98 72 106" fill="none" stroke="#8BA888" strokeWidth="1.5" opacity="0.5"/>
+                  <path d="M 60 90 Q 48 92 50 98" fill="none" stroke="#8BA888" strokeWidth="1.2" opacity="0.4"/>
+                </svg>
+                <div style={{ display: "inline-block", backgroundColor: "rgba(184,149,74,0.2)", padding: "4px 12px", borderRadius: "100px", marginTop: "8px" }}>
+                  <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.7rem", color: "#B8954A", margin: 0, letterSpacing: "1px", fontWeight: 600 }}>40×50cm ★</p>
+                </div>
+              </div>
+
+              {/* 50x70 */}
+              <div style={{ textAlign: "center" }}>
+                <svg width="150" height="210" viewBox="0 0 150 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Moldura */}
+                  <rect x="2" y="2" width="146" height="206" fill="#3D2817" stroke="#2A1810" strokeWidth="1.5"/>
+                  <rect x="10" y="10" width="130" height="190" fill="#FAF7F0" stroke="#3D6B5E" strokeWidth="0.5"/>
+                  
+                  {/* Flores decorativas - composição grande */}
+                  <circle cx="75" cy="75" r="14" fill="#8BA888" opacity="0.7"/>
+                  <circle cx="62" cy="86" r="11" fill="#5A6B60" opacity="0.6"/>
+                  <circle cx="88" cy="86" r="11" fill="#5A6B60" opacity="0.6"/>
+                  <circle cx="75" cy="96" r="9" fill="#3D6B5E" opacity="0.5"/>
+                  <circle cx="55" cy="92" r="8" fill="#8BA888" opacity="0.5"/>
+                  <circle cx="95" cy="92" r="8" fill="#8BA888" opacity="0.5"/>
+                  <circle cx="70" cy="105" r="7" fill="#5A6B60" opacity="0.4"/>
+                  <circle cx="80" cy="105" r="7" fill="#5A6B60" opacity="0.4"/>
+                  
+                  {/* Caule */}
+                  <line x1="75" y1="96" x2="75" y2="150" stroke="#5A6B60" strokeWidth="2.5" opacity="0.4"/>
+                  
+                  {/* Folhas */}
+                  <path d="M 75 115 Q 55 118 58 128" fill="none" stroke="#8BA888" strokeWidth="2" opacity="0.5"/>
+                  <path d="M 75 130 Q 95 133 92 143" fill="none" stroke="#8BA888" strokeWidth="2" opacity="0.5"/>
+                  <path d="M 75 120 Q 60 123 62 131" fill="none" stroke="#8BA888" strokeWidth="1.5" opacity="0.4"/>
+                  <path d="M 75 135 Q 90 138 88 146" fill="none" stroke="#8BA888" strokeWidth="1.5" opacity="0.4"/>
+                </svg>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.7rem", color: "rgba(250,247,240,0.4)", margin: "8px 0 0", letterSpacing: "1px" }}>50×70cm</p>
+              </div>
             </div>
           </Reveal>
 
@@ -297,10 +382,10 @@ export default function OpcoesClient() {
       {/* ════════════════════════════════════════════
           MATERIAIS E QUALIDADE
       ════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(60px,10vw,120px) 24px" }}>
+      <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(50px,8vw,90px) 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
-            <div style={{ textAlign: "center", marginBottom: "64px" }}>
+            <div style={{ textAlign: "center", marginBottom: "48px" }}>
               <Label>Feito para durar</Label>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 20px", lineHeight: 1.1 }}>
                 Materiais & Qualidade
@@ -311,7 +396,7 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1px", backgroundColor: "rgba(26,26,26,0.07)", marginBottom: "72px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1px", backgroundColor: "rgba(26,26,26,0.07)", marginBottom: "56px" }}>
             {[
               { bg: "#3D6B5E", textColor: "#FAF7F0", subColor: "rgba(250,247,240,0.55)", title: "Moldura de Nogueira", desc: "Folheada de nogueira, produzida artesanalmente em Coimbra por carpinteiros locais. Material de origem sustentável e regional." },
               { bg: "#FAF7F0", textColor: "#1a1a1a", subColor: "rgba(26,26,26,0.55)", title: "Cartão pH Neutro",    desc: "Base de conservação a longo prazo, idêntica à usada em museus e arquivos. Preserva as flores sem alterar a sua cor." },
@@ -375,10 +460,10 @@ export default function OpcoesClient() {
       {/* ════════════════════════════════════════════
           ADD-ONS
       ════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: "#F2EDE4", padding: "clamp(60px,10vw,120px) 24px" }}>
+      <section style={{ backgroundColor: "#F2EDE4", padding: "clamp(50px,8vw,90px) 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
-            <div style={{ marginBottom: "64px" }}>
+            <div style={{ marginBottom: "48px" }}>
               <Label>Extras</Label>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 16px", lineHeight: 1.1 }}>
                 Add-ons &<br/><em style={{ color: "#3D6B5E" }}>Presentes</em>
@@ -389,7 +474,7 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 480px), 1fr))", gap: "clamp(40px, 6vw, 80px)", alignItems: "center", marginBottom: "clamp(60px,10vw,100px)", paddingBottom: "clamp(60px,10vw,100px)", borderBottom: "1px solid rgba(26,26,26,0.1)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 480px), 1fr))", gap: "clamp(40px, 6vw, 80px)", alignItems: "center", marginBottom: "clamp(50px,8vw,80px)", paddingBottom: "clamp(50px,8vw,80px)", borderBottom: "1px solid rgba(26,26,26,0.1)" }}>
             <Reveal>
               <div style={{ aspectRatio: "4/3", overflow: "hidden", borderRadius: "12px", boxShadow: "0 16px 48px rgba(26,26,26,0.1)" }}>
                 <img src="/miniquadros.webp" alt="Mini quadros 20x25cm de flores preservadas como presentes para padrinhos e damas de honor" loading="lazy"
@@ -466,7 +551,7 @@ export default function OpcoesClient() {
       {/* ════════════════════════════════════════════
           CTA FINAL
       ════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: "#3D6B5E", padding: "clamp(80px,12vw,140px) 24px", textAlign: "center" }}>
+      <section style={{ backgroundColor: "#3D6B5E", padding: "clamp(60px,10vw,100px) 24px", textAlign: "center" }}>
         <div style={{ maxWidth: "640px", margin: "0 auto" }}>
           <Reveal>
             <Label light>Próximo passo</Label>
@@ -571,7 +656,6 @@ export default function OpcoesClient() {
           font-size: 0.6rem;
           letter-spacing: 2.5px;
           text-transform: uppercase;
-          color: rgba(26,26,26,0.28);
           padding: 16px 0 0;
           margin: 0;
         }
