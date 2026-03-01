@@ -82,12 +82,13 @@ export default function OpcoesClient() {
       </section>
 
       {/* ════════════════════════════════════════════
-          TIPOS DE FUNDO — layout alternado editorial
+          TIPOS DE FUNDO
+          Mobile: slider horizontal com scroll snap
+          Desktop: 4 colunas numa linha
       ════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: "#FAF7F0" }}>
+      <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(60px,10vw,100px) 0 0" }}>
 
-        {/* Cabeçalho da secção */}
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "clamp(60px,10vw,100px) 24px clamp(40px,6vw,60px)" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px clamp(32px,5vw,48px)" }}>
           <Reveal>
             <Label>Personalização</Label>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem, 5vw, 3.8rem)", fontWeight: 400, margin: 0, lineHeight: 1.05 }}>
@@ -96,112 +97,68 @@ export default function OpcoesClient() {
           </Reveal>
         </div>
 
-        {/* Fundo 1: Vidro sobre Vidro — imagem esquerda, texto direita */}
-        <div style={{ borderTop: "1px solid rgba(26,26,26,0.08)" }}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 480px), 1fr))", alignItems: "stretch" }}>
-            <Reveal>
-              <div style={{ aspectRatio: "4/3", overflow: "hidden", backgroundColor: "#e8e4dc" }}>
-                <img src="/quadrovidrosobrevidro.webp" alt="Quadro de flores prensadas em vidro sobre vidro, efeito transparente" loading="lazy"
+        {/* Slider container */}
+        <div className="fundos-slider">
+          {[
+            {
+              img: "/quadrovidrosobrevidro.webp",
+              alt: "Quadro de flores prensadas em vidro sobre vidro, efeito transparente",
+              tag: "Fundo transparente", tagBg: "rgba(61,107,94,0.12)", tagColor: "#3D6B5E",
+              title: "Vidro sobre Vidro",
+              desc: "As flores ficam suspensas entre dois vidros, sem fundo opaco. O efeito é leve e moderno, permitindo ver através da moldura."
+            },
+            {
+              img: "/quadrobranco.webp",
+              alt: "Quadro de flores prensadas com fundo branco minimalista",
+              tag: "Mais popular", tagBg: "rgba(184,149,74,0.15)", tagColor: "#96722A",
+              title: "Fundo Branco",
+              desc: "Uma opção minimalista e intemporal que realça naturalmente as cores e formas das flores."
+            },
+            {
+              img: "/quadropreto.webp",
+              alt: "Quadro de flores prensadas com fundo preto ou colorido",
+              tag: "Personalizável", tagBg: "rgba(139,168,136,0.15)", tagColor: "#3D6B5E",
+              title: "Fundo Colorido",
+              desc: "Podemos aplicar qualquer cor de fundo escolhida para realçar a beleza das flores e combinar com a paleta do bouquet."
+            },
+            {
+              img: "/quadrofoto.webp",
+              alt: "Quadro de flores prensadas com fotografia personalizada como fundo",
+              tag: "Custo adicional", tagBg: "rgba(184,149,74,0.12)", tagColor: "#96722A",
+              title: "Fundo com Fotografia",
+              desc: "Uma paisagem, um retrato ou qualquer imagem com significado especial. A imagem será profissionalmente impressa.",
+              note: "O custo adicional varia consoante as dimensões da moldura."
+            },
+          ].map((item, i) => (
+            <div key={i} className="fundo-slide">
+              <div style={{ aspectRatio: "3/4", overflow: "hidden", backgroundColor: "#e0dbd3" }}>
+                <img src={item.img} alt={item.alt} loading="lazy"
                   style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.8s ease" }}
                   className="fundo-img" />
               </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div style={{ padding: "clamp(40px,6vw,64px) clamp(24px,5vw,56px)", display: "flex", flexDirection: "column", justifyContent: "center", backgroundColor: "#FAF7F0" }}>
-                <span style={{ display: "inline-block", backgroundColor: "rgba(61,107,94,0.1)", color: "#3D6B5E", fontSize: "0.58rem", letterSpacing: "2.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "6px 14px", borderRadius: "100px", marginBottom: "24px", width: "fit-content" }}>
-                  Fundo transparente
+              <div style={{ padding: "24px 20px 28px" }}>
+                <span style={{ display: "inline-block", backgroundColor: item.tagBg, color: item.tagColor, fontSize: "0.55rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "5px 12px", borderRadius: "100px", marginBottom: "14px" }}>
+                  {item.tag}
                 </span>
-                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", fontWeight: 400, margin: "0 0 20px", lineHeight: 1.1 }}>
-                  Vidro sobre Vidro
+                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.2rem, 2.5vw, 1.5rem)", fontWeight: 400, margin: "0 0 12px", lineHeight: 1.15 }}>
+                  {item.title}
                 </h3>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.85, color: "rgba(26,26,26,0.65)", margin: 0 }}>
-                  As flores ficam suspensas entre dois vidros, sem fundo opaco. O efeito é leve e moderno, permitindo ver através da moldura. Ideal para ambientes luminosos ou para quem procura um visual mais contemporâneo.
+                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(26,26,26,0.6)", margin: 0 }}>
+                  {item.desc}
                 </p>
+                {item.note && (
+                  <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.78rem", lineHeight: 1.6, color: "rgba(26,26,26,0.4)", margin: "10px 0 0", fontStyle: "italic" }}>
+                    {item.note}
+                  </p>
+                )}
               </div>
-            </Reveal>
-          </div>
+            </div>
+          ))}
         </div>
 
-        {/* Fundo 2: Branco — texto esquerda, imagem direita, fundo creme */}
-        <div style={{ borderTop: "1px solid rgba(26,26,26,0.08)", backgroundColor: "#F2EDE4" }}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 480px), 1fr))", alignItems: "stretch" }}>
-            <Reveal delay={0.1}>
-              <div style={{ padding: "clamp(40px,6vw,64px) clamp(24px,5vw,56px)", display: "flex", flexDirection: "column", justifyContent: "center", order: 0 }} className="text-first">
-                <span style={{ display: "inline-block", backgroundColor: "rgba(184,149,74,0.15)", color: "#B8954A", fontSize: "0.58rem", letterSpacing: "2.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "6px 14px", borderRadius: "100px", marginBottom: "24px", width: "fit-content" }}>
-                  Mais popular
-                </span>
-                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", fontWeight: 400, margin: "0 0 20px", lineHeight: 1.1 }}>
-                  Fundo Branco
-                </h3>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.85, color: "rgba(26,26,26,0.65)", margin: 0 }}>
-                  Uma opção minimalista e intemporal que realça naturalmente as cores e formas das flores. Ideal para quem prefere um estilo mais limpo e elegante.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal>
-              <div style={{ aspectRatio: "4/3", overflow: "hidden", backgroundColor: "#ddd9d0", order: 1 }} className="img-second">
-                <img src="/quadrobranco.webp" alt="Quadro de flores prensadas com fundo branco minimalista" loading="lazy"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.8s ease" }}
-                  className="fundo-img" />
-              </div>
-            </Reveal>
-          </div>
-        </div>
+        {/* Indicador "deslize" só no mobile */}
+        <p className="slider-hint">deslize para ver mais</p>
 
-        {/* Fundo 3: Preto ou Colorido — imagem esquerda, texto direita, fundo verde escuro */}
-        <div style={{ borderTop: "1px solid rgba(26,26,26,0.08)", backgroundColor: "#0F1E1A" }}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 480px), 1fr))", alignItems: "stretch" }}>
-            <Reveal>
-              <div style={{ aspectRatio: "4/3", overflow: "hidden", backgroundColor: "#1a2e28" }}>
-                <img src="/quadropreto.webp" alt="Quadro de flores prensadas com fundo preto ou colorido" loading="lazy"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.8s ease" }}
-                  className="fundo-img" />
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div style={{ padding: "clamp(40px,6vw,64px) clamp(24px,5vw,56px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                <span style={{ display: "inline-block", backgroundColor: "rgba(139,168,136,0.2)", color: "#8BA888", fontSize: "0.58rem", letterSpacing: "2.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "6px 14px", borderRadius: "100px", marginBottom: "24px", width: "fit-content" }}>
-                  Personalizável
-                </span>
-                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", fontWeight: 400, margin: "0 0 20px", lineHeight: 1.1, color: "#FAF7F0" }}>
-                  Fundo Preto ou Colorido
-                </h3>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.85, color: "rgba(250,247,240,0.6)", margin: 0 }}>
-                  Podemos aplicar uma cor de fundo escolhida para realçar a beleza das flores. Se quiser, sugerimos tonalidades que combinem com a paleta de cores do seu bouquet e valorizem a composição final.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-
-        {/* Fundo 4: Fotografia — texto esquerda, imagem direita, fundo dourado */}
-        <div style={{ borderTop: "1px solid rgba(26,26,26,0.08)", backgroundColor: "#EDE5D4" }}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 480px), 1fr))", alignItems: "stretch" }}>
-            <Reveal delay={0.1}>
-              <div style={{ padding: "clamp(40px,6vw,64px) clamp(24px,5vw,56px)", display: "flex", flexDirection: "column", justifyContent: "center" }} className="text-first">
-                <span style={{ display: "inline-block", backgroundColor: "rgba(184,149,74,0.2)", color: "#96722A", fontSize: "0.58rem", letterSpacing: "2.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "6px 14px", borderRadius: "100px", marginBottom: "24px", width: "fit-content" }}>
-                  Custo adicional
-                </span>
-                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", fontWeight: 400, margin: "0 0 20px", lineHeight: 1.1 }}>
-                  Fundo com Fotografia
-                </h3>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.85, color: "rgba(26,26,26,0.65)", margin: "0 0 20px" }}>
-                  Escolha uma fotografia para servir de fundo. Uma paisagem, um retrato ou qualquer imagem com significado especial para si. A imagem será profissionalmente impressa.
-                </p>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.82rem", lineHeight: 1.7, color: "rgba(26,26,26,0.5)", margin: 0, fontStyle: "italic" }}>
-                  O custo adicional varia consoante as dimensões da moldura escolhida.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal>
-              <div style={{ aspectRatio: "4/3", overflow: "hidden", backgroundColor: "#d4c9b8", order: 1 }} className="img-second">
-                <img src="/quadrofoto.webp" alt="Quadro de flores prensadas com fotografia personalizada como fundo" loading="lazy"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.8s ease" }}
-                  className="fundo-img" />
-              </div>
-            </Reveal>
-          </div>
-        </div>
       </section>
 
       {/* ════════════════════════════════════════════
@@ -328,34 +285,29 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          {/* 4 materiais em grid com cor de fundo alternada */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1px", backgroundColor: "rgba(26,26,26,0.07)", marginBottom: "80px" }}>
+          {/* materiais em grid com cor de fundo alternada — sem números */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1px", backgroundColor: "rgba(26,26,26,0.07)", marginBottom: "72px" }}>
             {[
-              { bg: "#3D6B5E", textColor: "#FAF7F0", subColor: "rgba(250,247,240,0.55)", title: "Moldura de Nogueira", desc: "Folheada de nogueira, feita artesanalmente em Coimbra por carpinteiros locais." },
-              { bg: "#FAF7F0", textColor: "#1a1a1a", subColor: "rgba(26,26,26,0.55)", title: "Cartão pH Neutro",    desc: "Base de conservação a longo prazo, idêntica à usada em museus e arquivos." },
-              { bg: "#F2EDE4", textColor: "#1a1a1a", subColor: "rgba(26,26,26,0.55)", title: "Cola pH Neutro",      desc: "Segura para flores prensadas e elementos delicados, sem amarelecer com o tempo." },
-              { bg: "#0F1E1A", textColor: "#FAF7F0", subColor: "rgba(250,247,240,0.55)", title: "Vidro UltraVue® UV70", desc: "Anti-reflexo quase invisível, filtra 70% dos raios UV para conservação máxima." },
+              { bg: "#3D6B5E", textColor: "#FAF7F0", subColor: "rgba(250,247,240,0.55)", title: "Moldura de Nogueira", desc: "Folheada de nogueira, produzida artesanalmente em Coimbra por carpinteiros locais. Material de origem sustentável e regional." },
+              { bg: "#FAF7F0", textColor: "#1a1a1a", subColor: "rgba(26,26,26,0.55)", title: "Cartão pH Neutro",    desc: "Base de conservação a longo prazo, idêntica à usada em museus e arquivos. Preserva as flores sem alterar a sua cor." },
+              { bg: "#F2EDE4", textColor: "#1a1a1a", subColor: "rgba(26,26,26,0.55)", title: "Cola pH Neutro",      desc: "Segura para flores prensadas e elementos delicados. Não amarelece com o tempo nem danifica materiais frágeis." },
+              { bg: "#0F1E1A", textColor: "#FAF7F0", subColor: "rgba(250,247,240,0.55)", title: "Vidro UltraVue® UV70", desc: "Anti-reflexo quase invisível, filtra 70% dos raios UV nocivos. Produzido com vidro Water White de origem certificada." },
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.07}>
-                <div style={{ backgroundColor: item.bg, padding: "40px 28px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                  <span style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: item.subColor, fontWeight: 500 }}>
-                    0{i + 1}
-                  </span>
-                  <div>
-                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.15rem", fontWeight: 400, margin: "0 0 12px", lineHeight: 1.2, color: item.textColor }}>
-                      {item.title}
-                    </h3>
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.7, color: item.subColor, margin: 0 }}>
-                      {item.desc}
-                    </p>
-                  </div>
+                <div style={{ backgroundColor: item.bg, padding: "36px 28px", minHeight: "200px", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
+                  <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", fontWeight: 400, margin: "0 0 10px", lineHeight: 1.2, color: item.textColor }}>
+                    {item.title}
+                  </h3>
+                  <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.85rem", lineHeight: 1.75, color: item.subColor, margin: 0 }}>
+                    {item.desc}
+                  </p>
                 </div>
               </Reveal>
             ))}
           </div>
 
-          {/* UltraVue comparação */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 440px), 1fr))", gap: "clamp(40px, 6vw, 80px)", alignItems: "center" }}>
+          {/* UltraVue comparação — foto mais contida */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "clamp(40px, 6vw, 80px)", alignItems: "center" }}>
             <Reveal>
               <div>
                 <Label>Vidro museu</Label>
@@ -381,11 +333,11 @@ export default function OpcoesClient() {
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <div style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 20px 60px rgba(26,26,26,0.12)" }}>
+              <div style={{ width: "clamp(200px, 28vw, 340px)", borderRadius: "10px", overflow: "hidden", boxShadow: "0 12px 40px rgba(26,26,26,0.12)", flexShrink: 0 }}>
                 <img src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" loading="lazy" style={{ width: "100%", display: "block" }} />
-                <div style={{ backgroundColor: "#F2EDE4", padding: "16px 20px", display: "flex", justifyContent: "space-between" }}>
-                  <span style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.68rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", fontWeight: 500 }}>Vidro Normal</span>
-                  <span style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.68rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "#3D6B5E", fontWeight: 700 }}>UltraVue® UV70</span>
+                <div style={{ backgroundColor: "#F2EDE4", padding: "12px 16px", display: "flex", justifyContent: "space-between" }}>
+                  <span style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", fontWeight: 500 }}>Normal</span>
+                  <span style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "#3D6B5E", fontWeight: 700 }}>UltraVue®</span>
                 </div>
               </div>
             </Reveal>
@@ -410,10 +362,13 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          {/* Mini Quadros */}
+          {/* Mini Quadros — foto com aspect ratio fixo */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 480px), 1fr))", gap: "clamp(40px, 6vw, 80px)", alignItems: "center", marginBottom: "clamp(60px,10vw,100px)", paddingBottom: "clamp(60px,10vw,100px)", borderBottom: "1px solid rgba(26,26,26,0.1)" }}>
             <Reveal>
-              <img src="/miniquadros.webp" alt="Mini quadros 20x25cm de flores preservadas como presentes para padrinhos e damas de honor" loading="lazy" style={{ width: "100%", borderRadius: "12px", display: "block", boxShadow: "0 16px 48px rgba(26,26,26,0.1)" }} />
+              <div style={{ aspectRatio: "4/3", overflow: "hidden", borderRadius: "12px", boxShadow: "0 16px 48px rgba(26,26,26,0.1)" }}>
+                <img src="/miniquadros.webp" alt="Mini quadros 20x25cm de flores preservadas como presentes para padrinhos e damas de honor" loading="lazy"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              </div>
             </Reveal>
             <Reveal delay={0.1}>
               <div>
@@ -430,7 +385,7 @@ export default function OpcoesClient() {
             </Reveal>
           </div>
 
-          {/* Ornamentos + Pendentes */}
+          {/* Ornamentos + Pendentes — mesma cor de fundo */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 440px), 1fr))", gap: "clamp(32px, 5vw, 48px)" }}>
             {[
               {
@@ -442,38 +397,37 @@ export default function OpcoesClient() {
                 title: "Ornamentos de Natal",
                 price: "Aprox. 8 cm — 35€",
                 desc: "Vidro sobre vidro soldado sem chumbo com prata. Formatos à escolha: circular, quadrado ou rectangular.",
-                cardBg: "#FAF7F0"
               },
               {
                 imgs: [
                   { src: "/pendente1.webp", alt: "Pendente de flores prensadas em vidro soldado com prata" },
                   { src: "/pendente2.webp", alt: "Pendente floral circular em vidro soldado com prata" },
                 ],
-                badge: "Joalharia botânica", badgeBg: "rgba(61,107,94,0.1)", badgeColor: "#3D6B5E",
+                badge: "Joalharia botânica", badgeBg: "rgba(61,107,94,0.12)", badgeColor: "#3D6B5E",
                 title: "Pendentes para Colar",
                 price: "Aprox. 3 cm — 35€",
                 desc: "Vidro sobre vidro soldado sem chumbo com prata. Formatos à escolha: circular, quadrado ou rectangular.",
-                cardBg: "#0F1E1A"
               }
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.08}>
                 <div style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 8px 32px rgba(26,26,26,0.08)" }}>
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", backgroundColor: "rgba(26,26,26,0.1)" }}>
                     {item.imgs.map((img, j) => (
-                      <img key={j} src={img.src} alt={img.alt} loading="lazy" style={{ width: "100%", aspectRatio: "1", objectFit: "cover", display: "block" }} />
+                      <img key={j} src={img.src} alt={img.alt} loading="lazy"
+                        style={{ width: "100%", aspectRatio: "1", objectFit: "cover", display: "block" }} />
                     ))}
                   </div>
-                  <div style={{ padding: "28px 28px 32px", backgroundColor: item.cardBg }}>
+                  <div style={{ padding: "28px 28px 32px", backgroundColor: "#FAF7F0" }}>
                     <span style={{ display: "inline-block", backgroundColor: item.badgeBg, color: item.badgeColor, fontSize: "0.56rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "5px 12px", borderRadius: "100px", marginBottom: "14px" }}>
                       {item.badge}
                     </span>
-                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.5rem", fontWeight: 400, margin: "0 0 6px", color: i === 1 ? "#FAF7F0" : "#1a1a1a" }}>
+                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.5rem", fontWeight: 400, margin: "0 0 6px", color: "#1a1a1a" }}>
                       {item.title}
                     </h3>
-                    <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.2rem", color: "#8BA888", margin: "0 0 14px" }}>
+                    <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.2rem", color: "#3D6B5E", margin: "0 0 14px" }}>
                       {item.price}
                     </p>
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.7, color: i === 1 ? "rgba(250,247,240,0.55)" : "rgba(26,26,26,0.6)", margin: 0 }}>
+                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.7, color: "rgba(26,26,26,0.6)", margin: 0 }}>
                       {item.desc}
                     </p>
                   </div>
@@ -516,13 +470,56 @@ export default function OpcoesClient() {
       </section>
 
       <style jsx global>{`
-        .fundo-card:hover .fundo-img,
-        .fundo-img:hover { transform: scale(1.04); }
-
-        @media (min-width: 768px) {
-          .text-first { order: -1; }
-          .img-second { order: 1; }
+        /* ── Slider de fundos ── */
+        .fundos-slider {
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          gap: 2px;
+          background-color: rgba(26,26,26,0.06);
+          padding-bottom: 2px;
         }
+        .fundos-slider::-webkit-scrollbar { display: none; }
+
+        .fundo-slide {
+          flex: 0 0 80vw;
+          scroll-snap-align: start;
+          background-color: #FAF7F0;
+          max-width: 340px;
+        }
+
+        /* No desktop: 4 numa linha igual */
+        @media (min-width: 900px) {
+          .fundos-slider {
+            overflow-x: visible;
+            max-width: 1200px;
+            margin: 0 auto;
+          }
+          .fundo-slide {
+            flex: 1 1 0;
+            max-width: none;
+          }
+        }
+
+        /* Hint "deslize" só no mobile */
+        .slider-hint {
+          display: block;
+          text-align: center;
+          font-family: Roboto, sans-serif;
+          font-size: 0.62rem;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: rgba(26,26,26,0.3);
+          padding: 14px 0 0;
+          margin: 0;
+        }
+        @media (min-width: 900px) {
+          .slider-hint { display: none; }
+        }
+
+        .fundo-img:hover { transform: scale(1.04); }
       `}</style>
     </div>
   );
