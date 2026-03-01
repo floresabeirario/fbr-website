@@ -393,37 +393,41 @@ export default function OpcoesClient() {
                       </p>
                     </div>
                   </div>
-
-                  {/* Nota de materiais */}
-                  <div style={{ marginTop: "20px", paddingTop: "16px", borderTop: "1px solid rgba(15,30,26,0.12)" }}>
-                    <p style={{
-                      fontFamily: "Roboto, sans-serif",
-                      fontWeight: 400,
-                      fontSize: "0.75rem",
-                      lineHeight: 1.6,
-                      color: "rgba(15,30,26,0.5)",
-                      margin: 0,
-                    }}>
-                      Emoldurado com vidro UltraVue®, praticamente invisível
-                    </p>
-                  </div>
                 </div>
               </Reveal>
             ))}
           </div>
 
-          {/* Nota comum aos 3 tamanhos */}
-          <p style={{
-            fontFamily: "Roboto, sans-serif",
-            fontWeight: 400,
-            fontSize: "0.75rem",
-            color: "rgba(250,247,240,0.45)",
-            textAlign: "center",
-            margin: "12px 0 40px",
-            letterSpacing: "0.5px",
-          }}>
-            Emoldurado com vidro UltraVue®, praticamente invisível
-          </p>
+          {/* Nota focal — comum aos 3 tamanhos */}
+          <Reveal>
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "16px",
+              margin: "0 0 48px",
+              padding: "20px 28px",
+              border: "1px solid rgba(250,247,240,0.12)",
+              borderRadius: "4px",
+            }}>
+              {/* Ícone vidro */}
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, opacity: 0.7 }}>
+                <rect x="1.5" y="1.5" width="15" height="15" rx="1" stroke="rgba(250,247,240,0.7)" strokeWidth="1.2" fill="none"/>
+                <line x1="4" y1="6" x2="8" y2="2" stroke="rgba(250,247,240,0.5)" strokeWidth="1" strokeLinecap="round"/>
+                <line x1="9" y1="5" x2="11" y2="3" stroke="rgba(250,247,240,0.35)" strokeWidth="1" strokeLinecap="round"/>
+              </svg>
+              <p style={{
+                fontFamily: "Roboto, sans-serif",
+                fontWeight: 300,
+                fontSize: "0.82rem",
+                color: "rgba(250,247,240,0.65)",
+                margin: 0,
+                letterSpacing: "0.3px",
+              }}>
+                Todos os quadros são emoldurados com <strong style={{ fontWeight: 600, color: "rgba(250,247,240,0.9)" }}>vidro museu UltraVue®</strong>, praticamente invisível
+              </p>
+            </div>
+          </Reveal>
 
           <Reveal>
             <div style={{ textAlign: "center", padding: "32px", border: "1px solid rgba(250,247,240,0.07)", borderRadius: "4px", marginBottom: "40px" }}>
