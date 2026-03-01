@@ -322,9 +322,10 @@ export default function RootLayout({ children }) {
                 </a>
               </div>
 
-              {/* ── Botão MENU mobile ── */}
+              {/* ── Botão MENU mobile — margin-left:auto garante sempre à direita ── */}
               <button className="mobile-only nav-mobile-btn" onClick={() => setIsOpen(true)} style={{
-                color: shouldShowScrolled ? "#1a1a1a" : "#fff"
+                color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                marginLeft: "auto"
               }}>
                 MENU
               </button>
@@ -337,62 +338,113 @@ export default function RootLayout({ children }) {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
               style={{
                 position: "fixed", inset: 0,
-                backgroundColor: "#FAF7F0", zIndex: 200,
-                display: "flex", flexDirection: "column",
-                alignItems: "center", justifyContent: "center"
+                backgroundColor: "#0F1E1A",
+                zIndex: 200,
+                display: "flex",
+                flexDirection: "column",
+                padding: "0 36px",
+                overflowY: "auto"
               }}
             >
-              <button onClick={() => setIsOpen(false)} style={{
-                position: "absolute", top: "28px", right: "24px",
-                background: "none", border: "none",
-                fontSize: "0.82rem", fontWeight: "500",
-                letterSpacing: "2px", cursor: "pointer",
-                fontFamily: "'Roboto', sans-serif"
-              }}>
-                FECHAR
-              </button>
-
-              {mobileMenu.map(item => (
-                <a key={item.name} href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="nav-link"
-                  style={{
-                    color: "#1a1a1a", fontSize: "clamp(1.3rem,4.5vw,1.8rem)",
-                    margin: "11px 0", fontFamily: "'TAN-MEMORIES', serif"
-                  }}>
-                  {item.name}
-                </a>
-              ))}
-
-              <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
-                onClick={() => setIsOpen(false)}
-                style={{
-                  display: "inline-block", marginTop: "30px",
-                  backgroundColor: "#3D6B5E", color: "#FAF7F0",
-                  padding: "15px 38px", borderRadius: "100px",
-                  textDecoration: "none", fontWeight: "600",
-                  fontSize: "0.8rem", letterSpacing: "1.5px",
-                  textTransform: "uppercase", fontFamily: "Roboto, sans-serif",
-                  boxShadow: "0 6px 22px rgba(61,107,94,0.28)"
-                }}
-              >
-                Reservar Data
-              </a>
-
+              {/* ── Topo: logo + fechar ── */}
               <div style={{
-                display: "flex", gap: "24px", marginTop: "26px",
-                borderTop: "1px solid rgba(26,26,26,0.08)", paddingTop: "22px"
+                display: "flex", justifyContent: "space-between",
+                alignItems: "center", paddingTop: "28px", paddingBottom: "36px"
               }}>
-                <a href="/pt" style={{ color: "#1a1a1a", fontSize: "1rem", fontFamily: "'TAN-MEMORIES', serif", display: "flex", alignItems: "center", textDecoration: "none" }}>
-                  PT <FlagPT/>
+                <span style={{
+                  fontFamily: "'TAN-MEMORIES', serif",
+                  fontSize: "1.1rem", color: "#FAF7F0",
+                  letterSpacing: "0.5px"
+                }}>
+                  Flores à Beira&#8209;Rio
+                </span>
+                <button onClick={() => setIsOpen(false)} style={{
+                  background: "none", border: "1px solid rgba(250,247,240,0.2)",
+                  borderRadius: "100px", color: "#FAF7F0",
+                  fontSize: "0.72rem", fontWeight: "500",
+                  letterSpacing: "2px", cursor: "pointer",
+                  fontFamily: "'Roboto', sans-serif",
+                  padding: "8px 16px"
+                }}>
+                  FECHAR
+                </button>
+              </div>
+
+              {/* ── Linha divisória ── */}
+              <div style={{ height: "1px", background: "rgba(250,247,240,0.08)", marginBottom: "40px" }}/>
+
+              {/* ── Links principais ── */}
+              <nav style={{ flex: 1 }}>
+                {mobileMenu.map((item, i) => (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + i * 0.055, duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+                    style={{
+                      display: "block",
+                      color: "#FAF7F0",
+                      textDecoration: "none",
+                      fontSize: "clamp(1.5rem, 6vw, 2rem)",
+                      fontFamily: "'TAN-MEMORIES', serif",
+                      lineHeight: 1,
+                      padding: "14px 0",
+                      borderBottom: "1px solid rgba(250,247,240,0.07)",
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
+                    onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
+                  >
+                    {item.name}
+                  </motion.a>
+                ))}
+              </nav>
+
+              {/* ── Rodapé do menu: CTA + PT/EN ── */}
+              <div style={{ paddingTop: "36px", paddingBottom: "48px" }}>
+                <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                  style={{
+                    display: "block", textAlign: "center",
+                    backgroundColor: "#3D6B5E", color: "#FAF7F0",
+                    padding: "17px 38px", borderRadius: "100px",
+                    textDecoration: "none", fontWeight: "600",
+                    fontSize: "0.8rem", letterSpacing: "1.5px",
+                    textTransform: "uppercase", fontFamily: "Roboto, sans-serif",
+                    boxShadow: "0 6px 22px rgba(61,107,94,0.35)",
+                    marginBottom: "24px"
+                  }}
+                >
+                  Reservar Data
                 </a>
-                <a href="/en" style={{ color: "#1a1a1a", fontSize: "1rem", fontFamily: "'TAN-MEMORIES', serif", display: "flex", alignItems: "center", textDecoration: "none", opacity: 0.4 }}>
-                  EN <FlagEN/>
-                </a>
+
+                <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
+                  <a href="/pt" style={{
+                    color: "#FAF7F0", fontSize: "0.75rem", fontFamily: "Roboto, sans-serif",
+                    fontWeight: "600", letterSpacing: "1.5px", textTransform: "uppercase",
+                    display: "flex", alignItems: "center", textDecoration: "none"
+                  }}>
+                    PT <FlagPT/>
+                  </a>
+                  <a href="/en" style={{
+                    color: "rgba(250,247,240,0.35)", fontSize: "0.75rem", fontFamily: "Roboto, sans-serif",
+                    fontWeight: "600", letterSpacing: "1.5px", textTransform: "uppercase",
+                    display: "flex", alignItems: "center", textDecoration: "none",
+                    transition: "color 0.25s"
+                  }}
+                    onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+                    onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.35)"}
+                  >
+                    EN <FlagEN/>
+                  </a>
+                </div>
               </div>
             </motion.div>
           )}
