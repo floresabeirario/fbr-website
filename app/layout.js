@@ -234,13 +234,14 @@ export default function RootLayout({ children }) {
           padding: shouldShowScrolled ? "14px 0" : "24px 0"
         }}>
           {/*
-            ── GRID DE 3 COLUNAS: esquerda | centro | direita ──
-            O logo fica sempre perfeitamente centrado, independente do tamanho
-            dos conteúdos das colunas laterais.
+            ── FLEX com logo ABSOLUTE ao centro ──
+            As colunas left/right têm flex:1 igual dos dois lados.
+            O logo fica position:absolute left:50% — sempre centrado.
+            O fundo do logo tapa visualmente qualquer link que passe por baixo.
           */}
           <div className="nav-bar">
 
-            {/* ── COLUNA ESQUERDA: links desktop ── */}
+            {/* ── ESQUERDA: links desktop ── */}
             <div className="nav-left desktop-only">
               {menuLeft.map(item => (
                 <a key={item.name} href={item.href} className="nav-link" style={{
@@ -254,7 +255,7 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
-            {/* ── COLUNA CENTRO: logo — sempre centrado pelo grid ── */}
+            {/* ── CENTRO: logo — absolute, sempre centrado ── */}
             <motion.a
               href="/"
               className="nav-logo"
@@ -265,12 +266,16 @@ export default function RootLayout({ children }) {
               transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
               style={{
                 color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                pointerEvents: shouldShowScrolled ? "auto" : "none"
+                pointerEvents: shouldShowScrolled ? "auto" : "none",
+                /* fundo para tapar links que passem por baixo */
+                backgroundColor: shouldShowScrolled
+                  ? "rgba(250,247,240,0)" /* transparente — a nav já tem bg */
+                  : "transparent"
               }}>
               Flores à Beira&#8209;Rio
             </motion.a>
 
-            {/* ── COLUNA DIREITA: links desktop + PT/EN + CTA + botão mobile ── */}
+            {/* ── DIREITA: links desktop + PT/EN + CTA + botão mobile ── */}
             <div className="nav-right-col">
               {/* Links desktop */}
               <div className="nav-right desktop-only">
@@ -401,38 +406,47 @@ export default function RootLayout({ children }) {
         <SiteFooter/>
 
         <style jsx global>{`
-          @media (max-width: 1099px) { .desktop-only { display: none !important; } }
-          @media (min-width: 1100px) { .mobile-only  { display: none !important; } }
+          @media (max-width: 1279px) { .desktop-only { display: none !important; } }
+          @media (min-width: 1280px) { .mobile-only  { display: none !important; } }
           * { box-sizing: border-box; }
 
           /* ══════════════════════════════════════════════════════════
-             NAV BAR — grid 3 colunas: esquerda | centro | direita
-             Garante que o logo fica SEMPRE no centro exato do ecrã,
-             independentemente de quanto espaço ocupam as colunas laterais.
+             NAV BAR — flex com logo ABSOLUTE centrado
+             - .nav-left  e .nav-right-col têm flex:1 igual → ocupam o mesmo espaço
+             - .nav-logo é position:absolute left:50% transform:translateX(-50%)
+               → fica sempre no centro geométrico do ecrã, sem depender dos lados
+             - Se os links ultrapassarem o espaço disponível, o overflow:hidden
+               na coluna esquerda impede sobreposição visual
           ══════════════════════════════════════════════════════════ */
           .nav-bar {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
+            position: relative;
+            display: flex;
             align-items: center;
             max-width: 1440px;
             margin: 0 auto;
             padding: 0 24px;
             min-height: 32px;
           }
-          @media (min-width: 1100px) {
+          @media (min-width: 1200px) {
             .nav-bar { padding: 0 32px; }
           }
 
-          /* Coluna esquerda: alinha conteúdo à esquerda */
+          /* Esquerda: flex:1 → ocupa metade do espaço disponível */
           .nav-left {
+            flex: 1;
             display: flex;
-            gap: clamp(12px, 1.6vw, 24px);
+            gap: clamp(10px, 1.4vw, 22px);
             align-items: center;
-            justify-self: start;
+            justify-content: flex-start;
+            overflow: hidden; /* impede links de chegarem ao centro */
           }
 
-          /* Logo — coluna do centro, centrado naturalmente pelo grid */
+          /* Logo — absolute, sempre no centro do ecrã */
           .nav-logo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
             font-size: clamp(1rem, 1.5vw, 1.4rem);
             font-family: 'TAN-MEMORIES', serif;
             text-align: center;
@@ -440,16 +454,19 @@ export default function RootLayout({ children }) {
             line-height: 1.1;
             letter-spacing: 0.5px;
             white-space: nowrap;
-            padding-bottom: 2px;
+            padding: 4px 12px;
             border-bottom: 1px solid transparent;
             transition: all 0.3s ease;
+            z-index: 2;
+            /* padding lateral para nunca colidir com links mesmo visualmente */
           }
           .nav-logo:hover {
             border-bottom: 1px solid currentColor;
           }
 
-          /* Coluna direita: alinha conteúdo à direita */
+          /* Direita: flex:1 → ocupa a outra metade, conteúdo alinhado à direita */
           .nav-right-col {
+            flex: 1;
             display: flex;
             justify-content: flex-end;
             align-items: center;
@@ -457,11 +474,11 @@ export default function RootLayout({ children }) {
 
           .nav-right {
             display: flex;
-            gap: clamp(12px, 1.6vw, 22px);
+            gap: clamp(10px, 1.4vw, 20px);
             align-items: center;
           }
 
-          /* Mobile menu button */
+          /* Mobile menu button — alinhado à direita pela nav-right-col */
           .nav-mobile-btn {
             background: none; border: none; cursor: pointer;
             font-size: 0.82rem; font-weight: 500; letter-spacing: 2px;
