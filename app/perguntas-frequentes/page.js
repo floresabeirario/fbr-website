@@ -139,6 +139,38 @@ const FAQ_DATA = [
   },
   {
     cat: "flores",
+    q: "Porque não preservam flores em resina?",
+    plain: "A resina é um plástico de origem petroquímica, não biodegradável e de difícil reciclagem. A nossa abordagem é 100% artesanal e sustentável: prensagem natural, moldura de madeira e vidro museu — sem químicos, sem plástico.",
+    a: <>
+      A resina é um <strong>plástico de origem petroquímica</strong>: não é biodegradável,
+      não é reciclável e o seu processo de cura liberta compostos voláteis nocivos.
+      Não se enquadra nos nossos valores de sustentabilidade e trabalho artesanal.
+      <br/><br/>
+      A nossa preservação é <strong>100% natural</strong>: prensagem artesanal, moldura de madeira
+      e vidro museu — sem químicos, sem plástico, sem impacto ambiental desnecessário.
+      O resultado é uma obra de arte que dura décadas e que, no fim da sua vida útil,
+      pode ser devolvida à natureza sem deixar resíduos tóxicos.
+    </>
+  },
+  {
+    cat: "flores",
+    q: "Porque não fazem preservação de flores em 3D (liofilização ou sílica)?",
+    plain: "A preservação em 3D com sílica utiliza gel de sílica em grandes quantidades, que é produzido industrialmente e tem impacto ambiental considerável. A prensagem artesanal que praticamos é a forma mais sustentável de eternizar flores.",
+    a: <>
+      A preservação em 3D (seja por liofilização ou por sílica) utiliza <strong>gel de sílica
+      em grandes quantidades</strong> — um material produzido industrialmente,
+      com elevado consumo energético e impacto ambiental considerável.
+      <br/><br/>
+      Para além disso, as flores preservadas em 3D são <strong>extremamente frágeis</strong>,
+      perdem a cor rapidamente e exigem condições de humidade rigorosas para não desmoronarem.
+      <br/><br/>
+      A <strong>prensagem artesanal</strong> que praticamos é a forma mais sustentável, duradoura
+      e esteticamente rica de eternizar as suas flores — com resultados que se mantêm
+      belos durante décadas.
+    </>
+  },
+  {
+    cat: "flores",
     q: "Quanto tempo as flores podem estar sem ser entregues?",
     plain: "Recomendamos entregar as flores preferencialmente 1 a 3 dias após o evento, no máximo 5 dias, para garantir a melhor preservação possível.",
     a: <>
