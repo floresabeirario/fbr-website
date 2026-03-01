@@ -349,50 +349,52 @@ export default function OpcoesClient() {
               <Reveal key={i} delay={i * 0.1}>
                 <div style={{
                   backgroundColor: i === 0 ? "#FAF7F0" : i === 1 ? "#F2EDE4" : "#EAE3D8",
-                  padding: "36px 32px 36px",
+                  padding: "32px 28px 32px",
                   display: "flex",
                   flexDirection: "column",
-                  alignItems: "flex-start",
                   height: "100%",
-                  minHeight: "440px",
                   boxSizing: "border-box",
                   borderRadius: "4px",
                 }}>
 
-                  {/* SVG topo — dark mode para fundo claro */}
-                  <div style={{ marginBottom: "auto", paddingBottom: "24px" }}>
-                    <FrameSVG
-                      vw={item.vw} vh={item.vh}
-                      flowers={item.flowers}
-                      svgWidth={item.svgWidth}
-                      label={item.size}
-                      dark={true}
-                    />
+                  {/* SVG + texto lado a lado */}
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "20px", marginBottom: "20px" }}>
+
+                    {/* SVG à esquerda */}
+                    <div style={{ flexShrink: 0 }}>
+                      <FrameSVG
+                        vw={item.vw} vh={item.vh}
+                        flowers={item.flowers}
+                        svgWidth={item.svgWidth}
+                        label={item.size}
+                        dark={true}
+                      />
+                    </div>
+
+                    {/* Dimensão + Preço à direita */}
+                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", paddingTop: "8px" }}>
+                      <p style={{
+                        fontFamily: "'TAN-MEMORIES', serif",
+                        fontSize: "clamp(1.7rem, 2.6vw, 2.4rem)",
+                        color: "#0F1E1A",
+                        margin: "0",
+                        lineHeight: 1,
+                      }}>
+                        {item.size}
+                        <span style={{ fontSize: "0.8rem", fontFamily: "Roboto, sans-serif", fontWeight: 400, marginLeft: "4px", color: "rgba(15,30,26,0.4)" }}>
+                          {item.unit}
+                        </span>
+                      </p>
+                      <p style={{
+                        fontFamily: "'TAN-MEMORIES', serif",
+                        fontSize: "clamp(1.2rem, 2vw, 1.6rem)",
+                        color: "#3D6B5E",
+                        margin: "8px 0 0",
+                      }}>
+                        {item.price}€
+                      </p>
+                    </div>
                   </div>
-
-                  {/* Dimensão */}
-                  <p style={{
-                    fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize: "clamp(1.9rem, 3vw, 2.6rem)",
-                    color: "#0F1E1A",
-                    margin: "0",
-                    lineHeight: 1,
-                  }}>
-                    {item.size}
-                    <span style={{ fontSize: "0.85rem", fontFamily: "Roboto, sans-serif", fontWeight: 400, marginLeft: "5px", color: "rgba(15,30,26,0.4)" }}>
-                      {item.unit}
-                    </span>
-                  </p>
-
-                  {/* Preço */}
-                  <p style={{
-                    fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize: "clamp(1.3rem, 2.2vw, 1.75rem)",
-                    color: "#3D6B5E",
-                    margin: "10px 0 16px",
-                  }}>
-                    {item.price}€
-                  </p>
 
                   {/* Descrição */}
                   <p style={{
@@ -407,8 +409,8 @@ export default function OpcoesClient() {
                     {item.desc}
                   </p>
 
-                  {/* Linha e nota de materiais — visível sobre fundo claro */}
-                  <div style={{ marginTop: "24px", paddingTop: "18px", borderTop: "1px solid rgba(15,30,26,0.12)", width: "100%" }}>
+                  {/* Nota de materiais */}
+                  <div style={{ marginTop: "20px", paddingTop: "16px", borderTop: "1px solid rgba(15,30,26,0.12)" }}>
                     <p style={{
                       fontFamily: "Roboto, sans-serif",
                       fontWeight: 400,
@@ -417,7 +419,7 @@ export default function OpcoesClient() {
                       color: "rgba(15,30,26,0.5)",
                       margin: 0,
                     }}>
-                      Inclui vidro UltraVue® UV70, moldura de nogueira e cartão de pH neutro
+                      Emoldurado com vidro museu UltraVue® praticamente invisível
                     </p>
                   </div>
                 </div>
