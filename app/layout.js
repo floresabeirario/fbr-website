@@ -49,7 +49,7 @@ const IconEmail = () => (
   </svg>
 );
 
-// ─── Pressed Botanical Sprig — elegant footer divider (~400 bytes vs ~3KB garden)
+// ─── Pressed Botanical Sprig — footer divider ─────────────────────────────────
 const PressedSprig = () => (
   <svg viewBox="0 0 200 90" width="110" height="50" fill="none" aria-hidden="true"
     style={{ display: "block", margin: "0 auto", opacity: 0.55 }}>
@@ -77,15 +77,11 @@ function SiteFooter() {
 
   return (
     <footer style={{ backgroundColor: "#0F1E1A", color: "#FAF7F0", position: "relative" }}>
-
-      {/* Botanical divider */}
       <div style={{ paddingTop: "56px", paddingBottom: "8px" }}>
         <PressedSprig/>
       </div>
 
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "28px 24px 0" }}>
-
-        {/* Brand + tagline */}
         <div style={{ textAlign: "center", marginBottom: "48px" }}>
           <h2 style={{
             fontFamily: "'TAN-MEMORIES', serif",
@@ -111,125 +107,69 @@ function SiteFooter() {
               <a key={i} href={s.href}
                 target={s.href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer" aria-label={s.label}
-                style={{
-                  color: "rgba(250,247,240,0.5)",
-                  transition: "color 0.25s ease",
-                  display: "flex", alignItems: "center"
-                }}
+                style={{ color: "rgba(250,247,240,0.5)", transition: "color 0.25s ease", display: "flex", alignItems: "center" }}
                 onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
                 onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
-              >
-                {s.icon}
-              </a>
+              >{s.icon}</a>
             ))}
           </div>
         </div>
 
-        <div style={{
-          height: "1px",
-          background: "linear-gradient(to right, transparent, rgba(250,247,240,0.1), transparent)",
-          marginBottom: "44px"
-        }}/>
+        <div style={{ height: "1px", background: "linear-gradient(to right, transparent, rgba(250,247,240,0.1), transparent)", marginBottom: "44px" }}/>
 
-        {/* Grid: nav + contact + legal */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: "36px 48px",
-          marginBottom: "48px"
-        }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "36px 48px", marginBottom: "48px" }}>
           <div>
-            <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.35)", marginBottom: "16px", fontFamily: "Roboto, sans-serif" }}>
-              Páginas
-            </p>
+            <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.35)", marginBottom: "16px", fontFamily: "Roboto, sans-serif" }}>Páginas</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               {navLinks.map((l, i) => (
-                <a key={i} href={l.href} style={{
-                  color: "rgba(250,247,240,0.65)", textDecoration: "none", fontSize: "0.88rem",
-                  fontWeight: "300", transition: "color 0.25s ease", lineHeight: 1
-                }}
-                onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.65)"}
+                <a key={i} href={l.href} style={{ color: "rgba(250,247,240,0.65)", textDecoration: "none", fontSize: "0.88rem", fontWeight: "300", transition: "color 0.25s ease", lineHeight: 1 }}
+                  onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.65)"}
                 >{l.label}</a>
               ))}
             </div>
           </div>
-
           <div>
-            <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.35)", marginBottom: "16px", fontFamily: "Roboto, sans-serif" }}>
-              Contacto
-            </p>
+            <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.35)", marginBottom: "16px", fontFamily: "Roboto, sans-serif" }}>Contacto</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer"
-                style={{
-                  display: "inline-flex", alignItems: "center", gap: "8px",
-                  backgroundColor: "#25D366", color: "#fff",
-                  padding: "10px 20px", borderRadius: "100px",
-                  textDecoration: "none", fontWeight: "600",
-                  fontSize: "0.78rem", letterSpacing: "0.5px",
-                  transition: "background-color 0.25s ease",
-                  fontFamily: "Roboto, sans-serif", width: "fit-content"
-                }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px", backgroundColor: "#25D366", color: "#fff", padding: "10px 20px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.78rem", letterSpacing: "0.5px", transition: "background-color 0.25s ease", fontFamily: "Roboto, sans-serif", width: "fit-content" }}
                 onMouseEnter={e => e.currentTarget.style.backgroundColor = "#1da851"}
                 onMouseLeave={e => e.currentTarget.style.backgroundColor = "#25D366"}
-              >
-                <IconWhatsApp/> +351 934 680 300
-              </a>
-              <a href="mailto:info@floresabeirario.pt" style={{
-                color: "rgba(250,247,240,0.6)", fontSize: "0.88rem",
-                textDecoration: "none", fontWeight: "300", transition: "color 0.25s ease"
-              }}
-              onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-              onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.6)"}
+              ><IconWhatsApp/> +351 934 680 300</a>
+              <a href="mailto:info@floresabeirario.pt" style={{ color: "rgba(250,247,240,0.6)", fontSize: "0.88rem", textDecoration: "none", fontWeight: "300", transition: "color 0.25s ease" }}
+                onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.6)"}
               >info@floresabeirario.pt</a>
-              <p style={{ color: "rgba(250,247,240,0.35)", fontSize: "0.82rem", margin: 0, lineHeight: 1.65, fontWeight: "300" }}>
-                Coimbra, Portugal
-              </p>
+              <p style={{ color: "rgba(250,247,240,0.35)", fontSize: "0.82rem", margin: 0, lineHeight: 1.65, fontWeight: "300" }}>Coimbra, Portugal</p>
             </div>
           </div>
-
           <div>
-            <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.35)", marginBottom: "16px", fontFamily: "Roboto, sans-serif" }}>
-              Legal
-            </p>
+            <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.35)", marginBottom: "16px", fontFamily: "Roboto, sans-serif" }}>Legal</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               {[
                 { href: "/politica-de-privacidade", label: "Política de Privacidade" },
                 { href: "/termos-e-condicoes",      label: "Termos e Condições" },
               ].map((l, i) => (
-                <a key={i} href={l.href} style={{
-                  color: "rgba(250,247,240,0.6)", textDecoration: "none",
-                  fontSize: "0.88rem", fontWeight: "300", transition: "color 0.25s ease"
-                }}
-                onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.6)"}
+                <a key={i} href={l.href} style={{ color: "rgba(250,247,240,0.6)", textDecoration: "none", fontSize: "0.88rem", fontWeight: "300", transition: "color 0.25s ease" }}
+                  onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.6)"}
                 >{l.label}</a>
               ))}
               <div style={{ marginTop: "8px", display: "flex", gap: "14px" }}>
                 <a href="/pt" style={{ color: "#FAF7F0", fontSize: "0.78rem", fontWeight: "600", textDecoration: "none", display: "flex", alignItems: "center", fontFamily: "Roboto, sans-serif", letterSpacing: "1px" }}>
                   PT <FlagPT/>
                 </a>
-                <a href="/en" style={{
-                  color: "rgba(250,247,240,0.4)", fontSize: "0.78rem", fontWeight: "600",
-                  textDecoration: "none", display: "flex", alignItems: "center",
-                  fontFamily: "Roboto, sans-serif", letterSpacing: "1px", transition: "color 0.25s ease"
-                }}
-                onMouseEnter={e => e.currentTarget.style.color = "rgba(250,247,240,0.8)"}
-                onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.4)"}
+                <a href="/en" style={{ color: "rgba(250,247,240,0.4)", fontSize: "0.78rem", fontWeight: "600", textDecoration: "none", display: "flex", alignItems: "center", fontFamily: "Roboto, sans-serif", letterSpacing: "1px", transition: "color 0.25s ease" }}
+                  onMouseEnter={e => e.currentTarget.style.color = "rgba(250,247,240,0.8)"}
+                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.4)"}
                 >EN <FlagEN/></a>
               </div>
             </div>
           </div>
         </div>
 
-        <div style={{
-          borderTop: "1px solid rgba(250,247,240,0.07)",
-          padding: "20px 0 28px",
-          display: "flex", justifyContent: "center",
-          fontSize: "0.6rem", letterSpacing: "1.5px",
-          color: "rgba(250,247,240,0.25)",
-          fontFamily: "Roboto, sans-serif", textAlign: "center"
-        }}>
+        <div style={{ borderTop: "1px solid rgba(250,247,240,0.07)", padding: "20px 0 28px", display: "flex", justifyContent: "center", fontSize: "0.6rem", letterSpacing: "1.5px", color: "rgba(250,247,240,0.25)", fontFamily: "Roboto, sans-serif", textAlign: "center" }}>
           © 2026 FLORES À BEIRA-RIO. TODOS OS DIREITOS RESERVADOS.
         </div>
       </div>
@@ -252,10 +192,6 @@ export default function RootLayout({ children }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /*
-   * BALANCED NAV: 3 links left │ logo center │ 2 links + EN + CTA right
-   * "Perguntas Frequentes" lives in footer + mobile menu (not main nav)
-   */
   const menuLeft = [
     { name: "Como Funciona",        href: "/passo-a-passo" },
     { name: "Opções e Preços",      href: "/opcoes-e-precos" },
@@ -263,13 +199,10 @@ export default function RootLayout({ children }) {
   ];
   const menuRight = [
     { name: "Vale-Presente",        href: "/vale-presente" },
+    { name: "Perguntas Frequentes", href: "/perguntas-frequentes" },
     { name: "Contactos e Equipa",   href: "/contactos" },
   ];
-  const mobileMenu = [
-    ...menuLeft,
-    ...menuRight,
-    { name: "Perguntas Frequentes", href: "/perguntas-frequentes" },
-  ];
+  const mobileMenu = [...menuLeft, ...menuRight];
 
   const shouldShowScrolled = scrolled || !isHome;
 
@@ -292,7 +225,7 @@ export default function RootLayout({ children }) {
       </head>
       <body style={{ margin: 0, backgroundColor: "#FAF7F0", color: "#1a1a1a", fontFamily: "'Roboto', sans-serif" }}>
 
-        {/* ── NAV ── */}
+        {/* ══════ NAV ══════ */}
         <nav style={{
           position: "fixed", top: 0, width: "100%", zIndex: 100,
           backgroundColor: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "transparent",
@@ -300,110 +233,103 @@ export default function RootLayout({ children }) {
           transition: "all 0.4s ease",
           padding: shouldShowScrolled ? "14px 0" : "24px 0"
         }}>
-          <div className="nav-container">
+          {/*
+            Layout: position:relative container with
+            - Left links (flex-start)
+            - Center logo (absolute center — always perfectly centered)
+            - Right links + PT dropdown + CTA (flex-end)
+          */}
+          <div className="nav-bar">
 
-            {/* LEFT */}
-            <div className="nav-side nav-side--left">
-              <div className="desktop-only" style={{ display: "flex", gap: "clamp(14px, 1.8vw, 26px)", alignItems: "center" }}>
-                {menuLeft.map(item => (
-                  <a key={item.name} href={item.href} className="nav-link" style={{
-                    fontSize: "0.72rem", fontWeight: "500",
-                    textTransform: "uppercase", letterSpacing: "1.3px",
-                    color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                    whiteSpace: "nowrap"
-                  }}>
-                    {item.name}
-                  </a>
-                ))}
-              </div>
+            {/* ── LEFT ── */}
+            <div className="nav-left desktop-only">
+              {menuLeft.map(item => (
+                <a key={item.name} href={item.href} className="nav-link" style={{
+                  fontSize: "0.7rem", fontWeight: "500",
+                  textTransform: "uppercase", letterSpacing: "1.3px",
+                  color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                  whiteSpace: "nowrap"
+                }}>
+                  {item.name}
+                </a>
+              ))}
             </div>
 
-            {/* CENTER LOGO — smooth opacity + scale + y transition */}
+            {/* ── CENTER LOGO — absolute positioned = always dead center ── */}
             <motion.a
               href="/"
+              className="nav-logo"
               animate={{
                 opacity: shouldShowScrolled ? 1 : 0,
-                scale: shouldShowScrolled ? 1 : 0.92,
                 y: shouldShowScrolled ? 0 : 8
               }}
               transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-              className="logo-central"
               style={{
                 color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                fontSize: "clamp(1rem, 1.6vw, 1.45rem)",
-                fontFamily: "'TAN-MEMORIES', serif",
-                textAlign: "center",
-                flex: "0 0 auto",
-                padding: "0 clamp(10px, 1.5vw, 22px)",
-                pointerEvents: shouldShowScrolled ? "auto" : "none",
-                textDecoration: "none",
-                lineHeight: 1.1,
-                letterSpacing: "0.5px"
+                pointerEvents: shouldShowScrolled ? "auto" : "none"
               }}>
               Flores à Beira&#8209;Rio
             </motion.a>
 
-            {/* RIGHT */}
-            <div className="nav-side nav-side--right">
-              <div className="desktop-only" style={{ display: "flex", gap: "clamp(14px, 1.8vw, 26px)", alignItems: "center", justifyContent: "flex-end" }}>
-                {menuRight.map(item => (
-                  <a key={item.name} href={item.href} className="nav-link" style={{
-                    fontSize: "0.72rem", fontWeight: "500", textTransform: "uppercase",
-                    letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                    whiteSpace: "nowrap"
+            {/* ── RIGHT ── */}
+            <div className="nav-right desktop-only">
+              {menuRight.map(item => (
+                <a key={item.name} href={item.href} className="nav-link" style={{
+                  fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
+                  letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                  whiteSpace: "nowrap"
+                }}>
+                  {item.name}
+                </a>
+              ))}
+
+              {/* ── PT flag with EN dropdown ── */}
+              <div className="lang-container" style={{ position: "relative", display: "flex", alignItems: "center" }}>
+                <a href="/pt" className="nav-link lang-trigger" style={{
+                  fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
+                  letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                  display: "flex", alignItems: "center", cursor: "pointer"
+                }}>
+                  PT <FlagPT/>
+                </a>
+                <div className="lang-dropdown">
+                  <a href="/en" className="lang-dropdown-item" style={{
+                    fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
+                    letterSpacing: "1.3px", display: "flex", alignItems: "center",
+                    color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                    background: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
+                    backdropFilter: "blur(12px)",
+                    padding: "9px 14px", borderRadius: "6px",
+                    border: `1px solid ${shouldShowScrolled ? "rgba(26,26,26,0.08)" : "rgba(255,255,255,0.12)"}`,
+                    textDecoration: "none", transition: "background 0.3s ease"
                   }}>
-                    {item.name}
+                    EN <FlagEN/>
                   </a>
-                ))}
-
-                {/* Thin separator */}
-                <div style={{
-                  height: "14px", width: "1px",
-                  backgroundColor: shouldShowScrolled ? "rgba(26,26,26,0.12)" : "rgba(255,255,255,0.2)",
-                  transition: "background-color 0.3s ease"
-                }}/>
-
-                {/* EN — international signal */}
-                <a href="/en" className="nav-link nav-lang" style={{
-                  fontSize: "0.72rem", fontWeight: "500", textTransform: "uppercase",
-                  letterSpacing: "1.3px",
-                  color: shouldShowScrolled ? "rgba(26,26,26,0.4)" : "rgba(255,255,255,0.45)",
-                  display: "flex", alignItems: "center", whiteSpace: "nowrap"
-                }}>
-                  EN <FlagEN/>
-                </a>
-
-                {/* CTA */}
-                <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="nav-cta-btn" style={{
-                  display: "inline-flex", alignItems: "center",
-                  fontSize: "0.68rem", fontWeight: "600",
-                  letterSpacing: "1.4px", textTransform: "uppercase",
-                  textDecoration: "none", fontFamily: "Roboto, sans-serif",
-                  padding: "9px 20px", borderRadius: "100px",
-                  transition: "all 0.3s ease", whiteSpace: "nowrap",
-                  backgroundColor: shouldShowScrolled ? "#3D6B5E" : "rgba(250,247,240,0.1)",
-                  color: shouldShowScrolled ? "#FAF7F0" : "rgba(250,247,240,0.9)",
-                  border: shouldShowScrolled ? "1.5px solid #3D6B5E" : "1.5px solid rgba(250,247,240,0.35)",
-                  backdropFilter: shouldShowScrolled ? "none" : "blur(8px)",
-                  boxShadow: shouldShowScrolled ? "0 3px 14px rgba(61,107,94,0.22)" : "none"
-                }}>
-                  Reservar Data
-                </a>
+                </div>
               </div>
 
-              <button className="mobile-only" onClick={() => setIsOpen(true)} style={{
-                background: "none", border: "none", cursor: "pointer",
-                color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                fontSize: "0.82rem", fontWeight: "500", letterSpacing: "2px",
-                padding: "10px 0", fontFamily: "'Roboto', sans-serif"
+              {/* ── CTA ── */}
+              <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="nav-cta" style={{
+                backgroundColor: shouldShowScrolled ? "#3D6B5E" : "rgba(250,247,240,0.12)",
+                color: shouldShowScrolled ? "#FAF7F0" : "rgba(250,247,240,0.92)",
+                border: shouldShowScrolled ? "1.5px solid #3D6B5E" : "1.5px solid rgba(250,247,240,0.35)",
+                backdropFilter: shouldShowScrolled ? "none" : "blur(8px)",
+                boxShadow: shouldShowScrolled ? "0 3px 14px rgba(61,107,94,0.22)" : "none"
               }}>
-                MENU
-              </button>
+                Reservar Data
+              </a>
             </div>
+
+            {/* ── MOBILE BUTTON ── */}
+            <button className="mobile-only nav-mobile-btn" onClick={() => setIsOpen(true)} style={{
+              color: shouldShowScrolled ? "#1a1a1a" : "#fff"
+            }}>
+              MENU
+            </button>
           </div>
         </nav>
 
-        {/* ── MOBILE MENU ── */}
+        {/* ══════ MOBILE MENU ══════ */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -428,7 +354,8 @@ export default function RootLayout({ children }) {
 
               {mobileMenu.map(item => (
                 <a key={item.name} href={item.href}
-                  onClick={() => setIsOpen(false)} className="nav-link"
+                  onClick={() => setIsOpen(false)}
+                  className="nav-link"
                   style={{
                     color: "#1a1a1a", fontSize: "clamp(1.3rem,4.5vw,1.8rem)",
                     margin: "11px 0", fontFamily: "'TAN-MEMORIES', serif"
@@ -471,22 +398,63 @@ export default function RootLayout({ children }) {
         <SiteFooter/>
 
         <style jsx global>{`
-          @media (max-width: 1023px) { .desktop-only { display: none !important; } }
-          @media (min-width: 1024px) { .mobile-only  { display: none !important; } }
+          @media (max-width: 1099px) { .desktop-only { display: none !important; } }
+          @media (min-width: 1100px) { .mobile-only  { display: none !important; } }
           * { box-sizing: border-box; }
 
-          .nav-container {
-            max-width: 1440px; margin: 0 auto;
-            display: flex; justify-content: space-between;
-            align-items: center; padding: 0 20px;
+          /* ── Nav bar — relative container so logo can be absolute-centered ── */
+          .nav-bar {
+            position: relative;
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            min-height: 32px;
           }
-          @media (min-width: 1024px) { .nav-container { padding: 0 36px; } }
+          @media (min-width: 1100px) { .nav-bar { padding: 0 32px; } }
 
-          /* Equal flex sides so logo stays dead-center */
-          .nav-side { flex: 1; display: flex; align-items: center; }
-          .nav-side--left  { justify-content: flex-start; }
-          .nav-side--right { justify-content: flex-end; }
-          .logo-central { flex: 0 0 auto; }
+          /* Left and right sit at edges */
+          .nav-left {
+            display: flex;
+            gap: clamp(12px, 1.6vw, 24px);
+            align-items: center;
+          }
+          .nav-right {
+            display: flex;
+            gap: clamp(12px, 1.6vw, 22px);
+            align-items: center;
+          }
+
+          /* Logo — absolute center, never pushed by side content */
+          .nav-logo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: clamp(1rem, 1.5vw, 1.4rem);
+            font-family: 'TAN-MEMORIES', serif;
+            text-align: center;
+            text-decoration: none !important;
+            line-height: 1.1;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            padding-bottom: 2px;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+          }
+          .nav-logo:hover {
+            border-bottom: 1px solid currentColor;
+          }
+
+          /* Mobile menu button */
+          .nav-mobile-btn {
+            background: none; border: none; cursor: pointer;
+            font-size: 0.82rem; font-weight: 500; letter-spacing: 2px;
+            padding: 10px 0; font-family: 'Roboto', sans-serif;
+            margin-left: auto;
+          }
 
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
           .italic { font-style: italic !important; }
@@ -496,11 +464,49 @@ export default function RootLayout({ children }) {
             transition: all 0.3s ease;
             display: inline-block;
             border-bottom: 1px solid transparent;
-            line-height: 1.4; padding-bottom: 2px;
+            line-height: 1.4;
+            padding-bottom: 2px;
           }
           .nav-link:hover { border-bottom: 1px solid currentColor; }
-          .nav-lang:hover { border-bottom: 1px solid transparent !important; opacity: 0.8; }
-          .nav-cta-btn:hover {
+
+          /* Language dropdown — no underline on hover */
+          .lang-trigger { border-bottom: 1px solid transparent !important; }
+          .lang-trigger:hover { border-bottom: 1px solid currentColor !important; }
+
+          .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            padding-top: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+          }
+          .lang-container:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+          }
+
+          /* CTA button */
+          .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.66rem;
+            font-weight: 600;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            text-decoration: none !important;
+            font-family: Roboto, sans-serif;
+            padding: 8px 18px;
+            border-radius: 100px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+          }
+          .nav-cta:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(61,107,94,0.32) !important;
           }
