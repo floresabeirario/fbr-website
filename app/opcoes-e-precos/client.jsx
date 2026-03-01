@@ -32,28 +32,33 @@ function Label({ children, light }) {
   );
 }
 
-/* Componente de flor individual — posicionável em qualquer ponto do SVG */
-function Flower({ cx, cy, scale = 1, rotate = 0, opacity = 0.45 }) {
+/* Componente de flor individual — cor configurável para fundo claro ou escuro */
+function Flower({ cx, cy, scale = 1, rotate = 0, opacity = 0.45, dark = false }) {
+  const r = dark ? `rgba(15,30,26,${opacity})` : `rgba(250,247,240,${opacity})`;
+  const rs = dark ? `rgba(15,30,26,${opacity * 0.7})` : `rgba(250,247,240,${opacity * 0.75})`;
   return (
     <g transform={`translate(${cx}, ${cy}) rotate(${rotate}) scale(${scale}) translate(-100, -125)`}>
       <path
         d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120"
-        stroke={`rgba(250,247,240,${opacity})`} strokeWidth="1.5" fill="none"
+        stroke={r} strokeWidth="1.5" fill="none"
         strokeLinejoin="round" strokeLinecap="round"
       />
       <path
         d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108"
-        stroke={`rgba(250,247,240,${opacity * 0.75})`} strokeWidth="1" strokeLinecap="round"
+        stroke={rs} strokeWidth="1" strokeLinecap="round"
       />
       <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)"
-        stroke={`rgba(250,247,240,${opacity})`} strokeWidth="1.5" fill="none"
+        stroke={r} strokeWidth="1.5" fill="none"
       />
     </g>
   );
 }
 
-/* SVG da moldura com número de flores configurável e tamanho visual controlado */
-function FrameSVG({ vw, vh, flowers, svgWidth, label }) {
+/* SVG da moldura — dark=true para usar sobre fundo claro */
+function FrameSVG({ vw, vh, flowers, svgWidth, label, dark = false }) {
+  const stroke1 = dark ? "rgba(15,30,26,0.45)" : "rgba(250,247,240,0.55)";
+  const stroke2 = dark ? "rgba(15,30,26,0.22)" : "rgba(250,247,240,0.28)";
+  const strokeGlass = dark ? "rgba(15,30,26,0.14)" : "rgba(250,247,240,0.18)";
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -61,24 +66,20 @@ function FrameSVG({ vw, vh, flowers, svgWidth, label }) {
       style={{ width: svgWidth, height: "auto", display: "block" }}
       aria-label={`Ilustração moldura ${label}`}
     >
-      {/* Moldura exterior */}
       <rect x="10" y="10" width={vw - 20} height={vh - 20}
-        stroke="rgba(250,247,240,0.55)" strokeWidth="2" fill="none" />
-      {/* Moldura interior */}
+        stroke={stroke1} strokeWidth="2" fill="none" />
       <rect x="18" y="18" width={vw - 36} height={vh - 36}
-        stroke="rgba(250,247,240,0.28)" strokeWidth="1.2" fill="none" />
-      {/* Brilhos de vidro */}
+        stroke={stroke2} strokeWidth="1.2" fill="none" />
       <line x1="32" y1={vh * 0.28} x2={vw * 0.42} y2="28"
-        stroke="rgba(250,247,240,0.2)" strokeWidth="1.4" strokeLinecap="round" />
+        stroke={strokeGlass} strokeWidth="1.4" strokeLinecap="round" />
       <line x1={vw * 0.46} y1="20" x2={vw * 0.52} y2="12"
-        stroke="rgba(250,247,240,0.2)" strokeWidth="1.2" strokeLinecap="round" />
+        stroke={strokeGlass} strokeWidth="1.2" strokeLinecap="round" />
       <line x1="48" y1={vh * 0.38} x2={vw * 0.56} y2="44"
-        stroke="rgba(250,247,240,0.14)" strokeWidth="1.1" strokeLinecap="round" />
+        stroke={strokeGlass} strokeWidth="1.1" strokeLinecap="round" />
       <line x1={vw - 44} y1={vh - 60} x2={vw - 24} y2={vh - 82}
-        stroke="rgba(250,247,240,0.2)" strokeWidth="1.3" strokeLinecap="round" />
-      {/* Flores */}
+        stroke={strokeGlass} strokeWidth="1.3" strokeLinecap="round" />
       {flowers.map((f, i) => (
-        <Flower key={i} {...f} />
+        <Flower key={i} {...f} dark={dark} />
       ))}
     </svg>
   );
@@ -342,43 +343,43 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          {/* Cartões — todos o mesmo tamanho, SVG escala entre eles */}
-          <div className="pricing-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2px", marginBottom: "48px" }}>
+          {/* Cartões creme sobre fundo escuro */}
+          <div className="pricing-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px", marginBottom: "48px" }}>
             {frames.map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div style={{
-                  backgroundColor: "rgba(250,247,240,0.04)",
-                  border: "1px solid rgba(250,247,240,0.07)",
-                  padding: "40px 36px 40px",
+                  backgroundColor: i === 0 ? "#FAF7F0" : i === 1 ? "#F2EDE4" : "#EAE3D8",
+                  padding: "36px 32px 36px",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "flex-start",
                   height: "100%",
-                  minHeight: "420px",
-                  position: "relative",
+                  minHeight: "440px",
                   boxSizing: "border-box",
+                  borderRadius: "4px",
                 }}>
 
-                  {/* SVG no topo — tamanho varia por opção */}
-                  <div style={{ marginBottom: "28px" }}>
+                  {/* SVG topo — dark mode para fundo claro */}
+                  <div style={{ marginBottom: "auto", paddingBottom: "24px" }}>
                     <FrameSVG
                       vw={item.vw} vh={item.vh}
                       flowers={item.flowers}
                       svgWidth={item.svgWidth}
                       label={item.size}
+                      dark={true}
                     />
                   </div>
 
                   {/* Dimensão */}
                   <p style={{
                     fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize: "clamp(2rem, 3.5vw, 2.8rem)",
-                    color: "#FAF7F0",
+                    fontSize: "clamp(1.9rem, 3vw, 2.6rem)",
+                    color: "#0F1E1A",
                     margin: "0",
                     lineHeight: 1,
                   }}>
                     {item.size}
-                    <span style={{ fontSize: "0.9rem", fontFamily: "Roboto, sans-serif", fontWeight: 300, marginLeft: "5px", opacity: 0.4 }}>
+                    <span style={{ fontSize: "0.85rem", fontFamily: "Roboto, sans-serif", fontWeight: 400, marginLeft: "5px", color: "rgba(15,30,26,0.4)" }}>
                       {item.unit}
                     </span>
                   </p>
@@ -386,9 +387,9 @@ export default function OpcoesClient() {
                   {/* Preço */}
                   <p style={{
                     fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize: "clamp(1.4rem, 2.5vw, 1.9rem)",
-                    color: "#8BA888",
-                    margin: "10px 0 18px",
+                    fontSize: "clamp(1.3rem, 2.2vw, 1.75rem)",
+                    color: "#3D6B5E",
+                    margin: "10px 0 16px",
                   }}>
                     {item.price}€
                   </p>
@@ -397,18 +398,25 @@ export default function OpcoesClient() {
                   <p style={{
                     fontFamily: "Roboto, sans-serif",
                     fontWeight: 300,
-                    fontSize: "0.88rem",
+                    fontSize: "0.87rem",
                     lineHeight: 1.75,
-                    color: "rgba(250,247,240,0.5)",
+                    color: "rgba(15,30,26,0.6)",
                     margin: "0",
                     flexGrow: 1,
                   }}>
                     {item.desc}
                   </p>
 
-                  {/* Linha e nota de materiais */}
-                  <div style={{ marginTop: "28px", paddingTop: "20px", borderTop: "1px solid rgba(250,247,240,0.06)", width: "100%" }}>
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.73rem", lineHeight: 1.6, color: "rgba(250,247,240,0.26)", margin: 0 }}>
+                  {/* Linha e nota de materiais — visível sobre fundo claro */}
+                  <div style={{ marginTop: "24px", paddingTop: "18px", borderTop: "1px solid rgba(15,30,26,0.12)", width: "100%" }}>
+                    <p style={{
+                      fontFamily: "Roboto, sans-serif",
+                      fontWeight: 400,
+                      fontSize: "0.75rem",
+                      lineHeight: 1.6,
+                      color: "rgba(15,30,26,0.5)",
+                      margin: 0,
+                    }}>
                       Inclui vidro UltraVue® UV70, moldura de nogueira e cartão de pH neutro
                     </p>
                   </div>
