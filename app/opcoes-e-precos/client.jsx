@@ -34,7 +34,7 @@ function Label({ children, light }) {
 
 export default function OpcoesClient() {
   return (
-    <div style={{ backgroundColor: "#FAF7F0", color: "#1a1a1a" }}>
+    <div style={{ backgroundColor: "#FAF7F0", color: "#1a1a1a", overflowX: "hidden" }}>
 
       {/* ════════════════════════════════════════════
           HERO com foto de fundo
@@ -120,14 +120,14 @@ export default function OpcoesClient() {
             {
               img: "/quadropreto.webp",
               alt: "Quadro de flores prensadas com fundo preto ou colorido personalizado",
-              tag: "Personalizável", tagSolid: false,
+              tag: null,
               title: "Fundo Colorido",
               desc: "Aplicamos qualquer cor de fundo para realçar as flores. Sugerimos tonalidades que combinem com a paleta do bouquet.",
             },
             {
               img: "/quadrobranco.webp",
               alt: "Quadro de flores prensadas com fundo branco minimalista",
-              tag: "Atemporal", tagSolid: false,
+              tag: null,
               title: "Fundo Branco",
               desc: "Minimalista e intemporal. Realça naturalmente as cores e formas das flores com máxima simplicidade.",
             },
@@ -138,7 +138,8 @@ export default function OpcoesClient() {
                 <img src={item.img} alt={item.alt} loading="lazy"
                   style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.9s ease" }}
                   className="fundo-img-new" />
-                {/* Tag sobreposta na imagem */}
+                {/* Tag sobreposta na imagem — só se existir */}
+                {item.tag && (
                 <span style={{
                   position: "absolute", top: "12px", left: "12px",
                   backgroundColor: item.tagSolid ? "#3D6B5E" : "rgba(15,30,26,0.55)",
@@ -150,6 +151,7 @@ export default function OpcoesClient() {
                 }}>
                   {item.tag}
                 </span>
+                )}
               </div>
               {/* Texto abaixo da imagem */}
               <div style={{ padding: "18px 4px 0" }}>
