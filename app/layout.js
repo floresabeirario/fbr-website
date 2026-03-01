@@ -234,14 +234,13 @@ export default function RootLayout({ children }) {
           padding: shouldShowScrolled ? "14px 0" : "24px 0"
         }}>
           {/*
-            Layout: position:relative container with
-            - Left links (flex-start)
-            - Center logo (absolute center — always perfectly centered)
-            - Right links + PT dropdown + CTA (flex-end)
+            ── GRID DE 3 COLUNAS: esquerda | centro | direita ──
+            O logo fica sempre perfeitamente centrado, independente do tamanho
+            dos conteúdos das colunas laterais.
           */}
           <div className="nav-bar">
 
-            {/* ── LEFT ── */}
+            {/* ── COLUNA ESQUERDA: links desktop ── */}
             <div className="nav-left desktop-only">
               {menuLeft.map(item => (
                 <a key={item.name} href={item.href} className="nav-link" style={{
@@ -255,7 +254,7 @@ export default function RootLayout({ children }) {
               ))}
             </div>
 
-            {/* ── CENTER LOGO — absolute positioned = always dead center ── */}
+            {/* ── COLUNA CENTRO: logo — sempre centrado pelo grid ── */}
             <motion.a
               href="/"
               className="nav-logo"
@@ -271,61 +270,65 @@ export default function RootLayout({ children }) {
               Flores à Beira&#8209;Rio
             </motion.a>
 
-            {/* ── RIGHT ── */}
-            <div className="nav-right desktop-only">
-              {menuRight.map(item => (
-                <a key={item.name} href={item.href} className="nav-link" style={{
-                  fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
-                  letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                  whiteSpace: "nowrap"
-                }}>
-                  {item.name}
-                </a>
-              ))}
-
-              {/* ── PT flag with EN dropdown ── */}
-              <div className="lang-container" style={{ position: "relative", display: "flex", alignItems: "center" }}>
-                <a href="/pt" className="nav-link lang-trigger" style={{
-                  fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
-                  letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                  display: "flex", alignItems: "center", cursor: "pointer"
-                }}>
-                  PT <FlagPT/>
-                </a>
-                <div className="lang-dropdown">
-                  <a href="/en" className="lang-dropdown-item" style={{
+            {/* ── COLUNA DIREITA: links desktop + PT/EN + CTA + botão mobile ── */}
+            <div className="nav-right-col">
+              {/* Links desktop */}
+              <div className="nav-right desktop-only">
+                {menuRight.map(item => (
+                  <a key={item.name} href={item.href} className="nav-link" style={{
                     fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
-                    letterSpacing: "1.3px", display: "flex", alignItems: "center",
-                    color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                    background: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
-                    backdropFilter: "blur(12px)",
-                    padding: "9px 14px", borderRadius: "6px",
-                    border: `1px solid ${shouldShowScrolled ? "rgba(26,26,26,0.08)" : "rgba(255,255,255,0.12)"}`,
-                    textDecoration: "none", transition: "background 0.3s ease"
+                    letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                    whiteSpace: "nowrap"
                   }}>
-                    EN <FlagEN/>
+                    {item.name}
                   </a>
+                ))}
+
+                {/* ── PT flag com dropdown EN ── */}
+                <div className="lang-container" style={{ position: "relative", display: "flex", alignItems: "center" }}>
+                  <a href="/pt" className="nav-link lang-trigger" style={{
+                    fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
+                    letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                    display: "flex", alignItems: "center", cursor: "pointer"
+                  }}>
+                    PT <FlagPT/>
+                  </a>
+                  <div className="lang-dropdown">
+                    <a href="/en" className="lang-dropdown-item" style={{
+                      fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
+                      letterSpacing: "1.3px", display: "flex", alignItems: "center",
+                      color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                      background: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
+                      backdropFilter: "blur(12px)",
+                      padding: "9px 14px", borderRadius: "6px",
+                      border: `1px solid ${shouldShowScrolled ? "rgba(26,26,26,0.08)" : "rgba(255,255,255,0.12)"}`,
+                      textDecoration: "none", transition: "background 0.3s ease"
+                    }}>
+                      EN <FlagEN/>
+                    </a>
+                  </div>
                 </div>
+
+                {/* ── CTA ── */}
+                <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="nav-cta" style={{
+                  backgroundColor: shouldShowScrolled ? "#3D6B5E" : "rgba(250,247,240,0.12)",
+                  color: shouldShowScrolled ? "#FAF7F0" : "rgba(250,247,240,0.92)",
+                  border: shouldShowScrolled ? "1.5px solid #3D6B5E" : "1.5px solid rgba(250,247,240,0.35)",
+                  backdropFilter: shouldShowScrolled ? "none" : "blur(8px)",
+                  boxShadow: shouldShowScrolled ? "0 3px 14px rgba(61,107,94,0.22)" : "none"
+                }}>
+                  Reservar Data
+                </a>
               </div>
 
-              {/* ── CTA ── */}
-              <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="nav-cta" style={{
-                backgroundColor: shouldShowScrolled ? "#3D6B5E" : "rgba(250,247,240,0.12)",
-                color: shouldShowScrolled ? "#FAF7F0" : "rgba(250,247,240,0.92)",
-                border: shouldShowScrolled ? "1.5px solid #3D6B5E" : "1.5px solid rgba(250,247,240,0.35)",
-                backdropFilter: shouldShowScrolled ? "none" : "blur(8px)",
-                boxShadow: shouldShowScrolled ? "0 3px 14px rgba(61,107,94,0.22)" : "none"
+              {/* ── Botão MENU mobile ── */}
+              <button className="mobile-only nav-mobile-btn" onClick={() => setIsOpen(true)} style={{
+                color: shouldShowScrolled ? "#1a1a1a" : "#fff"
               }}>
-                Reservar Data
-              </a>
+                MENU
+              </button>
             </div>
 
-            {/* ── MOBILE BUTTON ── */}
-            <button className="mobile-only nav-mobile-btn" onClick={() => setIsOpen(true)} style={{
-              color: shouldShowScrolled ? "#1a1a1a" : "#fff"
-            }}>
-              MENU
-            </button>
           </div>
         </nav>
 
@@ -402,37 +405,34 @@ export default function RootLayout({ children }) {
           @media (min-width: 1100px) { .mobile-only  { display: none !important; } }
           * { box-sizing: border-box; }
 
-          /* ── Nav bar — relative container so logo can be absolute-centered ── */
+          /* ══════════════════════════════════════════════════════════
+             NAV BAR — grid 3 colunas: esquerda | centro | direita
+             Garante que o logo fica SEMPRE no centro exato do ecrã,
+             independentemente de quanto espaço ocupam as colunas laterais.
+          ══════════════════════════════════════════════════════════ */
           .nav-bar {
-            position: relative;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
             max-width: 1440px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: 0 24px;
             min-height: 32px;
           }
-          @media (min-width: 1100px) { .nav-bar { padding: 0 32px; } }
+          @media (min-width: 1100px) {
+            .nav-bar { padding: 0 32px; }
+          }
 
-          /* Left and right sit at edges */
+          /* Coluna esquerda: alinha conteúdo à esquerda */
           .nav-left {
             display: flex;
             gap: clamp(12px, 1.6vw, 24px);
             align-items: center;
-          }
-          .nav-right {
-            display: flex;
-            gap: clamp(12px, 1.6vw, 22px);
-            align-items: center;
+            justify-self: start;
           }
 
-          /* Logo — absolute center, never pushed by side content */
+          /* Logo — coluna do centro, centrado naturalmente pelo grid */
           .nav-logo {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
             font-size: clamp(1rem, 1.5vw, 1.4rem);
             font-family: 'TAN-MEMORIES', serif;
             text-align: center;
@@ -448,12 +448,24 @@ export default function RootLayout({ children }) {
             border-bottom: 1px solid currentColor;
           }
 
+          /* Coluna direita: alinha conteúdo à direita */
+          .nav-right-col {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+          }
+
+          .nav-right {
+            display: flex;
+            gap: clamp(12px, 1.6vw, 22px);
+            align-items: center;
+          }
+
           /* Mobile menu button */
           .nav-mobile-btn {
             background: none; border: none; cursor: pointer;
             font-size: 0.82rem; font-weight: 500; letter-spacing: 2px;
             padding: 10px 0; font-family: 'Roboto', sans-serif;
-            margin-left: auto;
           }
 
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
@@ -469,7 +481,7 @@ export default function RootLayout({ children }) {
           }
           .nav-link:hover { border-bottom: 1px solid currentColor; }
 
-          /* Language dropdown — no underline on hover */
+          /* Language dropdown — sem sublinhado no hover */
           .lang-trigger { border-bottom: 1px solid transparent !important; }
           .lang-trigger:hover { border-bottom: 1px solid currentColor !important; }
 
