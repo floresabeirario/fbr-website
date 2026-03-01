@@ -5,16 +5,76 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 const IconInstagram = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <rect x="2" y="2" width="20" height="20" rx="5"/>
     <circle cx="12" cy="12" r="4"/>
     <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
   </svg>
 );
 const IconWhatsApp = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
+);
+
+// ─── JSON-LD Structured Data para SEO ────────────────────────────────────────
+const StructuredData = () => (
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Flores à Beira-Rio",
+        "description": "Atelier de preservação botânica artesanal em Coimbra. Transformamos bouquets de casamento em quadros de arte botânica que duram décadas.",
+        "image": "https://floresabeirario.pt/fotoquadro1.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Coimbra",
+          "addressRegion": "Coimbra",
+          "addressCountry": "PT"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "40.2033",
+          "longitude": "-8.4103"
+        },
+        "telephone": "+351934680300",
+        "email": "info@floresabeirario.pt",
+        "priceRange": "€€€",
+        "openingHours": "Mo-Fr 10:00-18:00",
+        "sameAs": [
+          "https://instagram.com/floresabeirario",
+          "https://facebook.com/floresabeirario"
+        ],
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "EUR",
+          "lowPrice": "300",
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "Preservação de Bouquet 30×40cm",
+              "price": "300",
+              "priceCurrency": "EUR"
+            },
+            {
+              "@type": "Offer",
+              "name": "Preservação de Bouquet 40×50cm",
+              "price": "400",
+              "priceCurrency": "EUR"
+            },
+            {
+              "@type": "Offer",
+              "name": "Preservação de Bouquet 50×70cm",
+              "price": "500",
+              "priceCurrency": "EUR"
+            }
+          ]
+        }
+      })
+    }}
+  />
 );
 
 // ─── Step Card ────────────────────────────────────────────────────────────────
@@ -24,7 +84,7 @@ const StepCard = ({ number, title, desc, imageSrc, delay }) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ delay, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-    style={{ borderLeft: "1px solid rgba(61,107,94,0.15)", paddingLeft: "clamp(20px,3vw,32px)" }}
+    style={{ borderLeft: "2px solid rgba(61,107,94,0.15)", paddingLeft: "clamp(20px,3vw,32px)" }}
   >
     <span style={{
       display: "block",
@@ -32,11 +92,10 @@ const StepCard = ({ number, title, desc, imageSrc, delay }) => (
       fontSize: "clamp(2.5rem,5vw,3.8rem)",
       color: "#3D6B5E", opacity: 0.18,
       lineHeight: 1, marginBottom: "12px"
-    }}>
+    }} aria-hidden="true">
       {number}
     </span>
 
-    {/* Step photo */}
     <div style={{
       width: "100%", aspectRatio: "4/3",
       borderRadius: "14px", overflow: "hidden",
@@ -44,24 +103,24 @@ const StepCard = ({ number, title, desc, imageSrc, delay }) => (
     }}>
       <img
         src={imageSrc}
-        alt={title}
+        alt={`Passo ${number}: ${title}`}
+        className="step-photo"
         style={{
           width: "100%", height: "100%", objectFit: "cover",
           display: "block", transition: "transform 0.6s ease"
         }}
         loading="lazy"
-        className="step-photo"
       />
     </div>
 
     <h3 style={{
       fontFamily: "'TAN-MEMORIES', serif",
-      fontSize: "clamp(1.2rem,2.5vw,1.5rem)",
-      color: "#1E2D2A", margin: "0 0 10px", lineHeight: 1.2
+      fontSize: "clamp(1.3rem,2.5vw,1.6rem)",
+      color: "#1E2D2A", margin: "0 0 12px", lineHeight: 1.2
     }}>
       {title}
     </h3>
-    <p style={{ color: "#5A6B60", lineHeight: 1.78, fontSize: "0.92rem", margin: 0 }}>
+    <p style={{ color: "#5A6B60", lineHeight: 1.78, fontSize: "1rem", margin: 0 }}>
       {desc}
     </p>
   </motion.div>
@@ -112,7 +171,10 @@ export default function Home() {
   ];
 
   return (
-    <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
+    <>
+      <StructuredData/>
+      
+      <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
 
       <style dangerouslySetInnerHTML={{ __html: `
         * { box-sizing: border-box; }
@@ -126,6 +188,20 @@ export default function Home() {
           --mid:     #5A6B60;
         }
 
+        /* Pausar animações se preferência de movimento reduzido */
+        @media (prefers-reduced-motion: reduce) {
+          *,
+          *::before,
+          *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+          video {
+            animation: none !important;
+          }
+        }
+
         @keyframes driftA {
           0%,100% { transform: translateY(0) rotate(0deg); }
           50%      { transform: translateY(-16px) rotate(5deg); }
@@ -134,104 +210,138 @@ export default function Home() {
 
         .section-eyebrow {
           display: block;
-          font-size: 0.58rem; font-weight: 700;
-          letter-spacing: 3.5px; text-transform: uppercase;
+          font-size: 0.875rem; font-weight: 700;
+          letter-spacing: 3px; text-transform: uppercase;
           color: var(--terra); margin-bottom: 12px;
           font-family: Roboto, sans-serif;
         }
 
-        /* Ghost buttons — both transparent */
         .btn-ghost {
           display: inline-block;
-          border: 1.5px solid rgba(250,247,240,0.55);
-          color: rgba(250,247,240,0.92);
-          padding: 14px 32px; border-radius: 100px;
+          border: 2px solid rgba(250,247,240,0.65);
+          color: rgba(250,247,240,0.95);
+          padding: 16px 36px; border-radius: 100px;
           text-decoration: none; font-weight: 600;
-          font-size: 0.78rem; letter-spacing: 1.5px;
+          font-size: 0.95rem; letter-spacing: 1.5px;
           text-transform: uppercase; text-align: center;
           transition: all 0.3s ease;
           font-family: Roboto, sans-serif;
           backdrop-filter: blur(8px);
           background: rgba(250,247,240,0.08);
+          min-height: 56px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
         }
-        .btn-ghost:hover {
+        .btn-ghost:hover,
+        .btn-ghost:focus {
           background: rgba(250,247,240,0.2);
-          border-color: rgba(250,247,240,0.85);
+          border-color: rgba(250,247,240,0.95);
           color: #FAF7F0;
           transform: translateY(-3px);
+          outline: none;
+        }
+        .btn-ghost:focus-visible {
+          outline: 3px solid #8BA888;
+          outline-offset: 4px;
         }
 
         .btn-primary {
           display: inline-block;
           background-color: var(--green); color: var(--cream);
-          padding: 15px 34px; border-radius: 100px;
+          padding: 17px 38px; border-radius: 100px;
           text-decoration: none; font-weight: 600;
-          font-size: 0.8rem; letter-spacing: 1.5px;
+          font-size: 0.95rem; letter-spacing: 1.5px;
           text-transform: uppercase; text-align: center;
           box-shadow: 0 6px 24px rgba(61,107,94,0.28);
           transition: all 0.3s ease;
           font-family: Roboto, sans-serif;
+          min-height: 56px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
         }
-        .btn-primary:hover {
+        .btn-primary:hover,
+        .btn-primary:focus {
           background-color: var(--green-d);
           transform: translateY(-3px);
         }
+        .btn-primary:focus-visible {
+          outline: 3px solid #8BA888;
+          outline-offset: 4px;
+        }
+
         .btn-outline {
           display: inline-block;
           border: 2px solid var(--green); color: var(--green);
-          padding: 13px 32px; border-radius: 100px;
+          padding: 15px 36px; border-radius: 100px;
           text-decoration: none; font-weight: 600;
-          font-size: 0.8rem; letter-spacing: 1.5px;
+          font-size: 0.95rem; letter-spacing: 1.5px;
           text-transform: uppercase; text-align: center;
           transition: all 0.3s ease;
           font-family: Roboto, sans-serif;
+          min-height: 56px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
         }
-        .btn-outline:hover {
+        .btn-outline:hover,
+        .btn-outline:focus {
           background-color: var(--green); color: var(--cream);
           transform: translateY(-3px);
         }
+        .btn-outline:focus-visible {
+          outline: 3px solid #8BA888;
+          outline-offset: 4px;
+        }
+
         .btn-ghost-dark {
           display: inline-block;
-          border: 1.5px solid rgba(30,45,42,0.25); color: var(--green-d);
-          padding: 13px 30px; border-radius: 100px;
+          border: 2px solid rgba(30,45,42,0.3); color: var(--green-d);
+          padding: 15px 34px; border-radius: 100px;
           text-decoration: none; font-weight: 600;
-          font-size: 0.78rem; letter-spacing: 1.5px;
+          font-size: 0.95rem; letter-spacing: 1.5px;
           text-transform: uppercase; text-align: center;
           transition: all 0.3s ease;
           font-family: Roboto, sans-serif;
+          min-height: 56px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
         }
-        .btn-ghost-dark:hover {
+        .btn-ghost-dark:hover,
+        .btn-ghost-dark:focus {
           background: rgba(30,45,42,0.06);
           border-color: var(--green);
           color: var(--green);
           transform: translateY(-3px);
         }
+        .btn-ghost-dark:focus-visible {
+          outline: 3px solid #3D6B5E;
+          outline-offset: 4px;
+        }
 
-        /* Step photo hover */
         .step-photo:hover { transform: scale(1.04); }
 
-        /* CTA rows */
         .cta-row {
           display: flex; flex-direction: column;
-          align-items: stretch; gap: 12px;
+          align-items: stretch; gap: 14px;
         }
         @media (min-width: 460px) {
           .cta-row { flex-direction: row; justify-content: center; align-items: center; }
         }
 
-        /* Steps grid */
         .steps-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 40px;
+          gap: 48px;
         }
         @media (min-width: 640px) {
-          .steps-grid { grid-template-columns: repeat(3,1fr); gap: 0; }
+          .steps-grid { grid-template-columns: repeat(3,1fr); gap: 0 32px; }
         }
 
-        /* Services grid */
         .services-grid {
-          display: grid; grid-template-columns: 1fr; gap: 14px;
+          display: grid; grid-template-columns: 1fr; gap: 16px;
         }
         @media (min-width: 640px) {
           .services-grid { grid-template-columns: repeat(2,1fr); }
@@ -240,7 +350,6 @@ export default function Home() {
           .services-grid { grid-template-columns: repeat(3,1fr); }
         }
 
-        /* CTA Split — full viewport width */
         .cta-split {
           display: grid;
           grid-template-columns: 1fr;
@@ -249,22 +358,21 @@ export default function Home() {
           .cta-split { grid-template-columns: 1fr 1fr; }
         }
 
-        /* Vale-presente video */
         .vale-grid {
-          display: grid; grid-template-columns: 1fr; gap: 40px;
+          display: grid; grid-template-columns: 1fr; gap: 44px;
           align-items: center;
         }
         @media (min-width: 768px) {
-          .vale-grid { grid-template-columns: 1fr 1fr; gap: 64px; }
+          .vale-grid { grid-template-columns: 1fr 1fr; gap: 68px; }
         }
 
         .scroll-hint {
-          position: absolute; bottom: 32px; left: 50%;
+          position: absolute; bottom: 36px; left: 50%;
           transform: translateX(-50%);
           display: flex; flex-direction: column;
-          align-items: center; gap: 6px;
-          color: rgba(250,247,240,0.5);
-          font-size: 0.54rem; letter-spacing: 3px;
+          alignItems: center; gap: 8px;
+          color: rgba(250,247,240,0.6);
+          font-size: 0.875rem; letter-spacing: 2px;
           text-transform: uppercase; z-index: 5;
           font-family: Roboto, sans-serif;
         }
@@ -273,35 +381,47 @@ export default function Home() {
           50%      { opacity: 1;   transform: scaleY(0.7); }
         }
         .scroll-line {
-          width: 1px; height: 32px;
-          background: linear-gradient(to bottom, rgba(250,247,240,0.65), transparent);
+          width: 1px; height: 36px;
+          background: linear-gradient(to bottom, rgba(250,247,240,0.7), transparent);
           animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        /* Melhorar contraste em high contrast mode */
+        @media (prefers-contrast: high) {
+          .btn-ghost,
+          .btn-outline {
+            border-width: 3px;
+          }
         }
       `}} />
 
       {/* ════════════════════════════════════════════
-          1. HERO — video, two ghost buttons, no wave
+          1. HERO — IMAGEM DE FUNDO (fotoquadro1.webp)
       ════════════════════════════════════════════ */}
       <section
         aria-label="Flores à Beira-Rio — Preservação de flores de casamento"
         style={{
-          height: "100vh", minHeight: "580px",
+          height: "100vh", minHeight: "600px",
           position: "relative", overflow: "hidden",
           display: "flex", alignItems: "center", justifyContent: "center"
         }}
       >
-        <video
-          autoPlay loop muted playsInline
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+        {/* Imagem de fundo */}
+        <div 
           aria-hidden="true"
-        >
-          <source src="/hero-video.webm" type="video/webm"/>
-          <source src="/hero-video.mp4"  type="video/mp4"/>
-        </video>
+          style={{
+            position: "absolute", inset: 0,
+            backgroundImage: "url('/fotoquadro1.webp')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            filter: "brightness(0.7)"
+          }}
+        />
 
+        {/* Gradiente overlay */}
         <div aria-hidden="true" style={{
           position: "absolute", inset: 0,
-          background: "linear-gradient(to bottom, rgba(15,30,26,0.15) 0%, rgba(15,30,26,0.5) 65%, rgba(15,30,26,0.72) 100%)"
+          background: "linear-gradient(to bottom, rgba(15,30,26,0.2) 0%, rgba(15,30,26,0.55) 65%, rgba(15,30,26,0.75) 100%)"
         }}/>
 
         <motion.div
@@ -311,22 +431,21 @@ export default function Home() {
             width: "100%", maxWidth: "1050px"
           }}
         >
-          {/* Single line above — "Especialistas em preservação de flores" */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.8 }}
             style={{
-              fontSize: "clamp(0.62rem,1.5vw,0.78rem)",
-              letterSpacing: "clamp(3px,1vw,6px)",
-              textTransform: "uppercase", fontWeight: "300",
-              marginBottom: "clamp(24px,3.5vw,36px)", opacity: 0.82
+              fontSize: "clamp(0.875rem,1.5vw,1rem)",
+              letterSpacing: "clamp(3px,1vw,5px)",
+              textTransform: "uppercase", fontWeight: "600",
+              marginBottom: "clamp(24px,3.5vw,36px)", 
+              color: "rgba(250,247,240,0.85)"
             }}
           >
             Especialistas em preservação de flores
           </motion.p>
 
-          {/* Main title — lineHeight increased from 1.0 to 1.18 to separate lines */}
           <motion.h1
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
@@ -336,14 +455,13 @@ export default function Home() {
               fontSize: "clamp(3.5rem, 12vw, 8rem)",
               lineHeight: 1.18,
               margin: "0 0 clamp(28px,4vw,44px)",
-              textShadow: "0 4px 30px rgba(0,0,0,0.18)"
+              textShadow: "0 4px 30px rgba(0,0,0,0.3)"
             }}
           >
             Flores à<br/>
             <span style={{ whiteSpace: "nowrap" }}>Beira&#8209;Rio</span>
           </motion.h1>
 
-          {/* Two ghost CTA buttons */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -371,26 +489,26 @@ export default function Home() {
       ════════════════════════════════════════════ */}
       <section
         aria-label="Serviços de preservação botânica"
-        style={{ padding: "72px 20px 68px", backgroundColor: "#FAF7F0" }}
+        style={{ padding: "80px 20px 76px", backgroundColor: "#FAF7F0" }}
       >
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            style={{ textAlign: "center", marginBottom: "44px" }}
+            style={{ textAlign: "center", marginBottom: "52px" }}
           >
             <span className="section-eyebrow">O que fazemos</span>
             <h2 style={{
               fontFamily: "'TAN-MEMORIES', serif",
-              fontSize: "clamp(2rem,5vw,3.2rem)",
-              color: "#1E2D2A", margin: "0 0 14px", lineHeight: 1.1
+              fontSize: "clamp(2.2rem,5vw,3.5rem)",
+              color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1
             }}>
               As suas flores, para sempre
             </h2>
             <p style={{
-              color: "#5A6B60", fontSize: "clamp(0.93rem,2vw,1.03rem)",
-              lineHeight: 1.85, maxWidth: "540px", margin: "0 auto"
+              color: "#5A6B60", fontSize: "clamp(1rem,2vw,1.1rem)",
+              lineHeight: 1.85, maxWidth: "580px", margin: "0 auto"
             }}>
               Transformamos flores com valor emocional em quadros de arte botânica
               que duram décadas. Recebemos de Portugal e de toda a Europa.
@@ -436,9 +554,10 @@ export default function Home() {
                 style={{
                   display: "block", textDecoration: "none",
                   backgroundColor: s.bg, borderRadius: "20px",
-                  padding: "30px 26px",
+                  padding: "36px 30px",
                   border: `1px solid ${s.accent}18`,
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease"
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  minHeight: "280px"
                 }}
                 onMouseEnter={e => {
                   e.currentTarget.style.transform = "translateY(-5px)";
@@ -451,26 +570,26 @@ export default function Home() {
               >
                 <span style={{
                   fontFamily: "'TAN-MEMORIES', serif",
-                  fontSize: "1.5rem", color: s.accent,
-                  display: "block", marginBottom: "14px"
-                }}>
+                  fontSize: "1.8rem", color: s.accent,
+                  display: "block", marginBottom: "16px"
+                }} aria-hidden="true">
                   {s.label}
                 </span>
                 <h3 style={{
                   fontFamily: "'TAN-MEMORIES', serif",
-                  fontSize: "1.25rem", color: "#1E2D2A",
-                  margin: "0 0 9px", lineHeight: 1.2
+                  fontSize: "1.4rem", color: "#1E2D2A",
+                  margin: "0 0 12px", lineHeight: 1.2
                 }}>
                   {s.title}
                 </h3>
                 <p style={{
-                  color: "#5A6B60", fontSize: "0.88rem",
-                  lineHeight: 1.75, margin: "0 0 18px"
+                  color: "#5A6B60", fontSize: "1rem",
+                  lineHeight: 1.75, margin: "0 0 20px"
                 }}>
                   {s.desc}
                 </p>
                 <span style={{
-                  fontSize: "0.76rem", fontWeight: "700",
+                  fontSize: "0.875rem", fontWeight: "700",
                   letterSpacing: "1.5px", textTransform: "uppercase",
                   color: s.accent, fontFamily: "Roboto, sans-serif",
                   borderBottom: `1px solid ${s.accent}55`, paddingBottom: "2px"
@@ -489,7 +608,7 @@ export default function Home() {
       <section
         aria-label="Como funciona a preservação de flores em 3 passos"
         style={{
-          padding: "64px 20px 72px",
+          padding: "76px 20px 84px",
           background: "linear-gradient(180deg, #EDF2E8 0%, #FAF7F0 100%)"
         }}
       >
@@ -498,12 +617,12 @@ export default function Home() {
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            style={{ textAlign: "center", marginBottom: "56px" }}
+            style={{ textAlign: "center", marginBottom: "64px" }}
           >
             <span className="section-eyebrow">Simples assim</span>
             <h2 style={{
               fontFamily: "'TAN-MEMORIES', serif",
-              fontSize: "clamp(1.9rem,4.5vw,3rem)",
+              fontSize: "clamp(2rem,4.5vw,3.2rem)",
               color: "#1E2D2A", margin: 0, lineHeight: 1.1
             }}>
               Três passos para a sua arte
@@ -516,7 +635,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div style={{ textAlign: "center", marginTop: "48px" }}>
+          <div style={{ textAlign: "center", marginTop: "56px" }}>
             <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
               Reservar a Minha Data
             </a>
@@ -525,12 +644,12 @@ export default function Home() {
       </section>
 
       {/* ════════════════════════════════════════════
-          4. GOOGLE REVIEWS — credibilidade
+          4. GOOGLE REVIEWS
       ════════════════════════════════════════════ */}
       <section
         aria-label="Avaliações de clientes da Flores à Beira-Rio"
         style={{
-          padding: "64px 20px",
+          padding: "76px 20px",
           backgroundColor: "#1E2D2A",
           color: "#FAF7F0", textAlign: "center"
         }}
@@ -542,21 +661,21 @@ export default function Home() {
           style={{ maxWidth: "940px", margin: "0 auto" }}
         >
           <span style={{
-            display: "block", fontSize: "0.58rem", fontWeight: "700",
-            letterSpacing: "3.5px", textTransform: "uppercase",
-            color: "#8BA888", marginBottom: "12px",
+            display: "block", fontSize: "0.875rem", fontWeight: "700",
+            letterSpacing: "3px", textTransform: "uppercase",
+            color: "#8BA888", marginBottom: "14px",
             fontFamily: "Roboto, sans-serif"
           }}>
             Clientes felizes
           </span>
           <h2 style={{
             fontFamily: "'TAN-MEMORIES', serif",
-            fontSize: "clamp(1.8rem,4.5vw,3rem)",
-            margin: "0 0 36px", lineHeight: 1.1, color: "#FAF7F0"
+            fontSize: "clamp(2rem,4.5vw,3.2rem)",
+            margin: "0 0 40px", lineHeight: 1.1, color: "#FAF7F0"
           }}>
             O que dizem quem confiou em nós
           </h2>
-          <div ref={reviewRef} style={{ minHeight: "180px" }}/>
+          <div ref={reviewRef} style={{ minHeight: "200px" }}/>
         </motion.div>
       </section>
 
@@ -565,12 +684,11 @@ export default function Home() {
       ════════════════════════════════════════════ */}
       <section
         aria-label="Vale-Presente — ofereça a preservação de flores"
-        style={{ padding: "80px 20px", backgroundColor: "#FAF7F0" }}
+        style={{ padding: "88px 20px", backgroundColor: "#FAF7F0" }}
       >
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <div className="vale-grid">
 
-            {/* Video side */}
             <motion.div
               initial={{ opacity: 0, x: -28 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -580,7 +698,7 @@ export default function Home() {
                 borderRadius: "22px", overflow: "hidden",
                 boxShadow: "0 20px 60px rgba(30,45,42,0.12)",
                 aspectRatio: "9/16",
-                maxHeight: "520px",
+                maxHeight: "560px",
                 backgroundColor: "#D4DECC",
                 position: "relative"
               }}
@@ -593,11 +711,11 @@ export default function Home() {
                 <source src="/vale-presente-video.mp4" type="video/mp4"/>
               </video>
               <div style={{
-                position: "absolute", top: "18px", left: "18px",
+                position: "absolute", top: "20px", left: "20px",
                 backgroundColor: "#B8954A",
-                color: "#FAF7F0", padding: "6px 16px", borderRadius: "50px",
-                fontSize: "0.62rem", fontWeight: "700",
-                letterSpacing: "2.5px", textTransform: "uppercase",
+                color: "#FAF7F0", padding: "8px 18px", borderRadius: "50px",
+                fontSize: "0.875rem", fontWeight: "700",
+                letterSpacing: "2px", textTransform: "uppercase",
                 fontFamily: "Roboto, sans-serif",
                 boxShadow: "0 4px 14px rgba(184,149,74,0.4)"
               }}>
@@ -605,7 +723,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Text side */}
             <motion.div
               initial={{ opacity: 0, x: 28 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -617,16 +734,16 @@ export default function Home() {
               </span>
               <h2 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
-                fontSize: "clamp(2rem,4.5vw,3.2rem)",
-                color: "#1E2D2A", margin: "0 0 18px", lineHeight: 1.1
+                fontSize: "clamp(2.2rem,4.5vw,3.5rem)",
+                color: "#1E2D2A", margin: "0 0 20px", lineHeight: 1.1
               }}>
                 Ofereça memórias<br/>
                 <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>que duram para sempre</em>
               </h2>
               <p style={{
                 color: "#5A6B60", lineHeight: 1.85,
-                fontSize: "clamp(0.92rem,2vw,1.02rem)",
-                margin: "0 0 14px"
+                fontSize: "clamp(1rem,2vw,1.1rem)",
+                margin: "0 0 16px"
               }}>
                 O vale-presente da Flores à Beira-Rio oferece a quem recebe
                 a experiência completa de preservação do seu bouquet —
@@ -634,30 +751,29 @@ export default function Home() {
               </p>
               <p style={{
                 color: "#5A6B60", lineHeight: 1.85,
-                fontSize: "clamp(0.92rem,2vw,1.02rem)",
-                margin: "0 0 30px"
+                fontSize: "clamp(1rem,2vw,1.1rem)",
+                margin: "0 0 34px"
               }}>
                 Perfeito para oferecer a noivas, em bodas de prata ou ouro,
                 ou simplesmente porque algumas pessoas merecem guardar o melhor
                 dos seus momentos.
               </p>
 
-              {/* Highlights */}
               <div style={{
-                display: "flex", flexDirection: "column", gap: "10px",
-                marginBottom: "32px"
+                display: "flex", flexDirection: "column", gap: "12px",
+                marginBottom: "36px"
               }}>
                 {[
                   "Valor à escolha — cobre qualquer tamanho de moldura",
                   "Enviado por email ou impresso em cartão físico",
                   "Válido 12 meses a partir da data de oferta"
                 ].map((item, i) => (
-                  <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                  <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
                     <span style={{
-                      width: "6px", height: "6px", borderRadius: "50%",
-                      backgroundColor: "#B8954A", flexShrink: 0, marginTop: "7px"
-                    }}/>
-                    <p style={{ color: "#5A6B60", fontSize: "0.88rem", lineHeight: 1.7, margin: 0 }}>
+                      width: "8px", height: "8px", borderRadius: "50%",
+                      backgroundColor: "#B8954A", flexShrink: 0, marginTop: "8px"
+                    }} aria-hidden="true"/>
+                    <p style={{ color: "#5A6B60", fontSize: "1rem", lineHeight: 1.7, margin: 0 }}>
                       {item}
                     </p>
                   </div>
@@ -679,12 +795,10 @@ export default function Home() {
       </section>
 
       {/* ════════════════════════════════════════════
-          6. CTA SPLIT — full viewport width
-          Noivas + Presentes
+          6. CTA SPLIT — Noivas + Presentes
       ════════════════════════════════════════════ */}
       <div className="cta-split">
 
-        {/* A — Noivas */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -692,7 +806,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           style={{
             background: "linear-gradient(140deg, #1E2D2A 0%, #2D5045 100%)",
-            padding: "clamp(56px,9vw,90px) clamp(28px,6vw,72px)",
+            padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)",
             textAlign: "center", position: "relative", overflow: "hidden"
           }}
         >
@@ -701,7 +815,7 @@ export default function Home() {
             width: "clamp(80px,12vw,130px)", opacity: 0.08,
             pointerEvents: "none", color: "#8BA888"
           }}>
-            <svg viewBox="0 0 140 140" fill="none" style={{ width: "100%" }}>
+            <svg viewBox="0 0 140 140" fill="none" style={{ width: "100%" }} aria-hidden="true">
               {[0,45,90,135,180,225,270,315].map((r, i) => (
                 <ellipse key={i} cx="70" cy="70" rx="16" ry="38"
                   fill="currentColor" opacity="0.3"
@@ -711,25 +825,25 @@ export default function Home() {
             </svg>
           </div>
 
-          <div style={{ position: "relative", zIndex: 1, maxWidth: "440px", margin: "0 auto" }}>
+          <div style={{ position: "relative", zIndex: 1, maxWidth: "480px", margin: "0 auto" }}>
             <span style={{
-              display: "block", fontSize: "0.58rem", fontWeight: "700",
-              letterSpacing: "3.5px", textTransform: "uppercase",
-              color: "#8BA888", marginBottom: "14px",
+              display: "block", fontSize: "0.875rem", fontWeight: "700",
+              letterSpacing: "3px", textTransform: "uppercase",
+              color: "#8BA888", marginBottom: "16px",
               fontFamily: "Roboto, sans-serif"
             }}>
               Para noivas
             </span>
             <h2 style={{
               fontFamily: "'TAN-MEMORIES', serif",
-              fontSize: "clamp(1.9rem,4vw,3rem)",
-              color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1
+              fontSize: "clamp(2.2rem,4vw,3.2rem)",
+              color: "#FAF7F0", margin: "0 0 18px", lineHeight: 1.1
             }}>
               Vai casar em breve?
             </h2>
             <p style={{
-              color: "rgba(250,247,240,0.7)", fontSize: "0.95rem",
-              lineHeight: 1.82, margin: "0 0 30px"
+              color: "rgba(250,247,240,0.75)", fontSize: "1.05rem",
+              lineHeight: 1.82, margin: "0 0 34px"
             }}>
               Reserve a sua vaga com antecedência —
               as datas em época de casamentos esgotam rapidamente.
@@ -742,14 +856,17 @@ export default function Home() {
               </a>
               <a href={WA_NOIVA} target="_blank" rel="noopener noreferrer"
                 style={{
-                  display: "inline-flex", alignItems: "center", gap: "7px",
+                  display: "inline-flex", alignItems: "center", gap: "9px",
                   backgroundColor: "#25D366", color: "#fff",
-                  padding: "14px 28px", borderRadius: "100px",
+                  padding: "16px 32px", borderRadius: "100px",
                   textDecoration: "none", fontWeight: "600",
-                  fontSize: "0.78rem", letterSpacing: "1px",
+                  fontSize: "0.95rem", letterSpacing: "1.5px",
+                  textTransform: "uppercase",
                   transition: "all 0.3s ease",
                   fontFamily: "Roboto, sans-serif",
-                  whiteSpace: "nowrap"
+                  whiteSpace: "nowrap",
+                  minHeight: "56px",
+                  justifyContent: "center"
                 }}
                 onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#1da851"; e.currentTarget.style.transform = "translateY(-3px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#25D366"; e.currentTarget.style.transform = "translateY(0)"; }}
@@ -760,7 +877,6 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* B — Presentes */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -768,7 +884,7 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.1 }}
           style={{
             background: "linear-gradient(140deg, #F0EBE0 0%, #EDF2E8 100%)",
-            padding: "clamp(56px,9vw,90px) clamp(28px,6vw,72px)",
+            padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)",
             textAlign: "center", position: "relative", overflow: "hidden"
           }}
         >
@@ -777,30 +893,30 @@ export default function Home() {
             width: "clamp(65px,10vw,110px)", opacity: 0.07,
             pointerEvents: "none", color: "#B8954A", animationDelay: "2s"
           }}>
-            <svg viewBox="0 0 80 120" fill="none" style={{ width: "100%" }}>
+            <svg viewBox="0 0 80 120" fill="none" style={{ width: "100%" }} aria-hidden="true">
               <path d="M40 115 C8 80 10 35 40 8 C70 35 72 80 40 115Z" fill="currentColor" opacity="0.8"/>
             </svg>
           </div>
 
-          <div style={{ position: "relative", zIndex: 1, maxWidth: "440px", margin: "0 auto" }}>
+          <div style={{ position: "relative", zIndex: 1, maxWidth: "480px", margin: "0 auto" }}>
             <span style={{
-              display: "block", fontSize: "0.58rem", fontWeight: "700",
-              letterSpacing: "3.5px", textTransform: "uppercase",
-              color: "#B8954A", marginBottom: "14px",
+              display: "block", fontSize: "0.875rem", fontWeight: "700",
+              letterSpacing: "3px", textTransform: "uppercase",
+              color: "#B8954A", marginBottom: "16px",
               fontFamily: "Roboto, sans-serif"
             }}>
               Presente especial
             </span>
             <h2 style={{
               fontFamily: "'TAN-MEMORIES', serif",
-              fontSize: "clamp(1.9rem,4vw,3rem)",
-              color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1
+              fontSize: "clamp(2.2rem,4vw,3.2rem)",
+              color: "#1E2D2A", margin: "0 0 18px", lineHeight: 1.1
             }}>
               Ofereça memórias eternas
             </h2>
             <p style={{
-              color: "#5A6B60", fontSize: "0.95rem",
-              lineHeight: 1.82, margin: "0 0 30px"
+              color: "#5A6B60", fontSize: "1.05rem",
+              lineHeight: 1.82, margin: "0 0 34px"
             }}>
               Desde bodas de prata até aniversários de casamento —
               ofereça um vale-presente ou a recriação do bouquet de alguém especial.
@@ -819,5 +935,6 @@ export default function Home() {
       </div>
 
     </main>
+    </>
   );
 }
