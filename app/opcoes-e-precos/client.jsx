@@ -37,7 +37,7 @@ export default function OpcoesClient() {
     <div style={{ backgroundColor: "#FAF7F0", color: "#1a1a1a", overflowX: "hidden" }}>
 
       {/* ════════════════════════════════════════════
-          HERO com IMAGEM DE FUNDO — fotoquadrocloseup1.webp
+          HERO com IMAGEM DE FUNDO — fotoquadrocloseup2.webp
       ════════════════════════════════════════════ */}
       <section style={{ position: "relative", minHeight: "92vh", display: "flex", alignItems: "flex-end", overflow: "hidden" }}>
 
@@ -45,7 +45,7 @@ export default function OpcoesClient() {
         <div style={{ position: "absolute", inset: 0 }}>
           <div style={{
             width: "100%", height: "100%",
-            backgroundImage: "url('/fotoquadrocloseup1.webp')",
+            backgroundImage: "url('/fotoquadrocloseup2.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             filter: "brightness(0.7)"
