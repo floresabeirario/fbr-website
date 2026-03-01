@@ -320,7 +320,7 @@ export default function Home() {
               fontSize: "clamp(0.62rem,1.5vw,0.78rem)",
               letterSpacing: "clamp(3px,1vw,6px)",
               textTransform: "uppercase", fontWeight: "300",
-              marginBottom: "clamp(16px,2vw,24px)", opacity: 0.82
+              marginBottom: "clamp(24px,3.5vw,36px)", opacity: 0.82
             }}
           >
             Especialistas em preservação de flores
