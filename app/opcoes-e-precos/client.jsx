@@ -295,93 +295,86 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          {/* Representação visual dos tamanhos - horizontal, minimalista */}
+          {/* Representação visual dos tamanhos - usando molduras realistas */}
           <Reveal delay={0.1}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "clamp(32px, 5vw, 64px)", marginBottom: "56px", padding: "0 20px", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", gap: "clamp(24px, 4vw, 48px)", marginBottom: "56px", padding: "0 20px", flexWrap: "wrap" }}>
               
-              {/* 30x40 - proporção 3:4 */}
+              {/* 30x40 - PEQUENO */}
               <div style={{ textAlign: "center" }}>
-                <svg width="120" height="160" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Moldura externa */}
-                  <rect x="10" y="10" width="100" height="133.33" stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none"/>
-                  {/* Moldura interna */}
-                  <rect x="16" y="16" width="88" height="121.33" stroke="rgba(250,247,240,0.25)" strokeWidth="1" fill="none"/>
-                  
-                  {/* Flor simples - só contornos */}
-                  <circle cx="60" cy="77" r="18" stroke="rgba(250,247,240,0.35)" strokeWidth="1.2" fill="none"/>
-                  
-                  {/* Pétalas */}
-                  <ellipse cx="60" cy="59" rx="6" ry="10" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
-                  <ellipse cx="60" cy="95" rx="6" ry="10" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
-                  <ellipse cx="42" cy="77" rx="10" ry="6" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
-                  <ellipse cx="78" cy="77" rx="10" ry="6" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
-                  
-                  {/* Linhas de brilho no vidro */}
-                  <line x1="22" y1="28" x2="35" y2="45" stroke="rgba(250,247,240,0.15)" strokeWidth="1"/>
-                  <line x1="28" y1="32" x2="38" y2="48" stroke="rgba(250,247,240,0.12)" strokeWidth="0.8"/>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" style={{ width: "90px", height: "auto" }}>
+                  {/* Moldura exterior */}
+                  <rect x="15" y="15" width="270" height="370" stroke="rgba(250,247,240,0.5)" strokeWidth="2.5" fill="none"/>
+                  {/* Moldura interior */}
+                  <rect x="25" y="25" width="250" height="350" stroke="rgba(250,247,240,0.35)" strokeWidth="1.5" fill="none"/>
+                  {/* Linhas de brilho do vidro */}
+                  <line x1="45" y1="110" x2="115" y2="45" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="125" y1="35" x2="135" y2="25" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="75" y1="135" x2="165" y2="50" stroke="rgba(250,247,240,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="190" y1="300" x2="245" y2="250" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="210" y1="325" x2="225" y2="310" stroke="rgba(250,247,240,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
+                  {/* Flor central */}
+                  <g transform="translate(150, 200) scale(1.4) translate(-100, -125)">
+                    <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120" 
+                      stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
+                    <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108" 
+                      stroke="rgba(250,247,240,0.35)" strokeWidth="1" strokeLinecap="round"/>
+                    <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)" stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none"/>
+                  </g>
                 </svg>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.75rem", color: "rgba(250,247,240,0.5)", margin: "12px 0 0", letterSpacing: "1px" }}>30×40 cm</p>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "1.4rem", color: "#FAF7F0", margin: "4px 0 0", fontWeight: 300 }}>300€</p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.75rem", color: "rgba(250,247,240,0.5)", margin: "14px 0 0", letterSpacing: "1px" }}>30×40 cm</p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "1.35rem", color: "#FAF7F0", margin: "6px 0 0", fontWeight: 300 }}>300€</p>
               </div>
 
-              {/* 40x50 - proporção 4:5 */}
+              {/* 40x50 - MÉDIO (proporção 4:5) */}
               <div style={{ textAlign: "center" }}>
-                <svg width="128" height="160" viewBox="0 0 128 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Moldura externa */}
-                  <rect x="10" y="10" width="108" height="135" stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none"/>
-                  {/* Moldura interna */}
-                  <rect x="16" y="16" width="96" height="123" stroke="rgba(250,247,240,0.25)" strokeWidth="1" fill="none"/>
-                  
-                  {/* Flor simples - só contornos */}
-                  <circle cx="64" cy="77.5" r="20" stroke="rgba(250,247,240,0.35)" strokeWidth="1.2" fill="none"/>
-                  
-                  {/* Pétalas */}
-                  <ellipse cx="64" cy="57.5" rx="7" ry="11" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
-                  <ellipse cx="64" cy="97.5" rx="7" ry="11" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
-                  <ellipse cx="44" cy="77.5" rx="11" ry="7" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
-                  <ellipse cx="84" cy="77.5" rx="11" ry="7" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
-                  
-                  {/* Diagonais nas pétalas */}
-                  <ellipse cx="52" cy="63" rx="8" ry="5" transform="rotate(-45 52 63)" stroke="rgba(250,247,240,0.25)" strokeWidth="0.8" fill="none"/>
-                  <ellipse cx="76" cy="63" rx="8" ry="5" transform="rotate(45 76 63)" stroke="rgba(250,247,240,0.25)" strokeWidth="0.8" fill="none"/>
-                  
-                  {/* Linhas de brilho no vidro */}
-                  <line x1="24" y1="28" x2="38" y2="46" stroke="rgba(250,247,240,0.15)" strokeWidth="1"/>
-                  <line x1="30" y1="33" x2="42" y2="50" stroke="rgba(250,247,240,0.12)" strokeWidth="0.8"/>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" style={{ width: "108px", height: "auto" }}>
+                  {/* Moldura exterior */}
+                  <rect x="15" y="15" width="290" height="370" stroke="rgba(250,247,240,0.5)" strokeWidth="2.5" fill="none"/>
+                  {/* Moldura interior */}
+                  <rect x="25" y="25" width="270" height="350" stroke="rgba(250,247,240,0.35)" strokeWidth="1.5" fill="none"/>
+                  {/* Linhas de brilho do vidro */}
+                  <line x1="50" y1="110" x2="125" y2="45" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="135" y1="35" x2="145" y2="25" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="80" y1="135" x2="175" y2="50" stroke="rgba(250,247,240,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="205" y1="300" x2="265" y2="250" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="225" y1="325" x2="242" y2="310" stroke="rgba(250,247,240,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
+                  {/* Flor central */}
+                  <g transform="translate(160, 200) scale(1.5) translate(-100, -125)">
+                    <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120" 
+                      stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
+                    <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108" 
+                      stroke="rgba(250,247,240,0.35)" strokeWidth="1" strokeLinecap="round"/>
+                    <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)" stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none"/>
+                  </g>
                 </svg>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.75rem", color: "rgba(250,247,240,0.5)", margin: "12px 0 0", letterSpacing: "1px" }}>40×50 cm</p>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "1.4rem", color: "#FAF7F0", margin: "4px 0 0", fontWeight: 300 }}>400€</p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.75rem", color: "rgba(250,247,240,0.5)", margin: "14px 0 0", letterSpacing: "1px" }}>40×50 cm</p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "1.35rem", color: "#FAF7F0", margin: "6px 0 0", fontWeight: 300 }}>400€</p>
               </div>
 
-              {/* 50x70 - proporção 5:7 */}
+              {/* 50x70 - GRANDE (proporção 5:7) */}
               <div style={{ textAlign: "center" }}>
-                <svg width="114" height="160" viewBox="0 0 114 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Moldura externa */}
-                  <rect x="10" y="10" width="94" height="131.6" stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none"/>
-                  {/* Moldura interna */}
-                  <rect x="16" y="16" width="82" height="119.6" stroke="rgba(250,247,240,0.25)" strokeWidth="1" fill="none"/>
-                  
-                  {/* Flor simples - só contornos */}
-                  <circle cx="57" cy="75.8" r="22" stroke="rgba(250,247,240,0.35)" strokeWidth="1.2" fill="none"/>
-                  
-                  {/* Pétalas maiores */}
-                  <ellipse cx="57" cy="53.8" rx="7.5" ry="12" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
-                  <ellipse cx="57" cy="97.8" rx="7.5" ry="12" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
-                  <ellipse cx="35" cy="75.8" rx="12" ry="7.5" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
-                  <ellipse cx="79" cy="75.8" rx="12" ry="7.5" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
-                  
-                  {/* Diagonais nas pétalas */}
-                  <ellipse cx="44" cy="61" rx="9" ry="5.5" transform="rotate(-45 44 61)" stroke="rgba(250,247,240,0.25)" strokeWidth="0.8" fill="none"/>
-                  <ellipse cx="70" cy="61" rx="9" ry="5.5" transform="rotate(45 70 61)" stroke="rgba(250,247,240,0.25)" strokeWidth="0.8" fill="none"/>
-                  <ellipse cx="44" cy="90.6" rx="9" ry="5.5" transform="rotate(45 44 90.6)" stroke="rgba(250,247,240,0.25)" strokeWidth="0.8" fill="none"/>
-                  <ellipse cx="70" cy="90.6" rx="9" ry="5.5" transform="rotate(-45 70 90.6)" stroke="rgba(250,247,240,0.25)" strokeWidth="0.8" fill="none"/>
-                  
-                  {/* Linhas de brilho no vidro */}
-                  <line x1="22" y1="28" x2="36" y2="48" stroke="rgba(250,247,240,0.15)" strokeWidth="1"/>
-                  <line x1="28" y1="34" x2="40" y2="52" stroke="rgba(250,247,240,0.12)" strokeWidth="0.8"/>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 286 400" style={{ width: "95px", height: "auto" }}>
+                  {/* Moldura exterior */}
+                  <rect x="15" y="15" width="256" height="370" stroke="rgba(250,247,240,0.5)" strokeWidth="2.5" fill="none"/>
+                  {/* Moldura interior */}
+                  <rect x="25" y="25" width="236" height="350" stroke="rgba(250,247,240,0.35)" strokeWidth="1.5" fill="none"/>
+                  {/* Linhas de brilho do vidro */}
+                  <line x1="42" y1="110" x2="108" y2="45" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="118" y1="35" x2="128" y2="25" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="70" y1="135" x2="155" y2="50" stroke="rgba(250,247,240,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="180" y1="300" x2="232" y2="250" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="198" y1="325" x2="212" y2="310" stroke="rgba(250,247,240,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
+                  {/* Flor central */}
+                  <g transform="translate(143, 200) scale(1.6) translate(-100, -125)">
+                    <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120" 
+                      stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
+                    <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108" 
+                      stroke="rgba(250,247,240,0.35)" strokeWidth="1" strokeLinecap="round"/>
+                    <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)" stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none"/>
+                  </g>
                 </svg>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.75rem", color: "rgba(250,247,240,0.5)", margin: "12px 0 0", letterSpacing: "1px" }}>50×70 cm</p>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "1.4rem", color: "#FAF7F0", margin: "4px 0 0", fontWeight: 300 }}>500€</p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.75rem", color: "rgba(250,247,240,0.5)", margin: "14px 0 0", letterSpacing: "1px" }}>50×70 cm</p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "1.35rem", color: "#FAF7F0", margin: "6px 0 0", fontWeight: 300 }}>500€</p>
               </div>
             </div>
           </Reveal>
