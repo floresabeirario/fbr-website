@@ -48,10 +48,7 @@ const StepArrow = () => (
 );
 
 // ─────────────────────────────────────────────
-// Parallax: image always fills container
-// ─────────────────────────────────────────────
-// ─────────────────────────────────────────────
-// Step Card — CSS hover, no scroll listeners = no lag
+// Step Card — pill centered via flexbox wrapper
 // ─────────────────────────────────────────────
 const StepCard = ({ imageSrc, number, title, desc, delay }) => (
   <motion.article
@@ -59,15 +56,15 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-5%" }}
     transition={{ delay, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-    style={{ position: "relative" }}
+    style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
   >
+    {/* Pill — centered via flex parent */}
     <div style={{
-      position: "absolute", top: "-15px", left: "50%",
-      transform: "translateX(-50%)", zIndex: 10,
       backgroundColor: "#3D6B5E", color: "#FAF7F0",
       padding: "5px 18px", borderRadius: "50px",
-      whiteSpace: "nowrap",
-      boxShadow: "0 4px 14px rgba(61,107,94,0.32)"
+      marginBottom: "12px",
+      boxShadow: "0 4px 14px rgba(61,107,94,0.32)",
+      alignSelf: "center",
     }}>
       <span style={{
         fontSize: "0.58rem", fontWeight: "700",
@@ -82,7 +79,8 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
       borderRadius: "18px", overflow: "hidden",
       boxShadow: "0 14px 44px rgba(30,45,42,0.1)",
       backgroundColor: "#fff",
-      border: "1px solid rgba(61,107,94,0.09)"
+      border: "1px solid rgba(61,107,94,0.09)",
+      width: "100%",
     }}>
       <div style={{
         height: "220px", overflow: "hidden",
@@ -123,7 +121,7 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
 );
 
 // ─────────────────────────────────────────────
-// Use-Case Card — no emojis, no parallax
+// Use-Case Card
 // ─────────────────────────────────────────────
 const UseCaseCard = ({ imageSrc, tag, title, desc, delay }) => (
   <motion.article
@@ -194,11 +192,10 @@ export default function RecriacaoBouquet() {
     target: heroRef,
     offset: ["start start", "end start"]
   });
-  const heroBgY     = useTransform(heroP, [0, 1], ["0%",   "35%"]);
-  const heroTextY   = useTransform(heroP, [0, 1], ["0%",   "50%"]);
+  const heroBgY     = useTransform(heroP, [0, 1], ["0%",   "25%"]);
+  const heroTextY   = useTransform(heroP, [0, 1], ["0%",   "40%"]);
   const heroOpacity = useTransform(heroP, [0, 0.85], [1, 0]);
 
-  // Replace with real WhatsApp number
   const whatsappNumber = "351934680300";
   const whatsappMsg = encodeURIComponent("Olá! Gostaria de pedir um orçamento para recriação de bouquet de casamento. Envio fotografias em anexo.");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
@@ -301,21 +298,15 @@ export default function RecriacaoBouquet() {
         }
         @media (min-width: 1024px) {
           .steps-wrapper {
-            grid-template-columns: repeat(4, 1fr) ;
+            grid-template-columns: 1fr 40px 1fr 40px 1fr 40px 1fr;
             gap: 0;
             align-items: start;
-            column-gap: 0;
-          }
-          /* On desktop, lay out as: card arrow card arrow card arrow card */
-          /* We use a different approach: CSS grid with arrow columns */
-          .steps-wrapper {
-            grid-template-columns: 1fr 40px 1fr 40px 1fr 40px 1fr;
           }
           .step-arrow {
             display: flex;
             align-items: flex-start;
             justify-content: center;
-            padding-top: 120px; /* vertically center with card image */
+            padding-top: 90px;
           }
         }
 
@@ -351,7 +342,6 @@ export default function RecriacaoBouquet() {
           }
         }
 
-        /* Buttons */
         .btn-primary {
           display: inline-block;
           background-color: var(--green);
@@ -447,7 +437,6 @@ export default function RecriacaoBouquet() {
         }
         .step-img:hover { transform: scale(1.04); }
 
-        /* Divider */
         .gold-divider {
           width: 44px; height: 1px;
           background: linear-gradient(to right, transparent, #B8954A, transparent);
@@ -456,7 +445,7 @@ export default function RecriacaoBouquet() {
       `}} />
 
       {/* ══════════════════════════════════════
-          1. HERO
+          1. HERO — foto de fundo, sem onda
       ══════════════════════════════════════ */}
       <section
         ref={heroRef}
@@ -467,62 +456,52 @@ export default function RecriacaoBouquet() {
           display: "flex", alignItems: "center", justifyContent: "center"
         }}
       >
+        {/* Foto de fundo com parallax */}
         <motion.div
           aria-hidden="true"
           style={{
-            position: "absolute", inset: "-25%",
-            background: "linear-gradient(155deg, #0F1E1A 0%, #1E3328 20%, #2D5045 45%, #3D6B5E 68%, #6B9B7A 88%, #9EC49A 100%)",
-            y: heroBgY
+            position: "absolute", inset: "-20%",
+            backgroundImage: "url('/recriacao-hero.webp')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            y: heroBgY,
           }}
         />
+        {/* Overlay escuro para legibilidade */}
         <div aria-hidden="true" style={{
-          position: "absolute", inset: 0, zIndex: 1, opacity: 0.04,
-          backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")"
+          position: "absolute", inset: 0, zIndex: 1,
+          background: "linear-gradient(to bottom, rgba(15,30,26,0.35) 0%, rgba(15,30,26,0.55) 60%, rgba(15,30,26,0.75) 100%)"
         }}/>
 
-        {/* Floating botanicals */}
-        <div aria-hidden="true" className="drift-a" style={{ position:"absolute", top:"10%", left:"5%", color:"#FAF7F0", width:"clamp(80px,13vw,140px)", opacity:0.3, zIndex:2 }}>
-          <BotanicalBloom style={{ width:"100%" }}/>
-        </div>
-        <div aria-hidden="true" className="drift-b" style={{ position:"absolute", top:"14%", right:"7%", color:"#FAF7F0", width:"clamp(50px,8vw,90px)", opacity:0.25, zIndex:2 }}>
-          <BotanicalLeaf style={{ width:"100%" }}/>
-        </div>
-        <div aria-hidden="true" className="drift-c" style={{ position:"absolute", bottom:"16%", left:"4%", color:"#FAF7F0", width:"clamp(55px,9vw,100px)", opacity:0.2, zIndex:2 }}>
-          <BotanicalSprig style={{ width:"100%" }}/>
-        </div>
-        <div aria-hidden="true" className="drift-a" style={{ position:"absolute", bottom:"10%", right:"5%", color:"#FAF7F0", width:"clamp(65px,10vw,120px)", opacity:0.25, zIndex:2, animationDelay:"2s" }}>
-          <BotanicalBloom style={{ width:"100%" }}/>
-        </div>
-
         <motion.div style={{
-          zIndex:3, textAlign:"center", color:"#FAF7F0",
-          padding:"0 20px", y:heroTextY, opacity:heroOpacity,
-          maxWidth:"860px", width:"100%"
+          zIndex: 3, textAlign: "center", color: "#FAF7F0",
+          padding: "0 20px", y: heroTextY, opacity: heroOpacity,
+          maxWidth: "860px", width: "100%"
         }}>
           <motion.p
-            initial={{ opacity:0, y:16 }}
-            animate={{ opacity:1, y:0 }}
-            transition={{ delay:0.2, duration:0.7 }}
-            style={{ fontSize:"clamp(0.58rem,1.4vw,0.7rem)", letterSpacing:"4px", textTransform:"uppercase", fontWeight:"700", marginBottom:"18px", opacity:0.75, fontFamily:"Roboto, sans-serif" }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.7 }}
+            style={{ fontSize: "clamp(0.58rem,1.4vw,0.7rem)", letterSpacing: "4px", textTransform: "uppercase", fontWeight: "700", marginBottom: "18px", opacity: 0.75, fontFamily: "Roboto, sans-serif" }}
           >
             Preservação Botânica · Coimbra, Portugal
           </motion.p>
 
           <motion.h1
-            initial={{ opacity:0, y:24 }}
-            animate={{ opacity:1, y:0 }}
-            transition={{ delay:0.35, duration:0.9, ease:[0.16,1,0.3,1] }}
-            style={{ fontFamily:"'TAN-MEMORIES', serif", fontSize:"clamp(3rem,10vw,6.2rem)", lineHeight:1.05, margin:"0 0 20px", textShadow:"0 3px 24px rgba(0,0,0,0.2)" }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3rem,10vw,6.2rem)", lineHeight: 1.05, margin: "0 0 20px", textShadow: "0 3px 24px rgba(0,0,0,0.3)" }}
           >
             Recriação de<br/>
-            <em style={{ fontStyle:"italic", color:"#A8C4A0" }}>Bouquet</em>
+            <em style={{ fontStyle: "italic", color: "#A8C4A0" }}>Bouquet</em>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity:0, y:16 }}
-            animate={{ opacity:1, y:0 }}
-            transition={{ delay:0.6, duration:0.8 }}
-            style={{ fontSize:"clamp(0.95rem,2.2vw,1.15rem)", lineHeight:1.85, maxWidth:"580px", margin:"0 auto 32px", opacity:0.88, fontWeight:"300" }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            style={{ fontSize: "clamp(0.95rem,2.2vw,1.15rem)", lineHeight: 1.85, maxWidth: "580px", margin: "0 auto 32px", opacity: 0.88, fontWeight: "300" }}
           >
             O seu bouquet de noiva não foi preservado a tempo?
             Com apenas uma fotografia, recriamos o ramo com flores frescas
@@ -530,11 +509,11 @@ export default function RecriacaoBouquet() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity:0, y:14 }}
-            animate={{ opacity:1, y:0 }}
-            transition={{ delay:0.8, duration:0.7 }}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.7 }}
             className="cta-row"
-            style={{ justifyContent:"center" }}
+            style={{ justifyContent: "center" }}
           >
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -542,7 +521,7 @@ export default function RecriacaoBouquet() {
               </svg>
               WhatsApp
             </a>
-            <a href="mailto:info@floresabeirario.pt?subject=Orçamento Recriação de Bouquet de Casamento" className="btn-primary" style={{ backgroundColor:"rgba(250,247,240,0.15)", border:"1px solid rgba(250,247,240,0.3)", backdropFilter:"blur(8px)" }}>
+            <a href="mailto:info@floresabeirario.pt?subject=Orçamento Recriação de Bouquet de Casamento" className="btn-primary" style={{ backgroundColor: "rgba(250,247,240,0.15)", border: "1px solid rgba(250,247,240,0.3)", backdropFilter: "blur(8px)" }}>
               Email
             </a>
           </motion.div>
@@ -552,12 +531,7 @@ export default function RecriacaoBouquet() {
           <div className="scroll-line"/>
           <span>scroll</span>
         </div>
-
-        <div aria-hidden="true" style={{ position:"absolute", bottom:-1, left:0, width:"100%", zIndex:4 }}>
-          <svg viewBox="0 0 1440 55" fill="none" preserveAspectRatio="none" style={{ display:"block", width:"100%", height:"44px" }}>
-            <path d="M0 28 C300 55 660 0 1000 32 C1180 46 1340 12 1440 28 L1440 55 L0 55Z" fill="#FAF7F0"/>
-          </svg>
-        </div>
+        {/* sem onda */}
       </section>
 
       {/* ══════════════════════════════════════
@@ -572,30 +546,29 @@ export default function RecriacaoBouquet() {
         }}
       >
         <div aria-hidden="true" style={{
-          position:"absolute", top:0, left:"50%", transform:"translateX(-50%)",
-          fontFamily:"'TAN-MEMORIES', serif",
-          fontSize:"clamp(70px,12vw,130px)",
-          color:"rgba(61,107,94,0.045)",
-          whiteSpace:"nowrap", pointerEvents:"none",
-          lineHeight:1, userSelect:"none"
+          position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
+          fontFamily: "'TAN-MEMORIES', serif",
+          fontSize: "clamp(70px,12vw,130px)",
+          color: "rgba(61,107,94,0.045)",
+          whiteSpace: "nowrap", pointerEvents: "none",
+          lineHeight: 1, userSelect: "none"
         }}>
           Processo
         </div>
 
-        <div style={{ maxWidth:"1260px", margin:"0 auto", position:"relative" }}>
+        <div style={{ maxWidth: "1260px", margin: "0 auto", position: "relative" }}>
           <motion.header
-            initial={{ opacity:0, y:16 }}
-            whileInView={{ opacity:1, y:0 }}
-            viewport={{ once:true }}
-            style={{ textAlign:"center", marginBottom:"56px" }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            style={{ textAlign: "center", marginBottom: "56px" }}
           >
             <span className="section-eyebrow">Como funciona</span>
-            <h2 style={{ fontFamily:"'TAN-MEMORIES', serif", fontSize:"clamp(1.9rem,5vw,3.2rem)", color:"#1E2D2A", margin:0, lineHeight:1.1 }}>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,5vw,3.2rem)", color: "#1E2D2A", margin: 0, lineHeight: 1.1 }}>
               Quatro passos, uma obra de arte
             </h2>
           </motion.header>
 
-          {/* Steps with arrows injected between on desktop */}
           <div className="steps-wrapper">
             {steps.map((step, i) => (
               <>
@@ -614,17 +587,17 @@ export default function RecriacaoBouquet() {
         aria-label="Situações em que se usa a recriação de bouquet"
         style={{ padding: "64px 20px 76px", backgroundColor: "#FAF7F0" }}
       >
-        <div style={{ maxWidth:"1160px", margin:"0 auto" }}>
+        <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
           <motion.header
-            initial={{ opacity:0, y:16 }}
-            whileInView={{ opacity:1, y:0 }}
-            viewport={{ once:true }}
-            style={{ textAlign:"center", marginBottom:"48px" }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            style={{ textAlign: "center", marginBottom: "48px" }}
           >
             <span className="section-eyebrow">Para quem é este serviço</span>
-            <h2 style={{ fontFamily:"'TAN-MEMORIES', serif", fontSize:"clamp(1.8rem,4.5vw,3rem)", color:"#1E2D2A", margin:0, lineHeight:1.1 }}>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,3rem)", color: "#1E2D2A", margin: 0, lineHeight: 1.1 }}>
               Memórias que merecem<br/>
-              <em style={{ fontStyle:"italic", color:"#3D6B5E" }}>uma segunda vida</em>
+              <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>uma segunda vida</em>
             </h2>
           </motion.header>
 
@@ -647,58 +620,58 @@ export default function RecriacaoBouquet() {
           position: "relative", overflow: "hidden"
         }}
       >
-        <div aria-hidden="true" className="drift-b" style={{ position:"absolute", right:"-14px", bottom:"8%", color:"#3D6B5E", width:"90px", opacity:0.07, pointerEvents:"none" }}>
-          <BotanicalBloom style={{ width:"100%" }}/>
+        <div aria-hidden="true" className="drift-b" style={{ position: "absolute", right: "-14px", bottom: "8%", color: "#3D6B5E", width: "90px", opacity: 0.07, pointerEvents: "none" }}>
+          <BotanicalBloom style={{ width: "100%" }}/>
         </div>
 
-        <div style={{ maxWidth:"840px", margin:"0 auto" }}>
+        <div style={{ maxWidth: "840px", margin: "0 auto" }}>
           <motion.div
-            initial={{ opacity:0, y:24 }}
-            whileInView={{ opacity:1, y:0 }}
-            viewport={{ once:true }}
-            transition={{ duration:0.8, ease:[0.16,1,0.3,1] }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              backgroundColor:"#fff",
-              borderRadius:"24px",
-              padding:"clamp(24px,5vw,48px) clamp(18px,4vw,42px)",
-              boxShadow:"0 12px 48px rgba(30,45,42,0.07)",
-              border:"1px solid rgba(61,107,94,0.09)",
-              position:"relative", overflow:"hidden"
+              backgroundColor: "#fff",
+              borderRadius: "24px",
+              padding: "clamp(24px,5vw,48px) clamp(18px,4vw,42px)",
+              boxShadow: "0 12px 48px rgba(30,45,42,0.07)",
+              border: "1px solid rgba(61,107,94,0.09)",
+              position: "relative", overflow: "hidden"
             }}
           >
-            <div aria-hidden="true" style={{ position:"absolute", top:"-32px", right:"-32px", width:"120px", height:"120px", borderRadius:"50%", background:"radial-gradient(circle, rgba(184,149,74,0.1) 0%, transparent 70%)" }}/>
+            <div aria-hidden="true" style={{ position: "absolute", top: "-32px", right: "-32px", width: "120px", height: "120px", borderRadius: "50%", background: "radial-gradient(circle, rgba(184,149,74,0.1) 0%, transparent 70%)" }}/>
 
-            <div style={{ textAlign:"center", marginBottom:"26px" }}>
+            <div style={{ textAlign: "center", marginBottom: "26px" }}>
               <span className="section-eyebrow">Preços transparentes</span>
-              <h2 style={{ fontFamily:"'TAN-MEMORIES', serif", fontSize:"clamp(1.45rem,3.5vw,2.3rem)", color:"#1E2D2A", margin:"0 0 10px" }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.45rem,3.5vw,2.3rem)", color: "#1E2D2A", margin: "0 0 10px" }}>
                 Sem surpresas, com todo o cuidado
               </h2>
-              <p style={{ color:"#5A6B60", fontSize:"0.88rem", lineHeight:1.75, maxWidth:"480px", margin:"0 auto" }}>
+              <p style={{ color: "#5A6B60", fontSize: "0.88rem", lineHeight: 1.75, maxWidth: "480px", margin: "0 auto" }}>
                 O valor divide-se em duas partes simples e sempre comunicadas antes de avançar:
               </p>
             </div>
 
-            <div className="pricing-cols" style={{ marginBottom:"22px" }}>
-              <div style={{ backgroundColor:"rgba(61,107,94,0.05)", borderRadius:"12px", padding:"20px 16px", border:"1px solid rgba(61,107,94,0.09)" }}>
-                <h3 style={{ fontFamily:"'TAN-MEMORIES', serif", fontSize:"1rem", color:"#1E2D2A", margin:"0 0 7px" }}>
+            <div className="pricing-cols" style={{ marginBottom: "22px" }}>
+              <div style={{ backgroundColor: "rgba(61,107,94,0.05)", borderRadius: "12px", padding: "20px 16px", border: "1px solid rgba(61,107,94,0.09)" }}>
+                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1rem", color: "#1E2D2A", margin: "0 0 7px" }}>
                   Flores Frescas
                 </h3>
-                <p style={{ color:"#5A6B60", fontSize:"0.85rem", lineHeight:1.7, margin:0 }}>
+                <p style={{ color: "#5A6B60", fontSize: "0.85rem", lineHeight: 1.7, margin: 0 }}>
                   Orçamentado pela florista parceira com base nas flores do bouquet original. Valor variável conforme a composição.
                 </p>
               </div>
-              <div style={{ backgroundColor:"rgba(184,149,74,0.06)", borderRadius:"12px", padding:"20px 16px", border:"1px solid rgba(184,149,74,0.11)" }}>
-                <h3 style={{ fontFamily:"'TAN-MEMORIES', serif", fontSize:"1rem", color:"#1E2D2A", margin:"0 0 7px" }}>
+              <div style={{ backgroundColor: "rgba(184,149,74,0.06)", borderRadius: "12px", padding: "20px 16px", border: "1px solid rgba(184,149,74,0.11)" }}>
+                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1rem", color: "#1E2D2A", margin: "0 0 7px" }}>
                   Preservação & Moldura
                 </h3>
-                <p style={{ color:"#5A6B60", fontSize:"0.85rem", lineHeight:1.7, margin:0 }}>
+                <p style={{ color: "#5A6B60", fontSize: "0.85rem", lineHeight: 1.7, margin: 0 }}>
                   Igual ao preçário base do atelier, a partir de 300€. Vidro museu anti-reflexo e proteção UV incluídos.
                 </p>
               </div>
             </div>
 
-            <div style={{ textAlign:"center", paddingTop:"18px", borderTop:"1px solid rgba(61,107,94,0.09)" }}>
-              <a href="/opcoes-e-precos" style={{ color:"#3D6B5E", fontWeight:"600", fontSize:"0.85rem", textDecoration:"none", borderBottom:"1px solid rgba(61,107,94,0.3)", paddingBottom:"2px" }}>
+            <div style={{ textAlign: "center", paddingTop: "18px", borderTop: "1px solid rgba(61,107,94,0.09)" }}>
+              <a href="/opcoes-e-precos" style={{ color: "#3D6B5E", fontWeight: "600", fontSize: "0.85rem", textDecoration: "none", borderBottom: "1px solid rgba(61,107,94,0.3)", paddingBottom: "2px" }}>
                 Ver todos os preços e tamanhos →
               </a>
             </div>
@@ -718,41 +691,41 @@ export default function RecriacaoBouquet() {
         }}
       >
         {[
-          { cls:"drift-a", top:"10%",   left:"4%",   w:"clamp(75px,10vw,115px)", op:0.13, d:"0s"   },
-          { cls:"drift-c", bottom:"8%", right:"5%",  w:"clamp(65px,9vw,100px)",  op:0.11, d:"1.5s" },
-          { cls:"drift-b", top:"22%",   right:"11%", w:"clamp(48px,7vw,75px)",   op:0.09, d:"0.5s" },
-          { cls:"drift-a", bottom:"22%",left:"9%",   w:"clamp(52px,7vw,80px)",   op:0.1,  d:"3s"   },
+          { cls: "drift-a", top: "10%",    left: "4%",   w: "clamp(75px,10vw,115px)", op: 0.13, d: "0s"   },
+          { cls: "drift-c", bottom: "8%",  right: "5%",  w: "clamp(65px,9vw,100px)",  op: 0.11, d: "1.5s" },
+          { cls: "drift-b", top: "22%",    right: "11%", w: "clamp(48px,7vw,75px)",   op: 0.09, d: "0.5s" },
+          { cls: "drift-a", bottom: "22%", left: "9%",   w: "clamp(52px,7vw,80px)",   op: 0.1,  d: "3s"   },
         ].map((b, i) => (
           <div aria-hidden="true" key={i} className={b.cls} style={{
-            position:"absolute", color:"#8BA888",
-            width:b.w, opacity:b.op, pointerEvents:"none",
-            ...(b.top    ? { top:b.top }       : {}),
-            ...(b.bottom ? { bottom:b.bottom } : {}),
-            ...(b.left   ? { left:b.left }     : {}),
-            ...(b.right  ? { right:b.right }   : {}),
-            animationDelay:b.d
+            position: "absolute", color: "#8BA888",
+            width: b.w, opacity: b.op, pointerEvents: "none",
+            ...(b.top    ? { top: b.top }       : {}),
+            ...(b.bottom ? { bottom: b.bottom } : {}),
+            ...(b.left   ? { left: b.left }     : {}),
+            ...(b.right  ? { right: b.right }   : {}),
+            animationDelay: b.d
           }}>
-            <BotanicalBloom style={{ width:"100%" }}/>
+            <BotanicalBloom style={{ width: "100%" }}/>
           </div>
         ))}
 
         <motion.div
-          initial={{ opacity:0, y:24 }}
-          whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true }}
-          transition={{ duration:0.9, ease:[0.16,1,0.3,1] }}
-          style={{ position:"relative", zIndex:2, maxWidth:"660px", margin:"0 auto" }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          style={{ position: "relative", zIndex: 2, maxWidth: "660px", margin: "0 auto" }}
         >
-          <p style={{ fontSize:"0.58rem", letterSpacing:"4px", textTransform:"uppercase", fontWeight:"700", color:"#8BA888", marginBottom:"14px", fontFamily:"Roboto, sans-serif" }}>
+          <p style={{ fontSize: "0.58rem", letterSpacing: "4px", textTransform: "uppercase", fontWeight: "700", color: "#8BA888", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>
             Vamos recriar a sua memória
           </p>
 
-          <h2 style={{ fontFamily:"'TAN-MEMORIES', serif", fontSize:"clamp(1.8rem,5.5vw,3.6rem)", color:"#FAF7F0", margin:"0 0 16px", lineHeight:1.1 }}>
+          <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,5.5vw,3.6rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>
             O seu bouquet de noiva<br/>
-            <em style={{ fontStyle:"italic", color:"#A8C4A0" }}>merece uma segunda vida.</em>
+            <em style={{ fontStyle: "italic", color: "#A8C4A0" }}>merece uma segunda vida.</em>
           </h2>
 
-          <p style={{ color:"rgba(250,247,240,0.66)", fontSize:"clamp(0.88rem,2vw,0.98rem)", lineHeight:1.85, margin:"0 auto 34px", maxWidth:"480px" }}>
+          <p style={{ color: "rgba(250,247,240,0.66)", fontSize: "clamp(0.88rem,2vw,0.98rem)", lineHeight: 1.85, margin: "0 auto 34px", maxWidth: "480px" }}>
             Seja para preservar flores de casamento, oferecer um presente de aniversário
             especial ou reviver uma memória de décadas atrás —
             basta enviar-nos as fotos. Resposta em 24 horas.
@@ -766,7 +739,7 @@ export default function RecriacaoBouquet() {
               Enviar Fotos via WhatsApp
             </a>
             <a href="mailto:info@floresabeirario.pt?subject=Orçamento Recriação de Bouquet de Casamento" className="btn-outline"
-              style={{ borderColor:"rgba(250,247,240,0.3)", color:"rgba(250,247,240,0.75)" }}>
+              style={{ borderColor: "rgba(250,247,240,0.3)", color: "rgba(250,247,240,0.75)" }}>
               Enviar por Email
             </a>
           </div>
