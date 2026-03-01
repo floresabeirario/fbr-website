@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // ─── Flag SVGs ───────────────────────────────────────────────────────────────
 const FlagPT = () => (
-  <svg width="20" height="15" viewBox="0 0 600 400" style={{ marginLeft: "6px", borderRadius: "2px", verticalAlign: "middle" }} aria-hidden="true">
+  <svg width="16" height="12" viewBox="0 0 600 400" style={{ marginLeft: "6px", borderRadius: "2px", verticalAlign: "middle" }}>
     <rect width="240" height="400" fill="#006600"/>
     <rect x="240" width="360" height="400" fill="#ff0000"/>
     <circle cx="240" cy="200" r="80" fill="#ffff00"/>
@@ -15,7 +15,7 @@ const FlagPT = () => (
   </svg>
 );
 const FlagEN = () => (
-  <svg width="20" height="15" viewBox="0 0 640 480" style={{ marginLeft: "6px", borderRadius: "2px", verticalAlign: "middle" }} aria-hidden="true">
+  <svg width="16" height="12" viewBox="0 0 640 480" style={{ marginLeft: "6px", borderRadius: "2px", verticalAlign: "middle" }}>
     <path fill="#012169" d="M0 0h640v480H0z"/>
     <path fill="#FFF" d="m75 0 245 180L565 0h75v56L396 240l244 184v56h-75L320 300 75 480H0v-56l244-184L0 56V0h75z"/>
     <path fill="#C8102E" d="m424 281 216 159v40L369 281h55zM216 199 0 40V0l271 199h-55zm-216 241 216-159h55L0 480v-40zm640 0L424 281h55l161 119v40zM0 190h640v100H0z"/>
@@ -26,24 +26,24 @@ const FlagEN = () => (
 
 // ─── Social Icons ─────────────────────────────────────────────────────────────
 const IconInstagram = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <rect x="2" y="2" width="20" height="20" rx="5"/>
     <circle cx="12" cy="12" r="4"/>
     <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
   </svg>
 );
 const IconFacebook = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
   </svg>
 );
 const IconWhatsApp = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
 );
 const IconEmail = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
     <polyline points="22,6 12,13 2,6"/>
   </svg>
@@ -91,13 +91,13 @@ function SiteFooter() {
             Flores à Beira&#8209;Rio
           </h2>
           <p style={{
-            fontSize: "0.875rem", letterSpacing: "3px",
+            fontSize: "0.65rem", letterSpacing: "4px",
             textTransform: "uppercase", color: "#8BA888",
             margin: "0 0 24px", fontFamily: "Roboto, sans-serif"
           }}>
             Atelier de Preservação Botânica · Coimbra, Portugal
           </p>
-          <div style={{ display: "flex", justifyContent: "center", gap: "16px", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
             {[
               { href: "https://instagram.com/floresabeirario", icon: <IconInstagram/>, label: "Instagram" },
               { href: "https://facebook.com/floresabeirario",  icon: <IconFacebook/>,  label: "Facebook" },
@@ -106,19 +106,10 @@ function SiteFooter() {
             ].map((s, i) => (
               <a key={i} href={s.href}
                 target={s.href.startsWith("mailto") ? undefined : "_blank"}
-                rel="noopener noreferrer" 
-                aria-label={s.label}
-                style={{ 
-                  color: "rgba(250,247,240,0.7)", 
-                  transition: "color 0.25s ease", 
-                  display: "flex", 
-                  alignItems: "center",
-                  minWidth: "44px",
-                  minHeight: "44px",
-                  justifyContent: "center"
-                }}
+                rel="noopener noreferrer" aria-label={s.label}
+                style={{ color: "rgba(250,247,240,0.5)", transition: "color 0.25s ease", display: "flex", alignItems: "center" }}
                 onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.7)"}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
               >{s.icon}</a>
             ))}
           </div>
@@ -128,67 +119,57 @@ function SiteFooter() {
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "36px 48px", marginBottom: "48px" }}>
           <div>
-            <p style={{ fontSize: "0.875rem", letterSpacing: "2px", textTransform: "uppercase", color: "rgba(250,247,240,0.45)", marginBottom: "16px", fontFamily: "Roboto, sans-serif", fontWeight: "600" }}>Páginas</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.35)", marginBottom: "16px", fontFamily: "Roboto, sans-serif" }}>Páginas</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               {navLinks.map((l, i) => (
-                <a key={i} href={l.href} style={{ 
-                  color: "rgba(250,247,240,0.75)", 
-                  textDecoration: "none", 
-                  fontSize: "1rem", 
-                  fontWeight: "300", 
-                  transition: "color 0.25s ease", 
-                  lineHeight: 1.4,
-                  minHeight: "44px",
-                  display: "flex",
-                  alignItems: "center"
-                }}
+                <a key={i} href={l.href} style={{ color: "rgba(250,247,240,0.65)", textDecoration: "none", fontSize: "0.88rem", fontWeight: "300", transition: "color 0.25s ease", lineHeight: 1 }}
                   onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.75)"}
+                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.65)"}
                 >{l.label}</a>
               ))}
             </div>
           </div>
           <div>
-            <p style={{ fontSize: "0.875rem", letterSpacing: "2px", textTransform: "uppercase", color: "rgba(250,247,240,0.45)", marginBottom: "16px", fontFamily: "Roboto, sans-serif", fontWeight: "600" }}>Contacto</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+            <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.35)", marginBottom: "16px", fontFamily: "Roboto, sans-serif" }}>Contacto</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", gap: "8px", backgroundColor: "#25D366", color: "#fff", padding: "12px 22px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.9rem", letterSpacing: "0.5px", transition: "background-color 0.25s ease", fontFamily: "Roboto, sans-serif", width: "fit-content", minHeight: "48px" }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px", backgroundColor: "#25D366", color: "#fff", padding: "10px 20px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.78rem", letterSpacing: "0.5px", transition: "background-color 0.25s ease", fontFamily: "Roboto, sans-serif", width: "fit-content" }}
                 onMouseEnter={e => e.currentTarget.style.backgroundColor = "#1da851"}
                 onMouseLeave={e => e.currentTarget.style.backgroundColor = "#25D366"}
               ><IconWhatsApp/> +351 934 680 300</a>
-              <a href="mailto:info@floresabeirario.pt" style={{ color: "rgba(250,247,240,0.7)", fontSize: "1rem", textDecoration: "none", fontWeight: "300", transition: "color 0.25s ease", minHeight: "44px", display: "flex", alignItems: "center" }}
+              <a href="mailto:info@floresabeirario.pt" style={{ color: "rgba(250,247,240,0.6)", fontSize: "0.88rem", textDecoration: "none", fontWeight: "300", transition: "color 0.25s ease" }}
                 onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.7)"}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.6)"}
               >info@floresabeirario.pt</a>
-              <p style={{ color: "rgba(250,247,240,0.45)", fontSize: "0.95rem", margin: 0, lineHeight: 1.65, fontWeight: "300" }}>Coimbra, Portugal</p>
+              <p style={{ color: "rgba(250,247,240,0.35)", fontSize: "0.82rem", margin: 0, lineHeight: 1.65, fontWeight: "300" }}>Coimbra, Portugal</p>
             </div>
           </div>
           <div>
-            <p style={{ fontSize: "0.875rem", letterSpacing: "2px", textTransform: "uppercase", color: "rgba(250,247,240,0.45)", marginBottom: "16px", fontFamily: "Roboto, sans-serif", fontWeight: "600" }}>Legal</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.35)", marginBottom: "16px", fontFamily: "Roboto, sans-serif" }}>Legal</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               {[
                 { href: "/politica-de-privacidade", label: "Política de Privacidade" },
                 { href: "/termos-e-condicoes",      label: "Termos e Condições" },
               ].map((l, i) => (
-                <a key={i} href={l.href} style={{ color: "rgba(250,247,240,0.7)", textDecoration: "none", fontSize: "1rem", fontWeight: "300", transition: "color 0.25s ease", minHeight: "44px", display: "flex", alignItems: "center" }}
+                <a key={i} href={l.href} style={{ color: "rgba(250,247,240,0.6)", textDecoration: "none", fontSize: "0.88rem", fontWeight: "300", transition: "color 0.25s ease" }}
                   onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.7)"}
+                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.6)"}
                 >{l.label}</a>
               ))}
-              <div style={{ marginTop: "8px", display: "flex", gap: "16px" }}>
-                <a href="/pt" style={{ color: "#FAF7F0", fontSize: "0.9rem", fontWeight: "600", textDecoration: "none", display: "flex", alignItems: "center", fontFamily: "Roboto, sans-serif", letterSpacing: "1px", minHeight: "44px" }}>
+              <div style={{ marginTop: "8px", display: "flex", gap: "14px" }}>
+                <a href="/pt" style={{ color: "#FAF7F0", fontSize: "0.78rem", fontWeight: "600", textDecoration: "none", display: "flex", alignItems: "center", fontFamily: "Roboto, sans-serif", letterSpacing: "1px" }}>
                   PT <FlagPT/>
                 </a>
-                <a href="/en" style={{ color: "rgba(250,247,240,0.5)", fontSize: "0.9rem", fontWeight: "600", textDecoration: "none", display: "flex", alignItems: "center", fontFamily: "Roboto, sans-serif", letterSpacing: "1px", transition: "color 0.25s ease", minHeight: "44px" }}
-                  onMouseEnter={e => e.currentTarget.style.color = "rgba(250,247,240,0.9)"}
-                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
+                <a href="/en" style={{ color: "rgba(250,247,240,0.4)", fontSize: "0.78rem", fontWeight: "600", textDecoration: "none", display: "flex", alignItems: "center", fontFamily: "Roboto, sans-serif", letterSpacing: "1px", transition: "color 0.25s ease" }}
+                  onMouseEnter={e => e.currentTarget.style.color = "rgba(250,247,240,0.8)"}
+                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.4)"}
                 >EN <FlagEN/></a>
               </div>
             </div>
           </div>
         </div>
 
-        <div style={{ borderTop: "1px solid rgba(250,247,240,0.07)", padding: "20px 0 28px", display: "flex", justifyContent: "center", fontSize: "0.875rem", letterSpacing: "1px", color: "rgba(250,247,240,0.35)", fontFamily: "Roboto, sans-serif", textAlign: "center" }}>
+        <div style={{ borderTop: "1px solid rgba(250,247,240,0.07)", padding: "20px 0 28px", display: "flex", justifyContent: "center", fontSize: "0.6rem", letterSpacing: "1.5px", color: "rgba(250,247,240,0.25)", fontFamily: "Roboto, sans-serif", textAlign: "center" }}>
           © 2026 FLORES À BEIRA-RIO. TODOS OS DIREITOS RESERVADOS.
         </div>
       </div>
@@ -202,24 +183,13 @@ const FORM_URL = "https://wkf.ms/3RfoNAc";
 export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", handleScroll, { passive: true });
-    
-    // Respeitar preferência de movimento reduzido
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReducedMotion(mediaQuery.matches);
-    const handleChange = () => setReducedMotion(mediaQuery.matches);
-    mediaQuery.addEventListener('change', handleChange);
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      mediaQuery.removeEventListener('change', handleChange);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const menuLeft = [
@@ -236,12 +206,9 @@ export default function RootLayout({ children }) {
 
   const shouldShowScrolled = scrolled || !isHome;
 
-  const motionConfig = reducedMotion ? { animate: {}, initial: {}, transition: { duration: 0 } } : {};
-
   return (
     <html lang="pt">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
@@ -258,46 +225,43 @@ export default function RootLayout({ children }) {
       </head>
       <body style={{ margin: 0, backgroundColor: "#FAF7F0", color: "#1a1a1a", fontFamily: "'Roboto', sans-serif" }}>
 
-        {/* ══════ SKIP LINK — Acessibilidade para navegação por teclado ══════ */}
-        <a href="#main-content" className="skip-link">
-          Saltar para o conteúdo principal
-        </a>
-
         {/* ══════ NAV ══════ */}
-        <nav 
-          role="navigation"
-          aria-label="Navegação principal"
-          style={{
+        <nav style={{
           position: "fixed", top: 0, width: "100%", zIndex: 100,
           backgroundColor: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "transparent",
           backdropFilter: shouldShowScrolled ? "blur(10px)" : "none",
           transition: "all 0.4s ease",
           padding: shouldShowScrolled ? "14px 0" : "24px 0"
         }}>
+          {/*
+            ── FLEX 3 FILHOS: [flex:1 esquerda] [logo] [flex:1 direita] ──
+            Ambos os lados têm flex:1 igual → logo fica sempre centrado.
+            No mobile a coluna esquerda fica vazia mas mantém flex:1,
+            por isso o logo continua centrado e o MENU fica à direita.
+          */}
           <div className="nav-bar">
 
             {/* ── ESQUERDA: flex:1, links + PT/EN ── */}
             <div className="nav-left">
+              {/* ── PT/EN primeiro na esquerda ── */}
               <div className="lang-container desktop-only" style={{ position: "relative", display: "flex", alignItems: "center" }}>
                 <a href="/pt" className="nav-link lang-trigger" style={{
-                  fontSize: "0.875rem", fontWeight: "500", textTransform: "uppercase",
+                  fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
                   letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                  display: "flex", alignItems: "center", cursor: "pointer",
-                  minHeight: "44px", minWidth: "44px", justifyContent: "center"
+                  display: "flex", alignItems: "center", cursor: "pointer"
                 }}>
                   PT <FlagPT/>
                 </a>
                 <div className="lang-dropdown" style={{ left: 0, right: "auto" }}>
                   <a href="/en" className="lang-dropdown-item" style={{
-                    fontSize: "0.875rem", fontWeight: "500", textTransform: "uppercase",
+                    fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
                     letterSpacing: "1.3px", display: "flex", alignItems: "center",
                     color: shouldShowScrolled ? "#1a1a1a" : "#fff",
                     background: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
                     backdropFilter: "blur(12px)",
-                    padding: "12px 16px", borderRadius: "6px",
+                    padding: "9px 14px", borderRadius: "6px",
                     border: `1px solid ${shouldShowScrolled ? "rgba(26,26,26,0.08)" : "rgba(255,255,255,0.12)"}`,
-                    textDecoration: "none", transition: "background 0.3s ease",
-                    minHeight: "44px"
+                    textDecoration: "none", transition: "background 0.3s ease"
                   }}>
                     EN <FlagEN/>
                   </a>
@@ -306,80 +270,63 @@ export default function RootLayout({ children }) {
 
               {menuLeft.map(item => (
                 <a key={item.name} href={item.href} className="nav-link desktop-only" style={{
-                  fontSize: "0.875rem", fontWeight: "500",
+                  fontSize: "0.7rem", fontWeight: "500",
                   textTransform: "uppercase", letterSpacing: "1.3px",
                   color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                  whiteSpace: "nowrap",
-                  minHeight: "44px",
-                  display: "inline-flex",
-                  alignItems: "center"
+                  whiteSpace: "nowrap"
                 }}>
                   {item.name}
                 </a>
               ))}
             </div>
 
-            {/* ── CENTRO: logo ── */}
+            {/* ── CENTRO: logo — centrado naturalmente entre os dois flex:1 ── */}
             <motion.a
               href="/"
               className="nav-logo"
-              {...(reducedMotion ? {} : {
-                animate: {
-                  opacity: shouldShowScrolled ? 1 : 0,
-                  y: shouldShowScrolled ? 0 : 8
-                },
-                transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
-              })}
+              animate={{
+                opacity: shouldShowScrolled ? 1 : 0,
+                y: shouldShowScrolled ? 0 : 8
+              }}
+              transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
               style={{
                 color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                pointerEvents: shouldShowScrolled ? "auto" : "none",
-                opacity: shouldShowScrolled ? 1 : 0
-              }}
-              aria-label="Flores à Beira-Rio - Página inicial">
+                pointerEvents: shouldShowScrolled ? "auto" : "none"
+              }}>
               Flores à Beira&#8209;Rio
             </motion.a>
 
             {/* ── DIREITA: flex:1, links desktop + PT/EN + CTA + botão mobile ── */}
             <div className="nav-right-col">
+              {/* Links desktop */}
               <div className="nav-right desktop-only">
                 {menuRight.map(item => (
                   <a key={item.name} href={item.href} className="nav-link" style={{
-                    fontSize: "0.875rem", fontWeight: "500", textTransform: "uppercase",
+                    fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
                     letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                    whiteSpace: "nowrap",
-                    minHeight: "44px",
-                    display: "inline-flex",
-                    alignItems: "center"
+                    whiteSpace: "nowrap"
                   }}>
                     {item.name}
                   </a>
                 ))}
 
+                {/* ── CTA ── */}
                 <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="nav-cta" style={{
                   backgroundColor: shouldShowScrolled ? "#3D6B5E" : "rgba(250,247,240,0.12)",
                   color: shouldShowScrolled ? "#FAF7F0" : "rgba(250,247,240,0.92)",
                   border: shouldShowScrolled ? "1.5px solid #3D6B5E" : "1.5px solid rgba(250,247,240,0.35)",
                   backdropFilter: shouldShowScrolled ? "none" : "blur(8px)",
-                  boxShadow: shouldShowScrolled ? "0 3px 14px rgba(61,107,94,0.22)" : "none",
-                  minHeight: "48px",
-                  display: "inline-flex",
-                  alignItems: "center"
+                  boxShadow: shouldShowScrolled ? "0 3px 14px rgba(61,107,94,0.22)" : "none"
                 }}>
                   Reservar Data
                 </a>
               </div>
 
-              <button 
-                className="mobile-only nav-mobile-btn" 
-                onClick={() => setIsOpen(true)} 
-                aria-label="Abrir menu de navegação"
-                aria-expanded={isOpen}
-                style={{
-                  color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                  marginLeft: "auto",
-                  minHeight: "48px",
-                  minWidth: "48px"
-                }}>
+              {/* ── Botão MENU mobile — margin-left:auto garante sempre à direita ── */}
+              <button className="mobile-only nav-mobile-btn" onClick={() => setIsOpen(true)} style={{
+                color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                marginLeft: "auto"
+              }}>
                 MENU
               </button>
             </div>
@@ -391,12 +338,10 @@ export default function RootLayout({ children }) {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              {...(reducedMotion ? {} : {
-                initial: { x: "100%" },
-                animate: { x: 0 },
-                exit: { x: "100%" },
-                transition: { duration: 0.4, ease: [0.32, 0.72, 0, 1] }
-              })}
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
               style={{
                 position: "fixed", inset: 0,
                 backgroundColor: "#0F1E1A",
@@ -407,59 +352,52 @@ export default function RootLayout({ children }) {
                 overflowY: "auto"
               }}
             >
+              {/* ── Topo: logo + fechar ── */}
               <div style={{
                 display: "flex", justifyContent: "space-between",
                 alignItems: "center", paddingTop: "28px", paddingBottom: "36px"
               }}>
                 <span style={{
                   fontFamily: "'TAN-MEMORIES', serif",
-                  fontSize: "1.3rem", color: "#FAF7F0",
+                  fontSize: "1.1rem", color: "#FAF7F0",
                   letterSpacing: "0.5px"
                 }}>
                   Flores à Beira&#8209;Rio
                 </span>
-                <button 
-                  onClick={() => setIsOpen(false)} 
-                  aria-label="Fechar menu de navegação"
-                  style={{
-                    background: "none", border: "1px solid rgba(250,247,240,0.2)",
-                    borderRadius: "100px", color: "#FAF7F0",
-                    fontSize: "0.875rem", fontWeight: "500",
-                    letterSpacing: "2px", cursor: "pointer",
-                    fontFamily: "'Roboto', sans-serif",
-                    padding: "10px 18px",
-                    minHeight: "48px",
-                    minWidth: "48px"
-                  }}>
+                <button onClick={() => setIsOpen(false)} style={{
+                  background: "none", border: "1px solid rgba(250,247,240,0.2)",
+                  borderRadius: "100px", color: "#FAF7F0",
+                  fontSize: "0.72rem", fontWeight: "500",
+                  letterSpacing: "2px", cursor: "pointer",
+                  fontFamily: "'Roboto', sans-serif",
+                  padding: "8px 16px"
+                }}>
                   FECHAR
                 </button>
               </div>
 
+              {/* ── Linha divisória ── */}
               <div style={{ height: "1px", background: "rgba(250,247,240,0.08)", marginBottom: "40px" }}/>
 
-              <nav style={{ flex: 1 }} role="navigation" aria-label="Menu principal mobile">
+              {/* ── Links principais ── */}
+              <nav style={{ flex: 1 }}>
                 {mobileMenu.map((item, i) => (
                   <motion.a
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    {...(reducedMotion ? {} : {
-                      initial: { opacity: 0, x: 24 },
-                      animate: { opacity: 1, x: 0 },
-                      transition: { delay: 0.1 + i * 0.055, duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }
-                    })}
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + i * 0.055, duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
                     style={{
                       display: "block",
                       color: "#FAF7F0",
                       textDecoration: "none",
                       fontSize: "clamp(1.5rem, 6vw, 2rem)",
                       fontFamily: "'TAN-MEMORIES', serif",
-                      lineHeight: 1.2,
-                      padding: "16px 0",
+                      lineHeight: 1,
+                      padding: "14px 0",
                       borderBottom: "1px solid rgba(250,247,240,0.07)",
-                      minHeight: "60px",
-                      display: "flex",
-                      alignItems: "center"
                     }}
                     onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
                     onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
@@ -469,22 +407,19 @@ export default function RootLayout({ children }) {
                 ))}
               </nav>
 
+              {/* ── Rodapé do menu: CTA + PT/EN ── */}
               <div style={{ paddingTop: "36px", paddingBottom: "48px" }}>
                 <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
                   onClick={() => setIsOpen(false)}
                   style={{
                     display: "block", textAlign: "center",
                     backgroundColor: "#3D6B5E", color: "#FAF7F0",
-                    padding: "18px 38px", borderRadius: "100px",
+                    padding: "17px 38px", borderRadius: "100px",
                     textDecoration: "none", fontWeight: "600",
-                    fontSize: "0.95rem", letterSpacing: "1.5px",
+                    fontSize: "0.8rem", letterSpacing: "1.5px",
                     textTransform: "uppercase", fontFamily: "Roboto, sans-serif",
                     boxShadow: "0 6px 22px rgba(61,107,94,0.35)",
-                    marginBottom: "24px",
-                    minHeight: "56px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center"
+                    marginBottom: "24px"
                   }}
                 >
                   Reservar Data
@@ -492,22 +427,20 @@ export default function RootLayout({ children }) {
 
                 <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
                   <a href="/pt" style={{
-                    color: "#FAF7F0", fontSize: "0.9rem", fontFamily: "Roboto, sans-serif",
+                    color: "#FAF7F0", fontSize: "0.75rem", fontFamily: "Roboto, sans-serif",
                     fontWeight: "600", letterSpacing: "1.5px", textTransform: "uppercase",
-                    display: "flex", alignItems: "center", textDecoration: "none",
-                    minHeight: "48px", minWidth: "48px", justifyContent: "center"
+                    display: "flex", alignItems: "center", textDecoration: "none"
                   }}>
                     PT <FlagPT/>
                   </a>
                   <a href="/en" style={{
-                    color: "rgba(250,247,240,0.45)", fontSize: "0.9rem", fontFamily: "Roboto, sans-serif",
+                    color: "rgba(250,247,240,0.35)", fontSize: "0.75rem", fontFamily: "Roboto, sans-serif",
                     fontWeight: "600", letterSpacing: "1.5px", textTransform: "uppercase",
                     display: "flex", alignItems: "center", textDecoration: "none",
-                    transition: "color 0.25s",
-                    minHeight: "48px", minWidth: "48px", justifyContent: "center"
+                    transition: "color 0.25s"
                   }}
                     onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                    onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.45)"}
+                    onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.35)"}
                   >
                     EN <FlagEN/>
                   </a>
@@ -517,7 +450,7 @@ export default function RootLayout({ children }) {
           )}
         </AnimatePresence>
 
-        <main id="main-content">{children}</main>
+        <main>{children}</main>
         <SiteFooter/>
 
         <style jsx global>{`
@@ -525,37 +458,13 @@ export default function RootLayout({ children }) {
           @media (min-width: 1280px) { .mobile-only  { display: none !important; } }
           * { box-sizing: border-box; }
 
-          /* ══════ SKIP LINK — escondido até receber foco ══════ */
-          .skip-link {
-            position: absolute;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #3D6B5E;
-            color: #FAF7F0;
-            padding: 12px 24px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            z-index: 9999;
-            transition: top 0.3s ease;
-          }
-          .skip-link:focus {
-            top: 20px;
-            outline: 3px solid #8BA888;
-            outline-offset: 4px;
-          }
-
-          /* ══════ ESTADOS DE FOCO VISÍVEIS ══════ */
-          a:focus-visible,
-          button:focus-visible {
-            outline: 3px solid #3D6B5E;
-            outline-offset: 4px;
-            border-radius: 4px;
-          }
-
-          /* ══════ NAV BAR ══════ */
+          /* ══════════════════════════════════════════════════════════
+             NAV BAR — flex 3 filhos com flex:1 em ambos os lados
+             [flex:1 esquerda] [logo] [flex:1 direita]
+             O logo fica sempre centrado porque os dois lados têm o mesmo peso.
+             No mobile a coluna esquerda fica vazia mas mantém flex:1 →
+             logo centra, MENU fica à direita.
+          ══════════════════════════════════════════════════════════ */
           .nav-bar {
             display: flex;
             align-items: center;
@@ -567,36 +476,38 @@ export default function RootLayout({ children }) {
             .nav-bar { padding: 0 32px; }
           }
 
+          /* Esquerda: flex:1, itens distribuídos da esquerda para o centro */
           .nav-left {
             flex: 1;
             display: flex;
             gap: clamp(10px, 1.2vw, 20px);
             align-items: center;
-            justify-content: flex-end;
+            justify-content: flex-end; /* empurra itens para junto do logo */
           }
 
+          /* Logo — filho do meio, tamanho natural, centrado pelos flex:1 dos lados */
           .nav-logo {
             flex: 0 0 auto;
-            font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+            font-size: clamp(1rem, 1.5vw, 1.4rem);
             font-family: 'TAN-MEMORIES', serif;
             text-align: center;
             text-decoration: none !important;
             line-height: 1.1;
             letter-spacing: 0.5px;
             white-space: nowrap;
-            padding: 2px 24px;
-            border-bottom: 2px solid transparent;
+            padding: 2px 24px; /* espaço igual dos dois lados entre logo e links */
+            border-bottom: 1px solid transparent;
             transition: all 0.3s ease;
           }
-          .nav-logo:hover,
-          .nav-logo:focus {
-            border-bottom: 2px solid currentColor;
+          .nav-logo:hover {
+            border-bottom: 1px solid currentColor;
           }
 
+          /* Direita: flex:1, conteúdo empurrado para junto do logo */
           .nav-right-col {
             flex: 1;
             display: flex;
-            justify-content: flex-start;
+            justify-content: flex-start; /* empurra itens para junto do logo */
             align-items: center;
           }
 
@@ -606,9 +517,10 @@ export default function RootLayout({ children }) {
             align-items: center;
           }
 
+          /* Mobile menu button */
           .nav-mobile-btn {
             background: none; border: none; cursor: pointer;
-            font-size: 0.875rem; font-weight: 500; letter-spacing: 2px;
+            font-size: 0.82rem; font-weight: 500; letter-spacing: 2px;
             padding: 10px 0; font-family: 'Roboto', sans-serif;
           }
 
@@ -619,20 +531,15 @@ export default function RootLayout({ children }) {
             text-decoration: none !important;
             transition: all 0.3s ease;
             display: inline-block;
-            border-bottom: 2px solid transparent;
+            border-bottom: 1px solid transparent;
             line-height: 1.4;
             padding-bottom: 2px;
           }
-          .nav-link:hover,
-          .nav-link:focus {
-            border-bottom: 2px solid currentColor;
-          }
+          .nav-link:hover { border-bottom: 1px solid currentColor; }
 
-          .lang-trigger { border-bottom: 2px solid transparent !important; }
-          .lang-trigger:hover,
-          .lang-trigger:focus { 
-            border-bottom: 2px solid currentColor !important; 
-          }
+          /* Language dropdown — sem sublinhado no hover */
+          .lang-trigger { border-bottom: 1px solid transparent !important; }
+          .lang-trigger:hover { border-bottom: 1px solid currentColor !important; }
 
           .lang-dropdown {
             position: absolute;
@@ -645,52 +552,31 @@ export default function RootLayout({ children }) {
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             pointer-events: none;
           }
-          .lang-container:hover .lang-dropdown,
-          .lang-container:focus-within .lang-dropdown {
+          .lang-container:hover .lang-dropdown {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
             pointer-events: auto;
           }
 
+          /* CTA button */
           .nav-cta {
             display: inline-flex;
             align-items: center;
-            font-size: 0.875rem;
+            font-size: 0.66rem;
             font-weight: 600;
             letter-spacing: 1.4px;
             text-transform: uppercase;
             text-decoration: none !important;
             font-family: Roboto, sans-serif;
-            padding: 12px 20px;
+            padding: 8px 18px;
             border-radius: 100px;
             transition: all 0.3s ease;
             white-space: nowrap;
           }
-          .nav-cta:hover,
-          .nav-cta:focus {
+          .nav-cta:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(61,107,94,0.32) !important;
-          }
-
-          /* ══════ PREFERS REDUCED MOTION ══════ */
-          @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-              animation-duration: 0.01ms !important;
-              animation-iteration-count: 1 !important;
-              transition-duration: 0.01ms !important;
-              scroll-behavior: auto !important;
-            }
-          }
-
-          /* ══════ MELHORAR CONTRASTE EM HIGH CONTRAST MODE ══════ */
-          @media (prefers-contrast: high) {
-            .nav-link,
-            a {
-              text-decoration: underline;
-            }
           }
         `}</style>
       </body>
