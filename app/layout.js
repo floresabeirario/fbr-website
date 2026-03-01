@@ -243,18 +243,7 @@ export default function RootLayout({ children }) {
 
             {/* ── ESQUERDA: flex:1, links + PT/EN ── */}
             <div className="nav-left">
-              {menuLeft.map(item => (
-                <a key={item.name} href={item.href} className="nav-link desktop-only" style={{
-                  fontSize: "0.7rem", fontWeight: "500",
-                  textTransform: "uppercase", letterSpacing: "1.3px",
-                  color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                  whiteSpace: "nowrap"
-                }}>
-                  {item.name}
-                </a>
-              ))}
-
-              {/* ── PT/EN na esquerda para equilibrar peso visual ── */}
+              {/* ── PT/EN primeiro na esquerda ── */}
               <div className="lang-container desktop-only" style={{ position: "relative", display: "flex", alignItems: "center" }}>
                 <a href="/pt" className="nav-link lang-trigger" style={{
                   fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
@@ -278,6 +267,17 @@ export default function RootLayout({ children }) {
                   </a>
                 </div>
               </div>
+
+              {menuLeft.map(item => (
+                <a key={item.name} href={item.href} className="nav-link desktop-only" style={{
+                  fontSize: "0.7rem", fontWeight: "500",
+                  textTransform: "uppercase", letterSpacing: "1.3px",
+                  color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                  whiteSpace: "nowrap"
+                }}>
+                  {item.name}
+                </a>
+              ))}
             </div>
 
             {/* ── CENTRO: logo — centrado naturalmente entre os dois flex:1 ── */}
@@ -424,13 +424,13 @@ export default function RootLayout({ children }) {
             .nav-bar { padding: 0 32px; }
           }
 
-          /* Esquerda: flex:1, links alinhados à esquerda */
+          /* Esquerda: flex:1, itens distribuídos da esquerda para o centro */
           .nav-left {
             flex: 1;
             display: flex;
             gap: clamp(10px, 1.2vw, 20px);
             align-items: center;
-            justify-content: flex-start;
+            justify-content: flex-end; /* empurra itens para junto do logo */
           }
 
           /* Logo — filho do meio, tamanho natural, centrado pelos flex:1 dos lados */
@@ -443,7 +443,7 @@ export default function RootLayout({ children }) {
             line-height: 1.1;
             letter-spacing: 0.5px;
             white-space: nowrap;
-            padding: 2px 16px;
+            padding: 2px 24px; /* espaço igual dos dois lados entre logo e links */
             border-bottom: 1px solid transparent;
             transition: all 0.3s ease;
           }
@@ -451,11 +451,11 @@ export default function RootLayout({ children }) {
             border-bottom: 1px solid currentColor;
           }
 
-          /* Direita: flex:1, conteúdo alinhado à direita */
+          /* Direita: flex:1, conteúdo empurrado para junto do logo */
           .nav-right-col {
             flex: 1;
             display: flex;
-            justify-content: flex-end;
+            justify-content: flex-start; /* empurra itens para junto do logo */
             align-items: center;
           }
 
