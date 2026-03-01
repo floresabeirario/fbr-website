@@ -58,7 +58,6 @@ function Flower({ cx, cy, scale = 1, rotate = 0, opacity = 0.45, dark = false })
 function FrameSVG({ vw, vh, flowers, svgWidth, label, dark = false }) {
   const stroke1 = dark ? "rgba(15,30,26,0.45)" : "rgba(250,247,240,0.55)";
   const stroke2 = dark ? "rgba(15,30,26,0.22)" : "rgba(250,247,240,0.28)";
-  const strokeGlass = dark ? "rgba(15,30,26,0.14)" : "rgba(250,247,240,0.18)";
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -70,14 +69,6 @@ function FrameSVG({ vw, vh, flowers, svgWidth, label, dark = false }) {
         stroke={stroke1} strokeWidth="2" fill="none" />
       <rect x="18" y="18" width={vw - 36} height={vh - 36}
         stroke={stroke2} strokeWidth="1.2" fill="none" />
-      <line x1="32" y1={vh * 0.28} x2={vw * 0.42} y2="28"
-        stroke={strokeGlass} strokeWidth="1.4" strokeLinecap="round" />
-      <line x1={vw * 0.46} y1="20" x2={vw * 0.52} y2="12"
-        stroke={strokeGlass} strokeWidth="1.2" strokeLinecap="round" />
-      <line x1="48" y1={vh * 0.38} x2={vw * 0.56} y2="44"
-        stroke={strokeGlass} strokeWidth="1.1" strokeLinecap="round" />
-      <line x1={vw - 44} y1={vh - 60} x2={vw - 24} y2={vh - 82}
-        stroke={strokeGlass} strokeWidth="1.3" strokeLinecap="round" />
       {flowers.map((f, i) => (
         <Flower key={i} {...f} dark={dark} />
       ))}
@@ -396,19 +387,6 @@ export default function OpcoesClient() {
                     </div>
                   </div>
 
-                  {/* Descrição */}
-                  <p style={{
-                    fontFamily: "Roboto, sans-serif",
-                    fontWeight: 300,
-                    fontSize: "0.87rem",
-                    lineHeight: 1.75,
-                    color: "rgba(15,30,26,0.6)",
-                    margin: "0",
-                    flexGrow: 1,
-                  }}>
-                    {item.desc}
-                  </p>
-
                   {/* Nota de materiais */}
                   <div style={{ marginTop: "20px", paddingTop: "16px", borderTop: "1px solid rgba(15,30,26,0.12)" }}>
                     <p style={{
@@ -419,7 +397,7 @@ export default function OpcoesClient() {
                       color: "rgba(15,30,26,0.5)",
                       margin: 0,
                     }}>
-                      Emoldurado com vidro museu UltraVue® praticamente invisível
+                      Emoldurado com vidro UltraVue®, praticamente invisível
                     </p>
                   </div>
                 </div>
