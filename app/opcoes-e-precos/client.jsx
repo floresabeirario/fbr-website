@@ -83,10 +83,10 @@ export default function OpcoesClient() {
 
       {/* ════════════════════════════════════════════
           TIPOS DE FUNDO
-          Mobile: slider horizontal com scroll snap
-          Desktop: 4 colunas numa linha
+          Mobile: slider com scroll snap
+          Desktop: 4 em linha com espaço entre eles
       ════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(60px,10vw,100px) 0 0" }}>
+      <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(60px,10vw,100px) 0 clamp(60px,8vw,100px)" }}>
 
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px clamp(32px,5vw,48px)" }}>
           <Reveal>
@@ -97,57 +97,68 @@ export default function OpcoesClient() {
           </Reveal>
         </div>
 
-        {/* Slider container */}
-        <div className="fundos-slider">
+        {/* Track: scroll no mobile, grid no desktop */}
+        <div className="fundos-track">
           {[
             {
               img: "/quadrovidrosobrevidro.webp",
-              alt: "Quadro de flores prensadas em vidro sobre vidro, efeito transparente",
-              tag: "Fundo transparente", tagBg: "rgba(61,107,94,0.12)", tagColor: "#3D6B5E",
+              alt: "Quadro de flores prensadas em vidro sobre vidro com efeito transparente",
+              tag: "Mais popular", tagSolid: true,
               title: "Vidro sobre Vidro",
-              desc: "As flores ficam suspensas entre dois vidros, sem fundo opaco. O efeito é leve e moderno, permitindo ver através da moldura."
-            },
-            {
-              img: "/quadrobranco.webp",
-              alt: "Quadro de flores prensadas com fundo branco minimalista",
-              tag: "Mais popular", tagBg: "rgba(184,149,74,0.15)", tagColor: "#96722A",
-              title: "Fundo Branco",
-              desc: "Uma opção minimalista e intemporal que realça naturalmente as cores e formas das flores."
-            },
-            {
-              img: "/quadropreto.webp",
-              alt: "Quadro de flores prensadas com fundo preto ou colorido",
-              tag: "Personalizável", tagBg: "rgba(139,168,136,0.15)", tagColor: "#3D6B5E",
-              title: "Fundo Colorido",
-              desc: "Podemos aplicar qualquer cor de fundo escolhida para realçar a beleza das flores e combinar com a paleta do bouquet."
+              desc: "As flores ficam suspensas entre dois vidros, sem fundo opaco. Efeito leve e moderno, ideal para espaços luminosos.",
             },
             {
               img: "/quadrofoto.webp",
               alt: "Quadro de flores prensadas com fotografia personalizada como fundo",
-              tag: "Custo adicional", tagBg: "rgba(184,149,74,0.12)", tagColor: "#96722A",
+              tag: "Custo adicional", tagSolid: false,
               title: "Fundo com Fotografia",
-              desc: "Uma paisagem, um retrato ou qualquer imagem com significado especial. A imagem será profissionalmente impressa.",
-              note: "O custo adicional varia consoante as dimensões da moldura."
+              desc: "Uma paisagem, um retrato, ou qualquer imagem com significado especial. A fotografia é profissionalmente impressa.",
+              note: "O custo varia consoante as dimensões da moldura.",
+            },
+            {
+              img: "/quadropreto.webp",
+              alt: "Quadro de flores prensadas com fundo preto ou colorido personalizado",
+              tag: "Personalizável", tagSolid: false,
+              title: "Fundo Colorido",
+              desc: "Aplicamos qualquer cor de fundo para realçar as flores. Sugerimos tonalidades que combinem com a paleta do bouquet.",
+            },
+            {
+              img: "/quadrobranco.webp",
+              alt: "Quadro de flores prensadas com fundo branco minimalista",
+              tag: "Atemporal", tagSolid: false,
+              title: "Fundo Branco",
+              desc: "Minimalista e intemporal. Realça naturalmente as cores e formas das flores com máxima simplicidade.",
             },
           ].map((item, i) => (
-            <div key={i} className="fundo-slide">
-              <div style={{ aspectRatio: "3/4", overflow: "hidden", backgroundColor: "#e0dbd3" }}>
+            <div key={i} className="fundo-card-new">
+              {/* Imagem em formato horizontal (16:10) */}
+              <div style={{ aspectRatio: "16/10", overflow: "hidden", borderRadius: "6px", backgroundColor: "#e0dbd3", position: "relative" }}>
                 <img src={item.img} alt={item.alt} loading="lazy"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.8s ease" }}
-                  className="fundo-img" />
-              </div>
-              <div style={{ padding: "24px 20px 28px" }}>
-                <span style={{ display: "inline-block", backgroundColor: item.tagBg, color: item.tagColor, fontSize: "0.55rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "5px 12px", borderRadius: "100px", marginBottom: "14px" }}>
+                  style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.9s ease" }}
+                  className="fundo-img-new" />
+                {/* Tag sobreposta na imagem */}
+                <span style={{
+                  position: "absolute", top: "12px", left: "12px",
+                  backgroundColor: item.tagSolid ? "#3D6B5E" : "rgba(15,30,26,0.55)",
+                  color: "#FAF7F0",
+                  fontSize: "0.52rem", letterSpacing: "2px", textTransform: "uppercase",
+                  fontFamily: "Roboto, sans-serif", fontWeight: 600,
+                  padding: "5px 11px", borderRadius: "100px",
+                  backdropFilter: "blur(4px)"
+                }}>
                   {item.tag}
                 </span>
-                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.2rem, 2.5vw, 1.5rem)", fontWeight: 400, margin: "0 0 12px", lineHeight: 1.15 }}>
+              </div>
+              {/* Texto abaixo da imagem */}
+              <div style={{ padding: "18px 4px 0" }}>
+                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.2, color: "#1a1a1a" }}>
                   {item.title}
                 </h3>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(26,26,26,0.6)", margin: 0 }}>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.82rem", lineHeight: 1.75, color: "rgba(26,26,26,0.58)", margin: 0 }}>
                   {item.desc}
                 </p>
                 {item.note && (
-                  <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.78rem", lineHeight: 1.6, color: "rgba(26,26,26,0.4)", margin: "10px 0 0", fontStyle: "italic" }}>
+                  <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.74rem", color: "rgba(26,26,26,0.36)", margin: "6px 0 0", fontStyle: "italic" }}>
                     {item.note}
                   </p>
                 )}
@@ -156,7 +167,6 @@ export default function OpcoesClient() {
           ))}
         </div>
 
-        {/* Indicador "deslize" só no mobile */}
         <p className="slider-hint">deslize para ver mais</p>
 
       </section>
@@ -470,56 +480,57 @@ export default function OpcoesClient() {
       </section>
 
       <style jsx global>{`
-        /* ── Slider de fundos ── */
-        .fundos-slider {
+        /* ── Track de fundos ── */
+        .fundos-track {
           display: flex;
           overflow-x: auto;
           scroll-snap-type: x mandatory;
           -webkit-overflow-scrolling: touch;
           scrollbar-width: none;
-          gap: 2px;
-          background-color: rgba(26,26,26,0.06);
-          padding-bottom: 2px;
+          gap: 16px;
+          padding: 0 24px 4px;
         }
-        .fundos-slider::-webkit-scrollbar { display: none; }
+        .fundos-track::-webkit-scrollbar { display: none; }
 
-        .fundo-slide {
-          flex: 0 0 80vw;
+        .fundo-card-new {
+          flex: 0 0 78vw;
+          max-width: 320px;
           scroll-snap-align: start;
-          background-color: #FAF7F0;
-          max-width: 340px;
         }
 
-        /* No desktop: 4 numa linha igual */
+        /* Desktop: 4 em linha igual com espaço entre */
         @media (min-width: 900px) {
-          .fundos-slider {
+          .fundos-track {
             overflow-x: visible;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 24px;
+            gap: 24px;
           }
-          .fundo-slide {
+          .fundo-card-new {
             flex: 1 1 0;
             max-width: none;
+            scroll-snap-align: unset;
           }
         }
 
-        /* Hint "deslize" só no mobile */
+        .fundo-img-new:hover { transform: scale(1.05); }
+
+        /* Hint só no mobile */
         .slider-hint {
           display: block;
           text-align: center;
           font-family: Roboto, sans-serif;
-          font-size: 0.62rem;
-          letter-spacing: 2px;
+          font-size: 0.6rem;
+          letter-spacing: 2.5px;
           text-transform: uppercase;
-          color: rgba(26,26,26,0.3);
-          padding: 14px 0 0;
+          color: rgba(26,26,26,0.28);
+          padding: 16px 0 0;
           margin: 0;
         }
         @media (min-width: 900px) {
           .slider-hint { display: none; }
         }
-
-        .fundo-img:hover { transform: scale(1.04); }
       `}</style>
     </div>
   );
