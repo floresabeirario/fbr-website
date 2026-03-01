@@ -439,7 +439,7 @@ function SiteFooter() {
                 </a>
               ))}
 
-              {/* Language selector */}
+              {/* Language selector — lives in footer only */}
               <div style={{ marginTop: "8px", display: "flex", gap: "14px" }}>
                 <a href="/pt" style={{
                   color: "#FAF7F0", fontSize: "0.78rem", fontWeight: "600",
@@ -482,6 +482,8 @@ function SiteFooter() {
 }
 
 // ─── Nav ──────────────────────────────────────────────────────────────────────
+const FORM_URL = "https://wkf.ms/3RfoNAc";
+
 export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -494,16 +496,19 @@ export default function RootLayout({ children }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // ─── UPDATED NAV ITEMS ───────────────────────────────────────────────
+  // "Passo a Passo" → "Como Funciona" (consistent with footer + better SEO)
+  // Language selector removed from nav — lives in footer only
+  // CTA "Reservar Data" added as standalone button
   const menuLeft = [
+    { name: "Como Funciona",        href: "/passo-a-passo" },
     { name: "Opções e Preços",      href: "/opcoes-e-precos" },
-    { name: "Passo a Passo",        href: "/passo-a-passo" },
     { name: "Recriação de Bouquet", href: "/recriacao" },
   ];
   const menuRight = [
     { name: "Vale-Presente",        href: "/vale-presente" },
     { name: "Perguntas Frequentes", href: "/perguntas-frequentes" },
     { name: "Contactos e Equipa",   href: "/contactos" },
-    { name: "PT", href: "/pt", isLang: true },
   ];
 
   const shouldShowScrolled = scrolled || !isHome;
@@ -536,6 +541,7 @@ export default function RootLayout({ children }) {
           padding: shouldShowScrolled ? "15px 0" : "25px 0"
         }}>
           <div className="nav-container">
+            {/* ── LEFT LINKS ── */}
             <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
               <div className="desktop-only" style={{ display: "flex", gap: "25px" }}>
                 {menuLeft.map(item => (
@@ -550,6 +556,7 @@ export default function RootLayout({ children }) {
               </div>
             </div>
 
+            {/* ── CENTRAL LOGO ── */}
             <motion.a
               href="/"
               initial={{ opacity: isHome ? 0 : 1 }}
@@ -565,46 +572,51 @@ export default function RootLayout({ children }) {
               Flores à Beira-Rio
             </motion.a>
 
+            {/* ── RIGHT LINKS + CTA ── */}
             <div style={{ flex: 1, display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
               <div className="desktop-only" style={{ display: "flex", gap: "25px", alignItems: "center" }}>
-                {menuRight.map(item => {
-                  if (item.isLang) return (
-                    <div key={item.name} className="lang-container" style={{ position: "relative", display: "flex", alignItems: "center" }}>
-                      <a href={item.href} className="nav-link" style={{
-                        fontSize: "0.73rem", fontWeight: "500", textTransform: "uppercase",
-                        letterSpacing: "1.5px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                        display: "flex", alignItems: "center", cursor: "pointer"
-                      }}>
-                        {item.name} <FlagPT/>
-                      </a>
-                      <div className="lang-dropdown">
-                        <a href="/en" className="lang-dropdown-item" style={{
-                          fontSize: "0.73rem", fontWeight: "500", textTransform: "uppercase",
-                          letterSpacing: "1.5px", display: "flex", alignItems: "center",
-                          color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                          background: shouldShowScrolled ? "rgba(250,247,240,0.92)" : "rgba(0,0,0,0.15)",
-                          backdropFilter: "blur(12px)",
-                          padding: "10px 16px", borderRadius: "4px",
-                          border: `1px solid ${shouldShowScrolled ? "rgba(26,26,26,0.06)" : "rgba(255,255,255,0.1)"}`,
-                          textDecoration: "none", transition: "background 0.3s ease"
-                        }}>
-                          EN <FlagEN/>
-                        </a>
-                      </div>
-                    </div>
-                  );
-                  return (
-                    <a key={item.name} href={item.href} className="nav-link" style={{
-                      fontSize: "0.73rem", fontWeight: "500", textTransform: "uppercase",
-                      letterSpacing: "1.5px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                      display: "flex", alignItems: "center"
-                    }}>
-                      {item.name}
-                    </a>
-                  );
-                })}
+                {menuRight.map(item => (
+                  <a key={item.name} href={item.href} className="nav-link" style={{
+                    fontSize: "0.73rem", fontWeight: "500", textTransform: "uppercase",
+                    letterSpacing: "1.5px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                    display: "flex", alignItems: "center"
+                  }}>
+                    {item.name}
+                  </a>
+                ))}
+
+                {/* ── CTA BUTTON — always visible on desktop ── */}
+                <a
+                  href={FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="nav-cta-btn"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    fontSize: "0.7rem",
+                    fontWeight: "600",
+                    letterSpacing: "1.5px",
+                    textTransform: "uppercase",
+                    textDecoration: "none",
+                    fontFamily: "Roboto, sans-serif",
+                    padding: "10px 22px",
+                    borderRadius: "100px",
+                    transition: "all 0.3s ease",
+                    whiteSpace: "nowrap",
+                    backgroundColor: shouldShowScrolled ? "#3D6B5E" : "rgba(250,247,240,0.15)",
+                    color: shouldShowScrolled ? "#FAF7F0" : "rgba(250,247,240,0.92)",
+                    border: shouldShowScrolled ? "1.5px solid #3D6B5E" : "1.5px solid rgba(250,247,240,0.4)",
+                    backdropFilter: shouldShowScrolled ? "none" : "blur(8px)",
+                    boxShadow: shouldShowScrolled ? "0 4px 16px rgba(61,107,94,0.25)" : "none"
+                  }}
+                >
+                  Reservar Data
+                </a>
               </div>
 
+              {/* ── MOBILE: MENU BUTTON ── */}
               <button className="mobile-only" onClick={() => setIsOpen(true)} style={{
                 background: "none", border: "none", cursor: "pointer",
                 color: shouldShowScrolled ? "#1a1a1a" : "#fff",
@@ -639,7 +651,8 @@ export default function RootLayout({ children }) {
                 FECHAR
               </button>
 
-              {[...menuLeft, ...menuRight.filter(i => !i.isLang)].map(item => (
+              {/* ── Mobile nav links ── */}
+              {[...menuLeft, ...menuRight].map(item => (
                 <a key={item.name} href={item.href}
                   onClick={() => setIsOpen(false)}
                   className="nav-link"
@@ -651,14 +664,41 @@ export default function RootLayout({ children }) {
                 </a>
               ))}
 
+              {/* ── Mobile CTA button — prominent, at the bottom ── */}
+              <a
+                href={FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                style={{
+                  display: "inline-block",
+                  marginTop: "32px",
+                  backgroundColor: "#3D6B5E",
+                  color: "#FAF7F0",
+                  padding: "16px 40px",
+                  borderRadius: "100px",
+                  textDecoration: "none",
+                  fontWeight: "600",
+                  fontSize: "0.82rem",
+                  letterSpacing: "1.5px",
+                  textTransform: "uppercase",
+                  fontFamily: "Roboto, sans-serif",
+                  boxShadow: "0 6px 24px rgba(61,107,94,0.3)",
+                  transition: "all 0.3s ease"
+                }}
+              >
+                Reservar Data
+              </a>
+
+              {/* ── Mobile language switcher — subtle, below CTA ── */}
               <div style={{
-                display: "flex", gap: "28px", marginTop: "36px",
-                borderTop: "1px solid rgba(26,26,26,0.1)", paddingTop: "28px"
+                display: "flex", gap: "28px", marginTop: "28px",
+                borderTop: "1px solid rgba(26,26,26,0.1)", paddingTop: "24px"
               }}>
-                <a href="/pt" style={{ color: "#1a1a1a", fontSize: "1.2rem", fontFamily: "'TAN-MEMORIES', serif", display: "flex", alignItems: "center", textDecoration: "none" }}>
+                <a href="/pt" style={{ color: "#1a1a1a", fontSize: "1rem", fontFamily: "'TAN-MEMORIES', serif", display: "flex", alignItems: "center", textDecoration: "none" }}>
                   PT <FlagPT/>
                 </a>
-                <a href="/en" style={{ color: "#1a1a1a", fontSize: "1.2rem", fontFamily: "'TAN-MEMORIES', serif", display: "flex", alignItems: "center", textDecoration: "none", opacity: 0.4 }}>
+                <a href="/en" style={{ color: "#1a1a1a", fontSize: "1rem", fontFamily: "'TAN-MEMORIES', serif", display: "flex", alignItems: "center", textDecoration: "none", opacity: 0.4 }}>
                   EN <FlagEN/>
                 </a>
               </div>
@@ -692,16 +732,10 @@ export default function RootLayout({ children }) {
             line-height: 1.4; padding-bottom: 2px;
           }
           .nav-link:hover { border-bottom: 1px solid currentColor; }
-          .lang-dropdown {
-            position: absolute; top: 100%; right: 0;
-            padding-top: 12px; opacity: 0; visibility: hidden;
-            transform: translateY(-8px);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            pointer-events: none;
-          }
-          .lang-container:hover .lang-dropdown {
-            opacity: 1; visibility: visible;
-            transform: translateY(0); pointer-events: auto;
+          /* CTA button hover */
+          .nav-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(61,107,94,0.35) !important;
           }
         `}</style>
       </body>
