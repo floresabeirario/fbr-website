@@ -241,7 +241,7 @@ export default function RootLayout({ children }) {
           */}
           <div className="nav-bar">
 
-            {/* ── ESQUERDA: flex:1, links só aparecem no desktop ── */}
+            {/* ── ESQUERDA: flex:1, links + PT/EN ── */}
             <div className="nav-left">
               {menuLeft.map(item => (
                 <a key={item.name} href={item.href} className="nav-link desktop-only" style={{
@@ -253,6 +253,31 @@ export default function RootLayout({ children }) {
                   {item.name}
                 </a>
               ))}
+
+              {/* ── PT/EN na esquerda para equilibrar peso visual ── */}
+              <div className="lang-container desktop-only" style={{ position: "relative", display: "flex", alignItems: "center" }}>
+                <a href="/pt" className="nav-link lang-trigger" style={{
+                  fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
+                  letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                  display: "flex", alignItems: "center", cursor: "pointer"
+                }}>
+                  PT <FlagPT/>
+                </a>
+                <div className="lang-dropdown" style={{ left: 0, right: "auto" }}>
+                  <a href="/en" className="lang-dropdown-item" style={{
+                    fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
+                    letterSpacing: "1.3px", display: "flex", alignItems: "center",
+                    color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                    background: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
+                    backdropFilter: "blur(12px)",
+                    padding: "9px 14px", borderRadius: "6px",
+                    border: `1px solid ${shouldShowScrolled ? "rgba(26,26,26,0.08)" : "rgba(255,255,255,0.12)"}`,
+                    textDecoration: "none", transition: "background 0.3s ease"
+                  }}>
+                    EN <FlagEN/>
+                  </a>
+                </div>
+              </div>
             </div>
 
             {/* ── CENTRO: logo — centrado naturalmente entre os dois flex:1 ── */}
@@ -284,31 +309,6 @@ export default function RootLayout({ children }) {
                     {item.name}
                   </a>
                 ))}
-
-                {/* ── PT flag com dropdown EN ── */}
-                <div className="lang-container" style={{ position: "relative", display: "flex", alignItems: "center" }}>
-                  <a href="/pt" className="nav-link lang-trigger" style={{
-                    fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
-                    letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                    display: "flex", alignItems: "center", cursor: "pointer"
-                  }}>
-                    PT <FlagPT/>
-                  </a>
-                  <div className="lang-dropdown">
-                    <a href="/en" className="lang-dropdown-item" style={{
-                      fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
-                      letterSpacing: "1.3px", display: "flex", alignItems: "center",
-                      color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                      background: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
-                      backdropFilter: "blur(12px)",
-                      padding: "9px 14px", borderRadius: "6px",
-                      border: `1px solid ${shouldShowScrolled ? "rgba(26,26,26,0.08)" : "rgba(255,255,255,0.12)"}`,
-                      textDecoration: "none", transition: "background 0.3s ease"
-                    }}>
-                      EN <FlagEN/>
-                    </a>
-                  </div>
-                </div>
 
                 {/* ── CTA ── */}
                 <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="nav-cta" style={{
