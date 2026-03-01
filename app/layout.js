@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // ─── Flag SVGs ───────────────────────────────────────────────────────────────
 const FlagPT = () => (
-  <svg width="16" height="12" viewBox="0 0 600 400" style={{ marginLeft: "8px", borderRadius: "2px", verticalAlign: "middle" }}>
+  <svg width="16" height="12" viewBox="0 0 600 400" style={{ marginLeft: "6px", borderRadius: "2px", verticalAlign: "middle" }}>
     <rect width="240" height="400" fill="#006600"/>
     <rect x="240" width="360" height="400" fill="#ff0000"/>
     <circle cx="240" cy="200" r="80" fill="#ffff00"/>
@@ -15,7 +15,7 @@ const FlagPT = () => (
   </svg>
 );
 const FlagEN = () => (
-  <svg width="16" height="12" viewBox="0 0 640 480" style={{ marginLeft: "8px", borderRadius: "2px", verticalAlign: "middle" }}>
+  <svg width="16" height="12" viewBox="0 0 640 480" style={{ marginLeft: "6px", borderRadius: "2px", verticalAlign: "middle" }}>
     <path fill="#012169" d="M0 0h640v480H0z"/>
     <path fill="#FFF" d="m75 0 245 180L565 0h75v56L396 240l244 184v56h-75L320 300 75 480H0v-56l244-184L0 56V0h75z"/>
     <path fill="#C8102E" d="m424 281 216 159v40L369 281h55zM216 199 0 40V0l271 199h-55zm-216 241 216-159h55L0 480v-40zm640 0L424 281h55l161 119v40zM0 190h640v100H0z"/>
@@ -49,218 +49,18 @@ const IconEmail = () => (
   </svg>
 );
 
-// ─── Garden Silhouette SVG ────────────────────────────────────────────────────
-// Pure SVG, ~3KB, zero render cost. Depicts botanical garden silhouette.
-const GardenSilhouette = () => (
-  <svg
-    viewBox="0 0 1440 160"
-    xmlns="http://www.w3.org/2000/svg"
-    preserveAspectRatio="xMidYMax slice"
-    aria-hidden="true"
-    style={{ display: "block", width: "100%", height: "auto" }}
-  >
-    {/* Ground line */}
-    <rect x="0" y="148" width="1440" height="12" fill="#162420"/>
-
-    {/* ── Far background plants (lightest) ── */}
-    <g fill="#1a2e28" opacity="0.6">
-      {/* Distant ferns */}
-      <ellipse cx="80"  cy="140" rx="28" ry="18"/>
-      <ellipse cx="200" cy="138" rx="22" ry="14"/>
-      <ellipse cx="350" cy="141" rx="30" ry="16"/>
-      <ellipse cx="520" cy="139" rx="24" ry="15"/>
-      <ellipse cx="700" cy="140" rx="32" ry="17"/>
-      <ellipse cx="900" cy="138" rx="26" ry="15"/>
-      <ellipse cx="1100" cy="140" rx="28" ry="16"/>
-      <ellipse cx="1300" cy="139" rx="22" ry="14"/>
-      <ellipse cx="1400" cy="141" rx="20" ry="13"/>
-    </g>
-
-    {/* ── Mid-ground layer ── */}
-    <g fill="#1e3530">
-
-      {/* Tall stemmed flower left — daisy style */}
-      <rect x="58" y="85" width="3" height="63"/>
-      <circle cx="60" cy="80" r="10"/>
-      <ellipse cx="48" cy="88" rx="10" ry="5" transform="rotate(-30 48 88)"/>
-      <ellipse cx="72" cy="88" rx="10" ry="5" transform="rotate(30 72 88)"/>
-
-      {/* Grass blades cluster left */}
-      <path d="M20,148 Q15,120 12,105 Q18,120 22,148Z"/>
-      <path d="M30,148 Q28,118 24,100 Q32,118 34,148Z"/>
-      <path d="M40,148 Q42,122 46,108 Q40,124 38,148Z"/>
-
-      {/* Leafy bush */}
-      <ellipse cx="140" cy="128" rx="36" ry="22"/>
-      <ellipse cx="120" cy="132" rx="22" ry="16"/>
-      <ellipse cx="160" cy="130" rx="24" ry="18"/>
-
-      {/* Tall tulip */}
-      <rect x="218" y="90" width="3" height="58"/>
-      <path d="M212,90 Q219.5,70 227,90 Q223,85 219.5,82 Q216,85 212,90Z"/>
-      {/* Leaves on stem */}
-      <path d="M219,115 Q205,108 200,100 Q210,110 219,112Z"/>
-      <path d="M221,120 Q235,112 240,104 Q230,115 221,117Z"/>
-
-      {/* Fern spread */}
-      <path d="M280,148 Q270,130 260,115 Q275,132 282,148Z"/>
-      <path d="M280,148 Q290,128 300,112 Q288,130 280,148Z"/>
-      <path d="M280,148 Q268,125 255,108 Q272,127 280,148Z"/>
-      <path d="M280,148 Q292,122 305,105 Q290,124 280,148Z"/>
-      <path d="M280,148 Q265,135 260,125 Q272,136 280,148Z"/>
-      <path d="M280,148 Q295,133 300,123 Q288,136 280,148Z"/>
-
-      {/* Wildflower with multiple petals */}
-      <rect x="378" y="88" width="2.5" height="60"/>
-      <circle cx="379" cy="83" r="7"/>
-      {[0,45,90,135,180,225,270,315].map((a, i) => {
-        const rad = a * Math.PI / 180;
-        const x = 379 + Math.cos(rad) * 11;
-        const y = 83 + Math.sin(rad) * 11;
-        return <ellipse key={i} cx={x} cy={y} rx="5" ry="3" transform={`rotate(${a} ${x} ${y})`}/>;
-      })}
-      {/* Leaves */}
-      <path d="M379,115 Q362,105 355,95 Q368,108 379,112Z"/>
-      <path d="M379,122 Q396,112 402,101 Q392,115 379,120Z"/>
-
-      {/* Round shrub cluster */}
-      <ellipse cx="460" cy="130" rx="30" ry="20"/>
-      <ellipse cx="438" cy="136" rx="20" ry="14"/>
-      <ellipse cx="482" cy="134" rx="22" ry="15"/>
-
-      {/* Tall grass + small flower */}
-      <path d="M550,148 Q546,115 542,95 Q550,118 554,148Z"/>
-      <path d="M558,148 Q556,120 554,100 Q560,122 562,148Z"/>
-      <rect x="565" y="100" width="2" height="48"/>
-      <circle cx="566" cy="96" r="5"/>
-
-      {/* Large fanned leaves */}
-      <path d="M620,148 Q605,125 598,105 Q615,128 622,148Z"/>
-      <path d="M622,148 Q610,120 605,98 Q618,122 624,148Z"/>
-      <path d="M624,148 Q636,122 640,100 Q630,124 626,148Z"/>
-      <path d="M626,148 Q640,126 648,106 Q636,128 628,148Z"/>
-      <rect x="622" y="100" width="3" height="48"/>
-
-      {/* Daisy right of centre */}
-      <rect x="680" y="82" width="3" height="66"/>
-      <circle cx="681" cy="77" r="9"/>
-      {[0,60,120,180,240,300].map((a, i) => {
-        const rad = a * Math.PI / 180;
-        const x = 681 + Math.cos(rad) * 13;
-        const y = 77 + Math.sin(rad) * 13;
-        return <ellipse key={i} cx={x} cy={y} rx="6" ry="3" transform={`rotate(${a} ${x} ${y})`}/>;
-      })}
-      <path d="M681,120 Q665,110 658,98 Q671,112 681,117Z"/>
-
-      {/* Boxwood hedge section */}
-      <path d="M740,148 Q738,128 740,112 Q748,118 756,112 Q758,128 756,148Z"/>
-      <ellipse cx="748" cy="112" rx="14" ry="10"/>
-
-      {/* Tall spike flower — like a lavender */}
-      <rect x="810" y="78" width="3" height="70"/>
-      <rect x="808" y="78" width="7" height="28" rx="3"/>
-      <path d="M811,110 Q797,100 790,90 Q804,104 811,108Z"/>
-      <path d="M813,116 Q826,106 832,95 Q820,109 813,113Z"/>
-
-      {/* Grass blades right side cluster */}
-      <path d="M870,148 Q865,118 860,100 Q868,120 872,148Z"/>
-      <path d="M878,148 Q876,115 872,96 Q880,118 882,148Z"/>
-      <path d="M886,148 Q888,120 892,102 Q886,122 884,148Z"/>
-
-      {/* Leafy branch drooping */}
-      <path d="M940,148 Q952,120 958,100"/>
-      <path d="M940,148 Q952,120 958,100 Q954,108 948,116 Q944,128 940,148Z"/>
-      <ellipse cx="944" cy="118" rx="12" ry="6" transform="rotate(-20 944 118)"/>
-      <ellipse cx="952" cy="108" rx="11" ry="5" transform="rotate(-15 952 108)"/>
-      <ellipse cx="957" cy="100" rx="9"  ry="5" transform="rotate(-10 957 100)"/>
-
-      {/* Pom-pom flower */}
-      <rect x="1020" y="86" width="2.5" height="62"/>
-      <circle cx="1021" cy="80" r="14"/>
-      <circle cx="1021" cy="80" r="8" fill="#162420"/>
-      <path d="M1021,115 Q1007,107 1002,97 Q1014,110 1021,112Z"/>
-      <path d="M1021,122 Q1034,114 1038,103 Q1028,116 1021,119Z"/>
-
-      {/* Dense shrub right */}
-      <ellipse cx="1110" cy="126" rx="38" ry="24"/>
-      <ellipse cx="1086" cy="132" rx="24" ry="16"/>
-      <ellipse cx="1134" cy="130" rx="26" ry="18"/>
-      <ellipse cx="1110" cy="116" rx="20" ry="14"/>
-
-      {/* Tall stem with leaf pair */}
-      <rect x="1198" y="80" width="3" height="68"/>
-      <path d="M1199,100 Q1183,90 1176,80 Q1190,94 1199,98Z"/>
-      <path d="M1201,108 Q1216,98 1222,87 Q1210,101 1201,105Z"/>
-      <path d="M1199,120 Q1184,112 1178,102 Q1192,116 1199,118Z"/>
-      <circle cx="1200" cy="76" r="8"/>
-      {[0,72,144,216,288].map((a, i) => {
-        const rad = a * Math.PI / 180;
-        const x = 1200 + Math.cos(rad) * 12;
-        const y = 76 + Math.sin(rad) * 12;
-        return <ellipse key={i} cx={x} cy={y} rx="5" ry="3" transform={`rotate(${a} ${x} ${y})`}/>;
-      })}
-
-      {/* Grass blades far right */}
-      <path d="M1360,148 Q1355,118 1350,98 Q1358,122 1362,148Z"/>
-      <path d="M1370,148 Q1368,115 1365,95 Q1372,118 1374,148Z"/>
-      <path d="M1380,148 Q1382,120 1386,102 Q1380,122 1378,148Z"/>
-      <path d="M1390,148 Q1395,125 1400,108 Q1392,127 1388,148Z"/>
-      <path d="M1400,148 Q1408,122 1414,105 Q1405,125 1402,148Z"/>
-      <path d="M1415,148 Q1420,128 1426,112 Q1418,130 1414,148Z"/>
-    </g>
-
-    {/* ── Foreground layer (darkest) ── */}
-    <g fill="#162420">
-      {/* Ground cover left */}
-      <path d="M0,148 Q10,138 20,132 Q30,138 40,148Z"/>
-      <path d="M35,148 Q48,136 58,130 Q65,138 72,148Z"/>
-      <path d="M100,148 Q112,140 120,135 Q128,140 136,148Z"/>
-
-      {/* Small daisy foreground */}
-      <rect x="168" y="120" width="2" height="28"/>
-      <circle cx="169" cy="116" r="6"/>
-      {[0,60,120,180,240,300].map((a, i) => {
-        const rad = a * Math.PI / 180;
-        const x = 169 + Math.cos(rad) * 9;
-        const y = 116 + Math.sin(rad) * 9;
-        return <ellipse key={i} cx={x} cy={y} rx="4" ry="2" transform={`rotate(${a} ${x} ${y})`}/>;
-      })}
-
-      {/* Ground cover patches */}
-      <path d="M230,148 Q244,136 254,130 Q262,138 270,148Z"/>
-      <path d="M320,148 Q330,140 338,136 Q344,142 350,148Z"/>
-      <path d="M440,148 Q454,138 464,133 Q471,140 478,148Z"/>
-
-      {/* Foreground tall grass */}
-      <path d="M490,148 Q485,125 480,108 Q490,128 494,148Z"/>
-      <path d="M502,148 Q500,122 498,104 Q505,125 506,148Z"/>
-      <path d="M510,148 Q514,126 520,110 Q512,128 508,148Z"/>
-
-      {/* Low leaf cluster */}
-      <ellipse cx="600" cy="140" rx="28" ry="10"/>
-      <ellipse cx="578" cy="143" rx="18" ry="7"/>
-      <ellipse cx="622" cy="142" rx="20" ry="8"/>
-
-      <path d="M720,148 Q732,138 742,133 Q750,140 758,148Z"/>
-
-      {/* Foreground wispy grass right */}
-      <path d="M790,148 Q784,128 778,110 Q788,130 792,148Z"/>
-      <path d="M800,148 Q798,124 796,106 Q802,127 804,148Z"/>
-
-      <path d="M920,148 Q932,140 940,136 Q946,142 952,148Z"/>
-
-      {/* Dense foreground bush right */}
-      <ellipse cx="1060" cy="140" rx="32" ry="12"/>
-      <ellipse cx="1040" cy="143" rx="20" ry="8"/>
-      <ellipse cx="1082" cy="142" rx="22" ry="9"/>
-
-      <path d="M1160,148 Q1172,140 1180,136 Q1186,142 1192,148Z"/>
-      <path d="M1240,148 Q1252,138 1260,134 Q1266,140 1272,148Z"/>
-
-      {/* Far right ground */}
-      <path d="M1300,148 Q1314,140 1322,136 Q1330,142 1338,148Z"/>
-      <path d="M1430,148 Q1434,140 1436,136 Q1438,142 1440,148Z"/>
-    </g>
+// ─── Pressed Botanical Sprig — elegant footer divider (~400 bytes vs ~3KB garden)
+const PressedSprig = () => (
+  <svg viewBox="0 0 200 90" width="110" height="50" fill="none" aria-hidden="true"
+    style={{ display: "block", margin: "0 auto", opacity: 0.55 }}>
+    <line x1="100" y1="4" x2="100" y2="86" stroke="#8BA888" strokeWidth="0.7"/>
+    <ellipse cx="86" cy="24" rx="14" ry="6" fill="#8BA888" opacity="0.35" transform="rotate(-40 86 24)"/>
+    <ellipse cx="84" cy="46" rx="11" ry="5" fill="#8BA888" opacity="0.25" transform="rotate(-32 84 46)"/>
+    <ellipse cx="87" cy="65" rx="9" ry="4" fill="#8BA888" opacity="0.18" transform="rotate(-28 87 65)"/>
+    <ellipse cx="114" cy="34" rx="14" ry="6" fill="#8BA888" opacity="0.35" transform="rotate(40 114 34)"/>
+    <ellipse cx="116" cy="55" rx="11" ry="5" fill="#8BA888" opacity="0.25" transform="rotate(32 116 55)"/>
+    <circle cx="100" cy="6" r="3.5" fill="#B8954A" opacity="0.4"/>
+    <circle cx="100" cy="6" r="1.5" fill="#B8954A" opacity="0.6"/>
   </svg>
 );
 
@@ -278,16 +78,15 @@ function SiteFooter() {
   return (
     <footer style={{ backgroundColor: "#0F1E1A", color: "#FAF7F0", position: "relative" }}>
 
-      {/* Garden silhouette */}
-      <div style={{ lineHeight: 0, marginBottom: "-2px", backgroundColor: "#FAF7F0" }}>
-        <GardenSilhouette/>
+      {/* Botanical divider */}
+      <div style={{ paddingTop: "56px", paddingBottom: "8px" }}>
+        <PressedSprig/>
       </div>
 
-      {/* Main footer body */}
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "60px 24px 0" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "28px 24px 0" }}>
 
-        {/* Top: brand + tagline */}
-        <div style={{ textAlign: "center", marginBottom: "52px" }}>
+        {/* Brand + tagline */}
+        <div style={{ textAlign: "center", marginBottom: "48px" }}>
           <h2 style={{
             fontFamily: "'TAN-MEMORIES', serif",
             fontSize: "clamp(2.2rem, 6vw, 3.8rem)",
@@ -300,9 +99,8 @@ function SiteFooter() {
             textTransform: "uppercase", color: "#8BA888",
             margin: "0 0 24px", fontFamily: "Roboto, sans-serif"
           }}>
-            Atelier de Preservação Botânica · Ceira, Coimbra
+            Atelier de Preservação Botânica · Coimbra, Portugal
           </p>
-          {/* Social icons */}
           <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
             {[
               { href: "https://instagram.com/floresabeirario", icon: <IconInstagram/>, label: "Instagram" },
@@ -327,58 +125,42 @@ function SiteFooter() {
           </div>
         </div>
 
-        {/* Divider */}
         <div style={{
           height: "1px",
           background: "linear-gradient(to right, transparent, rgba(250,247,240,0.1), transparent)",
           marginBottom: "44px"
         }}/>
 
-        {/* Middle: nav + contact */}
+        {/* Grid: nav + contact + legal */}
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
           gap: "36px 48px",
           marginBottom: "48px"
         }}>
-          {/* Navigation */}
           <div>
-            <p style={{
-              fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase",
-              color: "rgba(250,247,240,0.35)", marginBottom: "16px",
-              fontFamily: "Roboto, sans-serif"
-            }}>
+            <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.35)", marginBottom: "16px", fontFamily: "Roboto, sans-serif" }}>
               Páginas
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               {navLinks.map((l, i) => (
                 <a key={i} href={l.href} style={{
-                  color: "rgba(250,247,240,0.65)",
-                  textDecoration: "none", fontSize: "0.88rem",
-                  fontWeight: "300", transition: "color 0.25s ease",
-                  lineHeight: 1
+                  color: "rgba(250,247,240,0.65)", textDecoration: "none", fontSize: "0.88rem",
+                  fontWeight: "300", transition: "color 0.25s ease", lineHeight: 1
                 }}
                 onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
                 onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.65)"}
-                >
-                  {l.label}
-                </a>
+                >{l.label}</a>
               ))}
             </div>
           </div>
 
-          {/* Contact */}
           <div>
-            <p style={{
-              fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase",
-              color: "rgba(250,247,240,0.35)", marginBottom: "16px",
-              fontFamily: "Roboto, sans-serif"
-            }}>
+            <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.35)", marginBottom: "16px", fontFamily: "Roboto, sans-serif" }}>
               Contacto
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              <a href="https://wa.me/351934680300"
-                target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: "8px",
                   backgroundColor: "#25D366", color: "#fff",
@@ -386,8 +168,7 @@ function SiteFooter() {
                   textDecoration: "none", fontWeight: "600",
                   fontSize: "0.78rem", letterSpacing: "0.5px",
                   transition: "background-color 0.25s ease",
-                  fontFamily: "Roboto, sans-serif",
-                  width: "fit-content"
+                  fontFamily: "Roboto, sans-serif", width: "fit-content"
                 }}
                 onMouseEnter={e => e.currentTarget.style.backgroundColor = "#1da851"}
                 onMouseLeave={e => e.currentTarget.style.backgroundColor = "#25D366"}
@@ -396,30 +177,19 @@ function SiteFooter() {
               </a>
               <a href="mailto:info@floresabeirario.pt" style={{
                 color: "rgba(250,247,240,0.6)", fontSize: "0.88rem",
-                textDecoration: "none", fontWeight: "300",
-                transition: "color 0.25s ease"
+                textDecoration: "none", fontWeight: "300", transition: "color 0.25s ease"
               }}
               onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
               onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.6)"}
-              >
-                info@floresabeirario.pt
-              </a>
-              <p style={{
-                color: "rgba(250,247,240,0.35)", fontSize: "0.82rem",
-                margin: 0, lineHeight: 1.65, fontWeight: "300"
-              }}>
-                Ceira, Coimbra<br/>Portugal
+              >info@floresabeirario.pt</a>
+              <p style={{ color: "rgba(250,247,240,0.35)", fontSize: "0.82rem", margin: 0, lineHeight: 1.65, fontWeight: "300" }}>
+                Coimbra, Portugal
               </p>
             </div>
           </div>
 
-          {/* Legal / lang */}
           <div>
-            <p style={{
-              fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase",
-              color: "rgba(250,247,240,0.35)", marginBottom: "16px",
-              fontFamily: "Roboto, sans-serif"
-            }}>
+            <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.35)", marginBottom: "16px", fontFamily: "Roboto, sans-serif" }}>
               Legal
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
@@ -429,50 +199,36 @@ function SiteFooter() {
               ].map((l, i) => (
                 <a key={i} href={l.href} style={{
                   color: "rgba(250,247,240,0.6)", textDecoration: "none",
-                  fontSize: "0.88rem", fontWeight: "300",
-                  transition: "color 0.25s ease"
+                  fontSize: "0.88rem", fontWeight: "300", transition: "color 0.25s ease"
                 }}
                 onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
                 onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.6)"}
-                >
-                  {l.label}
-                </a>
+                >{l.label}</a>
               ))}
-
-              {/* Language selector — lives in footer only */}
               <div style={{ marginTop: "8px", display: "flex", gap: "14px" }}>
-                <a href="/pt" style={{
-                  color: "#FAF7F0", fontSize: "0.78rem", fontWeight: "600",
-                  textDecoration: "none", display: "flex", alignItems: "center",
-                  fontFamily: "Roboto, sans-serif", letterSpacing: "1px"
-                }}>
+                <a href="/pt" style={{ color: "#FAF7F0", fontSize: "0.78rem", fontWeight: "600", textDecoration: "none", display: "flex", alignItems: "center", fontFamily: "Roboto, sans-serif", letterSpacing: "1px" }}>
                   PT <FlagPT/>
                 </a>
                 <a href="/en" style={{
                   color: "rgba(250,247,240,0.4)", fontSize: "0.78rem", fontWeight: "600",
                   textDecoration: "none", display: "flex", alignItems: "center",
-                  fontFamily: "Roboto, sans-serif", letterSpacing: "1px",
-                  transition: "color 0.25s ease"
+                  fontFamily: "Roboto, sans-serif", letterSpacing: "1px", transition: "color 0.25s ease"
                 }}
                 onMouseEnter={e => e.currentTarget.style.color = "rgba(250,247,240,0.8)"}
                 onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.4)"}
-                >
-                  EN <FlagEN/>
-                </a>
+                >EN <FlagEN/></a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div style={{
           borderTop: "1px solid rgba(250,247,240,0.07)",
           padding: "20px 0 28px",
           display: "flex", justifyContent: "center",
           fontSize: "0.6rem", letterSpacing: "1.5px",
           color: "rgba(250,247,240,0.25)",
-          fontFamily: "Roboto, sans-serif",
-          textAlign: "center"
+          fontFamily: "Roboto, sans-serif", textAlign: "center"
         }}>
           © 2026 FLORES À BEIRA-RIO. TODOS OS DIREITOS RESERVADOS.
         </div>
@@ -496,10 +252,10 @@ export default function RootLayout({ children }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ─── UPDATED NAV ITEMS ───────────────────────────────────────────────
-  // "Passo a Passo" → "Como Funciona" (consistent with footer + better SEO)
-  // Language selector removed from nav — lives in footer only
-  // CTA "Reservar Data" added as standalone button
+  /*
+   * BALANCED NAV: 3 links left │ logo center │ 2 links + EN + CTA right
+   * "Perguntas Frequentes" lives in footer + mobile menu (not main nav)
+   */
   const menuLeft = [
     { name: "Como Funciona",        href: "/passo-a-passo" },
     { name: "Opções e Preços",      href: "/opcoes-e-precos" },
@@ -507,8 +263,12 @@ export default function RootLayout({ children }) {
   ];
   const menuRight = [
     { name: "Vale-Presente",        href: "/vale-presente" },
-    { name: "Perguntas Frequentes", href: "/perguntas-frequentes" },
     { name: "Contactos e Equipa",   href: "/contactos" },
+  ];
+  const mobileMenu = [
+    ...menuLeft,
+    ...menuRight,
+    { name: "Perguntas Frequentes", href: "/perguntas-frequentes" },
   ];
 
   const shouldShowScrolled = scrolled || !isHome;
@@ -538,17 +298,19 @@ export default function RootLayout({ children }) {
           backgroundColor: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "transparent",
           backdropFilter: shouldShowScrolled ? "blur(10px)" : "none",
           transition: "all 0.4s ease",
-          padding: shouldShowScrolled ? "15px 0" : "25px 0"
+          padding: shouldShowScrolled ? "14px 0" : "24px 0"
         }}>
           <div className="nav-container">
-            {/* ── LEFT LINKS ── */}
-            <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
-              <div className="desktop-only" style={{ display: "flex", gap: "25px" }}>
+
+            {/* LEFT */}
+            <div className="nav-side nav-side--left">
+              <div className="desktop-only" style={{ display: "flex", gap: "clamp(14px, 1.8vw, 26px)", alignItems: "center" }}>
                 {menuLeft.map(item => (
                   <a key={item.name} href={item.href} className="nav-link" style={{
-                    fontSize: "0.73rem", fontWeight: "500",
-                    textTransform: "uppercase", letterSpacing: "1.5px",
-                    color: shouldShowScrolled ? "#1a1a1a" : "#fff"
+                    fontSize: "0.72rem", fontWeight: "500",
+                    textTransform: "uppercase", letterSpacing: "1.3px",
+                    color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                    whiteSpace: "nowrap"
                   }}>
                     {item.name}
                   </a>
@@ -556,67 +318,79 @@ export default function RootLayout({ children }) {
               </div>
             </div>
 
-            {/* ── CENTRAL LOGO ── */}
+            {/* CENTER LOGO — smooth opacity + scale + y transition */}
             <motion.a
               href="/"
-              initial={{ opacity: isHome ? 0 : 1 }}
-              animate={{ opacity: shouldShowScrolled ? 1 : 0 }}
-              className="nav-link logo-central"
+              animate={{
+                opacity: shouldShowScrolled ? 1 : 0,
+                scale: shouldShowScrolled ? 1 : 0.92,
+                y: shouldShowScrolled ? 0 : 8
+              }}
+              transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+              className="logo-central"
               style={{
                 color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                fontSize: "1.5rem", fontFamily: "'TAN-MEMORIES', serif",
-                textAlign: "center", flex: "0 0 auto",
+                fontSize: "clamp(1rem, 1.6vw, 1.45rem)",
+                fontFamily: "'TAN-MEMORIES', serif",
+                textAlign: "center",
+                flex: "0 0 auto",
+                padding: "0 clamp(10px, 1.5vw, 22px)",
                 pointerEvents: shouldShowScrolled ? "auto" : "none",
-                display: shouldShowScrolled ? "block" : "none"
+                textDecoration: "none",
+                lineHeight: 1.1,
+                letterSpacing: "0.5px"
               }}>
-              Flores à Beira-Rio
+              Flores à Beira&#8209;Rio
             </motion.a>
 
-            {/* ── RIGHT LINKS + CTA ── */}
-            <div style={{ flex: 1, display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
-              <div className="desktop-only" style={{ display: "flex", gap: "25px", alignItems: "center" }}>
+            {/* RIGHT */}
+            <div className="nav-side nav-side--right">
+              <div className="desktop-only" style={{ display: "flex", gap: "clamp(14px, 1.8vw, 26px)", alignItems: "center", justifyContent: "flex-end" }}>
                 {menuRight.map(item => (
                   <a key={item.name} href={item.href} className="nav-link" style={{
-                    fontSize: "0.73rem", fontWeight: "500", textTransform: "uppercase",
-                    letterSpacing: "1.5px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                    display: "flex", alignItems: "center"
+                    fontSize: "0.72rem", fontWeight: "500", textTransform: "uppercase",
+                    letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                    whiteSpace: "nowrap"
                   }}>
                     {item.name}
                   </a>
                 ))}
 
-                {/* ── CTA BUTTON — always visible on desktop ── */}
-                <a
-                  href={FORM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="nav-cta-btn"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    fontSize: "0.7rem",
-                    fontWeight: "600",
-                    letterSpacing: "1.5px",
-                    textTransform: "uppercase",
-                    textDecoration: "none",
-                    fontFamily: "Roboto, sans-serif",
-                    padding: "10px 22px",
-                    borderRadius: "100px",
-                    transition: "all 0.3s ease",
-                    whiteSpace: "nowrap",
-                    backgroundColor: shouldShowScrolled ? "#3D6B5E" : "rgba(250,247,240,0.15)",
-                    color: shouldShowScrolled ? "#FAF7F0" : "rgba(250,247,240,0.92)",
-                    border: shouldShowScrolled ? "1.5px solid #3D6B5E" : "1.5px solid rgba(250,247,240,0.4)",
-                    backdropFilter: shouldShowScrolled ? "none" : "blur(8px)",
-                    boxShadow: shouldShowScrolled ? "0 4px 16px rgba(61,107,94,0.25)" : "none"
-                  }}
-                >
+                {/* Thin separator */}
+                <div style={{
+                  height: "14px", width: "1px",
+                  backgroundColor: shouldShowScrolled ? "rgba(26,26,26,0.12)" : "rgba(255,255,255,0.2)",
+                  transition: "background-color 0.3s ease"
+                }}/>
+
+                {/* EN — international signal */}
+                <a href="/en" className="nav-link nav-lang" style={{
+                  fontSize: "0.72rem", fontWeight: "500", textTransform: "uppercase",
+                  letterSpacing: "1.3px",
+                  color: shouldShowScrolled ? "rgba(26,26,26,0.4)" : "rgba(255,255,255,0.45)",
+                  display: "flex", alignItems: "center", whiteSpace: "nowrap"
+                }}>
+                  EN <FlagEN/>
+                </a>
+
+                {/* CTA */}
+                <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="nav-cta-btn" style={{
+                  display: "inline-flex", alignItems: "center",
+                  fontSize: "0.68rem", fontWeight: "600",
+                  letterSpacing: "1.4px", textTransform: "uppercase",
+                  textDecoration: "none", fontFamily: "Roboto, sans-serif",
+                  padding: "9px 20px", borderRadius: "100px",
+                  transition: "all 0.3s ease", whiteSpace: "nowrap",
+                  backgroundColor: shouldShowScrolled ? "#3D6B5E" : "rgba(250,247,240,0.1)",
+                  color: shouldShowScrolled ? "#FAF7F0" : "rgba(250,247,240,0.9)",
+                  border: shouldShowScrolled ? "1.5px solid #3D6B5E" : "1.5px solid rgba(250,247,240,0.35)",
+                  backdropFilter: shouldShowScrolled ? "none" : "blur(8px)",
+                  boxShadow: shouldShowScrolled ? "0 3px 14px rgba(61,107,94,0.22)" : "none"
+                }}>
                   Reservar Data
                 </a>
               </div>
 
-              {/* ── MOBILE: MENU BUTTON ── */}
               <button className="mobile-only" onClick={() => setIsOpen(true)} style={{
                 background: "none", border: "none", cursor: "pointer",
                 color: shouldShowScrolled ? "#1a1a1a" : "#fff",
@@ -634,6 +408,7 @@ export default function RootLayout({ children }) {
           {isOpen && (
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
               style={{
                 position: "fixed", inset: 0,
                 backgroundColor: "#FAF7F0", zIndex: 200,
@@ -651,49 +426,35 @@ export default function RootLayout({ children }) {
                 FECHAR
               </button>
 
-              {/* ── Mobile nav links ── */}
-              {[...menuLeft, ...menuRight].map(item => (
+              {mobileMenu.map(item => (
                 <a key={item.name} href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="nav-link"
+                  onClick={() => setIsOpen(false)} className="nav-link"
                   style={{
-                    color: "#1a1a1a", fontSize: "clamp(1.4rem,5vw,1.9rem)",
-                    margin: "12px 0", fontFamily: "'TAN-MEMORIES', serif"
+                    color: "#1a1a1a", fontSize: "clamp(1.3rem,4.5vw,1.8rem)",
+                    margin: "11px 0", fontFamily: "'TAN-MEMORIES', serif"
                   }}>
                   {item.name}
                 </a>
               ))}
 
-              {/* ── Mobile CTA button — prominent, at the bottom ── */}
-              <a
-                href={FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
                 style={{
-                  display: "inline-block",
-                  marginTop: "32px",
-                  backgroundColor: "#3D6B5E",
-                  color: "#FAF7F0",
-                  padding: "16px 40px",
-                  borderRadius: "100px",
-                  textDecoration: "none",
-                  fontWeight: "600",
-                  fontSize: "0.82rem",
-                  letterSpacing: "1.5px",
-                  textTransform: "uppercase",
-                  fontFamily: "Roboto, sans-serif",
-                  boxShadow: "0 6px 24px rgba(61,107,94,0.3)",
-                  transition: "all 0.3s ease"
+                  display: "inline-block", marginTop: "30px",
+                  backgroundColor: "#3D6B5E", color: "#FAF7F0",
+                  padding: "15px 38px", borderRadius: "100px",
+                  textDecoration: "none", fontWeight: "600",
+                  fontSize: "0.8rem", letterSpacing: "1.5px",
+                  textTransform: "uppercase", fontFamily: "Roboto, sans-serif",
+                  boxShadow: "0 6px 22px rgba(61,107,94,0.28)"
                 }}
               >
                 Reservar Data
               </a>
 
-              {/* ── Mobile language switcher — subtle, below CTA ── */}
               <div style={{
-                display: "flex", gap: "28px", marginTop: "28px",
-                borderTop: "1px solid rgba(26,26,26,0.1)", paddingTop: "24px"
+                display: "flex", gap: "24px", marginTop: "26px",
+                borderTop: "1px solid rgba(26,26,26,0.08)", paddingTop: "22px"
               }}>
                 <a href="/pt" style={{ color: "#1a1a1a", fontSize: "1rem", fontFamily: "'TAN-MEMORIES', serif", display: "flex", alignItems: "center", textDecoration: "none" }}>
                   PT <FlagPT/>
@@ -707,23 +468,29 @@ export default function RootLayout({ children }) {
         </AnimatePresence>
 
         <main>{children}</main>
-
-        {/* ── FOOTER on every page ── */}
         <SiteFooter/>
 
         <style jsx global>{`
           @media (max-width: 1023px) { .desktop-only { display: none !important; } }
           @media (min-width: 1024px) { .mobile-only  { display: none !important; } }
           * { box-sizing: border-box; }
+
           .nav-container {
-            max-width: 1400px; margin: 0 auto;
+            max-width: 1440px; margin: 0 auto;
             display: flex; justify-content: space-between;
             align-items: center; padding: 0 20px;
           }
-          @media (min-width: 1024px) { .nav-container { padding: 0 40px; } }
-          .logo-central { padding: 0 20px; }
+          @media (min-width: 1024px) { .nav-container { padding: 0 36px; } }
+
+          /* Equal flex sides so logo stays dead-center */
+          .nav-side { flex: 1; display: flex; align-items: center; }
+          .nav-side--left  { justify-content: flex-start; }
+          .nav-side--right { justify-content: flex-end; }
+          .logo-central { flex: 0 0 auto; }
+
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
           .italic { font-style: italic !important; }
+
           .nav-link {
             text-decoration: none !important;
             transition: all 0.3s ease;
@@ -732,10 +499,10 @@ export default function RootLayout({ children }) {
             line-height: 1.4; padding-bottom: 2px;
           }
           .nav-link:hover { border-bottom: 1px solid currentColor; }
-          /* CTA button hover */
+          .nav-lang:hover { border-bottom: 1px solid transparent !important; opacity: 0.8; }
           .nav-cta-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 22px rgba(61,107,94,0.35) !important;
+            box-shadow: 0 6px 20px rgba(61,107,94,0.32) !important;
           }
         `}</style>
       </body>
