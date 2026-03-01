@@ -84,14 +84,14 @@ export default function OpcoesClient() {
       </section>
 
       {/* ════════════════════════════════════════════
-          TIPOS DE FUNDO - Fundo preto continuando o gradiente
+          TIPOS DE FUNDO
       ════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: "#0F1E1A", padding: "clamp(40px,7vw,70px) 0 clamp(50px,8vw,80px)" }}>
+      <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(40px,7vw,70px) 0 clamp(50px,8vw,80px)" }}>
 
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px clamp(32px,5vw,48px)" }}>
           <Reveal>
-            <Label light>Personalização</Label>
-            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem, 5vw, 3.8rem)", fontWeight: 400, margin: 0, lineHeight: 1.05, color: "#FAF7F0" }}>
+            <Label>Personalização</Label>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem, 5vw, 3.8rem)", fontWeight: 400, margin: 0, lineHeight: 1.05, color: "#1a1a1a" }}>
               Tipos de Fundo
             </h2>
           </Reveal>
@@ -150,14 +150,14 @@ export default function OpcoesClient() {
                 )}
               </div>
               <div style={{ padding: "18px 4px 0" }}>
-                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.2, color: "#FAF7F0" }}>
+                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.2, color: "#1a1a1a" }}>
                   {item.title}
                 </h3>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.82rem", lineHeight: 1.75, color: "rgba(250,247,240,0.55)", margin: 0 }}>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.82rem", lineHeight: 1.75, color: "rgba(26,26,26,0.58)", margin: 0 }}>
                   {item.desc}
                 </p>
                 {item.note && (
-                  <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.74rem", color: "rgba(250,247,240,0.35)", margin: "6px 0 0", fontStyle: "italic" }}>
+                  <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.74rem", color: "rgba(26,26,26,0.36)", margin: "6px 0 0", fontStyle: "italic" }}>
                     {item.note}
                   </p>
                 )}
@@ -167,7 +167,39 @@ export default function OpcoesClient() {
         </div>
         </div>
 
-        <p className="slider-hint" aria-live="polite" style={{ color: "rgba(250,247,240,0.3)" }}>deslize para ver mais</p>
+        <p className="slider-hint" aria-live="polite" style={{ color: "rgba(26,26,26,0.28)" }}>deslize para ver mais</p>
+
+        {/* CTA Reserva #1 */}
+        <Reveal delay={0.1}>
+          <div style={{ maxWidth: "680px", margin: "clamp(40px,6vw,60px) auto 0", padding: "0 24px", textAlign: "center" }}>
+            <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(26,26,26,0.6)", margin: "0 0 20px" }}>
+              As vagas são limitadas. Reserve a sua data o mais cedo possível.
+            </p>
+            <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
+              style={{ 
+                display: "inline-flex", 
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#3D6B5E", 
+                color: "#FAF7F0", 
+                padding: "14px 36px", 
+                borderRadius: "100px", 
+                textDecoration: "none", 
+                fontWeight: 700, 
+                fontSize: "0.75rem", 
+                letterSpacing: "1.5px", 
+                textTransform: "uppercase", 
+                fontFamily: "Roboto, sans-serif", 
+                transition: "all 0.3s ease",
+                minHeight: "52px"
+              }}
+              onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#2F5548"; }}
+              onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#3D6B5E"; }}
+            >
+              Reservar a Minha Data
+            </a>
+          </div>
+        </Reveal>
 
       </section>
 
@@ -212,6 +244,38 @@ export default function OpcoesClient() {
             </Reveal>
           </div>
         </div>
+
+        {/* CTA Reserva #4 */}
+        <Reveal delay={0.1}>
+          <div style={{ maxWidth: "680px", margin: "clamp(48px,8vw,70px) auto 0", padding: "0 24px", textAlign: "center" }}>
+            <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(26,26,26,0.6)", margin: "0 0 20px" }}>
+              Quer incluir elementos especiais na sua composição?
+            </p>
+            <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
+              style={{ 
+                display: "inline-flex", 
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#3D6B5E", 
+                color: "#FAF7F0", 
+                padding: "14px 36px", 
+                borderRadius: "100px", 
+                textDecoration: "none", 
+                fontWeight: 700, 
+                fontSize: "0.75rem", 
+                letterSpacing: "1.5px", 
+                textTransform: "uppercase", 
+                fontFamily: "Roboto, sans-serif", 
+                transition: "all 0.3s ease",
+                minHeight: "52px"
+              }}
+              onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#2F5548"; }}
+              onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#3D6B5E"; }}
+            >
+              Reservar e Personalizar
+            </a>
+          </div>
+        </Reveal>
       </section>
 
       {/* ════════════════════════════════════════════
@@ -231,87 +295,93 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          {/* Representação visual dos tamanhos */}
+          {/* Representação visual dos tamanhos - horizontal, minimalista */}
           <Reveal delay={0.1}>
-            <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", gap: "32px", marginBottom: "56px", padding: "0 20px" }}>
-              {/* 30x40 */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "clamp(32px, 5vw, 64px)", marginBottom: "56px", padding: "0 20px", flexWrap: "wrap" }}>
+              
+              {/* 30x40 - proporção 3:4 */}
               <div style={{ textAlign: "center" }}>
-                <svg width="90" height="120" viewBox="0 0 90 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Moldura */}
-                  <rect x="2" y="2" width="86" height="116" fill="#3D2817" stroke="#2A1810" strokeWidth="1"/>
-                  <rect x="8" y="8" width="74" height="104" fill="#FAF7F0" stroke="#3D6B5E" strokeWidth="0.5"/>
+                <svg width="120" height="160" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Moldura externa */}
+                  <rect x="10" y="10" width="100" height="133.33" stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none"/>
+                  {/* Moldura interna */}
+                  <rect x="16" y="16" width="88" height="121.33" stroke="rgba(250,247,240,0.25)" strokeWidth="1" fill="none"/>
                   
-                  {/* Flores decorativas simples */}
-                  <circle cx="45" cy="45" r="8" fill="#8BA888" opacity="0.7"/>
-                  <circle cx="38" cy="52" r="6" fill="#5A6B60" opacity="0.6"/>
-                  <circle cx="52" cy="52" r="6" fill="#5A6B60" opacity="0.6"/>
-                  <circle cx="45" cy="58" r="5" fill="#3D6B5E" opacity="0.5"/>
+                  {/* Flor simples - só contornos */}
+                  <circle cx="60" cy="77" r="18" stroke="rgba(250,247,240,0.35)" strokeWidth="1.2" fill="none"/>
                   
-                  {/* Caule */}
-                  <line x1="45" y1="58" x2="45" y2="85" stroke="#5A6B60" strokeWidth="1.5" opacity="0.4"/>
+                  {/* Pétalas */}
+                  <ellipse cx="60" cy="59" rx="6" ry="10" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
+                  <ellipse cx="60" cy="95" rx="6" ry="10" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
+                  <ellipse cx="42" cy="77" rx="10" ry="6" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
+                  <ellipse cx="78" cy="77" rx="10" ry="6" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
                   
-                  {/* Folhas */}
-                  <path d="M 45 70 Q 35 72 38 78" fill="none" stroke="#8BA888" strokeWidth="1.2" opacity="0.5"/>
-                  <path d="M 45 75 Q 55 77 52 83" fill="none" stroke="#8BA888" strokeWidth="1.2" opacity="0.5"/>
+                  {/* Linhas de brilho no vidro */}
+                  <line x1="22" y1="28" x2="35" y2="45" stroke="rgba(250,247,240,0.15)" strokeWidth="1"/>
+                  <line x1="28" y1="32" x2="38" y2="48" stroke="rgba(250,247,240,0.12)" strokeWidth="0.8"/>
                 </svg>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.7rem", color: "rgba(250,247,240,0.4)", margin: "8px 0 0", letterSpacing: "1px" }}>30×40cm</p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.75rem", color: "rgba(250,247,240,0.5)", margin: "12px 0 0", letterSpacing: "1px" }}>30×40 cm</p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "1.4rem", color: "#FAF7F0", margin: "4px 0 0", fontWeight: 300 }}>300€</p>
               </div>
 
-              {/* 40x50 - Mais popular (maior destaque) */}
+              {/* 40x50 - proporção 4:5 */}
               <div style={{ textAlign: "center" }}>
-                <svg width="120" height="150" viewBox="0 0 120 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Moldura */}
-                  <rect x="2" y="2" width="116" height="146" fill="#3D2817" stroke="#2A1810" strokeWidth="1.5"/>
-                  <rect x="9" y="9" width="102" height="132" fill="#FAF7F0" stroke="#B8954A" strokeWidth="1"/>
+                <svg width="128" height="160" viewBox="0 0 128 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Moldura externa */}
+                  <rect x="10" y="10" width="108" height="135" stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none"/>
+                  {/* Moldura interna */}
+                  <rect x="16" y="16" width="96" height="123" stroke="rgba(250,247,240,0.25)" strokeWidth="1" fill="none"/>
                   
-                  {/* Flores decorativas - composição maior */}
-                  <circle cx="60" cy="55" r="11" fill="#8BA888" opacity="0.7"/>
-                  <circle cx="50" cy="64" r="9" fill="#5A6B60" opacity="0.6"/>
-                  <circle cx="70" cy="64" r="9" fill="#5A6B60" opacity="0.6"/>
-                  <circle cx="60" cy="72" r="7" fill="#3D6B5E" opacity="0.5"/>
-                  <circle cx="45" cy="70" r="6" fill="#8BA888" opacity="0.5"/>
-                  <circle cx="75" cy="70" r="6" fill="#8BA888" opacity="0.5"/>
+                  {/* Flor simples - só contornos */}
+                  <circle cx="64" cy="77.5" r="20" stroke="rgba(250,247,240,0.35)" strokeWidth="1.2" fill="none"/>
                   
-                  {/* Caule */}
-                  <line x1="60" y1="72" x2="60" y2="110" stroke="#5A6B60" strokeWidth="2" opacity="0.4"/>
+                  {/* Pétalas */}
+                  <ellipse cx="64" cy="57.5" rx="7" ry="11" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
+                  <ellipse cx="64" cy="97.5" rx="7" ry="11" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
+                  <ellipse cx="44" cy="77.5" rx="11" ry="7" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
+                  <ellipse cx="84" cy="77.5" rx="11" ry="7" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
                   
-                  {/* Folhas */}
-                  <path d="M 60 85 Q 45 88 48 96" fill="none" stroke="#8BA888" strokeWidth="1.5" opacity="0.5"/>
-                  <path d="M 60 95 Q 75 98 72 106" fill="none" stroke="#8BA888" strokeWidth="1.5" opacity="0.5"/>
-                  <path d="M 60 90 Q 48 92 50 98" fill="none" stroke="#8BA888" strokeWidth="1.2" opacity="0.4"/>
+                  {/* Diagonais nas pétalas */}
+                  <ellipse cx="52" cy="63" rx="8" ry="5" transform="rotate(-45 52 63)" stroke="rgba(250,247,240,0.25)" strokeWidth="0.8" fill="none"/>
+                  <ellipse cx="76" cy="63" rx="8" ry="5" transform="rotate(45 76 63)" stroke="rgba(250,247,240,0.25)" strokeWidth="0.8" fill="none"/>
+                  
+                  {/* Linhas de brilho no vidro */}
+                  <line x1="24" y1="28" x2="38" y2="46" stroke="rgba(250,247,240,0.15)" strokeWidth="1"/>
+                  <line x1="30" y1="33" x2="42" y2="50" stroke="rgba(250,247,240,0.12)" strokeWidth="0.8"/>
                 </svg>
-                <div style={{ display: "inline-block", backgroundColor: "rgba(184,149,74,0.2)", padding: "4px 12px", borderRadius: "100px", marginTop: "8px" }}>
-                  <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.7rem", color: "#B8954A", margin: 0, letterSpacing: "1px", fontWeight: 600 }}>40×50cm ★</p>
-                </div>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.75rem", color: "rgba(250,247,240,0.5)", margin: "12px 0 0", letterSpacing: "1px" }}>40×50 cm</p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "1.4rem", color: "#FAF7F0", margin: "4px 0 0", fontWeight: 300 }}>400€</p>
               </div>
 
-              {/* 50x70 */}
+              {/* 50x70 - proporção 5:7 */}
               <div style={{ textAlign: "center" }}>
-                <svg width="150" height="210" viewBox="0 0 150 210" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Moldura */}
-                  <rect x="2" y="2" width="146" height="206" fill="#3D2817" stroke="#2A1810" strokeWidth="1.5"/>
-                  <rect x="10" y="10" width="130" height="190" fill="#FAF7F0" stroke="#3D6B5E" strokeWidth="0.5"/>
+                <svg width="114" height="160" viewBox="0 0 114 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Moldura externa */}
+                  <rect x="10" y="10" width="94" height="131.6" stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none"/>
+                  {/* Moldura interna */}
+                  <rect x="16" y="16" width="82" height="119.6" stroke="rgba(250,247,240,0.25)" strokeWidth="1" fill="none"/>
                   
-                  {/* Flores decorativas - composição grande */}
-                  <circle cx="75" cy="75" r="14" fill="#8BA888" opacity="0.7"/>
-                  <circle cx="62" cy="86" r="11" fill="#5A6B60" opacity="0.6"/>
-                  <circle cx="88" cy="86" r="11" fill="#5A6B60" opacity="0.6"/>
-                  <circle cx="75" cy="96" r="9" fill="#3D6B5E" opacity="0.5"/>
-                  <circle cx="55" cy="92" r="8" fill="#8BA888" opacity="0.5"/>
-                  <circle cx="95" cy="92" r="8" fill="#8BA888" opacity="0.5"/>
-                  <circle cx="70" cy="105" r="7" fill="#5A6B60" opacity="0.4"/>
-                  <circle cx="80" cy="105" r="7" fill="#5A6B60" opacity="0.4"/>
+                  {/* Flor simples - só contornos */}
+                  <circle cx="57" cy="75.8" r="22" stroke="rgba(250,247,240,0.35)" strokeWidth="1.2" fill="none"/>
                   
-                  {/* Caule */}
-                  <line x1="75" y1="96" x2="75" y2="150" stroke="#5A6B60" strokeWidth="2.5" opacity="0.4"/>
+                  {/* Pétalas maiores */}
+                  <ellipse cx="57" cy="53.8" rx="7.5" ry="12" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
+                  <ellipse cx="57" cy="97.8" rx="7.5" ry="12" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
+                  <ellipse cx="35" cy="75.8" rx="12" ry="7.5" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
+                  <ellipse cx="79" cy="75.8" rx="12" ry="7.5" stroke="rgba(250,247,240,0.3)" strokeWidth="1" fill="none"/>
                   
-                  {/* Folhas */}
-                  <path d="M 75 115 Q 55 118 58 128" fill="none" stroke="#8BA888" strokeWidth="2" opacity="0.5"/>
-                  <path d="M 75 130 Q 95 133 92 143" fill="none" stroke="#8BA888" strokeWidth="2" opacity="0.5"/>
-                  <path d="M 75 120 Q 60 123 62 131" fill="none" stroke="#8BA888" strokeWidth="1.5" opacity="0.4"/>
-                  <path d="M 75 135 Q 90 138 88 146" fill="none" stroke="#8BA888" strokeWidth="1.5" opacity="0.4"/>
+                  {/* Diagonais nas pétalas */}
+                  <ellipse cx="44" cy="61" rx="9" ry="5.5" transform="rotate(-45 44 61)" stroke="rgba(250,247,240,0.25)" strokeWidth="0.8" fill="none"/>
+                  <ellipse cx="70" cy="61" rx="9" ry="5.5" transform="rotate(45 70 61)" stroke="rgba(250,247,240,0.25)" strokeWidth="0.8" fill="none"/>
+                  <ellipse cx="44" cy="90.6" rx="9" ry="5.5" transform="rotate(45 44 90.6)" stroke="rgba(250,247,240,0.25)" strokeWidth="0.8" fill="none"/>
+                  <ellipse cx="70" cy="90.6" rx="9" ry="5.5" transform="rotate(-45 70 90.6)" stroke="rgba(250,247,240,0.25)" strokeWidth="0.8" fill="none"/>
+                  
+                  {/* Linhas de brilho no vidro */}
+                  <line x1="22" y1="28" x2="36" y2="48" stroke="rgba(250,247,240,0.15)" strokeWidth="1"/>
+                  <line x1="28" y1="34" x2="40" y2="52" stroke="rgba(250,247,240,0.12)" strokeWidth="0.8"/>
                 </svg>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.7rem", color: "rgba(250,247,240,0.4)", margin: "8px 0 0", letterSpacing: "1px" }}>50×70cm</p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.75rem", color: "rgba(250,247,240,0.5)", margin: "12px 0 0", letterSpacing: "1px" }}>50×70 cm</p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "1.4rem", color: "#FAF7F0", margin: "4px 0 0", fontWeight: 300 }}>500€</p>
               </div>
             </div>
           </Reveal>
@@ -349,7 +419,7 @@ export default function OpcoesClient() {
           </div>
 
           <Reveal>
-            <div style={{ textAlign: "center", padding: "32px", border: "1px solid rgba(250,247,240,0.07)", borderRadius: "4px" }}>
+            <div style={{ textAlign: "center", padding: "32px", border: "1px solid rgba(250,247,240,0.07)", borderRadius: "4px", marginBottom: "40px" }}>
               <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(250,247,240,0.45)", margin: "0 0 18px" }}>
                 Pretende outro formato ou uma composição diferente? Entre em contacto connosco.
               </p>
@@ -373,6 +443,41 @@ export default function OpcoesClient() {
                 onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(250,247,240,0.25)"}
               >
                 Falar connosco
+              </a>
+            </div>
+          </Reveal>
+
+          {/* CTA Reserva #2 */}
+          <Reveal delay={0.1}>
+            <div style={{ textAlign: "center", padding: "48px 32px", backgroundColor: "rgba(250,247,240,0.04)", borderRadius: "8px" }}>
+              <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.4rem, 3vw, 2rem)", fontWeight: 400, margin: "0 0 16px", lineHeight: 1.2, color: "#FAF7F0" }}>
+                Pronta para <em style={{ color: "#8BA888" }}>preservar</em> o seu bouquet?
+              </h3>
+              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(250,247,240,0.5)", margin: "0 0 28px", maxWidth: "480px", marginLeft: "auto", marginRight: "auto" }}>
+                Os bouquets devem ser enviados dentro de poucos dias após o evento.
+              </p>
+              <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
+                style={{ 
+                  display: "inline-flex", 
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "#FAF7F0", 
+                  color: "#0F1E1A", 
+                  padding: "16px 40px", 
+                  borderRadius: "100px", 
+                  textDecoration: "none", 
+                  fontWeight: 700, 
+                  fontSize: "0.78rem", 
+                  letterSpacing: "1.5px", 
+                  textTransform: "uppercase", 
+                  fontFamily: "Roboto, sans-serif", 
+                  transition: "all 0.3s ease",
+                  minHeight: "56px"
+                }}
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }}
+                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}
+              >
+                Reservar Agora
               </a>
             </div>
           </Reveal>
@@ -455,6 +560,43 @@ export default function OpcoesClient() {
             </Reveal>
           </div>
         </div>
+
+        {/* CTA Reserva #3 */}
+        <Reveal delay={0.1}>
+          <div style={{ maxWidth: "720px", margin: "clamp(48px,8vw,80px) auto 0", padding: "0 24px", textAlign: "center" }}>
+            <div style={{ backgroundColor: "#3D6B5E", padding: "40px 32px", borderRadius: "12px" }}>
+              <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem, 3.5vw, 2.2rem)", fontWeight: 400, margin: "0 0 14px", lineHeight: 1.15, color: "#FAF7F0" }}>
+                Garanta a <em style={{ color: "#8BA888" }}>qualidade museu</em> para o seu quadro
+              </h3>
+              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(250,247,240,0.65)", margin: "0 0 28px" }}>
+                Materiais premium que preservam as suas flores durante décadas.
+              </p>
+              <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
+                style={{ 
+                  display: "inline-flex", 
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "#FAF7F0", 
+                  color: "#3D6B5E", 
+                  padding: "14px 36px", 
+                  borderRadius: "100px", 
+                  textDecoration: "none", 
+                  fontWeight: 700, 
+                  fontSize: "0.75rem", 
+                  letterSpacing: "1.5px", 
+                  textTransform: "uppercase", 
+                  fontFamily: "Roboto, sans-serif", 
+                  transition: "all 0.3s ease",
+                  minHeight: "52px"
+                }}
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }}
+                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}
+              >
+                Reservar a Minha Data
+              </a>
+            </div>
+          </div>
+        </Reveal>
       </section>
 
       {/* ════════════════════════════════════════════
