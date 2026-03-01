@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+// Note: useScroll/useTransform used only for hero parallax (1 instance = smooth)
 
 // ─────────────────────────────────────────────
 // SVG Botanical Decorations
@@ -49,94 +50,77 @@ const StepArrow = () => (
 // ─────────────────────────────────────────────
 // Parallax: image always fills container
 // ─────────────────────────────────────────────
-function useImageParallax(ref, px = 30) {
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-  return useTransform(scrollYProgress, [0, 1], [`${px}px`, `-${px}px`]);
-}
-
 // ─────────────────────────────────────────────
-// Step Card
+// Step Card — CSS hover, no scroll listeners = no lag
 // ─────────────────────────────────────────────
-const StepCard = ({ imageSrc, number, title, desc, delay }) => {
-  const ref = useRef(null);
-  const imgY = useImageParallax(ref, 28);
-
-  return (
-    <motion.article
-      ref={ref}
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-5%" }}
-      transition={{ delay, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      style={{ position: "relative" }}
-    >
-      <div style={{
-        position: "absolute", top: "-15px", left: "50%",
-        transform: "translateX(-50%)", zIndex: 10,
-        backgroundColor: "#3D6B5E", color: "#FAF7F0",
-        padding: "5px 18px", borderRadius: "50px",
-        whiteSpace: "nowrap",
-        boxShadow: "0 4px 14px rgba(61,107,94,0.32)"
+const StepCard = ({ imageSrc, number, title, desc, delay }) => (
+  <motion.article
+    initial={{ opacity: 0, y: 28 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-5%" }}
+    transition={{ delay, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+    style={{ position: "relative" }}
+  >
+    <div style={{
+      position: "absolute", top: "-15px", left: "50%",
+      transform: "translateX(-50%)", zIndex: 10,
+      backgroundColor: "#3D6B5E", color: "#FAF7F0",
+      padding: "5px 18px", borderRadius: "50px",
+      whiteSpace: "nowrap",
+      boxShadow: "0 4px 14px rgba(61,107,94,0.32)"
+    }}>
+      <span style={{
+        fontSize: "0.58rem", fontWeight: "700",
+        letterSpacing: "2.5px", textTransform: "uppercase",
+        fontFamily: "Roboto, sans-serif"
       }}>
-        <span style={{
-          fontSize: "0.58rem", fontWeight: "700",
-          letterSpacing: "2.5px", textTransform: "uppercase",
-          fontFamily: "Roboto, sans-serif"
-        }}>
-          Passo {number}
-        </span>
-      </div>
+        Passo {number}
+      </span>
+    </div>
 
+    <div style={{
+      borderRadius: "18px", overflow: "hidden",
+      boxShadow: "0 14px 44px rgba(30,45,42,0.1)",
+      backgroundColor: "#fff",
+      border: "1px solid rgba(61,107,94,0.09)"
+    }}>
       <div style={{
-        borderRadius: "18px", overflow: "hidden",
-        boxShadow: "0 14px 44px rgba(30,45,42,0.1)",
-        backgroundColor: "#fff",
-        border: "1px solid rgba(61,107,94,0.09)"
+        height: "220px", overflow: "hidden",
+        position: "relative", backgroundColor: "#D4DECC"
       }}>
+        <img
+          src={imageSrc}
+          alt={`Passo ${number} da recriação de bouquet: ${title}`}
+          className="step-img"
+          style={{
+            width: "100%", height: "100%",
+            objectFit: "cover", display: "block",
+            transition: "transform 0.6s ease",
+            willChange: "transform"
+          }}
+          loading="lazy"
+        />
         <div style={{
-          height: "220px", overflow: "hidden",
-          position: "relative", backgroundColor: "#D4DECC"
-        }}>
-          <motion.img
-            src={imageSrc}
-            alt={`Passo ${number} da recriação de bouquet: ${title}`}
-            style={{
-              width: "100%",
-              height: "calc(100% + 56px)",
-              objectFit: "cover",
-              display: "block",
-              position: "absolute",
-              top: "-28px",
-              left: 0,
-              y: imgY
-            }}
-            loading="lazy"
-          />
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(to bottom, transparent 55%, rgba(30,45,42,0.18))"
-          }}/>
-        </div>
-
-        <div style={{ padding: "24px 20px 22px", textAlign: "center" }}>
-          <h3 style={{
-            fontFamily: "'TAN-MEMORIES', serif",
-            fontSize: "1.2rem", color: "#1E2D2A",
-            margin: "0 0 9px", lineHeight: "1.2"
-          }}>
-            {title}
-          </h3>
-          <p style={{ color: "#5A6B60", lineHeight: "1.72", fontSize: "0.88rem", margin: 0 }}>
-            {desc}
-          </p>
-        </div>
+          position: "absolute", inset: 0,
+          background: "linear-gradient(to bottom, transparent 55%, rgba(30,45,42,0.18))"
+        }}/>
       </div>
-    </motion.article>
-  );
-};
+
+      <div style={{ padding: "24px 20px 22px", textAlign: "center" }}>
+        <h3 style={{
+          fontFamily: "'TAN-MEMORIES', serif",
+          fontSize: "1.2rem", color: "#1E2D2A",
+          margin: "0 0 9px", lineHeight: "1.2"
+        }}>
+          {title}
+        </h3>
+        <p style={{ color: "#5A6B60", lineHeight: "1.72", fontSize: "0.88rem", margin: 0 }}>
+          {desc}
+        </p>
+      </div>
+    </div>
+  </motion.article>
+);
 
 // ─────────────────────────────────────────────
 // Use-Case Card — no emojis, no parallax
@@ -461,6 +445,7 @@ export default function RecriacaoBouquet() {
           background: linear-gradient(to bottom, rgba(250,247,240,0.6), transparent);
           animation: driftA 2.2s ease-in-out infinite;
         }
+        .step-img:hover { transform: scale(1.04); }
 
         /* Divider */
         .gold-divider {
