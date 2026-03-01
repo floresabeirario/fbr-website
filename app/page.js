@@ -326,7 +326,7 @@ export default function Home() {
             Especialistas em preservação de flores
           </motion.p>
 
-          {/* Main title */}
+          {/* Main title — lineHeight increased from 1.0 to 1.18 to separate lines */}
           <motion.h1
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
@@ -334,11 +334,13 @@ export default function Home() {
             style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize: "clamp(3.5rem, 12vw, 8rem)",
-              lineHeight: 1.0, margin: "0 0 clamp(28px,4vw,44px)",
+              lineHeight: 1.18,
+              margin: "0 0 clamp(28px,4vw,44px)",
               textShadow: "0 4px 30px rgba(0,0,0,0.18)"
             }}
           >
-            Flores à <span style={{ whiteSpace: "nowrap" }}>Beira&#8209;Rio</span>
+            Flores à<br/>
+            <span style={{ whiteSpace: "nowrap" }}>Beira&#8209;Rio</span>
           </motion.h1>
 
           {/* Two ghost CTA buttons */}
@@ -583,7 +585,6 @@ export default function Home() {
                 position: "relative"
               }}
             >
-              {/* ⚠ Substitua pelo src do seu vídeo do vale-presente */}
               <video
                 autoPlay loop muted playsInline
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
@@ -591,7 +592,6 @@ export default function Home() {
               >
                 <source src="/vale-presente-video.mp4" type="video/mp4"/>
               </video>
-              {/* Overlay badge */}
               <div style={{
                 position: "absolute", top: "18px", left: "18px",
                 backgroundColor: "#B8954A",
@@ -696,7 +696,6 @@ export default function Home() {
             textAlign: "center", position: "relative", overflow: "hidden"
           }}
         >
-          {/* Decorative bloom */}
           <div aria-hidden="true" className="drift-a" style={{
             position: "absolute", right: "5%", top: "8%",
             width: "clamp(80px,12vw,130px)", opacity: 0.08,
@@ -818,7 +817,6 @@ export default function Home() {
         </motion.div>
 
       </div>
-      {/* Note: Footer is rendered by layout.js — do not add it here */}
 
     </main>
   );
