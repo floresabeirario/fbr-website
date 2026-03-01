@@ -32,19 +32,33 @@ function Label({ children, light }) {
   );
 }
 
-/* SVGs das molduras — cada um com proporção real do tamanho */
-function FrameSVG({ ratio, flowerScale, label }) {
-  // ratio: largura/altura do viewBox para reflectir proporção real
-  const vw = 220;
-  const vh = ratio === "3:4" ? 293 : ratio === "4:5" ? 275 : 308; // 30x40, 40x50, 50x70
-  const cx = vw / 2;
-  const cy = vh / 2;
+/* Componente de flor individual — posicionável em qualquer ponto do SVG */
+function Flower({ cx, cy, scale = 1, rotate = 0, opacity = 0.45 }) {
+  return (
+    <g transform={`translate(${cx}, ${cy}) rotate(${rotate}) scale(${scale}) translate(-100, -125)`}>
+      <path
+        d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120"
+        stroke={`rgba(250,247,240,${opacity})`} strokeWidth="1.5" fill="none"
+        strokeLinejoin="round" strokeLinecap="round"
+      />
+      <path
+        d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108"
+        stroke={`rgba(250,247,240,${opacity * 0.75})`} strokeWidth="1" strokeLinecap="round"
+      />
+      <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)"
+        stroke={`rgba(250,247,240,${opacity})`} strokeWidth="1.5" fill="none"
+      />
+    </g>
+  );
+}
 
+/* SVG da moldura com número de flores configurável e tamanho visual controlado */
+function FrameSVG({ vw, vh, flowers, svgWidth, label }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox={`0 0 ${vw} ${vh}`}
-      style={{ width: "100%", maxWidth: ratio === "4:5" ? "140px" : ratio === "3:4" ? "120px" : "108px", height: "auto", opacity: 0.9 }}
+      style={{ width: svgWidth, height: "auto", display: "block" }}
       aria-label={`Ilustração moldura ${label}`}
     >
       {/* Moldura exterior */}
@@ -52,54 +66,54 @@ function FrameSVG({ ratio, flowerScale, label }) {
         stroke="rgba(250,247,240,0.55)" strokeWidth="2" fill="none" />
       {/* Moldura interior */}
       <rect x="18" y="18" width={vw - 36} height={vh - 36}
-        stroke="rgba(250,247,240,0.3)" strokeWidth="1.2" fill="none" />
+        stroke="rgba(250,247,240,0.28)" strokeWidth="1.2" fill="none" />
       {/* Brilhos de vidro */}
-      <line x1="32" y1={cy * 0.55} x2={cx * 0.75} y2="30"
-        stroke="rgba(250,247,240,0.22)" strokeWidth="1.4" strokeLinecap="round" />
-      <line x1={cx * 0.85} y1="22" x2={cx * 0.95} y2="18"
-        stroke="rgba(250,247,240,0.22)" strokeWidth="1.4" strokeLinecap="round" />
-      <line x1="52" y1={cy * 0.7} x2={cx} y2="42"
-        stroke="rgba(250,247,240,0.16)" strokeWidth="1.2" strokeLinecap="round" />
-      <line x1={vw - 50} y1={vh - 65} x2={vw - 28} y2={vh - 88}
-        stroke="rgba(250,247,240,0.22)" strokeWidth="1.4" strokeLinecap="round" />
-      {/* Flor central */}
-      <g transform={`translate(${cx}, ${cy}) scale(${flowerScale}) translate(-100, -125)`}>
-        <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120"
-          stroke="rgba(250,247,240,0.45)" strokeWidth="1.5" fill="none"
-          strokeLinejoin="round" strokeLinecap="round" />
-        <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108"
-          stroke="rgba(250,247,240,0.35)" strokeWidth="1" strokeLinecap="round" />
-        <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)"
-          stroke="rgba(250,247,240,0.45)" strokeWidth="1.5" fill="none" />
-      </g>
+      <line x1="32" y1={vh * 0.28} x2={vw * 0.42} y2="28"
+        stroke="rgba(250,247,240,0.2)" strokeWidth="1.4" strokeLinecap="round" />
+      <line x1={vw * 0.46} y1="20" x2={vw * 0.52} y2="12"
+        stroke="rgba(250,247,240,0.2)" strokeWidth="1.2" strokeLinecap="round" />
+      <line x1="48" y1={vh * 0.38} x2={vw * 0.56} y2="44"
+        stroke="rgba(250,247,240,0.14)" strokeWidth="1.1" strokeLinecap="round" />
+      <line x1={vw - 44} y1={vh - 60} x2={vw - 24} y2={vh - 82}
+        stroke="rgba(250,247,240,0.2)" strokeWidth="1.3" strokeLinecap="round" />
+      {/* Flores */}
+      {flowers.map((f, i) => (
+        <Flower key={i} {...f} />
+      ))}
     </svg>
   );
 }
 
 const frames = [
   {
-    ratio: "3:4",
-    flowerScale: 1.3,
-    size: "30×40",
-    unit: "cm",
-    price: "300",
+    size: "30×40", unit: "cm", price: "300",
     desc: "Perfeito para peças mais íntimas ou como elemento de conjunto.",
+    // SVG pequeno, proporção 3:4, 1 flor centrada
+    vw: 180, vh: 240, svgWidth: "88px",
+    flowers: [
+      { cx: 90, cy: 120, scale: 0.9, rotate: -8, opacity: 0.45 },
+    ],
   },
   {
-    ratio: "4:5",
-    flowerScale: 1.5,
-    size: "40×50",
-    unit: "cm",
-    price: "400",
+    size: "40×50", unit: "cm", price: "400",
     desc: "O formato mais escolhido. Equilibra presença e elegância.",
+    // SVG médio, proporção 4:5, 2 flores
+    vw: 200, vh: 250, svgWidth: "118px",
+    flowers: [
+      { cx: 82,  cy: 118, scale: 0.95, rotate: -15, opacity: 0.48 },
+      { cx: 128, cy: 142, scale: 0.85, rotate:  12, opacity: 0.38 },
+    ],
   },
   {
-    ratio: "5:7",
-    flowerScale: 1.6,
-    size: "50×70",
-    unit: "cm",
-    price: "500",
+    size: "50×70", unit: "cm", price: "500",
     desc: "Uma peça de destaque, que domina qualquer parede.",
+    // SVG grande, proporção 5:7, 3 flores
+    vw: 200, vh: 280, svgWidth: "148px",
+    flowers: [
+      { cx: 100, cy: 90,  scale: 1.0,  rotate: -10, opacity: 0.5  },
+      { cx: 62,  cy: 168, scale: 0.82, rotate:  18, opacity: 0.38 },
+      { cx: 148, cy: 188, scale: 0.76, rotate: -22, opacity: 0.32 },
+    ],
   },
 ];
 
@@ -328,36 +342,43 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          {/* Cartões com SVG integrado */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "2px", marginBottom: "48px" }}>
+          {/* Cartões — todos o mesmo tamanho, SVG escala entre eles */}
+          <div className="pricing-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2px", marginBottom: "48px" }}>
             {frames.map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div style={{
                   backgroundColor: "rgba(250,247,240,0.04)",
                   border: "1px solid rgba(250,247,240,0.07)",
-                  padding: "40px 36px 44px",
+                  padding: "40px 36px 40px",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "flex-start",
                   height: "100%",
+                  minHeight: "420px",
                   position: "relative",
+                  boxSizing: "border-box",
                 }}>
 
-                  {/* Ilustração SVG da moldura — no topo de cada cartão */}
-                  <div style={{ width: "100%", display: "flex", justifyContent: "flex-end", marginBottom: "32px", opacity: 0.85 }}>
-                    <FrameSVG ratio={item.ratio} flowerScale={item.flowerScale} label={item.size} />
+                  {/* SVG no topo — tamanho varia por opção */}
+                  <div style={{ marginBottom: "28px" }}>
+                    <FrameSVG
+                      vw={item.vw} vh={item.vh}
+                      flowers={item.flowers}
+                      svgWidth={item.svgWidth}
+                      label={item.size}
+                    />
                   </div>
 
                   {/* Dimensão */}
                   <p style={{
                     fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize: "clamp(2.4rem, 5.5vw, 3.2rem)",
+                    fontSize: "clamp(2rem, 3.5vw, 2.8rem)",
                     color: "#FAF7F0",
                     margin: "0",
                     lineHeight: 1,
                   }}>
                     {item.size}
-                    <span style={{ fontSize: "1rem", fontFamily: "Roboto, sans-serif", fontWeight: 300, marginLeft: "5px", opacity: 0.4 }}>
+                    <span style={{ fontSize: "0.9rem", fontFamily: "Roboto, sans-serif", fontWeight: 300, marginLeft: "5px", opacity: 0.4 }}>
                       {item.unit}
                     </span>
                   </p>
@@ -365,9 +386,9 @@ export default function OpcoesClient() {
                   {/* Preço */}
                   <p style={{
                     fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize: "clamp(1.6rem, 3.5vw, 2.2rem)",
+                    fontSize: "clamp(1.4rem, 2.5vw, 1.9rem)",
                     color: "#8BA888",
-                    margin: "12px 0 20px",
+                    margin: "10px 0 18px",
                   }}>
                     {item.price}€
                   </p>
@@ -386,8 +407,8 @@ export default function OpcoesClient() {
                   </p>
 
                   {/* Linha e nota de materiais */}
-                  <div style={{ marginTop: "28px", paddingTop: "22px", borderTop: "1px solid rgba(250,247,240,0.06)", width: "100%" }}>
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.75rem", lineHeight: 1.6, color: "rgba(250,247,240,0.28)", margin: 0 }}>
+                  <div style={{ marginTop: "28px", paddingTop: "20px", borderTop: "1px solid rgba(250,247,240,0.06)", width: "100%" }}>
+                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.73rem", lineHeight: 1.6, color: "rgba(250,247,240,0.26)", margin: 0 }}>
                       Inclui vidro UltraVue® UV70, moldura de nogueira e cartão de pH neutro
                     </p>
                   </div>
@@ -713,6 +734,12 @@ export default function OpcoesClient() {
           outline: 3px solid #3D6B5E;
           outline-offset: 4px;
           border-radius: 4px;
+        }
+
+        @media (max-width: 640px) {
+          .pricing-3col {
+            grid-template-columns: 1fr !important;
+          }
         }
       `}</style>
     </div>
