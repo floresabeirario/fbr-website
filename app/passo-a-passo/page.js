@@ -1,781 +1,1056 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// JSON-LD FAQ Schema — aparece directamente nos resultados do Google
-// (rich snippets com acordeão nas SERPs)
-// ─────────────────────────────────────────────────────────────────────────────
-const FAQ_DATA = [
-  // ── PROCESSO ──────────────────────────────────────────────────────────────
-  {
-    cat: "processo",
-    q: "Quando devo agendar a preservação do meu bouquet?",
-    plain: "O ideal é agendar assim que souber a data do casamento. As vagas são limitadas e em época de casamentos esgotam rapidamente. Se as flores já secaram, podemos fazer uma recriação do bouquet a partir de uma fotografia.",
-    a: <>
-      O ideal é agendar <strong>assim que souber a data do casamento</strong> — não precisa esperar pela data do evento.
-      As vagas são limitadas e em meses de maior procura algumas datas esgotam com muita antecedência.
-      <br/><br/>
-      Se o evento já ocorreu e as flores não estão em bom estado, podemos fazer uma{" "}
-      <a href="/recriacao" className="faq-link">recriação do bouquet</a> com flores frescas semelhantes,
-      a partir de uma fotografia.
-    </>
-  },
-  {
-    cat: "processo",
-    q: "Quanto tempo demora a preservação?",
-    plain: "O tempo médio desde a recepção das flores até o quadro pronto é de até 6 meses. Nunca sacrificamos a qualidade em favor da rapidez.",
-    a: <>
-      O nosso tempo médio é de <strong>até 6 meses</strong> desde a recepção das flores até ao quadro emoldurado.
-      Fazemos sempre o possível para ser mais rápidos, mas a prensagem é um processo delicado que não pode ser apressado.
-      <strong> Nunca sacrificamos a qualidade em favor da rapidez.</strong>
-    </>
-  },
-  {
-    cat: "processo",
-    q: "Como funciona o processo completo?",
-    plain: "Começa com a reserva da vaga e sinal de 30%. Depois entrega das flores, prensagem artesanal, aprovação da composição por fotografia, e envio do quadro emoldurado.",
-    a: <>
-      Tudo começa com a <strong>reserva da vaga e pagamento do sinal de 30%</strong>.
-      Depois, envie ou entregue as flores preferencialmente até 3 dias após o evento.
-      <br/><br/>
-      As flores são prensadas e secas artesanalmente. Criamos a composição e enviamos uma
-      <strong> fotografia para aprovação</strong> antes de selarmos a moldura.
-      Só após a sua aprovação — e pagamento final — o quadro é enviado.
-      <br/><br/>
-      <a href="/passo-a-passo" className="faq-link">Ver o processo detalhado →</a>
-    </>
-  },
-  {
-    cat: "processo",
-    q: "Podem recolher as flores no local do casamento?",
-    plain: "Sim, deslocamo-nos ao local do evento ou hotel para recolher as flores em mãos, mediante orçamento e disponibilidade.",
-    a: <>
-      Sim. Deslocamo-nos ao local do evento, hotel ou quinta para recolha em mãos —
-      é a opção mais recomendada pois as flores chegam no seu melhor estado.
-      Esta recolha tem <strong>custo adicional e está sujeita a disponibilidade</strong>.
-      Contacte-nos com antecedência para verificar se cobrimos a sua zona.
-    </>
-  },
-  {
-    cat: "processo",
-    q: "Posso personalizar o quadro com outros elementos?",
-    plain: "Sim. Pode adicionar fitas do bouquet, tecido do vestido, convites, cartas ou fotografias impressas. Mencione no formulário de reserva.",
-    a: <>
-      Sim! Pode personalizar o quadro com elementos que tenham significado especial:
-      fitas do bouquet, um pedaço de tecido do vestido ou véu, uma coleira de animal de estimação,
-      convites de casamento, cartas ou fotografias impressas.
-      <br/><br/>
-      Mencione este detalhe <strong>no formulário de reserva</strong> ou por email após agendar.
-    </>
-  },
-  {
-    cat: "processo",
-    q: "Recebem flores de fora de Portugal?",
-    plain: "Sim, recebemos flores de toda a Europa por CTT ou transportadora. O cliente é responsável pelos custos e condições de envio até ao atelier.",
-    a: <>
-      Sim, recebemos flores de <strong>toda a Europa</strong>.
-      O envio internacional é feito por CTT correio frágil/urgente ou transportadora à escolha do cliente —
-      os custos e responsabilidade do envio até ao nosso atelier são do remetente.
-      <br/><br/>
-      Recomendamos que o envio seja feito <strong>o mais rápido possível</strong> após o evento,
-      preferencialmente com gelo seco para conservação.
-    </>
-  },
-
-  // ── FLORES ─────────────────────────────────────────────────────────────────
-  {
-    cat: "flores",
-    q: "Preservam apenas bouquets de casamento?",
-    plain: "Não. Preservamos flores de batizados, aniversários, bodas de prata e ouro, cerimónias fúnebres e qualquer flor com valor sentimental.",
-    a: <>
-      Não! Preservamos <strong>qualquer flor com significado emocional</strong>:
-      ramos de batizado, flores de aniversário, bodas de prata e ouro,
-      homenagens e cerimónias fúnebres, ou até flores espontâneas com valor sentimental.
-      <br/><br/>
-      O nosso vale-presente é especialmente popular para oferecer a noivas —
-      <a href="/vale-presente" className="faq-link"> ver o vale-presente</a>.
-    </>
-  },
-  {
-    cat: "flores",
-    q: "Preservam todo o tipo de flores?",
-    plain: "A grande maioria das flores responde bem à prensagem. Flores com muito teor de água como suculentas ou antúrios podem ser mais difíceis de preservar.",
-    a: <>
-      A <strong>grande maioria</strong> das flores responde muito bem à prensagem.
-      No entanto, flores com <strong>elevado teor de água</strong> (suculentas, antúrios, orquídeas carnosas)
-      ou formatos muito volumosos podem ser mais difíceis de preservar na sua forma original.
-      <br/><br/>
-      Em caso de dúvida sobre o seu bouquet específico,{" "}
-      <a href="/contactos" className="faq-link">contacte-nos antes de reservar</a> — adoramos ajudar.
-    </>
-  },
-  {
-    cat: "flores",
-    q: "As cores mantêm-se iguais depois de secas?",
-    plain: "Haverá alguma mudança natural de cor pois a humidade é removida. Rosas vermelhas tornam-se bordô, por exemplo. É a beleza do processo artesanal.",
-    a: <>
-      Haverá sempre <strong>alguma mudança de cor</strong> — é inevitável quando retiramos toda a humidade da flor.
-      Algumas flores mantêm cores muito vibrantes; outras desbotam ligeiramente (rosas vermelhas tornam-se bordô, por exemplo).
-      <br/><br/>
-      Esta transformação faz parte da <strong>beleza natural do processo</strong>:
-      a essência autentica da flor, preservada para sempre.
-    </>
-  },
-  {
-    cat: "flores",
-    q: "Tenho flores de casamento de há vários anos. O que posso fazer?",
-    plain: "Flores antigas dificilmente são preserváveis. Mas podemos recriar o bouquet com flores frescas iguais às do dia, usando fotografias como referência.",
-    a: <>
-      Flores muito antigas dificilmente podem ser preservadas na sua forma original.
-      Para estes casos criámos a nossa{" "}
-      <a href="/recriacao" className="faq-link">recriação de bouquet</a>:
-      reproduzimos o ramo com flores <strong>frescas e iguais às originais</strong>,
-      usando as fotografias do dia do casamento como referência.
-      <br/><br/>
-      É também o presente ideal para filhos que queiram eternizar o bouquet do casamento dos pais, décadas depois.
-    </>
-  },
-  {
-    cat: "flores",
-    q: "Quanto tempo as flores podem estar sem ser entregues?",
-    plain: "Recomendamos entregar as flores preferencialmente 1 a 3 dias após o evento, no máximo 5 dias, para garantir a melhor preservação possível.",
-    a: <>
-      Recomendamos que as flores cheguem ao atelier <strong>preferencialmente 1 a 3 dias</strong> após o evento,
-      no máximo 5 dias. Quanto mais frescas chegarem, melhor o resultado final.
-      <br/><br/>
-      Enquanto aguarda, guarde as flores <strong>num vaso com água fresca</strong>,
-      longe de calor directo e luz solar intensa.
-    </>
-  },
-
-  // ── ENTREGA ────────────────────────────────────────────────────────────────
-  {
-    cat: "entrega",
-    q: "Como faço chegar as flores ao atelier?",
-    plain: "Pode entregar em mãos em Ceira (Coimbra), enviar por CTT correio frágil e urgente, ou pedir recolha no local do evento.",
-    a: <>
-      Tem três opções:
-      <br/><br/>
-      <strong>Entrega em mãos</strong> — gratuita, no nosso atelier em Ceira, Coimbra, mediante agendamento prévio.
-      <br/>
-      <strong>Envio por CTT</strong> — correio frágil e urgente, custos a cargo do cliente.
-      <br/>
-      <strong>Recolha no evento</strong> — deslocamo-nos ao local, sujeito a orçamento e disponibilidade.
-    </>
-  },
-  {
-    cat: "entrega",
-    q: "Como é entregue o quadro final?",
-    plain: "O quadro é enviado por CTT com rastreio e acondicionamento especial para peças frágeis, ou pode ser levantado pessoalmente no atelier.",
-    a: <>
-      O quadro pode ser:
-      <br/><br/>
-      <strong>Enviado para casa</strong> via CTT com rastreio, embalagem especial para peças frágeis
-      e seguro de transporte. Os custos de envio são calculados por tamanho e zona.
-      <br/>
-      <strong>Levantado no atelier</strong> em Ceira, Coimbra, num horário a agendar.
-      <br/><br/>
-      O envio ou levantamento só acontece após <strong>aprovação da composição e pagamento total</strong>.
-    </>
-  },
-
-  // ── PAGAMENTOS ─────────────────────────────────────────────────────────────
-  {
-    cat: "pagamentos",
-    q: "Quanto custa a preservação?",
-    plain: "Os preços começam nos 300€ com moldura e vidro museu incluídos. O valor varia consoante o tamanho e tipo de moldura escolhida.",
-    a: <>
-      Os preços <strong>começam nos 300€</strong> e incluem sempre o emolduramento artesanal
-      com vidro museu anti-reflexo e proteção UV.
-      O valor varia consoante o tamanho e o tipo de moldura escolhida.
-      <br/><br/>
-      <a href="/opcoes-e-precos" className="faq-link">Ver todos os preços e tamanhos →</a>
-    </>
-  },
-  {
-    cat: "pagamentos",
-    q: "Como funciona o pagamento?",
-    plain: "O pagamento é feito em três prestações: 30% de sinal na reserva, 40% na recepção das flores e 30% antes do envio do quadro.",
-    a: <>
-      O pagamento divide-se em <strong>três prestações</strong>:
-      <br/><br/>
-      <span style={{ display:"flex", gap:"10px", marginBottom:"6px" }}>
-        <strong style={{ color:"#3D6B5E", flexShrink:0 }}>30%</strong>
-        Sinal no momento da reserva (não reembolsável).
-      </span>
-      <span style={{ display:"flex", gap:"10px", marginBottom:"6px" }}>
-        <strong style={{ color:"#3D6B5E", flexShrink:0 }}>40%</strong>
-        Na recepção e início da preservação das flores.
-      </span>
-      <span style={{ display:"flex", gap:"10px" }}>
-        <strong style={{ color:"#3D6B5E", flexShrink:0 }}>30%</strong>
-        Antes do envio ou levantamento do quadro final.
-      </span>
-    </>
-  },
-  {
-    cat: "pagamentos",
-    q: "Posso cancelar ou obter reembolso?",
-    plain: "O sinal de 30% não é reembolsável. Se o evento for reagendado, o sinal pode ser transferido para outra data mediante disponibilidade.",
-    a: <>
-      O sinal de 30% <strong>não é reembolsável</strong> em caso de cancelamento,
-      pois a vaga fica reservada exclusivamente para si.
-      <br/><br/>
-      Se o evento for reagendado, o sinal <strong>pode ser transferido</strong> para uma nova data,
-      mediante contacto prévio e disponibilidade da nossa agenda.
-    </>
-  },
-  {
-    cat: "pagamentos",
-    q: "Aceitam devoluções?",
-    plain: "Não aceitamos devoluções em encomendas personalizadas. Cada quadro é único e feito à mão com tempo e dedicação artesanal.",
-    a: <>
-      Não aceitamos devoluções em pedidos personalizados.
-      Cada quadro é criado exclusivamente para si — é uma obra <strong>única e irrepetível</strong>,
-      feita à mão com muito tempo e dedicação.
-      <br/><br/>
-      Por isso enviamos sempre uma fotografia da composição para aprovação
-      <strong> antes de selar a moldura</strong>, garantindo que fica completamente satisfeito/a.
-    </>
-  },
-];
-
-const CATEGORIES = [
-  { id: "todas",      label: "Todas",      count: FAQ_DATA.length },
-  { id: "processo",   label: "Processo",   count: FAQ_DATA.filter(f => f.cat === "processo").length },
-  { id: "flores",     label: "Flores",     count: FAQ_DATA.filter(f => f.cat === "flores").length },
-  { id: "entrega",    label: "Entrega",    count: FAQ_DATA.filter(f => f.cat === "entrega").length },
-  { id: "pagamentos", label: "Pagamentos", count: FAQ_DATA.filter(f => f.cat === "pagamentos").length },
-];
-
-// Inline JSON-LD — works with "use client" via dangerouslySetInnerHTML
-const SchemaScript = () => (
+// ─── HowTo Schema ─────────────────────────────────────────────────────────────
+// Aparece nos resultados do Google como rich snippet com os passos numerados
+const HowToSchema = () => (
   <script
     type="application/ld+json"
     dangerouslySetInnerHTML={{
       __html: JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": FAQ_DATA.map(f => ({
-          "@type": "Question",
-          "name": f.q,
-          "acceptedAnswer": { "@type": "Answer", "text": f.plain }
-        }))
+        "@type": "HowTo",
+        "name": "Como funciona a preservação de flores de casamento",
+        "description": "Processo artesanal completo de preservação botânica do bouquet de noiva, desde a reserva até ao quadro emoldurado com vidro museu anti-UV, pronto a pendurar em casa.",
+        "totalTime": "P6M",
+        "estimatedCost": { "@type": "MonetaryAmount", "currency": "EUR", "value": "300" },
+        "supply": [
+          { "@type": "HowToSupply", "name": "Bouquet de flores frescas (até 5 dias após o evento)" },
+          { "@type": "HowToSupply", "name": "Fotografias do dia (opcional, para referência)" }
+        ],
+        "tool": [
+          { "@type": "HowToTool", "name": "Formulário de reserva online" }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep", "position": 1,
+            "name": "Reservar a data",
+            "text": "Preencha o formulário de reserva com a data do evento e detalhes do bouquet. Pague o sinal de 30% para garantir a sua vaga — essencial em épocas de alta procura.",
+            "url": "https://floresabeirario.pt/passo-a-passo#passo-1"
+          },
+          {
+            "@type": "HowToStep", "position": 2,
+            "name": "Entregar as flores",
+            "text": "Entregue em mãos no atelier (Ceira, Coimbra), envie por CTT correio frágil urgente, ou solicite recolha no local do evento. Preferencialmente até 3 dias após o casamento.",
+            "url": "https://floresabeirario.pt/passo-a-passo#passo-2"
+          },
+          {
+            "@type": "HowToStep", "position": 3,
+            "name": "Prensagem e secagem artesanal",
+            "text": "Cada pétala é prensada e seca individualmente com técnicas de botânica artesanal, sem químicos agressivos, sem plásticos. O processo é feito com calma para preservar cor e forma ao máximo.",
+            "url": "https://floresabeirario.pt/passo-a-passo#passo-3"
+          },
+          {
+            "@type": "HowToStep", "position": 4,
+            "name": "Composição e aprovação",
+            "text": "Criamos a composição artística e enviamos fotografia para aprovação. Pode pedir ajustes antes de selaarmos a moldura definitivamente.",
+            "url": "https://floresabeirario.pt/passo-a-passo#passo-4"
+          },
+          {
+            "@type": "HowToStep", "position": 5,
+            "name": "Emolduramento e entrega do quadro",
+            "text": "O quadro é emoldurado com vidro museu anti-reflexo com proteção UV e enviado por CTT com rastreio, ou levantado no atelier em Coimbra.",
+            "url": "https://floresabeirario.pt/passo-a-passo#passo-5"
+          }
+        ]
       })
     }}
   />
 );
 
-// ─────────────────────────────────────────────────────────────────────────────
-// FAQ Accordion Item
-// Note: <button> wraps a <span> (not h3) — h3 inside button is invalid HTML
-// ─────────────────────────────────────────────────────────────────────────────
-const FAQItem = ({ faq, isOpen, onToggle, searchTerm }) => {
-  // Highlight matching search term
-  const highlight = (text) => {
-    if (!searchTerm || searchTerm.length < 2) return text;
-    const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
-    const parts = text.split(regex);
-    return parts.map((part, i) =>
-      regex.test(part)
-        ? <mark key={i} style={{ backgroundColor:"rgba(184,149,74,0.28)", borderRadius:"3px", padding:"0 2px" }}>{part}</mark>
-        : part
-    );
-  };
+// ─── Dados dos passos ─────────────────────────────────────────────────────────
+const STEPS = [
+  {
+    id:     "passo-1",
+    n:      "01",
+    tag:    "Antes do evento",
+    title:  "Reserve a sua data",
+    img:    "/passo-1-reserva.jpg",
+    imgAlt: "Calendário com data de casamento marcada para reserva de preservação de bouquet",
+    body:   "As vagas são limitadas — especialmente em Abril, Maio, Setembro e Outubro. O processo começa muito antes do casamento: assim que souber a data, garanta a sua vaga com o formulário de reserva.",
+    note:   "Respondemos em 24 horas com a confirmação e as instruções de pagamento do sinal de 30%."
+  },
+  {
+    id:     "passo-2",
+    n:      "02",
+    tag:    "Até 5 dias após",
+    title:  "O bouquet chega até nós",
+    img:    "/passo-2-entrega.jpg",
+    imgAlt: "Bouquet de noiva fresco a ser entregue no atelier para preservação botânica",
+    body:   "Depois do grande dia, as flores têm de chegar até nós o mais frescas possível — preferencialmente em 1 a 3 dias, no máximo 5. Enquanto aguarda, mantenha o bouquet num vaso com água fresca longe do sol e do calor.",
+    note:   "Pode entregar em mãos no atelier (Ceira, Coimbra), enviar por CTT correio frágil, ou pedir-nos recolha no local do evento. Recebemos de Portugal e de toda a Europa."
+  },
+  {
+    id:     "passo-3",
+    n:      "03",
+    tag:    "Até 6 meses",
+    title:  "Prensagem pétala a pétala",
+    img:    "/passo-3-prensagem.jpg",
+    imgAlt: "Pétalas de flores de casamento a serem prensadas artesanalmente em papel botânico",
+    body:   "É aqui que acontece a magia — e também a parte que não pode ser apressada. Cada pétala, folha e raminho é prensado individualmente em condições controladas de temperatura e humidade, sem químicos, sem plásticos.",
+    note:   "Este processo pode demorar vários meses, e é exactamente esse tempo que faz a diferença entre um resultado mediano e uma obra de arte que dura décadas."
+  },
+  {
+    id:     "passo-4",
+    n:      "04",
+    tag:    "Aprovação sua",
+    title:  "Compõe­mos, você aprova",
+    img:    "/passo-4-composicao.jpg",
+    imgAlt: "Composição artística de flores prensadas do bouquet de noiva dentro de moldura",
+    body:   "Com as flores prontas, criamos a composição dentro da moldura escolhida — e só avançamos quando você diz sim. Enviamos fotografia detalhada para aprovação e pode pedir ajustes antes de selarmos definitivamente.",
+    note:   "Ninguém deve ficar com um quadro sem o ter aprovado primeiro. Esta etapa existe exactamente para isso."
+  },
+  {
+    id:     "passo-5",
+    n:      "05",
+    tag:    "A vida toda",
+    title:  "O quadro chega a casa",
+    img:    "/passo-5-quadro.jpg",
+    imgAlt: "Quadro botânico de flores de casamento prensadas emoldurado com vidro museu anti-UV",
+    body:   "Após a sua aprovação e o pagamento final, o quadro é selado com vidro museu anti-reflexo e proteção UV — o mesmo vidro usado em museus para proteger obras de arte durante décadas — e enviado para casa com embalagem especial.",
+    note:   "Pode também levantar pessoalmente no atelier. O quadro chega pronto a pendurar, com o hardware de montagem incluído."
+  }
+];
+
+const INCLUDED = [
+  { label: "Vidro museu anti-UV", desc: "O mesmo vidro usado em museus. Bloqueia os raios que desbotam as cores." },
+  { label: "Aprovação antes de selar", desc: "Enviamos fotografia. Nada é definitivo sem o seu acordo." },
+  { label: "Composição artística", desc: "Não é só secar flores — é criar uma composição pensada." },
+  { label: "Hardware de montagem", desc: "O quadro chega pronto a pendurar. Sem surpresas." },
+  { label: "Acompanhamento completo", desc: "Actualizações ao longo do processo. Nunca fica sem saber o estado." },
+  { label: "Envio com rastreio", desc: "Embalagem especial para peças frágeis, com número de rastreio CTT." },
+];
+
+const DELIVERY = [
+  {
+    title: "Entrega em mãos",
+    sub:   "Gratuita",
+    body:  "No atelier em Ceira, Coimbra. Com agendamento prévio — para garantirmos a melhor recepção das flores.",
+    c:     "#3D6B5E"
+  },
+  {
+    title: "Envio por CTT",
+    sub:   "Correio frágil",
+    body:  "De Portugal ou de qualquer país da Europa. CTT correio frágil e urgente. Custos a cargo do cliente.",
+    c:     "#B8954A"
+  },
+  {
+    title: "Recolha no evento",
+    sub:   "Sob orçamento",
+    body:  "Deslocamo-nos ao local do casamento ou hotel. Sujeito a disponibilidade e orçamento adicional.",
+    c:     "#C4846B"
+  }
+];
+
+// ─── Componente Step — layout editorial alternado ─────────────────────────────
+const Step = ({ step, index }) => {
+  const isEven   = index % 2 === 0;   // imagem à esquerda nos pares
+  const delay    = 0.08;
 
   return (
-    <div style={{ borderBottom: "1px solid rgba(61,107,94,0.11)" }}>
-      <button
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        style={{
-          width: "100%", display: "flex",
-          justifyContent: "space-between", alignItems: "center",
-          padding: "clamp(18px,3vw,24px) 0",
-          background: "none", border: "none", cursor: "pointer",
-          textAlign: "left", gap: "16px"
-        }}
+    <article
+      id={step.id}
+      aria-labelledby={`${step.id}-title`}
+      style={{ marginBottom: "clamp(64px,12vw,110px)" }}
+    >
+      {/* Large ghost number — decorative, hidden from a11y */}
+      <div aria-hidden="true" style={{
+        fontFamily: "'TAN-MEMORIES', serif",
+        fontSize:   "clamp(5rem,18vw,14rem)",
+        lineHeight: 0.85,
+        color:      "rgba(61,107,94,0.05)",
+        userSelect: "none",
+        pointerEvents: "none",
+        marginBottom: "-clamp(28px,6vw,55px)",
+        paddingLeft:  isEven ? "clamp(16px,5vw,48px)" : undefined,
+        paddingRight: !isEven ? "clamp(16px,5vw,48px)" : undefined,
+        textAlign:    isEven ? "left" : "right"
+      }}>
+        {step.n}
+      </div>
+
+      {/* Content grid — alternates on desktop */}
+      <motion.div
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-8%" }}
+        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        className={`step-grid${isEven ? " step-grid--even" : " step-grid--odd"}`}
       >
-        {/* span, not h3 — button cannot contain interactive/heading elements */}
-        <span style={{
-          fontFamily: "'TAN-MEMORIES', serif",
-          fontSize: "clamp(1rem,2.2vw,1.18rem)",
-          color: isOpen ? "#3D6B5E" : "#1E2D2A",
-          lineHeight: 1.3, flex: 1,
-          transition: "color 0.22s ease"
-        }}>
-          {highlight(faq.q)}
-        </span>
-
-        <motion.div
-          animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ type: "spring", stiffness: 280, damping: 22 }}
-          style={{
-            flexShrink: 0,
-            width: "clamp(30px,4vw,36px)", height: "clamp(30px,4vw,36px)",
-            borderRadius: "50%",
-            backgroundColor: isOpen ? "#3D6B5E" : "rgba(61,107,94,0.09)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            transition: "background-color 0.22s ease"
-          }}
-          aria-hidden="true"
-        >
-          <svg width="13" height="13" viewBox="0 0 20 20" fill="none"
-            stroke={isOpen ? "#FAF7F0" : "#3D6B5E"}
-            strokeWidth="2.2" strokeLinecap="round">
-            <path d="M10 4V16M4 10H16"/>
-          </svg>
-        </motion.div>
-      </button>
-
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            key="body"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.26, ease: "easeInOut" }}
-            style={{ overflow: "hidden" }}
-          >
+        {/* Photo */}
+        <div className="step-photo-wrap">
+          <div style={{
+            position:     "relative",
+            borderRadius: "clamp(14px,2.5vw,22px)",
+            overflow:     "hidden",
+            backgroundColor: "#D4DECC",
+            boxShadow:    "0 16px 48px rgba(30,45,42,0.12)"
+          }}>
+            {/* Step badge */}
             <div style={{
-              paddingBottom: "clamp(18px,3vw,24px)",
-              color: "#5A6B60", lineHeight: 1.85,
-              fontSize: "clamp(0.88rem,1.8vw,0.96rem)"
+              position:        "absolute",
+              top:             "16px",
+              left:            "16px",
+              zIndex:          2,
+              backgroundColor: "#3D6B5E",
+              color:           "#FAF7F0",
+              padding:         "5px 14px",
+              borderRadius:    "50px",
+              display:         "flex",
+              alignItems:      "center",
+              gap:             "7px"
             }}>
-              {faq.a}
+              <span style={{
+                fontFamily:    "'TAN-MEMORIES', serif",
+                fontSize:      "0.7rem",
+                lineHeight:    1
+              }}>
+                {step.n}
+              </span>
+              <span style={{
+                fontSize:      "0.55rem",
+                fontWeight:    700,
+                letterSpacing: "2px",
+                textTransform: "uppercase",
+                fontFamily:    "Roboto, sans-serif",
+                opacity:       0.8
+              }}>
+                {step.tag}
+              </span>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+
+            <img
+              src={step.img}
+              alt={step.imgAlt}
+              className="step-img"
+              style={{
+                width:      "100%",
+                aspectRatio: "4/3",
+                objectFit:  "cover",
+                display:    "block",
+                transition: "transform 0.6s ease"
+              }}
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        {/* Text */}
+        <div className="step-text">
+          <h2
+            id={`${step.id}-title`}
+            style={{
+              fontFamily: "'TAN-MEMORIES', serif",
+              fontSize:   "clamp(1.6rem,4vw,2.5rem)",
+              color:      "#1E2D2A",
+              margin:     "0 0 clamp(12px,2vw,18px)",
+              lineHeight: 1.1
+            }}
+          >
+            {step.title}
+          </h2>
+
+          <p style={{
+            color:      "#5A6B60",
+            lineHeight: 1.88,
+            fontSize:   "clamp(0.92rem,1.8vw,1.02rem)",
+            margin:     "0 0 clamp(16px,2.5vw,22px)"
+          }}>
+            {step.body}
+          </p>
+
+          {/* Note / detail */}
+          <div style={{
+            padding:      "clamp(14px,2vw,18px) clamp(16px,2.5vw,22px)",
+            borderRadius: "12px",
+            backgroundColor: "rgba(61,107,94,0.06)",
+            borderLeft:   "3px solid rgba(61,107,94,0.3)"
+          }}>
+            <p style={{
+              color:      "#3D6B5E",
+              lineHeight: 1.78,
+              fontSize:   "clamp(0.84rem,1.6vw,0.92rem)",
+              margin:     0,
+              fontStyle:  "italic"
+            }}>
+              {step.note}
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    </article>
   );
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Main
-// ─────────────────────────────────────────────────────────────────────────────
-export default function PerguntasFrequentes() {
-  const [openIndex, setOpenIndex]       = useState(null);
-  const [activeCategory, setActiveCategory] = useState("todas");
-  const [search, setSearch]             = useState("");
-
-  const toggle = (i) => setOpenIndex(openIndex === i ? null : i);
-
-  // Filter by category AND search
-  const filtered = useMemo(() => {
-    let list = activeCategory === "todas"
-      ? FAQ_DATA
-      : FAQ_DATA.filter(f => f.cat === activeCategory);
-
-    if (search.trim().length >= 2) {
-      const q = search.toLowerCase();
-      list = list.filter(f =>
-        f.q.toLowerCase().includes(q) || f.plain.toLowerCase().includes(q)
-      );
-    }
-    return list;
-  }, [activeCategory, search]);
-
-  const WA = "https://wa.me/351934680300?text=" +
-    encodeURIComponent("Olá! Tenho uma dúvida sobre a preservação das minhas flores.");
+// ─── Main ─────────────────────────────────────────────────────────────────────
+export default function PassoAPasso() {
   const FORM = "https://wkf.ms/3RfoNAc";
+  const WA   = "https://wa.me/351934680300?text=" +
+    encodeURIComponent("Olá! Gostaria de reservar a preservação do meu bouquet de casamento.");
 
   return (
     <>
-      <SchemaScript/>
+      <HowToSchema/>
 
-      <main style={{ backgroundColor: "#FAF7F0", paddingBottom: "clamp(64px,10vw,100px)" }}>
+      <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
+
         <style dangerouslySetInnerHTML={{ __html: `
           * { box-sizing: border-box; }
-
-          /* FAQ internal links */
-          .faq-link {
-            color: #3D6B5E; font-weight: 600;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(61,107,94,0.35);
-            padding-bottom: 1px;
-            transition: border-color 0.2s ease;
-          }
-          .faq-link:hover { border-color: #3D6B5E; }
-
-          /* Category pills */
-          .pills-row {
-            display: flex; gap: 8px;
-            overflow-x: auto; padding-bottom: 2px;
-            scrollbar-width: none;
-          }
-          .pills-row::-webkit-scrollbar { display: none; }
-          .pill {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 9px 18px; border-radius: 100px;
-            font-size: 0.72rem; font-weight: 600;
-            letter-spacing: 0.8px; text-transform: uppercase;
-            font-family: Roboto, sans-serif;
-            border: 1.5px solid rgba(61,107,94,0.18);
-            color: #5A6B60; background: transparent;
-            cursor: pointer; transition: all 0.2s ease;
-            white-space: nowrap; flex-shrink: 0;
-          }
-          .pill:hover  { border-color: #3D6B5E; color: #3D6B5E; }
-          .pill.active { background: #3D6B5E; border-color: #3D6B5E; color: #FAF7F0; }
-          .pill-count {
-            display: inline-block;
-            font-size: 0.6rem;
-            opacity: 0.6;
-          }
-          .pill.active .pill-count { opacity: 0.75; }
-
-          /* Search bar */
-          .search-wrap {
-            position: relative; margin-bottom: 24px;
-          }
-          .search-input {
-            width: 100%;
-            padding: 14px 20px 14px 46px;
-            border-radius: 100px;
-            border: 1.5px solid rgba(61,107,94,0.2);
-            background: #fff;
-            font-size: 0.92rem;
-            color: #1E2D2A;
-            font-family: Roboto, sans-serif;
-            outline: none;
-            transition: border-color 0.22s ease, box-shadow 0.22s ease;
-            -webkit-appearance: none;
-          }
-          .search-input::placeholder { color: #9BA89F; }
-          .search-input:focus {
-            border-color: #3D6B5E;
-            box-shadow: 0 0 0 3px rgba(61,107,94,0.1);
-          }
-          .search-icon {
-            position: absolute; left: 16px; top: 50%;
-            transform: translateY(-50%);
-            color: #9BA89F; pointer-events: none;
-            display: flex; align-items: center;
-          }
-          .search-clear {
-            position: absolute; right: 16px; top: 50%;
-            transform: translateY(-50%);
-            background: none; border: none; cursor: pointer;
-            color: #9BA89F; padding: 4px;
-            display: flex; align-items: center;
-            transition: color 0.2s ease;
-          }
-          .search-clear:hover { color: #1E2D2A; }
-
-          /* Result count */
-          .result-count {
-            font-size: 0.72rem; color: #9BA89F;
-            font-family: Roboto, sans-serif;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px; display: block;
+          :root {
+            --green:   #3D6B5E;
+            --green-d: #1E2D2A;
+            --terra:   #C4846B;
+            --gold:    #B8954A;
+            --cream:   #FAF7F0;
+            --mid:     #5A6B60;
           }
 
-          /* Buttons */
+          /* ── Step layout: editorial alternating ───────────────── */
+          .step-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(24px,5vw,48px);
+            align-items: center;
+          }
+
+          @media (min-width: 768px) {
+            .step-grid {
+              grid-template-columns: 1fr 1fr;
+              gap: clamp(40px,5vw,80px);
+            }
+            /* odd steps: text left, photo right */
+            .step-grid--odd .step-photo-wrap { order: 2; }
+            .step-grid--odd .step-text       { order: 1; }
+          }
+
+          /* Photo hover */
+          .step-img:hover { transform: scale(1.03); }
+
+          /* ── Included grid ────────────────────────────────────── */
+          .included-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+          }
+          @media (min-width: 480px) {
+            .included-grid { grid-template-columns: 1fr 1fr; }
+          }
+          @media (min-width: 900px) {
+            .included-grid { grid-template-columns: 1fr 1fr 1fr; }
+          }
+
+          /* ── Delivery grid ────────────────────────────────────── */
+          .delivery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+          @media (min-width: 600px) {
+            .delivery-grid { grid-template-columns: repeat(3, 1fr); }
+          }
+
+          /* ── CTA row ──────────────────────────────────────────── */
+          .cta-row {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+          }
+          @media (min-width: 480px) {
+            .cta-row {
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+
+          /* ── Comparison table ─────────────────────────────────── */
+          .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+          @media (min-width: 560px) {
+            .compare-grid { grid-template-columns: 1fr 1fr; }
+          }
+
+          /* ── Buttons ──────────────────────────────────────────── */
           .btn-primary {
             display: inline-block;
-            background: #3D6B5E; color: #FAF7F0;
-            padding: 14px 32px; border-radius: 100px;
+            background: var(--green); color: var(--cream);
+            padding: 15px 34px; border-radius: 100px;
             text-decoration: none; font-weight: 600;
-            font-size: 0.8rem; letter-spacing: 1.4px;
+            font-size: 0.82rem; letter-spacing: 1.4px;
             text-transform: uppercase; text-align: center;
-            box-shadow: 0 6px 22px rgba(61,107,94,0.26);
+            box-shadow: 0 6px 22px rgba(61,107,94,0.28);
             transition: all 0.3s ease;
             font-family: Roboto, sans-serif;
           }
-          .btn-primary:hover { background: #1E2D2A; transform: translateY(-3px); }
+          .btn-primary:hover { background: var(--green-d); transform: translateY(-3px); }
+
+          .btn-outline {
+            display: inline-block;
+            border: 2px solid var(--green); color: var(--green);
+            padding: 13px 32px; border-radius: 100px;
+            text-decoration: none; font-weight: 600;
+            font-size: 0.82rem; letter-spacing: 1.4px;
+            text-transform: uppercase; text-align: center;
+            transition: all 0.3s ease;
+            font-family: Roboto, sans-serif;
+          }
+          .btn-outline:hover { background: var(--green); color: var(--cream); transform: translateY(-3px); }
+
           .btn-wa {
             display: inline-flex; align-items: center; gap: 8px;
             background: #25D366; color: #fff;
             padding: 14px 28px; border-radius: 100px;
             text-decoration: none; font-weight: 600;
-            font-size: 0.8rem; letter-spacing: 1px;
+            font-size: 0.82rem; letter-spacing: 1px;
             transition: all 0.3s ease;
             font-family: Roboto, sans-serif;
+            white-space: nowrap;
           }
           .btn-wa:hover { background: #1da851; transform: translateY(-3px); }
 
-          .cta-row {
-            display: flex; flex-direction: column;
-            align-items: stretch; gap: 12px;
-          }
-          @media (min-width: 460px) {
-            .cta-row { flex-direction: row; justify-content: center; align-items: center; }
+          /* Anchor offset for fixed nav */
+          [id^="passo-"] { scroll-margin-top: 100px; }
+
+          /* Eyebrow */
+          .eyebrow {
+            display: block;
+            font-size: 0.58rem; font-weight: 700;
+            letter-spacing: 3.5px; text-transform: uppercase;
+            color: var(--terra); margin-bottom: 12px;
+            font-family: Roboto, sans-serif;
           }
 
-          /* Related links grid */
-          .related-grid {
-            display: grid; grid-template-columns: 1fr;
-            gap: 12px; margin-top: 48px;
+          /* Internal links */
+          .text-link {
+            color: var(--green); font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(61,107,94,0.3);
+            padding-bottom: 1px;
+            transition: border-color 0.2s ease;
           }
-          @media (min-width: 560px) {
-            .related-grid { grid-template-columns: repeat(3, 1fr); }
-          }
-          .related-card {
-            display: block; text-decoration: none;
-            background: #EDF2E8; border-radius: 16px;
-            padding: 22px 20px;
-            border: 1px solid rgba(61,107,94,0.1);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-          }
-          .related-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 36px rgba(30,45,42,0.09);
-          }
+          .text-link:hover { border-color: var(--green); }
         `}}/>
 
-        {/* ── PAGE HEADER ─────────────────────────────────── */}
+        {/* ══════════════════════════════════════════════════════
+            HERO
+        ══════════════════════════════════════════════════════ */}
         <section
-          aria-label="Perguntas frequentes sobre preservação de flores de casamento"
+          aria-label="Como funciona a preservação de flores de casamento"
           style={{
-            paddingTop: "clamp(110px,16vw,170px)",
-            paddingBottom: "clamp(44px,7vw,72px)",
-            paddingLeft: "20px", paddingRight: "20px",
-            background: "linear-gradient(175deg, #EDF2E8 0%, #FAF7F0 100%)",
-            textAlign: "center"
+            paddingTop:    "clamp(110px,16vw,170px)",
+            paddingBottom: "clamp(52px,8vw,88px)",
+            paddingLeft:   "clamp(20px,5vw,48px)",
+            paddingRight:  "clamp(20px,5vw,48px)",
+            background:    "linear-gradient(175deg, #EDF2E8 0%, #FAF7F0 100%)"
+          }}
+        >
+          <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="eyebrow">O nosso processo</span>
+
+              <h1 style={{
+                fontFamily: "'TAN-MEMORIES', serif",
+                fontSize:   "clamp(2.8rem,9vw,5.8rem)",
+                color:      "#1E2D2A",
+                margin:     "0 0 clamp(18px,3vw,28px)",
+                lineHeight: 1.0
+              }}>
+                Da flor fresca<br/>
+                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>ao quadro para sempre</em>
+              </h1>
+
+              <p style={{
+                color:      "#5A6B60",
+                fontSize:   "clamp(0.95rem,2vw,1.08rem)",
+                lineHeight: 1.88,
+                maxWidth:   "580px",
+                margin:     "0 0 clamp(28px,4vw,40px)"
+              }}>
+                Cinco passos para transformar o seu bouquet de noiva numa obra de arte
+                botânica que dura décadas — explicados com toda a transparência.
+              </p>
+
+              {/* Payment anchors — useful context before scrolling */}
+              <div style={{
+                display:        "flex",
+                flexWrap:       "wrap",
+                gap:            "clamp(6px,1.5vw,10px)",
+                alignItems:     "center"
+              }}>
+                <a href={FORM} target="_blank" rel="noopener noreferrer"
+                  className="btn-primary" style={{ fontSize: "0.78rem" }}>
+                  Reservar Data
+                </a>
+                <a href="/perguntas-frequentes" className="btn-outline"
+                  style={{ fontSize: "0.78rem" }}>
+                  Ver Perguntas Frequentes
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            STEPS — editorial alternating layout
+        ══════════════════════════════════════════════════════ */}
+        <section
+          aria-label="Os cinco passos da preservação de flores"
+          style={{
+            padding: "clamp(60px,10vw,110px) clamp(20px,5vw,64px)"
+          }}
+        >
+          <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+            {STEPS.map((step, i) => (
+              <Step key={step.id} step={step} index={i}/>
+            ))}
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            O QUE ESTÁ INCLUÍDO — trust builder
+        ══════════════════════════════════════════════════════ */}
+        <section
+          aria-label="O que está incluído na preservação de flores"
+          style={{
+            padding:    "clamp(52px,8vw,84px) clamp(20px,5vw,48px)",
+            background: "linear-gradient(180deg, #EDF2E8 0%, #FAF7F0 100%)"
+          }}
+        >
+          <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}
+            >
+              <span className="eyebrow">Sem surpresas</span>
+              <h2 style={{
+                fontFamily: "'TAN-MEMORIES', serif",
+                fontSize:   "clamp(1.8rem,4.5vw,3rem)",
+                color:      "#1E2D2A",
+                margin:     0,
+                lineHeight: 1.1
+              }}>
+                Tudo incluído no preço
+              </h2>
+            </motion.div>
+
+            <div className="included-grid">
+              {INCLUDED.map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.07, duration: 0.6 }}
+                  style={{
+                    backgroundColor: "#fff",
+                    borderRadius:    "14px",
+                    padding:         "clamp(16px,2.5vw,22px)",
+                    border:          "1px solid rgba(61,107,94,0.09)",
+                    boxShadow:       "0 3px 14px rgba(30,45,42,0.05)",
+                    display:         "flex",
+                    gap:             "14px",
+                    alignItems:      "flex-start"
+                  }}
+                >
+                  {/* Checkmark */}
+                  <div style={{ flexShrink: 0, marginTop: "2px" }}>
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <circle cx="10" cy="10" r="10" fill="rgba(61,107,94,0.1)"/>
+                      <path d="M6 10l3 3 5-5" stroke="#3D6B5E" strokeWidth="1.8"
+                        strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p style={{
+                      fontFamily:  "'TAN-MEMORIES', serif",
+                      fontSize:    "0.98rem",
+                      color:       "#1E2D2A",
+                      margin:      "0 0 4px",
+                      lineHeight:  1.2
+                    }}>
+                      {item.label}
+                    </p>
+                    <p style={{
+                      color:      "#5A6B60",
+                      fontSize:   "0.84rem",
+                      lineHeight: 1.65,
+                      margin:     0
+                    }}>
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div style={{
+              textAlign:   "center",
+              marginTop:   "clamp(28px,4vw,40px)",
+              fontSize:    "0.88rem",
+              color:       "#5A6B60",
+              lineHeight:  1.7
+            }}>
+              Os preços começam em{" "}
+              <strong style={{ color: "#1E2D2A" }}>300€</strong>,
+              incluindo emolduramento e vidro museu.{" "}
+              <a href="/opcoes-e-precos" className="text-link">
+                Ver todos os preços e tamanhos →
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            ENTREGA — 3 opções
+        ══════════════════════════════════════════════════════ */}
+        <section
+          aria-label="Como entregar as flores no atelier"
+          style={{
+            padding: "clamp(52px,8vw,80px) clamp(20px,5vw,48px)",
+            backgroundColor: "#FAF7F0"
+          }}
+        >
+          <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              style={{ textAlign: "center", marginBottom: "clamp(24px,4vw,40px)" }}
+            >
+              <span className="eyebrow">Logística</span>
+              <h2 style={{
+                fontFamily: "'TAN-MEMORIES', serif",
+                fontSize:   "clamp(1.7rem,4vw,2.8rem)",
+                color:      "#1E2D2A",
+                margin:     "0 0 12px",
+                lineHeight: 1.1
+              }}>
+                Como nos fazer chegar as flores
+              </h2>
+              <p style={{
+                color:    "#5A6B60",
+                fontSize: "clamp(0.9rem,1.8vw,0.98rem)",
+                lineHeight: 1.8,
+                maxWidth: "480px",
+                margin:   "0 auto"
+              }}>
+                Recebemos flores de toda a Europa.
+                Escolha a opção que funciona melhor para si.
+              </p>
+            </motion.div>
+
+            <div className="delivery-grid">
+              {DELIVERY.map((opt, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.65 }}
+                  style={{
+                    backgroundColor: "#fff",
+                    borderRadius:    "18px",
+                    padding:         "clamp(20px,3vw,28px)",
+                    border:          `1px solid ${opt.c}18`,
+                    boxShadow:       "0 4px 20px rgba(30,45,42,0.06)"
+                  }}
+                >
+                  <span style={{
+                    display:         "inline-block",
+                    fontSize:        "0.57rem",
+                    fontWeight:      700,
+                    letterSpacing:   "2px",
+                    textTransform:   "uppercase",
+                    color:           opt.c,
+                    fontFamily:      "Roboto, sans-serif",
+                    backgroundColor: `${opt.c}12`,
+                    padding:         "4px 12px",
+                    borderRadius:    "50px",
+                    marginBottom:    "12px"
+                  }}>
+                    {opt.sub}
+                  </span>
+                  <h3 style={{
+                    fontFamily: "'TAN-MEMORIES', serif",
+                    fontSize:   "1.15rem",
+                    color:      "#1E2D2A",
+                    margin:     "0 0 8px",
+                    lineHeight: 1.2
+                  }}>
+                    {opt.title}
+                  </h3>
+                  <p style={{
+                    color:      "#5A6B60",
+                    fontSize:   "0.88rem",
+                    lineHeight: 1.75,
+                    margin:     0
+                  }}>
+                    {opt.body}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            <p style={{
+              textAlign:  "center",
+              marginTop:  "20px",
+              color:      "#9BA89F",
+              fontSize:   "0.82rem",
+              lineHeight: 1.7
+            }}>
+              Em caso de dúvida sobre o envio,{" "}
+              <a href={WA} target="_blank" rel="noopener noreferrer" className="text-link">
+                fale connosco pelo WhatsApp
+              </a>.
+            </p>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            PAGAMENTO — 3 prestações
+        ══════════════════════════════════════════════════════ */}
+        <section
+          aria-label="Pagamento da preservação em três prestações"
+          style={{
+            padding:    "clamp(52px,8vw,84px) clamp(20px,5vw,48px)",
+            background: "linear-gradient(135deg, #1E2D2A 0%, #2D5045 100%)"
+          }}
+        >
+          <div style={{ maxWidth: "820px", margin: "0 auto" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.75 }}
+            >
+              <div style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}>
+                <span style={{
+                  display:       "block",
+                  fontSize:      "0.58rem",
+                  fontWeight:    700,
+                  letterSpacing: "3.5px",
+                  textTransform: "uppercase",
+                  color:         "#8BA888",
+                  marginBottom:  "12px",
+                  fontFamily:    "Roboto, sans-serif"
+                }}>
+                  Transparência total
+                </span>
+                <h2 style={{
+                  fontFamily: "'TAN-MEMORIES', serif",
+                  fontSize:   "clamp(1.7rem,4vw,2.8rem)",
+                  color:      "#FAF7F0",
+                  margin:     "0 0 12px",
+                  lineHeight: 1.1
+                }}>
+                  Pagamento em três momentos
+                </h2>
+                <p style={{
+                  color:      "rgba(250,247,240,0.6)",
+                  fontSize:   "clamp(0.88rem,1.8vw,0.96rem)",
+                  lineHeight: 1.8,
+                  maxWidth:   "440px",
+                  margin:     "0 auto"
+                }}>
+                  Para não pesar no orçamento do casamento — o valor é repartido ao longo do processo.
+                </p>
+              </div>
+
+              <div style={{
+                display:             "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap:                 "clamp(8px,2vw,16px)"
+              }}>
+                {[
+                  {
+                    pct:   "30%",
+                    label: "Na reserva",
+                    desc:  "Sinal que garante a sua vaga. Não reembolsável.",
+                    c:     "#8BA888"
+                  },
+                  {
+                    pct:   "40%",
+                    label: "Início do trabalho",
+                    desc:  "Quando as flores chegam e iniciamos a prensagem.",
+                    c:     "#B8954A"
+                  },
+                  {
+                    pct:   "30%",
+                    label: "Antes da entrega",
+                    desc:  "Após aprovação da composição e antes de enviarmos o quadro.",
+                    c:     "#C4846B"
+                  }
+                ].map((p, i) => (
+                  <div key={i} style={{
+                    backgroundColor: "rgba(250,247,240,0.06)",
+                    borderRadius:    "clamp(12px,2vw,18px)",
+                    padding:         "clamp(16px,2.5vw,26px) clamp(12px,2vw,18px)",
+                    border:          "1px solid rgba(250,247,240,0.09)",
+                    textAlign:       "center"
+                  }}>
+                    <span style={{
+                      display:    "block",
+                      fontFamily: "'TAN-MEMORIES', serif",
+                      fontSize:   "clamp(1.8rem,4.5vw,2.8rem)",
+                      color:      p.c,
+                      lineHeight: 1,
+                      marginBottom: "6px"
+                    }}>
+                      {p.pct}
+                    </span>
+                    <span style={{
+                      display:       "block",
+                      fontSize:      "0.6rem",
+                      fontWeight:    700,
+                      letterSpacing: "1.5px",
+                      textTransform: "uppercase",
+                      color:         "#FAF7F0",
+                      fontFamily:    "Roboto, sans-serif",
+                      marginBottom:  "8px"
+                    }}>
+                      {p.label}
+                    </span>
+                    <p style={{
+                      color:      "rgba(250,247,240,0.55)",
+                      fontSize:   "clamp(0.75rem,1.4vw,0.84rem)",
+                      lineHeight: 1.65,
+                      margin:     0
+                    }}>
+                      {p.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            BOTÂNICA vs RESINA — diferenciador
+        ══════════════════════════════════════════════════════ */}
+        <section
+          aria-label="Diferença entre preservação botânica e resina epóxi"
+          style={{
+            padding:         "clamp(52px,8vw,84px) clamp(20px,5vw,48px)",
+            backgroundColor: "#FAF7F0"
+          }}
+        >
+          <div style={{ maxWidth: "920px", margin: "0 auto" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              style={{ textAlign: "center", marginBottom: "clamp(28px,4vw,44px)" }}
+            >
+              <span className="eyebrow">Porque botânica</span>
+              <h2 style={{
+                fontFamily: "'TAN-MEMORIES', serif",
+                fontSize:   "clamp(1.8rem,4.5vw,3rem)",
+                color:      "#1E2D2A",
+                margin:     0,
+                lineHeight: 1.1
+              }}>
+                Prensagem botânica<br/>
+                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>vs resina epóxi</em>
+              </h2>
+            </motion.div>
+
+            <div className="compare-grid">
+              {[
+                {
+                  title:  "Prensagem botânica",
+                  tag:    "O que fazemos",
+                  tagC:   "#3D6B5E",
+                  bg:     "rgba(61,107,94,0.04)",
+                  border: "rgba(61,107,94,0.15)",
+                  items: [
+                    "100% orgânico — sem químicos, sem plásticos",
+                    "Resultado mais natural e autêntico",
+                    "Vidro museu anti-UV — dura décadas",
+                    "A flor mantém a sua essência real",
+                    "Estética artística, não industrial"
+                  ],
+                  check: "#3D6B5E"
+                },
+                {
+                  title:  "Resina epóxi",
+                  tag:    "A alternativa",
+                  tagC:   "#9BA89F",
+                  bg:     "rgba(155,168,159,0.04)",
+                  border: "rgba(155,168,159,0.15)",
+                  items: [
+                    "Polímero sintético (plástico) líquido",
+                    "A flor fica encapsulada em resina",
+                    "Pode amarelecer ao longo do tempo",
+                    "Resultado mais artificial e brilhante",
+                    "Difícil de restaurar ou conservar"
+                  ],
+                  check: "#C4846B"
+                }
+              ].map((col, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.65 }}
+                  style={{
+                    backgroundColor: col.bg,
+                    borderRadius:    "20px",
+                    padding:         "clamp(22px,3vw,32px)",
+                    border:          `1.5px solid ${col.border}`
+                  }}
+                >
+                  <div style={{ marginBottom: "20px" }}>
+                    <span style={{
+                      display:         "inline-block",
+                      fontSize:        "0.57rem",
+                      fontWeight:      700,
+                      letterSpacing:   "2px",
+                      textTransform:   "uppercase",
+                      color:           col.tagC,
+                      fontFamily:      "Roboto, sans-serif",
+                      backgroundColor: `${col.tagC}14`,
+                      padding:         "4px 12px",
+                      borderRadius:    "50px",
+                      marginBottom:    "10px"
+                    }}>
+                      {col.tag}
+                    </span>
+                    <h3 style={{
+                      fontFamily: "'TAN-MEMORIES', serif",
+                      fontSize:   "1.3rem",
+                      color:      "#1E2D2A",
+                      margin:     0,
+                      lineHeight: 1.2
+                    }}>
+                      {col.title}
+                    </h3>
+                  </div>
+
+                  <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                    {col.items.map((item, j) => (
+                      <div key={j} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
+                          aria-hidden="true" style={{ flexShrink: 0, marginTop: "2px" }}>
+                          <circle cx="10" cy="10" r="10" fill={`${col.check}15`}/>
+                          {i === 0
+                            ? <path d="M6 10l3 3 5-5" stroke={col.check} strokeWidth="1.8"
+                                strokeLinecap="round" strokeLinejoin="round"/>
+                            : <path d="M7 7l6 6M13 7l-6 6" stroke={col.check} strokeWidth="1.8"
+                                strokeLinecap="round"/>
+                          }
+                        </svg>
+                        <p style={{
+                          color:      "#5A6B60",
+                          fontSize:   "0.88rem",
+                          lineHeight: 1.65,
+                          margin:     0
+                        }}>
+                          {item}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            CTA FINAL
+        ══════════════════════════════════════════════════════ */}
+        <section
+          aria-label="Reservar preservação de bouquet de casamento"
+          style={{
+            padding:    "clamp(60px,10vw,100px) clamp(20px,5vw,48px)",
+            background: "linear-gradient(140deg, #EDF2E8 0%, #FAF7F0 55%, #F0EBE0 100%)",
+            textAlign:  "center"
           }}
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span style={{
-              display: "block", fontSize: "0.58rem", fontWeight: "700",
-              letterSpacing: "3.5px", textTransform: "uppercase",
-              color: "#C4846B", marginBottom: "14px",
-              fontFamily: "Roboto, sans-serif"
-            }}>
-              Tire as suas dúvidas
-            </span>
-
-            {/* h1 with keyword-rich text for SEO */}
-            <h1 style={{
-              fontFamily: "'TAN-MEMORIES', serif",
-              fontSize: "clamp(2.6rem,9vw,5.5rem)",
-              color: "#1E2D2A", margin: "0 0 20px",
-              lineHeight: 1.02
-            }}>
-              Perguntas<br/>
-              <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>Frequentes</em>
-            </h1>
-
-            <p style={{
-              color: "#5A6B60", fontSize: "clamp(0.94rem,2vw,1.05rem)",
-              lineHeight: 1.85, maxWidth: "520px", margin: "0 auto"
-            }}>
-              Tudo o que precisa de saber sobre preservação de flores de casamento,
-              processo artesanal, entrega e pagamentos.
-            </p>
-          </motion.div>
-        </section>
-
-        {/* ── SEARCH + FILTER ──────────────────────────────── */}
-        <div style={{ maxWidth: "820px", margin: "0 auto", padding: "36px 20px 0" }}>
-
-          {/* Search bar */}
-          <div className="search-wrap">
-            <span className="search-icon" aria-hidden="true">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-                <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-              </svg>
-            </span>
-            <input
-              type="search"
-              className="search-input"
-              placeholder="Pesquisar uma dúvida..."
-              value={search}
-              onChange={e => { setSearch(e.target.value); setOpenIndex(null); }}
-              aria-label="Pesquisar nas perguntas frequentes"
-              autoComplete="off"
-            />
-            {search && (
-              <button className="search-clear" onClick={() => setSearch("")} aria-label="Limpar pesquisa">
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"
-                  stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                  <path d="M15 5L5 15M5 5l10 10"/>
-                </svg>
-              </button>
-            )}
-          </div>
-
-          {/* Category pills */}
-          <div
-            className="pills-row"
-            role="tablist"
-            aria-label="Filtrar por categoria"
-            style={{ marginBottom: "28px" }}
-          >
-            {CATEGORIES.map(c => (
-              <button
-                key={c.id}
-                role="tab"
-                aria-selected={activeCategory === c.id}
-                className={`pill${activeCategory === c.id ? " active" : ""}`}
-                onClick={() => { setActiveCategory(c.id); setOpenIndex(null); }}
-              >
-                {c.label}
-                <span className="pill-count">{c.count}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Result count — helpful on mobile */}
-          <AnimatePresence mode="wait">
-            <motion.span
-              key={`${activeCategory}-${search}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="result-count"
-              aria-live="polite"
-            >
-              {filtered.length === 0
-                ? "Nenhum resultado encontrado"
-                : `${filtered.length} pergunta${filtered.length !== 1 ? "s" : ""}`}
-            </motion.span>
-          </AnimatePresence>
-
-          {/* ── FAQ LIST ───────────────────────────────────── */}
-          <div role="list" aria-label="Perguntas e respostas">
-            <AnimatePresence mode="wait">
-              {filtered.length === 0 ? (
-                <motion.div
-                  key="empty"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  style={{
-                    textAlign: "center", padding: "48px 20px",
-                    color: "#9BA89F", fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize: "1.2rem"
-                  }}
-                >
-                  Nenhuma pergunta encontrada.<br/>
-                  <span style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.88rem", color: "#B8A898" }}>
-                    Tente outra pesquisa ou{" "}
-                    <button
-                      onClick={() => { setSearch(""); setActiveCategory("todas"); }}
-                      style={{ background: "none", border: "none", cursor: "pointer",
-                        color: "#3D6B5E", fontWeight: 600, fontSize: "0.88rem",
-                        padding: 0, fontFamily: "Roboto, sans-serif",
-                        borderBottom: "1px solid rgba(61,107,94,0.35)"
-                      }}
-                    >
-                      ver todas as perguntas
-                    </button>
-                  </span>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key={`${activeCategory}-${search}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.18 }}
-                >
-                  {filtered.map((faq, i) => {
-                    const globalIndex = FAQ_DATA.indexOf(faq);
-                    return (
-                      <div key={globalIndex} role="listitem">
-                        <FAQItem
-                          faq={faq}
-                          isOpen={openIndex === globalIndex}
-                          onToggle={() => toggle(globalIndex)}
-                          searchTerm={search.trim()}
-                        />
-                      </div>
-                    );
-                  })}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* ── RELATED PAGES ─── good for SEO (internal links) */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.75 }}
+            style={{ maxWidth: "580px", margin: "0 auto" }}
           >
-            <p style={{
-              fontSize: "0.62rem", letterSpacing: "3px", textTransform: "uppercase",
-              color: "#B8A898", fontFamily: "Roboto, sans-serif",
-              margin: "48px 0 0", textAlign: "center"
-            }}>
-              Explorar
-            </p>
-            <div className="related-grid">
-              {[
-                { href: "/passo-a-passo", label: "Como Funciona", desc: "O processo passo a passo da preservação" },
-                { href: "/opcoes-e-precos", label: "Preços e Tamanhos", desc: "Escolha a moldura e formato certos" },
-                { href: "/recriacao", label: "Recriação de Bouquet", desc: "Quando o tempo já passou" },
-              ].map((l, i) => (
-                <a key={i} href={l.href} className="related-card">
-                  <span style={{
-                    display: "block",
-                    fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize: "1rem", color: "#1E2D2A",
-                    marginBottom: "6px"
-                  }}>
-                    {l.label}
-                  </span>
-                  <span style={{
-                    display: "block",
-                    fontSize: "0.82rem", color: "#5A6B60", lineHeight: 1.6
-                  }}>
-                    {l.desc} →
-                  </span>
-                </a>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ── BOTTOM CTA ─────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.65 }}
-            style={{ textAlign: "center", marginTop: "56px" }}
-          >
+            {/* Gold divider */}
             <div aria-hidden="true" style={{
-              width: "44px", height: "1px", margin: "0 auto 28px",
+              width:      "44px",
+              height:     "1px",
+              margin:     "0 auto 28px",
               background: "linear-gradient(to right, transparent, #B8954A, transparent)"
             }}/>
+
+            <span className="eyebrow" style={{ color: "#B8954A" }}>
+              Pronta para começar?
+            </span>
             <h2 style={{
               fontFamily: "'TAN-MEMORIES', serif",
-              fontSize: "clamp(1.7rem,4vw,2.6rem)",
-              color: "#1E2D2A", margin: "0 0 12px", lineHeight: 1.15
+              fontSize:   "clamp(2rem,5.5vw,3.5rem)",
+              color:      "#1E2D2A",
+              margin:     "0 0 16px",
+              lineHeight: 1.1
             }}>
-              Ainda tem dúvidas?
+              Reserve a sua vaga hoje
             </h2>
             <p style={{
-              color: "#5A6B60", fontSize: "clamp(0.9rem,2vw,0.97rem)",
-              lineHeight: 1.82, margin: "0 0 28px", maxWidth: "460px",
-              marginLeft: "auto", marginRight: "auto"
+              color:      "#5A6B60",
+              lineHeight: 1.88,
+              fontSize:   "clamp(0.9rem,2vw,1rem)",
+              margin:     "0 0 34px"
             }}>
-              Fale connosco directamente — respondemos em poucas horas
-              e adoramos ajudar a encontrar a opção certa para si.
+              Não espere pelo último momento — as vagas em época de casamentos
+              esgotam com muita antecedência. O processo começa agora,
+              o quadro fica para sempre.
             </p>
-            <div className="cta-row">
+
+            <div className="cta-row" style={{ marginBottom: "28px" }}>
+              <a href={FORM} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                Preencher Formulário de Reserva
+              </a>
               <a href={WA} target="_blank" rel="noopener noreferrer" className="btn-wa">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
-                Perguntar pelo WhatsApp
-              </a>
-              <a href={FORM} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                Reservar Data
+                Falar pelo WhatsApp
               </a>
             </div>
+
+            {/* Internal links */}
+            <div style={{
+              display:        "flex",
+              flexWrap:       "wrap",
+              justifyContent: "center",
+              gap:            "20px",
+              fontSize:       "0.82rem"
+            }}>
+              {[
+                { href: "/opcoes-e-precos",      label: "Ver preços" },
+                { href: "/recriacao",            label: "Recriação de bouquet" },
+                { href: "/perguntas-frequentes", label: "Perguntas frequentes" }
+              ].map((l, i) => (
+                <a key={i} href={l.href} className="text-link">
+                  {l.label}
+                </a>
+              ))}
+            </div>
           </motion.div>
-        </div>
+        </section>
+
       </main>
     </>
   );
