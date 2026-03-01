@@ -32,16 +32,85 @@ function Label({ children, light }) {
   );
 }
 
+/* SVGs das molduras — cada um com proporção real do tamanho */
+function FrameSVG({ ratio, flowerScale, label }) {
+  // ratio: largura/altura do viewBox para reflectir proporção real
+  const vw = 220;
+  const vh = ratio === "3:4" ? 293 : ratio === "4:5" ? 275 : 308; // 30x40, 40x50, 50x70
+  const cx = vw / 2;
+  const cy = vh / 2;
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox={`0 0 ${vw} ${vh}`}
+      style={{ width: "100%", maxWidth: ratio === "4:5" ? "140px" : ratio === "3:4" ? "120px" : "108px", height: "auto", opacity: 0.9 }}
+      aria-label={`Ilustração moldura ${label}`}
+    >
+      {/* Moldura exterior */}
+      <rect x="10" y="10" width={vw - 20} height={vh - 20}
+        stroke="rgba(250,247,240,0.55)" strokeWidth="2" fill="none" />
+      {/* Moldura interior */}
+      <rect x="18" y="18" width={vw - 36} height={vh - 36}
+        stroke="rgba(250,247,240,0.3)" strokeWidth="1.2" fill="none" />
+      {/* Brilhos de vidro */}
+      <line x1="32" y1={cy * 0.55} x2={cx * 0.75} y2="30"
+        stroke="rgba(250,247,240,0.22)" strokeWidth="1.4" strokeLinecap="round" />
+      <line x1={cx * 0.85} y1="22" x2={cx * 0.95} y2="18"
+        stroke="rgba(250,247,240,0.22)" strokeWidth="1.4" strokeLinecap="round" />
+      <line x1="52" y1={cy * 0.7} x2={cx} y2="42"
+        stroke="rgba(250,247,240,0.16)" strokeWidth="1.2" strokeLinecap="round" />
+      <line x1={vw - 50} y1={vh - 65} x2={vw - 28} y2={vh - 88}
+        stroke="rgba(250,247,240,0.22)" strokeWidth="1.4" strokeLinecap="round" />
+      {/* Flor central */}
+      <g transform={`translate(${cx}, ${cy}) scale(${flowerScale}) translate(-100, -125)`}>
+        <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120"
+          stroke="rgba(250,247,240,0.45)" strokeWidth="1.5" fill="none"
+          strokeLinejoin="round" strokeLinecap="round" />
+        <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108"
+          stroke="rgba(250,247,240,0.35)" strokeWidth="1" strokeLinecap="round" />
+        <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)"
+          stroke="rgba(250,247,240,0.45)" strokeWidth="1.5" fill="none" />
+      </g>
+    </svg>
+  );
+}
+
+const frames = [
+  {
+    ratio: "3:4",
+    flowerScale: 1.3,
+    size: "30×40",
+    unit: "cm",
+    price: "300",
+    desc: "Perfeito para peças mais íntimas ou como elemento de conjunto.",
+  },
+  {
+    ratio: "4:5",
+    flowerScale: 1.5,
+    size: "40×50",
+    unit: "cm",
+    price: "400",
+    desc: "O formato mais escolhido. Equilibra presença e elegância.",
+  },
+  {
+    ratio: "5:7",
+    flowerScale: 1.6,
+    size: "50×70",
+    unit: "cm",
+    price: "500",
+    desc: "Uma peça de destaque, que domina qualquer parede.",
+  },
+];
+
 export default function OpcoesClient() {
   return (
     <div style={{ backgroundColor: "#FAF7F0", color: "#1a1a1a", overflowX: "hidden" }}>
 
       {/* ════════════════════════════════════════════
-          HERO com IMAGEM DE FUNDO — fotoquadrocloseup1.webp
+          HERO com IMAGEM DE FUNDO
       ════════════════════════════════════════════ */}
       <section style={{ position: "relative", minHeight: "92vh", display: "flex", alignItems: "flex-end", overflow: "hidden" }}>
-
-        {/* Imagem de fundo */}
         <div style={{ position: "absolute", inset: 0 }}>
           <div style={{
             width: "100%", height: "100%",
@@ -50,14 +119,11 @@ export default function OpcoesClient() {
             backgroundPosition: "center",
             filter: "brightness(0.7)"
           }}/>
-          {/* Gradiente escuro em baixo para o texto - mais transparente no topo */}
           <div style={{
             position: "absolute", inset: 0,
             background: "linear-gradient(to bottom, rgba(15,30,26,0) 0%, rgba(15,30,26,0.2) 35%, rgba(15,30,26,0.75) 100%)"
           }} />
         </div>
-
-        {/* Conteúdo */}
         <div style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: "1200px", margin: "0 auto", padding: "clamp(80px,12vw,140px) 24px clamp(60px,8vw,90px)" }}>
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
@@ -87,7 +153,6 @@ export default function OpcoesClient() {
           TIPOS DE FUNDO
       ════════════════════════════════════════════ */}
       <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(40px,7vw,70px) 0 clamp(50px,8vw,80px)" }}>
-
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px clamp(32px,5vw,48px)" }}>
           <Reveal>
             <Label>Personalização</Label>
@@ -98,101 +163,84 @@ export default function OpcoesClient() {
         </div>
 
         <div style={{ overflowX: "hidden" }}>
-        <div className="fundos-track">
-          {[
-            {
-              img: "/quadrovidrosobrevidro.webp",
-              alt: "Quadro de flores prensadas em vidro sobre vidro com efeito transparente",
-              tag: "Mais popular", tagSolid: true,
-              title: "Vidro sobre Vidro",
-              desc: "As flores ficam suspensas entre dois vidros, sem fundo opaco. Efeito leve e moderno, ideal para espaços luminosos.",
-            },
-            {
-              img: "/quadrofoto.webp",
-              alt: "Quadro de flores prensadas com fotografia personalizada como fundo",
-              tag: "Custo adicional", tagSolid: false,
-              title: "Fundo com Fotografia",
-              desc: "Uma paisagem, um retrato, ou qualquer imagem com significado especial. A fotografia é profissionalmente impressa.",
-              note: "O custo varia consoante as dimensões da moldura.",
-            },
-            {
-              img: "/quadropreto.webp",
-              alt: "Quadro de flores prensadas com fundo preto ou colorido personalizado",
-              tag: null,
-              title: "Fundo Colorido",
-              desc: "Aplicamos qualquer cor de fundo para realçar as flores. Sugerimos tonalidades que combinem com a paleta do bouquet.",
-            },
-            {
-              img: "/quadrobranco.webp",
-              alt: "Quadro de flores prensadas com fundo branco minimalista",
-              tag: null,
-              title: "Fundo Branco",
-              desc: "Minimalista e intemporal. Realça naturalmente as cores e formas das flores com máxima simplicidade.",
-            },
-          ].map((item, i) => (
-            <div key={i} className="fundo-card-new">
-              <div style={{ aspectRatio: "16/10", overflow: "hidden", borderRadius: "6px", backgroundColor: "#e0dbd3", position: "relative" }}>
-                <img src={item.img} alt={item.alt} loading="lazy"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.9s ease" }}
-                  className="fundo-img-new" />
-                {item.tag && (
-                <span style={{
-                  position: "absolute", top: "12px", left: "12px",
-                  backgroundColor: item.tagSolid ? "#3D6B5E" : "rgba(15,30,26,0.55)",
-                  color: "#FAF7F0",
-                  fontSize: "0.52rem", letterSpacing: "2px", textTransform: "uppercase",
-                  fontFamily: "Roboto, sans-serif", fontWeight: 600,
-                  padding: "5px 11px", borderRadius: "100px",
-                  backdropFilter: "blur(4px)"
-                }}>
-                  {item.tag}
-                </span>
-                )}
-              </div>
-              <div style={{ padding: "18px 4px 0" }}>
-                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.2, color: "#1a1a1a" }}>
-                  {item.title}
-                </h3>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.82rem", lineHeight: 1.75, color: "rgba(26,26,26,0.58)", margin: 0 }}>
-                  {item.desc}
-                </p>
-                {item.note && (
-                  <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.74rem", color: "rgba(26,26,26,0.36)", margin: "6px 0 0", fontStyle: "italic" }}>
-                    {item.note}
+          <div className="fundos-track">
+            {[
+              {
+                img: "/quadrovidrosobrevidro.webp",
+                alt: "Quadro de flores prensadas em vidro sobre vidro com efeito transparente",
+                tag: "Mais popular", tagSolid: true,
+                title: "Vidro sobre Vidro",
+                desc: "As flores ficam suspensas entre dois vidros, sem fundo opaco. Efeito leve e moderno, ideal para espaços luminosos.",
+              },
+              {
+                img: "/quadrofoto.webp",
+                alt: "Quadro de flores prensadas com fotografia personalizada como fundo",
+                tag: "Custo adicional", tagSolid: false,
+                title: "Fundo com Fotografia",
+                desc: "Uma paisagem, um retrato, ou qualquer imagem com significado especial. A fotografia é profissionalmente impressa.",
+                note: "O custo varia consoante as dimensões da moldura.",
+              },
+              {
+                img: "/quadropreto.webp",
+                alt: "Quadro de flores prensadas com fundo preto ou colorido personalizado",
+                tag: null,
+                title: "Fundo Colorido",
+                desc: "Aplicamos qualquer cor de fundo para realçar as flores. Sugerimos tonalidades que combinem com a paleta do bouquet.",
+              },
+              {
+                img: "/quadrobranco.webp",
+                alt: "Quadro de flores prensadas com fundo branco minimalista",
+                tag: null,
+                title: "Fundo Branco",
+                desc: "Minimalista e intemporal. Realça naturalmente as cores e formas das flores com máxima simplicidade.",
+              },
+            ].map((item, i) => (
+              <div key={i} className="fundo-card-new">
+                <div style={{ aspectRatio: "16/10", overflow: "hidden", borderRadius: "6px", backgroundColor: "#e0dbd3", position: "relative" }}>
+                  <img src={item.img} alt={item.alt} loading="lazy"
+                    style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.9s ease" }}
+                    className="fundo-img-new" />
+                  {item.tag && (
+                    <span style={{
+                      position: "absolute", top: "12px", left: "12px",
+                      backgroundColor: item.tagSolid ? "#3D6B5E" : "rgba(15,30,26,0.55)",
+                      color: "#FAF7F0",
+                      fontSize: "0.52rem", letterSpacing: "2px", textTransform: "uppercase",
+                      fontFamily: "Roboto, sans-serif", fontWeight: 600,
+                      padding: "5px 11px", borderRadius: "100px",
+                      backdropFilter: "blur(4px)"
+                    }}>
+                      {item.tag}
+                    </span>
+                  )}
+                </div>
+                <div style={{ padding: "18px 4px 0" }}>
+                  <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.2, color: "#1a1a1a" }}>
+                    {item.title}
+                  </h3>
+                  <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.82rem", lineHeight: 1.75, color: "rgba(26,26,26,0.58)", margin: 0 }}>
+                    {item.desc}
                   </p>
-                )}
+                  {item.note && (
+                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.74rem", color: "rgba(26,26,26,0.36)", margin: "6px 0 0", fontStyle: "italic" }}>
+                      {item.note}
+                    </p>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
         </div>
 
         <p className="slider-hint" aria-live="polite" style={{ color: "rgba(26,26,26,0.28)" }}>deslize para ver mais</p>
 
-        {/* CTA Reserva #1 */}
         <Reveal delay={0.1}>
           <div style={{ maxWidth: "680px", margin: "clamp(40px,6vw,60px) auto 0", padding: "0 24px", textAlign: "center" }}>
             <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(26,26,26,0.6)", margin: "0 0 20px" }}>
               As vagas são limitadas. Reserve a sua data o mais cedo possível.
             </p>
             <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
-              style={{ 
-                display: "inline-flex", 
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#3D6B5E", 
-                color: "#FAF7F0", 
-                padding: "14px 36px", 
-                borderRadius: "100px", 
-                textDecoration: "none", 
-                fontWeight: 700, 
-                fontSize: "0.75rem", 
-                letterSpacing: "1.5px", 
-                textTransform: "uppercase", 
-                fontFamily: "Roboto, sans-serif", 
-                transition: "all 0.3s ease",
-                minHeight: "52px"
-              }}
+              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#3D6B5E", color: "#FAF7F0", padding: "14px 36px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "52px" }}
               onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#2F5548"; }}
               onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#3D6B5E"; }}
             >
@@ -200,7 +248,6 @@ export default function OpcoesClient() {
             </a>
           </div>
         </Reveal>
-
       </section>
 
       {/* ════════════════════════════════════════════
@@ -245,30 +292,13 @@ export default function OpcoesClient() {
           </div>
         </div>
 
-        {/* CTA Reserva #4 */}
         <Reveal delay={0.1}>
           <div style={{ maxWidth: "680px", margin: "clamp(48px,8vw,70px) auto 0", padding: "0 24px", textAlign: "center" }}>
             <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(26,26,26,0.6)", margin: "0 0 20px" }}>
               Quer incluir elementos especiais na sua composição?
             </p>
             <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
-              style={{ 
-                display: "inline-flex", 
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#3D6B5E", 
-                color: "#FAF7F0", 
-                padding: "14px 36px", 
-                borderRadius: "100px", 
-                textDecoration: "none", 
-                fontWeight: 700, 
-                fontSize: "0.75rem", 
-                letterSpacing: "1.5px", 
-                textTransform: "uppercase", 
-                fontFamily: "Roboto, sans-serif", 
-                transition: "all 0.3s ease",
-                minHeight: "52px"
-              }}
+              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#3D6B5E", color: "#FAF7F0", padding: "14px 36px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "52px" }}
               onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#2F5548"; }}
               onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#3D6B5E"; }}
             >
@@ -279,12 +309,15 @@ export default function OpcoesClient() {
       </section>
 
       {/* ════════════════════════════════════════════
-          TAMANHOS E PREÇOS
+          TAMANHOS E PREÇOS — redesenhado
+          SVG integrado em cada cartão, sem "mais popular"
       ════════════════════════════════════════════ */}
       <section style={{ backgroundColor: "#0F1E1A", padding: "clamp(50px,8vw,90px) 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+
+          {/* Cabeçalho */}
           <Reveal>
-            <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <div style={{ textAlign: "center", marginBottom: "clamp(40px,6vw,64px)" }}>
               <Label light>Investimento</Label>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 20px", lineHeight: 1.1, color: "#FAF7F0" }}>
                 Tamanhos & Preços
@@ -295,114 +328,66 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          {/* Representação visual dos tamanhos - usando molduras realistas */}
-          <Reveal delay={0.1}>
-            <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", gap: "clamp(24px, 4vw, 48px)", marginBottom: "56px", padding: "0 20px", flexWrap: "wrap" }}>
-              
-              {/* 30x40 - PEQUENO */}
-              <div style={{ textAlign: "center" }}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" style={{ width: "90px", height: "auto" }}>
-                  {/* Moldura exterior */}
-                  <rect x="15" y="15" width="270" height="370" stroke="rgba(250,247,240,0.5)" strokeWidth="2.5" fill="none"/>
-                  {/* Moldura interior */}
-                  <rect x="25" y="25" width="250" height="350" stroke="rgba(250,247,240,0.35)" strokeWidth="1.5" fill="none"/>
-                  {/* Linhas de brilho do vidro */}
-                  <line x1="45" y1="110" x2="115" y2="45" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="125" y1="35" x2="135" y2="25" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="75" y1="135" x2="165" y2="50" stroke="rgba(250,247,240,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="190" y1="300" x2="245" y2="250" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="210" y1="325" x2="225" y2="310" stroke="rgba(250,247,240,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
-                  {/* Flor central */}
-                  <g transform="translate(150, 200) scale(1.4) translate(-100, -125)">
-                    <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120" 
-                      stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
-                    <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108" 
-                      stroke="rgba(250,247,240,0.35)" strokeWidth="1" strokeLinecap="round"/>
-                    <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)" stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none"/>
-                  </g>
-                </svg>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.75rem", color: "rgba(250,247,240,0.5)", margin: "14px 0 0", letterSpacing: "1px" }}>30×40 cm</p>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "1.35rem", color: "#FAF7F0", margin: "6px 0 0", fontWeight: 300 }}>300€</p>
-              </div>
-
-              {/* 40x50 - MÉDIO (proporção 4:5) */}
-              <div style={{ textAlign: "center" }}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" style={{ width: "108px", height: "auto" }}>
-                  {/* Moldura exterior */}
-                  <rect x="15" y="15" width="290" height="370" stroke="rgba(250,247,240,0.5)" strokeWidth="2.5" fill="none"/>
-                  {/* Moldura interior */}
-                  <rect x="25" y="25" width="270" height="350" stroke="rgba(250,247,240,0.35)" strokeWidth="1.5" fill="none"/>
-                  {/* Linhas de brilho do vidro */}
-                  <line x1="50" y1="110" x2="125" y2="45" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="135" y1="35" x2="145" y2="25" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="80" y1="135" x2="175" y2="50" stroke="rgba(250,247,240,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="205" y1="300" x2="265" y2="250" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="225" y1="325" x2="242" y2="310" stroke="rgba(250,247,240,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
-                  {/* Flor central */}
-                  <g transform="translate(160, 200) scale(1.5) translate(-100, -125)">
-                    <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120" 
-                      stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
-                    <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108" 
-                      stroke="rgba(250,247,240,0.35)" strokeWidth="1" strokeLinecap="round"/>
-                    <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)" stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none"/>
-                  </g>
-                </svg>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.75rem", color: "rgba(250,247,240,0.5)", margin: "14px 0 0", letterSpacing: "1px" }}>40×50 cm</p>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "1.35rem", color: "#FAF7F0", margin: "6px 0 0", fontWeight: 300 }}>400€</p>
-              </div>
-
-              {/* 50x70 - GRANDE (proporção 5:7) */}
-              <div style={{ textAlign: "center" }}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 286 400" style={{ width: "95px", height: "auto" }}>
-                  {/* Moldura exterior */}
-                  <rect x="15" y="15" width="256" height="370" stroke="rgba(250,247,240,0.5)" strokeWidth="2.5" fill="none"/>
-                  {/* Moldura interior */}
-                  <rect x="25" y="25" width="236" height="350" stroke="rgba(250,247,240,0.35)" strokeWidth="1.5" fill="none"/>
-                  {/* Linhas de brilho do vidro */}
-                  <line x1="42" y1="110" x2="108" y2="45" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="118" y1="35" x2="128" y2="25" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="70" y1="135" x2="155" y2="50" stroke="rgba(250,247,240,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="180" y1="300" x2="232" y2="250" stroke="rgba(250,247,240,0.25)" strokeWidth="1.5" strokeLinecap="round"/>
-                  <line x1="198" y1="325" x2="212" y2="310" stroke="rgba(250,247,240,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
-                  {/* Flor central */}
-                  <g transform="translate(143, 200) scale(1.6) translate(-100, -125)">
-                    <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120" 
-                      stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
-                    <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108" 
-                      stroke="rgba(250,247,240,0.35)" strokeWidth="1" strokeLinecap="round"/>
-                    <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)" stroke="rgba(250,247,240,0.4)" strokeWidth="1.5" fill="none"/>
-                  </g>
-                </svg>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.75rem", color: "rgba(250,247,240,0.5)", margin: "14px 0 0", letterSpacing: "1px" }}>50×70 cm</p>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "1.35rem", color: "#FAF7F0", margin: "6px 0 0", fontWeight: 300 }}>500€</p>
-              </div>
-            </div>
-          </Reveal>
-
+          {/* Cartões com SVG integrado */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "2px", marginBottom: "48px" }}>
-            {[
-              { size: "30×40", unit: "cm", price: "300", popular: false, desc: "Perfeito para peças mais íntimas ou como elemento de conjunto." },
-              { size: "40×50", unit: "cm", price: "400", popular: true,  desc: "O formato mais escolhido. Equilibra presença e elegância." },
-              { size: "50×70", unit: "cm", price: "500", popular: false, desc: "Uma peça de destaque, que domina qualquer parede." },
-            ].map((item, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <div style={{ backgroundColor: item.popular ? "#3D6B5E" : "rgba(250,247,240,0.04)", border: item.popular ? "none" : "1px solid rgba(250,247,240,0.07)", padding: "48px 36px", position: "relative", height: "100%" }}>
-                  {item.popular && (
-                    <span style={{ position: "absolute", top: "20px", right: "20px", fontSize: "0.55rem", letterSpacing: "2.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", backgroundColor: "rgba(250,247,240,0.15)", color: "#FAF7F0", padding: "5px 12px", borderRadius: "100px" }}>
-                      Mais popular
+            {frames.map((item, i) => (
+              <Reveal key={i} delay={i * 0.1}>
+                <div style={{
+                  backgroundColor: "rgba(250,247,240,0.04)",
+                  border: "1px solid rgba(250,247,240,0.07)",
+                  padding: "40px 36px 44px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  height: "100%",
+                  position: "relative",
+                }}>
+
+                  {/* Ilustração SVG da moldura — no topo de cada cartão */}
+                  <div style={{ width: "100%", display: "flex", justifyContent: "flex-end", marginBottom: "32px", opacity: 0.85 }}>
+                    <FrameSVG ratio={item.ratio} flowerScale={item.flowerScale} label={item.size} />
+                  </div>
+
+                  {/* Dimensão */}
+                  <p style={{
+                    fontFamily: "'TAN-MEMORIES', serif",
+                    fontSize: "clamp(2.4rem, 5.5vw, 3.2rem)",
+                    color: "#FAF7F0",
+                    margin: "0",
+                    lineHeight: 1,
+                  }}>
+                    {item.size}
+                    <span style={{ fontSize: "1rem", fontFamily: "Roboto, sans-serif", fontWeight: 300, marginLeft: "5px", opacity: 0.4 }}>
+                      {item.unit}
                     </span>
-                  )}
-                  <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.5rem, 6vw, 3.5rem)", color: "#FAF7F0", margin: "0", lineHeight: 1 }}>
-                    {item.size}<span style={{ fontSize: "1rem", fontFamily: "Roboto, sans-serif", fontWeight: 300, marginLeft: "4px", opacity: 0.4 }}>{item.unit}</span>
                   </p>
-                  <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem, 4vw, 2.4rem)", color: item.popular ? "#FAF7F0" : "#8BA888", margin: "14px 0 18px" }}>
+
+                  {/* Preço */}
+                  <p style={{
+                    fontFamily: "'TAN-MEMORIES', serif",
+                    fontSize: "clamp(1.6rem, 3.5vw, 2.2rem)",
+                    color: "#8BA888",
+                    margin: "12px 0 20px",
+                  }}>
                     {item.price}€
                   </p>
-                  <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.7, color: "rgba(250,247,240,0.5)", margin: "0" }}>
+
+                  {/* Descrição */}
+                  <p style={{
+                    fontFamily: "Roboto, sans-serif",
+                    fontWeight: 300,
+                    fontSize: "0.88rem",
+                    lineHeight: 1.75,
+                    color: "rgba(250,247,240,0.5)",
+                    margin: "0",
+                    flexGrow: 1,
+                  }}>
                     {item.desc}
                   </p>
-                  <div style={{ marginTop: "28px", paddingTop: "22px", borderTop: `1px solid ${item.popular ? "rgba(250,247,240,0.14)" : "rgba(250,247,240,0.06)"}` }}>
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.75rem", lineHeight: 1.6, color: "rgba(250,247,240,0.3)", margin: 0 }}>
+
+                  {/* Linha e nota de materiais */}
+                  <div style={{ marginTop: "28px", paddingTop: "22px", borderTop: "1px solid rgba(250,247,240,0.06)", width: "100%" }}>
+                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.75rem", lineHeight: 1.6, color: "rgba(250,247,240,0.28)", margin: 0 }}>
                       Inclui vidro UltraVue® UV70, moldura de nogueira e cartão de pH neutro
                     </p>
                   </div>
@@ -416,22 +401,8 @@ export default function OpcoesClient() {
               <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(250,247,240,0.45)", margin: "0 0 18px" }}>
                 Pretende outro formato ou uma composição diferente? Entre em contacto connosco.
               </p>
-              <a href="/contactos" style={{ 
-                display: "inline-block", 
-                color: "#FAF7F0", 
-                fontFamily: "Roboto, sans-serif", 
-                fontSize: "0.7rem", 
-                fontWeight: 600, 
-                letterSpacing: "2px", 
-                textTransform: "uppercase", 
-                textDecoration: "none", 
-                borderBottom: "1px solid rgba(250,247,240,0.25)", 
-                paddingBottom: "2px", 
-                transition: "border-color 0.3s",
-                minHeight: "44px",
-                display: "inline-flex",
-                alignItems: "center"
-              }}
+              <a href="/contactos"
+                style={{ display: "inline-flex", alignItems: "center", color: "#FAF7F0", fontFamily: "Roboto, sans-serif", fontSize: "0.7rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", borderBottom: "1px solid rgba(250,247,240,0.25)", paddingBottom: "2px", transition: "border-color 0.3s", minHeight: "44px" }}
                 onMouseEnter={e => e.currentTarget.style.borderColor = "#FAF7F0"}
                 onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(250,247,240,0.25)"}
               >
@@ -440,7 +411,6 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          {/* CTA Reserva #2 */}
           <Reveal delay={0.1}>
             <div style={{ textAlign: "center", padding: "48px 32px", backgroundColor: "rgba(250,247,240,0.04)", borderRadius: "8px" }}>
               <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.4rem, 3vw, 2rem)", fontWeight: 400, margin: "0 0 16px", lineHeight: 1.2, color: "#FAF7F0" }}>
@@ -450,23 +420,7 @@ export default function OpcoesClient() {
                 Os bouquets devem ser enviados dentro de poucos dias após o evento.
               </p>
               <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
-                style={{ 
-                  display: "inline-flex", 
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "#FAF7F0", 
-                  color: "#0F1E1A", 
-                  padding: "16px 40px", 
-                  borderRadius: "100px", 
-                  textDecoration: "none", 
-                  fontWeight: 700, 
-                  fontSize: "0.78rem", 
-                  letterSpacing: "1.5px", 
-                  textTransform: "uppercase", 
-                  fontFamily: "Roboto, sans-serif", 
-                  transition: "all 0.3s ease",
-                  minHeight: "56px"
-                }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#0F1E1A", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "56px" }}
                 onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }}
                 onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}
               >
@@ -497,8 +451,8 @@ export default function OpcoesClient() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1px", backgroundColor: "rgba(26,26,26,0.07)", marginBottom: "56px" }}>
             {[
               { bg: "#3D6B5E", textColor: "#FAF7F0", subColor: "rgba(250,247,240,0.55)", title: "Moldura de Nogueira", desc: "Folheada de nogueira, produzida artesanalmente em Coimbra por carpinteiros locais. Material de origem sustentável e regional." },
-              { bg: "#FAF7F0", textColor: "#1a1a1a", subColor: "rgba(26,26,26,0.55)", title: "Cartão pH Neutro",    desc: "Base de conservação a longo prazo, idêntica à usada em museus e arquivos. Preserva as flores sem alterar a sua cor." },
-              { bg: "#F2EDE4", textColor: "#1a1a1a", subColor: "rgba(26,26,26,0.55)", title: "Cola pH Neutro",      desc: "Segura para flores prensadas e elementos delicados. Não amarelece com o tempo nem danifica materiais frágeis." },
+              { bg: "#FAF7F0", textColor: "#1a1a1a", subColor: "rgba(26,26,26,0.55)", title: "Cartão pH Neutro", desc: "Base de conservação a longo prazo, idêntica à usada em museus e arquivos. Preserva as flores sem alterar a sua cor." },
+              { bg: "#F2EDE4", textColor: "#1a1a1a", subColor: "rgba(26,26,26,0.55)", title: "Cola pH Neutro", desc: "Segura para flores prensadas e elementos delicados. Não amarelece com o tempo nem danifica materiais frágeis." },
               { bg: "#0F1E1A", textColor: "#FAF7F0", subColor: "rgba(250,247,240,0.55)", title: "Vidro UltraVue® UV70", desc: "Anti-reflexo quase invisível, filtra 70% dos raios UV nocivos. Produzido com vidro Water White de origem certificada." },
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.07}>
@@ -530,10 +484,7 @@ export default function OpcoesClient() {
                     "Superfície duradoura e de fácil limpeza",
                   ].map((feat, i) => (
                     <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "14px", padding: "14px 0", borderBottom: "1px solid rgba(26,26,26,0.07)", fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.6, color: "rgba(26,26,26,0.75)" }}>
-                      <span style={{
-                        width: "20px", height: "20px", borderRadius: "50%",
-                        backgroundColor: "#3D6B5E", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "1px"
-                      }} aria-hidden="true">
+                      <span style={{ width: "20px", height: "20px", borderRadius: "50%", backgroundColor: "#3D6B5E", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "1px" }} aria-hidden="true">
                         <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#FAF7F0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                       </span>
                       {feat}
@@ -554,7 +505,6 @@ export default function OpcoesClient() {
           </div>
         </div>
 
-        {/* CTA Reserva #3 */}
         <Reveal delay={0.1}>
           <div style={{ maxWidth: "720px", margin: "clamp(48px,8vw,80px) auto 0", padding: "0 24px", textAlign: "center" }}>
             <div style={{ backgroundColor: "#3D6B5E", padding: "40px 32px", borderRadius: "12px" }}>
@@ -565,23 +515,7 @@ export default function OpcoesClient() {
                 Materiais premium que preservam as suas flores durante décadas.
               </p>
               <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
-                style={{ 
-                  display: "inline-flex", 
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "#FAF7F0", 
-                  color: "#3D6B5E", 
-                  padding: "14px 36px", 
-                  borderRadius: "100px", 
-                  textDecoration: "none", 
-                  fontWeight: 700, 
-                  fontSize: "0.75rem", 
-                  letterSpacing: "1.5px", 
-                  textTransform: "uppercase", 
-                  fontFamily: "Roboto, sans-serif", 
-                  transition: "all 0.3s ease",
-                  minHeight: "52px"
-                }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "14px 36px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "52px" }}
                 onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }}
                 onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}
               >
@@ -698,47 +632,14 @@ export default function OpcoesClient() {
             </p>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
               <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
-                style={{ 
-                  display: "inline-flex", 
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "#FAF7F0", 
-                  color: "#3D6B5E", 
-                  padding: "16px 40px", 
-                  borderRadius: "100px", 
-                  textDecoration: "none", 
-                  fontWeight: 700, 
-                  fontSize: "0.78rem", 
-                  letterSpacing: "1.5px", 
-                  textTransform: "uppercase", 
-                  fontFamily: "Roboto, sans-serif", 
-                  transition: "all 0.3s ease",
-                  minHeight: "56px"
-                }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "56px" }}
                 onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }}
                 onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}
               >
                 Reservar Data
               </a>
               <a href="/perguntas-frequentes"
-                style={{ 
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "transparent", 
-                  color: "rgba(250,247,240,0.85)", 
-                  padding: "16px 40px", 
-                  borderRadius: "100px", 
-                  textDecoration: "none", 
-                  fontWeight: 500, 
-                  fontSize: "0.78rem", 
-                  letterSpacing: "1.5px", 
-                  textTransform: "uppercase", 
-                  fontFamily: "Roboto, sans-serif", 
-                  border: "1.5px solid rgba(250,247,240,0.3)", 
-                  transition: "all 0.3s ease",
-                  minHeight: "56px"
-                }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "transparent", color: "rgba(250,247,240,0.85)", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", border: "1.5px solid rgba(250,247,240,0.3)", transition: "all 0.3s ease", minHeight: "56px" }}
                 onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(250,247,240,0.7)"}
                 onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(250,247,240,0.3)"}
               >
@@ -798,21 +699,15 @@ export default function OpcoesClient() {
           .slider-hint { display: none; }
         }
 
-        /* Prefers-reduced-motion */
         @media (prefers-reduced-motion: reduce) {
-          *,
-          *::before,
-          *::after {
+          *, *::before, *::after {
             animation-duration: 0.01ms !important;
             animation-iteration-count: 1 !important;
             transition-duration: 0.01ms !important;
           }
-          video {
-            animation: none !important;
-          }
+          video { animation: none !important; }
         }
 
-        /* Estados de foco visíveis */
         a:focus-visible,
         button:focus-visible {
           outline: 3px solid #3D6B5E;
