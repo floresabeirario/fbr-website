@@ -324,21 +324,6 @@ export default function OpcoesClient() {
         </div>
 
         <p className="slider-hint" aria-live="polite" style={{ color: "rgba(26,26,26,0.28)" }}>deslize para ver mais</p>
-
-        <Reveal delay={0.1}>
-          <div style={{ maxWidth: "680px", margin: "clamp(40px,6vw,60px) auto 0", padding: "0 24px", textAlign: "center" }}>
-            <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(26,26,26,0.6)", margin: "0 0 20px" }}>
-              As vagas são limitadas. Reserve a sua data o mais cedo possível.
-            </p>
-            <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#3D6B5E", color: "#FAF7F0", padding: "14px 36px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "52px" }}
-              onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#2F5548"; }}
-              onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#3D6B5E"; }}
-            >
-              Reservar a Minha Data
-            </a>
-          </div>
-        </Reveal>
       </section>
 
       {/* ════════════════════════════════════════════
@@ -349,9 +334,12 @@ export default function OpcoesClient() {
           <Reveal>
             <div style={{ marginBottom: "28px" }}>
               <Label>Para oferecer</Label>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 400, margin: 0, lineHeight: 1.1 }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 400, margin: "0 0 14px", lineHeight: 1.1 }}>
                 Presentes com <em style={{ color: "#3D6B5E" }}>memória</em>
               </h2>
+              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(26,26,26,0.55)", maxWidth: "460px", margin: 0 }}>
+                Para além do seu quadro principal, pode encomendar peças adicionais. Presentes pessoais e cheios de significado para quem ama.
+              </p>
             </div>
           </Reveal>
 
@@ -363,7 +351,6 @@ export default function OpcoesClient() {
                 alt: "Mini quadros 20x25cm de flores preservadas",
                 badge: "Mini quadro", badgeBg: "rgba(61,107,94,0.12)", badgeColor: "#3D6B5E",
                 title: "20×25 cm",
-                price: "90€",
                 desc: "Moldura com as flores do seu bouquet. Emoldurado com vidro museu UltraVue®.",
                 note: "Só com a compra de um quadro maior.",
               },
@@ -372,7 +359,6 @@ export default function OpcoesClient() {
                 alt: "Ornamento de natal com flores prensadas",
                 badge: "Natal", badgeBg: "rgba(107,31,42,0.1)", badgeColor: "#6B1F2A",
                 title: "Ornamento de Natal",
-                price: "35€",
                 desc: "Vidro duplo soldado sem chumbo, com prata. ~8 cm.",
                 note: "Só com a compra de um quadro maior.",
               },
@@ -381,7 +367,6 @@ export default function OpcoesClient() {
                 alt: "Pendente floral para colar",
                 badge: "Joalharia", badgeBg: "rgba(58,48,80,0.1)", badgeColor: "#3A3050",
                 title: "Pendente para Colar",
-                price: "35€",
                 desc: "Vidro duplo soldado sem chumbo, com prata. ~3 cm.",
                 note: "Só com a compra de um quadro maior.",
               },
@@ -397,14 +382,9 @@ export default function OpcoesClient() {
                     <span style={{ display: "inline-block", backgroundColor: item.badgeBg, color: item.badgeColor, fontSize: "0.5rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "4px 10px", borderRadius: "100px", marginBottom: "10px" }}>
                       {item.badge}
                     </span>
-                    <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "8px", marginBottom: "8px" }}>
-                      <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", fontWeight: 400, margin: 0, color: "#1a1a1a", lineHeight: 1.2 }}>
-                        {item.title}
-                      </h3>
-                      <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", color: "#3D6B5E", flexShrink: 0 }}>
-                        {item.price}
-                      </span>
-                    </div>
+                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", fontWeight: 400, margin: "0 0 8px", color: "#1a1a1a", lineHeight: 1.2 }}>
+                      {item.title}
+                    </h3>
                     <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.78rem", lineHeight: 1.6, color: "rgba(26,26,26,0.6)", margin: "0 0 6px" }}>
                       {item.desc}
                     </p>
