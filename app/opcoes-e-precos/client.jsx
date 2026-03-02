@@ -94,7 +94,7 @@ const frames = [
   },
   {
     size: "40×50", unit: "cm", price: "400",
-    desc: "O formato mais escolhido. Equilibra presença e elegância.",
+    desc: "Equilibra presença e elegância.",
     vw: 200, vh: 250, svgWidth: "118px",
     flowers: [
       { cx: 82,  cy: 118, scale: 0.95, rotate: -15, opacity: 0.48 },
@@ -352,9 +352,9 @@ export default function OpcoesClient() {
               <Reveal key={i} delay={i * 0.1}>
                 <div style={{
                   backgroundColor: item.addon
-                    ? "rgba(250,247,240,0.06)"
+                    ? "#D6E8DF"
                     : i === 0 ? "#FAF7F0" : i === 1 ? "#F2EDE4" : "#EAE3D8",
-                  padding: "32px 28px 32px",
+                  padding: "28px 24px 28px",
                   display: "flex",
                   flexDirection: "column",
                   height: "100%",
@@ -379,7 +379,7 @@ export default function OpcoesClient() {
                   )}
 
                   {/* SVG + texto lado a lado */}
-                  <div style={{ display: "flex", alignItems: "flex-start", gap: "20px", marginBottom: "20px" }}>
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "20px" }}>
 
                     {/* SVG à esquerda */}
                     <div style={{ flexShrink: 0 }}>
@@ -392,43 +392,41 @@ export default function OpcoesClient() {
                       />
                     </div>
 
-                    {/* Dimensão + Preço à direita */}
+                    {/* Dimensão + Preço + Desc à direita */}
                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", paddingTop: "8px" }}>
                       <p style={{
                         fontFamily: "'TAN-MEMORIES', serif",
                         fontSize: item.addon ? "clamp(1.2rem, 2vw, 1.7rem)" : "clamp(1.7rem, 2.6vw, 2.4rem)",
-                        color: item.addon ? "#FAF7F0" : "#0F1E1A",
+                        color: item.addon ? "#1a1a1a" : "#0F1E1A",
                         margin: "0",
                         lineHeight: 1,
                       }}>
                         {item.size}
-                        <span style={{ fontSize: "0.8rem", fontFamily: "Roboto, sans-serif", fontWeight: 400, marginLeft: "4px", color: item.addon ? "rgba(250,247,240,0.4)" : "rgba(15,30,26,0.4)" }}>
+                        <span style={{ fontSize: "0.8rem", fontFamily: "Roboto, sans-serif", fontWeight: 400, marginLeft: "4px", color: item.addon ? "rgba(15,30,26,0.4)" : "rgba(15,30,26,0.4)" }}>
                           {item.unit}
                         </span>
                       </p>
                       <p style={{
                         fontFamily: "'TAN-MEMORIES', serif",
                         fontSize: item.addon ? "clamp(1rem, 1.8vw, 1.3rem)" : "clamp(1.2rem, 2vw, 1.6rem)",
-                        color: item.addon ? "#C4A55A" : "#3D6B5E",
-                        margin: "8px 0 0",
+                        color: item.addon ? "#3D6B5E" : "#3D6B5E",
+                        margin: "8px 0 10px",
                       }}>
                         {item.price}€
                       </p>
+                      <p style={{
+                        fontFamily: "Roboto, sans-serif",
+                        fontWeight: 300,
+                        fontSize: "0.75rem",
+                        lineHeight: 1.6,
+                        color: item.addon ? "rgba(15,30,26,0.5)" : "rgba(15,30,26,0.5)",
+                        margin: 0,
+                        fontStyle: item.addon ? "italic" : "normal",
+                      }}>
+                        {item.desc}
+                      </p>
                     </div>
                   </div>
-
-                  {/* Descrição */}
-                  <p style={{
-                    fontFamily: "Roboto, sans-serif",
-                    fontWeight: 300,
-                    fontSize: "0.78rem",
-                    lineHeight: 1.65,
-                    color: item.addon ? "rgba(250,247,240,0.45)" : "rgba(15,30,26,0.5)",
-                    margin: 0,
-                    fontStyle: item.addon ? "italic" : "normal",
-                  }}>
-                    {item.desc}
-                  </p>
                 </div>
               </Reveal>
             ))}
