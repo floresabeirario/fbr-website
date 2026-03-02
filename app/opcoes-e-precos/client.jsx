@@ -187,6 +187,7 @@ const frames = [
     size: "Pendente para Colar", unit: "~3 cm", price: "35",
     desc: "Pendente com vidro duplo soldado sem chumbo, com prata. Só disponível em conjunto com a compra de um quadro maior.",
     addon: true,
+    addonColor: "#3A3050",
     badge: "Joalharia",
     customSvg: "pendant",
     svgWidth: "56px",
@@ -341,61 +342,142 @@ export default function OpcoesClient() {
       </section>
 
       {/* ════════════════════════════════════════════
-          ELEMENTOS ADICIONAIS
+          PRESENTES PARA OFERECER  (após tipos de fundo)
       ════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: "#FAF7F0", borderTop: "1px solid rgba(26,26,26,0.08)" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "clamp(50px,8vw,90px) 24px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 440px), 1fr))", gap: "clamp(40px, 6vw, 80px)", alignItems: "center" }}>
-            <div>
-              <Reveal>
-                <Label>Personalização extra</Label>
-                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 400, margin: "0 0 24px", lineHeight: 1.1 }}>
-                  Elementos com<br/><em style={{ color: "#3D6B5E" }}>valor simbólico</em>
-                </h2>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.85, color: "rgba(26,26,26,0.65)", margin: "0 0 32px" }}>
-                  É possível integrar elementos adicionais com significado especial na sua composição, tornando cada peça verdadeiramente única.
-                </p>
-              </Reveal>
-              <Reveal delay={0.08}>
-                <ul style={{ listStyle: "none", padding: 0, margin: "0 0 28px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0" }}>
-                  {["Convite do casamento","Votos manuscritos","Joias ou medalhas","Fitas, tecidos ou rendas","Coleiras de animais","Cartas e bilhetes","Objetos pessoais"].map((item, i) => (
-                    <li key={i} style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.5, color: "rgba(26,26,26,0.75)", padding: "11px 16px 11px 0", borderBottom: "1px solid rgba(26,26,26,0.07)", display: "flex", alignItems: "center", gap: "10px" }}>
-                      <span style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: "#B8954A", flexShrink: 0 }} aria-hidden="true"/>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
-              <Reveal delay={0.12}>
-                <div style={{ backgroundColor: "rgba(184,149,74,0.09)", borderLeft: "3px solid #B8954A", padding: "18px 22px", borderRadius: "0 8px 8px 0" }}>
-                  <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.83rem", lineHeight: 1.75, color: "rgba(26,26,26,0.7)", margin: 0 }}>
-                    <strong style={{ color: "#1a1a1a" }}>Nota:</strong> Se os acessórios forem mais volumosos do que as flores prensadas, poderá ser necessário aumentar a profundidade da moldura. O orçamento será ajustado conforme as características da peça.
-                  </p>
-                </div>
-              </Reveal>
+      <section style={{ backgroundColor: "#F2EDE4", padding: "clamp(50px,8vw,90px) 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ marginBottom: "48px" }}>
+              <Label>Para oferecer</Label>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 16px", lineHeight: 1.1 }}>
+                Presentes com<br/><em style={{ color: "#3D6B5E" }}>memória</em>
+              </h2>
+              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(26,26,26,0.55)", maxWidth: "460px" }}>
+                Para além do seu quadro principal, pode encomendar peças adicionais. Presentes pessoais e cheios de significado para quem ama.
+              </p>
             </div>
+          </Reveal>
+
+          {/* Mini quadros — foto menor, lado a lado com texto */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 480px), 1fr))", gap: "clamp(32px, 5vw, 64px)", alignItems: "center", marginBottom: "clamp(50px,8vw,80px)", paddingBottom: "clamp(50px,8vw,80px)", borderBottom: "1px solid rgba(26,26,26,0.1)" }}>
+            <Reveal>
+              <div style={{ maxWidth: "320px", borderRadius: "12px", overflow: "hidden", boxShadow: "0 16px 48px rgba(26,26,26,0.1)" }}>
+                <img src="/miniquadros.webp" alt="Mini quadros 20x25cm de flores preservadas como presentes para padrinhos e damas de honor" loading="lazy"
+                  style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block" }} />
+              </div>
+            </Reveal>
             <Reveal delay={0.1}>
-              <div style={{ borderRadius: "16px", overflow: "hidden", aspectRatio: "9/16", maxHeight: "600px" }}>
-                <video src="/quadroconvite.webm" autoPlay muted loop playsInline style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <div>
+                <Label>Mini quadros</Label>
+                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 4vw, 2.5rem)", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.1 }}>20×25 cm</h3>
+                <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.8rem", color: "#3D6B5E", margin: "0 0 20px" }}>90€</p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.85, color: "rgba(26,26,26,0.65)", margin: "0 0 10px" }}>
+                  Molduras mais pequenas com as flores do seu bouquet. Uma forma bonita de partilhar um pedaço do seu dia especial com as pessoas que mais ama.
+                </p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.78rem", letterSpacing: "0.5px", color: "rgba(26,26,26,0.4)", margin: "0 0 6px", fontStyle: "italic" }}>
+                  Só disponível em conjunto com a compra de um quadro maior.
+                </p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1px", color: "#3D6B5E", margin: 0 }}>
+                  Emoldurado com vidro museu UltraVue®
+                </p>
               </div>
             </Reveal>
           </div>
-        </div>
 
-        <Reveal delay={0.1}>
-          <div style={{ maxWidth: "680px", margin: "clamp(48px,8vw,70px) auto 0", padding: "0 24px", textAlign: "center" }}>
-            <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(26,26,26,0.6)", margin: "0 0 20px" }}>
-              Quer incluir elementos especiais na sua composição?
-            </p>
-            <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#3D6B5E", color: "#FAF7F0", padding: "14px 36px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "52px" }}
-              onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#2F5548"; }}
-              onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#3D6B5E"; }}
-            >
-              Reservar e Personalizar
-            </a>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 440px), 1fr))", gap: "clamp(32px, 5vw, 48px)" }}>
+            {[
+              {
+                imgs: [
+                  { src: "/ornamento1.webp", alt: "Ornamento de natal rectangular com flores prensadas em vidro soldado com prata" },
+                  { src: "/ornamento2.webp", alt: "Ornamento de natal circular com flores prensadas em vidro soldado com prata" },
+                ],
+                badge: "Sazonal", badgeBg: "rgba(107,31,42,0.1)", badgeColor: "#6B1F2A",
+                title: "Ornamentos de Natal",
+                price: "Aprox. 8 cm — 35€",
+                desc: "Ornamento com vidro duplo soldado sem chumbo, com prata. Formatos à escolha: circular, quadrado ou rectangular.",
+                note: "Só disponível em conjunto com a compra de um quadro maior.",
+              },
+              {
+                imgs: [
+                  { src: "/pendente1.webp", alt: "Pendente de flores prensadas em vidro soldado com prata" },
+                  { src: "/pendente2.webp", alt: "Pendente floral circular em vidro soldado com prata" },
+                ],
+                badge: "Joalharia botânica", badgeBg: "rgba(58,48,80,0.1)", badgeColor: "#3A3050",
+                title: "Pendentes para Colar",
+                price: "Aprox. 3 cm — 35€",
+                desc: "Pendente com vidro duplo soldado sem chumbo, com prata. Formatos à escolha: circular, quadrado ou rectangular.",
+                note: "Só disponível em conjunto com a compra de um quadro maior.",
+              }
+            ].map((item, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 8px 32px rgba(26,26,26,0.08)" }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", backgroundColor: "rgba(26,26,26,0.1)" }}>
+                    {item.imgs.map((img, j) => (
+                      <img key={j} src={img.src} alt={img.alt} loading="lazy"
+                        style={{ width: "100%", aspectRatio: "1", objectFit: "cover", display: "block" }} />
+                    ))}
+                  </div>
+                  <div style={{ padding: "24px 24px 28px", backgroundColor: "#FAF7F0" }}>
+                    <span style={{ display: "inline-block", backgroundColor: item.badgeBg, color: item.badgeColor, fontSize: "0.56rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "5px 12px", borderRadius: "100px", marginBottom: "12px" }}>
+                      {item.badge}
+                    </span>
+                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.4rem", fontWeight: 400, margin: "0 0 4px", color: "#1a1a1a" }}>
+                      {item.title}
+                    </h3>
+                    <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", color: "#3D6B5E", margin: "0 0 12px" }}>
+                      {item.price}
+                    </p>
+                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.85rem", lineHeight: 1.7, color: "rgba(26,26,26,0.6)", margin: "0 0 8px" }}>
+                      {item.desc}
+                    </p>
+                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.75rem", color: "rgba(26,26,26,0.38)", margin: 0, fontStyle: "italic" }}>
+                      {item.note}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
           </div>
-        </Reveal>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════
+          ELEMENTOS COM VALOR SIMBÓLICO — design compacto
+      ════════════════════════════════════════════ */}
+      <section style={{ backgroundColor: "#FAF7F0", borderTop: "1px solid rgba(26,26,26,0.07)", padding: "clamp(40px,6vw,64px) 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "12px 24px", marginBottom: "28px" }}>
+              <Label>Personalização extra</Label>
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "28px" }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", fontWeight: 400, margin: 0, lineHeight: 1.1 }}>
+                Pode incluir <em style={{ color: "#3D6B5E" }}>elementos especiais</em> no seu quadro
+              </h2>
+              <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#3D6B5E", color: "#FAF7F0", padding: "12px 28px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "44px", flexShrink: 0 }}
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#2F5548"; }}
+                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#3D6B5E"; }}
+              >
+                Saber mais
+              </a>
+            </div>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "20px" }}>
+              {["Convite do casamento","Votos manuscritos","Joias ou medalhas","Fitas e rendas","Coleiras de animais","Cartas e bilhetes","Objetos pessoais"].map((item, i) => (
+                <span key={i} style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.8rem", color: "rgba(26,26,26,0.75)", backgroundColor: "rgba(26,26,26,0.05)", border: "1px solid rgba(26,26,26,0.1)", padding: "7px 14px", borderRadius: "100px" }}>
+                  {item}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.8rem", lineHeight: 1.7, color: "rgba(26,26,26,0.45)", margin: 0, maxWidth: "640px", fontStyle: "italic" }}>
+              Se os acessórios forem mais volumosos, poderá ser necessário aumentar a profundidade da moldura. O orçamento será ajustado conforme as características da peça.
+            </p>
+          </Reveal>
+        </div>
       </section>
 
       {/* ════════════════════════════════════════════
@@ -579,97 +661,6 @@ export default function OpcoesClient() {
               </a>
             </div>
           </Reveal>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════
-          ADD-ONS  (movido para aqui, depois de Tamanhos & Preços)
-      ════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: "#F2EDE4", padding: "clamp(50px,8vw,90px) 24px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <Reveal>
-            <div style={{ marginBottom: "48px" }}>
-              <Label>Extras</Label>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 16px", lineHeight: 1.1 }}>
-                Add-ons &<br/><em style={{ color: "#3D6B5E" }}>Presentes</em>
-              </h2>
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(26,26,26,0.55)", maxWidth: "460px" }}>
-                Para além do seu quadro principal, pode encomendar peças adicionais. Presentes pessoais e cheios de significado para quem ama.
-              </p>
-            </div>
-          </Reveal>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 480px), 1fr))", gap: "clamp(40px, 6vw, 80px)", alignItems: "center", marginBottom: "clamp(50px,8vw,80px)", paddingBottom: "clamp(50px,8vw,80px)", borderBottom: "1px solid rgba(26,26,26,0.1)" }}>
-            <Reveal>
-              <div style={{ aspectRatio: "4/3", overflow: "hidden", borderRadius: "12px", boxShadow: "0 16px 48px rgba(26,26,26,0.1)" }}>
-                <img src="/miniquadros.webp" alt="Mini quadros 20x25cm de flores preservadas como presentes para padrinhos e damas de honor" loading="lazy"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div>
-                <Label>Para oferecer</Label>
-                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 4vw, 2.5rem)", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.1 }}>Mini Quadros</h3>
-                <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.8rem", color: "#3D6B5E", margin: "0 0 24px" }}>20×25 cm — 90€</p>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.85, color: "rgba(26,26,26,0.65)", margin: "0 0 16px" }}>
-                  Molduras mais pequenas com as flores do seu bouquet. Uma forma bonita de partilhar um pedaço do seu dia especial com as pessoas que mais ama.
-                </p>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1px", color: "#3D6B5E", margin: 0 }}>
-                  Emoldurado com vidro museu UltraVue®
-                </p>
-              </div>
-            </Reveal>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 440px), 1fr))", gap: "clamp(32px, 5vw, 48px)" }}>
-            {[
-              {
-                imgs: [
-                  { src: "/ornamento1.webp", alt: "Ornamento de natal rectangular com flores prensadas em vidro soldado com prata" },
-                  { src: "/ornamento2.webp", alt: "Ornamento de natal circular com flores prensadas em vidro soldado com prata" },
-                ],
-                badge: "Sazonal", badgeBg: "rgba(184,149,74,0.15)", badgeColor: "#96722A",
-                title: "Ornamentos de Natal",
-                price: "Aprox. 8 cm — 35€",
-                desc: "Vidro sobre vidro soldado sem chumbo com prata. Formatos à escolha: circular, quadrado ou rectangular.",
-              },
-              {
-                imgs: [
-                  { src: "/pendente1.webp", alt: "Pendente de flores prensadas em vidro soldado com prata" },
-                  { src: "/pendente2.webp", alt: "Pendente floral circular em vidro soldado com prata" },
-                ],
-                badge: "Joalharia botânica", badgeBg: "rgba(61,107,94,0.12)", badgeColor: "#3D6B5E",
-                title: "Pendentes para Colar",
-                price: "Aprox. 3 cm — 35€",
-                desc: "Vidro sobre vidro soldado sem chumbo com prata. Formatos à escolha: circular, quadrado ou rectangular.",
-              }
-            ].map((item, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <div style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 8px 32px rgba(26,26,26,0.08)" }}>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", backgroundColor: "rgba(26,26,26,0.1)" }}>
-                    {item.imgs.map((img, j) => (
-                      <img key={j} src={img.src} alt={img.alt} loading="lazy"
-                        style={{ width: "100%", aspectRatio: "1", objectFit: "cover", display: "block" }} />
-                    ))}
-                  </div>
-                  <div style={{ padding: "28px 28px 32px", backgroundColor: "#FAF7F0" }}>
-                    <span style={{ display: "inline-block", backgroundColor: item.badgeBg, color: item.badgeColor, fontSize: "0.56rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "5px 12px", borderRadius: "100px", marginBottom: "14px" }}>
-                      {item.badge}
-                    </span>
-                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.5rem", fontWeight: 400, margin: "0 0 6px", color: "#1a1a1a" }}>
-                      {item.title}
-                    </h3>
-                    <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.2rem", color: "#3D6B5E", margin: "0 0 14px" }}>
-                      {item.price}
-                    </p>
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.7, color: "rgba(26,26,26,0.6)", margin: 0 }}>
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
