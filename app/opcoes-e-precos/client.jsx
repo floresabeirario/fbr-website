@@ -175,15 +175,16 @@ const frames = [
     ],
   },
   {
-    size: "Ornamento", unit: "~8 cm", price: "35",
-    desc: "Vidro soldado sem chumbo com prata. Circular, quadrado ou rectangular.",
+    size: "Ornamento de Natal", unit: "~8 cm", price: "35",
+    desc: "Só disponível em conjunto com a compra de um quadro maior. Uma prenda especial para oferecer.",
     addon: true,
+    addonColor: "#6B1F2A",
     badge: "Natal",
     customSvg: "ornament",
     svgWidth: "72px",
   },
   {
-    size: "Pendente", unit: "~3 cm", price: "35",
+    size: "Pendente para Colar", unit: "~3 cm", price: "35",
     desc: "Vidro soldado sem chumbo com prata. Circular, quadrado ou rectangular.",
     addon: true,
     badge: "Joalharia",
@@ -421,7 +422,9 @@ export default function OpcoesClient() {
             {frames.map((item, i) => (
               <Reveal key={i} delay={(i % 3) * 0.1}>
                 <div style={{
-                  backgroundColor: item.addon
+                  backgroundColor: item.addonColor
+                    ? item.addonColor
+                    : item.addon
                     ? "#3D6B5E"
                     : i === 0 ? "#FAF7F0" : i === 1 ? "#F2EDE4" : "#EAE3D8",
                   padding: "28px 24px 28px",
