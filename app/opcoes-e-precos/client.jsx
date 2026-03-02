@@ -352,7 +352,7 @@ export default function OpcoesClient() {
               <Reveal key={i} delay={i * 0.1}>
                 <div style={{
                   backgroundColor: item.addon
-                    ? "#D6E8DF"
+                    ? "#3D6B5E"
                     : i === 0 ? "#FAF7F0" : i === 1 ? "#F2EDE4" : "#EAE3D8",
                   padding: "28px 24px 28px",
                   display: "flex",
@@ -360,7 +360,7 @@ export default function OpcoesClient() {
                   height: "100%",
                   boxSizing: "border-box",
                   borderRadius: "4px",
-                  border: item.addon ? "1px solid rgba(184,149,74,0.35)" : "none",
+                  border: item.addon ? "none" : "none",
                   position: "relative",
                 }}>
 
@@ -368,8 +368,8 @@ export default function OpcoesClient() {
                   {item.addon && (
                     <span style={{
                       position: "absolute", top: "16px", right: "16px",
-                      backgroundColor: "rgba(184,149,74,0.18)",
-                      color: "#C4A55A",
+                      backgroundColor: "rgba(250,247,240,0.15)",
+                      color: "#FAF7F0",
                       fontSize: "0.5rem", letterSpacing: "2px", textTransform: "uppercase",
                       fontFamily: "Roboto, sans-serif", fontWeight: 600,
                       padding: "4px 10px", borderRadius: "100px",
@@ -388,7 +388,7 @@ export default function OpcoesClient() {
                         flowers={item.flowers}
                         svgWidth={item.svgWidth}
                         label={item.size}
-                        dark={!item.addon}
+                        dark={item.addon ? false : true}
                       />
                     </div>
 
@@ -397,19 +397,19 @@ export default function OpcoesClient() {
                       <p style={{
                         fontFamily: "'TAN-MEMORIES', serif",
                         fontSize: item.addon ? "clamp(1.2rem, 2vw, 1.7rem)" : "clamp(1.7rem, 2.6vw, 2.4rem)",
-                        color: item.addon ? "#1a1a1a" : "#0F1E1A",
+                        color: item.addon ? "#FAF7F0" : "#0F1E1A",
                         margin: "0",
                         lineHeight: 1,
                       }}>
                         {item.size}
-                        <span style={{ fontSize: "0.8rem", fontFamily: "Roboto, sans-serif", fontWeight: 400, marginLeft: "4px", color: item.addon ? "rgba(15,30,26,0.4)" : "rgba(15,30,26,0.4)" }}>
+                        <span style={{ fontSize: "0.8rem", fontFamily: "Roboto, sans-serif", fontWeight: 400, marginLeft: "4px", color: item.addon ? "rgba(250,247,240,0.45)" : "rgba(15,30,26,0.4)" }}>
                           {item.unit}
                         </span>
                       </p>
                       <p style={{
                         fontFamily: "'TAN-MEMORIES', serif",
                         fontSize: item.addon ? "clamp(1rem, 1.8vw, 1.3rem)" : "clamp(1.2rem, 2vw, 1.6rem)",
-                        color: item.addon ? "#3D6B5E" : "#3D6B5E",
+                        color: item.addon ? "#8BA888" : "#3D6B5E",
                         margin: "8px 0 10px",
                       }}>
                         {item.price}€
@@ -419,7 +419,7 @@ export default function OpcoesClient() {
                         fontWeight: 300,
                         fontSize: "0.75rem",
                         lineHeight: 1.6,
-                        color: item.addon ? "rgba(15,30,26,0.5)" : "rgba(15,30,26,0.5)",
+                        color: item.addon ? "rgba(250,247,240,0.5)" : "rgba(15,30,26,0.5)",
                         margin: 0,
                         fontStyle: item.addon ? "italic" : "normal",
                       }}>
