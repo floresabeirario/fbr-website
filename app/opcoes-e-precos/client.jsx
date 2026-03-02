@@ -83,6 +83,60 @@ function FrameSVG({ vw, vh, flowers, svgWidth, label, dark = false }) {
   );
 }
 
+function OrnamentSVG({ svgWidth, light = false }) {
+  const s = light ? "rgba(250,247,240,0.55)" : "rgba(15,30,26,0.45)";
+  const s2 = light ? "rgba(250,247,240,0.35)" : "rgba(15,30,26,0.28)";
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"
+      style={{ width: svgWidth, height: "auto", display: "block" }}
+      aria-label="Ilustração ornamento de natal">
+      <path d="M 130 -10 Q 165 70 192 145" stroke={s} strokeWidth="2" fill="none" strokeLinecap="round"/>
+      <path d="M 270 -10 Q 235 70 208 145" stroke={s} strokeWidth="2" fill="none" strokeLinecap="round"/>
+      <path d="M 160 -10 Q 185 60 198 135" stroke={s2} strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      <path d="M 240 -10 Q 215 60 202 135" stroke={s2} strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      <circle cx="200" cy="142" r="8" stroke={s} strokeWidth="2.5" fill="none"/>
+      <circle cx="200" cy="280" r="130" stroke={s} strokeWidth="2.5" fill="none"/>
+      <circle cx="200" cy="280" r="120" stroke={s2} strokeWidth="1.5" fill="none"/>
+      <line x1="120" y1="210" x2="160" y2="170" stroke={s2} strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="135" y1="235" x2="175" y2="195" stroke={s2} strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="240" y1="360" x2="280" y2="320" stroke={s2} strokeWidth="1.5" strokeLinecap="round"/>
+      <g transform="translate(200, 280) scale(1.6) translate(-100, -125)">
+        <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120"
+          stroke={s} strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
+        <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108"
+          stroke={s2} strokeWidth="1" strokeLinecap="round"/>
+        <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)" stroke={s} strokeWidth="1.5" fill="none"/>
+      </g>
+    </svg>
+  );
+}
+
+function PendantSVG({ svgWidth, light = false }) {
+  const s = light ? "rgba(250,247,240,0.55)" : "rgba(15,30,26,0.45)";
+  const s2 = light ? "rgba(250,247,240,0.35)" : "rgba(15,30,26,0.28)";
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"
+      style={{ width: svgWidth, height: "auto", display: "block" }}
+      aria-label="Ilustração pendente para colar">
+      <path d="M 197 186 L 120 0" stroke={s2} strokeWidth="1" fill="none" strokeLinecap="round"/>
+      <path d="M 203 186 L 280 0" stroke={s2} strokeWidth="1" fill="none" strokeLinecap="round"/>
+      <circle cx="200" cy="193" r="7" stroke={s} strokeWidth="2" fill="none"/>
+      <circle cx="200" cy="300" r="100" stroke={s} strokeWidth="2.5" fill="none"/>
+      <circle cx="200" cy="300" r="90" stroke={s2} strokeWidth="1.5" fill="none"/>
+      <line x1="140" y1="245" x2="170" y2="215" stroke={s2} strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="155" y1="265" x2="180" y2="240" stroke={s2} strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="230" y1="360" x2="260" y2="330" stroke={s2} strokeWidth="1.5" strokeLinecap="round"/>
+      <g transform="translate(200, 300) scale(1.2) translate(-100, -125)">
+        <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120"
+          stroke={s} strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
+        <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108"
+          stroke={s2} strokeWidth="1" strokeLinecap="round"/>
+        <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)" stroke={s} strokeWidth="1.5" fill="none"/>
+      </g>
+    </svg>
+  );
+}
+
 const frames = [
   {
     size: "30×40", unit: "cm", price: "300",
@@ -119,6 +173,22 @@ const frames = [
     flowers: [
       { cx: 80, cy: 100, scale: 0.72, rotate: 6, opacity: 0.42 },
     ],
+  },
+  {
+    size: "Ornamento", unit: "~8 cm", price: "35",
+    desc: "Vidro soldado sem chumbo com prata. Circular, quadrado ou rectangular.",
+    addon: true,
+    badge: "Natal",
+    customSvg: "ornament",
+    svgWidth: "72px",
+  },
+  {
+    size: "Pendente", unit: "~3 cm", price: "35",
+    desc: "Vidro soldado sem chumbo com prata. Circular, quadrado ou rectangular.",
+    addon: true,
+    badge: "Joalharia",
+    customSvg: "pendant",
+    svgWidth: "56px",
   },
 ];
 
@@ -346,10 +416,10 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          {/* Cartões creme sobre fundo escuro — 4 colunas */}
-          <div className="pricing-4col" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px", marginBottom: "48px" }}>
+          {/* Cartões — 3 colunas: 2 linhas (3 quadros + 3 extras) */}
+          <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px", marginBottom: "48px" }}>
             {frames.map((item, i) => (
-              <Reveal key={i} delay={i * 0.1}>
+              <Reveal key={i} delay={(i % 3) * 0.1}>
                 <div style={{
                   backgroundColor: item.addon
                     ? "#3D6B5E"
@@ -360,11 +430,11 @@ export default function OpcoesClient() {
                   height: "100%",
                   boxSizing: "border-box",
                   borderRadius: "4px",
-                  border: item.addon ? "none" : "none",
+                  border: "none",
                   position: "relative",
                 }}>
 
-                  {/* Badge "Para oferecer" no card addon */}
+                  {/* Badge */}
                   {item.addon && (
                     <span style={{
                       position: "absolute", top: "16px", right: "16px",
@@ -374,7 +444,7 @@ export default function OpcoesClient() {
                       fontFamily: "Roboto, sans-serif", fontWeight: 600,
                       padding: "4px 10px", borderRadius: "100px",
                     }}>
-                      Para oferecer
+                      {item.badge || "Para oferecer"}
                     </span>
                   )}
 
@@ -383,13 +453,19 @@ export default function OpcoesClient() {
 
                     {/* SVG à esquerda */}
                     <div style={{ flexShrink: 0 }}>
-                      <FrameSVG
-                        vw={item.vw} vh={item.vh}
-                        flowers={item.flowers}
-                        svgWidth={item.svgWidth}
-                        label={item.size}
-                        dark={item.addon ? false : true}
-                      />
+                      {item.customSvg === "ornament" ? (
+                        <OrnamentSVG svgWidth={item.svgWidth} light={true} />
+                      ) : item.customSvg === "pendant" ? (
+                        <PendantSVG svgWidth={item.svgWidth} light={true} />
+                      ) : (
+                        <FrameSVG
+                          vw={item.vw} vh={item.vh}
+                          flowers={item.flowers}
+                          svgWidth={item.svgWidth}
+                          label={item.size}
+                          dark={item.addon ? false : true}
+                        />
+                      )}
                     </div>
 
                     {/* Dimensão + Preço + Desc à direita */}
@@ -789,14 +865,14 @@ export default function OpcoesClient() {
 
         /* Mobile: 1 coluna */
         @media (max-width: 640px) {
-          .pricing-4col {
+          .pricing-grid {
             grid-template-columns: 1fr !important;
           }
         }
 
         /* Tablet: 2 colunas */
         @media (min-width: 641px) and (max-width: 1023px) {
-          .pricing-4col {
+          .pricing-grid {
             grid-template-columns: repeat(2, 1fr) !important;
           }
         }
