@@ -344,93 +344,71 @@ export default function OpcoesClient() {
       {/* ════════════════════════════════════════════
           PRESENTES PARA OFERECER  (após tipos de fundo)
       ════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: "#F2EDE4", padding: "clamp(50px,8vw,90px) 24px" }}>
+      <section style={{ backgroundColor: "#F2EDE4", padding: "clamp(36px,5vw,56px) 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
-            <div style={{ marginBottom: "48px" }}>
+            <div style={{ marginBottom: "28px" }}>
               <Label>Para oferecer</Label>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 16px", lineHeight: 1.1 }}>
-                Presentes com<br/><em style={{ color: "#3D6B5E" }}>memória</em>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 400, margin: 0, lineHeight: 1.1 }}>
+                Presentes com <em style={{ color: "#3D6B5E" }}>memória</em>
               </h2>
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(26,26,26,0.55)", maxWidth: "460px" }}>
-                Para além do seu quadro principal, pode encomendar peças adicionais. Presentes pessoais e cheios de significado para quem ama.
-              </p>
             </div>
           </Reveal>
 
-          {/* Mini quadros — foto menor, lado a lado com texto */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 480px), 1fr))", gap: "clamp(32px, 5vw, 64px)", alignItems: "center", marginBottom: "clamp(50px,8vw,80px)", paddingBottom: "clamp(50px,8vw,80px)", borderBottom: "1px solid rgba(26,26,26,0.1)" }}>
-            <Reveal>
-              <div style={{ maxWidth: "320px", borderRadius: "12px", overflow: "hidden", boxShadow: "0 16px 48px rgba(26,26,26,0.1)" }}>
-                <img src="/miniquadros.webp" alt="Mini quadros 20x25cm de flores preservadas como presentes para padrinhos e damas de honor" loading="lazy"
-                  style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block" }} />
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div>
-                <Label>Mini quadros</Label>
-                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 4vw, 2.5rem)", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.1 }}>20×25 cm</h3>
-                <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.8rem", color: "#3D6B5E", margin: "0 0 20px" }}>90€</p>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.85, color: "rgba(26,26,26,0.65)", margin: "0 0 10px" }}>
-                  Molduras mais pequenas com as flores do seu bouquet. Uma forma bonita de partilhar um pedaço do seu dia especial com as pessoas que mais ama.
-                </p>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.78rem", letterSpacing: "0.5px", color: "rgba(26,26,26,0.4)", margin: "0 0 6px", fontStyle: "italic" }}>
-                  Só disponível em conjunto com a compra de um quadro maior.
-                </p>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1px", color: "#3D6B5E", margin: 0 }}>
-                  Emoldurado com vidro museu UltraVue®
-                </p>
-              </div>
-            </Reveal>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 440px), 1fr))", gap: "clamp(32px, 5vw, 48px)" }}>
+          {/* 3 cartões compactos em linha */}
+          <div className="presentes-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}>
             {[
               {
-                imgs: [
-                  { src: "/ornamento1.webp", alt: "Ornamento de natal rectangular com flores prensadas em vidro soldado com prata" },
-                  { src: "/ornamento2.webp", alt: "Ornamento de natal circular com flores prensadas em vidro soldado com prata" },
-                ],
-                badge: "Sazonal", badgeBg: "rgba(107,31,42,0.1)", badgeColor: "#6B1F2A",
-                title: "Ornamentos de Natal",
-                price: "Aprox. 8 cm — 35€",
-                desc: "Ornamento com vidro duplo soldado sem chumbo, com prata. Formatos à escolha: circular, quadrado ou rectangular.",
-                note: "Só disponível em conjunto com a compra de um quadro maior.",
+                img: "/miniquadros.webp",
+                alt: "Mini quadros 20x25cm de flores preservadas",
+                badge: "Mini quadro", badgeBg: "rgba(61,107,94,0.12)", badgeColor: "#3D6B5E",
+                title: "20×25 cm",
+                price: "90€",
+                desc: "Moldura com as flores do seu bouquet. Emoldurado com vidro museu UltraVue®.",
+                note: "Só com a compra de um quadro maior.",
               },
               {
-                imgs: [
-                  { src: "/pendente1.webp", alt: "Pendente de flores prensadas em vidro soldado com prata" },
-                  { src: "/pendente2.webp", alt: "Pendente floral circular em vidro soldado com prata" },
-                ],
-                badge: "Joalharia botânica", badgeBg: "rgba(58,48,80,0.1)", badgeColor: "#3A3050",
-                title: "Pendentes para Colar",
-                price: "Aprox. 3 cm — 35€",
-                desc: "Pendente com vidro duplo soldado sem chumbo, com prata. Formatos à escolha: circular, quadrado ou rectangular.",
-                note: "Só disponível em conjunto com a compra de um quadro maior.",
-              }
+                img: "/ornamento1.webp",
+                alt: "Ornamento de natal com flores prensadas",
+                badge: "Natal", badgeBg: "rgba(107,31,42,0.1)", badgeColor: "#6B1F2A",
+                title: "Ornamento de Natal",
+                price: "35€",
+                desc: "Vidro duplo soldado sem chumbo, com prata. ~8 cm.",
+                note: "Só com a compra de um quadro maior.",
+              },
+              {
+                img: "/pendente1.webp",
+                alt: "Pendente floral para colar",
+                badge: "Joalharia", badgeBg: "rgba(58,48,80,0.1)", badgeColor: "#3A3050",
+                title: "Pendente para Colar",
+                price: "35€",
+                desc: "Vidro duplo soldado sem chumbo, com prata. ~3 cm.",
+                note: "Só com a compra de um quadro maior.",
+              },
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.08}>
-                <div style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 8px 32px rgba(26,26,26,0.08)" }}>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", backgroundColor: "rgba(26,26,26,0.1)" }}>
-                    {item.imgs.map((img, j) => (
-                      <img key={j} src={img.src} alt={img.alt} loading="lazy"
-                        style={{ width: "100%", aspectRatio: "1", objectFit: "cover", display: "block" }} />
-                    ))}
+                <div style={{ borderRadius: "10px", overflow: "hidden", boxShadow: "0 6px 24px rgba(26,26,26,0.08)", backgroundColor: "#FAF7F0" }}>
+                  <div style={{ overflow: "hidden" }}>
+                    <img src={item.img} alt={item.alt} loading="lazy"
+                      style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block", transition: "transform 0.7s ease" }}
+                      className="presente-img" />
                   </div>
-                  <div style={{ padding: "24px 24px 28px", backgroundColor: "#FAF7F0" }}>
-                    <span style={{ display: "inline-block", backgroundColor: item.badgeBg, color: item.badgeColor, fontSize: "0.56rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "5px 12px", borderRadius: "100px", marginBottom: "12px" }}>
+                  <div style={{ padding: "18px 18px 20px" }}>
+                    <span style={{ display: "inline-block", backgroundColor: item.badgeBg, color: item.badgeColor, fontSize: "0.5rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "4px 10px", borderRadius: "100px", marginBottom: "10px" }}>
                       {item.badge}
                     </span>
-                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.4rem", fontWeight: 400, margin: "0 0 4px", color: "#1a1a1a" }}>
-                      {item.title}
-                    </h3>
-                    <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", color: "#3D6B5E", margin: "0 0 12px" }}>
-                      {item.price}
-                    </p>
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.85rem", lineHeight: 1.7, color: "rgba(26,26,26,0.6)", margin: "0 0 8px" }}>
+                    <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "8px", marginBottom: "8px" }}>
+                      <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", fontWeight: 400, margin: 0, color: "#1a1a1a", lineHeight: 1.2 }}>
+                        {item.title}
+                      </h3>
+                      <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", color: "#3D6B5E", flexShrink: 0 }}>
+                        {item.price}
+                      </span>
+                    </div>
+                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.78rem", lineHeight: 1.6, color: "rgba(26,26,26,0.6)", margin: "0 0 6px" }}>
                       {item.desc}
                     </p>
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.75rem", color: "rgba(26,26,26,0.38)", margin: 0, fontStyle: "italic" }}>
+                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.72rem", color: "rgba(26,26,26,0.35)", margin: 0, fontStyle: "italic" }}>
                       {item.note}
                     </p>
                   </div>
@@ -447,20 +425,10 @@ export default function OpcoesClient() {
       <section style={{ backgroundColor: "#FAF7F0", borderTop: "1px solid rgba(26,26,26,0.07)", padding: "clamp(40px,6vw,64px) 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "12px 24px", marginBottom: "28px" }}>
-              <Label>Personalização extra</Label>
-            </div>
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "28px" }}>
+            <div style={{ marginBottom: "28px" }}>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", fontWeight: 400, margin: 0, lineHeight: 1.1 }}>
                 Pode incluir <em style={{ color: "#3D6B5E" }}>elementos especiais</em> no seu quadro
               </h2>
-              <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#3D6B5E", color: "#FAF7F0", padding: "12px 28px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.7rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "44px", flexShrink: 0 }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#2F5548"; }}
-                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#3D6B5E"; }}
-              >
-                Saber mais
-              </a>
             </div>
           </Reveal>
           <Reveal delay={0.06}>
@@ -855,6 +823,14 @@ export default function OpcoesClient() {
           outline: 3px solid #3D6B5E;
           outline-offset: 4px;
           border-radius: 4px;
+        }
+
+        .presente-img:hover { transform: scale(1.04); }
+
+        @media (max-width: 640px) {
+          .presentes-grid {
+            grid-template-columns: 1fr !important;
+          }
         }
 
         /* Mobile: 1 coluna */
