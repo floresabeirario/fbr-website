@@ -87,7 +87,6 @@ const frames = [
   {
     size: "30×40", unit: "cm", price: "300",
     desc: "Perfeito para peças mais íntimas ou como elemento de conjunto.",
-    // SVG pequeno, proporção 3:4, 1 flor centrada
     vw: 180, vh: 240, svgWidth: "88px",
     flowers: [
       { cx: 90, cy: 120, scale: 0.9, rotate: -8, opacity: 0.45 },
@@ -96,7 +95,6 @@ const frames = [
   {
     size: "40×50", unit: "cm", price: "400",
     desc: "O formato mais escolhido. Equilibra presença e elegância.",
-    // SVG médio, proporção 4:5, 2 flores
     vw: 200, vh: 250, svgWidth: "118px",
     flowers: [
       { cx: 82,  cy: 118, scale: 0.95, rotate: -15, opacity: 0.48 },
@@ -106,12 +104,20 @@ const frames = [
   {
     size: "50×70", unit: "cm", price: "500",
     desc: "Uma peça de destaque, que domina qualquer parede.",
-    // SVG grande, proporção 5:7, 3 flores
     vw: 200, vh: 280, svgWidth: "148px",
     flowers: [
       { cx: 100, cy: 90,  scale: 1.0,  rotate: -10, opacity: 0.5  },
       { cx: 62,  cy: 168, scale: 0.82, rotate:  18, opacity: 0.38 },
       { cx: 148, cy: 188, scale: 0.76, rotate: -22, opacity: 0.32 },
+    ],
+  },
+  {
+    size: "20×25", unit: "cm", price: "90",
+    desc: "Só disponível em conjunto com a compra de um quadro maior.",
+    addon: true,
+    vw: 160, vh: 200, svgWidth: "62px",
+    flowers: [
+      { cx: 80, cy: 100, scale: 0.72, rotate: 6, opacity: 0.42 },
     ],
   },
 ];
@@ -322,8 +328,7 @@ export default function OpcoesClient() {
       </section>
 
       {/* ════════════════════════════════════════════
-          TAMANHOS E PREÇOS — redesenhado
-          SVG integrado em cada cartão, sem "mais popular"
+          TAMANHOS E PREÇOS — 4 cartões (3 principais + 1 addon)
       ════════════════════════════════════════════ */}
       <section style={{ backgroundColor: "#0F1E1A", padding: "clamp(50px,8vw,90px) 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
@@ -341,19 +346,37 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          {/* Cartões creme sobre fundo escuro */}
-          <div className="pricing-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px", marginBottom: "48px" }}>
+          {/* Cartões creme sobre fundo escuro — 4 colunas */}
+          <div className="pricing-4col" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px", marginBottom: "48px" }}>
             {frames.map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div style={{
-                  backgroundColor: i === 0 ? "#FAF7F0" : i === 1 ? "#F2EDE4" : "#EAE3D8",
+                  backgroundColor: item.addon
+                    ? "rgba(250,247,240,0.06)"
+                    : i === 0 ? "#FAF7F0" : i === 1 ? "#F2EDE4" : "#EAE3D8",
                   padding: "32px 28px 32px",
                   display: "flex",
                   flexDirection: "column",
                   height: "100%",
                   boxSizing: "border-box",
                   borderRadius: "4px",
+                  border: item.addon ? "1px solid rgba(184,149,74,0.35)" : "none",
+                  position: "relative",
                 }}>
+
+                  {/* Badge "Para oferecer" no card addon */}
+                  {item.addon && (
+                    <span style={{
+                      position: "absolute", top: "16px", right: "16px",
+                      backgroundColor: "rgba(184,149,74,0.18)",
+                      color: "#C4A55A",
+                      fontSize: "0.5rem", letterSpacing: "2px", textTransform: "uppercase",
+                      fontFamily: "Roboto, sans-serif", fontWeight: 600,
+                      padding: "4px 10px", borderRadius: "100px",
+                    }}>
+                      Para oferecer
+                    </span>
+                  )}
 
                   {/* SVG + texto lado a lado */}
                   <div style={{ display: "flex", alignItems: "flex-start", gap: "20px", marginBottom: "20px" }}>
@@ -365,7 +388,7 @@ export default function OpcoesClient() {
                         flowers={item.flowers}
                         svgWidth={item.svgWidth}
                         label={item.size}
-                        dark={true}
+                        dark={!item.addon}
                       />
                     </div>
 
@@ -373,58 +396,76 @@ export default function OpcoesClient() {
                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", paddingTop: "8px" }}>
                       <p style={{
                         fontFamily: "'TAN-MEMORIES', serif",
-                        fontSize: "clamp(1.7rem, 2.6vw, 2.4rem)",
-                        color: "#0F1E1A",
+                        fontSize: item.addon ? "clamp(1.2rem, 2vw, 1.7rem)" : "clamp(1.7rem, 2.6vw, 2.4rem)",
+                        color: item.addon ? "#FAF7F0" : "#0F1E1A",
                         margin: "0",
                         lineHeight: 1,
                       }}>
                         {item.size}
-                        <span style={{ fontSize: "0.8rem", fontFamily: "Roboto, sans-serif", fontWeight: 400, marginLeft: "4px", color: "rgba(15,30,26,0.4)" }}>
+                        <span style={{ fontSize: "0.8rem", fontFamily: "Roboto, sans-serif", fontWeight: 400, marginLeft: "4px", color: item.addon ? "rgba(250,247,240,0.4)" : "rgba(15,30,26,0.4)" }}>
                           {item.unit}
                         </span>
                       </p>
                       <p style={{
                         fontFamily: "'TAN-MEMORIES', serif",
-                        fontSize: "clamp(1.2rem, 2vw, 1.6rem)",
-                        color: "#3D6B5E",
+                        fontSize: item.addon ? "clamp(1rem, 1.8vw, 1.3rem)" : "clamp(1.2rem, 2vw, 1.6rem)",
+                        color: item.addon ? "#C4A55A" : "#3D6B5E",
                         margin: "8px 0 0",
                       }}>
                         {item.price}€
                       </p>
                     </div>
                   </div>
+
+                  {/* Descrição */}
+                  <p style={{
+                    fontFamily: "Roboto, sans-serif",
+                    fontWeight: 300,
+                    fontSize: "0.78rem",
+                    lineHeight: 1.65,
+                    color: item.addon ? "rgba(250,247,240,0.45)" : "rgba(15,30,26,0.5)",
+                    margin: 0,
+                    fontStyle: item.addon ? "italic" : "normal",
+                  }}>
+                    {item.desc}
+                  </p>
                 </div>
               </Reveal>
             ))}
           </div>
 
-          {/* Nota focal — comum aos 3 tamanhos */}
+          {/* Nota focal — vidro museu — com mais destaque */}
           <Reveal>
             <div style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              gap: "16px",
+              gap: "18px",
               margin: "0 0 48px",
-              padding: "20px 28px",
-              border: "1px solid rgba(250,247,240,0.12)",
+              padding: "22px 32px",
+              backgroundColor: "rgba(184,149,74,0.1)",
+              border: "1px solid rgba(184,149,74,0.3)",
               borderRadius: "4px",
             }}>
               {/* Ícone vidro */}
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, opacity: 0.7 }}>
-                <rect x="1.5" y="1.5" width="15" height="15" rx="1" stroke="rgba(250,247,240,0.7)" strokeWidth="1.2" fill="none"/>
-                <line x1="4" y1="6" x2="8" y2="2" stroke="rgba(250,247,240,0.5)" strokeWidth="1" strokeLinecap="round"/>
-                <line x1="9" y1="5" x2="11" y2="3" stroke="rgba(250,247,240,0.35)" strokeWidth="1" strokeLinecap="round"/>
+              <svg width="22" height="22" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+                <rect x="1.5" y="1.5" width="15" height="15" rx="1" stroke="#C4A55A" strokeWidth="1.4" fill="none"/>
+                <line x1="4" y1="6" x2="8" y2="2" stroke="rgba(196,165,90,0.7)" strokeWidth="1.1" strokeLinecap="round"/>
+                <line x1="9" y1="5" x2="11" y2="3" stroke="rgba(196,165,90,0.5)" strokeWidth="1.1" strokeLinecap="round"/>
               </svg>
               <p style={{
                 fontFamily: "Roboto, sans-serif",
-                fontWeight: 300,
-                fontSize: "0.82rem",
-                color: "rgba(250,247,240,0.65)",
+                fontWeight: 400,
+                fontSize: "0.88rem",
+                color: "rgba(250,247,240,0.8)",
                 margin: 0,
-                letterSpacing: "0.3px",
+                letterSpacing: "0.2px",
               }}>
-                Todos os quadros são emoldurados com <strong style={{ fontWeight: 600, color: "rgba(250,247,240,0.9)" }}>vidro museu UltraVue®</strong>, praticamente invisível
+                Todos os quadros são emoldurados com{" "}
+                <strong style={{ fontWeight: 700, color: "#C4A55A" }}>
+                  vidro museu UltraVue®
+                </strong>
+                {" "}— praticamente invisível, com proteção UV70
               </p>
             </div>
           </Reveal>
@@ -461,6 +502,97 @@ export default function OpcoesClient() {
               </a>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════
+          ADD-ONS  (movido para aqui, depois de Tamanhos & Preços)
+      ════════════════════════════════════════════ */}
+      <section style={{ backgroundColor: "#F2EDE4", padding: "clamp(50px,8vw,90px) 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ marginBottom: "48px" }}>
+              <Label>Extras</Label>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 16px", lineHeight: 1.1 }}>
+                Add-ons &<br/><em style={{ color: "#3D6B5E" }}>Presentes</em>
+              </h2>
+              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(26,26,26,0.55)", maxWidth: "460px" }}>
+                Para além do seu quadro principal, pode encomendar peças adicionais. Presentes pessoais e cheios de significado para quem ama.
+              </p>
+            </div>
+          </Reveal>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 480px), 1fr))", gap: "clamp(40px, 6vw, 80px)", alignItems: "center", marginBottom: "clamp(50px,8vw,80px)", paddingBottom: "clamp(50px,8vw,80px)", borderBottom: "1px solid rgba(26,26,26,0.1)" }}>
+            <Reveal>
+              <div style={{ aspectRatio: "4/3", overflow: "hidden", borderRadius: "12px", boxShadow: "0 16px 48px rgba(26,26,26,0.1)" }}>
+                <img src="/miniquadros.webp" alt="Mini quadros 20x25cm de flores preservadas como presentes para padrinhos e damas de honor" loading="lazy"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div>
+                <Label>Para oferecer</Label>
+                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 4vw, 2.5rem)", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.1 }}>Mini Quadros</h3>
+                <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.8rem", color: "#3D6B5E", margin: "0 0 24px" }}>20×25 cm — 90€</p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.85, color: "rgba(26,26,26,0.65)", margin: "0 0 16px" }}>
+                  Molduras mais pequenas com as flores do seu bouquet. Uma forma bonita de partilhar um pedaço do seu dia especial com as pessoas que mais ama.
+                </p>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1px", color: "#3D6B5E", margin: 0 }}>
+                  Emoldurado com vidro museu UltraVue®
+                </p>
+              </div>
+            </Reveal>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 440px), 1fr))", gap: "clamp(32px, 5vw, 48px)" }}>
+            {[
+              {
+                imgs: [
+                  { src: "/ornamento1.webp", alt: "Ornamento de natal rectangular com flores prensadas em vidro soldado com prata" },
+                  { src: "/ornamento2.webp", alt: "Ornamento de natal circular com flores prensadas em vidro soldado com prata" },
+                ],
+                badge: "Sazonal", badgeBg: "rgba(184,149,74,0.15)", badgeColor: "#96722A",
+                title: "Ornamentos de Natal",
+                price: "Aprox. 8 cm — 35€",
+                desc: "Vidro sobre vidro soldado sem chumbo com prata. Formatos à escolha: circular, quadrado ou rectangular.",
+              },
+              {
+                imgs: [
+                  { src: "/pendente1.webp", alt: "Pendente de flores prensadas em vidro soldado com prata" },
+                  { src: "/pendente2.webp", alt: "Pendente floral circular em vidro soldado com prata" },
+                ],
+                badge: "Joalharia botânica", badgeBg: "rgba(61,107,94,0.12)", badgeColor: "#3D6B5E",
+                title: "Pendentes para Colar",
+                price: "Aprox. 3 cm — 35€",
+                desc: "Vidro sobre vidro soldado sem chumbo com prata. Formatos à escolha: circular, quadrado ou rectangular.",
+              }
+            ].map((item, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 8px 32px rgba(26,26,26,0.08)" }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", backgroundColor: "rgba(26,26,26,0.1)" }}>
+                    {item.imgs.map((img, j) => (
+                      <img key={j} src={img.src} alt={img.alt} loading="lazy"
+                        style={{ width: "100%", aspectRatio: "1", objectFit: "cover", display: "block" }} />
+                    ))}
+                  </div>
+                  <div style={{ padding: "28px 28px 32px", backgroundColor: "#FAF7F0" }}>
+                    <span style={{ display: "inline-block", backgroundColor: item.badgeBg, color: item.badgeColor, fontSize: "0.56rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "5px 12px", borderRadius: "100px", marginBottom: "14px" }}>
+                      {item.badge}
+                    </span>
+                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.5rem", fontWeight: 400, margin: "0 0 6px", color: "#1a1a1a" }}>
+                      {item.title}
+                    </h3>
+                    <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.2rem", color: "#3D6B5E", margin: "0 0 14px" }}>
+                      {item.price}
+                    </p>
+                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.7, color: "rgba(26,26,26,0.6)", margin: 0 }}>
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -557,97 +689,6 @@ export default function OpcoesClient() {
             </div>
           </div>
         </Reveal>
-      </section>
-
-      {/* ════════════════════════════════════════════
-          ADD-ONS
-      ════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: "#F2EDE4", padding: "clamp(50px,8vw,90px) 24px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <Reveal>
-            <div style={{ marginBottom: "48px" }}>
-              <Label>Extras</Label>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 16px", lineHeight: 1.1 }}>
-                Add-ons &<br/><em style={{ color: "#3D6B5E" }}>Presentes</em>
-              </h2>
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(26,26,26,0.55)", maxWidth: "460px" }}>
-                Para além do seu quadro principal, pode encomendar peças adicionais. Presentes pessoais e cheios de significado para quem ama.
-              </p>
-            </div>
-          </Reveal>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 480px), 1fr))", gap: "clamp(40px, 6vw, 80px)", alignItems: "center", marginBottom: "clamp(50px,8vw,80px)", paddingBottom: "clamp(50px,8vw,80px)", borderBottom: "1px solid rgba(26,26,26,0.1)" }}>
-            <Reveal>
-              <div style={{ aspectRatio: "4/3", overflow: "hidden", borderRadius: "12px", boxShadow: "0 16px 48px rgba(26,26,26,0.1)" }}>
-                <img src="/miniquadros.webp" alt="Mini quadros 20x25cm de flores preservadas como presentes para padrinhos e damas de honor" loading="lazy"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div>
-                <Label>Para oferecer</Label>
-                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 4vw, 2.5rem)", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.1 }}>Mini Quadros</h3>
-                <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.8rem", color: "#3D6B5E", margin: "0 0 24px" }}>20×25 cm — 90€</p>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.85, color: "rgba(26,26,26,0.65)", margin: "0 0 16px" }}>
-                  Molduras mais pequenas com as flores do seu bouquet. Uma forma bonita de partilhar um pedaço do seu dia especial com as pessoas que mais ama.
-                </p>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1px", color: "#3D6B5E", margin: 0 }}>
-                  Emoldurado com vidro museu UltraVue®
-                </p>
-              </div>
-            </Reveal>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 440px), 1fr))", gap: "clamp(32px, 5vw, 48px)" }}>
-            {[
-              {
-                imgs: [
-                  { src: "/ornamento1.webp", alt: "Ornamento de natal rectangular com flores prensadas em vidro soldado com prata" },
-                  { src: "/ornamento2.webp", alt: "Ornamento de natal circular com flores prensadas em vidro soldado com prata" },
-                ],
-                badge: "Sazonal", badgeBg: "rgba(184,149,74,0.15)", badgeColor: "#96722A",
-                title: "Ornamentos de Natal",
-                price: "Aprox. 8 cm — 35€",
-                desc: "Vidro sobre vidro soldado sem chumbo com prata. Formatos à escolha: circular, quadrado ou rectangular.",
-              },
-              {
-                imgs: [
-                  { src: "/pendente1.webp", alt: "Pendente de flores prensadas em vidro soldado com prata" },
-                  { src: "/pendente2.webp", alt: "Pendente floral circular em vidro soldado com prata" },
-                ],
-                badge: "Joalharia botânica", badgeBg: "rgba(61,107,94,0.12)", badgeColor: "#3D6B5E",
-                title: "Pendentes para Colar",
-                price: "Aprox. 3 cm — 35€",
-                desc: "Vidro sobre vidro soldado sem chumbo com prata. Formatos à escolha: circular, quadrado ou rectangular.",
-              }
-            ].map((item, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <div style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 8px 32px rgba(26,26,26,0.08)" }}>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", backgroundColor: "rgba(26,26,26,0.1)" }}>
-                    {item.imgs.map((img, j) => (
-                      <img key={j} src={img.src} alt={img.alt} loading="lazy"
-                        style={{ width: "100%", aspectRatio: "1", objectFit: "cover", display: "block" }} />
-                    ))}
-                  </div>
-                  <div style={{ padding: "28px 28px 32px", backgroundColor: "#FAF7F0" }}>
-                    <span style={{ display: "inline-block", backgroundColor: item.badgeBg, color: item.badgeColor, fontSize: "0.56rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "5px 12px", borderRadius: "100px", marginBottom: "14px" }}>
-                      {item.badge}
-                    </span>
-                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.5rem", fontWeight: 400, margin: "0 0 6px", color: "#1a1a1a" }}>
-                      {item.title}
-                    </h3>
-                    <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.2rem", color: "#3D6B5E", margin: "0 0 14px" }}>
-                      {item.price}
-                    </p>
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.7, color: "rgba(26,26,26,0.6)", margin: 0 }}>
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ════════════════════════════════════════════
@@ -748,9 +789,17 @@ export default function OpcoesClient() {
           border-radius: 4px;
         }
 
+        /* Mobile: 1 coluna */
         @media (max-width: 640px) {
-          .pricing-3col {
+          .pricing-4col {
             grid-template-columns: 1fr !important;
+          }
+        }
+
+        /* Tablet: 2 colunas */
+        @media (min-width: 641px) and (max-width: 1023px) {
+          .pricing-4col {
+            grid-template-columns: repeat(2, 1fr) !important;
           }
         }
       `}</style>
