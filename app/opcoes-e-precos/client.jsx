@@ -578,37 +578,25 @@ export default function OpcoesClient() {
           </Reveal>
 
           <Reveal>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "20px", padding: "28px 36px", backgroundColor: "rgba(250,247,240,0.07)", border: "1px solid rgba(250,247,240,0.18)", borderRadius: "4px", marginBottom: "40px" }}>
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.7, color: "rgba(250,247,240,0.7)", margin: 0 }}>
-                Pretende outro formato ou uma composição diferente?
-              </p>
+            <div style={{ display: "flex", alignItems: "center", gap: "28px", padding: "0 0 40px", borderBottom: "1px solid rgba(250,247,240,0.12)", marginBottom: "40px" }}>
+              <div style={{ flex: 1 }}>
+                <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem, 2vw, 1.3rem)", fontWeight: 400, color: "rgba(250,247,240,0.6)", margin: 0, lineHeight: 1.4 }}>
+                  Pretende outro formato<br/>ou uma composição diferente?
+                </p>
+              </div>
               <a href="/contactos"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#0F1E1A", padding: "12px 28px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.72rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "44px", flexShrink: 0 }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }}
-                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "10px", color: "#FAF7F0", fontFamily: "Roboto, sans-serif", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
+                onMouseEnter={e => e.currentTarget.style.opacity = "0.65"}
+                onMouseLeave={e => e.currentTarget.style.opacity = "1"}
               >
                 Falar connosco
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="#FAF7F0" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </a>
             </div>
           </Reveal>
 
-          <Reveal delay={0.1}>
-            <div style={{ textAlign: "center", padding: "48px 32px", backgroundColor: "rgba(250,247,240,0.04)", borderRadius: "8px" }}>
-              <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.4rem, 3vw, 2rem)", fontWeight: 400, margin: "0 0 16px", lineHeight: 1.2, color: "#FAF7F0" }}>
-                Pronta para <em style={{ color: "#8BA888" }}>preservar</em> o seu bouquet?
-              </h3>
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(250,247,240,0.5)", margin: "0 0 28px", maxWidth: "480px", marginLeft: "auto", marginRight: "auto" }}>
-                Os bouquets devem ser enviados dentro de poucos dias após o evento.
-              </p>
-              <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#0F1E1A", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "56px" }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }}
-                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}
-              >
-                Reservar Agora
-              </a>
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -631,26 +619,30 @@ export default function OpcoesClient() {
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1px", backgroundColor: "rgba(26,26,26,0.07)", marginBottom: "40px" }}>
             {[
-              { img: "/molduranogueira.webp", title: "Moldura de Nogueira", desc: "Folheada de nogueira, produzida artesanalmente em Coimbra por carpinteiros locais. Feita à medida para cada peça." },
-              { img: "/moldurabranca.webp",   title: "Moldura Lacada a Branco", desc: "Madeira lacada a branco. Minimalista e intemporal, adapta-se a qualquer decoração." },
-              { img: "/moldurapreta.webp",    title: "Moldura Lacada a Preto", desc: "Madeira lacada a preto. Elegante e contemporânea, realça as cores das flores." },
+              { img: "/molduranogueira.webp", title: "Moldura de Nogueira" },
+              { img: "/moldurabranca.webp",   title: "Moldura Lacada a Branco" },
+              { img: "/moldurapreta.webp",    title: "Moldura Lacada a Preto" },
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.07}>
                 <div style={{ position: "relative", overflow: "hidden", minHeight: "260px" }}>
                   <img src={item.img} alt={item.title} loading="lazy"
                     style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", position: "absolute", inset: 0 }} />
-                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.82) 0%, rgba(15,30,26,0.1) 50%, transparent 100%)" }} />
-                  <div style={{ position: "relative", padding: "24px 24px 0", display: "flex", flexDirection: "column", justifyContent: "flex-start", minHeight: "260px" }}>
-                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.05rem", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.2, color: "#FAF7F0" }}>
+                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.72) 0%, rgba(15,30,26,0.05) 45%, transparent 100%)" }} />
+                  <div style={{ position: "relative", padding: "22px 22px 0", minHeight: "260px" }}>
+                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.05rem", fontWeight: 400, margin: 0, lineHeight: 1.2, color: "#FAF7F0", textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}>
                       {item.title}
                     </h3>
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.8rem", lineHeight: 1.65, color: "rgba(250,247,240,0.65)", margin: 0 }}>
-                      {item.desc}
-                    </p>
                   </div>
                 </div>
               </Reveal>
             ))}
+          </div>
+
+          <Reveal>
+            <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.82rem", lineHeight: 1.7, color: "rgba(26,26,26,0.5)", margin: "0 0 32px", fontStyle: "italic" }}>
+              Todas as molduras são feitas à medida para cada peça, em Coimbra.
+            </p>
+          </Reveal>
           </div>
 
           <Reveal>
