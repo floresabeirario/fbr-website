@@ -810,9 +810,18 @@ export default function Home() {
       ════════════════════════════════════════════ */}
       <section
         aria-label="Parceria solidária com a APCC Coimbra"
-        style={{ padding: "80px 20px", backgroundColor: "#1E2D2A", position: "relative", overflow: "hidden" }}
+        style={{
+          padding: "96px 20px",
+          background: "linear-gradient(160deg, #1E2D2A 0%, #2D4A3E 50%, #1E2D2A 100%)",
+          position: "relative", overflow: "hidden"
+        }}
       >
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+        <div aria-hidden="true" style={{
+          position: "absolute", inset: 0, opacity: 0.04,
+          backgroundImage: `repeating-linear-gradient(45deg, #8BA888 0px, #8BA888 1px, transparent 1px, transparent 40px)`,
+          pointerEvents: "none"
+        }}/>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <div className="apcc-grid">
 
             {/* Texto — primeiro no mobile */}
@@ -853,7 +862,7 @@ export default function Home() {
               <span className="section-eyebrow" style={{ color: "#8BA888" }}>Parceria solidária</span>
               <h2 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
-                fontSize: "clamp(2rem,4vw,3rem)",
+                fontSize: "clamp(2.2rem,4.5vw,3.4rem)",
                 color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1
               }}>
                 Cada detalhe<br/>
@@ -880,9 +889,9 @@ export default function Home() {
                   margin: 0, color: "#8BA888", fontSize: "0.87rem",
                   lineHeight: 1.7, fontStyle: "italic"
                 }}>
-                  "A marca Mão Doida valoriza a criatividade e a qualidade,
+                  A marca Mão Doida valoriza a criatividade e a qualidade,
                   desafiando estigmas e valorizando a diversidade e singularidade
-                  de cada ser humano."
+                  de cada ser humano.
                 </p>
               </blockquote>
 
