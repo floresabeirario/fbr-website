@@ -806,78 +806,79 @@ export default function Home() {
       </section>
 
       {/* ════════════════════════════════════════════
-          6. APCC — Componente Solidária (compact)
+          6. APCC — Componente Solidária
       ════════════════════════════════════════════ */}
       <section
         aria-label="Parceria solidária com a APCC Coimbra"
-        style={{ padding: "72px 20px", backgroundColor: "#FAF7F0" }}
+        style={{ padding: "80px 20px", backgroundColor: "#1E2D2A", position: "relative", overflow: "hidden" }}
       >
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-
           <div className="apcc-grid">
 
-            {/* Texto — aparece primeiro no mobile */}
+            {/* Texto — primeiro no mobile */}
             <motion.div
               className="apcc-text"
-              initial={{ opacity: 0, x: -28 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              {/* Logo + badge inline */}
-              <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "20px" }}>
+              {/* Logo + nome com separador */}
+              <div style={{
+                display: "flex", alignItems: "center", gap: "12px",
+                marginBottom: "28px", paddingBottom: "22px",
+                borderBottom: "1px solid rgba(139,168,136,0.15)"
+              }}>
                 <div style={{
-                  width: "52px", height: "52px", borderRadius: "12px",
-                  backgroundColor: "#fff", flexShrink: 0,
+                  width: "46px", height: "46px", borderRadius: "10px",
+                  backgroundColor: "#FAF7F0", flexShrink: 0,
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  boxShadow: "0 2px 12px rgba(30,45,42,0.1)", overflow: "hidden"
+                  overflow: "hidden"
                 }}>
-                  <img src="/apcc.webp" alt="Logótipo APCC"
-                    style={{ width: "42px", height: "42px", objectFit: "contain" }}/>
+                  <img src="/apcc.webp" alt="Logótipo da Associação de Paralisia Cerebral de Coimbra"
+                    style={{ width: "36px", height: "36px", objectFit: "contain" }}/>
                 </div>
                 <div>
                   <p style={{
-                    margin: 0, fontWeight: "700", color: "#1E2D2A",
-                    fontSize: "0.9rem", fontFamily: "Roboto, sans-serif", lineHeight: 1.2
-                  }}>APCC Coimbra</p>
+                    margin: 0, fontWeight: "700", color: "#FAF7F0",
+                    fontSize: "0.85rem", fontFamily: "Roboto, sans-serif", lineHeight: 1.25
+                  }}>Associação de Paralisia Cerebral de Coimbra</p>
                   <p style={{
-                    margin: 0, color: "#8BA888", fontSize: "0.8rem",
+                    margin: "3px 0 0", color: "#8BA888", fontSize: "0.77rem",
                     fontFamily: "Roboto, sans-serif"
-                  }}>Oficina de Tecelagem de Almalaguês e Costura</p>
+                  }}>Oficina de Tecelagem de Almalaguês e Costura · Marca Mão Doida</p>
                 </div>
               </div>
 
-              <span className="section-eyebrow">Parceria solidária</span>
+              <span className="section-eyebrow" style={{ color: "#8BA888" }}>Parceria solidária</span>
               <h2 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(2rem,4vw,3rem)",
-                color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1
+                color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1
               }}>
                 Cada detalhe<br/>
-                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>tem um propósito</em>
+                <em style={{ fontStyle: "italic", color: "#8BA888" }}>tem um propósito</em>
               </h2>
 
               <p style={{
-                color: "#5A6B60", lineHeight: 1.8,
-                fontSize: "1rem", margin: "0 0 8px"
+                color: "rgba(250,247,240,0.7)", lineHeight: 1.82,
+                fontSize: "0.97rem", margin: "0 0 18px"
               }}>
                 Parte da embalagem do seu quadro é feita à mão pelos utentes da APCC Coimbra,
                 especificamente pela Oficina de Tecelagem de Almalaguês e Costura.
                 Cada peça é única, produzida com cuidado especialmente para a Flores à Beira-Rio,
-                e integra a marca <strong style={{ color: "#1E2D2A" }}>Mão Doida</strong>.
+                e integra a marca <strong style={{ color: "#FAF7F0" }}>Mão Doida</strong>.
               </p>
 
-              {/* Citação Mão Doida */}
               <blockquote style={{
-                margin: "16px 0 24px",
-                padding: "14px 18px",
-                borderLeft: "3px solid #8BA888",
+                margin: "0 0 28px", padding: "11px 15px",
+                borderLeft: "2px solid #8BA888",
                 background: "rgba(139,168,136,0.07)",
-                borderRadius: "0 10px 10px 0"
+                borderRadius: "0 8px 8px 0"
               }}>
                 <p style={{
-                  margin: 0, color: "#3D6B5E", fontSize: "0.9rem",
-                  lineHeight: 1.7, fontStyle: "italic", fontFamily: "Roboto, sans-serif"
+                  margin: 0, color: "#8BA888", fontSize: "0.87rem",
+                  lineHeight: 1.7, fontStyle: "italic"
                 }}>
                   "A marca Mão Doida valoriza a criatividade e a qualidade,
                   desafiando estigmas e valorizando a diversidade e singularidade
@@ -885,77 +886,90 @@ export default function Home() {
                 </p>
               </blockquote>
 
-              {/* 3 tópicos compactos */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-                {[
-                  { icon: "♻️", title: "Pensado para reutilizar", desc: "O saco protege o quadro e pode depois ser usado para guardar roupa, coisas de praia, o que couber." },
-                  { icon: "💜", title: "Trabalho com valor social", desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da APCC." },
-                  { icon: "🌿", title: "Arte consciente e local", desc: "Artesanato português, embalagem sem desperdício, flores preservadas para durar décadas." }
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.15 + i * 0.08, duration: 0.5 }}
-                    style={{
-                      display: "flex", alignItems: "flex-start", gap: "14px",
-                      padding: "14px 0",
-                      borderBottom: i < 2 ? "1px solid rgba(61,107,94,0.1)" : "none"
-                    }}
-                  >
-                    <span style={{ fontSize: "1.15rem", marginTop: "2px", flexShrink: 0 }} aria-hidden="true">{item.icon}</span>
-                    <div>
-                      <p style={{
-                        margin: "0 0 2px", fontWeight: "700", color: "#1E2D2A",
-                        fontSize: "0.95rem", fontFamily: "Roboto, sans-serif"
-                      }}>{item.title}</p>
-                      <p style={{ margin: 0, color: "#5A6B60", fontSize: "0.9rem", lineHeight: 1.6 }}>
-                        {item.desc}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+              {/* 3 tópicos */}
+              {[
+                { icon: "♻️", title: "Pensado para reutilizar", desc: "O saco protege o quadro e pode depois ser usado para guardar roupa, coisas de praia, o que couber." },
+                { icon: "💜", title: "Trabalho com valor social", desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da APCC." },
+                { icon: "🌿", title: "Arte consciente e local", desc: "Artesanato português, embalagem sem desperdício, flores preservadas para durar décadas." }
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.12 + i * 0.08, duration: 0.5 }}
+                  style={{
+                    display: "flex", alignItems: "flex-start", gap: "14px",
+                    padding: "13px 0",
+                    borderBottom: i < 2 ? "1px solid rgba(139,168,136,0.1)" : "none"
+                  }}
+                >
+                  <span style={{ fontSize: "1.05rem", marginTop: "3px", flexShrink: 0 }} aria-hidden="true">{item.icon}</span>
+                  <div>
+                    <p style={{
+                      margin: "0 0 2px", fontWeight: "700", color: "#FAF7F0",
+                      fontSize: "0.9rem", fontFamily: "Roboto, sans-serif"
+                    }}>{item.title}</p>
+                    <p style={{ margin: 0, color: "rgba(250,247,240,0.55)", fontSize: "0.86rem", lineHeight: 1.6 }}>
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
 
-            {/* Foto — aparece por baixo no mobile */}
+            {/* Foto em moldura inclinada */}
             <motion.div
               className="apcc-visual"
-              initial={{ opacity: 0, x: 28 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-              style={{ position: "relative" }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
             >
-              <div style={{
-                borderRadius: "20px", overflow: "hidden",
-                boxShadow: "0 20px 56px rgba(30,45,42,0.12)",
-                aspectRatio: "4/5"
-              }}>
-                <img
-                  src="/oficinaapcc.webp"
-                  alt="Utentes da Oficina de Tecelagem de Almalaguês e Costura da APCC Coimbra a produzir as embalagens"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                  loading="lazy"
-                />
-              </div>
-              {/* Pill sobreposta na foto */}
-              <div style={{
-                position: "absolute", bottom: "20px", left: "20px", right: "20px",
-                backgroundColor: "rgba(30,45,42,0.82)",
-                backdropFilter: "blur(12px)",
-                borderRadius: "14px", padding: "14px 18px",
-                display: "flex", alignItems: "center", gap: "12px"
-              }}>
-                <span style={{ fontSize: "1.3rem", flexShrink: 0 }} aria-hidden="true">🧵</span>
-                <p style={{
-                  margin: 0, color: "#FAF7F0", fontSize: "0.85rem",
-                  lineHeight: 1.4, fontFamily: "Roboto, sans-serif"
+              <div style={{ position: "relative", maxWidth: "340px", width: "100%" }}>
+
+                {/* Sombra deslocada — dá profundidade */}
+                <div aria-hidden="true" style={{
+                  position: "absolute", inset: 0,
+                  transform: "translate(12px, 12px) rotate(2deg)",
+                  borderRadius: "18px",
+                  background: "rgba(139,168,136,0.1)",
+                  border: "1px solid rgba(139,168,136,0.15)"
+                }}/>
+
+                {/* Foto ligeiramente inclinada */}
+                <div style={{
+                  position: "relative",
+                  transform: "rotate(-1.5deg)",
+                  borderRadius: "18px", overflow: "hidden",
+                  border: "1px solid rgba(139,168,136,0.2)",
+                  aspectRatio: "3/4",
+                  boxShadow: "0 28px 56px rgba(0,0,0,0.4)"
                 }}>
-                  <strong>Oficina de Tecelagem de Almalaguês e Costura</strong><br/>
-                  <span style={{ color: "#8BA888", fontSize: "0.78rem" }}>APCC Coimbra · Marca Mão Doida</span>
-                </p>
+                  <img
+                    src="/oficinaapcc.webp"
+                    alt="Utentes da Oficina de Tecelagem de Almalaguês e Costura da APCC Coimbra a produzir as embalagens para a Flores à Beira-Rio"
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                    loading="lazy"
+                  />
+                  {/* Gradiente + legenda */}
+                  <div style={{
+                    position: "absolute", bottom: 0, left: 0, right: 0, height: "45%",
+                    background: "linear-gradient(to top, rgba(15,28,22,0.9) 0%, transparent 100%)"
+                  }} aria-hidden="true"/>
+                  <div style={{ position: "absolute", bottom: "18px", left: "18px", right: "18px" }}>
+                    <p style={{
+                      margin: 0, color: "#FAF7F0", fontWeight: "700",
+                      fontSize: "0.82rem", fontFamily: "Roboto, sans-serif", lineHeight: 1.3
+                    }}>Oficina de Tecelagem<br/>de Almalaguês e Costura</p>
+                    <p style={{
+                      margin: "4px 0 0", color: "#8BA888",
+                      fontSize: "0.75rem", fontFamily: "Roboto, sans-serif"
+                    }}>APCC Coimbra · Marca Mão Doida</p>
+                  </div>
+                </div>
+
               </div>
             </motion.div>
 
