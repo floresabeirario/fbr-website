@@ -247,7 +247,7 @@ export default function OpcoesClient() {
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px clamp(32px,5vw,48px)" }}>
           <Reveal>
             <Label>Personalização</Label>
-            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem, 5vw, 3.8rem)", fontWeight: 400, margin: 0, lineHeight: 1.05, color: "#1a1a1a" }}>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: 0, lineHeight: 1.05, color: "#1a1a1a" }}>
               Tipos de Fundo
             </h2>
           </Reveal>
@@ -359,7 +359,7 @@ export default function OpcoesClient() {
                 alt: "Ornamento de natal com flores prensadas",
                 badge: "Natal", badgeBg: "rgba(107,31,42,0.1)", badgeColor: "#6B1F2A",
                 title: "Ornamento de Natal",
-                desc: "Para si ou para oferecer: um pedaço do seu dia especial para decorar o Natal de quem ama, ano após ano.",
+                desc: "Para si ou para oferecer — um pedaço do seu dia especial para decorar o Natal de quem ama, ano após ano.",
                 note: "Só com a compra de um quadro maior.",
               },
               {
@@ -437,7 +437,7 @@ export default function OpcoesClient() {
           {/* Cabeçalho */}
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(40px,6vw,64px)" }}>
-              <Label light>Investimento</Label>
+              <Label light>Feito à mão, para si</Label>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 20px", lineHeight: 1.1, color: "#FAF7F0" }}>
                 Tamanhos & Preços
               </h2>
@@ -578,14 +578,14 @@ export default function OpcoesClient() {
           </Reveal>
 
           <Reveal>
-            <div style={{ textAlign: "center", padding: "32px", border: "1px solid rgba(250,247,240,0.07)", borderRadius: "4px", marginBottom: "40px" }}>
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(250,247,240,0.45)", margin: "0 0 18px" }}>
-                Pretende outro formato ou uma composição diferente? Entre em contacto connosco.
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "20px", padding: "28px 36px", backgroundColor: "rgba(250,247,240,0.07)", border: "1px solid rgba(250,247,240,0.18)", borderRadius: "4px", marginBottom: "40px" }}>
+              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.7, color: "rgba(250,247,240,0.7)", margin: 0 }}>
+                Pretende outro formato ou uma composição diferente?
               </p>
               <a href="/contactos"
-                style={{ display: "inline-flex", alignItems: "center", color: "#FAF7F0", fontFamily: "Roboto, sans-serif", fontSize: "0.7rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", borderBottom: "1px solid rgba(250,247,240,0.25)", paddingBottom: "2px", transition: "border-color 0.3s", minHeight: "44px" }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = "#FAF7F0"}
-                onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(250,247,240,0.25)"}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#0F1E1A", padding: "12px 28px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.72rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "44px", flexShrink: 0 }}
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }}
+                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}
               >
                 Falar connosco
               </a>
@@ -629,25 +629,35 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1px", backgroundColor: "rgba(26,26,26,0.07)", marginBottom: "56px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1px", backgroundColor: "rgba(26,26,26,0.07)", marginBottom: "40px" }}>
             {[
-              { bg: "#3D6B5E", textColor: "#FAF7F0", subColor: "rgba(250,247,240,0.55)", title: "Moldura de Nogueira", desc: "Folheada de nogueira, produzida artesanalmente em Coimbra por carpinteiros locais. Material de origem sustentável e regional." },
-              { bg: "#FAF7F0", textColor: "#1a1a1a", subColor: "rgba(26,26,26,0.55)", title: "Cartão pH Neutro", desc: "Base de conservação a longo prazo, idêntica à usada em museus e arquivos. Preserva as flores sem alterar a sua cor." },
-              { bg: "#F2EDE4", textColor: "#1a1a1a", subColor: "rgba(26,26,26,0.55)", title: "Cola pH Neutro", desc: "Segura para flores prensadas e elementos delicados. Não amarelece com o tempo nem danifica materiais frágeis." },
-              { bg: "#0F1E1A", textColor: "#FAF7F0", subColor: "rgba(250,247,240,0.55)", title: "Vidro UltraVue® UV70", desc: "Anti-reflexo quase invisível, filtra 70% dos raios UV nocivos. Produzido com vidro Water White de origem certificada." },
+              { img: "/molduranogueira.webp", title: "Moldura de Nogueira", desc: "Folheada de nogueira, produzida artesanalmente em Coimbra por carpinteiros locais. Feita à medida para cada peça." },
+              { img: "/moldurabranca.webp",   title: "Moldura Lacada a Branco", desc: "Madeira lacada a branco. Minimalista e intemporal, adapta-se a qualquer decoração." },
+              { img: "/moldurapreta.webp",    title: "Moldura Lacada a Preto", desc: "Madeira lacada a preto. Elegante e contemporânea, realça as cores das flores." },
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.07}>
-                <div style={{ backgroundColor: item.bg, padding: "36px 28px", minHeight: "200px", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
-                  <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", fontWeight: 400, margin: "0 0 10px", lineHeight: 1.2, color: item.textColor }}>
-                    {item.title}
-                  </h3>
-                  <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.85rem", lineHeight: 1.75, color: item.subColor, margin: 0 }}>
-                    {item.desc}
-                  </p>
+                <div style={{ position: "relative", overflow: "hidden", minHeight: "260px" }}>
+                  <img src={item.img} alt={item.title} loading="lazy"
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", position: "absolute", inset: 0 }} />
+                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(15,30,26,0.82) 0%, rgba(15,30,26,0.1) 55%, transparent 100%)" }} />
+                  <div style={{ position: "relative", padding: "0 24px 28px", display: "flex", flexDirection: "column", justifyContent: "flex-end", minHeight: "260px" }}>
+                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.05rem", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.2, color: "#FAF7F0" }}>
+                      {item.title}
+                    </h3>
+                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.8rem", lineHeight: 1.65, color: "rgba(250,247,240,0.65)", margin: 0 }}>
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
               </Reveal>
             ))}
           </div>
+
+          <Reveal>
+            <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.82rem", lineHeight: 1.7, color: "rgba(26,26,26,0.45)", margin: "0 0 56px", fontStyle: "italic" }}>
+              Todos os quadros utilizam cartão e cola de pH neutro — os mesmos materiais usados em museus e arquivos para preservar obras ao longo de décadas.
+            </p>
+          </Reveal>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "clamp(40px, 6vw, 80px)", alignItems: "center" }}>
             <Reveal>
