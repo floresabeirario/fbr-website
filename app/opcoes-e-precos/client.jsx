@@ -359,7 +359,7 @@ export default function OpcoesClient() {
                 alt: "Ornamento de natal com flores prensadas",
                 badge: "Natal", badgeBg: "rgba(107,31,42,0.1)", badgeColor: "#6B1F2A",
                 title: "Ornamento de Natal",
-                desc: "Um pedaço do seu dia especial para decorar o Natal de quem mais ama. Vidro duplo soldado sem chumbo, com prata.",
+                desc: "Para si ou para oferecer: um pedaço do seu dia especial para decorar o Natal de quem ama, ano após ano.",
                 note: "Só com a compra de um quadro maior.",
               },
               {
@@ -367,7 +367,7 @@ export default function OpcoesClient() {
                 alt: "Pendente floral para colar",
                 badge: "Joalharia", badgeBg: "rgba(58,48,80,0.1)", badgeColor: "#3A3050",
                 title: "Pendente para Colar",
-                desc: "Uma flor do seu bouquet para usar sempre perto do coração. Vidro duplo soldado sem chumbo, com prata.",
+                desc: "Uma flor do seu bouquet para usar sempre perto do coração. Uma memória que se transforma em joia.",
                 note: "Só com a compra de um quadro maior.",
               },
             ].map((item, i) => (
