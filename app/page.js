@@ -188,7 +188,6 @@ export default function Home() {
           --mid:     #5A6B60;
         }
 
-        /* Pausar animações se preferência de movimento reduzido */
         @media (prefers-reduced-motion: reduce) {
           *,
           *::before,
@@ -197,9 +196,7 @@ export default function Home() {
             animation-iteration-count: 1 !important;
             transition-duration: 0.01ms !important;
           }
-          video {
-            animation: none !important;
-          }
+          video { animation: none !important; }
         }
 
         @keyframes driftA {
@@ -207,6 +204,18 @@ export default function Home() {
           50%      { transform: translateY(-16px) rotate(5deg); }
         }
         .drift-a { animation: driftA 8s ease-in-out infinite; }
+
+        @keyframes floatPhone {
+          0%,100% { transform: translateY(0px) rotate(-2deg); }
+          50%      { transform: translateY(-12px) rotate(-2deg); }
+        }
+        .phone-float { animation: floatPhone 5s ease-in-out infinite; }
+
+        @keyframes pulseGlow {
+          0%,100% { box-shadow: 0 0 0 0 rgba(61,107,94,0.3); }
+          50%      { box-shadow: 0 0 0 12px rgba(61,107,94,0); }
+        }
+        .pulse-dot { animation: pulseGlow 2.5s ease-in-out infinite; }
 
         .section-eyebrow {
           display: block;
@@ -217,7 +226,7 @@ export default function Home() {
         }
 
         .btn-ghost {
-          display: inline-block;
+          display: inline-flex; align-items: center; justify-content: center;
           border: 2px solid rgba(250,247,240,0.65);
           color: rgba(250,247,240,0.95);
           padding: 16px 36px; border-radius: 100px;
@@ -229,25 +238,16 @@ export default function Home() {
           backdrop-filter: blur(8px);
           background: rgba(250,247,240,0.08);
           min-height: 56px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
         }
-        .btn-ghost:hover,
-        .btn-ghost:focus {
+        .btn-ghost:hover, .btn-ghost:focus {
           background: rgba(250,247,240,0.2);
           border-color: rgba(250,247,240,0.95);
-          color: #FAF7F0;
-          transform: translateY(-3px);
-          outline: none;
+          color: #FAF7F0; transform: translateY(-3px); outline: none;
         }
-        .btn-ghost:focus-visible {
-          outline: 3px solid #8BA888;
-          outline-offset: 4px;
-        }
+        .btn-ghost:focus-visible { outline: 3px solid #8BA888; outline-offset: 4px; }
 
         .btn-primary {
-          display: inline-block;
+          display: inline-flex; align-items: center; justify-content: center;
           background-color: var(--green); color: var(--cream);
           padding: 17px 38px; border-radius: 100px;
           text-decoration: none; font-weight: 600;
@@ -255,71 +255,43 @@ export default function Home() {
           text-transform: uppercase; text-align: center;
           box-shadow: 0 6px 24px rgba(61,107,94,0.28);
           transition: all 0.3s ease;
-          font-family: Roboto, sans-serif;
-          min-height: 56px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
+          font-family: Roboto, sans-serif; min-height: 56px;
         }
-        .btn-primary:hover,
-        .btn-primary:focus {
-          background-color: var(--green-d);
-          transform: translateY(-3px);
+        .btn-primary:hover, .btn-primary:focus {
+          background-color: var(--green-d); transform: translateY(-3px);
         }
-        .btn-primary:focus-visible {
-          outline: 3px solid #8BA888;
-          outline-offset: 4px;
-        }
+        .btn-primary:focus-visible { outline: 3px solid #8BA888; outline-offset: 4px; }
 
         .btn-outline {
-          display: inline-block;
+          display: inline-flex; align-items: center; justify-content: center;
           border: 2px solid var(--green); color: var(--green);
           padding: 15px 36px; border-radius: 100px;
           text-decoration: none; font-weight: 600;
           font-size: 0.95rem; letter-spacing: 1.5px;
           text-transform: uppercase; text-align: center;
           transition: all 0.3s ease;
-          font-family: Roboto, sans-serif;
-          min-height: 56px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
+          font-family: Roboto, sans-serif; min-height: 56px;
         }
-        .btn-outline:hover,
-        .btn-outline:focus {
-          background-color: var(--green); color: var(--cream);
-          transform: translateY(-3px);
+        .btn-outline:hover, .btn-outline:focus {
+          background-color: var(--green); color: var(--cream); transform: translateY(-3px);
         }
-        .btn-outline:focus-visible {
-          outline: 3px solid #8BA888;
-          outline-offset: 4px;
-        }
+        .btn-outline:focus-visible { outline: 3px solid #8BA888; outline-offset: 4px; }
 
         .btn-ghost-dark {
-          display: inline-block;
+          display: inline-flex; align-items: center; justify-content: center;
           border: 2px solid rgba(30,45,42,0.3); color: var(--green-d);
           padding: 15px 34px; border-radius: 100px;
           text-decoration: none; font-weight: 600;
           font-size: 0.95rem; letter-spacing: 1.5px;
           text-transform: uppercase; text-align: center;
           transition: all 0.3s ease;
-          font-family: Roboto, sans-serif;
-          min-height: 56px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
+          font-family: Roboto, sans-serif; min-height: 56px;
         }
-        .btn-ghost-dark:hover,
-        .btn-ghost-dark:focus {
-          background: rgba(30,45,42,0.06);
-          border-color: var(--green);
-          color: var(--green);
-          transform: translateY(-3px);
+        .btn-ghost-dark:hover, .btn-ghost-dark:focus {
+          background: rgba(30,45,42,0.06); border-color: var(--green);
+          color: var(--green); transform: translateY(-3px);
         }
-        .btn-ghost-dark:focus-visible {
-          outline: 3px solid #3D6B5E;
-          outline-offset: 4px;
-        }
+        .btn-ghost-dark:focus-visible { outline: 3px solid #3D6B5E; outline-offset: 4px; }
 
         .step-photo:hover { transform: scale(1.04); }
 
@@ -332,9 +304,7 @@ export default function Home() {
         }
 
         .steps-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 48px;
+          display: grid; grid-template-columns: 1fr; gap: 48px;
         }
         @media (min-width: 640px) {
           .steps-grid { grid-template-columns: repeat(3,1fr); gap: 0 32px; }
@@ -351,26 +321,61 @@ export default function Home() {
         }
 
         .cta-split {
-          display: grid;
-          grid-template-columns: 1fr;
+          display: grid; grid-template-columns: 1fr;
         }
         @media (min-width: 768px) {
           .cta-split { grid-template-columns: 1fr 1fr; }
         }
 
         .vale-grid {
-          display: grid; grid-template-columns: 1fr; gap: 44px;
-          align-items: center;
+          display: grid; grid-template-columns: 1fr; gap: 44px; align-items: center;
         }
         @media (min-width: 768px) {
           .vale-grid { grid-template-columns: 1fr 1fr; gap: 68px; }
+        }
+
+        /* ── Tracking section ── */
+        .tracking-grid {
+          display: grid; grid-template-columns: 1fr; gap: 52px; align-items: center;
+        }
+        @media (min-width: 768px) {
+          .tracking-grid { grid-template-columns: 1fr 1fr; gap: 72px; }
+        }
+
+        /* ── APCC section ── */
+        .apcc-grid {
+          display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center;
+        }
+        @media (min-width: 768px) {
+          .apcc-grid { grid-template-columns: 1fr 1fr; gap: 80px; }
+        }
+        .apcc-pill {
+          display: inline-flex; align-items: center; gap: 10px;
+          background: rgba(139,168,136,0.15);
+          border: 1px solid rgba(139,168,136,0.3);
+          border-radius: 100px; padding: 8px 18px;
+          font-size: 0.8rem; font-weight: 700;
+          letter-spacing: 2px; text-transform: uppercase;
+          color: #8BA888; font-family: Roboto, sans-serif;
+          margin-bottom: 24px;
+        }
+        .apcc-feature {
+          display: flex; align-items: flex-start; gap: 16px;
+          padding: 18px 0; border-bottom: 1px solid rgba(139,168,136,0.12);
+        }
+        .apcc-feature:last-child { border-bottom: none; }
+        .apcc-feature-icon {
+          width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+          background: rgba(139,168,136,0.12);
+          display: flex; align-items: center; justify-content: center;
+          font-size: 1.1rem; margin-top: 2px;
         }
 
         .scroll-hint {
           position: absolute; bottom: 36px; left: 50%;
           transform: translateX(-50%);
           display: flex; flex-direction: column;
-          alignItems: center; gap: 8px;
+          align-items: center; gap: 8px;
           color: rgba(250,247,240,0.6);
           font-size: 0.875rem; letter-spacing: 2px;
           text-transform: uppercase; z-index: 5;
@@ -386,17 +391,13 @@ export default function Home() {
           animation: scrollPulse 2s ease-in-out infinite;
         }
 
-        /* Melhorar contraste em high contrast mode */
         @media (prefers-contrast: high) {
-          .btn-ghost,
-          .btn-outline {
-            border-width: 3px;
-          }
+          .btn-ghost, .btn-outline { border-width: 3px; }
         }
       `}} />
 
       {/* ════════════════════════════════════════════
-          1. HERO — IMAGEM DE FUNDO (fotoquadro1.webp)
+          1. HERO
       ════════════════════════════════════════════ */}
       <section
         aria-label="Flores à Beira-Rio — Preservação de flores de casamento"
@@ -406,75 +407,53 @@ export default function Home() {
           display: "flex", alignItems: "center", justifyContent: "center"
         }}
       >
-        {/* Imagem de fundo */}
-        <div 
-          aria-hidden="true"
-          style={{
-            position: "absolute", inset: 0,
-            backgroundImage: "url('/fotoquadro1.webp')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            filter: "brightness(0.7)"
-          }}
-        />
-
-        {/* Gradiente overlay */}
+        <div aria-hidden="true" style={{
+          position: "absolute", inset: 0,
+          backgroundImage: "url('/fotoquadro1.webp')",
+          backgroundSize: "cover", backgroundPosition: "center",
+          filter: "brightness(0.7)"
+        }}/>
         <div aria-hidden="true" style={{
           position: "absolute", inset: 0,
           background: "linear-gradient(to bottom, rgba(15,30,26,0.2) 0%, rgba(15,30,26,0.55) 65%, rgba(15,30,26,0.75) 100%)"
         }}/>
 
-        <motion.div
-          style={{
-            zIndex: 2, textAlign: "center", color: "#FAF7F0",
-            padding: "0 20px", opacity: titleOpacity, y: titleY,
-            width: "100%", maxWidth: "1050px"
-          }}
-        >
+        <motion.div style={{
+          zIndex: 2, textAlign: "center", color: "#FAF7F0",
+          padding: "0 20px", opacity: titleOpacity, y: titleY,
+          width: "100%", maxWidth: "1050px"
+        }}>
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.8 }}
             style={{
-              fontSize: "clamp(0.875rem,1.5vw,1rem)",
-              letterSpacing: "clamp(3px,1vw,5px)",
+              fontSize: "clamp(0.875rem,1.5vw,1rem)", letterSpacing: "clamp(3px,1vw,5px)",
               textTransform: "uppercase", fontWeight: "600",
-              marginBottom: "clamp(24px,3.5vw,36px)", 
-              color: "rgba(250,247,240,0.85)"
+              marginBottom: "clamp(24px,3.5vw,36px)", color: "rgba(250,247,240,0.85)"
             }}
           >
             Especialistas em preservação de flores
           </motion.p>
-
           <motion.h1
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
             style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize: "clamp(3.5rem, 12vw, 8rem)",
-              lineHeight: 1.18,
-              margin: "0 0 clamp(28px,4vw,44px)",
+              lineHeight: 1.18, margin: "0 0 clamp(28px,4vw,44px)",
               textShadow: "0 4px 30px rgba(0,0,0,0.3)"
             }}
           >
             Flores à<br/>
             <span style={{ whiteSpace: "nowrap" }}>Beira&#8209;Rio</span>
           </motion.h1>
-
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.8 }}
-            className="cta-row"
-            style={{ justifyContent: "center" }}
+            className="cta-row" style={{ justifyContent: "center" }}
           >
-            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost">
-              Reservar Data
-            </a>
-            <a href="/passo-a-passo" className="btn-ghost">
-              Como Funciona
-            </a>
+            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost">Reservar Data</a>
+            <a href="/passo-a-passo" className="btn-ghost">Como Funciona</a>
           </motion.div>
         </motion.div>
 
@@ -485,7 +464,7 @@ export default function Home() {
       </section>
 
       {/* ════════════════════════════════════════════
-          2. O QUE FAZEMOS — 3 service cards
+          2. O QUE FAZEMOS
       ════════════════════════════════════════════ */}
       <section
         aria-label="Serviços de preservação botânica"
@@ -493,8 +472,7 @@ export default function Home() {
       >
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             style={{ textAlign: "center", marginBottom: "52px" }}
           >
@@ -519,27 +497,21 @@ export default function Home() {
             {[
               {
                 href: "/passo-a-passo",
-                bg: "#EDF2E8",
-                accent: "#3D6B5E",
-                label: "◈",
+                bg: "#EDF2E8", accent: "#3D6B5E", label: "◈",
                 title: "Preservação de Bouquet",
                 desc: "Recebemos as flores até 5 dias após o evento. Prensamos, secamos e emolduramos com vidro museu anti-UV.",
                 cta: "Ver o processo"
               },
               {
                 href: "/recriacao",
-                bg: "#F0EBE0",
-                accent: "#B8954A",
-                label: "✦",
+                bg: "#F0EBE0", accent: "#B8954A", label: "✦",
                 title: "Recriação de Bouquet",
                 desc: "Já passou o tempo? Recriamos o bouquet de noiva com flores frescas iguais às originais, a partir de uma fotografia.",
                 cta: "Saber mais"
               },
               {
                 href: "/vale-presente",
-                bg: "#EEF0F5",
-                accent: "#5A6B8A",
-                label: "◻",
+                bg: "#EEF0F5", accent: "#5A6B8A", label: "◻",
                 title: "Vale-Presente",
                 desc: "Ofereça a preservação como prenda. O voucher perfeito para aniversários de casamento, bodas ou datas especiais.",
                 cta: "Ver vale-presente"
@@ -547,55 +519,34 @@ export default function Home() {
             ].map((s, i) => (
               <motion.a
                 key={i} href={s.href}
-                initial={{ opacity: 0, y: 22 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 style={{
                   display: "block", textDecoration: "none",
                   backgroundColor: s.bg, borderRadius: "20px",
-                  padding: "36px 30px",
-                  border: `1px solid ${s.accent}18`,
+                  padding: "36px 30px", border: `1px solid ${s.accent}18`,
                   transition: "transform 0.3s ease, box-shadow 0.3s ease",
                   minHeight: "280px"
                 }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = "translateY(-5px)";
-                  e.currentTarget.style.boxShadow = "0 16px 44px rgba(30,45,42,0.1)";
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "none";
-                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-5px)"; e.currentTarget.style.boxShadow = "0 16px 44px rgba(30,45,42,0.1)"; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
               >
                 <span style={{
-                  fontFamily: "'TAN-MEMORIES', serif",
-                  fontSize: "1.8rem", color: s.accent,
-                  display: "block", marginBottom: "16px"
-                }} aria-hidden="true">
-                  {s.label}
-                </span>
+                  fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.8rem",
+                  color: s.accent, display: "block", marginBottom: "16px"
+                }} aria-hidden="true">{s.label}</span>
                 <h3 style={{
-                  fontFamily: "'TAN-MEMORIES', serif",
-                  fontSize: "1.4rem", color: "#1E2D2A",
-                  margin: "0 0 12px", lineHeight: 1.2
-                }}>
-                  {s.title}
-                </h3>
-                <p style={{
-                  color: "#5A6B60", fontSize: "1rem",
-                  lineHeight: 1.75, margin: "0 0 20px"
-                }}>
-                  {s.desc}
-                </p>
+                  fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.4rem",
+                  color: "#1E2D2A", margin: "0 0 12px", lineHeight: 1.2
+                }}>{s.title}</h3>
+                <p style={{ color: "#5A6B60", fontSize: "1rem", lineHeight: 1.75, margin: "0 0 20px" }}>{s.desc}</p>
                 <span style={{
-                  fontSize: "0.875rem", fontWeight: "700",
-                  letterSpacing: "1.5px", textTransform: "uppercase",
-                  color: s.accent, fontFamily: "Roboto, sans-serif",
+                  fontSize: "0.875rem", fontWeight: "700", letterSpacing: "1.5px",
+                  textTransform: "uppercase", color: s.accent,
+                  fontFamily: "Roboto, sans-serif",
                   borderBottom: `1px solid ${s.accent}55`, paddingBottom: "2px"
-                }}>
-                  {s.cta} →
-                </span>
+                }}>{s.cta} →</span>
               </motion.a>
             ))}
           </div>
@@ -603,7 +554,7 @@ export default function Home() {
       </section>
 
       {/* ════════════════════════════════════════════
-          3. TRÊS PASSOS — with photos
+          3. TRÊS PASSOS
       ════════════════════════════════════════════ */}
       <section
         aria-label="Como funciona a preservação de flores em 3 passos"
@@ -614,8 +565,7 @@ export default function Home() {
       >
         <div style={{ maxWidth: "1180px", margin: "0 auto" }}>
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             style={{ textAlign: "center", marginBottom: "64px" }}
           >
@@ -644,7 +594,194 @@ export default function Home() {
       </section>
 
       {/* ════════════════════════════════════════════
-          4. GOOGLE REVIEWS
+          4. TRACKING — telemóvel com vídeo
+      ════════════════════════════════════════════ */}
+      <section
+        aria-label="Acompanhe a sua encomenda em tempo real"
+        style={{ padding: "88px 20px", backgroundColor: "#FAF7F0" }}
+      >
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <div className="tracking-grid">
+
+            {/* Telemóvel mockup */}
+            <motion.div
+              initial={{ opacity: 0, x: -28 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+            >
+              <div
+                className="phone-float"
+                style={{
+                  position: "relative",
+                  width: "clamp(200px, 38vw, 280px)",
+                  transform: "rotate(-2deg)"
+                }}
+              >
+                {/* Sombra suave por baixo */}
+                <div style={{
+                  position: "absolute", bottom: "-24px", left: "50%",
+                  transform: "translateX(-50%)",
+                  width: "70%", height: "40px",
+                  background: "radial-gradient(ellipse, rgba(30,45,42,0.18) 0%, transparent 70%)",
+                  borderRadius: "50%", zIndex: 0
+                }} aria-hidden="true"/>
+
+                {/* Corpo do telemóvel */}
+                <div style={{
+                  position: "relative", zIndex: 1,
+                  backgroundColor: "#1E2D2A",
+                  borderRadius: "42px",
+                  padding: "14px 10px",
+                  boxShadow: "0 32px 80px rgba(30,45,42,0.35), 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 0 1px rgba(255,255,255,0.04)"
+                }}>
+                  {/* Câmara / notch */}
+                  <div style={{
+                    display: "flex", justifyContent: "center",
+                    marginBottom: "10px", gap: "6px", alignItems: "center"
+                  }} aria-hidden="true">
+                    <div style={{ width: "60px", height: "6px", borderRadius: "10px", backgroundColor: "#2D4A40" }}/>
+                    <div style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#2D4A40" }}/>
+                  </div>
+
+                  {/* Ecrã com vídeo */}
+                  <div style={{
+                    borderRadius: "28px", overflow: "hidden",
+                    backgroundColor: "#0f1f1a",
+                    aspectRatio: "9/19.5",
+                    position: "relative"
+                  }}>
+                    <video
+                      autoPlay loop muted playsInline
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                      aria-label="Vídeo de tracking da encomenda"
+                    >
+                      <source src="/tracking.webm" type="video/webm"/>
+                    </video>
+                  </div>
+
+                  {/* Botão home */}
+                  <div style={{
+                    display: "flex", justifyContent: "center", marginTop: "10px"
+                  }} aria-hidden="true">
+                    <div style={{
+                      width: "36px", height: "4px", borderRadius: "10px",
+                      backgroundColor: "#2D4A40"
+                    }}/>
+                  </div>
+                </div>
+
+                {/* Notificação flutuante */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20, scale: 0.9 }}
+                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  style={{
+                    position: "absolute", top: "22%", right: "-28px",
+                    backgroundColor: "#FAF7F0",
+                    borderRadius: "14px", padding: "10px 14px",
+                    boxShadow: "0 8px 32px rgba(30,45,42,0.18)",
+                    display: "flex", alignItems: "center", gap: "10px",
+                    minWidth: "160px", zIndex: 10
+                  }}
+                >
+                  <div
+                    className="pulse-dot"
+                    style={{
+                      width: "10px", height: "10px", borderRadius: "50%",
+                      backgroundColor: "#3D6B5E", flexShrink: 0
+                    }}
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <p style={{
+                      margin: 0, fontSize: "0.72rem", fontWeight: "700",
+                      color: "#1E2D2A", fontFamily: "Roboto, sans-serif",
+                      lineHeight: 1.3
+                    }}>Em preparação</p>
+                    <p style={{
+                      margin: 0, fontSize: "0.68rem",
+                      color: "#5A6B60", fontFamily: "Roboto, sans-serif"
+                    }}>A sua encomenda</p>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Texto */}
+            <motion.div
+              initial={{ opacity: 0, x: 28 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="section-eyebrow">Transparência total</span>
+              <h2 style={{
+                fontFamily: "'TAN-MEMORIES', serif",
+                fontSize: "clamp(2.2rem,4.5vw,3.4rem)",
+                color: "#1E2D2A", margin: "0 0 20px", lineHeight: 1.1
+              }}>
+                Acompanhe a sua<br/>
+                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>encomenda ao vivo</em>
+              </h2>
+              <p style={{
+                color: "#5A6B60", lineHeight: 1.85,
+                fontSize: "clamp(1rem,2vw,1.1rem)",
+                margin: "0 0 36px"
+              }}>
+                Após receber as suas flores, partilhamos consigo cada etapa
+                do processo — da prensagem à composição final.
+                Pode acompanhar tudo em tempo real, sem ter de perguntar.
+              </p>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+                {[
+                  { icon: "🌸", title: "Receção das flores", desc: "Confirmamos a chegada e avaliamos o estado das flores no mesmo dia." },
+                  { icon: "🖼️", title: "Composição aprovada por si", desc: "Enviamos uma fotografia da composição antes de emoldurar. Tem sempre a palavra final." },
+                  { icon: "📦", title: "Envio com rastreio", desc: "A encomenda segue com número de rastreio CTT para acompanhar até à sua porta." }
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    className="apcc-feature"
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
+                    style={{
+                      display: "flex", alignItems: "flex-start", gap: "16px",
+                      padding: "18px 0",
+                      borderBottom: i < 2 ? "1px solid rgba(61,107,94,0.12)" : "none"
+                    }}
+                  >
+                    <div style={{
+                      width: "44px", height: "44px", borderRadius: "12px",
+                      background: "linear-gradient(135deg, #EDF2E8, #D4DECC)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      fontSize: "1.2rem", flexShrink: 0, marginTop: "2px"
+                    }} aria-hidden="true">{item.icon}</div>
+                    <div>
+                      <p style={{
+                        margin: "0 0 4px", fontWeight: "700",
+                        color: "#1E2D2A", fontSize: "1rem",
+                        fontFamily: "Roboto, sans-serif"
+                      }}>{item.title}</p>
+                      <p style={{ margin: 0, color: "#5A6B60", fontSize: "0.95rem", lineHeight: 1.65 }}>
+                        {item.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════
+          5. GOOGLE REVIEWS
       ════════════════════════════════════════════ */}
       <section
         aria-label="Avaliações de clientes da Flores à Beira-Rio"
@@ -655,16 +792,14 @@ export default function Home() {
         }}
       >
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           style={{ maxWidth: "940px", margin: "0 auto" }}
         >
           <span style={{
             display: "block", fontSize: "0.875rem", fontWeight: "700",
             letterSpacing: "3px", textTransform: "uppercase",
-            color: "#8BA888", marginBottom: "14px",
-            fontFamily: "Roboto, sans-serif"
+            color: "#8BA888", marginBottom: "14px", fontFamily: "Roboto, sans-serif"
           }}>
             Clientes felizes
           </span>
@@ -680,7 +815,202 @@ export default function Home() {
       </section>
 
       {/* ════════════════════════════════════════════
-          5. VALE-PRESENTE — video + copy
+          6. APCC — Componente Solidária
+      ════════════════════════════════════════════ */}
+      <section
+        aria-label="Parceria solidária com a APCC Coimbra"
+        style={{
+          padding: "96px 20px",
+          background: "linear-gradient(160deg, #1E2D2A 0%, #2D4A3E 50%, #1E2D2A 100%)",
+          position: "relative", overflow: "hidden"
+        }}
+      >
+        {/* Padrão decorativo de fundo */}
+        <div aria-hidden="true" style={{
+          position: "absolute", inset: 0, opacity: 0.04,
+          backgroundImage: `repeating-linear-gradient(
+            45deg,
+            #8BA888 0px, #8BA888 1px,
+            transparent 1px, transparent 40px
+          )`,
+          pointerEvents: "none"
+        }}/>
+
+        <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+          <div className="apcc-grid">
+
+            {/* Lado esquerdo — visual */}
+            <motion.div
+              initial={{ opacity: 0, x: -28 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              style={{ display: "flex", flexDirection: "column", gap: "28px" }}
+            >
+              {/* Card com logo APCC */}
+              <div style={{
+                backgroundColor: "rgba(250,247,240,0.05)",
+                border: "1px solid rgba(139,168,136,0.2)",
+                borderRadius: "24px", padding: "36px",
+                backdropFilter: "blur(8px)"
+              }}>
+                <div style={{
+                  display: "flex", alignItems: "center", gap: "20px",
+                  marginBottom: "24px",
+                  paddingBottom: "24px",
+                  borderBottom: "1px solid rgba(139,168,136,0.15)"
+                }}>
+                  <div style={{
+                    width: "72px", height: "72px", borderRadius: "16px",
+                    backgroundColor: "#FAF7F0",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    flexShrink: 0, overflow: "hidden",
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.25)"
+                  }}>
+                    <img
+                      src="/apcc.webp"
+                      alt="Logótipo da APCC — Associação Portuguesa de Paralisia Cerebral"
+                      style={{ width: "60px", height: "60px", objectFit: "contain" }}
+                    />
+                  </div>
+                  <div>
+                    <p style={{
+                      margin: 0, fontWeight: "700", color: "#FAF7F0",
+                      fontSize: "1rem", lineHeight: 1.3,
+                      fontFamily: "Roboto, sans-serif"
+                    }}>APCC Coimbra</p>
+                    <p style={{
+                      margin: "4px 0 0", color: "#8BA888",
+                      fontSize: "0.85rem", fontFamily: "Roboto, sans-serif"
+                    }}>Associação Portuguesa de Paralisia Cerebral</p>
+                  </div>
+                </div>
+
+                <p style={{
+                  margin: 0, color: "rgba(250,247,240,0.75)",
+                  fontSize: "0.95rem", lineHeight: 1.8,
+                  fontFamily: "Roboto, sans-serif", fontStyle: "italic"
+                }}>
+                  "A marca Mão Doida valoriza a criatividade e a qualidade,
+                  desafiando estigmas e valorizando a diversidade e singularidade
+                  de cada ser humano."
+                </p>
+              </div>
+
+              {/* Card Oficina */}
+              <div style={{
+                backgroundColor: "rgba(139,168,136,0.08)",
+                border: "1px solid rgba(139,168,136,0.18)",
+                borderRadius: "18px", padding: "24px 28px",
+                display: "flex", alignItems: "center", gap: "18px"
+              }}>
+                <span style={{ fontSize: "2rem" }} aria-hidden="true">🧵</span>
+                <div>
+                  <p style={{
+                    margin: "0 0 4px", fontWeight: "700",
+                    color: "#FAF7F0", fontSize: "0.95rem",
+                    fontFamily: "Roboto, sans-serif"
+                  }}>Oficina de Tecelagem de Almalaguês e Costura</p>
+                  <p style={{
+                    margin: 0, color: "#8BA888",
+                    fontSize: "0.85rem", fontFamily: "Roboto, sans-serif"
+                  }}>Artesanato local com propósito</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Lado direito — texto */}
+            <motion.div
+              initial={{ opacity: 0, x: 28 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="apcc-pill" role="text">
+                <span aria-hidden="true">♥</span>
+                Parceria solidária
+              </div>
+
+              <h2 style={{
+                fontFamily: "'TAN-MEMORIES', serif",
+                fontSize: "clamp(2.2rem,4.5vw,3.4rem)",
+                color: "#FAF7F0", margin: "0 0 20px", lineHeight: 1.1
+              }}>
+                Cada detalhe<br/>
+                <em style={{ fontStyle: "italic", color: "#8BA888" }}>tem um propósito</em>
+              </h2>
+
+              <p style={{
+                color: "rgba(250,247,240,0.75)", lineHeight: 1.85,
+                fontSize: "clamp(1rem,2vw,1.07rem)", margin: "0 0 36px"
+              }}>
+                O saco que embala o seu quadro e o saquinho de lavanda que
+                perfuma a encomenda são feitos à mão pelos utentes da
+                APCC Coimbra — especificamente pela Oficina de Tecelagem
+                de Almalaguês e Costura.
+                Cada peça é única, produzida com cuidado, e integra a marca
+                <strong style={{ color: "#FAF7F0" }}> Mão Doida</strong>.
+              </p>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+                {[
+                  {
+                    icon: "♻️",
+                    title: "Pensado para reutilizar",
+                    desc: "O saco protege o quadro na entrega e depois pode guardar roupa, artigos de praia, o que couber."
+                  },
+                  {
+                    icon: "💜",
+                    title: "Trabalho com valor social",
+                    desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da APCC."
+                  },
+                  {
+                    icon: "🌿",
+                    title: "Arte consciente e local",
+                    desc: "Artesanato português, embalagem sem desperdício, flores preservadas para durar décadas."
+                  }
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
+                    style={{
+                      display: "flex", alignItems: "flex-start", gap: "16px",
+                      padding: "18px 0",
+                      borderBottom: i < 2 ? "1px solid rgba(139,168,136,0.12)" : "none"
+                    }}
+                  >
+                    <div style={{
+                      width: "44px", height: "44px", borderRadius: "12px",
+                      background: "rgba(139,168,136,0.12)",
+                      border: "1px solid rgba(139,168,136,0.2)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      fontSize: "1.2rem", flexShrink: 0, marginTop: "2px"
+                    }} aria-hidden="true">{item.icon}</div>
+                    <div>
+                      <p style={{
+                        margin: "0 0 4px", fontWeight: "700",
+                        color: "#FAF7F0", fontSize: "1rem",
+                        fontFamily: "Roboto, sans-serif"
+                      }}>{item.title}</p>
+                      <p style={{
+                        margin: 0, color: "rgba(250,247,240,0.65)",
+                        fontSize: "0.95rem", lineHeight: 1.65
+                      }}>{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════
+          7. VALE-PRESENTE — video + copy
       ════════════════════════════════════════════ */}
       <section
         aria-label="Vale-Presente — ofereça a preservação de flores"
@@ -697,10 +1027,8 @@ export default function Home() {
               style={{
                 borderRadius: "22px", overflow: "hidden",
                 boxShadow: "0 20px 60px rgba(30,45,42,0.12)",
-                aspectRatio: "9/16",
-                maxHeight: "560px",
-                backgroundColor: "#D4DECC",
-                position: "relative"
+                aspectRatio: "9/16", maxHeight: "560px",
+                backgroundColor: "#D4DECC", position: "relative"
               }}
             >
               <video
@@ -712,8 +1040,8 @@ export default function Home() {
               </video>
               <div style={{
                 position: "absolute", top: "20px", left: "20px",
-                backgroundColor: "#B8954A",
-                color: "#FAF7F0", padding: "8px 18px", borderRadius: "50px",
+                backgroundColor: "#B8954A", color: "#FAF7F0",
+                padding: "8px 18px", borderRadius: "50px",
                 fontSize: "0.875rem", fontWeight: "700",
                 letterSpacing: "2px", textTransform: "uppercase",
                 fontFamily: "Roboto, sans-serif",
@@ -742,8 +1070,7 @@ export default function Home() {
               </h2>
               <p style={{
                 color: "#5A6B60", lineHeight: 1.85,
-                fontSize: "clamp(1rem,2vw,1.1rem)",
-                margin: "0 0 16px"
+                fontSize: "clamp(1rem,2vw,1.1rem)", margin: "0 0 16px"
               }}>
                 O vale-presente da Flores à Beira-Rio oferece a quem recebe
                 a experiência completa de preservação do seu bouquet —
@@ -751,18 +1078,14 @@ export default function Home() {
               </p>
               <p style={{
                 color: "#5A6B60", lineHeight: 1.85,
-                fontSize: "clamp(1rem,2vw,1.1rem)",
-                margin: "0 0 34px"
+                fontSize: "clamp(1rem,2vw,1.1rem)", margin: "0 0 34px"
               }}>
                 Perfeito para oferecer a noivas, em bodas de prata ou ouro,
                 ou simplesmente porque algumas pessoas merecem guardar o melhor
                 dos seus momentos.
               </p>
 
-              <div style={{
-                display: "flex", flexDirection: "column", gap: "12px",
-                marginBottom: "36px"
-              }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "36px" }}>
                 {[
                   "Valor à escolha — cobre qualquer tamanho de moldura",
                   "Enviado por email ou impresso em cartão físico",
@@ -773,19 +1096,14 @@ export default function Home() {
                       width: "8px", height: "8px", borderRadius: "50%",
                       backgroundColor: "#B8954A", flexShrink: 0, marginTop: "8px"
                     }} aria-hidden="true"/>
-                    <p style={{ color: "#5A6B60", fontSize: "1rem", lineHeight: 1.7, margin: 0 }}>
-                      {item}
-                    </p>
+                    <p style={{ color: "#5A6B60", fontSize: "1rem", lineHeight: 1.7, margin: 0 }}>{item}</p>
                   </div>
                 ))}
               </div>
 
               <div className="cta-row" style={{ justifyContent: "flex-start" }}>
-                <a href="/vale-presente" className="btn-primary">
-                  Ver Vale-Presente
-                </a>
-                <a href={WA_URL} target="_blank" rel="noopener noreferrer"
-                  className="btn-ghost-dark">
+                <a href="/vale-presente" className="btn-primary">Ver Vale-Presente</a>
+                <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-dark">
                   Perguntar pelo WhatsApp
                 </a>
               </div>
@@ -795,15 +1113,13 @@ export default function Home() {
       </section>
 
       {/* ════════════════════════════════════════════
-          6. CTA SPLIT — Noivas + Presentes
+          8. CTA SPLIT — Noivas + Presentes
       ════════════════════════════════════════════ */}
       <div className="cta-split">
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+          viewport={{ once: true }} transition={{ duration: 0.8 }}
           style={{
             background: "linear-gradient(140deg, #1E2D2A 0%, #2D5045 100%)",
             padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)",
@@ -829,18 +1145,13 @@ export default function Home() {
             <span style={{
               display: "block", fontSize: "0.875rem", fontWeight: "700",
               letterSpacing: "3px", textTransform: "uppercase",
-              color: "#8BA888", marginBottom: "16px",
-              fontFamily: "Roboto, sans-serif"
-            }}>
-              Para noivas
-            </span>
+              color: "#8BA888", marginBottom: "16px", fontFamily: "Roboto, sans-serif"
+            }}>Para noivas</span>
             <h2 style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize: "clamp(2.2rem,4vw,3.2rem)",
               color: "#FAF7F0", margin: "0 0 18px", lineHeight: 1.1
-            }}>
-              Vai casar em breve?
-            </h2>
+            }}>Vai casar em breve?</h2>
             <p style={{
               color: "rgba(250,247,240,0.75)", fontSize: "1.05rem",
               lineHeight: 1.82, margin: "0 0 34px"
@@ -850,10 +1161,7 @@ export default function Home() {
               Garantimos a preservação nas melhores condições.
             </p>
             <div className="cta-row" style={{ justifyContent: "center" }}>
-              <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
-                className="btn-ghost">
-                Reservar Data
-              </a>
+              <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost">Reservar Data</a>
               <a href={WA_NOIVA} target="_blank" rel="noopener noreferrer"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: "9px",
@@ -861,12 +1169,9 @@ export default function Home() {
                   padding: "16px 32px", borderRadius: "100px",
                   textDecoration: "none", fontWeight: "600",
                   fontSize: "0.95rem", letterSpacing: "1.5px",
-                  textTransform: "uppercase",
-                  transition: "all 0.3s ease",
-                  fontFamily: "Roboto, sans-serif",
-                  whiteSpace: "nowrap",
-                  minHeight: "56px",
-                  justifyContent: "center"
+                  textTransform: "uppercase", transition: "all 0.3s ease",
+                  fontFamily: "Roboto, sans-serif", whiteSpace: "nowrap",
+                  minHeight: "56px", justifyContent: "center"
                 }}
                 onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#1da851"; e.currentTarget.style.transform = "translateY(-3px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#25D366"; e.currentTarget.style.transform = "translateY(0)"; }}
@@ -878,10 +1183,8 @@ export default function Home() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1 }}
+          initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+          viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.1 }}
           style={{
             background: "linear-gradient(140deg, #F0EBE0 0%, #EDF2E8 100%)",
             padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)",
@@ -902,18 +1205,13 @@ export default function Home() {
             <span style={{
               display: "block", fontSize: "0.875rem", fontWeight: "700",
               letterSpacing: "3px", textTransform: "uppercase",
-              color: "#B8954A", marginBottom: "16px",
-              fontFamily: "Roboto, sans-serif"
-            }}>
-              Presente especial
-            </span>
+              color: "#B8954A", marginBottom: "16px", fontFamily: "Roboto, sans-serif"
+            }}>Presente especial</span>
             <h2 style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize: "clamp(2.2rem,4vw,3.2rem)",
               color: "#1E2D2A", margin: "0 0 18px", lineHeight: 1.1
-            }}>
-              Ofereça memórias eternas
-            </h2>
+            }}>Ofereça memórias eternas</h2>
             <p style={{
               color: "#5A6B60", fontSize: "1.05rem",
               lineHeight: 1.82, margin: "0 0 34px"
@@ -922,12 +1220,8 @@ export default function Home() {
               ofereça um vale-presente ou a recriação do bouquet de alguém especial.
             </p>
             <div className="cta-row" style={{ justifyContent: "center" }}>
-              <a href="/vale-presente" className="btn-primary">
-                Vale-Presente
-              </a>
-              <a href="/recriacao" className="btn-outline">
-                Recriação de Bouquet
-              </a>
+              <a href="/vale-presente" className="btn-primary">Vale-Presente</a>
+              <a href="/recriacao" className="btn-outline">Recriação de Bouquet</a>
             </div>
           </div>
         </motion.div>
