@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 
 const fadeUp = {
@@ -193,6 +193,12 @@ const frames = [
 ];
 
 export default function OpcoesClient() {
+
+  // Volta ao topo ao fazer refresh
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div style={{ backgroundColor: "#FAF7F0", color: "#1a1a1a", overflowX: "hidden" }}>
 
@@ -417,10 +423,7 @@ export default function OpcoesClient() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════
-          TAMANHOS E PREÇOS
-          ALTERAÇÃO: padding "...24px 0" — remove espaço preto em baixo
-      ══════════════════════════════════════════════════ */}
+      {/* TAMANHOS E PREÇOS */}
       <section style={{ backgroundColor: "#0F1E1A", padding: "clamp(50px,8vw,90px) 24px 0" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
@@ -578,7 +581,7 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          {/* ── TRACKING ── */}
+          {/* TRACKING */}
           <Reveal>
             <div style={{
               display: "flex",
@@ -597,7 +600,10 @@ export default function OpcoesClient() {
                   Já encomendou? Acompanhe o estado da sua peça em tempo real.
                 </p>
               </div>
-              <a href="/acompanhar"
+              
+                href="https://status.floresabeirario.pt"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#8BA888", fontFamily: "Roboto, sans-serif", fontSize: "0.68rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
                 onMouseEnter={e => e.currentTarget.style.opacity = "0.65"}
                 onMouseLeave={e => e.currentTarget.style.opacity = "1"}
