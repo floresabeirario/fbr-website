@@ -287,7 +287,7 @@ export default function OpcoesClient() {
               },
             ].map((item, i) => (
               <div key={i} className="fundo-card-new">
-                <div style={{ aspectRatio: "16/10", overflow: "hidden", borderRadius: "6px", backgroundColor: "#e0dbd3", position: "relative" }}>
+                <div style={{ aspectRatio: "4/3", overflow: "hidden", borderRadius: "6px", backgroundColor: "#e0dbd3", position: "relative" }}>
                   <img src={item.img} alt={item.alt} loading="lazy"
                     style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.9s ease" }}
                     className="fundo-img-new" />
