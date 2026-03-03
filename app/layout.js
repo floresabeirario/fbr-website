@@ -402,9 +402,12 @@ export default function RootLayout({ children }) {
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "28px", paddingBottom: "36px" }}>
-                <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", color: "#FAF7F0", letterSpacing: "0.5px" }}>
+                <a href="/" onClick={() => setIsOpen(false)} style={{
+                  fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", color: "#FAF7F0",
+                  letterSpacing: "0.5px", textDecoration: "none"
+                }}>
                   Flores à Beira&#8209;Rio
-                </span>
+                </a>
                 <button onClick={() => setIsOpen(false)} style={{
                   background: "none", border: "1px solid rgba(250,247,240,0.2)", borderRadius: "100px",
                   color: "#FAF7F0", fontSize: "0.72rem", fontWeight: "500", letterSpacing: "2px",
