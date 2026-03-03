@@ -639,8 +639,8 @@ export default function OpcoesClient() {
                 <div style={{ position: "relative", overflow: "hidden", minHeight: "260px" }}>
                   <img src={item.img} alt={item.title} loading="lazy"
                     style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", position: "absolute", inset: 0 }} />
-                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(15,30,26,0.82) 0%, rgba(15,30,26,0.1) 55%, transparent 100%)" }} />
-                  <div style={{ position: "relative", padding: "0 24px 28px", display: "flex", flexDirection: "column", justifyContent: "flex-end", minHeight: "260px" }}>
+                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.82) 0%, rgba(15,30,26,0.1) 50%, transparent 100%)" }} />
+                  <div style={{ position: "relative", padding: "24px 24px 0", display: "flex", flexDirection: "column", justifyContent: "flex-start", minHeight: "260px" }}>
                     <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.05rem", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.2, color: "#FAF7F0" }}>
                       {item.title}
                     </h3>
@@ -654,9 +654,16 @@ export default function OpcoesClient() {
           </div>
 
           <Reveal>
-            <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.82rem", lineHeight: 1.7, color: "rgba(26,26,26,0.45)", margin: "0 0 56px", fontStyle: "italic" }}>
-              Todos os quadros utilizam cartão e cola de pH neutro — os mesmos materiais usados em museus e arquivos para preservar obras ao longo de décadas.
-            </p>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "16px", padding: "22px 28px", backgroundColor: "rgba(184,149,74,0.07)", border: "1px solid rgba(184,149,74,0.2)", borderRadius: "4px", marginBottom: "56px" }}>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "1px" }}>
+                <circle cx="10" cy="10" r="9" stroke="#B8954A" strokeWidth="1.3" fill="none"/>
+                <path d="M10 9v5" stroke="#B8954A" strokeWidth="1.5" strokeLinecap="round"/>
+                <circle cx="10" cy="6.5" r="0.8" fill="#B8954A"/>
+              </svg>
+              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(26,26,26,0.65)", margin: 0 }}>
+                Todos os quadros utilizam <strong style={{ color: "#1a1a1a", fontWeight: 600 }}>cartão e cola de pH neutro</strong> — os mesmos materiais usados em museus e arquivos para preservar obras ao longo de décadas.
+              </p>
+            </div>
           </Reveal>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "clamp(40px, 6vw, 80px)", alignItems: "center" }}>
