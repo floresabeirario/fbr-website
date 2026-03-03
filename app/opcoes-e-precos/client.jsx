@@ -351,7 +351,7 @@ export default function OpcoesClient() {
                 alt: "Mini quadros 20x25cm de flores preservadas",
                 badge: "Mini quadro", badgeBg: "rgba(61,107,94,0.12)", badgeColor: "#3D6B5E",
                 title: "20×25 cm",
-                desc: "Moldura com as flores do seu bouquet. Emoldurado com vidro museu UltraVue®.",
+                desc: "Uma moldura com as flores do seu bouquet para oferecer a familiares, padrinhos ou damas de honor. Um presente com memória e significado.",
                 note: "Só com a compra de um quadro maior.",
               },
               {
@@ -359,7 +359,7 @@ export default function OpcoesClient() {
                 alt: "Ornamento de natal com flores prensadas",
                 badge: "Natal", badgeBg: "rgba(107,31,42,0.1)", badgeColor: "#6B1F2A",
                 title: "Ornamento de Natal",
-                desc: "Vidro duplo soldado sem chumbo, com prata. ~8 cm.",
+                desc: "Um pedaço do seu dia especial para decorar o Natal de quem mais ama. Vidro duplo soldado sem chumbo, com prata.",
                 note: "Só com a compra de um quadro maior.",
               },
               {
@@ -367,7 +367,7 @@ export default function OpcoesClient() {
                 alt: "Pendente floral para colar",
                 badge: "Joalharia", badgeBg: "rgba(58,48,80,0.1)", badgeColor: "#3A3050",
                 title: "Pendente para Colar",
-                desc: "Vidro duplo soldado sem chumbo, com prata. ~3 cm.",
+                desc: "Uma flor do seu bouquet para usar sempre perto do coração. Vidro duplo soldado sem chumbo, com prata.",
                 note: "Só com a compra de um quadro maior.",
               },
             ].map((item, i) => (
