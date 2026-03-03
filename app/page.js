@@ -859,7 +859,20 @@ export default function Home() {
                 </div>
               </div>
 
-              <span className="section-eyebrow" style={{ color: "#8BA888" }}>Parceria solidária</span>
+              <div style={{
+                display: "inline-flex", alignItems: "center", gap: "8px",
+                background: "rgba(139,168,136,0.12)",
+                border: "1px solid rgba(139,168,136,0.25)",
+                borderRadius: "100px", padding: "7px 16px",
+                marginBottom: "20px"
+              }}>
+                <span style={{ color: "#8BA888", fontSize: "0.95rem", lineHeight: 1 }} aria-hidden="true">♥</span>
+                <span style={{
+                  fontSize: "0.78rem", fontWeight: "700", letterSpacing: "2.5px",
+                  textTransform: "uppercase", color: "#8BA888",
+                  fontFamily: "Roboto, sans-serif"
+                }}>Parceria solidária</span>
+              </div>
               <h2 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(2.2rem,4.5vw,3.4rem)",
