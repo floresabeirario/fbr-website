@@ -205,7 +205,7 @@ export default function OpcoesClient() {
         <div style={{ position: "absolute", inset: 0 }}>
           <div style={{
             width: "100%", height: "100%",
-            backgroundImage: "url('/fotoquadrocloseup2.webp')",
+            backgroundImage: "url('/fotoquadro1.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             filter: "brightness(0.7)"
