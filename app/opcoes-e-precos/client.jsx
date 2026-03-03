@@ -32,7 +32,6 @@ function Label({ children, light }) {
   );
 }
 
-/* Componente de flor individual — cor configurável para fundo claro ou escuro */
 function Flower({ cx, cy, scale = 1, rotate = 0, opacity = 0.45, dark = false }) {
   const r = dark ? `rgba(15,30,26,${opacity})` : `rgba(250,247,240,${opacity})`;
   const rs = dark ? `rgba(15,30,26,${opacity * 0.7})` : `rgba(250,247,240,${opacity * 0.75})`;
@@ -54,7 +53,6 @@ function Flower({ cx, cy, scale = 1, rotate = 0, opacity = 0.45, dark = false })
   );
 }
 
-/* SVG da moldura — dark=true para usar sobre fundo claro */
 function FrameSVG({ vw, vh, flowers, svgWidth, label, dark = false }) {
   const stroke1 = dark ? "rgba(15,30,26,0.45)" : "rgba(250,247,240,0.55)";
   const stroke2 = dark ? "rgba(15,30,26,0.22)" : "rgba(250,247,240,0.28)";
@@ -198,9 +196,7 @@ export default function OpcoesClient() {
   return (
     <div style={{ backgroundColor: "#FAF7F0", color: "#1a1a1a", overflowX: "hidden" }}>
 
-      {/* ════════════════════════════════════════════
-          HERO com IMAGEM DE FUNDO
-      ════════════════════════════════════════════ */}
+      {/* HERO */}
       <section style={{ position: "relative", minHeight: "92vh", display: "flex", alignItems: "flex-end", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0 }}>
           <div style={{
@@ -240,9 +236,7 @@ export default function OpcoesClient() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════
-          TIPOS DE FUNDO
-      ════════════════════════════════════════════ */}
+      {/* TIPOS DE FUNDO */}
       <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(40px,7vw,70px) 0 clamp(50px,8vw,80px)" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px clamp(32px,5vw,48px)" }}>
           <Reveal>
@@ -326,9 +320,7 @@ export default function OpcoesClient() {
         <p className="slider-hint" aria-live="polite" style={{ color: "rgba(26,26,26,0.28)" }}>deslize para ver mais</p>
       </section>
 
-      {/* ════════════════════════════════════════════
-          PRESENTES PARA OFERECER  (após tipos de fundo)
-      ════════════════════════════════════════════ */}
+      {/* PRESENTES PARA OFERECER */}
       <section style={{ backgroundColor: "#F2EDE4", padding: "clamp(36px,5vw,56px) 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
@@ -343,7 +335,6 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          {/* 3 cartões compactos em linha */}
           <div className="presentes-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}>
             {[
               {
@@ -399,9 +390,7 @@ export default function OpcoesClient() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════
-          ELEMENTOS COM VALOR SIMBÓLICO — design compacto
-      ════════════════════════════════════════════ */}
+      {/* ELEMENTOS COM VALOR SIMBÓLICO */}
       <section style={{ backgroundColor: "#FAF7F0", borderTop: "1px solid rgba(26,26,26,0.07)", padding: "clamp(40px,6vw,64px) 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
@@ -428,13 +417,13 @@ export default function OpcoesClient() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════
-          TAMANHOS E PREÇOS — 4 cartões (3 principais + 1 addon)
-      ════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: "#0F1E1A", padding: "clamp(50px,8vw,90px) 24px" }}>
+      {/* ══════════════════════════════════════════════════
+          TAMANHOS E PREÇOS
+          ALTERAÇÃO: padding "...24px 0" — remove espaço preto em baixo
+      ══════════════════════════════════════════════════ */}
+      <section style={{ backgroundColor: "#0F1E1A", padding: "clamp(50px,8vw,90px) 24px 0" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
-          {/* Cabeçalho */}
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(40px,6vw,64px)" }}>
               <Label light>Feito à mão, para si</Label>
@@ -447,7 +436,6 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          {/* Cartões — 3 colunas: 2 linhas (3 quadros + 3 extras) */}
           <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px", marginBottom: "48px" }}>
             {frames.map((item, i) => (
               <Reveal key={i} delay={(i % 3) * 0.1}>
@@ -466,8 +454,6 @@ export default function OpcoesClient() {
                   border: "none",
                   position: "relative",
                 }}>
-
-                  {/* Badge */}
                   {item.addon && (
                     <span style={{
                       position: "absolute", top: "16px", right: "16px",
@@ -481,10 +467,7 @@ export default function OpcoesClient() {
                     </span>
                   )}
 
-                  {/* SVG + texto lado a lado */}
                   <div style={{ display: "flex", alignItems: "flex-start", gap: "20px" }}>
-
-                    {/* SVG à esquerda */}
                     <div style={{ flexShrink: 0 }}>
                       {item.customSvg === "ornament" ? (
                         <OrnamentSVG svgWidth={item.svgWidth} light={true} />
@@ -500,8 +483,6 @@ export default function OpcoesClient() {
                         />
                       )}
                     </div>
-
-                    {/* Dimensão + Preço + Desc à direita */}
                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", paddingTop: "8px" }}>
                       <p style={{
                         fontFamily: "'TAN-MEMORIES', serif",
@@ -541,7 +522,7 @@ export default function OpcoesClient() {
             ))}
           </div>
 
-          {/* Nota focal — vidro museu — com mais destaque */}
+          {/* Nota vidro museu */}
           <Reveal>
             <div style={{
               display: "flex",
@@ -554,7 +535,6 @@ export default function OpcoesClient() {
               border: "1px solid rgba(184,149,74,0.3)",
               borderRadius: "4px",
             }}>
-              {/* Ícone vidro */}
               <svg width="22" height="22" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
                 <rect x="1.5" y="1.5" width="15" height="15" rx="1" stroke="#C4A55A" strokeWidth="1.4" fill="none"/>
                 <line x1="4" y1="6" x2="8" y2="2" stroke="rgba(196,165,90,0.7)" strokeWidth="1.1" strokeLinecap="round"/>
@@ -577,8 +557,9 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
+          {/* Linha "Pretende outro formato" */}
           <Reveal>
-            <div style={{ display: "flex", alignItems: "center", gap: "28px", padding: "0 0 40px", borderBottom: "1px solid rgba(250,247,240,0.12)", marginBottom: "40px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "28px", padding: "0 0 40px", borderBottom: "1px solid rgba(250,247,240,0.12)" }}>
               <div style={{ flex: 1 }}>
                 <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem, 2vw, 1.3rem)", fontWeight: 400, color: "rgba(250,247,240,0.6)", margin: 0, lineHeight: 1.4 }}>
                   Pretende outro formato<br/>ou uma composição diferente?
@@ -597,12 +578,42 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
+          {/* ── TRACKING ── */}
+          <Reveal>
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "16px",
+              padding: "28px 0 40px",
+              flexWrap: "wrap",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0 }}>
+                  <circle cx="9" cy="7.5" r="2.5" stroke="#8BA888" strokeWidth="1.3" fill="none"/>
+                  <path d="M9 2C5.686 2 3 4.686 3 8c0 4.5 6 9 6 9s6-4.5 6-9c0-3.314-2.686-6-6-6z" stroke="#8BA888" strokeWidth="1.3" fill="none"/>
+                </svg>
+                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.82rem", color: "rgba(250,247,240,0.45)", margin: 0 }}>
+                  Já encomendou? Acompanhe o estado da sua peça em tempo real.
+                </p>
+              </div>
+              <a href="/acompanhar"
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#8BA888", fontFamily: "Roboto, sans-serif", fontSize: "0.68rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
+                onMouseEnter={e => e.currentTarget.style.opacity = "0.65"}
+                onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+              >
+                Ver estado
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="#8BA888" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </Reveal>
+
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════
-          MATERIAIS E QUALIDADE
-      ════════════════════════════════════════════ */}
+      {/* MATERIAIS E QUALIDADE */}
       <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(50px,8vw,90px) 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
@@ -713,9 +724,7 @@ export default function OpcoesClient() {
         </Reveal>
       </section>
 
-      {/* ════════════════════════════════════════════
-          CTA FINAL
-      ════════════════════════════════════════════ */}
+      {/* CTA FINAL */}
       <section style={{ backgroundColor: "#3D6B5E", padding: "clamp(60px,10vw,100px) 24px", textAlign: "center" }}>
         <div style={{ maxWidth: "640px", margin: "0 auto" }}>
           <Reveal>
@@ -830,14 +839,12 @@ export default function OpcoesClient() {
           }
         }
 
-        /* Mobile: 1 coluna */
         @media (max-width: 640px) {
           .pricing-grid {
             grid-template-columns: 1fr !important;
           }
         }
 
-        /* Tablet: 2 colunas */
         @media (min-width: 641px) and (max-width: 1023px) {
           .pricing-grid {
             grid-template-columns: repeat(2, 1fr) !important;
