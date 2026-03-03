@@ -336,10 +336,18 @@ export default function Home() {
 
         /* ── Tracking section ── */
         .tracking-grid {
-          display: grid; grid-template-columns: 1fr; gap: 52px; align-items: center;
+          display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center;
         }
         @media (min-width: 768px) {
           .tracking-grid { grid-template-columns: 1fr 1fr; gap: 72px; }
+        }
+        .tracking-title { display: block; }
+        @media (min-width: 768px) {
+          .tracking-title { display: none; }
+        }
+        .tracking-desktop-title { display: none; }
+        @media (min-width: 768px) {
+          .tracking-desktop-title { display: block; }
         }
 
         /* ── APCC section ── */
@@ -348,6 +356,12 @@ export default function Home() {
         }
         @media (min-width: 768px) {
           .apcc-grid { grid-template-columns: 1fr 1fr; gap: 80px; }
+        }
+        .apcc-visual { order: 2; }
+        .apcc-text   { order: 1; }
+        @media (min-width: 768px) {
+          .apcc-visual { order: unset; }
+          .apcc-text   { order: unset; }
         }
         .apcc-pill {
           display: inline-flex; align-items: center; gap: 10px;
@@ -601,10 +615,32 @@ export default function Home() {
         style={{ padding: "88px 20px", backgroundColor: "#FAF7F0" }}
       >
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+
+          {/* Título visível só no mobile — aparece primeiro */}
+          <motion.div
+            className="tracking-title"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            style={{ marginBottom: "8px" }}
+          >
+            <span className="section-eyebrow">Transparência total</span>
+            <h2 style={{
+              fontFamily: "'TAN-MEMORIES', serif",
+              fontSize: "clamp(2.2rem,4.5vw,3.4rem)",
+              color: "#1E2D2A", margin: "0 0 4px", lineHeight: 1.1
+            }}>
+              Acompanhe a sua<br/>
+              <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>encomenda ao vivo</em>
+            </h2>
+          </motion.div>
+
           <div className="tracking-grid">
 
             {/* Telemóvel mockup */}
             <motion.div
+              className="tracking-phone"
               initial={{ opacity: 0, x: -28 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -671,54 +707,20 @@ export default function Home() {
                     }}/>
                   </div>
                 </div>
-
-                {/* Notificação flutuante */}
-                <motion.div
-                  initial={{ opacity: 0, x: 20, scale: 0.9 }}
-                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  style={{
-                    position: "absolute", top: "22%", right: "-28px",
-                    backgroundColor: "#FAF7F0",
-                    borderRadius: "14px", padding: "10px 14px",
-                    boxShadow: "0 8px 32px rgba(30,45,42,0.18)",
-                    display: "flex", alignItems: "center", gap: "10px",
-                    minWidth: "160px", zIndex: 10
-                  }}
-                >
-                  <div
-                    className="pulse-dot"
-                    style={{
-                      width: "10px", height: "10px", borderRadius: "50%",
-                      backgroundColor: "#3D6B5E", flexShrink: 0
-                    }}
-                    aria-hidden="true"
-                  />
-                  <div>
-                    <p style={{
-                      margin: 0, fontSize: "0.72rem", fontWeight: "700",
-                      color: "#1E2D2A", fontFamily: "Roboto, sans-serif",
-                      lineHeight: 1.3
-                    }}>Em preparação</p>
-                    <p style={{
-                      margin: 0, fontSize: "0.68rem",
-                      color: "#5A6B60", fontFamily: "Roboto, sans-serif"
-                    }}>A sua encomenda</p>
-                  </div>
-                </motion.div>
               </div>
             </motion.div>
 
-            {/* Texto */}
+            {/* Texto — título oculto no mobile (aparece acima), visível no desktop */}
             <motion.div
+              className="tracking-text"
               initial={{ opacity: 0, x: 28 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="section-eyebrow">Transparência total</span>
-              <h2 style={{
+              {/* Título visível só no desktop */}
+              <span className="section-eyebrow tracking-desktop-title">Transparência total</span>
+              <h2 className="tracking-desktop-title" style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(2.2rem,4.5vw,3.4rem)",
                 color: "#1E2D2A", margin: "0 0 20px", lineHeight: 1.1
@@ -732,7 +734,7 @@ export default function Home() {
                 margin: "0 0 36px"
               }}>
                 Após receber as suas flores, partilhamos consigo cada etapa
-                do processo — da prensagem à composição final.
+                do processo, da prensagem à composição final.
                 Pode acompanhar tudo em tempo real, sem ter de perguntar.
               </p>
 
@@ -744,7 +746,6 @@ export default function Home() {
                 ].map((item, i) => (
                   <motion.div
                     key={i}
-                    className="apcc-feature"
                     initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -841,6 +842,7 @@ export default function Home() {
 
             {/* Lado esquerdo — visual */}
             <motion.div
+              className="apcc-visual"
               initial={{ opacity: 0, x: -28 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -921,6 +923,7 @@ export default function Home() {
 
             {/* Lado direito — texto */}
             <motion.div
+              className="apcc-text"
               initial={{ opacity: 0, x: 28 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
