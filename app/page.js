@@ -832,33 +832,6 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              {/* Logo + nome com separador */}
-              <div style={{
-                display: "flex", alignItems: "center", gap: "12px",
-                marginBottom: "28px", paddingBottom: "22px",
-                borderBottom: "1px solid rgba(139,168,136,0.15)"
-              }}>
-                <div style={{
-                  width: "46px", height: "46px", borderRadius: "10px",
-                  backgroundColor: "#FAF7F0", flexShrink: 0,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  overflow: "hidden"
-                }}>
-                  <img src="/apcc.webp" alt="Logótipo da Associação de Paralisia Cerebral de Coimbra"
-                    style={{ width: "36px", height: "36px", objectFit: "contain" }}/>
-                </div>
-                <div>
-                  <p style={{
-                    margin: 0, fontWeight: "700", color: "#FAF7F0",
-                    fontSize: "0.85rem", fontFamily: "Roboto, sans-serif", lineHeight: 1.25
-                  }}>Associação de Paralisia Cerebral de Coimbra</p>
-                  <p style={{
-                    margin: "3px 0 0", color: "#8BA888", fontSize: "0.77rem",
-                    fontFamily: "Roboto, sans-serif"
-                  }}>Oficina de Tecelagem de Almalaguês e Costura · Marca Mão Doida</p>
-                </div>
-              </div>
-
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: "8px",
                 background: "rgba(139,168,136,0.12)",
@@ -884,29 +857,13 @@ export default function Home() {
 
               <p style={{
                 color: "rgba(250,247,240,0.7)", lineHeight: 1.82,
-                fontSize: "0.97rem", margin: "0 0 18px"
+                fontSize: "0.97rem", margin: "0 0 28px"
               }}>
-                Parte da embalagem do seu quadro é feita à mão pelos utentes da APCC Coimbra,
-                especificamente pela Oficina de Tecelagem de Almalaguês e Costura.
-                Cada peça é única, produzida com cuidado especialmente para a Flores à Beira-Rio,
-                e integra a marca <strong style={{ color: "#FAF7F0" }}>Mão Doida</strong>.
+                Parte da embalagem do seu quadro é feita à mão pelos utentes da APCC Coimbra.
+                Cada peça é única, criada com cuidado especialmente para a Flores à Beira-Rio.
+                Este trabalho desafia estigmas e celebra a diversidade, reconhecendo a singularidade
+                e o valor de cada ser humano.
               </p>
-
-              <blockquote style={{
-                margin: "0 0 28px", padding: "11px 15px",
-                borderLeft: "2px solid #8BA888",
-                background: "rgba(139,168,136,0.07)",
-                borderRadius: "0 8px 8px 0"
-              }}>
-                <p style={{
-                  margin: 0, color: "#8BA888", fontSize: "0.87rem",
-                  lineHeight: 1.7, fontStyle: "italic"
-                }}>
-                  A marca Mão Doida valoriza a criatividade e a qualidade,
-                  desafiando estigmas e valorizando a diversidade e singularidade
-                  de cada ser humano.
-                </p>
-              </blockquote>
 
               {/* 3 tópicos */}
               {[
@@ -981,14 +938,34 @@ export default function Home() {
                     background: "linear-gradient(to top, rgba(15,28,22,0.9) 0%, transparent 100%)"
                   }} aria-hidden="true"/>
                   <div style={{ position: "absolute", bottom: "18px", left: "18px", right: "18px" }}>
-                    <p style={{
-                      margin: 0, color: "#FAF7F0", fontWeight: "700",
-                      fontSize: "0.82rem", fontFamily: "Roboto, sans-serif", lineHeight: 1.3
-                    }}>Oficina de Tecelagem<br/>de Almalaguês e Costura</p>
-                    <p style={{
-                      margin: "4px 0 0", color: "#8BA888",
-                      fontSize: "0.75rem", fontFamily: "Roboto, sans-serif"
-                    }}>APCC Coimbra · Marca Mão Doida</p>
+                    {/* Logo + nome sobre a foto */}
+                    <div style={{
+                      display: "flex", alignItems: "center", gap: "10px",
+                      marginBottom: "10px"
+                    }}>
+                      <div style={{
+                        width: "36px", height: "36px", borderRadius: "8px",
+                        backgroundColor: "#FAF7F0", flexShrink: 0,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        overflow: "hidden"
+                      }}>
+                        <img
+                          src="/apcc.webp"
+                          alt="Logótipo da Associação de Paralisia Cerebral de Coimbra"
+                          style={{ width: "28px", height: "28px", objectFit: "contain" }}
+                        />
+                      </div>
+                      <div>
+                        <p style={{
+                          margin: 0, fontWeight: "700", color: "#FAF7F0",
+                          fontSize: "0.78rem", fontFamily: "Roboto, sans-serif", lineHeight: 1.25
+                        }}>Associação de Paralisia Cerebral de Coimbra</p>
+                        <p style={{
+                          margin: "2px 0 0", color: "#8BA888",
+                          fontSize: "0.7rem", fontFamily: "Roboto, sans-serif"
+                        }}>Oficina de Tecelagem de Almalaguês e Costura · Marca Mão Doida</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
