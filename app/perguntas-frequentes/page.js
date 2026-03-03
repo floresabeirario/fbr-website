@@ -3,10 +3,6 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// JSON-LD FAQ Schema — aparece directamente nos resultados do Google
-// (rich snippets com acordeão nas SERPs)
-// ─────────────────────────────────────────────────────────────────────────────
 const FAQ_DATA = [
   // ── PROCESSO ──────────────────────────────────────────────────────────────
   {
@@ -185,6 +181,19 @@ const FAQ_DATA = [
   // ── ENTREGA ────────────────────────────────────────────────────────────────
   {
     cat: "entrega",
+    q: "Consigo acompanhar o estado da minha encomenda?",
+    plain: "Sim. Após a confirmação da encomenda, receberá um link personalizado para acompanhar o estado do seu quadro em tempo real em status.floresabeirario.pt, desde a receção do bouquet até à entrega do quadro concluído.",
+    a: <>
+      Sim. Após a confirmação da encomenda, receberá um <strong>link personalizado</strong> para
+      acompanhar o estado do seu quadro em tempo real em{" "}
+      <a href="https://status.floresabeirario.pt" className="faq-link" target="_blank" rel="noopener noreferrer">
+        status.floresabeirario.pt
+      </a>
+      , desde a receção do bouquet até à entrega do quadro concluído.
+    </>
+  },
+  {
+    cat: "entrega",
     q: "Como faço chegar as flores ao atelier?",
     plain: "Pode entregar em mãos em Ceira (Coimbra), enviar por CTT correio frágil e urgente, ou pedir recolha no local do evento.",
     a: <>
@@ -282,7 +291,6 @@ const CATEGORIES = [
   { id: "pagamentos", label: "Pagamentos", count: FAQ_DATA.filter(f => f.cat === "pagamentos").length },
 ];
 
-// Inline JSON-LD — works with "use client" via dangerouslySetInnerHTML
 const SchemaScript = () => (
   <script
     type="application/ld+json"
@@ -300,12 +308,7 @@ const SchemaScript = () => (
   />
 );
 
-// ─────────────────────────────────────────────────────────────────────────────
-// FAQ Accordion Item
-// Note: <button> wraps a <span> (not h3) — h3 inside button is invalid HTML
-// ─────────────────────────────────────────────────────────────────────────────
 const FAQItem = ({ faq, isOpen, onToggle, searchTerm }) => {
-  // Highlight matching search term
   const highlight = (text) => {
     if (!searchTerm || searchTerm.length < 2) return text;
     const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
@@ -330,7 +333,6 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm }) => {
           textAlign: "left", gap: "16px"
         }}
       >
-        {/* span, not h3 — button cannot contain interactive/heading elements */}
         <span style={{
           fontFamily: "'TAN-MEMORIES', serif",
           fontSize: "clamp(1rem,2.2vw,1.18rem)",
@@ -386,9 +388,6 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm }) => {
   );
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Main
-// ─────────────────────────────────────────────────────────────────────────────
 export default function PerguntasFrequentes() {
   const [openIndex, setOpenIndex]       = useState(null);
   const [activeCategory, setActiveCategory] = useState("todas");
@@ -396,7 +395,6 @@ export default function PerguntasFrequentes() {
 
   const toggle = (i) => setOpenIndex(openIndex === i ? null : i);
 
-  // Filter by category AND search
   const filtered = useMemo(() => {
     let list = activeCategory === "todas"
       ? FAQ_DATA
@@ -423,7 +421,6 @@ export default function PerguntasFrequentes() {
         <style dangerouslySetInnerHTML={{ __html: `
           * { box-sizing: border-box; }
 
-          /* FAQ internal links */
           .faq-link {
             color: #3D6B5E; font-weight: 600;
             text-decoration: none;
@@ -433,13 +430,12 @@ export default function PerguntasFrequentes() {
           }
           .faq-link:hover { border-color: #3D6B5E; }
 
-          /* Category pills */
+          /* ── ALTERAÇÃO: flex-wrap em vez de overflow scroll ── */
           .pills-row {
             display: flex; gap: 8px;
-            overflow-x: auto; padding-bottom: 2px;
-            scrollbar-width: none;
+            flex-wrap: wrap;
+            padding-bottom: 2px;
           }
-          .pills-row::-webkit-scrollbar { display: none; }
           .pill {
             display: inline-flex; align-items: center; gap: 6px;
             padding: 9px 18px; border-radius: 100px;
@@ -449,7 +445,7 @@ export default function PerguntasFrequentes() {
             border: 1.5px solid rgba(61,107,94,0.18);
             color: #5A6B60; background: transparent;
             cursor: pointer; transition: all 0.2s ease;
-            white-space: nowrap; flex-shrink: 0;
+            white-space: nowrap;
           }
           .pill:hover  { border-color: #3D6B5E; color: #3D6B5E; }
           .pill.active { background: #3D6B5E; border-color: #3D6B5E; color: #FAF7F0; }
@@ -460,7 +456,6 @@ export default function PerguntasFrequentes() {
           }
           .pill.active .pill-count { opacity: 0.75; }
 
-          /* Search bar */
           .search-wrap {
             position: relative; margin-bottom: 24px;
           }
@@ -498,7 +493,6 @@ export default function PerguntasFrequentes() {
           }
           .search-clear:hover { color: #1E2D2A; }
 
-          /* Result count */
           .result-count {
             font-size: 0.72rem; color: #9BA89F;
             font-family: Roboto, sans-serif;
@@ -506,7 +500,6 @@ export default function PerguntasFrequentes() {
             margin-bottom: 8px; display: block;
           }
 
-          /* Buttons */
           .btn-primary {
             display: inline-block;
             background: #3D6B5E; color: #FAF7F0;
@@ -538,7 +531,6 @@ export default function PerguntasFrequentes() {
             .cta-row { flex-direction: row; justify-content: center; align-items: center; }
           }
 
-          /* Related links grid */
           .related-grid {
             display: grid; grid-template-columns: 1fr;
             gap: 12px; margin-top: 48px;
@@ -559,7 +551,6 @@ export default function PerguntasFrequentes() {
           }
         `}}/>
 
-        {/* ── PAGE HEADER ─────────────────────────────────── */}
         <section
           aria-label="Perguntas frequentes sobre preservação de flores de casamento"
           style={{
@@ -584,7 +575,6 @@ export default function PerguntasFrequentes() {
               Tire as suas dúvidas
             </span>
 
-            {/* h1 with keyword-rich text for SEO */}
             <h1 style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize: "clamp(2.6rem,9vw,5.5rem)",
@@ -605,10 +595,8 @@ export default function PerguntasFrequentes() {
           </motion.div>
         </section>
 
-        {/* ── SEARCH + FILTER ──────────────────────────────── */}
         <div style={{ maxWidth: "820px", margin: "0 auto", padding: "36px 20px 0" }}>
 
-          {/* Search bar */}
           <div className="search-wrap">
             <span className="search-icon" aria-hidden="true">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
@@ -635,7 +623,6 @@ export default function PerguntasFrequentes() {
             )}
           </div>
 
-          {/* Category pills */}
           <div
             className="pills-row"
             role="tablist"
@@ -656,7 +643,6 @@ export default function PerguntasFrequentes() {
             ))}
           </div>
 
-          {/* Result count — helpful on mobile */}
           <AnimatePresence mode="wait">
             <motion.span
               key={`${activeCategory}-${search}`}
@@ -672,7 +658,6 @@ export default function PerguntasFrequentes() {
             </motion.span>
           </AnimatePresence>
 
-          {/* ── FAQ LIST ───────────────────────────────────── */}
           <div role="list" aria-label="Perguntas e respostas">
             <AnimatePresence mode="wait">
               {filtered.length === 0 ? (
@@ -728,7 +713,6 @@ export default function PerguntasFrequentes() {
             </AnimatePresence>
           </div>
 
-          {/* ── RELATED PAGES ─── good for SEO (internal links) */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -768,7 +752,6 @@ export default function PerguntasFrequentes() {
             </div>
           </motion.div>
 
-          {/* ── BOTTOM CTA ─────────────────────────────────── */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
