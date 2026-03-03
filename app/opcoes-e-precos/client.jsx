@@ -334,7 +334,7 @@ export default function OpcoesClient() {
           <Reveal>
             <div style={{ marginBottom: "28px" }}>
               <Label>Para oferecer</Label>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 400, margin: "0 0 14px", lineHeight: 1.1 }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 14px", lineHeight: 1.1 }}>
                 Presentes com <em style={{ color: "#3D6B5E" }}>memória</em>
               </h2>
               <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(26,26,26,0.55)", maxWidth: "460px", margin: 0 }}>
@@ -639,17 +639,15 @@ export default function OpcoesClient() {
           </div>
 
           <Reveal>
-            <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.82rem", lineHeight: 1.7, color: "rgba(26,26,26,0.5)", margin: "0 0 32px", fontStyle: "italic" }}>
-              Todas as molduras são feitas à medida para cada peça, em Coimbra.
+            <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 500, fontSize: "0.88rem", lineHeight: 1.7, color: "rgba(26,26,26,0.7)", margin: "0 0 32px", letterSpacing: "0.2px" }}>
+              Todas as molduras são feitas <strong style={{ color: "#1a1a1a" }}>à medida</strong> para cada peça, em Coimbra.
             </p>
           </Reveal>
 
           <Reveal>
             <div style={{ display: "flex", alignItems: "flex-start", gap: "16px", padding: "22px 28px", backgroundColor: "rgba(184,149,74,0.07)", border: "1px solid rgba(184,149,74,0.2)", borderRadius: "4px", marginBottom: "56px" }}>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "1px" }}>
-                <circle cx="10" cy="10" r="9" stroke="#B8954A" strokeWidth="1.3" fill="none"/>
-                <path d="M10 9v5" stroke="#B8954A" strokeWidth="1.5" strokeLinecap="round"/>
-                <circle cx="10" cy="6.5" r="0.8" fill="#B8954A"/>
+                <path d="M10 2 L11.8 7.6 L17.6 7.6 L13 11 L14.8 16.6 L10 13.2 L5.2 16.6 L7 11 L2.4 7.6 L8.2 7.6 Z" stroke="#B8954A" strokeWidth="1.3" strokeLinejoin="round" fill="none"/>
               </svg>
               <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(26,26,26,0.65)", margin: 0 }}>
                 Todos os quadros utilizam <strong style={{ color: "#1a1a1a", fontWeight: 600 }}>cartão e cola de pH neutro</strong> — os mesmos materiais usados em museus e arquivos para preservar obras ao longo de décadas.
@@ -657,7 +655,7 @@ export default function OpcoesClient() {
             </div>
           </Reveal>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "clamp(40px, 6vw, 80px)", alignItems: "center" }}>
+          <div className="ultravue-grid" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "clamp(40px, 6vw, 80px)", alignItems: "center" }}>
             <Reveal>
               <div>
                 <Label>Vidro museu</Label>
@@ -814,6 +812,17 @@ export default function OpcoesClient() {
         }
 
         .presente-img:hover { transform: scale(1.04); }
+
+        @media (max-width: 640px) {
+          .ultravue-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .ultravue-grid > div:last-child {
+            width: 100% !important;
+            max-width: 360px;
+            margin: 0 auto;
+          }
+        }
 
         @media (max-width: 640px) {
           .presentes-grid {
