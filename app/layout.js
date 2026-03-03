@@ -26,24 +26,24 @@ const FlagEN = () => (
 
 // ─── Social Icons ─────────────────────────────────────────────────────────────
 const IconInstagram = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <rect x="2" y="2" width="20" height="20" rx="5"/>
     <circle cx="12" cy="12" r="4"/>
     <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
   </svg>
 );
 const IconFacebook = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
   </svg>
 );
 const IconWhatsApp = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
 );
 const IconEmail = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
     <polyline points="22,6 12,13 2,6"/>
   </svg>
@@ -71,19 +71,11 @@ function SiteFooter() {
     ],
   };
 
-  const socials = [
-    { href: "https://instagram.com/floresabeirario", icon: <IconInstagram/>, label: "Instagram" },
-    { href: "https://facebook.com/floresabeirario",  icon: <IconFacebook/>,  label: "Facebook" },
-    { href: "https://wa.me/351934680300",             icon: <IconWhatsApp/>,  label: "WhatsApp" },
-    { href: "mailto:info@floresabeirario.pt",         icon: <IconEmail/>,     label: "Email" },
-  ];
-
   const linkStyle = {
     color: "rgba(250,247,240,0.5)",
     textDecoration: "none",
     fontSize: "0.84rem",
     fontWeight: "300",
-    letterSpacing: "0.2px",
     lineHeight: 1,
     transition: "color 0.25s ease",
     fontFamily: "Roboto, sans-serif",
@@ -101,97 +93,91 @@ function SiteFooter() {
   };
 
   return (
-    <footer style={{ backgroundColor: "#0A1612", color: "#FAF7F0", position: "relative", overflow: "hidden" }}>
+    <footer style={{ backgroundColor: "#0F1E1A", color: "#FAF7F0", position: "relative" }}>
 
-      {/* ── Linha dourada no topo ── */}
-      <div style={{
-        height: "1px",
-        background: "linear-gradient(to right, transparent, rgba(184,149,74,0.35), rgba(184,149,74,0.6), rgba(184,149,74,0.35), transparent)",
-      }}/>
+      {/* ══════ BLOCO CENTRAL COM NOME + TAGLINE + ÍCONES ══════ */}
+      <div style={{ textAlign: "center", padding: "72px 24px 56px" }}>
 
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "72px 40px 0", position: "relative", zIndex: 1 }}>
-
-        {/* ── TOPO: tagline + botão WhatsApp ── */}
-        <div style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          flexWrap: "wrap",
-          gap: "32px",
-          marginBottom: "64px",
+        <h2 style={{
+          fontFamily: "'TAN-MEMORIES', serif",
+          fontSize: "clamp(2.6rem, 7vw, 5.5rem)",
+          color: "#FAF7F0",
+          margin: "0 0 16px",
+          lineHeight: 1.0,
+          fontWeight: 400,
+          letterSpacing: "-0.01em",
         }}>
-          <div style={{ maxWidth: "420px" }}>
-            <p style={{
-              fontSize: "0.58rem", letterSpacing: "4px", textTransform: "uppercase",
-              color: "#B8954A", fontFamily: "Roboto, sans-serif", margin: "0 0 14px",
-            }}>
-              Preservação Botânica Artesanal
-            </p>
-            <h2 style={{
-              fontFamily: "'TAN-MEMORIES', serif",
-              fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
-              color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.15, fontWeight: 400,
-            }}>
-              As suas flores,<br/>
-              <span style={{ fontStyle: "italic", color: "rgba(250,247,240,0.65)" }}>para sempre.</span>
-            </h2>
-            <p style={{
-              fontSize: "0.83rem", color: "rgba(250,247,240,0.4)", margin: 0,
-              lineHeight: 1.75, fontWeight: 300, fontFamily: "Roboto, sans-serif",
-            }}>
-              Transformamos o bouquet do seu casamento numa obra de arte botânica, feita à mão em Coimbra.
-            </p>
-          </div>
+          Flores à Beira&#8209;Rio
+        </h2>
 
-          {/* Contacto */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "14px", alignItems: "flex-start" }}>
-            <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer"
-              style={{
-                display: "inline-flex", alignItems: "center", gap: "10px",
-                backgroundColor: "#25D366", color: "#fff",
-                padding: "14px 28px", borderRadius: "100px",
-                textDecoration: "none", fontWeight: "600",
-                fontSize: "0.75rem", letterSpacing: "1px",
-                fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease",
-                boxShadow: "0 4px 20px rgba(37,211,102,0.25)",
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.backgroundColor = "#1db954";
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 8px 28px rgba(37,211,102,0.4)";
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.backgroundColor = "#25D366";
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 4px 20px rgba(37,211,102,0.25)";
-              }}
+        <p style={{
+          fontSize: "0.6rem",
+          letterSpacing: "4px",
+          textTransform: "uppercase",
+          color: "rgba(250,247,240,0.45)",
+          margin: "0 0 36px",
+          fontFamily: "Roboto, sans-serif",
+        }}>
+          Atelier de Preservação Botânica · Coimbra, Portugal
+        </p>
+
+        {/* Ícones sociais */}
+        <div style={{ display: "flex", justifyContent: "center", gap: "24px", marginBottom: "40px" }}>
+          {[
+            { href: "https://instagram.com/floresabeirario", icon: <IconInstagram/>, label: "Instagram" },
+            { href: "https://facebook.com/floresabeirario",  icon: <IconFacebook/>,  label: "Facebook" },
+            { href: "https://wa.me/351934680300",             icon: <IconWhatsApp/>,  label: "WhatsApp" },
+            { href: "mailto:info@floresabeirario.pt",         icon: <IconEmail/>,     label: "Email" },
+          ].map((s, i) => (
+            <a key={i} href={s.href}
+              target={s.href.startsWith("mailto") ? undefined : "_blank"}
+              rel="noopener noreferrer" aria-label={s.label}
+              style={{ color: "rgba(250,247,240,0.45)", transition: "color 0.25s ease", display: "flex", alignItems: "center" }}
+              onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+              onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.45)"}
             >
-              <IconWhatsApp/> +351 934 680 300
+              {s.icon}
             </a>
-            <a href="mailto:info@floresabeirario.pt"
-              style={{ ...linkStyle, fontSize: "0.78rem", color: "rgba(250,247,240,0.35)" }}
-              onMouseEnter={e => e.currentTarget.style.color = "rgba(250,247,240,0.75)"}
-              onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.35)"}
-            >
-              info@floresabeirario.pt
-            </a>
-          </div>
+          ))}
         </div>
 
-        {/* ── Linha divisória ── */}
-        <div style={{
-          height: "1px",
-          background: "linear-gradient(to right, transparent, rgba(250,247,240,0.08), transparent)",
-          marginBottom: "52px",
-        }}/>
+        {/* Botão WhatsApp */}
+        <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer"
+          style={{
+            display: "inline-flex", alignItems: "center", gap: "10px",
+            backgroundColor: "#25D366", color: "#fff",
+            padding: "13px 28px", borderRadius: "100px",
+            textDecoration: "none", fontWeight: "600",
+            fontSize: "0.75rem", letterSpacing: "0.5px",
+            fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease",
+            boxShadow: "0 4px 20px rgba(37,211,102,0.2)",
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.backgroundColor = "#1db954";
+            e.currentTarget.style.transform = "translateY(-2px)";
+            e.currentTarget.style.boxShadow = "0 8px 24px rgba(37,211,102,0.35)";
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.backgroundColor = "#25D366";
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "0 4px 20px rgba(37,211,102,0.2)";
+          }}
+        >
+          <IconWhatsApp/> +351 934 680 300
+        </a>
+      </div>
 
-        {/* ── GRELHA DE LINKS ── */}
+      {/* ── Linha divisória ── */}
+      <div style={{ height: "1px", background: "linear-gradient(to right, transparent, rgba(250,247,240,0.1), transparent)" }}/>
+
+      {/* ══════ GRELHA DE LINKS ══════ */}
+      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "48px 40px" }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-          gap: "40px 32px",
-          marginBottom: "52px",
+          gap: "36px 32px",
         }}>
+
           <div>
             <span style={labelStyle}>Serviços</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -226,7 +212,7 @@ function SiteFooter() {
                 >{l.label}</a>
               ))}
             </div>
-            <div style={{ display: "flex", gap: "14px", marginTop: "8px" }}>
+            <div style={{ display: "flex", gap: "14px" }}>
               <a href="/pt" style={{ ...linkStyle, color: "#FAF7F0", fontWeight: "600", fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}>
                 PT <FlagPT/>
               </a>
@@ -240,64 +226,31 @@ function SiteFooter() {
           </div>
 
           <div>
-            <span style={labelStyle}>Redes Sociais</span>
-            <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-              {socials.map((s, i) => (
-                <a key={i} href={s.href}
-                  target={s.href.startsWith("mailto") ? undefined : "_blank"}
-                  rel="noopener noreferrer" aria-label={s.label}
-                  style={{ ...linkStyle, display: "inline-flex", alignItems: "center", gap: "10px", color: "rgba(250,247,240,0.45)" }}
-                  onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.45)"}
-                >
-                  {s.icon}
-                  <span style={{ fontSize: "0.82rem" }}>{s.label}</span>
-                </a>
-              ))}
+            <span style={labelStyle}>Contacto</span>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+              <a href="mailto:info@floresabeirario.pt" style={linkStyle}
+                onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
+              >info@floresabeirario.pt</a>
+              <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer" style={linkStyle}
+                onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
+              >+351 934 680 300</a>
+              <span style={{ ...linkStyle, color: "rgba(250,247,240,0.28)", cursor: "default" }}>Coimbra, Portugal</span>
             </div>
           </div>
+
         </div>
-
-        <div style={{
-          height: "1px",
-          background: "linear-gradient(to right, transparent, rgba(250,247,240,0.06), transparent)",
-        }}/>
       </div>
 
-      {/* ══════ NOME GRANDE — contorno visível ══════ */}
-      <div style={{ overflow: "hidden", position: "relative", zIndex: 1, padding: "32px 0 0" }}>
-        <p style={{
-          fontFamily: "'TAN-MEMORIES', serif",
-          fontSize: "clamp(3rem, 9vw, 9.5rem)",
-          color: "transparent",
-          WebkitTextStroke: "1px rgba(250,247,240,0.18)",
-          margin: 0,
-          lineHeight: 1,
-          whiteSpace: "nowrap",
-          textAlign: "center",
-          letterSpacing: "0.04em",
-          userSelect: "none",
-        }}>
-          Flores à Beira&#8209;Rio
-        </p>
-      </div>
-
-      {/* ── Barra final ── */}
-      <div style={{
-        borderTop: "1px solid rgba(250,247,240,0.05)",
-        padding: "18px 40px",
-        display: "flex",
-        justifyContent: "center",
-        position: "relative",
-        zIndex: 1,
-        marginTop: "24px",
-      }}>
+      {/* ── Linha final ── */}
+      <div style={{ borderTop: "1px solid rgba(250,247,240,0.07)", padding: "20px 24px 28px", textAlign: "center" }}>
         <p style={{
           fontSize: "0.58rem", letterSpacing: "2px",
-          color: "rgba(250,247,240,0.18)", fontFamily: "Roboto, sans-serif",
-          textTransform: "uppercase", margin: 0, textAlign: "center",
+          color: "rgba(250,247,240,0.2)", fontFamily: "Roboto, sans-serif",
+          textTransform: "uppercase", margin: 0,
         }}>
-          © 2026 Flores à Beira-Rio · Coimbra, Portugal · Todos os direitos reservados
+          © 2026 Flores à Beira-Rio · Todos os direitos reservados
         </p>
       </div>
 
@@ -351,7 +304,6 @@ export default function RootLayout({ children }) {
       </head>
       <body style={{ margin: 0, backgroundColor: "#FAF7F0", color: "#1a1a1a", fontFamily: "'Roboto', sans-serif" }}>
 
-        {/* ══════ NAV ══════ */}
         <nav style={{
           position: "fixed", top: 0, width: "100%", zIndex: 100,
           backgroundColor: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "transparent",
@@ -433,7 +385,6 @@ export default function RootLayout({ children }) {
           </div>
         </nav>
 
-        {/* ══════ MOBILE MENU ══════ */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -550,7 +501,8 @@ export default function RootLayout({ children }) {
 
           .nav-link {
             text-decoration: none !important; transition: all 0.3s ease;
-            display: inline-block; border-bottom: 1px solid transparent; line-height: 1.4; padding-bottom: 2px;
+            display: inline-block; border-bottom: 1px solid transparent;
+            line-height: 1.4; padding-bottom: 2px;
           }
           .nav-link:hover { border-bottom: 1px solid currentColor; }
 
