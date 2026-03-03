@@ -194,7 +194,6 @@ const frames = [
 
 export default function OpcoesClient() {
 
-  // Volta ao topo ao fazer refresh
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -469,7 +468,6 @@ export default function OpcoesClient() {
                       {item.badge || "Para oferecer"}
                     </span>
                   )}
-
                   <div style={{ display: "flex", alignItems: "flex-start", gap: "20px" }}>
                     <div style={{ flexShrink: 0 }}>
                       {item.customSvg === "ornament" ? (
@@ -543,18 +541,9 @@ export default function OpcoesClient() {
                 <line x1="4" y1="6" x2="8" y2="2" stroke="rgba(196,165,90,0.7)" strokeWidth="1.1" strokeLinecap="round"/>
                 <line x1="9" y1="5" x2="11" y2="3" stroke="rgba(196,165,90,0.5)" strokeWidth="1.1" strokeLinecap="round"/>
               </svg>
-              <p style={{
-                fontFamily: "Roboto, sans-serif",
-                fontWeight: 400,
-                fontSize: "0.88rem",
-                color: "rgba(250,247,240,0.8)",
-                margin: 0,
-                letterSpacing: "0.2px",
-              }}>
+              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.88rem", color: "rgba(250,247,240,0.8)", margin: 0, letterSpacing: "0.2px" }}>
                 Todos os quadros são emoldurados com{" "}
-                <strong style={{ fontWeight: 700, color: "#C4A55A" }}>
-                  vidro museu UltraVue®
-                </strong>
+                <strong style={{ fontWeight: 700, color: "#C4A55A" }}>vidro museu UltraVue®</strong>
                 {" "}— praticamente invisível, com proteção UV70
               </p>
             </div>
@@ -570,8 +559,8 @@ export default function OpcoesClient() {
               </div>
               <a href="/contactos"
                 style={{ display: "inline-flex", alignItems: "center", gap: "10px", color: "#FAF7F0", fontFamily: "Roboto, sans-serif", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
-                onMouseEnter={e => e.currentTarget.style.opacity = "0.65"}
-                onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+                onMouseEnter={e => { e.currentTarget.style.opacity = "0.65"; }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
               >
                 Falar connosco
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -583,14 +572,7 @@ export default function OpcoesClient() {
 
           {/* TRACKING */}
           <Reveal>
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: "16px",
-              padding: "28px 0 40px",
-              flexWrap: "wrap",
-            }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px", padding: "28px 0 40px", flexWrap: "wrap" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0 }}>
                   <circle cx="9" cy="7.5" r="2.5" stroke="#8BA888" strokeWidth="1.3" fill="none"/>
@@ -600,14 +582,9 @@ export default function OpcoesClient() {
                   Já encomendou? Acompanhe o estado da sua peça em tempo real.
                 </p>
               </div>
-              
-                href="https://status.floresabeirario.pt"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#8BA888", fontFamily: "Roboto, sans-serif", fontSize: "0.68rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
-                onMouseEnter={e => e.currentTarget.style.opacity = "0.65"}
-                onMouseLeave={e => e.currentTarget.style.opacity = "1"}
-              >
+              <a href="https://status.floresabeirario.pt" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#8BA888", fontFamily: "Roboto, sans-serif", fontSize: "0.68rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
+                onMouseEnter={e => { e.currentTarget.style.opacity = "0.65"; }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}>
                 Ver estado
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="#8BA888" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
@@ -721,8 +698,7 @@ export default function OpcoesClient() {
               <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
                 style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "14px 36px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "52px" }}
                 onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }}
-                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}
-              >
+                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
                 Reservar a Minha Data
               </a>
             </div>
@@ -745,15 +721,13 @@ export default function OpcoesClient() {
               <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
                 style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "56px" }}
                 onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }}
-                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}
-              >
+                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
                 Reservar Data
               </a>
               <a href="/perguntas-frequentes"
                 style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "transparent", color: "rgba(250,247,240,0.85)", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", border: "1.5px solid rgba(250,247,240,0.3)", transition: "all 0.3s ease", minHeight: "56px" }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(250,247,240,0.7)"}
-                onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(250,247,240,0.3)"}
-              >
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.7)"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.3)"; }}>
                 Perguntas Frequentes
               </a>
             </div>
@@ -772,13 +746,11 @@ export default function OpcoesClient() {
           padding: 0 24px 4px;
         }
         .fundos-track::-webkit-scrollbar { display: none; }
-
         .fundo-card-new {
           flex: 0 0 78vw;
           max-width: 320px;
           scroll-snap-align: start;
         }
-
         @media (min-width: 900px) {
           .fundos-track {
             overflow-x: visible;
@@ -793,9 +765,7 @@ export default function OpcoesClient() {
             scroll-snap-align: unset;
           }
         }
-
         .fundo-img-new:hover { transform: scale(1.05); }
-
         .slider-hint {
           display: block;
           text-align: center;
@@ -809,7 +779,6 @@ export default function OpcoesClient() {
         @media (min-width: 900px) {
           .slider-hint { display: none; }
         }
-
         @media (prefers-reduced-motion: reduce) {
           *, *::before, *::after {
             animation-duration: 0.01ms !important;
@@ -818,43 +787,20 @@ export default function OpcoesClient() {
           }
           video { animation: none !important; }
         }
-
-        a:focus-visible,
-        button:focus-visible {
+        a:focus-visible, button:focus-visible {
           outline: 3px solid #3D6B5E;
           outline-offset: 4px;
           border-radius: 4px;
         }
-
         .presente-img:hover { transform: scale(1.04); }
-
         @media (max-width: 640px) {
-          .ultravue-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .ultravue-grid > div:last-child {
-            width: 100% !important;
-            max-width: 360px;
-            margin: 0 auto;
-          }
+          .ultravue-grid { grid-template-columns: 1fr !important; }
+          .ultravue-grid > div:last-child { width: 100% !important; max-width: 360px; margin: 0 auto; }
+          .presentes-grid { grid-template-columns: 1fr !important; }
+          .pricing-grid { grid-template-columns: 1fr !important; }
         }
-
-        @media (max-width: 640px) {
-          .presentes-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .pricing-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-
         @media (min-width: 641px) and (max-width: 1023px) {
-          .pricing-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
+          .pricing-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
       `}</style>
     </div>
