@@ -118,7 +118,7 @@ function SiteFooter() {
           margin: "0 0 36px",
           fontFamily: "Roboto, sans-serif",
         }}>
-          Atelier de Preservação Botânica · Coimbra, Portugal
+          Especialistas em Preservação de Flores · Coimbra, Portugal
         </p>
 
         {/* Ícones sociais */}
