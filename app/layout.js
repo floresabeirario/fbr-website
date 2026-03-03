@@ -49,67 +49,6 @@ const IconEmail = () => (
   </svg>
 );
 
-// ─── Footer SVG decorations ───────────────────────────────────────────────────
-const BotanicalRight = () => (
-  <svg viewBox="0 0 260 400" width="180" height="280" fill="none" aria-hidden="true"
-    style={{ position: "absolute", bottom: 0, right: 0, opacity: 0.07, pointerEvents: "none" }}>
-    <line x1="130" y1="380" x2="130" y2="40" stroke="#8BA888" strokeWidth="1.2"/>
-    <ellipse cx="100" cy="80"  rx="42" ry="16" fill="#8BA888" transform="rotate(-50 100 80)"/>
-    <ellipse cx="92"  cy="130" rx="36" ry="13" fill="#8BA888" transform="rotate(-42 92 130)"/>
-    <ellipse cx="88"  cy="175" rx="30" ry="11" fill="#8BA888" transform="rotate(-36 88 175)"/>
-    <ellipse cx="86"  cy="215" rx="24" ry="9"  fill="#8BA888" transform="rotate(-30 86 215)"/>
-    <ellipse cx="160" cy="100" rx="42" ry="16" fill="#8BA888" transform="rotate(50 160 100)"/>
-    <ellipse cx="168" cy="150" rx="36" ry="13" fill="#8BA888" transform="rotate(42 168 150)"/>
-    <ellipse cx="172" cy="195" rx="30" ry="11" fill="#8BA888" transform="rotate(36 172 195)"/>
-    <ellipse cx="174" cy="235" rx="24" ry="9"  fill="#8BA888" transform="rotate(30 174 235)"/>
-    <circle cx="130" cy="42" r="5" fill="#B8954A" opacity="0.7"/>
-    <circle cx="130" cy="42" r="2.5" fill="#B8954A"/>
-  </svg>
-);
-
-const BotanicalLeft = () => (
-  <svg viewBox="0 0 260 400" width="180" height="280" fill="none" aria-hidden="true"
-    style={{ position: "absolute", bottom: 0, left: 0, opacity: 0.07, pointerEvents: "none", transform: "scaleX(-1)" }}>
-    <line x1="130" y1="380" x2="130" y2="40" stroke="#8BA888" strokeWidth="1.2"/>
-    <ellipse cx="100" cy="80"  rx="42" ry="16" fill="#8BA888" transform="rotate(-50 100 80)"/>
-    <ellipse cx="92"  cy="130" rx="36" ry="13" fill="#8BA888" transform="rotate(-42 92 130)"/>
-    <ellipse cx="88"  cy="175" rx="30" ry="11" fill="#8BA888" transform="rotate(-36 88 175)"/>
-    <ellipse cx="86"  cy="215" rx="24" ry="9"  fill="#8BA888" transform="rotate(-30 86 215)"/>
-    <ellipse cx="160" cy="100" rx="42" ry="16" fill="#8BA888" transform="rotate(50 160 100)"/>
-    <ellipse cx="168" cy="150" rx="36" ry="13" fill="#8BA888" transform="rotate(42 168 150)"/>
-    <ellipse cx="172" cy="195" rx="30" ry="11" fill="#8BA888" transform="rotate(36 172 195)"/>
-    <ellipse cx="174" cy="235" rx="24" ry="9"  fill="#8BA888" transform="rotate(30 174 235)"/>
-    <circle cx="130" cy="42" r="5" fill="#B8954A" opacity="0.7"/>
-    <circle cx="130" cy="42" r="2.5" fill="#B8954A"/>
-  </svg>
-);
-
-const PressedFlowers = () => (
-  <svg viewBox="0 0 1200 200" width="100%" height="100" fill="none" aria-hidden="true"
-    style={{ position: "absolute", top: 0, left: 0, right: 0, opacity: 0.06, pointerEvents: "none" }}>
-    {[0,60,120,180,240,300].map((angle, i) => (
-      <ellipse key={i} cx="120" cy="40" rx="14" ry="6"
-        fill="#8BA888" transform={`rotate(${angle} 120 40)`} opacity="0.8"/>
-    ))}
-    <circle cx="120" cy="40" r="5" fill="#B8954A" opacity="0.9"/>
-    {[0,60,120,180,240,300].map((angle, i) => (
-      <ellipse key={i} cx="420" cy="80" rx="18" ry="7"
-        fill="#8BA888" transform={`rotate(${angle} 420 80)`} opacity="0.6"/>
-    ))}
-    <circle cx="420" cy="80" r="6" fill="#B8954A" opacity="0.9"/>
-    {[0,60,120,180,240,300].map((angle, i) => (
-      <ellipse key={i} cx="760" cy="50" rx="12" ry="5"
-        fill="#8BA888" transform={`rotate(${angle} 760 50)`} opacity="0.7"/>
-    ))}
-    <circle cx="760" cy="50" r="4" fill="#B8954A" opacity="0.9"/>
-    {[0,60,120,180,240,300].map((angle, i) => (
-      <ellipse key={i} cx="1060" cy="70" rx="16" ry="6"
-        fill="#8BA888" transform={`rotate(${angle} 1060 70)`} opacity="0.5"/>
-    ))}
-    <circle cx="1060" cy="70" r="5" fill="#B8954A" opacity="0.9"/>
-  </svg>
-);
-
 // ─── Footer ───────────────────────────────────────────────────────────────────
 const FORM_URL = "https://wkf.ms/3RfoNAc";
 
@@ -156,32 +95,23 @@ function SiteFooter() {
     letterSpacing: "3.5px",
     textTransform: "uppercase",
     color: "rgba(250,247,240,0.22)",
-    marginBottom: "18px",
+    margin: "0 0 18px",
     fontFamily: "Roboto, sans-serif",
     display: "block",
-    margin: "0 0 18px",
   };
 
   return (
     <footer style={{ backgroundColor: "#0A1612", color: "#FAF7F0", position: "relative", overflow: "hidden" }}>
 
-      {/* ── Flores decorativas no topo ── */}
-      <PressedFlowers/>
-
-      {/* ── Ramos nos cantos ── */}
-      <BotanicalLeft/>
-      <BotanicalRight/>
-
-      {/* ── Linha separadora topo com gradiente dourado ── */}
+      {/* ── Linha dourada no topo ── */}
       <div style={{
         height: "1px",
         background: "linear-gradient(to right, transparent, rgba(184,149,74,0.35), rgba(184,149,74,0.6), rgba(184,149,74,0.35), transparent)",
       }}/>
 
-      {/* ══════ ZONA CENTRAL ══════ */}
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "72px 40px 0", position: "relative", zIndex: 1 }}>
 
-        {/* ── TOPO: tagline + CTA ── */}
+        {/* ── TOPO: tagline + botão WhatsApp ── */}
         <div style={{
           display: "flex",
           justifyContent: "space-between",
@@ -190,72 +120,53 @@ function SiteFooter() {
           gap: "32px",
           marginBottom: "64px",
         }}>
-          {/* Tagline */}
           <div style={{ maxWidth: "420px" }}>
             <p style={{
-              fontSize: "0.58rem",
-              letterSpacing: "4px",
-              textTransform: "uppercase",
-              color: "#B8954A",
-              fontFamily: "Roboto, sans-serif",
-              margin: "0 0 14px",
+              fontSize: "0.58rem", letterSpacing: "4px", textTransform: "uppercase",
+              color: "#B8954A", fontFamily: "Roboto, sans-serif", margin: "0 0 14px",
             }}>
               Preservação Botânica Artesanal
             </p>
             <h2 style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
-              color: "#FAF7F0",
-              margin: "0 0 16px",
-              lineHeight: 1.15,
-              fontWeight: 400,
+              color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.15, fontWeight: 400,
             }}>
               As suas flores,<br/>
               <span style={{ fontStyle: "italic", color: "rgba(250,247,240,0.65)" }}>para sempre.</span>
             </h2>
             <p style={{
-              fontSize: "0.83rem",
-              color: "rgba(250,247,240,0.4)",
-              margin: 0,
-              lineHeight: 1.75,
-              fontWeight: 300,
-              fontFamily: "Roboto, sans-serif",
+              fontSize: "0.83rem", color: "rgba(250,247,240,0.4)", margin: 0,
+              lineHeight: 1.75, fontWeight: 300, fontFamily: "Roboto, sans-serif",
             }}>
               Transformamos o bouquet do seu casamento numa obra de arte botânica, feita à mão em Coimbra.
             </p>
           </div>
 
-          {/* CTA + Contacto */}
+          {/* Contacto */}
           <div style={{ display: "flex", flexDirection: "column", gap: "14px", alignItems: "flex-start" }}>
-            <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer"
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                backgroundColor: "#3D6B5E",
-                color: "#FAF7F0",
-                padding: "14px 28px",
-                borderRadius: "100px",
-                textDecoration: "none",
-                fontWeight: "600",
-                fontSize: "0.75rem",
-                letterSpacing: "1.8px",
-                textTransform: "uppercase",
-                fontFamily: "Roboto, sans-serif",
-                transition: "all 0.3s ease",
-                boxShadow: "0 4px 20px rgba(61,107,94,0.3)",
+                display: "inline-flex", alignItems: "center", gap: "10px",
+                backgroundColor: "#25D366", color: "#fff",
+                padding: "14px 28px", borderRadius: "100px",
+                textDecoration: "none", fontWeight: "600",
+                fontSize: "0.75rem", letterSpacing: "1px",
+                fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease",
+                boxShadow: "0 4px 20px rgba(37,211,102,0.25)",
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.backgroundColor = "#4a7f71";
+                e.currentTarget.style.backgroundColor = "#1db954";
                 e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 8px 28px rgba(61,107,94,0.45)";
+                e.currentTarget.style.boxShadow = "0 8px 28px rgba(37,211,102,0.4)";
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.backgroundColor = "#3D6B5E";
+                e.currentTarget.style.backgroundColor = "#25D366";
                 e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 4px 20px rgba(61,107,94,0.3)";
+                e.currentTarget.style.boxShadow = "0 4px 20px rgba(37,211,102,0.25)";
               }}
             >
-              Reservar Data
+              <IconWhatsApp/> +351 934 680 300
             </a>
             <a href="mailto:info@floresabeirario.pt"
               style={{ ...linkStyle, fontSize: "0.78rem", color: "rgba(250,247,240,0.35)" }}
@@ -263,13 +174,6 @@ function SiteFooter() {
               onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.35)"}
             >
               info@floresabeirario.pt
-            </a>
-            <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer"
-              style={{ ...linkStyle, fontSize: "0.78rem", color: "rgba(250,247,240,0.35)" }}
-              onMouseEnter={e => e.currentTarget.style.color = "rgba(250,247,240,0.75)"}
-              onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.35)"}
-            >
-              +351 934 680 300
             </a>
           </div>
         </div>
@@ -288,8 +192,6 @@ function SiteFooter() {
           gap: "40px 32px",
           marginBottom: "52px",
         }}>
-
-          {/* Serviços */}
           <div>
             <span style={labelStyle}>Serviços</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -302,7 +204,6 @@ function SiteFooter() {
             </div>
           </div>
 
-          {/* Ajuda */}
           <div>
             <span style={labelStyle}>Ajuda</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -315,7 +216,6 @@ function SiteFooter() {
             </div>
           </div>
 
-          {/* Legal + Idioma */}
           <div>
             <span style={labelStyle}>Legal</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "24px" }}>
@@ -339,22 +239,14 @@ function SiteFooter() {
             </div>
           </div>
 
-          {/* Redes sociais */}
           <div>
             <span style={labelStyle}>Redes Sociais</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
               {socials.map((s, i) => (
                 <a key={i} href={s.href}
                   target={s.href.startsWith("mailto") ? undefined : "_blank"}
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  style={{
-                    ...linkStyle,
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "10px",
-                    color: "rgba(250,247,240,0.45)",
-                  }}
+                  rel="noopener noreferrer" aria-label={s.label}
+                  style={{ ...linkStyle, display: "inline-flex", alignItems: "center", gap: "10px", color: "rgba(250,247,240,0.45)" }}
                   onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
                   onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.45)"}
                 >
@@ -364,29 +256,27 @@ function SiteFooter() {
               ))}
             </div>
           </div>
-
         </div>
 
-        {/* ── Linha antes do nome grande ── */}
         <div style={{
           height: "1px",
           background: "linear-gradient(to right, transparent, rgba(250,247,240,0.06), transparent)",
         }}/>
       </div>
 
-      {/* ── Nome editorial gigante ── */}
-      <div style={{ overflow: "hidden", position: "relative", zIndex: 1 }}>
+      {/* ══════ NOME GRANDE — contorno visível ══════ */}
+      <div style={{ overflow: "hidden", position: "relative", zIndex: 1, padding: "32px 0 0" }}>
         <p style={{
           fontFamily: "'TAN-MEMORIES', serif",
-          fontSize: "clamp(3.5rem, 10.5vw, 11rem)",
-          color: "rgba(250,247,240,0.04)",
+          fontSize: "clamp(3rem, 9vw, 9.5rem)",
+          color: "transparent",
+          WebkitTextStroke: "1px rgba(250,247,240,0.18)",
           margin: 0,
           lineHeight: 1,
           whiteSpace: "nowrap",
           textAlign: "center",
-          letterSpacing: "-0.02em",
+          letterSpacing: "0.04em",
           userSelect: "none",
-          padding: "8px 0 0",
         }}>
           Flores à Beira&#8209;Rio
         </p>
@@ -398,18 +288,14 @@ function SiteFooter() {
         padding: "18px 40px",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
         position: "relative",
         zIndex: 1,
+        marginTop: "24px",
       }}>
         <p style={{
-          fontSize: "0.58rem",
-          letterSpacing: "2px",
-          color: "rgba(250,247,240,0.18)",
-          fontFamily: "Roboto, sans-serif",
-          textTransform: "uppercase",
-          margin: 0,
-          textAlign: "center",
+          fontSize: "0.58rem", letterSpacing: "2px",
+          color: "rgba(250,247,240,0.18)", fontFamily: "Roboto, sans-serif",
+          textTransform: "uppercase", margin: 0, textAlign: "center",
         }}>
           © 2026 Flores à Beira-Rio · Coimbra, Portugal · Todos os direitos reservados
         </p>
@@ -475,7 +361,6 @@ export default function RootLayout({ children }) {
         }}>
           <div className="nav-bar">
 
-            {/* ── ESQUERDA ── */}
             <div className="nav-left">
               <div className="lang-container desktop-only" style={{ position: "relative", display: "flex", alignItems: "center" }}>
                 <a href="/pt" className="nav-link lang-trigger" style={{
@@ -491,8 +376,7 @@ export default function RootLayout({ children }) {
                     letterSpacing: "1.3px", display: "flex", alignItems: "center",
                     color: shouldShowScrolled ? "#1a1a1a" : "#fff",
                     background: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
-                    backdropFilter: "blur(12px)",
-                    padding: "9px 14px", borderRadius: "6px",
+                    backdropFilter: "blur(12px)", padding: "9px 14px", borderRadius: "6px",
                     border: `1px solid ${shouldShowScrolled ? "rgba(26,26,26,0.08)" : "rgba(255,255,255,0.12)"}`,
                     textDecoration: "none", transition: "background 0.3s ease"
                   }}>
@@ -503,40 +387,27 @@ export default function RootLayout({ children }) {
 
               {menuLeft.map(item => (
                 <a key={item.name} href={item.href} className="nav-link desktop-only" style={{
-                  fontSize: "0.7rem", fontWeight: "500",
-                  textTransform: "uppercase", letterSpacing: "1.3px",
-                  color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                  whiteSpace: "nowrap"
+                  fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
+                  letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff", whiteSpace: "nowrap"
                 }}>
                   {item.name}
                 </a>
               ))}
             </div>
 
-            {/* ── CENTRO: logo ── */}
-            <motion.a
-              href="/"
-              className="nav-logo"
-              animate={{
-                opacity: shouldShowScrolled ? 1 : 0,
-                y: shouldShowScrolled ? 0 : 8
-              }}
+            <motion.a href="/" className="nav-logo"
+              animate={{ opacity: shouldShowScrolled ? 1 : 0, y: shouldShowScrolled ? 0 : 8 }}
               transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-              style={{
-                color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                pointerEvents: shouldShowScrolled ? "auto" : "none"
-              }}>
+              style={{ color: shouldShowScrolled ? "#1a1a1a" : "#fff", pointerEvents: shouldShowScrolled ? "auto" : "none" }}>
               Flores à Beira&#8209;Rio
             </motion.a>
 
-            {/* ── DIREITA ── */}
             <div className="nav-right-col">
               <div className="nav-right desktop-only">
                 {menuRight.map(item => (
                   <a key={item.name} href={item.href} className="nav-link" style={{
                     fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
-                    letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                    whiteSpace: "nowrap"
+                    letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff", whiteSpace: "nowrap"
                   }}>
                     {item.name}
                   </a>
@@ -553,8 +424,7 @@ export default function RootLayout({ children }) {
               </div>
 
               <button className="mobile-only nav-mobile-btn" onClick={() => setIsOpen(true)} style={{
-                color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                marginLeft: "auto"
+                color: shouldShowScrolled ? "#1a1a1a" : "#fff", marginLeft: "auto"
               }}>
                 MENU
               </button>
@@ -567,34 +437,21 @@ export default function RootLayout({ children }) {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
+              initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
               transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
               style={{
-                position: "fixed", inset: 0,
-                backgroundColor: "#0F1E1A",
-                zIndex: 200,
-                display: "flex",
-                flexDirection: "column",
-                padding: "0 36px",
-                overflowY: "auto"
+                position: "fixed", inset: 0, backgroundColor: "#0F1E1A", zIndex: 200,
+                display: "flex", flexDirection: "column", padding: "0 36px", overflowY: "auto"
               }}
             >
-              <div style={{
-                display: "flex", justifyContent: "space-between",
-                alignItems: "center", paddingTop: "28px", paddingBottom: "36px"
-              }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "28px", paddingBottom: "36px" }}>
                 <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", color: "#FAF7F0", letterSpacing: "0.5px" }}>
                   Flores à Beira&#8209;Rio
                 </span>
                 <button onClick={() => setIsOpen(false)} style={{
-                  background: "none", border: "1px solid rgba(250,247,240,0.2)",
-                  borderRadius: "100px", color: "#FAF7F0",
-                  fontSize: "0.72rem", fontWeight: "500",
-                  letterSpacing: "2px", cursor: "pointer",
-                  fontFamily: "'Roboto', sans-serif",
-                  padding: "8px 16px"
+                  background: "none", border: "1px solid rgba(250,247,240,0.2)", borderRadius: "100px",
+                  color: "#FAF7F0", fontSize: "0.72rem", fontWeight: "500", letterSpacing: "2px",
+                  cursor: "pointer", fontFamily: "'Roboto', sans-serif", padding: "8px 16px"
                 }}>
                   FECHAR
                 </button>
@@ -604,18 +461,13 @@ export default function RootLayout({ children }) {
 
               <nav style={{ flex: 1 }}>
                 {mobileMenu.map((item, i) => (
-                  <motion.a
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    initial={{ opacity: 0, x: 24 }}
-                    animate={{ opacity: 1, x: 0 }}
+                  <motion.a key={item.name} href={item.href} onClick={() => setIsOpen(false)}
+                    initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 + i * 0.055, duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
                     style={{
                       display: "block", color: "#FAF7F0", textDecoration: "none",
                       fontSize: "clamp(1.5rem, 6vw, 2rem)", fontFamily: "'TAN-MEMORIES', serif",
-                      lineHeight: 1, padding: "14px 0",
-                      borderBottom: "1px solid rgba(250,247,240,0.07)",
+                      lineHeight: 1, padding: "14px 0", borderBottom: "1px solid rgba(250,247,240,0.07)",
                     }}
                     onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
                     onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
@@ -626,17 +478,12 @@ export default function RootLayout({ children }) {
               </nav>
 
               <div style={{ paddingTop: "36px", paddingBottom: "48px" }}>
-                <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
-                  onClick={() => setIsOpen(false)}
+                <a href={FORM_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
                   style={{
-                    display: "block", textAlign: "center",
-                    backgroundColor: "#3D6B5E", color: "#FAF7F0",
-                    padding: "17px 38px", borderRadius: "100px",
-                    textDecoration: "none", fontWeight: "600",
-                    fontSize: "0.8rem", letterSpacing: "1.5px",
-                    textTransform: "uppercase", fontFamily: "Roboto, sans-serif",
-                    boxShadow: "0 6px 22px rgba(61,107,94,0.35)",
-                    marginBottom: "24px"
+                    display: "block", textAlign: "center", backgroundColor: "#3D6B5E", color: "#FAF7F0",
+                    padding: "17px 38px", borderRadius: "100px", textDecoration: "none", fontWeight: "600",
+                    fontSize: "0.8rem", letterSpacing: "1.5px", textTransform: "uppercase",
+                    fontFamily: "Roboto, sans-serif", boxShadow: "0 6px 22px rgba(61,107,94,0.35)", marginBottom: "24px"
                   }}
                 >
                   Reservar Data
@@ -646,20 +493,15 @@ export default function RootLayout({ children }) {
                     color: "#FAF7F0", fontSize: "0.75rem", fontFamily: "Roboto, sans-serif",
                     fontWeight: "600", letterSpacing: "1.5px", textTransform: "uppercase",
                     display: "flex", alignItems: "center", textDecoration: "none"
-                  }}>
-                    PT <FlagPT/>
-                  </a>
+                  }}>PT <FlagPT/></a>
                   <a href="/en" style={{
                     color: "rgba(250,247,240,0.35)", fontSize: "0.75rem", fontFamily: "Roboto, sans-serif",
                     fontWeight: "600", letterSpacing: "1.5px", textTransform: "uppercase",
-                    display: "flex", alignItems: "center", textDecoration: "none",
-                    transition: "color 0.25s"
+                    display: "flex", alignItems: "center", textDecoration: "none", transition: "color 0.25s"
                   }}
                     onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
                     onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.35)"}
-                  >
-                    EN <FlagEN/>
-                  </a>
+                  >EN <FlagEN/></a>
                 </div>
               </div>
             </motion.div>
@@ -675,51 +517,27 @@ export default function RootLayout({ children }) {
           * { box-sizing: border-box; }
 
           .nav-bar {
-            display: flex;
-            align-items: center;
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 24px;
+            display: flex; align-items: center;
+            max-width: 1440px; margin: 0 auto; padding: 0 24px;
           }
-          @media (min-width: 1280px) {
-            .nav-bar { padding: 0 32px; }
-          }
+          @media (min-width: 1280px) { .nav-bar { padding: 0 32px; } }
 
           .nav-left {
-            flex: 1;
-            display: flex;
-            gap: clamp(10px, 1.2vw, 20px);
-            align-items: center;
-            justify-content: flex-end;
+            flex: 1; display: flex; gap: clamp(10px, 1.2vw, 20px);
+            align-items: center; justify-content: flex-end;
           }
 
           .nav-logo {
-            flex: 0 0 auto;
-            font-size: clamp(1rem, 1.5vw, 1.4rem);
-            font-family: 'TAN-MEMORIES', serif;
-            text-align: center;
-            text-decoration: none !important;
-            line-height: 1.1;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-            padding: 2px 24px;
-            border-bottom: 1px solid transparent;
-            transition: all 0.3s ease;
+            flex: 0 0 auto; font-size: clamp(1rem, 1.5vw, 1.4rem);
+            font-family: 'TAN-MEMORIES', serif; text-align: center;
+            text-decoration: none !important; line-height: 1.1; letter-spacing: 0.5px;
+            white-space: nowrap; padding: 2px 24px;
+            border-bottom: 1px solid transparent; transition: all 0.3s ease;
           }
           .nav-logo:hover { border-bottom: 1px solid currentColor; }
 
-          .nav-right-col {
-            flex: 1;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-          }
-
-          .nav-right {
-            display: flex;
-            gap: clamp(10px, 1.2vw, 20px);
-            align-items: center;
-          }
+          .nav-right-col { flex: 1; display: flex; justify-content: flex-start; align-items: center; }
+          .nav-right { display: flex; gap: clamp(10px, 1.2vw, 20px); align-items: center; }
 
           .nav-mobile-btn {
             background: none; border: none; cursor: pointer;
@@ -731,12 +549,8 @@ export default function RootLayout({ children }) {
           .italic { font-style: italic !important; }
 
           .nav-link {
-            text-decoration: none !important;
-            transition: all 0.3s ease;
-            display: inline-block;
-            border-bottom: 1px solid transparent;
-            line-height: 1.4;
-            padding-bottom: 2px;
+            text-decoration: none !important; transition: all 0.3s ease;
+            display: inline-block; border-bottom: 1px solid transparent; line-height: 1.4; padding-bottom: 2px;
           }
           .nav-link:hover { border-bottom: 1px solid currentColor; }
 
@@ -744,41 +558,21 @@ export default function RootLayout({ children }) {
           .lang-trigger:hover { border-bottom: 1px solid currentColor !important; }
 
           .lang-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            padding-top: 10px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-6px);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            pointer-events: none;
+            position: absolute; top: 100%; right: 0; padding-top: 10px;
+            opacity: 0; visibility: hidden; transform: translateY(-6px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none;
           }
           .lang-container:hover .lang-dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            pointer-events: auto;
+            opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
           }
 
           .nav-cta {
-            display: inline-flex;
-            align-items: center;
-            font-size: 0.66rem;
-            font-weight: 600;
-            letter-spacing: 1.4px;
-            text-transform: uppercase;
-            text-decoration: none !important;
-            font-family: Roboto, sans-serif;
-            padding: 8px 18px;
-            border-radius: 100px;
-            transition: all 0.3s ease;
-            white-space: nowrap;
+            display: inline-flex; align-items: center; font-size: 0.66rem; font-weight: 600;
+            letter-spacing: 1.4px; text-transform: uppercase; text-decoration: none !important;
+            font-family: Roboto, sans-serif; padding: 8px 18px; border-radius: 100px;
+            transition: all 0.3s ease; white-space: nowrap;
           }
-          .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(61,107,94,0.32) !important;
-          }
+          .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(61,107,94,0.32) !important; }
         `}</style>
       </body>
     </html>
