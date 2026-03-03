@@ -643,7 +643,6 @@ export default function OpcoesClient() {
               Todas as molduras são feitas à medida para cada peça, em Coimbra.
             </p>
           </Reveal>
-          </div>
 
           <Reveal>
             <div style={{ display: "flex", alignItems: "flex-start", gap: "16px", padding: "22px 28px", backgroundColor: "rgba(184,149,74,0.07)", border: "1px solid rgba(184,149,74,0.2)", borderRadius: "4px", marginBottom: "56px" }}>
