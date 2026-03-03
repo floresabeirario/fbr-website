@@ -265,6 +265,12 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
+  // ── Scroll to top on every page load / route change ──
+  useEffect(() => {
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", handleScroll, { passive: true });
