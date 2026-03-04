@@ -67,8 +67,13 @@ const STEPS = [
     title:  "Reserve a sua data",
     img:    "/reserva.webp",
     imgAlt: "Calendário com data de casamento marcada para reserva de preservação de bouquet",
-    body:   "As vagas são limitadas — especialmente em Abril, Maio, Setembro e Outubro. O processo começa muito antes do casamento: assim que souber a data, garanta a sua vaga com o formulário de reserva.",
-    note:   "Respondemos em 24 horas com a confirmação e as instruções de pagamento do sinal de 30%."
+    body:   <>
+      As vagas são limitadas, especialmente entre Maio e Setembro. O processo começa muito antes do casamento: assim que souber a data, garanta a sua vaga com o{" "}
+      <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer" style={{ color: "#3D6B5E", fontWeight: 600, textDecoration: "none", borderBottom: "1px solid rgba(61,107,94,0.3)", paddingBottom: "1px" }}>
+        formulário de reserva
+      </a>.
+    </>,
+    note:   "Respondemos em 72 horas com a confirmação e as instruções de pagamento do sinal de 30%. O pagamento deve ser efetuado no prazo de 24 horas para garantir a reserva — caso contrário, o agendamento será cancelado. O sinal não é reembolsável."
   },
   {
     id:     "passo-2",
@@ -77,8 +82,24 @@ const STEPS = [
     title:  "O bouquet chega até nós",
     img:    "/ramojoana.webp",
     imgAlt: "Bouquet de noiva fresco a ser entregue no atelier para preservação botânica",
-    body:   "Depois do grande dia, as flores têm de chegar até nós o mais frescas possível — preferencialmente em 1 a 3 dias, no máximo 5. Enquanto aguarda, mantenha o bouquet num vaso com água fresca longe do sol e do calor.",
-    note:   "Pode entregar em mãos no atelier (Ceira, Coimbra), enviar por CTT correio frágil, ou pedir-nos recolha no local do evento. Recebemos de Portugal e de toda a Europa."
+    body:   "Depois do dia do evento, as flores têm de chegar até nós o mais frescas possível — preferencialmente em 1 a 3 dias, no máximo 5. Enquanto aguarda, mantenha o bouquet num vaso com água fresca longe do sol e do calor. O pagamento de 40% da encomenda será solicitado após recebermos as flores.",
+    noteJsx: <>
+      <strong style={{ display: "block", marginBottom: "10px", color: "#3D6B5E", fontSize: "0.88rem", letterSpacing: "0.3px" }}>Três opções de entrega:</strong>
+      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+        {[
+          { label: "Entrega em mãos", desc: "Gratuitamente no nosso atelier em Coimbra, mediante agendamento." },
+          { label: "Envio por CTT", desc: "Correio frágil e urgente — os custos de envio são a cargo do cliente." },
+          { label: "Recolha no evento", desc: "Deslocamo-nos ao local do evento, mediante orçamento e disponibilidade." },
+        ].map((item, i) => (
+          <div key={i} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
+            <span style={{ color: "#3D6B5E", fontWeight: 700, flexShrink: 0, fontSize: "0.88rem", marginTop: "1px" }}>→</span>
+            <p style={{ margin: 0, fontSize: "0.88rem", lineHeight: 1.65, color: "#3D6B5E" }}>
+              <strong>{item.label}:</strong> {item.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </>
   },
   {
     id:     "passo-3",
@@ -87,18 +108,18 @@ const STEPS = [
     title:  "Prensagem pétala a pétala",
     img:    "/prensa.webp",
     imgAlt: "Pétalas de flores de casamento a serem prensadas artesanalmente em papel botânico",
-    body:   "É aqui que acontece a magia — e também a parte que não pode ser apressada. Cada pétala, folha e raminho é prensado individualmente em condições controladas de temperatura e humidade, sem químicos, sem plásticos.",
-    note:   "Este processo pode demorar vários meses, e é exactamente esse tempo que faz a diferença entre um resultado mediano e uma obra de arte que dura décadas."
+    body:   "É aqui que acontece a magia — e também a parte que não pode ser apressada. Cada pétala, folha e raminho é prensado individualmente em condições controladas de temperatura e humidade.",
+    note:   "Após estarem preservadas, as flores são também congeladas para eliminar qualquer inseto que possa ainda estar presente."
   },
   {
     id:     "passo-4",
     n:      "04",
     tag:    "Aprovação sua",
-    title:  "Compõe­mos, você aprova",
+    title:  "Composição e aprovação",
     img:    "/detalhe.webp",
     imgAlt: "Composição artística de flores prensadas do bouquet de noiva dentro de moldura",
-    body:   "Com as flores prontas, criamos a composição dentro da moldura escolhida — e só avançamos quando você diz sim. Enviamos fotografia detalhada para aprovação e pode pedir ajustes antes de selarmos definitivamente.",
-    note:   "Ninguém deve ficar com um quadro sem o ter aprovado primeiro. Esta etapa existe exactamente para isso."
+    body:   "Escolhemos as flores melhor preservadas e iniciamos a criação do seu quadro. Quando a composição estiver pronta, receberá um e-mail com imagens do design. Terá 72 horas para aprovar ou solicitar alterações. Após a sua aprovação, o quadro segue para a molduraria e é finalizado.",
+    note:   null
   },
   {
     id:     "passo-5",
@@ -107,8 +128,24 @@ const STEPS = [
     title:  "O quadro chega a casa",
     img:    "/joanaceu.webp",
     imgAlt: "Quadro botânico de flores de casamento prensadas emoldurado com vidro museu anti-UV",
-    body:   "Após a sua aprovação e o pagamento final, o quadro é selado com vidro museu anti-reflexo e proteção UV — o mesmo vidro usado em museus para proteger obras de arte durante décadas — e enviado para casa com embalagem especial.",
-    note:   "Pode também levantar pessoalmente no atelier. O quadro chega pronto a pendurar, com o hardware de montagem incluído."
+    body:   <>
+      Com o quadro pronto, tem duas opções de entrega:
+      <div style={{ display: "flex", flexDirection: "column", gap: "6px", margin: "14px 0" }}>
+        {[
+          { label: "Envio pelos CTT", desc: "Receberá um número de rastreamento assim que a encomenda for enviada." },
+          { label: "Recolha no atelier", desc: "Agende um horário para recolha em Coimbra." },
+        ].map((item, i) => (
+          <div key={i} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
+            <span style={{ color: "#5A6B60", fontWeight: 700, flexShrink: 0, fontSize: "0.95rem", marginTop: "1px" }}>→</span>
+            <p style={{ margin: 0, fontSize: "clamp(0.92rem,1.8vw,1.02rem)", lineHeight: 1.75, color: "#5A6B60" }}>
+              <strong style={{ color: "#1E2D2A" }}>{item.label}:</strong> {item.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+      Antes do envio ou da recolha, será solicitado o pagamento da 3.ª e última prestação — 30% do valor total. O quadro inclui instruções de cuidados para garantir a sua durabilidade. Se tiver alguma dúvida, estamos sempre disponíveis para ajudar!
+    </>,
+    note:   null
   }
 ];
 
@@ -181,7 +218,6 @@ const Step = ({ step, index }) => {
 
           {/* ── Título visível APENAS no mobile (acima da foto) ── */}
           <h2
-            id={`${step.id}-title`}
             className="step-title-mobile"
             style={{
               fontFamily: "'TAN-MEMORIES', serif",
@@ -215,20 +251,12 @@ const Step = ({ step, index }) => {
               alignItems:      "center",
               gap:             "7px"
             }}>
-              <span style={{
-                fontFamily:    "'TAN-MEMORIES', serif",
-                fontSize:      "0.7rem",
-                lineHeight:    1
-              }}>
+              <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.7rem", lineHeight: 1 }}>
                 {step.n}
               </span>
               <span style={{
-                fontSize:      "0.55rem",
-                fontWeight:    700,
-                letterSpacing: "2px",
-                textTransform: "uppercase",
-                fontFamily:    "Roboto, sans-serif",
-                opacity:       0.8
+                fontSize: "0.55rem", fontWeight: 700, letterSpacing: "2px",
+                textTransform: "uppercase", fontFamily: "Roboto, sans-serif", opacity: 0.8
               }}>
                 {step.tag}
               </span>
@@ -239,10 +267,8 @@ const Step = ({ step, index }) => {
               alt={step.imgAlt}
               className="step-img"
               style={{
-                width:      "100%",
-                aspectRatio: "4/3",
-                objectFit:  "cover",
-                display:    "block",
+                width: "100%", aspectRatio: "4/3",
+                objectFit: "cover", display: "block",
                 transition: "transform 0.6s ease"
               }}
               loading="lazy"
@@ -267,32 +293,37 @@ const Step = ({ step, index }) => {
             {step.title}
           </h2>
 
-          <p style={{
+          <div style={{
             color:      "#5A6B60",
             lineHeight: 1.88,
             fontSize:   "clamp(0.92rem,1.8vw,1.02rem)",
             margin:     "0 0 clamp(16px,2.5vw,22px)"
           }}>
             {step.body}
-          </p>
-
-          {/* Note */}
-          <div style={{
-            padding:      "clamp(14px,2vw,18px) clamp(16px,2.5vw,22px)",
-            borderRadius: "12px",
-            backgroundColor: "rgba(61,107,94,0.06)",
-            borderLeft:   "3px solid rgba(61,107,94,0.3)"
-          }}>
-            <p style={{
-              color:      "#3D6B5E",
-              lineHeight: 1.78,
-              fontSize:   "clamp(0.84rem,1.6vw,0.92rem)",
-              margin:     0,
-              fontStyle:  "italic"
-            }}>
-              {step.note}
-            </p>
           </div>
+
+          {/* Note box — só aparece se note ou noteJsx existir */}
+          {(step.note || step.noteJsx) && (
+            <div style={{
+              padding:         "clamp(14px,2vw,18px) clamp(16px,2.5vw,22px)",
+              borderRadius:    "12px",
+              backgroundColor: "rgba(61,107,94,0.06)",
+              borderLeft:      "3px solid rgba(61,107,94,0.3)"
+            }}>
+              {step.noteJsx
+                ? <div style={{ color: "#3D6B5E", lineHeight: 1.78, fontSize: "clamp(0.84rem,1.6vw,0.92rem)" }}>
+                    {step.noteJsx}
+                  </div>
+                : <p style={{
+                    color: "#3D6B5E", lineHeight: 1.78,
+                    fontSize: "clamp(0.84rem,1.6vw,0.92rem)",
+                    margin: 0, fontStyle: "italic"
+                  }}>
+                    {step.note}
+                  </p>
+              }
+            </div>
+          )}
         </div>
       </motion.div>
     </article>
