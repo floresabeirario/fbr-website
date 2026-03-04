@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 
 // ─── HowTo Schema ─────────────────────────────────────────────────────────────
-// Aparece nos resultados do Google como rich snippet com os passos numerados
 const HowToSchema = () => (
   <script
     type="application/ld+json"
@@ -86,7 +85,7 @@ const STEPS = [
     n:      "03",
     tag:    "Até 6 meses",
     title:  "Prensagem pétala a pétala",
-    img:    "/passo-3-prensagem.jpg",
+    img:    "/prensa.webp",
     imgAlt: "Pétalas de flores de casamento a serem prensadas artesanalmente em papel botânico",
     body:   "É aqui que acontece a magia — e também a parte que não pode ser apressada. Cada pétala, folha e raminho é prensado individualmente em condições controladas de temperatura e humidade, sem químicos, sem plásticos.",
     note:   "Este processo pode demorar vários meses, e é exactamente esse tempo que faz a diferença entre um resultado mediano e uma obra de arte que dura décadas."
@@ -145,8 +144,7 @@ const DELIVERY = [
 
 // ─── Componente Step — layout editorial alternado ─────────────────────────────
 const Step = ({ step, index }) => {
-  const isEven   = index % 2 === 0;   // imagem à esquerda nos pares
-  const delay    = 0.08;
+  const isEven = index % 2 === 0;
 
   return (
     <article
@@ -154,7 +152,7 @@ const Step = ({ step, index }) => {
       aria-labelledby={`${step.id}-title`}
       style={{ marginBottom: "clamp(64px,12vw,110px)" }}
     >
-      {/* Large ghost number — decorative, hidden from a11y */}
+      {/* Large ghost number — decorative */}
       <div aria-hidden="true" style={{
         fontFamily: "'TAN-MEMORIES', serif",
         fontSize:   "clamp(5rem,18vw,14rem)",
@@ -180,6 +178,22 @@ const Step = ({ step, index }) => {
       >
         {/* Photo */}
         <div className="step-photo-wrap">
+
+          {/* ── Título visível APENAS no mobile (acima da foto) ── */}
+          <h2
+            id={`${step.id}-title`}
+            className="step-title-mobile"
+            style={{
+              fontFamily: "'TAN-MEMORIES', serif",
+              fontSize:   "clamp(1.6rem,4vw,2.5rem)",
+              color:      "#1E2D2A",
+              margin:     "0 0 clamp(12px,2vw,16px)",
+              lineHeight: 1.1
+            }}
+          >
+            {step.title}
+          </h2>
+
           <div style={{
             position:     "relative",
             borderRadius: "clamp(14px,2.5vw,22px)",
@@ -238,8 +252,10 @@ const Step = ({ step, index }) => {
 
         {/* Text */}
         <div className="step-text">
+          {/* ── Título visível APENAS no desktop ── */}
           <h2
             id={`${step.id}-title`}
+            className="step-title-desktop"
             style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize:   "clamp(1.6rem,4vw,2.5rem)",
@@ -260,7 +276,7 @@ const Step = ({ step, index }) => {
             {step.body}
           </p>
 
-          {/* Note / detail */}
+          {/* Note */}
           <div style={{
             padding:      "clamp(14px,2vw,18px) clamp(16px,2.5vw,22px)",
             borderRadius: "12px",
@@ -314,6 +330,10 @@ export default function ComoFunciona() {
             align-items: center;
           }
 
+          /* Mobile: título acima da foto, oculto na coluna de texto */
+          .step-title-mobile  { display: block; }
+          .step-title-desktop { display: none; }
+
           @media (min-width: 768px) {
             .step-grid {
               grid-template-columns: 1fr 1fr;
@@ -322,6 +342,10 @@ export default function ComoFunciona() {
             /* odd steps: text left, photo right */
             .step-grid--odd .step-photo-wrap { order: 2; }
             .step-grid--odd .step-text       { order: 1; }
+
+            /* Desktop: título dentro da coluna de texto */
+            .step-title-mobile  { display: none; }
+            .step-title-desktop { display: block; }
           }
 
           /* Photo hover */
@@ -479,7 +503,6 @@ export default function ComoFunciona() {
                 botânica que dura décadas — explicados com toda a transparência.
               </p>
 
-              {/* Payment anchors — useful context before scrolling */}
               <div style={{
                 display:        "flex",
                 flexWrap:       "wrap",
@@ -500,7 +523,7 @@ export default function ComoFunciona() {
         </section>
 
         {/* ══════════════════════════════════════════════════════
-            STEPS — editorial alternating layout
+            STEPS
         ══════════════════════════════════════════════════════ */}
         <section
           aria-label="Os cinco passos da preservação de flores"
@@ -516,7 +539,7 @@ export default function ComoFunciona() {
         </section>
 
         {/* ══════════════════════════════════════════════════════
-            O QUE ESTÁ INCLUÍDO — trust builder
+            O QUE ESTÁ INCLUÍDO
         ══════════════════════════════════════════════════════ */}
         <section
           aria-label="O que está incluído na preservação de flores"
@@ -563,7 +586,6 @@ export default function ComoFunciona() {
                     alignItems:      "flex-start"
                   }}
                 >
-                  {/* Checkmark */}
                   <div style={{ flexShrink: 0, marginTop: "2px" }}>
                     <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                       <circle cx="10" cy="10" r="10" fill="rgba(61,107,94,0.1)"/>
@@ -773,24 +795,9 @@ export default function ComoFunciona() {
                 gap:                 "clamp(8px,2vw,16px)"
               }}>
                 {[
-                  {
-                    pct:   "30%",
-                    label: "Na reserva",
-                    desc:  "Sinal que garante a sua vaga. Não reembolsável.",
-                    c:     "#8BA888"
-                  },
-                  {
-                    pct:   "40%",
-                    label: "Início do trabalho",
-                    desc:  "Quando as flores chegam e iniciamos a prensagem.",
-                    c:     "#B8954A"
-                  },
-                  {
-                    pct:   "30%",
-                    label: "Antes da entrega",
-                    desc:  "Após aprovação da composição e antes de enviarmos o quadro.",
-                    c:     "#C4846B"
-                  }
+                  { pct: "30%", label: "Na reserva",       desc: "Sinal que garante a sua vaga. Não reembolsável.", c: "#8BA888" },
+                  { pct: "40%", label: "Início do trabalho", desc: "Quando as flores chegam e iniciamos a prensagem.", c: "#B8954A" },
+                  { pct: "30%", label: "Antes da entrega",  desc: "Após aprovação da composição e antes de enviarmos o quadro.", c: "#C4846B" }
                 ].map((p, i) => (
                   <div key={i} style={{
                     backgroundColor: "rgba(250,247,240,0.06)",
@@ -837,7 +844,7 @@ export default function ComoFunciona() {
         </section>
 
         {/* ══════════════════════════════════════════════════════
-            BOTÂNICA vs RESINA — diferenciador
+            BOTÂNICA vs RESINA
         ══════════════════════════════════════════════════════ */}
         <section
           aria-label="Diferença entre preservação botânica e resina epóxi"
@@ -987,7 +994,6 @@ export default function ComoFunciona() {
             transition={{ duration: 0.75 }}
             style={{ maxWidth: "580px", margin: "0 auto" }}
           >
-            {/* Gold divider */}
             <div aria-hidden="true" style={{
               width:      "44px",
               height:     "1px",
@@ -1030,7 +1036,6 @@ export default function ComoFunciona() {
               </a>
             </div>
 
-            {/* Internal links */}
             <div style={{
               display:        "flex",
               flexWrap:       "wrap",
