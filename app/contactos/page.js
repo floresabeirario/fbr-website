@@ -45,15 +45,28 @@ const IconEmail = () => (
     <polyline points="22,6 12,13 2,6"/>
   </svg>
 );
+const IconCasamentos = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+  </svg>
+);
 const IconMapPin = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
     <circle cx="12" cy="10" r="3"/>
   </svg>
 );
-const IconCasamentos = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+const IconClock = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/>
+    <polyline points="12 6 12 12 16 14"/>
+  </svg>
+);
+const IconTruck = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="1" y="3" width="15" height="13"/>
+    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+    <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
   </svg>
 );
 
@@ -67,93 +80,55 @@ const TEAM = [
     img: "/mj.webp",
     role: "Cofundadora & Designer",
     bio: "A Maria João é a nossa cofundadora e designer. É a mão artística das nossas peças.",
+    accent: "#C4846B",
   },
   {
     name: "António",
     img: "/antonio.webp",
     role: "Cofundador & Operações",
     bio: "O António é o nosso cofundador e coordenador de operações. Gere o material, fornecedores, recebimento de flores e envios de quadros e muito mais.",
+    accent: "#3D6B5E",
   },
   {
     name: "Ana",
     img: "/ana.webp",
     role: "Comunicação",
     bio: "A Ana é a nossa especialista em comunicação. É quem garante que os nossos clientes estão felizes com o nosso trabalho.",
+    accent: "#B8954A",
   },
 ];
 
-const CHANNELS = [
-  {
-    icon: <IconWhatsApp />,
-    label: "WhatsApp",
-    value: "+351 934 680 300",
-    href: "https://wa.me/351934680300",
-    color: "#25D366",
-    desc: "Respondemos em poucas horas",
-    external: true,
-  },
-  {
-    icon: <IconEmail />,
-    label: "Email",
-    value: "info@floresabeirario.pt",
-    href: "mailto:info@floresabeirario.pt",
-    color: "#3D6B5E",
-    desc: "Resposta em 24 horas",
-    external: false,
-  },
+const SOCIALS = [
   {
     icon: <IconInstagram />,
     label: "Instagram",
-    value: "@floresabeirario",
+    handle: "@floresabeirario",
     href: "https://www.instagram.com/floresabeirario/",
-    color: "#E1306C",
-    desc: "Portefólio e bastidores",
-    external: true,
+    bg: "linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%)",
   },
   {
     icon: <IconFacebook />,
     label: "Facebook",
-    value: "Flores à Beira-Rio",
+    handle: "Flores à Beira-Rio",
     href: "https://www.facebook.com/floresabeirario/",
-    color: "#1877F2",
-    desc: "Novidades e partilhas",
-    external: true,
+    bg: "linear-gradient(135deg, #1877F2, #0C5DC7)",
   },
   {
     icon: <IconCasamentos />,
     label: "Casamentos.pt",
-    value: "Perfil verificado",
+    handle: "Perfil verificado",
     href: "https://www.casamentos.pt/ideias-criativas-para-casamentos/flores-a-beira-rio-preservacao-de-flores--e171385",
-    color: "#E8927C",
-    desc: "Avaliações de noivas",
-    external: true,
-  },
-  {
-    icon: <IconMapPin />,
-    label: "Localização",
-    value: "Coimbra, Portugal",
-    href: null,
-    color: "#B8954A",
-    desc: "Atelier com agendamento prévio",
-    external: false,
+    bg: "linear-gradient(135deg, #E8927C, #D4735B)",
   },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function ContactosEquipa() {
   return (
-    <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
+    <main style={{ overflowX: "hidden" }}>
 
       <style dangerouslySetInnerHTML={{ __html: `
         * { box-sizing: border-box; }
-
-        .eyebrow {
-          display: block;
-          font-size: 0.58rem; font-weight: 700;
-          letter-spacing: 3.5px; text-transform: uppercase;
-          color: #C4846B; margin-bottom: 12px;
-          font-family: Roboto, sans-serif;
-        }
 
         .team-grid {
           display: grid;
@@ -164,39 +139,41 @@ export default function ContactosEquipa() {
           .team-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
-        .team-photo {
-          transition: transform 0.6s ease;
-        }
-        .team-photo:hover { transform: scale(1.04); }
+        .team-photo { transition: transform 0.7s ease; }
+        .team-card:hover .team-photo { transform: scale(1.05); }
 
-        .channels-grid {
+        .social-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 12px;
+          gap: 14px;
         }
         @media (min-width: 560px) {
-          .channels-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (min-width: 900px) {
-          .channels-grid { grid-template-columns: repeat(3, 1fr); }
+          .social-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
-        .channel-card {
-          display: flex;
-          align-items: flex-start;
-          gap: 16px;
-          padding: 22px 20px;
-          border-radius: 16px;
-          background: #fff;
-          border: 1px solid rgba(61,107,94,0.09);
-          box-shadow: 0 4px 18px rgba(30,45,42,0.05);
-          text-decoration: none;
-          color: inherit;
-          transition: transform 0.25s ease, box-shadow 0.25s ease;
+        .social-card {
+          display: flex; align-items: center; gap: 14px;
+          padding: 18px 20px; border-radius: 14px;
+          text-decoration: none; color: #FAF7F0;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        a.channel-card:hover {
+        .social-card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 12px 36px rgba(30,45,42,0.1);
+          box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+        }
+
+        .contact-split {
+          display: grid; grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+          .contact-split { grid-template-columns: 1fr 1fr; }
+        }
+
+        .info-row {
+          display: grid; grid-template-columns: 1fr; gap: 14px;
+        }
+        @media (min-width: 560px) {
+          .info-row { grid-template-columns: 1fr 1fr; }
         }
 
         .cta-row {
@@ -207,52 +184,51 @@ export default function ContactosEquipa() {
           .cta-row { flex-direction: row; justify-content: center; align-items: center; }
         }
 
-        .btn-primary {
+        .btn-primary-light {
           display: inline-flex; align-items: center; justify-content: center;
-          background: #3D6B5E; color: #FAF7F0;
+          background: #FAF7F0; color: #3D6B5E;
           padding: 16px 38px; border-radius: 100px;
-          text-decoration: none; font-weight: 600;
-          font-size: 0.8rem; letter-spacing: 1.5px;
+          text-decoration: none; font-weight: 700;
+          font-size: 0.78rem; letter-spacing: 1.5px;
           text-transform: uppercase; text-align: center;
-          box-shadow: 0 6px 22px rgba(61,107,94,0.28);
           transition: all 0.3s ease;
-          font-family: Roboto, sans-serif;
-          min-height: 56px;
+          font-family: Roboto, sans-serif; min-height: 56px;
         }
-        .btn-primary:hover { background: #1E2D2A; transform: translateY(-3px); }
+        .btn-primary-light:hover { background: #EDE5D4; transform: translateY(-3px); }
 
-        .btn-wa {
-          display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+        .btn-wa-big {
+          display: inline-flex; align-items: center; justify-content: center; gap: 10px;
           background: #25D366; color: #fff;
-          padding: 16px 34px; border-radius: 100px;
+          padding: 16px 36px; border-radius: 100px;
           text-decoration: none; font-weight: 600;
           font-size: 0.8rem; letter-spacing: 1.5px;
           text-transform: uppercase;
-          box-shadow: 0 6px 22px rgba(37,211,102,0.28);
+          box-shadow: 0 6px 24px rgba(37,211,102,0.3);
           transition: all 0.3s ease;
-          font-family: Roboto, sans-serif;
-          min-height: 56px;
+          font-family: Roboto, sans-serif; min-height: 56px;
         }
-        .btn-wa:hover { background: #1da851; transform: translateY(-3px); }
+        .btn-wa-big:hover { background: #1da851; transform: translateY(-3px); }
 
-        .btn-ghost-dark {
+        .btn-ghost-light {
           display: inline-flex; align-items: center; justify-content: center;
-          border: 2px solid rgba(30,45,42,0.25); color: #1E2D2A;
+          border: 2px solid rgba(250,247,240,0.4); color: rgba(250,247,240,0.9);
           padding: 15px 34px; border-radius: 100px;
           text-decoration: none; font-weight: 600;
-          font-size: 0.8rem; letter-spacing: 1.5px;
+          font-size: 0.78rem; letter-spacing: 1.5px;
           text-transform: uppercase; text-align: center;
           transition: all 0.3s ease;
-          font-family: Roboto, sans-serif;
-          min-height: 56px;
+          font-family: Roboto, sans-serif; min-height: 56px;
+          backdrop-filter: blur(8px);
+          background: rgba(250,247,240,0.06);
         }
-        .btn-ghost-dark:hover {
-          background: rgba(30,45,42,0.06); border-color: #3D6B5E;
-          color: #3D6B5E; transform: translateY(-3px);
+        .btn-ghost-light:hover {
+          background: rgba(250,247,240,0.15);
+          border-color: rgba(250,247,240,0.8);
+          transform: translateY(-3px);
         }
 
         a:focus-visible, button:focus-visible {
-          outline: 3px solid #3D6B5E;
+          outline: 3px solid #8BA888;
           outline-offset: 4px;
           border-radius: 4px;
         }
@@ -267,158 +243,188 @@ export default function ContactosEquipa() {
       `}} />
 
       {/* ════════════════════════════════════════════
-          HERO
+          1. HERO — foto de fundo, split layout
       ════════════════════════════════════════════ */}
       <section
         aria-label="Contactos e Equipa — Flores à Beira-Rio"
         style={{
-          paddingTop: "clamp(110px,16vw,170px)",
-          paddingBottom: "clamp(44px,7vw,72px)",
-          paddingLeft: "20px",
-          paddingRight: "20px",
-          background: "linear-gradient(175deg, #EDF2E8 0%, #FAF7F0 100%)",
+          position: "relative", overflow: "hidden",
+          minHeight: "85vh",
+          display: "flex", alignItems: "center",
         }}
       >
-        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="eyebrow">Fale connosco</span>
-            <h1 style={{
-              fontFamily: "'TAN-MEMORIES', serif",
-              fontSize: "clamp(2.8rem,9vw,5.8rem)",
-              color: "#1E2D2A",
-              margin: "0 0 clamp(18px,3vw,28px)",
-              lineHeight: 1.0,
-            }}>
-              Contactos<br />
-              <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>&amp; Equipa</em>
-            </h1>
-            <p style={{
-              color: "#5A6B60",
-              fontSize: "clamp(0.95rem,2vw,1.08rem)",
-              lineHeight: 1.88,
-              maxWidth: "540px",
-              margin: 0,
-            }}>
-              Estamos disponíveis para responder a todas as suas dúvidas.
-              Adoramos conhecer a história por detrás das flores que nos chegam.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+        <div aria-hidden="true" style={{
+          position: "absolute", inset: 0,
+          backgroundImage: "url('/fotoquadro1.webp')",
+          backgroundSize: "cover", backgroundPosition: "center",
+          filter: "brightness(0.55) saturate(0.8)",
+        }} />
+        <div aria-hidden="true" style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(to bottom, rgba(15,30,26,0.4) 0%, rgba(15,30,26,0.6) 50%, rgba(15,30,26,0.85) 100%)",
+        }} />
 
-      {/* ════════════════════════════════════════════
-          CANAIS DE CONTACTO
-      ════════════════════════════════════════════ */}
-      <section
-        aria-label="Canais de contacto"
-        style={{
-          padding: "clamp(48px,8vw,80px) 20px",
-          backgroundColor: "#FAF7F0",
-        }}
-      >
-        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-          <Reveal>
-            <div style={{ textAlign: "center", marginBottom: "clamp(32px,5vw,48px)" }}>
-              <span className="eyebrow" style={{ color: "#B8954A" }}>Onde nos encontrar</span>
-              <h2 style={{
-                fontFamily: "'TAN-MEMORIES', serif",
-                fontSize: "clamp(1.8rem,4.5vw,3rem)",
-                color: "#1E2D2A",
-                margin: 0,
-                lineHeight: 1.1,
+        <div style={{
+          position: "relative", zIndex: 2, width: "100%",
+          maxWidth: "1100px", margin: "0 auto",
+          padding: "clamp(140px,18vw,200px) 24px clamp(80px,12vw,120px)",
+        }}>
+          <div className="contact-split" style={{ gap: "clamp(40px,6vw,80px)", alignItems: "center" }}>
+
+            {/* Texto */}
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span style={{
+                display: "inline-block", fontSize: "0.56rem", fontWeight: 700,
+                letterSpacing: "3.5px", textTransform: "uppercase",
+                color: "#8BA888", marginBottom: 16,
+                fontFamily: "Roboto, sans-serif",
               }}>
-                Escolha o canal mais conveniente
-              </h2>
-            </div>
-          </Reveal>
+                Fale connosco
+              </span>
+              <h1 style={{
+                fontFamily: "'TAN-MEMORIES', serif",
+                fontSize: "clamp(2.8rem,8vw,5.2rem)",
+                color: "#FAF7F0", margin: "0 0 20px",
+                lineHeight: 1.02,
+              }}>
+                Contactos<br />
+                <em style={{ fontStyle: "italic", color: "#8BA888" }}>&amp; Equipa</em>
+              </h1>
+              <p style={{
+                color: "rgba(250,247,240,0.72)", fontFamily: "Roboto, sans-serif",
+                fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.08rem)",
+                lineHeight: 1.88, maxWidth: 480, margin: "0 0 32px",
+              }}>
+                Estamos disponíveis para responder a todas as suas dúvidas.
+                Adoramos conhecer a história por detrás das flores que nos chegam.
+              </p>
+              <div className="cta-row" style={{ justifyContent: "flex-start" }}>
+                <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa-big">
+                  <IconWhatsApp /> WhatsApp
+                </a>
+                <a href="mailto:info@floresabeirario.pt" className="btn-ghost-light">
+                  Enviar Email
+                </a>
+              </div>
+            </motion.div>
 
-          <div className="channels-grid">
-            {CHANNELS.map((ch, i) => {
-              const Tag = ch.href ? "a" : "div";
-              const linkProps = ch.href
-                ? {
-                    href: ch.href,
-                    ...(ch.external ? { target: "_blank", rel: "noopener noreferrer" } : {}),
-                  }
-                : {};
-
-              return (
-                <Reveal key={i} delay={i * 0.06}>
-                  <Tag className="channel-card" {...linkProps}>
+            {/* Card glassmorphism com contactos */}
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                backgroundColor: "rgba(250,247,240,0.07)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(250,247,240,0.12)",
+                borderRadius: 20, padding: "clamp(28px,4vw,40px)",
+              }}
+            >
+              <p style={{
+                fontFamily: "Roboto, sans-serif", fontWeight: 700,
+                fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase",
+                color: "#B8954A", marginBottom: 24,
+              }}>
+                Contacto direto
+              </p>
+              {[
+                { icon: <IconWhatsApp />, label: "+351 934 680 300", sub: "Respondemos em poucas horas", href: "https://wa.me/351934680300", color: "#25D366" },
+                { icon: <IconEmail />, label: "info@floresabeirario.pt", sub: "Resposta em 24 horas", href: "mailto:info@floresabeirario.pt", color: "#8BA888" },
+                { icon: <IconMapPin />, label: "Coimbra, Portugal", sub: "Visitas com agendamento prévio", href: null, color: "#B8954A" },
+              ].map((item, i) => {
+                const Tag = item.href ? "a" : "div";
+                return (
+                  <Tag key={i}
+                    {...(item.href ? { href: item.href, ...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {}) } : {})}
+                    style={{
+                      display: "flex", alignItems: "center", gap: 14,
+                      padding: "14px 0",
+                      borderBottom: i < 2 ? "1px solid rgba(250,247,240,0.08)" : "none",
+                      textDecoration: "none", color: "inherit",
+                      transition: "opacity 0.2s",
+                    }}
+                    onMouseEnter={item.href ? e => { e.currentTarget.style.opacity = "0.75"; } : undefined}
+                    onMouseLeave={item.href ? e => { e.currentTarget.style.opacity = "1"; } : undefined}
+                  >
                     <div style={{
-                      width: 44, height: 44, borderRadius: 12, flexShrink: 0,
-                      background: `${ch.color}14`,
+                      width: 40, height: 40, borderRadius: 10, flexShrink: 0,
+                      background: `${item.color}22`,
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      color: ch.color, marginTop: 2,
+                      color: item.color,
                     }}>
-                      {ch.icon}
+                      {item.icon}
                     </div>
                     <div>
                       <p style={{
-                        fontFamily: "Roboto, sans-serif", fontWeight: 700,
-                        fontSize: "0.72rem", letterSpacing: "1.5px",
-                        textTransform: "uppercase", color: ch.color,
-                        margin: "0 0 4px",
-                      }}>
-                        {ch.label}
-                      </p>
-                      <p style={{
                         fontFamily: "'TAN-MEMORIES', serif",
-                        fontSize: "1rem", color: "#1E2D2A",
-                        margin: "0 0 4px", lineHeight: 1.25,
+                        fontSize: "0.95rem", color: "#FAF7F0",
+                        margin: 0, lineHeight: 1.2,
                       }}>
-                        {ch.value}
+                        {item.label}
                       </p>
                       <p style={{
                         fontFamily: "Roboto, sans-serif", fontWeight: 300,
-                        fontSize: "0.78rem", color: "#5A6B60",
-                        margin: 0, lineHeight: 1.5,
+                        fontSize: "0.74rem", color: "rgba(250,247,240,0.45)",
+                        margin: "3px 0 0",
                       }}>
-                        {ch.desc}
+                        {item.sub}
                       </p>
                     </div>
                   </Tag>
-                </Reveal>
-              );
-            })}
+                );
+              })}
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════
-          EQUIPA
+          2. EQUIPA — fundo quente castanho
       ════════════════════════════════════════════ */}
       <section
         aria-label="A nossa equipa"
         style={{
-          padding: "clamp(48px,8vw,80px) 20px",
-          background: "linear-gradient(180deg, #EDF2E8 0%, #FAF7F0 100%)",
+          padding: "clamp(60px,10vw,100px) 24px",
+          background: "linear-gradient(165deg, #2D1F14 0%, #3A2A1C 40%, #1E2D2A 100%)",
+          position: "relative", overflow: "hidden",
         }}
       >
-        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+        {/* Textura diagonal */}
+        <div aria-hidden="true" style={{
+          position: "absolute", inset: 0, opacity: 0.03,
+          backgroundImage: `repeating-linear-gradient(45deg, #B8954A 0px, #B8954A 1px, transparent 1px, transparent 50px)`,
+          pointerEvents: "none",
+        }} />
+
+        <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
-            <div style={{ textAlign: "center", marginBottom: "clamp(36px,6vw,56px)" }}>
-              <span className="eyebrow">Quem somos</span>
+            <div style={{ textAlign: "center", marginBottom: "clamp(40px,7vw,64px)" }}>
+              <span style={{
+                display: "inline-block", fontSize: "0.56rem", fontWeight: 700,
+                letterSpacing: "3.5px", textTransform: "uppercase",
+                color: "#B8954A", marginBottom: 14,
+                fontFamily: "Roboto, sans-serif",
+              }}>
+                Quem somos
+              </span>
               <h2 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
-                fontSize: "clamp(2rem,5vw,3.5rem)",
-                fontWeight: 400,
-                color: "#1E2D2A",
-                margin: "0 0 16px",
-                lineHeight: 1.1,
+                fontSize: "clamp(2.2rem,5.5vw,3.8rem)",
+                fontWeight: 400, color: "#FAF7F0",
+                margin: "0 0 16px", lineHeight: 1.08,
               }}>
                 A equipa por detrás<br />
-                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>de cada peça</em>
+                <em style={{ fontStyle: "italic", color: "#C4846B" }}>de cada peça</em>
               </h2>
               <p style={{
                 fontFamily: "Roboto, sans-serif", fontWeight: 300,
                 fontSize: "clamp(0.95rem,2vw,1.05rem)",
-                lineHeight: 1.85, color: "#5A6B60",
-                maxWidth: "520px", margin: "0 auto",
+                lineHeight: 1.85, color: "rgba(250,247,240,0.55)",
+                maxWidth: 500, margin: "0 auto",
               }}>
                 Somos uma equipa pequena baseada em Coimbra, unida pela paixão
                 de transformar flores em memórias que duram para sempre.
@@ -428,16 +434,20 @@ export default function ContactosEquipa() {
 
           <div className="team-grid">
             {TEAM.map((member, i) => (
-              <Reveal key={i} delay={i * 0.1}>
-                <div style={{
+              <Reveal key={i} delay={i * 0.12}>
+                <div className="team-card" style={{
                   borderRadius: 20, overflow: "hidden",
-                  backgroundColor: "#fff",
-                  border: "1px solid rgba(61,107,94,0.09)",
-                  boxShadow: "0 8px 32px rgba(30,45,42,0.07)",
-                }}>
+                  backgroundColor: "rgba(250,247,240,0.04)",
+                  border: "1px solid rgba(250,247,240,0.08)",
+                  backdropFilter: "blur(4px)",
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-6px)"; e.currentTarget.style.boxShadow = "0 20px 48px rgba(0,0,0,0.3)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+                >
                   <div style={{
                     aspectRatio: "3/4", overflow: "hidden",
-                    backgroundColor: "#D4DECC", position: "relative",
+                    position: "relative", backgroundColor: "#2A1F16",
                   }}>
                     <img
                       src={member.img}
@@ -450,36 +460,35 @@ export default function ContactosEquipa() {
                       loading="lazy"
                     />
                     <div style={{
-                      position: "absolute", bottom: 0, left: 0, right: 0, height: "40%",
-                      background: "linear-gradient(to top, rgba(15,30,26,0.65) 0%, transparent 100%)",
+                      position: "absolute", bottom: 0, left: 0, right: 0, height: "50%",
+                      background: `linear-gradient(to top, rgba(42,31,22,0.95) 0%, rgba(42,31,22,0.4) 60%, transparent 100%)`,
                     }} />
-                    <div style={{ position: "absolute", bottom: 18, left: 18 }}>
+                    <div style={{ position: "absolute", bottom: 20, left: 20, right: 20 }}>
                       <p style={{
                         fontFamily: "'TAN-MEMORIES', serif",
-                        fontSize: "clamp(1.2rem,2.5vw,1.5rem)",
-                        color: "#FAF7F0", margin: 0, lineHeight: 1.15,
-                        textShadow: "0 2px 8px rgba(0,0,0,0.25)",
+                        fontSize: "clamp(1.3rem,2.8vw,1.6rem)",
+                        color: "#FAF7F0", margin: "0 0 6px", lineHeight: 1.15,
+                        textShadow: "0 2px 10px rgba(0,0,0,0.3)",
                       }}>
                         {member.name}
                       </p>
+                      <span style={{
+                        display: "inline-block",
+                        fontSize: "0.5rem", fontWeight: 700,
+                        letterSpacing: "2px", textTransform: "uppercase",
+                        color: "#FAF7F0", fontFamily: "Roboto, sans-serif",
+                        backgroundColor: member.accent,
+                        padding: "4px 12px", borderRadius: 100,
+                      }}>
+                        {member.role}
+                      </span>
                     </div>
                   </div>
-                  <div style={{ padding: "18px 20px 22px" }}>
-                    <span style={{
-                      display: "inline-block",
-                      fontSize: "0.52rem", fontWeight: 700,
-                      letterSpacing: "2px", textTransform: "uppercase",
-                      color: "#3D6B5E", fontFamily: "Roboto, sans-serif",
-                      backgroundColor: "rgba(61,107,94,0.08)",
-                      padding: "4px 10px", borderRadius: 100,
-                      marginBottom: 10,
-                    }}>
-                      {member.role}
-                    </span>
+                  <div style={{ padding: "20px 20px 24px" }}>
                     <p style={{
                       fontFamily: "Roboto, sans-serif", fontWeight: 300,
                       fontSize: "0.86rem", lineHeight: 1.72,
-                      color: "#5A6B60", margin: 0,
+                      color: "rgba(250,247,240,0.55)", margin: 0,
                     }}>
                       {member.bio}
                     </p>
@@ -492,101 +501,220 @@ export default function ContactosEquipa() {
       </section>
 
       {/* ════════════════════════════════════════════
-          HORÁRIO & INFORMAÇÕES
+          3. REDES SOCIAIS — cards com gradientes coloridos
+      ════════════════════════════════════════════ */}
+      <section
+        aria-label="Redes sociais"
+        style={{
+          padding: "clamp(48px,8vw,72px) 24px",
+          backgroundColor: "#FAF7F0",
+        }}
+      >
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,40px)" }}>
+              <span style={{
+                display: "block", fontSize: "0.56rem", fontWeight: 700,
+                letterSpacing: "3.5px", textTransform: "uppercase",
+                color: "#C4846B", marginBottom: 12,
+                fontFamily: "Roboto, sans-serif",
+              }}>
+                Siga-nos
+              </span>
+              <h2 style={{
+                fontFamily: "'TAN-MEMORIES', serif",
+                fontSize: "clamp(1.8rem,4.5vw,2.8rem)",
+                fontWeight: 400, color: "#1E2D2A",
+                margin: 0, lineHeight: 1.1,
+              }}>
+                Acompanhe o nosso trabalho
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="social-grid">
+            {SOCIALS.map((s, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <a href={s.href} target="_blank" rel="noopener noreferrer"
+                  className="social-card"
+                  style={{ background: s.bg }}
+                >
+                  <div style={{
+                    width: 44, height: 44, borderRadius: 12, flexShrink: 0,
+                    backgroundColor: "rgba(255,255,255,0.18)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: "#fff",
+                  }}>
+                    {s.icon}
+                  </div>
+                  <div>
+                    <p style={{
+                      fontFamily: "'TAN-MEMORIES', serif",
+                      fontSize: "1.05rem", color: "#fff",
+                      margin: "0 0 2px", lineHeight: 1.2,
+                    }}>
+                      {s.label}
+                    </p>
+                    <p style={{
+                      fontFamily: "Roboto, sans-serif", fontWeight: 300,
+                      fontSize: "0.76rem", color: "rgba(255,255,255,0.7)",
+                      margin: 0,
+                    }}>
+                      {s.handle}
+                    </p>
+                  </div>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════
+          4. INFORMAÇÕES PRÁTICAS — fundo verde sólido
       ════════════════════════════════════════════ */}
       <section
         aria-label="Informações práticas"
         style={{
-          padding: "clamp(48px,7vw,72px) 20px",
-          backgroundColor: "#FAF7F0",
-          borderTop: "1px solid rgba(26,26,26,0.07)",
+          padding: "clamp(48px,8vw,72px) 24px",
+          backgroundColor: "#3D6B5E",
         }}
       >
-        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <Reveal>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "1fr",
-              gap: "24px",
-            }}
-            className="info-grid"
-            >
-              {/* Horário */}
+            <div style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,40px)" }}>
+              <span style={{
+                display: "block", fontSize: "0.56rem", fontWeight: 700,
+                letterSpacing: "3.5px", textTransform: "uppercase",
+                color: "#8BA888", marginBottom: 12,
+                fontFamily: "Roboto, sans-serif",
+              }}>
+                Informações práticas
+              </span>
+              <h2 style={{
+                fontFamily: "'TAN-MEMORIES', serif",
+                fontSize: "clamp(1.8rem,4.5vw,2.8rem)",
+                fontWeight: 400, color: "#FAF7F0",
+                margin: 0, lineHeight: 1.1,
+              }}>
+                O que precisa de saber
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="info-row">
+            <Reveal delay={0}>
               <div style={{
                 padding: "28px 24px", borderRadius: 16,
-                backgroundColor: "rgba(61,107,94,0.04)",
-                border: "1px solid rgba(61,107,94,0.1)",
+                backgroundColor: "rgba(250,247,240,0.08)",
+                border: "1px solid rgba(250,247,240,0.1)",
+                height: "100%",
               }}>
-                <h3 style={{
-                  fontFamily: "'TAN-MEMORIES', serif",
-                  fontSize: "1.15rem", color: "#1E2D2A",
-                  margin: "0 0 12px", lineHeight: 1.2,
+                <div style={{
+                  display: "flex", alignItems: "center", gap: 12, marginBottom: 14,
                 }}>
-                  Horário de atendimento
-                </h3>
+                  <div style={{
+                    width: 36, height: 36, borderRadius: 10,
+                    backgroundColor: "rgba(139,168,136,0.2)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: "#8BA888",
+                  }}>
+                    <IconClock />
+                  </div>
+                  <h3 style={{
+                    fontFamily: "'TAN-MEMORIES', serif",
+                    fontSize: "1.1rem", color: "#FAF7F0",
+                    margin: 0, lineHeight: 1.2,
+                  }}>
+                    Horário
+                  </h3>
+                </div>
                 <p style={{
                   fontFamily: "Roboto, sans-serif", fontWeight: 300,
-                  fontSize: "0.88rem", lineHeight: 1.75,
-                  color: "#5A6B60", margin: 0,
+                  fontSize: "0.86rem", lineHeight: 1.75,
+                  color: "rgba(250,247,240,0.6)", margin: 0,
                 }}>
                   Segunda a sexta das 10h às 18h. Respondemos por WhatsApp e email
                   dentro deste período — normalmente em poucas horas.
                   As visitas ao atelier são feitas com agendamento prévio.
                 </p>
               </div>
+            </Reveal>
 
-              {/* Entregas */}
+            <Reveal delay={0.08}>
               <div style={{
                 padding: "28px 24px", borderRadius: 16,
-                backgroundColor: "rgba(184,149,74,0.05)",
-                border: "1px solid rgba(184,149,74,0.12)",
+                backgroundColor: "rgba(250,247,240,0.08)",
+                border: "1px solid rgba(250,247,240,0.1)",
+                height: "100%",
               }}>
-                <h3 style={{
-                  fontFamily: "'TAN-MEMORIES', serif",
-                  fontSize: "1.15rem", color: "#1E2D2A",
-                  margin: "0 0 12px", lineHeight: 1.2,
+                <div style={{
+                  display: "flex", alignItems: "center", gap: 12, marginBottom: 14,
                 }}>
-                  Entrega de flores
-                </h3>
+                  <div style={{
+                    width: 36, height: 36, borderRadius: 10,
+                    backgroundColor: "rgba(184,149,74,0.2)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: "#B8954A",
+                  }}>
+                    <IconTruck />
+                  </div>
+                  <h3 style={{
+                    fontFamily: "'TAN-MEMORIES', serif",
+                    fontSize: "1.1rem", color: "#FAF7F0",
+                    margin: 0, lineHeight: 1.2,
+                  }}>
+                    Entrega de flores
+                  </h3>
+                </div>
                 <p style={{
                   fontFamily: "Roboto, sans-serif", fontWeight: 300,
-                  fontSize: "0.88rem", lineHeight: 1.75,
-                  color: "#5A6B60", margin: 0,
+                  fontSize: "0.86rem", lineHeight: 1.75,
+                  color: "rgba(250,247,240,0.6)", margin: 0,
                 }}>
                   Recebemos flores por entrega em mãos no atelier em Coimbra,
                   por envio CTT ou por recolha no local do evento.
                   Recebemos de Portugal e de toda a Europa.
                 </p>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════
-          CTA FINAL
+          5. CTA FINAL — fundo escuro com glow dourado
       ════════════════════════════════════════════ */}
       <section
         aria-label="Iniciar contacto"
         style={{
-          padding: "clamp(60px,10vw,100px) 20px",
-          background: "linear-gradient(140deg, #0F1E1A 0%, #1E3328 40%, #2D5045 100%)",
+          padding: "clamp(64px,10vw,100px) 24px",
+          background: "linear-gradient(160deg, #1E2D2A 0%, #0F1E1A 100%)",
           textAlign: "center",
+          position: "relative", overflow: "hidden",
         }}
       >
+        {/* Glow dourado decorativo */}
+        <div aria-hidden="true" style={{
+          position: "absolute", top: "-20%", right: "-10%",
+          width: "clamp(300px,50vw,600px)", height: "clamp(300px,50vw,600px)",
+          background: "radial-gradient(circle, rgba(184,149,74,0.06) 0%, transparent 65%)",
+          borderRadius: "50%", pointerEvents: "none",
+        }} />
+
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          style={{ maxWidth: "620px", margin: "0 auto" }}
+          style={{ maxWidth: 640, margin: "0 auto", position: "relative", zIndex: 1 }}
         >
           <div aria-hidden="true" style={{
             width: 44, height: 1, margin: "0 auto 28px",
             background: "linear-gradient(to right, transparent, #B8954A, transparent)",
           }} />
           <span style={{
-            display: "block", fontSize: "0.58rem", fontWeight: 700,
+            display: "block", fontSize: "0.56rem", fontWeight: 700,
             letterSpacing: "3.5px", textTransform: "uppercase",
             color: "#8BA888", marginBottom: 14,
             fontFamily: "Roboto, sans-serif",
@@ -600,27 +728,26 @@ export default function ContactosEquipa() {
             lineHeight: 1.08, color: "#FAF7F0",
           }}>
             Fale connosco<br />
-            <em style={{ fontStyle: "italic", color: "#8BA888" }}>sem compromisso</em>
+            <em style={{ fontStyle: "italic", color: "#C4846B" }}>sem compromisso</em>
           </h2>
           <p style={{
             fontFamily: "Roboto, sans-serif", fontWeight: 300,
             fontSize: "clamp(0.9rem,2vw,1rem)",
-            lineHeight: 1.85, color: "rgba(250,247,240,0.65)",
+            lineHeight: 1.85, color: "rgba(250,247,240,0.55)",
             margin: "0 0 36px",
           }}>
-            Quer saber mais, pedir orçamento ou simplesmente
-            contar-nos a história das suas flores?
-            Respondemos sempre com cuidado e atenção.
+            Quer saber mais, pedir orçamento ou simplesmente contar-nos
+            a história das suas flores? Respondemos sempre com cuidado e atenção.
           </p>
 
-          <div className="cta-row" style={{ marginBottom: 24 }}>
-            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">
+          <div className="cta-row" style={{ marginBottom: 28 }}>
+            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa-big">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
               </svg>
               Falar pelo WhatsApp
             </a>
-            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
+            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary-light">
               Reservar Data
             </a>
           </div>
@@ -636,13 +763,13 @@ export default function ContactosEquipa() {
               { href: "/perguntas-frequentes",  label: "Perguntas frequentes" },
             ].map((l, i) => (
               <a key={i} href={l.href} style={{
-                color: "rgba(250,247,240,0.55)", fontWeight: 600,
+                color: "rgba(250,247,240,0.45)", fontWeight: 600,
                 textDecoration: "none", fontFamily: "Roboto, sans-serif",
-                borderBottom: "1px solid rgba(250,247,240,0.2)",
+                borderBottom: "1px solid rgba(250,247,240,0.15)",
                 paddingBottom: 2, transition: "color 0.2s ease, border-color 0.2s ease",
               }}
                 onMouseEnter={e => { e.currentTarget.style.color = "#FAF7F0"; e.currentTarget.style.borderColor = "rgba(250,247,240,0.5)"; }}
-                onMouseLeave={e => { e.currentTarget.style.color = "rgba(250,247,240,0.55)"; e.currentTarget.style.borderColor = "rgba(250,247,240,0.2)"; }}
+                onMouseLeave={e => { e.currentTarget.style.color = "rgba(250,247,240,0.45)"; e.currentTarget.style.borderColor = "rgba(250,247,240,0.15)"; }}
               >
                 {l.label}
               </a>
@@ -650,12 +777,6 @@ export default function ContactosEquipa() {
           </div>
         </motion.div>
       </section>
-
-      <style jsx global>{`
-        @media (min-width: 560px) {
-          .info-grid { grid-template-columns: 1fr 1fr !important; }
-        }
-      `}</style>
     </main>
   );
 }
