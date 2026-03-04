@@ -50,25 +50,6 @@ const IconCasamentos = () => (
     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
   </svg>
 );
-const IconMapPin = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-    <circle cx="12" cy="10" r="3"/>
-  </svg>
-);
-const IconClock = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <circle cx="12" cy="12" r="10"/>
-    <polyline points="12 6 12 12 16 14"/>
-  </svg>
-);
-const IconTruck = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <rect x="1" y="3" width="15" height="13"/>
-    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
-    <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
-  </svg>
-);
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const FORM_URL = "https://wkf.ms/3RfoNAc";
@@ -132,48 +113,18 @@ export default function ContactosEquipa() {
 
         .team-grid {
           display: grid;
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-        @media (min-width: 640px) {
-          .team-grid { grid-template-columns: repeat(3, 1fr); }
+          grid-template-columns: repeat(3, 1fr);
+          gap: clamp(8px, 2vw, 20px);
         }
 
         .team-photo { transition: transform 0.7s ease; }
         .team-card:hover .team-photo { transform: scale(1.05); }
-
-        .social-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 14px;
-        }
-        @media (min-width: 560px) {
-          .social-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        .social-card {
-          display: flex; align-items: center; gap: 14px;
-          padding: 18px 20px; border-radius: 14px;
-          text-decoration: none; color: #FAF7F0;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .social-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 14px 40px rgba(0,0,0,0.25);
-        }
 
         .contact-split {
           display: grid; grid-template-columns: 1fr;
         }
         @media (min-width: 768px) {
           .contact-split { grid-template-columns: 1fr 1fr; }
-        }
-
-        .info-row {
-          display: grid; grid-template-columns: 1fr; gap: 14px;
-        }
-        @media (min-width: 560px) {
-          .info-row { grid-template-columns: 1fr 1fr; }
         }
 
         .cta-row {
@@ -334,7 +285,6 @@ export default function ContactosEquipa() {
               {[
                 { icon: <IconWhatsApp />, label: "+351 934 680 300", sub: "Respondemos em poucas horas", href: "https://wa.me/351934680300", color: "#25D366" },
                 { icon: <IconEmail />, label: "info@floresabeirario.pt", sub: "Resposta em 24 horas", href: "mailto:info@floresabeirario.pt", color: "#8BA888" },
-                { icon: <IconMapPin />, label: "Coimbra, Portugal", sub: "Visitas com agendamento prévio", href: null, color: "#B8954A" },
               ].map((item, i) => {
                 const Tag = item.href ? "a" : "div";
                 return (
@@ -343,7 +293,7 @@ export default function ContactosEquipa() {
                     style={{
                       display: "flex", alignItems: "center", gap: 14,
                       padding: "14px 0",
-                      borderBottom: i < 2 ? "1px solid rgba(250,247,240,0.08)" : "none",
+                      borderBottom: "1px solid rgba(250,247,240,0.08)",
                       textDecoration: "none", color: "inherit",
                       transition: "opacity 0.2s",
                     }}
@@ -377,6 +327,38 @@ export default function ContactosEquipa() {
                   </Tag>
                 );
               })}
+
+              {/* Redes sociais */}
+              <p style={{
+                fontFamily: "Roboto, sans-serif", fontWeight: 700,
+                fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase",
+                color: "#8BA888", margin: "20px 0 14px",
+              }}>
+                Siga-nos
+              </p>
+              <div style={{ display: "flex", gap: 8 }}>
+                {SOCIALS.map((s, i) => (
+                  <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
+                    aria-label={s.label}
+                    style={{
+                      flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+                      gap: 8, padding: "12px 8px", borderRadius: 12,
+                      background: s.bg, textDecoration: "none", color: "#fff",
+                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.25)"; }}
+                    onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+                  >
+                    <span style={{ display: "flex", alignItems: "center" }}>{s.icon}</span>
+                    <span style={{
+                      fontFamily: "Roboto, sans-serif", fontWeight: 600,
+                      fontSize: "0.7rem", letterSpacing: "0.5px",
+                    }}>
+                      {s.label}
+                    </span>
+                  </a>
+                ))}
+              </div>
             </motion.div>
           </div>
         </div>
@@ -501,189 +483,7 @@ export default function ContactosEquipa() {
       </section>
 
       {/* ════════════════════════════════════════════
-          3. REDES SOCIAIS — cards com gradientes coloridos
-      ════════════════════════════════════════════ */}
-      <section
-        aria-label="Redes sociais"
-        style={{
-          padding: "clamp(48px,8vw,72px) 24px",
-          backgroundColor: "#FAF7F0",
-        }}
-      >
-        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <Reveal>
-            <div style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,40px)" }}>
-              <span style={{
-                display: "block", fontSize: "0.56rem", fontWeight: 700,
-                letterSpacing: "3.5px", textTransform: "uppercase",
-                color: "#C4846B", marginBottom: 12,
-                fontFamily: "Roboto, sans-serif",
-              }}>
-                Siga-nos
-              </span>
-              <h2 style={{
-                fontFamily: "'TAN-MEMORIES', serif",
-                fontSize: "clamp(1.8rem,4.5vw,2.8rem)",
-                fontWeight: 400, color: "#1E2D2A",
-                margin: 0, lineHeight: 1.1,
-              }}>
-                Acompanhe o nosso trabalho
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="social-grid">
-            {SOCIALS.map((s, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <a href={s.href} target="_blank" rel="noopener noreferrer"
-                  className="social-card"
-                  style={{ background: s.bg }}
-                >
-                  <div style={{
-                    width: 44, height: 44, borderRadius: 12, flexShrink: 0,
-                    backgroundColor: "rgba(255,255,255,0.18)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    color: "#fff",
-                  }}>
-                    {s.icon}
-                  </div>
-                  <div>
-                    <p style={{
-                      fontFamily: "'TAN-MEMORIES', serif",
-                      fontSize: "1.05rem", color: "#fff",
-                      margin: "0 0 2px", lineHeight: 1.2,
-                    }}>
-                      {s.label}
-                    </p>
-                    <p style={{
-                      fontFamily: "Roboto, sans-serif", fontWeight: 300,
-                      fontSize: "0.76rem", color: "rgba(255,255,255,0.7)",
-                      margin: 0,
-                    }}>
-                      {s.handle}
-                    </p>
-                  </div>
-                </a>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════
-          4. INFORMAÇÕES PRÁTICAS — fundo verde sólido
-      ════════════════════════════════════════════ */}
-      <section
-        aria-label="Informações práticas"
-        style={{
-          padding: "clamp(48px,8vw,72px) 24px",
-          backgroundColor: "#3D6B5E",
-        }}
-      >
-        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <Reveal>
-            <div style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,40px)" }}>
-              <span style={{
-                display: "block", fontSize: "0.56rem", fontWeight: 700,
-                letterSpacing: "3.5px", textTransform: "uppercase",
-                color: "#8BA888", marginBottom: 12,
-                fontFamily: "Roboto, sans-serif",
-              }}>
-                Informações práticas
-              </span>
-              <h2 style={{
-                fontFamily: "'TAN-MEMORIES', serif",
-                fontSize: "clamp(1.8rem,4.5vw,2.8rem)",
-                fontWeight: 400, color: "#FAF7F0",
-                margin: 0, lineHeight: 1.1,
-              }}>
-                O que precisa de saber
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="info-row">
-            <Reveal delay={0}>
-              <div style={{
-                padding: "28px 24px", borderRadius: 16,
-                backgroundColor: "rgba(250,247,240,0.08)",
-                border: "1px solid rgba(250,247,240,0.1)",
-                height: "100%",
-              }}>
-                <div style={{
-                  display: "flex", alignItems: "center", gap: 12, marginBottom: 14,
-                }}>
-                  <div style={{
-                    width: 36, height: 36, borderRadius: 10,
-                    backgroundColor: "rgba(139,168,136,0.2)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    color: "#8BA888",
-                  }}>
-                    <IconClock />
-                  </div>
-                  <h3 style={{
-                    fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize: "1.1rem", color: "#FAF7F0",
-                    margin: 0, lineHeight: 1.2,
-                  }}>
-                    Horário
-                  </h3>
-                </div>
-                <p style={{
-                  fontFamily: "Roboto, sans-serif", fontWeight: 300,
-                  fontSize: "0.86rem", lineHeight: 1.75,
-                  color: "rgba(250,247,240,0.6)", margin: 0,
-                }}>
-                  Segunda a sexta das 10h às 18h. Respondemos por WhatsApp e email
-                  dentro deste período — normalmente em poucas horas.
-                  As visitas ao atelier são feitas com agendamento prévio.
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.08}>
-              <div style={{
-                padding: "28px 24px", borderRadius: 16,
-                backgroundColor: "rgba(250,247,240,0.08)",
-                border: "1px solid rgba(250,247,240,0.1)",
-                height: "100%",
-              }}>
-                <div style={{
-                  display: "flex", alignItems: "center", gap: 12, marginBottom: 14,
-                }}>
-                  <div style={{
-                    width: 36, height: 36, borderRadius: 10,
-                    backgroundColor: "rgba(184,149,74,0.2)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    color: "#B8954A",
-                  }}>
-                    <IconTruck />
-                  </div>
-                  <h3 style={{
-                    fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize: "1.1rem", color: "#FAF7F0",
-                    margin: 0, lineHeight: 1.2,
-                  }}>
-                    Entrega de flores
-                  </h3>
-                </div>
-                <p style={{
-                  fontFamily: "Roboto, sans-serif", fontWeight: 300,
-                  fontSize: "0.86rem", lineHeight: 1.75,
-                  color: "rgba(250,247,240,0.6)", margin: 0,
-                }}>
-                  Recebemos flores por entrega em mãos no atelier em Coimbra,
-                  por envio CTT ou por recolha no local do evento.
-                  Recebemos de Portugal e de toda a Europa.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════
-          5. CTA FINAL — fundo escuro com glow dourado
+          3. CTA FINAL — fundo escuro com glow dourado
       ════════════════════════════════════════════ */}
       <section
         aria-label="Iniciar contacto"
