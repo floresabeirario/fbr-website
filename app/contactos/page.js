@@ -113,8 +113,17 @@ export default function ContactosEquipa() {
 
         .team-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: clamp(8px, 2vw, 20px);
+          grid-template-columns: repeat(2, 1fr);
+          gap: clamp(10px, 2vw, 20px);
+        }
+        .team-grid > *:last-child {
+          grid-column: 1 / -1;
+          max-width: 50%;
+          margin: 0 auto;
+        }
+        @media (min-width: 640px) {
+          .team-grid { grid-template-columns: repeat(3, 1fr); }
+          .team-grid > *:last-child { grid-column: auto; max-width: none; margin: 0; }
         }
 
         .team-photo { transition: transform 0.7s ease; }
@@ -160,23 +169,6 @@ export default function ContactosEquipa() {
         }
         .btn-wa-big:hover { background: #1da851; transform: translateY(-3px); }
 
-        .btn-ghost-light {
-          display: inline-flex; align-items: center; justify-content: center;
-          border: 2px solid rgba(250,247,240,0.4); color: rgba(250,247,240,0.9);
-          padding: 15px 34px; border-radius: 100px;
-          text-decoration: none; font-weight: 600;
-          font-size: 0.78rem; letter-spacing: 1.5px;
-          text-transform: uppercase; text-align: center;
-          transition: all 0.3s ease;
-          font-family: Roboto, sans-serif; min-height: 56px;
-          backdrop-filter: blur(8px);
-          background: rgba(250,247,240,0.06);
-        }
-        .btn-ghost-light:hover {
-          background: rgba(250,247,240,0.15);
-          border-color: rgba(250,247,240,0.8);
-          transform: translateY(-3px);
-        }
 
         a:focus-visible, button:focus-visible {
           outline: 3px solid #8BA888;
@@ -253,14 +245,6 @@ export default function ContactosEquipa() {
                 Estamos disponíveis para responder a todas as suas dúvidas.
                 Adoramos conhecer a história por detrás das flores que nos chegam.
               </p>
-              <div className="cta-row" style={{ justifyContent: "flex-start" }}>
-                <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa-big">
-                  <IconWhatsApp /> WhatsApp
-                </a>
-                <a href="mailto:info@floresabeirario.pt" className="btn-ghost-light">
-                  Enviar Email
-                </a>
-              </div>
             </motion.div>
 
             {/* Card glassmorphism com contactos */}
