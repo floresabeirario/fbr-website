@@ -135,6 +135,21 @@ const FAQ_DATA = [
   },
   {
     cat: "flores",
+    q: "E se não conseguir entregar as flores dentro de 5 dias?",
+    plain: "Cada caso é avaliado individualmente. Se o prazo de 5 dias já tiver passado, não conseguimos garantir a viabilidade da preservação e recomendamos o nosso serviço de recriação de bouquet.",
+    a: <>
+      Cada situação é avaliada <strong>caso a caso</strong> — contacte-nos assim que possível
+      e tentamos sempre encontrar uma solução.
+      <br/><br/>
+      No entanto, se o prazo de 5 dias já tiver passado, não conseguimos garantir
+      a viabilidade da preservação das flores originais. Nesse caso, recomendamos o nosso{" "}
+      <a href="/recriacao" className="faq-link">serviço de recriação de bouquet</a>,
+      onde reproduzimos o ramo com flores frescas iguais às do dia,
+      usando fotografias como referência — com resultados igualmente belos e duradouros.
+    </>
+  },
+  {
+    cat: "flores",
     q: "Porque não preservam flores em resina?",
     plain: "A resina é um plástico de origem petroquímica, não biodegradável e de difícil reciclagem. A nossa abordagem é 100% artesanal e sustentável: prensagem natural, moldura de madeira e vidro museu — sem químicos, sem plástico.",
     a: <>
