@@ -193,13 +193,14 @@ const Step = ({ step, index }) => {
         fontFamily: "'TAN-MEMORIES', serif",
         fontSize:   "clamp(5rem,18vw,14rem)",
         lineHeight: 0.85,
-        color:      "rgba(61,107,94,0.05)",
+        color:      "rgba(61,107,94,0.13)",
         userSelect: "none",
         pointerEvents: "none",
         marginBottom: "-clamp(28px,6vw,55px)",
         paddingLeft:  isEven ? "clamp(16px,5vw,48px)" : undefined,
         paddingRight: !isEven ? "clamp(16px,5vw,48px)" : undefined,
-        textAlign:    isEven ? "left" : "right"
+        textAlign:    isEven ? "left" : "right",
+        WebkitTextStroke: "1px rgba(61,107,94,0.18)"
       }}>
         {step.n}
       </div>
