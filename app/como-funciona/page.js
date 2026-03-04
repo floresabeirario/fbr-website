@@ -73,7 +73,7 @@ const STEPS = [
         formulário de reserva
       </a>.
     </>,
-    note:   "Respondemos em 72 horas com a confirmação e as instruções de pagamento do sinal de 30%. O pagamento deve ser efetuado no prazo de 24 horas para garantir a reserva — caso contrário, o agendamento será cancelado. O sinal não é reembolsável."
+    note:   "Respondemos em 72 horas com a confirmação e as instruções de pagamento do sinal de 30%. O pagamento deve ser efetuado no prazo de 24 horas para garantir a reserva; caso contrário, o agendamento será cancelado. O sinal não é reembolsável."
   },
   {
     id:     "passo-2",
@@ -82,7 +82,7 @@ const STEPS = [
     title:  "O bouquet chega até nós",
     img:    "/ramojoana.webp",
     imgAlt: "Bouquet de noiva fresco a ser entregue no atelier para preservação botânica",
-    body:   "Depois do dia do evento, as flores têm de chegar até nós o mais frescas possível — preferencialmente em 1 a 3 dias, no máximo 5. Enquanto aguarda, mantenha o bouquet num vaso com água fresca longe do sol e do calor. O pagamento de 40% da encomenda será solicitado após recebermos as flores.",
+    body:   "Depois do dia do evento, as flores têm de chegar até nós o mais frescas possível, preferencialmente em 1 a 3 dias, no máximo 5. Enquanto aguarda, mantenha o bouquet num vaso com água fresca longe do sol e do calor. O pagamento de 40% da encomenda será solicitado após recebermos as flores.",
     noteJsx: <>
       <strong style={{ display: "block", marginBottom: "10px", color: "#3D6B5E", fontSize: "0.88rem", letterSpacing: "0.3px" }}>Três opções de entrega:</strong>
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -108,7 +108,7 @@ const STEPS = [
     title:  "Prensagem pétala a pétala",
     img:    "/prensa.webp",
     imgAlt: "Pétalas de flores de casamento a serem prensadas artesanalmente em papel botânico",
-    body:   "É aqui que acontece a magia — e também a parte que não pode ser apressada. Cada pétala, folha e raminho é prensado individualmente em condições controladas de temperatura e humidade.",
+    body:   "É aqui que acontece a magia e também a parte que não pode ser apressada. Cada pétala, folha e raminho é prensado individualmente em condições controladas de temperatura e humidade.",
     note:   "Após estarem preservadas, as flores são também congeladas para eliminar qualquer inseto que possa ainda estar presente."
   },
   {
@@ -118,8 +118,8 @@ const STEPS = [
     title:  "Composição e aprovação",
     img:    "/detalhe.webp",
     imgAlt: "Composição artística de flores prensadas do bouquet de noiva dentro de moldura",
-    body:   "Escolhemos as flores melhor preservadas e iniciamos a criação do seu quadro. Quando a composição estiver pronta, receberá um e-mail com imagens do design. Terá 72 horas para aprovar ou solicitar alterações. Após a sua aprovação, o quadro segue para a molduraria e é finalizado.",
-    note:   null
+    body:   "Escolhemos as flores melhor preservadas e iniciamos a criação do seu quadro. Quando a composição estiver pronta, receberá um e-mail com imagens do design.",
+    note:   "Terá 72 horas para aprovar ou solicitar alterações. Após a sua aprovação, o quadro segue para a molduraria e é finalizado."
   },
   {
     id:     "passo-5",
@@ -128,24 +128,23 @@ const STEPS = [
     title:  "O quadro chega a casa",
     img:    "/joanaceu.webp",
     imgAlt: "Quadro botânico de flores de casamento prensadas emoldurado com vidro museu anti-UV",
-    body:   <>
-      Com o quadro pronto, tem duas opções de entrega:
-      <div style={{ display: "flex", flexDirection: "column", gap: "6px", margin: "14px 0" }}>
+    body:   "Antes do envio ou da recolha, será solicitado o pagamento da 3.ª e última prestação, 30% do valor total. O quadro inclui instruções de cuidados para garantir a sua durabilidade. Se tiver alguma dúvida, estamos sempre disponíveis para ajudar!",
+    noteJsx: <>
+      <strong style={{ display: "block", marginBottom: "10px", color: "#3D6B5E", fontSize: "0.88rem", letterSpacing: "0.3px" }}>Com o quadro pronto, tem duas opções de entrega:</strong>
+      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
         {[
           { label: "Envio pelos CTT", desc: "Receberá um número de rastreamento assim que a encomenda for enviada." },
           { label: "Recolha no atelier", desc: "Agende um horário para recolha em Coimbra." },
         ].map((item, i) => (
           <div key={i} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
-            <span style={{ color: "#5A6B60", fontWeight: 700, flexShrink: 0, fontSize: "0.95rem", marginTop: "1px" }}>→</span>
-            <p style={{ margin: 0, fontSize: "clamp(0.92rem,1.8vw,1.02rem)", lineHeight: 1.75, color: "#5A6B60" }}>
-              <strong style={{ color: "#1E2D2A" }}>{item.label}:</strong> {item.desc}
+            <span style={{ color: "#3D6B5E", fontWeight: 700, flexShrink: 0, fontSize: "0.88rem", marginTop: "1px" }}>→</span>
+            <p style={{ margin: 0, fontSize: "0.88rem", lineHeight: 1.65, color: "#3D6B5E" }}>
+              <strong>{item.label}:</strong> {item.desc}
             </p>
           </div>
         ))}
       </div>
-      Antes do envio ou da recolha, será solicitado o pagamento da 3.ª e última prestação — 30% do valor total. O quadro inclui instruções de cuidados para garantir a sua durabilidade. Se tiver alguma dúvida, estamos sempre disponíveis para ajudar!
-    </>,
-    note:   null
+    </>
   }
 ];
 
