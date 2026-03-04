@@ -55,7 +55,7 @@ const FORM_URL = "https://wkf.ms/3RfoNAc";
 function SiteFooter() {
   const links = {
     servicos: [
-      { href: "/passo-a-passo",        label: "Como Funciona" },
+      { href: "/como-funciona",        label: "Como Funciona" },
       { href: "/opcoes-e-precos",       label: "Opções e Preços" },
       { href: "/recriacao",             label: "Recriação de Bouquet" },
       { href: "/vale-presente",         label: "Vale-Presente" },
@@ -278,7 +278,7 @@ export default function RootLayout({ children }) {
   }, []);
 
   const menuLeft = [
-    { name: "Como Funciona",        href: "/passo-a-passo" },
+    { name: "Como Funciona",        href: "/como-funciona" },
     { name: "Opções e Preços",      href: "/opcoes-e-precos" },
     { name: "Recriação de Bouquet", href: "/recriacao" },
   ];
