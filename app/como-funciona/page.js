@@ -95,7 +95,7 @@ const STEPS = [
     n:      "04",
     tag:    "Aprovação sua",
     title:  "Compõe­mos, você aprova",
-    img:    "/passo-4-composicao.jpg",
+    img:    "/detalhe.webp",
     imgAlt: "Composição artística de flores prensadas do bouquet de noiva dentro de moldura",
     body:   "Com as flores prontas, criamos a composição dentro da moldura escolhida — e só avançamos quando você diz sim. Enviamos fotografia detalhada para aprovação e pode pedir ajustes antes de selarmos definitivamente.",
     note:   "Ninguém deve ficar com um quadro sem o ter aprovado primeiro. Esta etapa existe exactamente para isso."
