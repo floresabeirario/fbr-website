@@ -542,7 +542,7 @@ export default function ContactosEquipa() {
             fontSize: "0.82rem",
           }}>
             {[
-              { href: "/passo-a-passo",        label: "Como funciona" },
+              { href: "/como-funciona",        label: "Como funciona" },
               { href: "/opcoes-e-precos",       label: "Ver preços" },
               { href: "/perguntas-frequentes",  label: "Perguntas frequentes" },
             ].map((l, i) => (
