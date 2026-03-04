@@ -199,8 +199,7 @@ const Step = ({ step, index }) => {
         marginBottom: "-clamp(28px,6vw,55px)",
         paddingLeft:  isEven ? "clamp(16px,5vw,48px)" : undefined,
         paddingRight: !isEven ? "clamp(16px,5vw,48px)" : undefined,
-        textAlign:    isEven ? "left" : "right",
-        WebkitTextStroke: "1px rgba(61,107,94,0.18)"
+        textAlign:    isEven ? "left" : "right"
       }}>
         {step.n}
       </div>
