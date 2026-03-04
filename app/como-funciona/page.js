@@ -10,12 +10,12 @@ const HowToSchema = () => (
       __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "Como funciona a preservação de flores de casamento",
-        "description": "Processo artesanal completo de preservação botânica do bouquet de noiva, desde a reserva até ao quadro emoldurado com vidro museu anti-UV, pronto a pendurar em casa.",
+        "name": "Como funciona a preservação de flores de momentos especiais",
+        "description": "Processo artesanal completo de preservação botânica de flores — casamentos, batizados, funerais, aniversários e outros momentos especiais — desde a reserva até ao quadro emoldurado com vidro museu anti-UV, pronto a pendurar em casa.",
         "totalTime": "P6M",
         "estimatedCost": { "@type": "MonetaryAmount", "currency": "EUR", "value": "300" },
         "supply": [
-          { "@type": "HowToSupply", "name": "Bouquet de flores frescas (até 5 dias após o evento)" },
+          { "@type": "HowToSupply", "name": "Flores frescas (até 5 dias após o evento)" },
           { "@type": "HowToSupply", "name": "Fotografias do dia (opcional, para referência)" }
         ],
         "tool": [
@@ -25,13 +25,13 @@ const HowToSchema = () => (
           {
             "@type": "HowToStep", "position": 1,
             "name": "Reservar a data",
-            "text": "Preencha o formulário de reserva com a data do evento e detalhes do bouquet. Pague o sinal de 30% para garantir a sua vaga — essencial em épocas de alta procura.",
+            "text": "Preencha o formulário de reserva com a data do evento e detalhes das flores. Pague o sinal de 30% para garantir a sua vaga — essencial em épocas de alta procura.",
             "url": "https://floresabeirario.pt/como-funciona#passo-1"
           },
           {
             "@type": "HowToStep", "position": 2,
             "name": "Entregar as flores",
-            "text": "Entregue em mãos no atelier (Ceira, Coimbra), envie por CTT correio frágil urgente, ou solicite recolha no local do evento. Preferencialmente até 3 dias após o casamento.",
+            "text": "Entregue em mãos no atelier (Ceira, Coimbra), envie por CTT correio frágil urgente, ou solicite recolha no local do evento. Preferencialmente até 3 dias após o evento.",
             "url": "https://floresabeirario.pt/como-funciona#passo-2"
           },
           {
@@ -43,7 +43,7 @@ const HowToSchema = () => (
           {
             "@type": "HowToStep", "position": 4,
             "name": "Composição e aprovação",
-            "text": "Criamos a composição artística e enviamos fotografia para aprovação. Pode pedir ajustes antes de selaarmos a moldura definitivamente.",
+            "text": "Criamos a composição artística e enviamos fotografia para aprovação. Pode pedir ajustes antes de selarmos a moldura definitivamente.",
             "url": "https://floresabeirario.pt/como-funciona#passo-4"
           },
           {
@@ -61,28 +61,30 @@ const HowToSchema = () => (
 // ─── Dados dos passos ─────────────────────────────────────────────────────────
 const STEPS = [
   {
-    id:     "passo-1",
-    n:      "01",
-    tag:    "Antes do evento",
-    title:  "Reserve a sua data",
-    img:    "/reserva.webp",
-    imgAlt: "Calendário com data de casamento marcada para reserva de preservação de bouquet",
-    body:   <>
-      As vagas são limitadas, especialmente entre Maio e Setembro. O processo começa muito antes do casamento: assim que souber a data, garanta a sua vaga com o{" "}
+    id:      "passo-1",
+    n:       "01",
+    tag:     "Antes do evento",
+    title:   "Reserve a sua data",
+    img:     "/reserva.webp",
+    imgAlt:  "Calendário com data de evento marcada para reserva de preservação de flores",
+    imgLink: "https://wkf.ms/3RfoNAc",
+    // SWAPPED: o que era note passa a body, e vice-versa
+    body:    "Respondemos em 72 horas com a confirmação e as instruções de pagamento do sinal de 30%. O pagamento deve ser efetuado no prazo de 24 horas para garantir a reserva; caso contrário, o agendamento será cancelado. O sinal não é reembolsável.",
+    noteJsx: <>
+      As vagas são limitadas, especialmente entre Maio e Setembro. O processo começa muito antes do evento: assim que souber a data, garanta a sua vaga com o{" "}
       <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer" style={{ color: "#3D6B5E", fontWeight: 600, textDecoration: "none", borderBottom: "1px solid rgba(61,107,94,0.3)", paddingBottom: "1px" }}>
         formulário de reserva
       </a>.
-    </>,
-    note:   "Respondemos em 72 horas com a confirmação e as instruções de pagamento do sinal de 30%. O pagamento deve ser efetuado no prazo de 24 horas para garantir a reserva; caso contrário, o agendamento será cancelado. O sinal não é reembolsável."
+    </>
   },
   {
     id:     "passo-2",
     n:      "02",
     tag:    "Até 5 dias após",
-    title:  "O bouquet chega até nós",
+    title:  "As flores chegam até nós",
     img:    "/ramojoana.webp",
-    imgAlt: "Bouquet de noiva fresco a ser entregue no atelier para preservação botânica",
-    body:   "Depois do dia do evento, as flores têm de chegar até nós o mais frescas possível, preferencialmente em 1 a 3 dias, no máximo 5. Enquanto aguarda, mantenha o bouquet num vaso com água fresca longe do sol e do calor. O pagamento de 40% da encomenda será solicitado após recebermos as flores.",
+    imgAlt: "Flores frescas a ser entregues no atelier para preservação botânica",
+    body:   "Depois do dia do evento, as flores têm de chegar até nós o mais frescas possível, preferencialmente em 1 a 3 dias, no máximo 5. Enquanto aguarda, mantenha as flores num vaso com água fresca longe do sol e do calor. O pagamento de 40% da encomenda será solicitado após recebermos as flores.",
     noteJsx: <>
       <strong style={{ display: "block", marginBottom: "10px", color: "#3D6B5E", fontSize: "0.88rem", letterSpacing: "0.3px" }}>Três opções de entrega:</strong>
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -107,7 +109,7 @@ const STEPS = [
     tag:    "Até 6 meses",
     title:  "Prensagem pétala a pétala",
     img:    "/prensa.webp",
-    imgAlt: "Pétalas de flores de casamento a serem prensadas artesanalmente em papel botânico",
+    imgAlt: "Pétalas de flores a serem prensadas artesanalmente em papel botânico",
     body:   "É aqui que acontece a magia e também a parte que não pode ser apressada. Cada pétala, folha e raminho é prensado individualmente em condições controladas de temperatura e humidade.",
     note:   "Após estarem preservadas, as flores são também congeladas para eliminar qualquer inseto que possa ainda estar presente."
   },
@@ -117,7 +119,7 @@ const STEPS = [
     tag:    "Aprovação sua",
     title:  "Composição e aprovação",
     img:    "/detalhe.webp",
-    imgAlt: "Composição artística de flores prensadas do bouquet de noiva dentro de moldura",
+    imgAlt: "Composição artística de flores prensadas dentro de moldura",
     body:   "Escolhemos as flores melhor preservadas e iniciamos a criação do seu quadro. Quando a composição estiver pronta, receberá um e-mail com imagens do design.",
     note:   "Terá 72 horas para aprovar ou solicitar alterações. Após a sua aprovação, o quadro segue para a molduraria e é finalizado."
   },
@@ -127,7 +129,7 @@ const STEPS = [
     tag:    "A vida toda",
     title:  "O quadro chega a casa",
     img:    "/joanaceu.webp",
-    imgAlt: "Quadro botânico de flores de casamento prensadas emoldurado com vidro museu anti-UV",
+    imgAlt: "Quadro botânico de flores prensadas emoldurado com vidro museu anti-UV",
     body:   "Antes do envio ou da recolha, será solicitado o pagamento da 3.ª e última prestação, 30% do valor total. O quadro inclui instruções de cuidados para garantir a sua durabilidade. Se tiver alguma dúvida, estamos sempre disponíveis para ajudar!",
     noteJsx: <>
       <strong style={{ display: "block", marginBottom: "10px", color: "#3D6B5E", fontSize: "0.88rem", letterSpacing: "0.3px" }}>Com o quadro pronto, tem duas opções de entrega:</strong>
@@ -173,7 +175,7 @@ const DELIVERY = [
   {
     title: "Recolha no evento",
     sub:   "Sob orçamento",
-    body:  "Deslocamo-nos ao local do casamento ou hotel. Sujeito a disponibilidade e orçamento adicional.",
+    body:  "Deslocamo-nos ao local do evento ou cerimónia. Sujeito a disponibilidade e orçamento adicional.",
     c:     "#C4846B"
   }
 ];
@@ -181,6 +183,76 @@ const DELIVERY = [
 // ─── Componente Step — layout editorial alternado ─────────────────────────────
 const Step = ({ step, index }) => {
   const isEven = index % 2 === 0;
+
+  // Foto com ou sem link
+  const photoInner = (
+    <div style={{
+      position:        "relative",
+      borderRadius:    "clamp(14px,2.5vw,22px)",
+      overflow:        "hidden",
+      backgroundColor: "#D4DECC",
+      boxShadow:       "0 16px 48px rgba(30,45,42,0.12)"
+    }}>
+      {/* Step badge */}
+      <div style={{
+        position:        "absolute",
+        top:             "16px",
+        left:            "16px",
+        zIndex:          2,
+        backgroundColor: "#3D6B5E",
+        color:           "#FAF7F0",
+        padding:         "5px 14px",
+        borderRadius:    "50px",
+        display:         "flex",
+        alignItems:      "center",
+        gap:             "7px"
+      }}>
+        <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.7rem", lineHeight: 1 }}>
+          {step.n}
+        </span>
+        <span style={{
+          fontSize: "0.55rem", fontWeight: 700, letterSpacing: "2px",
+          textTransform: "uppercase", fontFamily: "Roboto, sans-serif", opacity: 0.8
+        }}>
+          {step.tag}
+        </span>
+      </div>
+
+      {/* Click hint — só aparece se tiver link */}
+      {step.imgLink && (
+        <div style={{
+          position:        "absolute",
+          bottom:          "14px",
+          right:           "14px",
+          zIndex:          2,
+          backgroundColor: "rgba(250,247,240,0.92)",
+          color:           "#3D6B5E",
+          padding:         "5px 12px",
+          borderRadius:    "50px",
+          fontSize:        "0.6rem",
+          fontWeight:      700,
+          letterSpacing:   "1.5px",
+          textTransform:   "uppercase",
+          fontFamily:      "Roboto, sans-serif",
+          backdropFilter:  "blur(4px)"
+        }}>
+          Reservar →
+        </div>
+      )}
+
+      <img
+        src={step.img}
+        alt={step.imgAlt}
+        className="step-img"
+        style={{
+          width: "100%", aspectRatio: "4/3",
+          objectFit: "cover", display: "block",
+          transition: "transform 0.6s ease"
+        }}
+        loading="lazy"
+      />
+    </div>
+  );
 
   return (
     <article
@@ -229,50 +301,20 @@ const Step = ({ step, index }) => {
             {step.title}
           </h2>
 
-          <div style={{
-            position:     "relative",
-            borderRadius: "clamp(14px,2.5vw,22px)",
-            overflow:     "hidden",
-            backgroundColor: "#D4DECC",
-            boxShadow:    "0 16px 48px rgba(30,45,42,0.12)"
-          }}>
-            {/* Step badge */}
-            <div style={{
-              position:        "absolute",
-              top:             "16px",
-              left:            "16px",
-              zIndex:          2,
-              backgroundColor: "#3D6B5E",
-              color:           "#FAF7F0",
-              padding:         "5px 14px",
-              borderRadius:    "50px",
-              display:         "flex",
-              alignItems:      "center",
-              gap:             "7px"
-            }}>
-              <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.7rem", lineHeight: 1 }}>
-                {step.n}
-              </span>
-              <span style={{
-                fontSize: "0.55rem", fontWeight: 700, letterSpacing: "2px",
-                textTransform: "uppercase", fontFamily: "Roboto, sans-serif", opacity: 0.8
-              }}>
-                {step.tag}
-              </span>
-            </div>
-
-            <img
-              src={step.img}
-              alt={step.imgAlt}
-              className="step-img"
-              style={{
-                width: "100%", aspectRatio: "4/3",
-                objectFit: "cover", display: "block",
-                transition: "transform 0.6s ease"
-              }}
-              loading="lazy"
-            />
-          </div>
+          {/* Foto: com link se imgLink existir, sem link caso contrário */}
+          {step.imgLink ? (
+            <a
+              href={step.imgLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Reservar — ${step.title}`}
+              style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
+            >
+              {photoInner}
+            </a>
+          ) : (
+            photoInner
+          )}
         </div>
 
         {/* Text */}
@@ -333,7 +375,7 @@ const Step = ({ step, index }) => {
 export default function ComoFunciona() {
   const FORM = "https://wkf.ms/3RfoNAc";
   const WA   = "https://wa.me/351934680300?text=" +
-    encodeURIComponent("Olá! Gostaria de reservar a preservação do meu bouquet de casamento.");
+    encodeURIComponent("Olá! Gostaria de reservar a preservação das minhas flores.");
 
   return (
     <>
@@ -494,7 +536,7 @@ export default function ComoFunciona() {
             HERO
         ══════════════════════════════════════════════════════ */}
         <section
-          aria-label="Como funciona a preservação de flores de casamento"
+          aria-label="Como funciona a preservação de flores de momentos especiais"
           style={{
             paddingTop:    "clamp(110px,16vw,170px)",
             paddingBottom: "clamp(52px,8vw,88px)",
@@ -529,15 +571,15 @@ export default function ComoFunciona() {
                 maxWidth:   "580px",
                 margin:     "0 0 clamp(28px,4vw,40px)"
               }}>
-                Cinco passos para transformar o seu bouquet de noiva numa obra de arte
+                Cinco passos para transformar as suas flores numa obra de arte
                 botânica que dura décadas — explicados com toda a transparência.
               </p>
 
               <div style={{
-                display:        "flex",
-                flexWrap:       "wrap",
-                gap:            "clamp(6px,1.5vw,10px)",
-                alignItems:     "center"
+                display:    "flex",
+                flexWrap:   "wrap",
+                gap:        "clamp(6px,1.5vw,10px)",
+                alignItems: "center"
               }}>
                 <a href={FORM} target="_blank" rel="noopener noreferrer"
                   className="btn-primary" style={{ fontSize: "0.78rem" }}>
@@ -815,7 +857,7 @@ export default function ComoFunciona() {
                   maxWidth:   "440px",
                   margin:     "0 auto"
                 }}>
-                  Para não pesar no orçamento do casamento — o valor é repartido ao longo do processo.
+                  Para não pesar no orçamento — o valor é repartido ao longo do processo.
                 </p>
               </div>
 
@@ -825,9 +867,9 @@ export default function ComoFunciona() {
                 gap:                 "clamp(8px,2vw,16px)"
               }}>
                 {[
-                  { pct: "30%", label: "Na reserva",       desc: "Sinal que garante a sua vaga. Não reembolsável.", c: "#8BA888" },
+                  { pct: "30%", label: "Na reserva",         desc: "Sinal que garante a sua vaga. Não reembolsável.", c: "#8BA888" },
                   { pct: "40%", label: "Início do trabalho", desc: "Quando as flores chegam e iniciamos a prensagem.", c: "#B8954A" },
-                  { pct: "30%", label: "Antes da entrega",  desc: "Após aprovação da composição e antes de enviarmos o quadro.", c: "#C4846B" }
+                  { pct: "30%", label: "Antes da entrega",   desc: "Após aprovação da composição e antes de enviarmos o quadro.", c: "#C4846B" }
                 ].map((p, i) => (
                   <div key={i} style={{
                     backgroundColor: "rgba(250,247,240,0.06)",
@@ -1010,7 +1052,7 @@ export default function ComoFunciona() {
             CTA FINAL
         ══════════════════════════════════════════════════════ */}
         <section
-          aria-label="Reservar preservação de bouquet de casamento"
+          aria-label="Reservar preservação de flores de momentos especiais"
           style={{
             padding:    "clamp(60px,10vw,100px) clamp(20px,5vw,48px)",
             background: "linear-gradient(140deg, #EDF2E8 0%, #FAF7F0 55%, #F0EBE0 100%)",
