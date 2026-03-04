@@ -457,7 +457,7 @@ export default function Home() {
             className="cta-row" style={{ justifyContent: "center" }}
           >
             <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost">Reservar Data</a>
-            <a href="/passo-a-passo" className="btn-ghost">Como Funciona</a>
+            <a href="/como-funciona" className="btn-ghost">Como Funciona</a>
           </motion.div>
         </motion.div>
 
@@ -500,7 +500,7 @@ export default function Home() {
           <div className="services-grid">
             {[
               {
-                href: "/passo-a-passo",
+                href: "/como-funciona",
                 bg: "#EDF2E8", accent: "#3D6B5E", label: "◈",
                 title: "Preservação de Bouquet",
                 desc: "Recebemos as flores até 5 dias após o evento. Prensamos, secamos e emolduramos com vidro museu anti-UV.",
