@@ -40,7 +40,7 @@ const FAQ_DATA = [
       <strong> fotografia para aprovação</strong> antes de selarmos a moldura.
       Só após a sua aprovação — e pagamento final — o quadro é enviado.
       <br/><br/>
-      <a href="/passo-a-passo" className="faq-link">Ver o processo detalhado →</a>
+      <a href="/como-funciona" className="faq-link">Ver o processo detalhado →</a>
     </>
   },
   {
@@ -728,7 +728,7 @@ export default function PerguntasFrequentes() {
             </p>
             <div className="related-grid">
               {[
-                { href: "/passo-a-passo", label: "Como Funciona", desc: "O processo passo a passo da preservação" },
+                { href: "/como-funciona", label: "Como Funciona", desc: "O processo passo a passo da preservação" },
                 { href: "/opcoes-e-precos", label: "Preços e Tamanhos", desc: "Escolha a moldura e formato certos" },
                 { href: "/recriacao", label: "Recriação de Bouquet", desc: "Quando o tempo já passou" },
               ].map((l, i) => (
