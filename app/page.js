@@ -160,13 +160,13 @@ export default function Home() {
       number: "02",
       title: "Entregue as flores",
       desc: "Entrega em mãos no atelier, envio por CTT ou recolha no local do evento. Preferencialmente até 3 dias após o grande dia.",
-      imageSrc: "/recriacao-passo2-flores.jpg"
+      imageSrc: "/ramojoana.webp"
     },
     {
       number: "03",
       title: "Recebe a sua obra de arte",
       desc: "Após aprovação da composição, o quadro é emoldurado com vidro museu anti-UV e enviado para casa ou levantado no atelier.",
-      imageSrc: "/recriacao-passo4-quadro.jpg"
+      imageSrc: "/joanaceu.webp"
     }
   ];
 
@@ -573,7 +573,7 @@ export default function Home() {
             viewport={{ once: true }}
             style={{ textAlign: "center", marginBottom: "64px" }}
           >
-            <span className="section-eyebrow">Simples assim</span>
+            <span className="section-eyebrow">Do bouquet ao quadro</span>
             <h2 style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize: "clamp(2rem,4.5vw,3.2rem)",
