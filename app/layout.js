@@ -644,10 +644,7 @@ export default function RootLayout({ children }) {
                     delay={0.10}
                   />
 
-                  {/* Linha divisória */}
-                  <div style={{ height: "1px", background: "rgba(250,247,240,0.06)", margin: "6px 28px 6px" }}/>
-
-                  {/* Links simples */}
+                  {/* Links simples — mesmo nível que os accordions */}
                   {[
                     { name: "Recriação de Bouquet", href: "/recriacao",           delay: 0.15 },
                     { name: "Oferecer Preservação", href: "/vale-presente",        delay: 0.18 },
@@ -663,20 +660,19 @@ export default function RootLayout({ children }) {
                       animate={{ opacity: 1 }}
                       transition={{ delay: item.delay, duration: 0.24 }}
                       style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        color: "rgba(250,247,240,0.6)",
+                        display: "block",
+                        color: "#FAF7F0",
                         textDecoration: "none",
-                        fontSize: "1rem",
-                        fontFamily: "Roboto, sans-serif",
-                        fontWeight: 300,
-                        padding: "14px 28px",
+                        fontFamily: "'TAN-MEMORIES', serif",
+                        fontSize: "clamp(1.15rem, 4.5vw, 1.45rem)",
+                        lineHeight: 1.1,
+                        letterSpacing: "0.2px",
+                        padding: "18px 28px",
+                        borderBottom: "1px solid rgba(250,247,240,0.07)",
                         transition: "color 0.18s",
-                        borderBottom: "1px solid rgba(250,247,240,0.04)",
                       }}
-                      onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                      onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.6)"}
+                      onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
+                      onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
                     >
                       {item.name}
                     </motion.a>
@@ -711,11 +707,13 @@ export default function RootLayout({ children }) {
                   </a>
                   <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
                     style={{
-                      display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
-                      color: "rgba(250,247,240,0.35)",
-                      padding: "12px 24px",
-                      textDecoration: "none", fontWeight: 400,
-                      fontSize: "0.76rem", fontFamily: "Roboto, sans-serif",
+                      display: "flex", alignItems: "center", justifyContent: "center", gap: "9px",
+                      backgroundColor: "rgba(37,211,102,0.1)",
+                      border: "1px solid rgba(37,211,102,0.22)",
+                      color: "#25D366",
+                      padding: "14px 24px", borderRadius: "100px",
+                      textDecoration: "none", fontWeight: 500,
+                      fontSize: "0.78rem", fontFamily: "Roboto, sans-serif",
                     }}
                   >
                     <IconWhatsApp/> +351 934 680 300
