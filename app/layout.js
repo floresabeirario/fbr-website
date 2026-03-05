@@ -472,6 +472,9 @@ export default function RootLayout({ children }) {
             src: url('/TAN-MEMORIES-Italic.otf') format('opentype');
             font-weight: normal; font-style: italic; font-display: swap;
           }
+          /* Crítico: aplicado antes do JS para evitar flash */
+          @media (max-width: 1279px) { .desktop-only { display: none !important; } }
+          @media (min-width: 1280px) { .mobile-only  { display: none !important; } }
         `}}/>
       </head>
       <body style={{ margin: 0, backgroundColor: "#FAF7F0", color: "#1a1a1a", fontFamily: "'Roboto', sans-serif" }}>
@@ -739,8 +742,6 @@ export default function RootLayout({ children }) {
         <SiteFooter/>
 
         <style jsx global>{`
-          @media (max-width: 1279px) { .desktop-only { display: none !important; } }
-          @media (min-width: 1280px) { .mobile-only  { display: none !important; } }
           * { box-sizing: border-box; }
 
           .nav-bar {
