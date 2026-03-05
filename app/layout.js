@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -49,31 +49,7 @@ const IconEmail = () => (
   </svg>
 );
 
-// ─── Dropdown data ────────────────────────────────────────────────────────────
-const NAV_PRESERVACAO = {
-  label: "Preservação de Flores",      // ← corrigido
-  href: "/preservacao-de-flores",
-  items: [
-    { name: "Opções e Preços",        href: "/opcoes-e-precos" },
-    { name: "Como Funciona",          href: "/como-funciona" },
-    { name: "Sustentabilidade",       href: "/sustentabilidade" },
-    { name: "Emoldurar Flores Secas", href: "/emoldurar-flores-secas" },
-  ]
-};
-
-const NAV_MOMENTOS = {
-  label: "Momentos Especiais",
-  href: "/momentos-especiais",
-  items: [
-    { name: "Bouquet de Noiva",       href: "/preservacao-bouquet-noiva" },
-    { name: "Homenagem e Luto",       href: "/preservar-flores-luto-homenagem" },
-    { name: "Batizado e Nascimento",  href: "/preservar-flores-batizado-nascimento" },
-    { name: "Aniversário",            href: "/preservar-flores-aniversario" },
-    { name: "Pedido de Casamento",    href: "/preservar-flores-pedido-casamento" },
-  ]
-};
-
-// ─── Chevron icon ─────────────────────────────────────────────────────────────
+// ─── Chevron ──────────────────────────────────────────────────────────────────
 const Chevron = ({ open, color, size = 10 }) => (
   <motion.svg
     width={size} height={size} viewBox="0 0 10 10" fill="none"
@@ -86,47 +62,52 @@ const Chevron = ({ open, color, size = 10 }) => (
   </motion.svg>
 );
 
+// ─── Nav data ─────────────────────────────────────────────────────────────────
+const NAV_PRESERVACAO = {
+  label: "Preservação de Flores",
+  href: "/preservacao-de-flores",
+  items: [
+    { name: "Opções e Preços",        href: "/opcoes-e-precos" },
+    { name: "Como Funciona",          href: "/como-funciona" },
+    { name: "Sustentabilidade",       href: "/sustentabilidade" },
+    { name: "Emoldurar Flores Secas", href: "/emoldurar-flores-secas" },
+  ]
+};
+const NAV_MOMENTOS = {
+  label: "Momentos Especiais",
+  href: "/momentos-especiais",
+  items: [
+    { name: "Bouquet de Noiva",       href: "/preservacao-bouquet-noiva" },
+    { name: "Homenagem e Luto",       href: "/preservar-flores-luto-homenagem" },
+    { name: "Batizado e Nascimento",  href: "/preservar-flores-batizado-nascimento" },
+    { name: "Aniversário",            href: "/preservar-flores-aniversario" },
+    { name: "Pedido de Casamento",    href: "/preservar-flores-pedido-casamento" },
+  ]
+};
+
 // ─── Desktop Dropdown ─────────────────────────────────────────────────────────
 const DesktopDropdown = ({ menu, scrolled }) => {
   const textColor = scrolled ? "#1a1a1a" : "#fff";
   return (
     <div className="dd-container">
-      <a
-        href={menu.href}
-        className="nav-link dd-trigger desktop-only"
-        style={{
-          fontSize: "0.68rem", fontWeight: 500, textTransform: "uppercase",
-          letterSpacing: "1.3px", color: textColor, whiteSpace: "nowrap",
-          display: "inline-flex", alignItems: "center",
-        }}
-      >
+      <a href={menu.href} className="nav-link dd-trigger desktop-only" style={{
+        fontSize: "0.68rem", fontWeight: 500, textTransform: "uppercase",
+        letterSpacing: "1.3px", color: textColor, whiteSpace: "nowrap",
+        display: "inline-flex", alignItems: "center",
+      }}>
         {menu.label}
         <Chevron color={textColor} />
       </a>
-      {/* Hover bridge: padding-top makes the gap hoverable */}
       <div className="dd-panel">
         <div className="dd-panel-inner">
-          {/* Small decorative top line */}
-          <div style={{
-            height: "2px",
-            background: "linear-gradient(to right, transparent, rgba(61,107,94,0.3), transparent)",
-            borderRadius: "2px",
-            margin: "0 8px 6px",
-          }} aria-hidden="true"/>
           {menu.items.map((item, i) => (
             <a key={i} href={item.href} className="dd-item">
-              <span className="dd-dot" aria-hidden="true"/>
               {item.name}
             </a>
           ))}
-          {/* Bottom link to overview */}
-          <div style={{
-            margin: "6px 8px 4px",
-            paddingTop: "8px",
-            borderTop: "1px solid rgba(61,107,94,0.1)",
-          }}>
+          <div style={{ margin: "4px 6px 2px", borderTop: "1px solid rgba(61,107,94,0.1)", paddingTop: "4px" }}>
             <a href={menu.href} className="dd-item dd-item-all">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
                 <path d="M2 6h8M6 2l4 4-4 4" stroke="#3D6B5E" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
               Ver tudo
@@ -275,7 +256,7 @@ function SiteFooter() {
           </div>
           <div>
             <span style={labelStyle}>Ajuda</span>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "24px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {links.ajuda.map((l, i) => (
                 <a key={i} href={l.href} style={linkStyle}
                   onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
@@ -336,131 +317,6 @@ function SiteFooter() {
   );
 }
 
-// ─── Mobile expandable section ────────────────────────────────────────────────
-const MobileSection = ({ label, href, items, onClose, delay }) => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 28 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay, duration: 0.38, ease: [0.25, 0.1, 0.25, 1] }}
-      style={{
-        borderBottom: "1px solid rgba(250,247,240,0.07)",
-      }}
-    >
-      {/* Row: link + toggle button */}
-      <div style={{ display: "flex", alignItems: "center", gap: "12px", padding: "4px 0" }}>
-        {/* Main link */}
-        <a
-          href={href}
-          onClick={onClose}
-          style={{
-            flex: 1,
-            color: "#FAF7F0",
-            textDecoration: "none",
-            fontSize: "clamp(1.55rem, 6.5vw, 2.1rem)",
-            fontFamily: "'TAN-MEMORIES', serif",
-            lineHeight: 1,
-            padding: "15px 0",
-            transition: "color 0.2s ease",
-          }}
-          onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
-          onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
-        >
-          {label}
-        </a>
-
-        {/* Toggle — redesigned: pill com chevron grande e visível */}
-        <button
-          onClick={() => setOpen(o => !o)}
-          aria-label={open ? "Fechar submenu" : "Abrir submenu"}
-          aria-expanded={open}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-            backgroundColor: open ? "rgba(139,168,136,0.18)" : "rgba(250,247,240,0.07)",
-            border: `1.5px solid ${open ? "rgba(139,168,136,0.45)" : "rgba(250,247,240,0.18)"}`,
-            borderRadius: "100px",
-            cursor: "pointer",
-            color: open ? "#8BA888" : "rgba(250,247,240,0.75)",
-            padding: "9px 14px 9px 12px",
-            flexShrink: 0,
-            minWidth: "52px",   // tap target fácil
-            minHeight: "40px",
-            transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
-          }}
-        >
-          <Chevron open={open} color="currentColor" size={13} />
-          <span style={{
-            fontSize: "0.6rem",
-            fontWeight: 700,
-            letterSpacing: "1px",
-            fontFamily: "Roboto, sans-serif",
-            lineHeight: 1,
-          }}>
-            {items.length}
-          </span>
-        </button>
-      </div>
-
-      {/* Sub-items */}
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
-            style={{ overflow: "hidden" }}
-          >
-            <div style={{
-              paddingBottom: "16px",
-              paddingLeft: "6px",
-              marginLeft: "8px",
-              borderLeft: "2px solid rgba(139,168,136,0.22)",
-            }}>
-              {items.map((item, i) => (
-                <motion.a
-                  key={i}
-                  href={item.href}
-                  onClick={onClose}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05, duration: 0.22, ease: "easeOut" }}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "12px",
-                    color: "rgba(250,247,240,0.55)",
-                    textDecoration: "none",
-                    fontSize: "0.92rem",
-                    fontFamily: "Roboto, sans-serif",
-                    fontWeight: 400,
-                    padding: "10px 0 10px 18px",
-                    transition: "color 0.2s ease",
-                  }}
-                  onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
-                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.55)"}
-                >
-                  <span style={{
-                    width: "4px", height: "4px",
-                    borderRadius: "50%",
-                    backgroundColor: "rgba(139,168,136,0.4)",
-                    flexShrink: 0,
-                  }} aria-hidden="true"/>
-                  {item.name}
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-};
-
 // ─── Root Layout ──────────────────────────────────────────────────────────────
 export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -479,11 +335,13 @@ export default function RootLayout({ children }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => { setIsOpen(false); }, [pathname]);
+
   const menuRight = [
-    { name: "Recriação",  href: "/recriacao" },
-    { name: "Oferecer",   href: "/vale-presente" },
-    { name: "FAQ",        href: "/perguntas-frequentes" },
-    { name: "Contactos",  href: "/contactos" },
+    { name: "Recriação de Bouquet", href: "/recriacao" },
+    { name: "Oferecer Preservação", href: "/vale-presente" },
+    { name: "FAQ",                  href: "/perguntas-frequentes" },
+    { name: "Contactos",            href: "/contactos" },
   ];
 
   const shouldShowScrolled = scrolled || !isHome;
@@ -519,7 +377,6 @@ export default function RootLayout({ children }) {
 
             {/* LEFT */}
             <div className="nav-left">
-              {/* Language */}
               <div className="lang-container desktop-only" style={{ position: "relative", display: "flex", alignItems: "center" }}>
                 <a href="/pt" className="nav-link lang-trigger" style={{
                   fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
@@ -586,216 +443,312 @@ export default function RootLayout({ children }) {
           </div>
         </nav>
 
-        {/* ─── Mobile Menu — redesenhado ───────────────────────────── */}
+        {/* ─── Mobile Menu ─────────────────────────────────────────── */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.42, ease: [0.32, 0.72, 0, 1] }}
-              style={{
-                position: "fixed", inset: 0,
-                backgroundColor: "#0F1E1A",
-                zIndex: 200,
-                display: "flex",
-                flexDirection: "column",
-                overflowY: "auto",
-                overflowX: "hidden",
-              }}
-            >
-              {/* ── Header ── */}
-              <div style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "22px 28px 20px",
-                flexShrink: 0,
-              }}>
-                <a href="/" onClick={() => setIsOpen(false)} style={{
-                  fontFamily: "'TAN-MEMORIES', serif",
-                  fontSize: "1.05rem",
-                  color: "#FAF7F0",
-                  textDecoration: "none",
-                  letterSpacing: "0.3px",
-                }}>
-                  Flores à Beira&#8209;Rio
-                </a>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  aria-label="Fechar menu"
-                  style={{
-                    background: "rgba(250,247,240,0.07)",
-                    border: "1px solid rgba(250,247,240,0.15)",
-                    borderRadius: "100px",
-                    color: "#FAF7F0",
-                    fontSize: "0.68rem",
-                    fontWeight: 600,
-                    letterSpacing: "2px",
-                    textTransform: "uppercase",
-                    cursor: "pointer",
-                    fontFamily: "Roboto, sans-serif",
-                    padding: "10px 18px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                  }}
-                >
-                  {/* X icon */}
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
-                  </svg>
-                  Fechar
-                </button>
-              </div>
-
-              <div style={{ height: "1px", background: "rgba(250,247,240,0.08)", flexShrink: 0, margin: "0 28px" }}/>
-
-              {/* ── Nav items ── */}
-              <nav style={{ flex: 1, padding: "12px 28px 0" }}>
-
-                {/* Expandable: Preservação de Flores */}
-                <MobileSection
-                  label="Preservação de Flores"
-                  href={NAV_PRESERVACAO.href}
-                  items={NAV_PRESERVACAO.items}
-                  onClose={() => setIsOpen(false)}
-                  delay={0.07}
-                />
-
-                {/* Expandable: Momentos Especiais */}
-                <MobileSection
-                  label="Momentos Especiais"
-                  href={NAV_MOMENTOS.href}
-                  items={NAV_MOMENTOS.items}
-                  onClose={() => setIsOpen(false)}
-                  delay={0.12}
-                />
-
-                {/* Links simples */}
-                {[
-                  { name: "Recriação de Bouquet",  href: "/recriacao",           delay: 0.17 },
-                  { name: "Oferecer Preservação",  href: "/vale-presente",        delay: 0.21 },
-                  { name: "Perguntas Frequentes",  href: "/perguntas-frequentes", delay: 0.25 },
-                  { name: "Contactos e Equipa",    href: "/contactos",            delay: 0.29 },
-                  { name: "Blog",                  href: "/blog",                 delay: 0.33 },
-                ].map((item) => (
-                  <motion.a
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    initial={{ opacity: 0, x: 28 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: item.delay, duration: 0.38, ease: [0.25, 0.1, 0.25, 1] }}
-                    style={{
-                      display: "block",
-                      color: "#FAF7F0",
-                      textDecoration: "none",
-                      fontSize: "clamp(1.55rem, 6.5vw, 2.1rem)",
-                      fontFamily: "'TAN-MEMORIES', serif",
-                      lineHeight: 1,
-                      padding: "15px 0",
-                      borderBottom: "1px solid rgba(250,247,240,0.07)",
-                      transition: "color 0.2s ease",
-                    }}
-                    onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
-                    onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
-                  >
-                    {item.name}
-                  </motion.a>
-                ))}
-              </nav>
-
-              {/* ── CTA + idioma — fixo no fundo ── */}
+            <>
+              {/* Backdrop */}
               <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.38, duration: 0.4 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                onClick={() => setIsOpen(false)}
                 style={{
-                  padding: "28px 28px 44px",
-                  flexShrink: 0,
-                  borderTop: "1px solid rgba(250,247,240,0.08)",
-                  marginTop: "12px",
+                  position: "fixed", inset: 0,
+                  backgroundColor: "rgba(15,30,26,0.6)",
+                  zIndex: 199,
+                  backdropFilter: "blur(4px)",
+                }}
+              />
+
+              {/* Panel */}
+              <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ duration: 0.38, ease: [0.32, 0.72, 0, 1] }}
+                style={{
+                  position: "fixed",
+                  top: 0, right: 0, bottom: 0,
+                  width: "min(420px, 100vw)",
+                  backgroundColor: "#0F1E1A",
+                  zIndex: 200,
+                  display: "flex",
+                  flexDirection: "column",
+                  overflowY: "auto",
                 }}
               >
-                {/* Reservar — botão principal */}
-                <a
-                  href={FORM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsOpen(false)}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "8px",
-                    backgroundColor: "#3D6B5E",
+                {/* ── Cabeçalho ── */}
+                <div style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: "20px 24px",
+                  borderBottom: "1px solid rgba(250,247,240,0.07)",
+                  flexShrink: 0,
+                }}>
+                  <a href="/" onClick={() => setIsOpen(false)} style={{
+                    fontFamily: "'TAN-MEMORIES', serif",
+                    fontSize: "1rem",
                     color: "#FAF7F0",
-                    padding: "17px 38px",
-                    borderRadius: "100px",
                     textDecoration: "none",
-                    fontWeight: 600,
-                    fontSize: "0.82rem",
-                    letterSpacing: "1.5px",
-                    textTransform: "uppercase",
-                    fontFamily: "Roboto, sans-serif",
-                    boxShadow: "0 6px 24px rgba(61,107,94,0.35)",
-                    marginBottom: "12px",
-                  }}
-                >
-                  Reservar Data
-                </a>
-
-                {/* WhatsApp */}
-                <a
-                  href="https://wa.me/351934680300"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsOpen(false)}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "8px",
-                    backgroundColor: "rgba(37,211,102,0.12)",
-                    color: "#25D366",
-                    border: "1px solid rgba(37,211,102,0.25)",
-                    padding: "14px 38px",
-                    borderRadius: "100px",
-                    textDecoration: "none",
-                    fontWeight: 600,
-                    fontSize: "0.78rem",
-                    letterSpacing: "1px",
-                    fontFamily: "Roboto, sans-serif",
-                    marginBottom: "24px",
-                  }}
-                >
-                  <IconWhatsApp/> +351 934 680 300
-                </a>
-
-                {/* Language */}
-                <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
-                  <a href="/pt" style={{
-                    color: "#FAF7F0", fontSize: "0.72rem", fontFamily: "Roboto, sans-serif",
-                    fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase",
-                    display: "flex", alignItems: "center", textDecoration: "none"
                   }}>
-                    PT <FlagPT/>
+                    Flores à Beira&#8209;Rio
                   </a>
-                  <a href="/en" style={{
-                    color: "rgba(250,247,240,0.35)", fontSize: "0.72rem", fontFamily: "Roboto, sans-serif",
-                    fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase",
-                    display: "flex", alignItems: "center", textDecoration: "none",
-                    transition: "color 0.25s",
-                  }}
-                    onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                    onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.35)"}
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    aria-label="Fechar menu"
+                    style={{
+                      background: "rgba(250,247,240,0.07)",
+                      border: "1px solid rgba(250,247,240,0.12)",
+                      borderRadius: "100px",
+                      color: "rgba(250,247,240,0.65)",
+                      fontSize: "0.62rem",
+                      fontWeight: 600,
+                      letterSpacing: "1.5px",
+                      textTransform: "uppercase",
+                      cursor: "pointer",
+                      fontFamily: "Roboto, sans-serif",
+                      padding: "9px 16px 9px 13px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "7px",
+                    }}
                   >
-                    EN <FlagEN/>
-                  </a>
+                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                      <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+                    </svg>
+                    Fechar
+                  </button>
                 </div>
+
+                {/* ── Conteúdo ── */}
+                <div style={{ flex: 1, overflowY: "auto" }}>
+
+                  {/* Grupo: Preservação de Flores */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.07, duration: 0.3 }}
+                    style={{ padding: "22px 24px 18px" }}
+                  >
+                    <a href={NAV_PRESERVACAO.href} onClick={() => setIsOpen(false)} style={{
+                      display: "block",
+                      fontFamily: "'TAN-MEMORIES', serif",
+                      fontSize: "clamp(1.25rem, 5vw, 1.6rem)",
+                      color: "#FAF7F0",
+                      textDecoration: "none",
+                      marginBottom: "14px",
+                      lineHeight: 1.1,
+                      transition: "color 0.2s",
+                    }}
+                      onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
+                      onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
+                    >
+                      Preservação de Flores
+                    </a>
+                    {/* Grid de sub-páginas */}
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px" }}>
+                      {NAV_PRESERVACAO.items.map((item, i) => (
+                        <motion.a
+                          key={i}
+                          href={item.href}
+                          onClick={() => setIsOpen(false)}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.11 + i * 0.04 }}
+                          style={{
+                            display: "block",
+                            color: "rgba(250,247,240,0.42)",
+                            textDecoration: "none",
+                            fontSize: "0.8rem",
+                            fontFamily: "Roboto, sans-serif",
+                            fontWeight: 400,
+                            padding: "9px 11px",
+                            borderRadius: "8px",
+                            background: "rgba(250,247,240,0.04)",
+                            border: "1px solid transparent",
+                            transition: "all 0.18s",
+                            lineHeight: 1.35,
+                          }}
+                          onMouseEnter={e => {
+                            e.currentTarget.style.background = "rgba(139,168,136,0.1)";
+                            e.currentTarget.style.color = "#8BA888";
+                            e.currentTarget.style.borderColor = "rgba(139,168,136,0.2)";
+                          }}
+                          onMouseLeave={e => {
+                            e.currentTarget.style.background = "rgba(250,247,240,0.04)";
+                            e.currentTarget.style.color = "rgba(250,247,240,0.42)";
+                            e.currentTarget.style.borderColor = "transparent";
+                          }}
+                        >
+                          {item.name}
+                        </motion.a>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  <div style={{ height: "1px", background: "rgba(250,247,240,0.06)", margin: "0 24px" }}/>
+
+                  {/* Grupo: Momentos Especiais */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.14, duration: 0.3 }}
+                    style={{ padding: "22px 24px 18px" }}
+                  >
+                    <a href={NAV_MOMENTOS.href} onClick={() => setIsOpen(false)} style={{
+                      display: "block",
+                      fontFamily: "'TAN-MEMORIES', serif",
+                      fontSize: "clamp(1.25rem, 5vw, 1.6rem)",
+                      color: "#FAF7F0",
+                      textDecoration: "none",
+                      marginBottom: "14px",
+                      lineHeight: 1.1,
+                      transition: "color 0.2s",
+                    }}
+                      onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
+                      onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
+                    >
+                      Momentos Especiais
+                    </a>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px" }}>
+                      {NAV_MOMENTOS.items.map((item, i) => (
+                        <motion.a
+                          key={i}
+                          href={item.href}
+                          onClick={() => setIsOpen(false)}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.18 + i * 0.04 }}
+                          style={{
+                            display: "block",
+                            color: "rgba(250,247,240,0.42)",
+                            textDecoration: "none",
+                            fontSize: "0.8rem",
+                            fontFamily: "Roboto, sans-serif",
+                            fontWeight: 400,
+                            padding: "9px 11px",
+                            borderRadius: "8px",
+                            background: "rgba(250,247,240,0.04)",
+                            border: "1px solid transparent",
+                            transition: "all 0.18s",
+                            lineHeight: 1.35,
+                          }}
+                          onMouseEnter={e => {
+                            e.currentTarget.style.background = "rgba(139,168,136,0.1)";
+                            e.currentTarget.style.color = "#8BA888";
+                            e.currentTarget.style.borderColor = "rgba(139,168,136,0.2)";
+                          }}
+                          onMouseLeave={e => {
+                            e.currentTarget.style.background = "rgba(250,247,240,0.04)";
+                            e.currentTarget.style.color = "rgba(250,247,240,0.42)";
+                            e.currentTarget.style.borderColor = "transparent";
+                          }}
+                        >
+                          {item.name}
+                        </motion.a>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  <div style={{ height: "1px", background: "rgba(250,247,240,0.06)", margin: "0 24px" }}/>
+
+                  {/* Links simples */}
+                  <div style={{ padding: "8px 24px" }}>
+                    {[
+                      { name: "Recriação de Bouquet", href: "/recriacao",           delay: 0.24 },
+                      { name: "Oferecer Preservação", href: "/vale-presente",        delay: 0.28 },
+                      { name: "Perguntas Frequentes", href: "/perguntas-frequentes", delay: 0.32 },
+                      { name: "Contactos e Equipa",   href: "/contactos",            delay: 0.36 },
+                      { name: "Blog",                 href: "/blog",                 delay: 0.40 },
+                    ].map((item) => (
+                      <motion.a
+                        key={item.name}
+                        href={item.href}
+                        onClick={() => setIsOpen(false)}
+                        initial={{ opacity: 0, x: 10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: item.delay, duration: 0.26 }}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          color: "rgba(250,247,240,0.65)",
+                          textDecoration: "none",
+                          fontSize: "0.9rem",
+                          fontFamily: "Roboto, sans-serif",
+                          fontWeight: 400,
+                          padding: "13px 0",
+                          borderBottom: "1px solid rgba(250,247,240,0.05)",
+                          transition: "color 0.18s",
+                        }}
+                        onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+                        onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.65)"}
+                      >
+                        {item.name}
+                        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true" style={{ opacity: 0.25, flexShrink: 0 }}>
+                          <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </motion.a>
+                    ))}
+                  </div>
+                </div>
+
+                {/* ── Rodapé ── */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.44 }}
+                  style={{
+                    padding: "18px 24px 36px",
+                    borderTop: "1px solid rgba(250,247,240,0.07)",
+                    flexShrink: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "9px",
+                  }}
+                >
+                  <a href={FORM_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
+                    style={{
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      backgroundColor: "#3D6B5E", color: "#FAF7F0",
+                      padding: "15px 24px", borderRadius: "100px",
+                      textDecoration: "none", fontWeight: 600,
+                      fontSize: "0.76rem", letterSpacing: "1.5px", textTransform: "uppercase",
+                      fontFamily: "Roboto, sans-serif",
+                      boxShadow: "0 6px 20px rgba(61,107,94,0.28)",
+                    }}
+                  >
+                    Reservar Data
+                  </a>
+                  <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
+                    style={{
+                      display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+                      color: "rgba(250,247,240,0.4)",
+                      border: "1px solid rgba(250,247,240,0.09)",
+                      padding: "13px 24px", borderRadius: "100px",
+                      textDecoration: "none", fontWeight: 400,
+                      fontSize: "0.76rem", fontFamily: "Roboto, sans-serif",
+                    }}
+                  >
+                    <IconWhatsApp/> +351 934 680 300
+                  </a>
+                  <div style={{ display: "flex", gap: "16px", justifyContent: "center", paddingTop: "4px" }}>
+                    <a href="/pt" style={{ color: "#FAF7F0", fontSize: "0.66rem", fontFamily: "Roboto, sans-serif", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", display: "flex", alignItems: "center", textDecoration: "none" }}>
+                      PT <FlagPT/>
+                    </a>
+                    <a href="/en" style={{ color: "rgba(250,247,240,0.28)", fontSize: "0.66rem", fontFamily: "Roboto, sans-serif", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", display: "flex", alignItems: "center", textDecoration: "none" }}
+                      onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+                      onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.28)"}
+                    >
+                      EN <FlagEN/>
+                    </a>
+                  </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
+            </>
           )}
         </AnimatePresence>
 
@@ -846,7 +799,6 @@ export default function RootLayout({ children }) {
           }
           .nav-link:hover { border-bottom: 1px solid currentColor; }
 
-          /* ── Language dropdown ── */
           .lang-trigger { border-bottom: 1px solid transparent !important; }
           .lang-trigger:hover { border-bottom: 1px solid currentColor !important; }
           .lang-dropdown {
@@ -858,61 +810,42 @@ export default function RootLayout({ children }) {
             opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
           }
 
-          /* ══════════════════════════════════════
-             DESKTOP DROPDOWN — premium + hover fix
-          ══════════════════════════════════════ */
-          .dd-container {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-          }
+          /* ══ DESKTOP DROPDOWN ══ */
+          .dd-container { position: relative; display: inline-flex; align-items: center; }
           .dd-trigger { cursor: default; }
 
-          /* The panel: padding-top = hover bridge (gap is hoverable) */
           .dd-panel {
-            position: absolute;
-            top: 100%;
-            left: 50%;
+            position: absolute; top: 100%; left: 50%;
             transform: translateX(-50%);
-            padding-top: 14px;           /* ← hover bridge: sem gap clicável */
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
+            padding-top: 14px;
+            opacity: 0; visibility: hidden; pointer-events: none;
             z-index: 200;
             transition: opacity 0.22s ease, visibility 0.22s ease;
           }
           .dd-container:hover .dd-panel,
           .dd-container:focus-within .dd-panel {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
+            opacity: 1; visibility: visible; pointer-events: auto;
           }
 
-          /* Inner card */
           .dd-panel-inner {
             background: #FAFAF8;
             border: 1px solid rgba(61,107,94,0.13);
             border-radius: 16px;
-            padding: 8px 6px 8px;
+            padding: 6px;
             box-shadow:
               0 4px 6px rgba(30,45,42,0.04),
               0 12px 32px rgba(30,45,42,0.13),
               0 24px 48px rgba(30,45,42,0.07);
-            min-width: 228px;
+            min-width: 220px;
             transform: translateY(-6px);
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
           }
-          .dd-container:hover .dd-panel-inner {
-            transform: translateY(0);
-          }
+          .dd-container:hover .dd-panel-inner { transform: translateY(0); }
 
-          /* Triangle pointer */
           .dd-panel-inner::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: 50%;
+            content: ''; position: absolute;
+            top: -5px; left: 50%;
             transform: translateX(-50%) rotate(45deg);
             width: 10px; height: 10px;
             background: #FAFAF8;
@@ -920,46 +853,23 @@ export default function RootLayout({ children }) {
             border-top: 1px solid rgba(61,107,94,0.13);
           }
 
+          /* Itens sem pontos — separação por espaçamento e hover */
           .dd-item {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            padding: 9px 14px;
-            border-radius: 10px;
-            text-decoration: none;
-            color: #2D4840;
-            font-size: 0.79rem;
-            font-family: Roboto, sans-serif;
-            font-weight: 400;
-            letter-spacing: 0.2px;
+            display: flex; align-items: center; gap: 8px;
+            padding: 9px 14px; border-radius: 10px;
+            text-decoration: none; color: #2D4840;
+            font-size: 0.8rem; font-family: Roboto, sans-serif;
+            font-weight: 400; letter-spacing: 0.1px;
             transition: background 0.15s ease, color 0.15s ease;
             white-space: nowrap;
           }
-          .dd-item:hover {
-            background: rgba(61,107,94,0.07);
-            color: #3D6B5E;
-          }
+          .dd-item:hover { background: rgba(61,107,94,0.07); color: #3D6B5E; }
           .dd-item-all {
-            color: #3D6B5E;
-            font-weight: 600;
-            font-size: 0.74rem;
-            letter-spacing: 0.5px;
+            color: #3D6B5E; font-weight: 600;
+            font-size: 0.74rem; letter-spacing: 0.3px;
           }
-          .dd-item-all:hover {
-            background: rgba(61,107,94,0.1);
-          }
-          .dd-dot {
-            width: 5px; height: 5px;
-            border-radius: 50%;
-            background: rgba(61,107,94,0.22);
-            flex-shrink: 0;
-            transition: background 0.15s ease;
-          }
-          .dd-item:hover .dd-dot {
-            background: #3D6B5E;
-          }
+          .dd-item-all:hover { background: rgba(61,107,94,0.1); }
 
-          /* ── CTA button ── */
           .nav-cta {
             display: inline-flex; align-items: center; font-size: 0.64rem; font-weight: 600;
             letter-spacing: 1.4px; text-transform: uppercase; text-decoration: none !important;
