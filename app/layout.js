@@ -51,12 +51,12 @@ const IconEmail = () => (
 
 // ─── Dropdown data ────────────────────────────────────────────────────────────
 const NAV_PRESERVACAO = {
-  label: "Preservação",
+  label: "Preservação de Flores",      // ← corrigido
   href: "/preservacao-de-flores",
   items: [
-    { name: "Opções e Preços",       href: "/opcoes-e-precos" },
-    { name: "Como Funciona",         href: "/como-funciona" },
-    { name: "Sustentabilidade",      href: "/sustentabilidade" },
+    { name: "Opções e Preços",        href: "/opcoes-e-precos" },
+    { name: "Como Funciona",          href: "/como-funciona" },
+    { name: "Sustentabilidade",       href: "/sustentabilidade" },
     { name: "Emoldurar Flores Secas", href: "/emoldurar-flores-secas" },
   ]
 };
@@ -65,30 +65,28 @@ const NAV_MOMENTOS = {
   label: "Momentos Especiais",
   href: "/momentos-especiais",
   items: [
-    { name: "Bouquet de Noiva",         href: "/preservacao-bouquet-noiva" },
-    { name: "Homenagem e Luto",         href: "/preservar-flores-luto-homenagem" },
-    { name: "Batizado e Nascimento",    href: "/preservar-flores-batizado-nascimento" },
-    { name: "Aniversário",              href: "/preservar-flores-aniversario" },
-    { name: "Pedido de Casamento",      href: "/preservar-flores-pedido-casamento" },
+    { name: "Bouquet de Noiva",       href: "/preservacao-bouquet-noiva" },
+    { name: "Homenagem e Luto",       href: "/preservar-flores-luto-homenagem" },
+    { name: "Batizado e Nascimento",  href: "/preservar-flores-batizado-nascimento" },
+    { name: "Aniversário",            href: "/preservar-flores-aniversario" },
+    { name: "Pedido de Casamento",    href: "/preservar-flores-pedido-casamento" },
   ]
 };
 
-// ─── Dropdown chevron icon ─────────────────────────────────────────────────────
-const Chevron = ({ open, color }) => (
-  <svg
-    width="10" height="10" viewBox="0 0 10 10" fill="none"
-    style={{
-      marginLeft: "4px", transition: "transform 0.25s ease",
-      transform: open ? "rotate(180deg)" : "rotate(0deg)",
-      flexShrink: 0,
-    }}
+// ─── Chevron icon ─────────────────────────────────────────────────────────────
+const Chevron = ({ open, color, size = 10 }) => (
+  <motion.svg
+    width={size} height={size} viewBox="0 0 10 10" fill="none"
+    animate={{ rotate: open ? 180 : 0 }}
+    transition={{ duration: 0.22, ease: "easeInOut" }}
+    style={{ marginLeft: "4px", flexShrink: 0 }}
     aria-hidden="true"
   >
-    <path d="M2 3.5L5 6.5L8 3.5" stroke={color || "currentColor"} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
+    <path d="M2 3.5L5 6.5L8 3.5" stroke={color || "currentColor"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </motion.svg>
 );
 
-// ─── Desktop Dropdown component ───────────────────────────────────────────────
+// ─── Desktop Dropdown ─────────────────────────────────────────────────────────
 const DesktopDropdown = ({ menu, scrolled }) => {
   const textColor = scrolled ? "#1a1a1a" : "#fff";
   return (
@@ -97,7 +95,7 @@ const DesktopDropdown = ({ menu, scrolled }) => {
         href={menu.href}
         className="nav-link dd-trigger desktop-only"
         style={{
-          fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
+          fontSize: "0.68rem", fontWeight: 500, textTransform: "uppercase",
           letterSpacing: "1.3px", color: textColor, whiteSpace: "nowrap",
           display: "inline-flex", alignItems: "center",
         }}
@@ -105,13 +103,36 @@ const DesktopDropdown = ({ menu, scrolled }) => {
         {menu.label}
         <Chevron color={textColor} />
       </a>
+      {/* Hover bridge: padding-top makes the gap hoverable */}
       <div className="dd-panel">
-        {menu.items.map((item, i) => (
-          <a key={i} href={item.href} className="dd-item">
-            <span className="dd-dot" aria-hidden="true"/>
-            {item.name}
-          </a>
-        ))}
+        <div className="dd-panel-inner">
+          {/* Small decorative top line */}
+          <div style={{
+            height: "2px",
+            background: "linear-gradient(to right, transparent, rgba(61,107,94,0.3), transparent)",
+            borderRadius: "2px",
+            margin: "0 8px 6px",
+          }} aria-hidden="true"/>
+          {menu.items.map((item, i) => (
+            <a key={i} href={item.href} className="dd-item">
+              <span className="dd-dot" aria-hidden="true"/>
+              {item.name}
+            </a>
+          ))}
+          {/* Bottom link to overview */}
+          <div style={{
+            margin: "6px 8px 4px",
+            paddingTop: "8px",
+            borderTop: "1px solid rgba(61,107,94,0.1)",
+          }}>
+            <a href={menu.href} className="dd-item dd-item-all">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2 6h8M6 2l4 4-4 4" stroke="#3D6B5E" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Ver tudo
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -172,7 +193,6 @@ function SiteFooter() {
 
   return (
     <footer style={{ backgroundColor: "#0F1E1A", color: "#FAF7F0", position: "relative" }}>
-
       <div style={{ textAlign: "center", padding: "72px 24px 56px" }}>
         <h2 style={{
           fontFamily: "'TAN-MEMORIES', serif",
@@ -316,74 +336,124 @@ function SiteFooter() {
   );
 }
 
-// ─── Mobile menu section header ───────────────────────────────────────────────
-const MobileSection = ({ label, href, items, onClose, initial, delay }) => {
+// ─── Mobile expandable section ────────────────────────────────────────────────
+const MobileSection = ({ label, href, items, onClose, delay }) => {
   const [open, setOpen] = useState(false);
+
   return (
     <motion.div
-      initial={{ opacity: 0, x: 24 }}
+      initial={{ opacity: 0, x: 28 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ delay, duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-    >
-      {/* Parent — clicável para a overview page */}
-      <div style={{
-        display: "flex", alignItems: "center", justifyContent: "space-between",
+      transition={{ delay, duration: 0.38, ease: [0.25, 0.1, 0.25, 1] }}
+      style={{
         borderBottom: "1px solid rgba(250,247,240,0.07)",
-      }}>
+      }}
+    >
+      {/* Row: link + toggle button */}
+      <div style={{ display: "flex", alignItems: "center", gap: "12px", padding: "4px 0" }}>
+        {/* Main link */}
         <a
           href={href}
           onClick={onClose}
           style={{
-            display: "block", color: "#FAF7F0", textDecoration: "none",
-            fontSize: "clamp(1.5rem, 6vw, 2rem)", fontFamily: "'TAN-MEMORIES', serif",
-            lineHeight: 1, padding: "14px 0", flex: 1,
+            flex: 1,
+            color: "#FAF7F0",
+            textDecoration: "none",
+            fontSize: "clamp(1.55rem, 6.5vw, 2.1rem)",
+            fontFamily: "'TAN-MEMORIES', serif",
+            lineHeight: 1,
+            padding: "15px 0",
+            transition: "color 0.2s ease",
           }}
           onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
           onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
         >
           {label}
         </a>
+
+        {/* Toggle — redesigned: pill com chevron grande e visível */}
         <button
           onClick={() => setOpen(o => !o)}
           aria-label={open ? "Fechar submenu" : "Abrir submenu"}
+          aria-expanded={open}
           style={{
-            background: "none", border: "none", cursor: "pointer",
-            color: "rgba(250,247,240,0.4)", padding: "8px",
-            display: "flex", alignItems: "center",
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            backgroundColor: open ? "rgba(139,168,136,0.18)" : "rgba(250,247,240,0.07)",
+            border: `1.5px solid ${open ? "rgba(139,168,136,0.45)" : "rgba(250,247,240,0.18)"}`,
+            borderRadius: "100px",
+            cursor: "pointer",
+            color: open ? "#8BA888" : "rgba(250,247,240,0.75)",
+            padding: "9px 14px 9px 12px",
+            flexShrink: 0,
+            minWidth: "52px",   // tap target fácil
+            minHeight: "40px",
+            transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
           }}
         >
-          <Chevron open={open} color="rgba(250,247,240,0.4)" />
+          <Chevron open={open} color="currentColor" size={13} />
+          <span style={{
+            fontSize: "0.6rem",
+            fontWeight: 700,
+            letterSpacing: "1px",
+            fontFamily: "Roboto, sans-serif",
+            lineHeight: 1,
+          }}>
+            {items.length}
+          </span>
         </button>
       </div>
+
       {/* Sub-items */}
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {open && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.22, ease: "easeInOut" }}
+            transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
             style={{ overflow: "hidden" }}
           >
-            {items.map((item, i) => (
-              <a
-                key={i}
-                href={item.href}
-                onClick={onClose}
-                style={{
-                  display: "block", color: "rgba(250,247,240,0.55)",
-                  textDecoration: "none", fontSize: "0.88rem",
-                  fontFamily: "Roboto, sans-serif", fontWeight: 400,
-                  padding: "10px 0 10px 16px",
-                  borderBottom: "1px solid rgba(250,247,240,0.04)",
-                  transition: "color 0.2s ease",
-                }}
-                onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
-                onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.55)"}
-              >
-                → {item.name}
-              </a>
-            ))}
+            <div style={{
+              paddingBottom: "16px",
+              paddingLeft: "6px",
+              marginLeft: "8px",
+              borderLeft: "2px solid rgba(139,168,136,0.22)",
+            }}>
+              {items.map((item, i) => (
+                <motion.a
+                  key={i}
+                  href={item.href}
+                  onClick={onClose}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05, duration: 0.22, ease: "easeOut" }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    color: "rgba(250,247,240,0.55)",
+                    textDecoration: "none",
+                    fontSize: "0.92rem",
+                    fontFamily: "Roboto, sans-serif",
+                    fontWeight: 400,
+                    padding: "10px 0 10px 18px",
+                    transition: "color 0.2s ease",
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
+                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.55)"}
+                >
+                  <span style={{
+                    width: "4px", height: "4px",
+                    borderRadius: "50%",
+                    backgroundColor: "rgba(139,168,136,0.4)",
+                    flexShrink: 0,
+                  }} aria-hidden="true"/>
+                  {item.name}
+                </motion.a>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -409,12 +479,11 @@ export default function RootLayout({ children }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Links simples do lado direito (sem dropdown)
   const menuRight = [
-    { name: "Recriação",           href: "/recriacao" },
-    { name: "Oferecer",            href: "/vale-presente" },
-    { name: "FAQ",                 href: "/perguntas-frequentes" },
-    { name: "Contactos",           href: "/contactos" },
+    { name: "Recriação",  href: "/recriacao" },
+    { name: "Oferecer",   href: "/vale-presente" },
+    { name: "FAQ",        href: "/perguntas-frequentes" },
+    { name: "Contactos",  href: "/contactos" },
   ];
 
   const shouldShowScrolled = scrolled || !isHome;
@@ -448,12 +517,12 @@ export default function RootLayout({ children }) {
         }}>
           <div className="nav-bar">
 
-            {/* LEFT — Preservação dropdown + Momentos dropdown */}
+            {/* LEFT */}
             <div className="nav-left">
-              {/* Language switcher */}
+              {/* Language */}
               <div className="lang-container desktop-only" style={{ position: "relative", display: "flex", alignItems: "center" }}>
                 <a href="/pt" className="nav-link lang-trigger" style={{
-                  fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
+                  fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
                   letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
                   display: "flex", alignItems: "center", cursor: "pointer"
                 }}>
@@ -461,7 +530,7 @@ export default function RootLayout({ children }) {
                 </a>
                 <div className="lang-dropdown" style={{ left: 0, right: "auto" }}>
                   <a href="/en" className="lang-dropdown-item" style={{
-                    fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
+                    fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
                     letterSpacing: "1.3px", display: "flex", alignItems: "center",
                     color: shouldShowScrolled ? "#1a1a1a" : "#fff",
                     background: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
@@ -474,10 +543,7 @@ export default function RootLayout({ children }) {
                 </div>
               </div>
 
-              {/* Dropdown: Preservação de Flores */}
               <DesktopDropdown menu={NAV_PRESERVACAO} scrolled={shouldShowScrolled} />
-
-              {/* Dropdown: Momentos Especiais */}
               <DesktopDropdown menu={NAV_MOMENTOS} scrolled={shouldShowScrolled} />
             </div>
 
@@ -489,12 +555,12 @@ export default function RootLayout({ children }) {
               Flores à Beira&#8209;Rio
             </motion.a>
 
-            {/* RIGHT — links simples + CTA */}
+            {/* RIGHT */}
             <div className="nav-right-col">
               <div className="nav-right desktop-only">
                 {menuRight.map(item => (
                   <a key={item.name} href={item.href} className="nav-link" style={{
-                    fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
+                    fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
                     letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff", whiteSpace: "nowrap"
                   }}>
                     {item.name}
@@ -520,75 +586,117 @@ export default function RootLayout({ children }) {
           </div>
         </nav>
 
-        {/* ─── Mobile Menu ─────────────────────────────────────────── */}
+        {/* ─── Mobile Menu — redesenhado ───────────────────────────── */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
-              transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.42, ease: [0.32, 0.72, 0, 1] }}
               style={{
-                position: "fixed", inset: 0, backgroundColor: "#0F1E1A", zIndex: 200,
-                display: "flex", flexDirection: "column", padding: "0 36px", overflowY: "auto"
+                position: "fixed", inset: 0,
+                backgroundColor: "#0F1E1A",
+                zIndex: 200,
+                display: "flex",
+                flexDirection: "column",
+                overflowY: "auto",
+                overflowX: "hidden",
               }}
             >
-              {/* Header */}
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "28px", paddingBottom: "36px" }}>
+              {/* ── Header ── */}
+              <div style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "22px 28px 20px",
+                flexShrink: 0,
+              }}>
                 <a href="/" onClick={() => setIsOpen(false)} style={{
-                  fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", color: "#FAF7F0",
-                  letterSpacing: "0.5px", textDecoration: "none"
+                  fontFamily: "'TAN-MEMORIES', serif",
+                  fontSize: "1.05rem",
+                  color: "#FAF7F0",
+                  textDecoration: "none",
+                  letterSpacing: "0.3px",
                 }}>
                   Flores à Beira&#8209;Rio
                 </a>
-                <button onClick={() => setIsOpen(false)} style={{
-                  background: "none", border: "1px solid rgba(250,247,240,0.2)", borderRadius: "100px",
-                  color: "#FAF7F0", fontSize: "0.72rem", fontWeight: "500", letterSpacing: "2px",
-                  cursor: "pointer", fontFamily: "'Roboto', sans-serif", padding: "8px 16px"
-                }}>
-                  FECHAR
+                <button
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Fechar menu"
+                  style={{
+                    background: "rgba(250,247,240,0.07)",
+                    border: "1px solid rgba(250,247,240,0.15)",
+                    borderRadius: "100px",
+                    color: "#FAF7F0",
+                    fontSize: "0.68rem",
+                    fontWeight: 600,
+                    letterSpacing: "2px",
+                    textTransform: "uppercase",
+                    cursor: "pointer",
+                    fontFamily: "Roboto, sans-serif",
+                    padding: "10px 18px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
+                >
+                  {/* X icon */}
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+                  </svg>
+                  Fechar
                 </button>
               </div>
 
-              <div style={{ height: "1px", background: "rgba(250,247,240,0.08)", marginBottom: "28px" }}/>
+              <div style={{ height: "1px", background: "rgba(250,247,240,0.08)", flexShrink: 0, margin: "0 28px" }}/>
 
-              {/* Menu items */}
-              <nav style={{ flex: 1 }}>
-                {/* Dropdown expandível: Preservação */}
+              {/* ── Nav items ── */}
+              <nav style={{ flex: 1, padding: "12px 28px 0" }}>
+
+                {/* Expandable: Preservação de Flores */}
                 <MobileSection
                   label="Preservação de Flores"
                   href={NAV_PRESERVACAO.href}
                   items={NAV_PRESERVACAO.items}
                   onClose={() => setIsOpen(false)}
-                  delay={0.08}
+                  delay={0.07}
                 />
 
-                {/* Dropdown expandível: Momentos */}
+                {/* Expandable: Momentos Especiais */}
                 <MobileSection
                   label="Momentos Especiais"
                   href={NAV_MOMENTOS.href}
                   items={NAV_MOMENTOS.items}
                   onClose={() => setIsOpen(false)}
-                  delay={0.13}
+                  delay={0.12}
                 />
 
                 {/* Links simples */}
                 {[
-                  { name: "Recriação de Bouquet",  href: "/recriacao",             delay: 0.18 },
-                  { name: "Oferecer Preservação",  href: "/vale-presente",          delay: 0.22 },
-                  { name: "Perguntas Frequentes",  href: "/perguntas-frequentes",   delay: 0.26 },
-                  { name: "Contactos e Equipa",    href: "/contactos",              delay: 0.30 },
-                  { name: "Blog",                  href: "/blog",                   delay: 0.34 },
+                  { name: "Recriação de Bouquet",  href: "/recriacao",           delay: 0.17 },
+                  { name: "Oferecer Preservação",  href: "/vale-presente",        delay: 0.21 },
+                  { name: "Perguntas Frequentes",  href: "/perguntas-frequentes", delay: 0.25 },
+                  { name: "Contactos e Equipa",    href: "/contactos",            delay: 0.29 },
+                  { name: "Blog",                  href: "/blog",                 delay: 0.33 },
                 ].map((item) => (
                   <motion.a
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    initial={{ opacity: 0, x: 24 }}
+                    initial={{ opacity: 0, x: 28 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: item.delay, duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+                    transition={{ delay: item.delay, duration: 0.38, ease: [0.25, 0.1, 0.25, 1] }}
                     style={{
-                      display: "block", color: "#FAF7F0", textDecoration: "none",
-                      fontSize: "clamp(1.5rem, 6vw, 2rem)", fontFamily: "'TAN-MEMORIES', serif",
-                      lineHeight: 1, padding: "14px 0", borderBottom: "1px solid rgba(250,247,240,0.07)",
+                      display: "block",
+                      color: "#FAF7F0",
+                      textDecoration: "none",
+                      fontSize: "clamp(1.55rem, 6.5vw, 2.1rem)",
+                      fontFamily: "'TAN-MEMORIES', serif",
+                      lineHeight: 1,
+                      padding: "15px 0",
+                      borderBottom: "1px solid rgba(250,247,240,0.07)",
+                      transition: "color 0.2s ease",
                     }}
                     onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
                     onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
@@ -598,34 +706,95 @@ export default function RootLayout({ children }) {
                 ))}
               </nav>
 
-              {/* CTA + idioma */}
-              <div style={{ paddingTop: "36px", paddingBottom: "48px" }}>
-                <a href={FORM_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
+              {/* ── CTA + idioma — fixo no fundo ── */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.38, duration: 0.4 }}
+                style={{
+                  padding: "28px 28px 44px",
+                  flexShrink: 0,
+                  borderTop: "1px solid rgba(250,247,240,0.08)",
+                  marginTop: "12px",
+                }}
+              >
+                {/* Reservar — botão principal */}
+                <a
+                  href={FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
                   style={{
-                    display: "block", textAlign: "center", backgroundColor: "#3D6B5E", color: "#FAF7F0",
-                    padding: "17px 38px", borderRadius: "100px", textDecoration: "none", fontWeight: "600",
-                    fontSize: "0.8rem", letterSpacing: "1.5px", textTransform: "uppercase",
-                    fontFamily: "Roboto, sans-serif", boxShadow: "0 6px 22px rgba(61,107,94,0.35)", marginBottom: "24px"
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
+                    backgroundColor: "#3D6B5E",
+                    color: "#FAF7F0",
+                    padding: "17px 38px",
+                    borderRadius: "100px",
+                    textDecoration: "none",
+                    fontWeight: 600,
+                    fontSize: "0.82rem",
+                    letterSpacing: "1.5px",
+                    textTransform: "uppercase",
+                    fontFamily: "Roboto, sans-serif",
+                    boxShadow: "0 6px 24px rgba(61,107,94,0.35)",
+                    marginBottom: "12px",
                   }}
                 >
                   Reservar Data
                 </a>
+
+                {/* WhatsApp */}
+                <a
+                  href="https://wa.me/351934680300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
+                    backgroundColor: "rgba(37,211,102,0.12)",
+                    color: "#25D366",
+                    border: "1px solid rgba(37,211,102,0.25)",
+                    padding: "14px 38px",
+                    borderRadius: "100px",
+                    textDecoration: "none",
+                    fontWeight: 600,
+                    fontSize: "0.78rem",
+                    letterSpacing: "1px",
+                    fontFamily: "Roboto, sans-serif",
+                    marginBottom: "24px",
+                  }}
+                >
+                  <IconWhatsApp/> +351 934 680 300
+                </a>
+
+                {/* Language */}
                 <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
                   <a href="/pt" style={{
-                    color: "#FAF7F0", fontSize: "0.75rem", fontFamily: "Roboto, sans-serif",
-                    fontWeight: "600", letterSpacing: "1.5px", textTransform: "uppercase",
+                    color: "#FAF7F0", fontSize: "0.72rem", fontFamily: "Roboto, sans-serif",
+                    fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase",
                     display: "flex", alignItems: "center", textDecoration: "none"
-                  }}>PT <FlagPT/></a>
+                  }}>
+                    PT <FlagPT/>
+                  </a>
                   <a href="/en" style={{
-                    color: "rgba(250,247,240,0.35)", fontSize: "0.75rem", fontFamily: "Roboto, sans-serif",
-                    fontWeight: "600", letterSpacing: "1.5px", textTransform: "uppercase",
-                    display: "flex", alignItems: "center", textDecoration: "none", transition: "color 0.25s"
+                    color: "rgba(250,247,240,0.35)", fontSize: "0.72rem", fontFamily: "Roboto, sans-serif",
+                    fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase",
+                    display: "flex", alignItems: "center", textDecoration: "none",
+                    transition: "color 0.25s",
                   }}
                     onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
                     onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.35)"}
-                  >EN <FlagEN/></a>
+                  >
+                    EN <FlagEN/>
+                  </a>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -645,7 +814,7 @@ export default function RootLayout({ children }) {
           @media (min-width: 1280px) { .nav-bar { padding: 0 32px; } }
 
           .nav-left {
-            flex: 1; display: flex; gap: clamp(8px, 1.2vw, 18px);
+            flex: 1; display: flex; gap: clamp(6px, 1vw, 16px);
             align-items: center; justify-content: flex-end;
           }
 
@@ -659,7 +828,7 @@ export default function RootLayout({ children }) {
           .nav-logo:hover { border-bottom: 1px solid currentColor; }
 
           .nav-right-col { flex: 1; display: flex; justify-content: flex-start; align-items: center; }
-          .nav-right { display: flex; gap: clamp(8px, 1.2vw, 18px); align-items: center; }
+          .nav-right { display: flex; gap: clamp(6px, 1vw, 16px); align-items: center; }
 
           .nav-mobile-btn {
             background: none; border: none; cursor: pointer;
@@ -668,7 +837,6 @@ export default function RootLayout({ children }) {
           }
 
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
-          .italic { font-style: italic !important; }
 
           .nav-link {
             text-decoration: none !important; transition: all 0.3s ease;
@@ -690,78 +858,102 @@ export default function RootLayout({ children }) {
             opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
           }
 
-          /* ── Dropdown menu ── */
+          /* ══════════════════════════════════════
+             DESKTOP DROPDOWN — premium + hover fix
+          ══════════════════════════════════════ */
           .dd-container {
             position: relative;
             display: inline-flex;
             align-items: center;
           }
-          .dd-trigger {
-            cursor: pointer;
-          }
+          .dd-trigger { cursor: default; }
+
+          /* The panel: padding-top = hover bridge (gap is hoverable) */
           .dd-panel {
             position: absolute;
-            top: calc(100% + 14px);
+            top: 100%;
             left: 50%;
             transform: translateX(-50%);
-            min-width: 210px;
-            background: #FAF7F0;
-            border: 1px solid rgba(61,107,94,0.12);
-            border-radius: 14px;
-            padding: 8px 6px;
-            box-shadow: 0 12px 40px rgba(30,45,42,0.14);
+            padding-top: 14px;           /* ← hover bridge: sem gap clicável */
             opacity: 0;
             visibility: hidden;
-            transform: translateX(-50%) translateY(-8px);
-            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
             pointer-events: none;
             z-index: 200;
-          }
-          /* Small arrow pointing up */
-          .dd-panel::before {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 12px; height: 12px;
-            background: #FAF7F0;
-            border-left: 1px solid rgba(61,107,94,0.12);
-            border-top: 1px solid rgba(61,107,94,0.12);
-            transform: translateX(-50%) rotate(45deg);
+            transition: opacity 0.22s ease, visibility 0.22s ease;
           }
           .dd-container:hover .dd-panel,
           .dd-container:focus-within .dd-panel {
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) translateY(0);
             pointer-events: auto;
           }
+
+          /* Inner card */
+          .dd-panel-inner {
+            background: #FAFAF8;
+            border: 1px solid rgba(61,107,94,0.13);
+            border-radius: 16px;
+            padding: 8px 6px 8px;
+            box-shadow:
+              0 4px 6px rgba(30,45,42,0.04),
+              0 12px 32px rgba(30,45,42,0.13),
+              0 24px 48px rgba(30,45,42,0.07);
+            min-width: 228px;
+            transform: translateY(-6px);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+          }
+          .dd-container:hover .dd-panel-inner {
+            transform: translateY(0);
+          }
+
+          /* Triangle pointer */
+          .dd-panel-inner::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 10px; height: 10px;
+            background: #FAFAF8;
+            border-left: 1px solid rgba(61,107,94,0.13);
+            border-top: 1px solid rgba(61,107,94,0.13);
+          }
+
           .dd-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
-            border-radius: 8px;
+            gap: 11px;
+            padding: 9px 14px;
+            border-radius: 10px;
             text-decoration: none;
-            color: #1E2D2A;
-            font-size: 0.78rem;
+            color: #2D4840;
+            font-size: 0.79rem;
             font-family: Roboto, sans-serif;
             font-weight: 400;
-            letter-spacing: 0.3px;
-            transition: background 0.18s ease, color 0.18s ease;
+            letter-spacing: 0.2px;
+            transition: background 0.15s ease, color 0.15s ease;
             white-space: nowrap;
           }
           .dd-item:hover {
-            background: rgba(61,107,94,0.08);
+            background: rgba(61,107,94,0.07);
             color: #3D6B5E;
+          }
+          .dd-item-all {
+            color: #3D6B5E;
+            font-weight: 600;
+            font-size: 0.74rem;
+            letter-spacing: 0.5px;
+          }
+          .dd-item-all:hover {
+            background: rgba(61,107,94,0.1);
           }
           .dd-dot {
             width: 5px; height: 5px;
             border-radius: 50%;
-            background: rgba(61,107,94,0.35);
+            background: rgba(61,107,94,0.22);
             flex-shrink: 0;
-            transition: background 0.18s ease;
+            transition: background 0.15s ease;
           }
           .dd-item:hover .dd-dot {
             background: #3D6B5E;
@@ -769,7 +961,7 @@ export default function RootLayout({ children }) {
 
           /* ── CTA button ── */
           .nav-cta {
-            display: inline-flex; align-items: center; font-size: 0.66rem; font-weight: 600;
+            display: inline-flex; align-items: center; font-size: 0.64rem; font-weight: 600;
             letter-spacing: 1.4px; text-transform: uppercase; text-decoration: none !important;
             font-family: Roboto, sans-serif; padding: 8px 18px; border-radius: 100px;
             transition: all 0.3s ease; white-space: nowrap;
