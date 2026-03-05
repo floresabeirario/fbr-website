@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
-// ─── Flag SVGs ───────────────────────────────────────────────────────────────
+// ─── Flag SVGs ────────────────────────────────────────────────────────────────
 const FlagPT = () => (
   <svg width="16" height="12" viewBox="0 0 600 400" style={{ marginLeft: "6px", borderRadius: "2px", verticalAlign: "middle" }}>
     <rect width="240" height="400" fill="#006600"/>
@@ -49,21 +49,99 @@ const IconEmail = () => (
   </svg>
 );
 
+// ─── Dropdown data ────────────────────────────────────────────────────────────
+const NAV_PRESERVACAO = {
+  label: "Preservação",
+  href: "/preservacao-de-flores",
+  items: [
+    { name: "Opções e Preços",       href: "/opcoes-e-precos" },
+    { name: "Como Funciona",         href: "/como-funciona" },
+    { name: "Sustentabilidade",      href: "/sustentabilidade" },
+    { name: "Emoldurar Flores Secas", href: "/emoldurar-flores-secas" },
+  ]
+};
+
+const NAV_MOMENTOS = {
+  label: "Momentos Especiais",
+  href: "/momentos-especiais",
+  items: [
+    { name: "Bouquet de Noiva",         href: "/preservacao-bouquet-noiva" },
+    { name: "Homenagem e Luto",         href: "/preservar-flores-luto-homenagem" },
+    { name: "Batizado e Nascimento",    href: "/preservar-flores-batizado-nascimento" },
+    { name: "Aniversário",              href: "/preservar-flores-aniversario" },
+    { name: "Pedido de Casamento",      href: "/preservar-flores-pedido-casamento" },
+  ]
+};
+
+// ─── Dropdown chevron icon ─────────────────────────────────────────────────────
+const Chevron = ({ open, color }) => (
+  <svg
+    width="10" height="10" viewBox="0 0 10 10" fill="none"
+    style={{
+      marginLeft: "4px", transition: "transform 0.25s ease",
+      transform: open ? "rotate(180deg)" : "rotate(0deg)",
+      flexShrink: 0,
+    }}
+    aria-hidden="true"
+  >
+    <path d="M2 3.5L5 6.5L8 3.5" stroke={color || "currentColor"} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+// ─── Desktop Dropdown component ───────────────────────────────────────────────
+const DesktopDropdown = ({ menu, scrolled }) => {
+  const textColor = scrolled ? "#1a1a1a" : "#fff";
+  return (
+    <div className="dd-container">
+      <a
+        href={menu.href}
+        className="nav-link dd-trigger desktop-only"
+        style={{
+          fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
+          letterSpacing: "1.3px", color: textColor, whiteSpace: "nowrap",
+          display: "inline-flex", alignItems: "center",
+        }}
+      >
+        {menu.label}
+        <Chevron color={textColor} />
+      </a>
+      <div className="dd-panel">
+        {menu.items.map((item, i) => (
+          <a key={i} href={item.href} className="dd-item">
+            <span className="dd-dot" aria-hidden="true"/>
+            {item.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 // ─── Footer ───────────────────────────────────────────────────────────────────
 const FORM_URL = "https://wkf.ms/3RfoNAc";
 
 function SiteFooter() {
   const links = {
     servicos: [
-      { href: "/como-funciona",        label: "Como Funciona" },
-      { href: "/opcoes-e-precos",       label: "Opções e Preços" },
-      { href: "/recriacao",             label: "Recriação de Bouquet" },
-      { href: "/vale-presente",         label: "Vale-Presente" },
+      { href: "/preservacao-de-flores",  label: "Preservação de Flores" },
+      { href: "/opcoes-e-precos",        label: "Opções e Preços" },
+      { href: "/como-funciona",          label: "Como Funciona" },
+      { href: "/emoldurar-flores-secas", label: "Emoldurar Flores Secas" },
+      { href: "/recriacao",              label: "Recriação de Bouquet" },
+      { href: "/vale-presente",          label: "Vale-Presente" },
+    ],
+    momentos: [
+      { href: "/preservacao-bouquet-noiva",            label: "Bouquet de Noiva" },
+      { href: "/preservar-flores-luto-homenagem",      label: "Homenagem e Luto" },
+      { href: "/preservar-flores-batizado-nascimento", label: "Batizado e Nascimento" },
+      { href: "/preservar-flores-aniversario",         label: "Aniversário" },
+      { href: "/preservar-flores-pedido-casamento",    label: "Pedido de Casamento" },
     ],
     ajuda: [
-      { href: "/perguntas-frequentes",  label: "Perguntas Frequentes" },
-      { href: "/contactos",             label: "Contactos e Equipa" },
-      { href: "/acompanhar-encomenda",  label: "Acompanhar Encomenda" },
+      { href: "/perguntas-frequentes", label: "Perguntas Frequentes" },
+      { href: "/contactos",            label: "Contactos e Equipa" },
+      { href: "/acompanhar-encomenda", label: "Acompanhar Encomenda" },
+      { href: "/blog",                 label: "Blog" },
     ],
     legal: [
       { href: "/politica-de-privacidade", label: "Política de Privacidade" },
@@ -95,33 +173,21 @@ function SiteFooter() {
   return (
     <footer style={{ backgroundColor: "#0F1E1A", color: "#FAF7F0", position: "relative" }}>
 
-      {/* ══════ BLOCO CENTRAL COM NOME + TAGLINE + ÍCONES ══════ */}
       <div style={{ textAlign: "center", padding: "72px 24px 56px" }}>
-
         <h2 style={{
           fontFamily: "'TAN-MEMORIES', serif",
           fontSize: "clamp(2.6rem, 7vw, 5.5rem)",
-          color: "#FAF7F0",
-          margin: "0 0 16px",
-          lineHeight: 1.0,
-          fontWeight: 400,
-          letterSpacing: "-0.01em",
+          color: "#FAF7F0", margin: "0 0 16px",
+          lineHeight: 1.0, fontWeight: 400, letterSpacing: "-0.01em",
         }}>
           Flores à Beira&#8209;Rio
         </h2>
-
         <p style={{
-          fontSize: "0.6rem",
-          letterSpacing: "4px",
-          textTransform: "uppercase",
-          color: "rgba(250,247,240,0.45)",
-          margin: "0 0 36px",
-          fontFamily: "Roboto, sans-serif",
+          fontSize: "0.6rem", letterSpacing: "4px", textTransform: "uppercase",
+          color: "rgba(250,247,240,0.45)", margin: "0 0 36px", fontFamily: "Roboto, sans-serif",
         }}>
           Especialistas em Preservação de Flores · Coimbra, Portugal
         </p>
-
-        {/* Ícones sociais */}
         <div style={{ display: "flex", justifyContent: "center", gap: "24px", marginBottom: "40px" }}>
           {[
             { href: "https://instagram.com/floresabeirario", icon: <IconInstagram/>, label: "Instagram" },
@@ -140,8 +206,6 @@ function SiteFooter() {
             </a>
           ))}
         </div>
-
-        {/* Botão WhatsApp */}
         <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer"
           style={{
             display: "inline-flex", alignItems: "center", gap: "10px",
@@ -152,32 +216,21 @@ function SiteFooter() {
             fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease",
             boxShadow: "0 4px 20px rgba(37,211,102,0.2)",
           }}
-          onMouseEnter={e => {
-            e.currentTarget.style.backgroundColor = "#1db954";
-            e.currentTarget.style.transform = "translateY(-2px)";
-            e.currentTarget.style.boxShadow = "0 8px 24px rgba(37,211,102,0.35)";
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.backgroundColor = "#25D366";
-            e.currentTarget.style.transform = "translateY(0)";
-            e.currentTarget.style.boxShadow = "0 4px 20px rgba(37,211,102,0.2)";
-          }}
+          onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#1db954"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+          onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#25D366"; e.currentTarget.style.transform = "translateY(0)"; }}
         >
           <IconWhatsApp/> +351 934 680 300
         </a>
       </div>
 
-      {/* ── Linha divisória ── */}
       <div style={{ height: "1px", background: "linear-gradient(to right, transparent, rgba(250,247,240,0.1), transparent)" }}/>
 
-      {/* ══════ GRELHA DE LINKS ══════ */}
       <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "48px 40px" }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
           gap: "36px 32px",
         }}>
-
           <div>
             <span style={labelStyle}>Serviços</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -189,10 +242,20 @@ function SiteFooter() {
               ))}
             </div>
           </div>
-
+          <div>
+            <span style={labelStyle}>Momentos</span>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+              {links.momentos.map((l, i) => (
+                <a key={i} href={l.href} style={linkStyle}
+                  onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
+                >{l.label}</a>
+              ))}
+            </div>
+          </div>
           <div>
             <span style={labelStyle}>Ajuda</span>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "24px" }}>
               {links.ajuda.map((l, i) => (
                 <a key={i} href={l.href} style={linkStyle}
                   onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
@@ -201,7 +264,6 @@ function SiteFooter() {
               ))}
             </div>
           </div>
-
           <div>
             <span style={labelStyle}>Legal</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "24px" }}>
@@ -224,7 +286,6 @@ function SiteFooter() {
               </a>
             </div>
           </div>
-
           <div>
             <span style={labelStyle}>Contacto</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -239,11 +300,9 @@ function SiteFooter() {
               <span style={{ ...linkStyle, color: "rgba(250,247,240,0.28)", cursor: "default" }}>Coimbra, Portugal</span>
             </div>
           </div>
-
         </div>
       </div>
 
-      {/* ── Linha final ── */}
       <div style={{ borderTop: "1px solid rgba(250,247,240,0.07)", padding: "20px 24px 28px", textAlign: "center" }}>
         <p style={{
           fontSize: "0.58rem", letterSpacing: "2px",
@@ -253,19 +312,92 @@ function SiteFooter() {
           © 2026 Flores à Beira-Rio · Todos os direitos reservados
         </p>
       </div>
-
     </footer>
   );
 }
 
-// ─── Nav ──────────────────────────────────────────────────────────────────────
+// ─── Mobile menu section header ───────────────────────────────────────────────
+const MobileSection = ({ label, href, items, onClose, initial, delay }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 24 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay, duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+    >
+      {/* Parent — clicável para a overview page */}
+      <div style={{
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        borderBottom: "1px solid rgba(250,247,240,0.07)",
+      }}>
+        <a
+          href={href}
+          onClick={onClose}
+          style={{
+            display: "block", color: "#FAF7F0", textDecoration: "none",
+            fontSize: "clamp(1.5rem, 6vw, 2rem)", fontFamily: "'TAN-MEMORIES', serif",
+            lineHeight: 1, padding: "14px 0", flex: 1,
+          }}
+          onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
+          onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
+        >
+          {label}
+        </a>
+        <button
+          onClick={() => setOpen(o => !o)}
+          aria-label={open ? "Fechar submenu" : "Abrir submenu"}
+          style={{
+            background: "none", border: "none", cursor: "pointer",
+            color: "rgba(250,247,240,0.4)", padding: "8px",
+            display: "flex", alignItems: "center",
+          }}
+        >
+          <Chevron open={open} color="rgba(250,247,240,0.4)" />
+        </button>
+      </div>
+      {/* Sub-items */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.22, ease: "easeInOut" }}
+            style={{ overflow: "hidden" }}
+          >
+            {items.map((item, i) => (
+              <a
+                key={i}
+                href={item.href}
+                onClick={onClose}
+                style={{
+                  display: "block", color: "rgba(250,247,240,0.55)",
+                  textDecoration: "none", fontSize: "0.88rem",
+                  fontFamily: "Roboto, sans-serif", fontWeight: 400,
+                  padding: "10px 0 10px 16px",
+                  borderBottom: "1px solid rgba(250,247,240,0.04)",
+                  transition: "color 0.2s ease",
+                }}
+                onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.55)"}
+              >
+                → {item.name}
+              </a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
+
+// ─── Root Layout ──────────────────────────────────────────────────────────────
 export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  // ── Scroll to top on every page load / route change ──
   useEffect(() => {
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
@@ -277,17 +409,13 @@ export default function RootLayout({ children }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuLeft = [
-    { name: "Como Funciona",        href: "/como-funciona" },
-    { name: "Opções e Preços",      href: "/opcoes-e-precos" },
-    { name: "Recriação de Bouquet", href: "/recriacao" },
-  ];
+  // Links simples do lado direito (sem dropdown)
   const menuRight = [
-    { name: "Vale-Presente",        href: "/vale-presente" },
-    { name: "Perguntas Frequentes", href: "/perguntas-frequentes" },
-    { name: "Contactos e Equipa",   href: "/contactos" },
+    { name: "Recriação",           href: "/recriacao" },
+    { name: "Oferecer",            href: "/vale-presente" },
+    { name: "FAQ",                 href: "/perguntas-frequentes" },
+    { name: "Contactos",           href: "/contactos" },
   ];
-  const mobileMenu = [...menuLeft, ...menuRight];
 
   const shouldShowScrolled = scrolled || !isHome;
 
@@ -310,6 +438,7 @@ export default function RootLayout({ children }) {
       </head>
       <body style={{ margin: 0, backgroundColor: "#FAF7F0", color: "#1a1a1a", fontFamily: "'Roboto', sans-serif" }}>
 
+        {/* ─── Desktop Nav ─────────────────────────────────────────── */}
         <nav style={{
           position: "fixed", top: 0, width: "100%", zIndex: 100,
           backgroundColor: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "transparent",
@@ -319,7 +448,9 @@ export default function RootLayout({ children }) {
         }}>
           <div className="nav-bar">
 
+            {/* LEFT — Preservação dropdown + Momentos dropdown */}
             <div className="nav-left">
+              {/* Language switcher */}
               <div className="lang-container desktop-only" style={{ position: "relative", display: "flex", alignItems: "center" }}>
                 <a href="/pt" className="nav-link lang-trigger" style={{
                   fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
@@ -343,16 +474,14 @@ export default function RootLayout({ children }) {
                 </div>
               </div>
 
-              {menuLeft.map(item => (
-                <a key={item.name} href={item.href} className="nav-link desktop-only" style={{
-                  fontSize: "0.7rem", fontWeight: "500", textTransform: "uppercase",
-                  letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff", whiteSpace: "nowrap"
-                }}>
-                  {item.name}
-                </a>
-              ))}
+              {/* Dropdown: Preservação de Flores */}
+              <DesktopDropdown menu={NAV_PRESERVACAO} scrolled={shouldShowScrolled} />
+
+              {/* Dropdown: Momentos Especiais */}
+              <DesktopDropdown menu={NAV_MOMENTOS} scrolled={shouldShowScrolled} />
             </div>
 
+            {/* CENTER — Logo */}
             <motion.a href="/" className="nav-logo"
               animate={{ opacity: shouldShowScrolled ? 1 : 0, y: shouldShowScrolled ? 0 : 8 }}
               transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
@@ -360,6 +489,7 @@ export default function RootLayout({ children }) {
               Flores à Beira&#8209;Rio
             </motion.a>
 
+            {/* RIGHT — links simples + CTA */}
             <div className="nav-right-col">
               <div className="nav-right desktop-only">
                 {menuRight.map(item => (
@@ -387,10 +517,10 @@ export default function RootLayout({ children }) {
                 MENU
               </button>
             </div>
-
           </div>
         </nav>
 
+        {/* ─── Mobile Menu ─────────────────────────────────────────── */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -401,6 +531,7 @@ export default function RootLayout({ children }) {
                 display: "flex", flexDirection: "column", padding: "0 36px", overflowY: "auto"
               }}
             >
+              {/* Header */}
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "28px", paddingBottom: "36px" }}>
                 <a href="/" onClick={() => setIsOpen(false)} style={{
                   fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", color: "#FAF7F0",
@@ -417,13 +548,43 @@ export default function RootLayout({ children }) {
                 </button>
               </div>
 
-              <div style={{ height: "1px", background: "rgba(250,247,240,0.08)", marginBottom: "40px" }}/>
+              <div style={{ height: "1px", background: "rgba(250,247,240,0.08)", marginBottom: "28px" }}/>
 
+              {/* Menu items */}
               <nav style={{ flex: 1 }}>
-                {mobileMenu.map((item, i) => (
-                  <motion.a key={item.name} href={item.href} onClick={() => setIsOpen(false)}
-                    initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + i * 0.055, duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+                {/* Dropdown expandível: Preservação */}
+                <MobileSection
+                  label="Preservação de Flores"
+                  href={NAV_PRESERVACAO.href}
+                  items={NAV_PRESERVACAO.items}
+                  onClose={() => setIsOpen(false)}
+                  delay={0.08}
+                />
+
+                {/* Dropdown expandível: Momentos */}
+                <MobileSection
+                  label="Momentos Especiais"
+                  href={NAV_MOMENTOS.href}
+                  items={NAV_MOMENTOS.items}
+                  onClose={() => setIsOpen(false)}
+                  delay={0.13}
+                />
+
+                {/* Links simples */}
+                {[
+                  { name: "Recriação de Bouquet",  href: "/recriacao",             delay: 0.18 },
+                  { name: "Oferecer Preservação",  href: "/vale-presente",          delay: 0.22 },
+                  { name: "Perguntas Frequentes",  href: "/perguntas-frequentes",   delay: 0.26 },
+                  { name: "Contactos e Equipa",    href: "/contactos",              delay: 0.30 },
+                  { name: "Blog",                  href: "/blog",                   delay: 0.34 },
+                ].map((item) => (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: item.delay, duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
                     style={{
                       display: "block", color: "#FAF7F0", textDecoration: "none",
                       fontSize: "clamp(1.5rem, 6vw, 2rem)", fontFamily: "'TAN-MEMORIES', serif",
@@ -437,6 +598,7 @@ export default function RootLayout({ children }) {
                 ))}
               </nav>
 
+              {/* CTA + idioma */}
               <div style={{ paddingTop: "36px", paddingBottom: "48px" }}>
                 <a href={FORM_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
                   style={{
@@ -483,7 +645,7 @@ export default function RootLayout({ children }) {
           @media (min-width: 1280px) { .nav-bar { padding: 0 32px; } }
 
           .nav-left {
-            flex: 1; display: flex; gap: clamp(10px, 1.2vw, 20px);
+            flex: 1; display: flex; gap: clamp(8px, 1.2vw, 18px);
             align-items: center; justify-content: flex-end;
           }
 
@@ -491,13 +653,13 @@ export default function RootLayout({ children }) {
             flex: 0 0 auto; font-size: clamp(1rem, 1.5vw, 1.4rem);
             font-family: 'TAN-MEMORIES', serif; text-align: center;
             text-decoration: none !important; line-height: 1.1; letter-spacing: 0.5px;
-            white-space: nowrap; padding: 2px 24px;
+            white-space: nowrap; padding: 2px 20px;
             border-bottom: 1px solid transparent; transition: all 0.3s ease;
           }
           .nav-logo:hover { border-bottom: 1px solid currentColor; }
 
           .nav-right-col { flex: 1; display: flex; justify-content: flex-start; align-items: center; }
-          .nav-right { display: flex; gap: clamp(10px, 1.2vw, 20px); align-items: center; }
+          .nav-right { display: flex; gap: clamp(8px, 1.2vw, 18px); align-items: center; }
 
           .nav-mobile-btn {
             background: none; border: none; cursor: pointer;
@@ -510,14 +672,15 @@ export default function RootLayout({ children }) {
 
           .nav-link {
             text-decoration: none !important; transition: all 0.3s ease;
-            display: inline-block; border-bottom: 1px solid transparent;
+            display: inline-flex; align-items: center;
+            border-bottom: 1px solid transparent;
             line-height: 1.4; padding-bottom: 2px;
           }
           .nav-link:hover { border-bottom: 1px solid currentColor; }
 
+          /* ── Language dropdown ── */
           .lang-trigger { border-bottom: 1px solid transparent !important; }
           .lang-trigger:hover { border-bottom: 1px solid currentColor !important; }
-
           .lang-dropdown {
             position: absolute; top: 100%; right: 0; padding-top: 10px;
             opacity: 0; visibility: hidden; transform: translateY(-6px);
@@ -527,6 +690,84 @@ export default function RootLayout({ children }) {
             opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
           }
 
+          /* ── Dropdown menu ── */
+          .dd-container {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+          }
+          .dd-trigger {
+            cursor: pointer;
+          }
+          .dd-panel {
+            position: absolute;
+            top: calc(100% + 14px);
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 210px;
+            background: #FAF7F0;
+            border: 1px solid rgba(61,107,94,0.12);
+            border-radius: 14px;
+            padding: 8px 6px;
+            box-shadow: 0 12px 40px rgba(30,45,42,0.14);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(-8px);
+            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            z-index: 200;
+          }
+          /* Small arrow pointing up */
+          .dd-panel::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px; height: 12px;
+            background: #FAF7F0;
+            border-left: 1px solid rgba(61,107,94,0.12);
+            border-top: 1px solid rgba(61,107,94,0.12);
+            transform: translateX(-50%) rotate(45deg);
+          }
+          .dd-container:hover .dd-panel,
+          .dd-container:focus-within .dd-panel {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+          }
+          .dd-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #1E2D2A;
+            font-size: 0.78rem;
+            font-family: Roboto, sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            transition: background 0.18s ease, color 0.18s ease;
+            white-space: nowrap;
+          }
+          .dd-item:hover {
+            background: rgba(61,107,94,0.08);
+            color: #3D6B5E;
+          }
+          .dd-dot {
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: rgba(61,107,94,0.35);
+            flex-shrink: 0;
+            transition: background 0.18s ease;
+          }
+          .dd-item:hover .dd-dot {
+            background: #3D6B5E;
+          }
+
+          /* ── CTA button ── */
           .nav-cta {
             display: inline-flex; align-items: center; font-size: 0.66rem; font-weight: 600;
             letter-spacing: 1.4px; text-transform: uppercase; text-decoration: none !important;
