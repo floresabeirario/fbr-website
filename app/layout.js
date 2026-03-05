@@ -317,6 +317,117 @@ function SiteFooter() {
   );
 }
 
+// ─── Mobile Accordion ────────────────────────────────────────────────────────
+const MobileAccordion = ({ menu, onClose, delay }) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay, duration: 0.24 }}
+      style={{ borderBottom: "1px solid rgba(250,247,240,0.07)" }}
+    >
+      {/* Linha principal — toque abre/fecha */}
+      <button
+        onClick={() => setOpen(o => !o)}
+        aria-expanded={open}
+        style={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "18px 28px",
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          textAlign: "left",
+        }}
+      >
+        <span style={{
+          fontFamily: "'TAN-MEMORIES', serif",
+          fontSize: "clamp(1.15rem, 4.5vw, 1.45rem)",
+          color: open ? "#8BA888" : "#FAF7F0",
+          lineHeight: 1.1,
+          transition: "color 0.2s",
+          letterSpacing: "0.2px",
+        }}>
+          {menu.label}
+        </span>
+        {/* Chevron rotativo */}
+        <motion.svg
+          width="16" height="16" viewBox="0 0 16 16" fill="none"
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.22, ease: "easeInOut" }}
+          style={{ flexShrink: 0, color: open ? "#8BA888" : "rgba(250,247,240,0.35)" }}
+          aria-hidden="true"
+        >
+          <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </motion.svg>
+      </button>
+
+      {/* Sub-itens */}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.26, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{ overflow: "hidden" }}
+          >
+            {/* Link "Ver tudo" */}
+            <a
+              href={menu.href}
+              onClick={onClose}
+              style={{
+                display: "block",
+                color: "rgba(139,168,136,0.7)",
+                textDecoration: "none",
+                fontSize: "0.72rem",
+                fontFamily: "Roboto, sans-serif",
+                fontWeight: 600,
+                letterSpacing: "1.5px",
+                textTransform: "uppercase",
+                padding: "2px 28px 14px",
+                transition: "color 0.18s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
+              onMouseLeave={e => e.currentTarget.style.color = "rgba(139,168,136,0.7)"}
+            >
+              Ver tudo →
+            </a>
+            {/* Lista de páginas */}
+            {menu.items.map((item, i) => (
+              <a
+                key={i}
+                href={item.href}
+                onClick={onClose}
+                style={{
+                  display: "block",
+                  color: "rgba(250,247,240,0.5)",
+                  textDecoration: "none",
+                  fontSize: "0.93rem",
+                  fontFamily: "Roboto, sans-serif",
+                  fontWeight: 400,
+                  padding: "12px 28px 12px 36px",
+                  borderTop: "1px solid rgba(250,247,240,0.04)",
+                  transition: "color 0.15s, background 0.15s",
+                }}
+                onMouseEnter={e => { e.currentTarget.style.color = "#FAF7F0"; e.currentTarget.style.background = "rgba(250,247,240,0.03)"; }}
+                onMouseLeave={e => { e.currentTarget.style.color = "rgba(250,247,240,0.5)"; e.currentTarget.style.background = "none"; }}
+              >
+                {item.name}
+              </a>
+            ))}
+            <div style={{ height: "10px" }}/>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
+
 // ─── Root Layout ──────────────────────────────────────────────────────────────
 export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -452,13 +563,13 @@ export default function RootLayout({ children }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.28 }}
                 onClick={() => setIsOpen(false)}
                 style={{
                   position: "fixed", inset: 0,
-                  backgroundColor: "rgba(15,30,26,0.6)",
+                  backgroundColor: "rgba(15,30,26,0.55)",
                   zIndex: 199,
-                  backdropFilter: "blur(4px)",
+                  backdropFilter: "blur(3px)",
                 }}
               />
 
@@ -467,11 +578,11 @@ export default function RootLayout({ children }) {
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
-                transition={{ duration: 0.38, ease: [0.32, 0.72, 0, 1] }}
+                transition={{ duration: 0.36, ease: [0.32, 0.72, 0, 1] }}
                 style={{
                   position: "fixed",
                   top: 0, right: 0, bottom: 0,
-                  width: "min(420px, 100vw)",
+                  width: "min(400px, 100vw)",
                   backgroundColor: "#0F1E1A",
                   zIndex: 200,
                   display: "flex",
@@ -479,12 +590,12 @@ export default function RootLayout({ children }) {
                   overflowY: "auto",
                 }}
               >
-                {/* ── Cabeçalho ── */}
+                {/* Cabeçalho */}
                 <div style={{
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  padding: "20px 24px",
+                  padding: "20px 28px",
                   borderBottom: "1px solid rgba(250,247,240,0.07)",
                   flexShrink: 0,
                 }}>
@@ -500,214 +611,90 @@ export default function RootLayout({ children }) {
                     onClick={() => setIsOpen(false)}
                     aria-label="Fechar menu"
                     style={{
-                      background: "rgba(250,247,240,0.07)",
-                      border: "1px solid rgba(250,247,240,0.12)",
-                      borderRadius: "100px",
-                      color: "rgba(250,247,240,0.65)",
-                      fontSize: "0.62rem",
-                      fontWeight: 600,
-                      letterSpacing: "1.5px",
-                      textTransform: "uppercase",
+                      background: "none",
+                      border: "none",
+                      color: "rgba(250,247,240,0.45)",
                       cursor: "pointer",
-                      fontFamily: "Roboto, sans-serif",
-                      padding: "9px 16px 9px 13px",
+                      padding: "8px",
                       display: "flex",
                       alignItems: "center",
-                      gap: "7px",
+                      justifyContent: "center",
                     }}
                   >
-                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                      <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                     </svg>
-                    Fechar
                   </button>
                 </div>
 
-                {/* ── Conteúdo ── */}
-                <div style={{ flex: 1, overflowY: "auto" }}>
+                {/* Lista principal */}
+                <nav style={{ flex: 1, overflowY: "auto", padding: "6px 0" }}>
 
-                  {/* Grupo: Preservação de Flores */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.07, duration: 0.3 }}
-                    style={{ padding: "22px 24px 18px" }}
-                  >
-                    <a href={NAV_PRESERVACAO.href} onClick={() => setIsOpen(false)} style={{
-                      display: "block",
-                      fontFamily: "'TAN-MEMORIES', serif",
-                      fontSize: "clamp(1.25rem, 5vw, 1.6rem)",
-                      color: "#FAF7F0",
-                      textDecoration: "none",
-                      marginBottom: "14px",
-                      lineHeight: 1.1,
-                      transition: "color 0.2s",
-                    }}
-                      onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
-                      onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
-                    >
-                      Preservação de Flores
-                    </a>
-                    {/* Grid de sub-páginas */}
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px" }}>
-                      {NAV_PRESERVACAO.items.map((item, i) => (
-                        <motion.a
-                          key={i}
-                          href={item.href}
-                          onClick={() => setIsOpen(false)}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.11 + i * 0.04 }}
-                          style={{
-                            display: "block",
-                            color: "rgba(250,247,240,0.42)",
-                            textDecoration: "none",
-                            fontSize: "0.8rem",
-                            fontFamily: "Roboto, sans-serif",
-                            fontWeight: 400,
-                            padding: "9px 11px",
-                            borderRadius: "8px",
-                            background: "rgba(250,247,240,0.04)",
-                            border: "1px solid transparent",
-                            transition: "all 0.18s",
-                            lineHeight: 1.35,
-                          }}
-                          onMouseEnter={e => {
-                            e.currentTarget.style.background = "rgba(139,168,136,0.1)";
-                            e.currentTarget.style.color = "#8BA888";
-                            e.currentTarget.style.borderColor = "rgba(139,168,136,0.2)";
-                          }}
-                          onMouseLeave={e => {
-                            e.currentTarget.style.background = "rgba(250,247,240,0.04)";
-                            e.currentTarget.style.color = "rgba(250,247,240,0.42)";
-                            e.currentTarget.style.borderColor = "transparent";
-                          }}
-                        >
-                          {item.name}
-                        </motion.a>
-                      ))}
-                    </div>
-                  </motion.div>
+                  {/* Accordion: Preservação de Flores */}
+                  <MobileAccordion
+                    menu={NAV_PRESERVACAO}
+                    onClose={() => setIsOpen(false)}
+                    delay={0.06}
+                  />
 
-                  <div style={{ height: "1px", background: "rgba(250,247,240,0.06)", margin: "0 24px" }}/>
+                  {/* Accordion: Momentos Especiais */}
+                  <MobileAccordion
+                    menu={NAV_MOMENTOS}
+                    onClose={() => setIsOpen(false)}
+                    delay={0.10}
+                  />
 
-                  {/* Grupo: Momentos Especiais */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.14, duration: 0.3 }}
-                    style={{ padding: "22px 24px 18px" }}
-                  >
-                    <a href={NAV_MOMENTOS.href} onClick={() => setIsOpen(false)} style={{
-                      display: "block",
-                      fontFamily: "'TAN-MEMORIES', serif",
-                      fontSize: "clamp(1.25rem, 5vw, 1.6rem)",
-                      color: "#FAF7F0",
-                      textDecoration: "none",
-                      marginBottom: "14px",
-                      lineHeight: 1.1,
-                      transition: "color 0.2s",
-                    }}
-                      onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
-                      onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
-                    >
-                      Momentos Especiais
-                    </a>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px" }}>
-                      {NAV_MOMENTOS.items.map((item, i) => (
-                        <motion.a
-                          key={i}
-                          href={item.href}
-                          onClick={() => setIsOpen(false)}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.18 + i * 0.04 }}
-                          style={{
-                            display: "block",
-                            color: "rgba(250,247,240,0.42)",
-                            textDecoration: "none",
-                            fontSize: "0.8rem",
-                            fontFamily: "Roboto, sans-serif",
-                            fontWeight: 400,
-                            padding: "9px 11px",
-                            borderRadius: "8px",
-                            background: "rgba(250,247,240,0.04)",
-                            border: "1px solid transparent",
-                            transition: "all 0.18s",
-                            lineHeight: 1.35,
-                          }}
-                          onMouseEnter={e => {
-                            e.currentTarget.style.background = "rgba(139,168,136,0.1)";
-                            e.currentTarget.style.color = "#8BA888";
-                            e.currentTarget.style.borderColor = "rgba(139,168,136,0.2)";
-                          }}
-                          onMouseLeave={e => {
-                            e.currentTarget.style.background = "rgba(250,247,240,0.04)";
-                            e.currentTarget.style.color = "rgba(250,247,240,0.42)";
-                            e.currentTarget.style.borderColor = "transparent";
-                          }}
-                        >
-                          {item.name}
-                        </motion.a>
-                      ))}
-                    </div>
-                  </motion.div>
-
-                  <div style={{ height: "1px", background: "rgba(250,247,240,0.06)", margin: "0 24px" }}/>
+                  {/* Linha divisória */}
+                  <div style={{ height: "1px", background: "rgba(250,247,240,0.06)", margin: "6px 28px 6px" }}/>
 
                   {/* Links simples */}
-                  <div style={{ padding: "8px 24px" }}>
-                    {[
-                      { name: "Recriação de Bouquet", href: "/recriacao",           delay: 0.24 },
-                      { name: "Oferecer Preservação", href: "/vale-presente",        delay: 0.28 },
-                      { name: "Perguntas Frequentes", href: "/perguntas-frequentes", delay: 0.32 },
-                      { name: "Contactos e Equipa",   href: "/contactos",            delay: 0.36 },
-                      { name: "Blog",                 href: "/blog",                 delay: 0.40 },
-                    ].map((item) => (
-                      <motion.a
-                        key={item.name}
-                        href={item.href}
-                        onClick={() => setIsOpen(false)}
-                        initial={{ opacity: 0, x: 10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: item.delay, duration: 0.26 }}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          color: "rgba(250,247,240,0.65)",
-                          textDecoration: "none",
-                          fontSize: "0.9rem",
-                          fontFamily: "Roboto, sans-serif",
-                          fontWeight: 400,
-                          padding: "13px 0",
-                          borderBottom: "1px solid rgba(250,247,240,0.05)",
-                          transition: "color 0.18s",
-                        }}
-                        onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                        onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.65)"}
-                      >
-                        {item.name}
-                        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true" style={{ opacity: 0.25, flexShrink: 0 }}>
-                          <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </motion.a>
-                    ))}
-                  </div>
-                </div>
+                  {[
+                    { name: "Recriação de Bouquet", href: "/recriacao",           delay: 0.15 },
+                    { name: "Oferecer Preservação", href: "/vale-presente",        delay: 0.18 },
+                    { name: "Perguntas Frequentes", href: "/perguntas-frequentes", delay: 0.21 },
+                    { name: "Contactos e Equipa",   href: "/contactos",            delay: 0.24 },
+                    { name: "Blog",                 href: "/blog",                 delay: 0.27 },
+                  ].map((item) => (
+                    <motion.a
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: item.delay, duration: 0.24 }}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        color: "rgba(250,247,240,0.6)",
+                        textDecoration: "none",
+                        fontSize: "1rem",
+                        fontFamily: "Roboto, sans-serif",
+                        fontWeight: 300,
+                        padding: "14px 28px",
+                        transition: "color 0.18s",
+                        borderBottom: "1px solid rgba(250,247,240,0.04)",
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+                      onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.6)"}
+                    >
+                      {item.name}
+                    </motion.a>
+                  ))}
+                </nav>
 
-                {/* ── Rodapé ── */}
+                {/* Rodapé */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.44 }}
+                  transition={{ delay: 0.32 }}
                   style={{
-                    padding: "18px 24px 36px",
+                    padding: "20px 28px 44px",
                     borderTop: "1px solid rgba(250,247,240,0.07)",
                     flexShrink: 0,
                     display: "flex",
                     flexDirection: "column",
-                    gap: "9px",
+                    gap: "10px",
                   }}
                 >
                   <a href={FORM_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
@@ -718,7 +705,6 @@ export default function RootLayout({ children }) {
                       textDecoration: "none", fontWeight: 600,
                       fontSize: "0.76rem", letterSpacing: "1.5px", textTransform: "uppercase",
                       fontFamily: "Roboto, sans-serif",
-                      boxShadow: "0 6px 20px rgba(61,107,94,0.28)",
                     }}
                   >
                     Reservar Data
@@ -726,16 +712,15 @@ export default function RootLayout({ children }) {
                   <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
                     style={{
                       display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
-                      color: "rgba(250,247,240,0.4)",
-                      border: "1px solid rgba(250,247,240,0.09)",
-                      padding: "13px 24px", borderRadius: "100px",
+                      color: "rgba(250,247,240,0.35)",
+                      padding: "12px 24px",
                       textDecoration: "none", fontWeight: 400,
                       fontSize: "0.76rem", fontFamily: "Roboto, sans-serif",
                     }}
                   >
                     <IconWhatsApp/> +351 934 680 300
                   </a>
-                  <div style={{ display: "flex", gap: "16px", justifyContent: "center", paddingTop: "4px" }}>
+                  <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>
                     <a href="/pt" style={{ color: "#FAF7F0", fontSize: "0.66rem", fontFamily: "Roboto, sans-serif", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", display: "flex", alignItems: "center", textDecoration: "none" }}>
                       PT <FlagPT/>
                     </a>
