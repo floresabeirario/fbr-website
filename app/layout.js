@@ -89,8 +89,8 @@ const NAV_MOMENTOS = {
 const DesktopDropdown = ({ menu, scrolled }) => {
   const textColor = scrolled ? "#1a1a1a" : "#fff";
   return (
-    <div className="dd-container">
-      <a href={menu.href} className="nav-link dd-trigger desktop-only" style={{
+    <div className="dd-container desktop-only">
+      <a href={menu.href} className="nav-link dd-trigger" style={{
         fontSize: "0.68rem", fontWeight: 500, textTransform: "uppercase",
         letterSpacing: "1.3px", color: textColor, whiteSpace: "nowrap",
         display: "inline-flex", alignItems: "center",
@@ -491,8 +491,7 @@ export default function RootLayout({ children }) {
 
             {/* LEFT */}
             <div className="nav-left">
-              <div className="lang-container desktop-only" style={{ position: "relative", display: "flex", alignItems: "center" }}>
-                <a href="/pt" className="nav-link lang-trigger" style={{
+              <div className="lang-container desktop-only" style={{ position: "relative", display: "flex", alignItems: "center" }}>                <a href="/pt" className="nav-link lang-trigger" style={{
                   fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
                   letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
                   display: "flex", alignItems: "center", cursor: "pointer"
