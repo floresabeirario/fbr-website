@@ -472,9 +472,102 @@ export default function RootLayout({ children }) {
             src: url('/TAN-MEMORIES-Italic.otf') format('opentype');
             font-weight: normal; font-style: italic; font-display: swap;
           }
-          /* Crítico: aplicado antes do JS para evitar flash */
+
+          /* ── Crítico: tudo antes do primeiro paint ── */
+          *, *::before, *::after { box-sizing: border-box; }
           @media (max-width: 1279px) { .desktop-only { display: none !important; } }
           @media (min-width: 1280px) { .mobile-only  { display: none !important; } }
+
+          h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
+
+          .nav-bar {
+            display: flex; align-items: center;
+            max-width: 1440px; margin: 0 auto; padding: 0 24px;
+          }
+          @media (min-width: 1280px) { .nav-bar { padding: 0 32px; } }
+
+          .nav-left {
+            flex: 1; display: flex; gap: clamp(6px, 1vw, 16px);
+            align-items: center; justify-content: flex-end;
+          }
+          .nav-logo {
+            flex: 0 0 auto; font-size: clamp(1rem, 1.5vw, 1.4rem);
+            font-family: 'TAN-MEMORIES', serif; text-align: center;
+            text-decoration: none !important; line-height: 1.1; letter-spacing: 0.5px;
+            white-space: nowrap; padding: 2px 20px;
+            border-bottom: 1px solid transparent; transition: all 0.3s ease;
+          }
+          .nav-logo:hover { border-bottom: 1px solid currentColor; }
+
+          .nav-right-col { flex: 1; display: flex; justify-content: flex-start; align-items: center; }
+          .nav-right { display: flex; gap: clamp(6px, 1vw, 16px); align-items: center; }
+
+          .nav-mobile-btn {
+            background: none; border: none; cursor: pointer;
+            font-size: 0.82rem; font-weight: 500; letter-spacing: 2px;
+            padding: 10px 0; font-family: 'Roboto', sans-serif;
+          }
+          .nav-link {
+            text-decoration: none !important; transition: all 0.3s ease;
+            display: inline-flex; align-items: center;
+            border-bottom: 1px solid transparent;
+            line-height: 1.4; padding-bottom: 2px;
+          }
+          .nav-link:hover { border-bottom: 1px solid currentColor; }
+
+          .lang-trigger { border-bottom: 1px solid transparent !important; }
+          .lang-trigger:hover { border-bottom: 1px solid currentColor !important; }
+          .lang-dropdown {
+            position: absolute; top: 100%; right: 0; padding-top: 10px;
+            opacity: 0; visibility: hidden; transform: translateY(-6px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none;
+          }
+          .lang-container:hover .lang-dropdown {
+            opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
+          }
+
+          .dd-container { position: relative; display: inline-flex; align-items: center; }
+          .dd-trigger { cursor: default; }
+          .dd-panel {
+            position: absolute; top: 100%; left: 50%;
+            transform: translateX(-50%); padding-top: 14px;
+            opacity: 0; visibility: hidden; pointer-events: none;
+            z-index: 200; transition: opacity 0.22s ease, visibility 0.22s ease;
+          }
+          .dd-container:hover .dd-panel,
+          .dd-container:focus-within .dd-panel {
+            opacity: 1; visibility: visible; pointer-events: auto;
+          }
+          .dd-panel-inner {
+            background: #FAFAF8; border: 1px solid rgba(61,107,94,0.13);
+            border-radius: 16px; padding: 6px;
+            box-shadow: 0 4px 6px rgba(30,45,42,0.04), 0 12px 32px rgba(30,45,42,0.13), 0 24px 48px rgba(30,45,42,0.07);
+            min-width: 220px; transform: translateY(-6px);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative;
+          }
+          .dd-container:hover .dd-panel-inner { transform: translateY(0); }
+          .dd-panel-inner::before {
+            content: ''; position: absolute; top: -5px; left: 50%;
+            transform: translateX(-50%) rotate(45deg); width: 10px; height: 10px;
+            background: #FAFAF8; border-left: 1px solid rgba(61,107,94,0.13); border-top: 1px solid rgba(61,107,94,0.13);
+          }
+          .dd-item {
+            display: flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 10px;
+            text-decoration: none; color: #2D4840; font-size: 0.8rem; font-family: Roboto, sans-serif;
+            font-weight: 400; letter-spacing: 0.1px;
+            transition: background 0.15s ease, color 0.15s ease; white-space: nowrap;
+          }
+          .dd-item:hover { background: rgba(61,107,94,0.07); color: #3D6B5E; }
+          .dd-item-all { color: #3D6B5E; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.3px; }
+          .dd-item-all:hover { background: rgba(61,107,94,0.1); }
+
+          .nav-cta {
+            display: inline-flex; align-items: center; font-size: 0.64rem; font-weight: 600;
+            letter-spacing: 1.4px; text-transform: uppercase; text-decoration: none !important;
+            font-family: Roboto, sans-serif; padding: 8px 18px; border-radius: 100px;
+            transition: all 0.3s ease; white-space: nowrap;
+          }
+          .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(61,107,94,0.32) !important; }
         `}}/>
       </head>
       <body style={{ margin: 0, backgroundColor: "#FAF7F0", color: "#1a1a1a", fontFamily: "'Roboto', sans-serif" }}>
@@ -740,127 +833,7 @@ export default function RootLayout({ children }) {
         <main>{children}</main>
         <SiteFooter/>
 
-        <style jsx global>{`
-          * { box-sizing: border-box; }
 
-          .nav-bar {
-            display: flex; align-items: center;
-            max-width: 1440px; margin: 0 auto; padding: 0 24px;
-          }
-          @media (min-width: 1280px) { .nav-bar { padding: 0 32px; } }
-
-          .nav-left {
-            flex: 1; display: flex; gap: clamp(6px, 1vw, 16px);
-            align-items: center; justify-content: flex-end;
-          }
-
-          .nav-logo {
-            flex: 0 0 auto; font-size: clamp(1rem, 1.5vw, 1.4rem);
-            font-family: 'TAN-MEMORIES', serif; text-align: center;
-            text-decoration: none !important; line-height: 1.1; letter-spacing: 0.5px;
-            white-space: nowrap; padding: 2px 20px;
-            border-bottom: 1px solid transparent; transition: all 0.3s ease;
-          }
-          .nav-logo:hover { border-bottom: 1px solid currentColor; }
-
-          .nav-right-col { flex: 1; display: flex; justify-content: flex-start; align-items: center; }
-          .nav-right { display: flex; gap: clamp(6px, 1vw, 16px); align-items: center; }
-
-          .nav-mobile-btn {
-            background: none; border: none; cursor: pointer;
-            font-size: 0.82rem; font-weight: 500; letter-spacing: 2px;
-            padding: 10px 0; font-family: 'Roboto', sans-serif;
-          }
-
-          h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
-
-          .nav-link {
-            text-decoration: none !important; transition: all 0.3s ease;
-            display: inline-flex; align-items: center;
-            border-bottom: 1px solid transparent;
-            line-height: 1.4; padding-bottom: 2px;
-          }
-          .nav-link:hover { border-bottom: 1px solid currentColor; }
-
-          .lang-trigger { border-bottom: 1px solid transparent !important; }
-          .lang-trigger:hover { border-bottom: 1px solid currentColor !important; }
-          .lang-dropdown {
-            position: absolute; top: 100%; right: 0; padding-top: 10px;
-            opacity: 0; visibility: hidden; transform: translateY(-6px);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none;
-          }
-          .lang-container:hover .lang-dropdown {
-            opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
-          }
-
-          /* ══ DESKTOP DROPDOWN ══ */
-          .dd-container { position: relative; display: inline-flex; align-items: center; }
-          .dd-trigger { cursor: default; }
-
-          .dd-panel {
-            position: absolute; top: 100%; left: 50%;
-            transform: translateX(-50%);
-            padding-top: 14px;
-            opacity: 0; visibility: hidden; pointer-events: none;
-            z-index: 200;
-            transition: opacity 0.22s ease, visibility 0.22s ease;
-          }
-          .dd-container:hover .dd-panel,
-          .dd-container:focus-within .dd-panel {
-            opacity: 1; visibility: visible; pointer-events: auto;
-          }
-
-          .dd-panel-inner {
-            background: #FAFAF8;
-            border: 1px solid rgba(61,107,94,0.13);
-            border-radius: 16px;
-            padding: 6px;
-            box-shadow:
-              0 4px 6px rgba(30,45,42,0.04),
-              0 12px 32px rgba(30,45,42,0.13),
-              0 24px 48px rgba(30,45,42,0.07);
-            min-width: 220px;
-            transform: translateY(-6px);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-          }
-          .dd-container:hover .dd-panel-inner { transform: translateY(0); }
-
-          .dd-panel-inner::before {
-            content: ''; position: absolute;
-            top: -5px; left: 50%;
-            transform: translateX(-50%) rotate(45deg);
-            width: 10px; height: 10px;
-            background: #FAFAF8;
-            border-left: 1px solid rgba(61,107,94,0.13);
-            border-top: 1px solid rgba(61,107,94,0.13);
-          }
-
-          /* Itens sem pontos — separação por espaçamento e hover */
-          .dd-item {
-            display: flex; align-items: center; gap: 8px;
-            padding: 9px 14px; border-radius: 10px;
-            text-decoration: none; color: #2D4840;
-            font-size: 0.8rem; font-family: Roboto, sans-serif;
-            font-weight: 400; letter-spacing: 0.1px;
-            transition: background 0.15s ease, color 0.15s ease;
-            white-space: nowrap;
-          }
-          .dd-item:hover { background: rgba(61,107,94,0.07); color: #3D6B5E; }
-          .dd-item-all {
-            color: #3D6B5E; font-weight: 600;
-            font-size: 0.74rem; letter-spacing: 0.3px;
-          }
-          .dd-item-all:hover { background: rgba(61,107,94,0.1); }
-
-          .nav-cta {
-            display: inline-flex; align-items: center; font-size: 0.64rem; font-weight: 600;
-            letter-spacing: 1.4px; text-transform: uppercase; text-decoration: none !important;
-            font-family: Roboto, sans-serif; padding: 8px 18px; border-radius: 100px;
-            transition: all 0.3s ease; white-space: nowrap;
-          }
-          .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(61,107,94,0.32) !important; }
-        `}</style>
       </body>
     </html>
   );
