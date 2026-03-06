@@ -83,21 +83,18 @@ const SOCIALS = [
   {
     icon: <IconInstagram />,
     label: "Instagram",
-    handle: "@floresabeirario",
     href: "https://www.instagram.com/floresabeirario/",
     bg: "linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%)",
   },
   {
     icon: <IconFacebook />,
     label: "Facebook",
-    handle: "Flores à Beira-Rio",
     href: "https://www.facebook.com/floresabeirario/",
     bg: "linear-gradient(135deg, #1877F2, #0C5DC7)",
   },
   {
     icon: <IconCasamentos />,
     label: "Casamentos.pt",
-    handle: "Perfil verificado",
     href: "https://www.casamentos.pt/ideias-criativas-para-casamentos/flores-a-beira-rio-preservacao-de-flores--e171385",
     bg: "linear-gradient(135deg, #E8927C, #D4735B)",
   },
@@ -111,41 +108,7 @@ export default function ContactosEquipa() {
       <style dangerouslySetInnerHTML={{ __html: `
         * { box-sizing: border-box; }
 
-        /* ── Equipa: 1 coluna no mobile, 3 no desktop ── */
-        .team-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: clamp(14px, 3vw, 24px);
-        }
-        @media (min-width: 640px) {
-          .team-grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
-        }
-
-        /* No mobile as fotos ficam horizontais para não ocupar demasiado espaço */
-        .team-card-inner {
-          aspect-ratio: 3/4;
-        }
-        @media (max-width: 639px) {
-          .team-card-inner {
-            aspect-ratio: 4/3;
-          }
-        }
-
-        .team-photo { transition: transform 0.7s ease; }
-        .team-card:hover .team-photo { transform: scale(1.05); }
-
-        /* ── Split layout hero ── */
-        .contact-split {
-          display: grid;
-          grid-template-columns: 1fr;
-        }
-        @media (min-width: 768px) {
-          .contact-split { grid-template-columns: 1fr 1fr; }
-        }
-
-        /* ── Card de contacto: garante que não transborda ── */
+        /* ── Card de contacto ── */
         .contact-card {
           width: 100%;
           min-width: 0;
@@ -162,12 +125,46 @@ export default function ContactosEquipa() {
           grid-column: 1 / -1;
         }
         @media (min-width: 400px) {
-          .socials-row {
-            grid-template-columns: repeat(3, 1fr);
-          }
-          .socials-row > *:last-child {
-            grid-column: auto;
-          }
+          .socials-row { grid-template-columns: repeat(3, 1fr); }
+          .socials-row > *:last-child { grid-column: auto; }
+        }
+
+        /* ── Split layout hero ── */
+        .contact-split {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+          .contact-split { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* ── Linha de equipa: foto à esquerda, texto à direita ── */
+        .team-row {
+          display: flex;
+          align-items: center;
+          gap: clamp(16px, 4vw, 36px);
+          padding: clamp(20px, 4vw, 32px);
+          border-radius: 20px;
+          background: rgba(250,247,240,0.04);
+          border: 1px solid rgba(250,247,240,0.08);
+          backdrop-filter: blur(4px);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          margin-bottom: clamp(12px, 2vw, 20px);
+        }
+        .team-row:last-child { margin-bottom: 0; }
+        .team-row:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 20px 48px rgba(0,0,0,0.3);
+        }
+
+        /* Foto redonda */
+        .team-avatar {
+          width: clamp(80px, 22vw, 130px);
+          height: clamp(80px, 22vw, 130px);
+          border-radius: 50%;
+          object-fit: cover;
+          display: block;
+          flex-shrink: 0;
         }
 
         /* ── CTAs ── */
@@ -220,7 +217,7 @@ export default function ContactosEquipa() {
       `}} />
 
       {/* ════════════════════════════════════════════
-          1. HERO — foto de fundo, split layout
+          1. HERO
       ════════════════════════════════════════════ */}
       <section
         aria-label="Contactos e Equipa — Flores à Beira-Rio"
@@ -248,7 +245,6 @@ export default function ContactosEquipa() {
         }}>
           <div className="contact-split" style={{ gap: "clamp(40px,6vw,80px)", alignItems: "center" }}>
 
-            {/* Texto */}
             <motion.div
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
@@ -281,7 +277,6 @@ export default function ContactosEquipa() {
               </p>
             </motion.div>
 
-            {/* Card glassmorphism com contactos */}
             <motion.div
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
@@ -352,7 +347,6 @@ export default function ContactosEquipa() {
                 );
               })}
 
-              {/* Redes sociais */}
               <p style={{
                 fontFamily: "Roboto, sans-serif", fontWeight: 700,
                 fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase",
@@ -392,7 +386,7 @@ export default function ContactosEquipa() {
       </section>
 
       {/* ════════════════════════════════════════════
-          2. EQUIPA — fundo quente castanho
+          2. EQUIPA — 3 linhas, foto à esquerda
       ════════════════════════════════════════════ */}
       <section
         aria-label="A nossa equipa"
@@ -402,14 +396,13 @@ export default function ContactosEquipa() {
           position: "relative", overflow: "hidden",
         }}
       >
-        {/* Textura diagonal */}
         <div aria-hidden="true" style={{
           position: "absolute", inset: 0, opacity: 0.03,
           backgroundImage: `repeating-linear-gradient(45deg, #B8954A 0px, #B8954A 1px, transparent 1px, transparent 50px)`,
           pointerEvents: "none",
         }} />
 
-        <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(40px,7vw,64px)" }}>
               <span style={{
@@ -441,76 +434,56 @@ export default function ContactosEquipa() {
             </div>
           </Reveal>
 
-          <div className="team-grid">
-            {TEAM.map((member, i) => (
-              <Reveal key={i} delay={i * 0.12}>
-                <div className="team-card" style={{
-                  borderRadius: 20, overflow: "hidden",
-                  backgroundColor: "rgba(250,247,240,0.04)",
-                  border: "1px solid rgba(250,247,240,0.08)",
-                  backdropFilter: "blur(4px)",
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                }}
-                  onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-6px)"; e.currentTarget.style.boxShadow = "0 20px 48px rgba(0,0,0,0.3)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
-                >
-                  <div className="team-card-inner" style={{
-                    overflow: "hidden",
-                    position: "relative", backgroundColor: "#2A1F16",
+          {TEAM.map((member, i) => (
+            <Reveal key={i} delay={i * 0.12}>
+              <div className="team-row">
+
+                {/* Foto redonda */}
+                <img
+                  src={member.img}
+                  alt={`${member.name} — ${member.role} na Flores à Beira-Rio`}
+                  className="team-avatar"
+                  loading="lazy"
+                  style={{ border: `3px solid ${member.accent}66` }}
+                />
+
+                {/* Texto */}
+                <div style={{ minWidth: 0 }}>
+                  <p style={{
+                    fontFamily: "'TAN-MEMORIES', serif",
+                    fontSize: "clamp(1.2rem, 4vw, 1.6rem)",
+                    color: "#FAF7F0", margin: "0 0 6px", lineHeight: 1.15,
                   }}>
-                    <img
-                      src={member.img}
-                      alt={`${member.name} — ${member.role} na Flores à Beira-Rio`}
-                      className="team-photo"
-                      style={{
-                        width: "100%", height: "100%",
-                        objectFit: "cover", display: "block",
-                      }}
-                      loading="lazy"
-                    />
-                    <div style={{
-                      position: "absolute", bottom: 0, left: 0, right: 0, height: "50%",
-                      background: `linear-gradient(to top, rgba(42,31,22,0.95) 0%, rgba(42,31,22,0.4) 60%, transparent 100%)`,
-                    }} />
-                    <div style={{ position: "absolute", bottom: 20, left: 20, right: 20 }}>
-                      <p style={{
-                        fontFamily: "'TAN-MEMORIES', serif",
-                        fontSize: "clamp(1.3rem,2.8vw,1.6rem)",
-                        color: "#FAF7F0", margin: "0 0 6px", lineHeight: 1.15,
-                        textShadow: "0 2px 10px rgba(0,0,0,0.3)",
-                      }}>
-                        {member.name}
-                      </p>
-                      <span style={{
-                        display: "inline-block",
-                        fontSize: "0.5rem", fontWeight: 700,
-                        letterSpacing: "2px", textTransform: "uppercase",
-                        color: "#FAF7F0", fontFamily: "Roboto, sans-serif",
-                        backgroundColor: member.accent,
-                        padding: "4px 12px", borderRadius: 100,
-                      }}>
-                        {member.role}
-                      </span>
-                    </div>
-                  </div>
-                  <div style={{ padding: "20px 20px 24px" }}>
-                    <p style={{
-                      fontFamily: "Roboto, sans-serif", fontWeight: 300,
-                      fontSize: "0.86rem", lineHeight: 1.72,
-                      color: "rgba(250,247,240,0.55)", margin: 0,
-                    }}>
-                      {member.bio}
-                    </p>
-                  </div>
+                    {member.name}
+                  </p>
+                  <span style={{
+                    display: "inline-block",
+                    fontSize: "0.5rem", fontWeight: 700,
+                    letterSpacing: "2px", textTransform: "uppercase",
+                    color: "#FAF7F0", fontFamily: "Roboto, sans-serif",
+                    backgroundColor: member.accent,
+                    padding: "4px 12px", borderRadius: 100,
+                    marginBottom: 12,
+                  }}>
+                    {member.role}
+                  </span>
+                  <p style={{
+                    fontFamily: "Roboto, sans-serif", fontWeight: 300,
+                    fontSize: "clamp(0.82rem, 2.5vw, 0.9rem)", lineHeight: 1.72,
+                    color: "rgba(250,247,240,0.55)", margin: 0,
+                  }}>
+                    {member.bio}
+                  </p>
                 </div>
-              </Reveal>
-            ))}
-          </div>
+
+              </div>
+            </Reveal>
+          ))}
         </div>
       </section>
 
       {/* ════════════════════════════════════════════
-          3. CTA FINAL — fundo escuro com glow dourado
+          3. CTA FINAL
       ════════════════════════════════════════════ */}
       <section
         aria-label="Iniciar contacto"
@@ -521,7 +494,6 @@ export default function ContactosEquipa() {
           position: "relative", overflow: "hidden",
         }}
       >
-        {/* Glow dourado decorativo */}
         <div aria-hidden="true" style={{
           position: "absolute", top: "-20%", right: "-10%",
           width: "clamp(300px,50vw,600px)", height: "clamp(300px,50vw,600px)",
