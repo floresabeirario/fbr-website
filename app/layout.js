@@ -77,7 +77,7 @@ const NAV_MOMENTOS = {
   label: "Momentos Especiais",
   href: "/momentos-especiais",
   items: [
-    { name: "Bouquet de Noiva",       href: "/preservacao-bouquet-noiva" },
+    { name: "Bouquet de Noiva",       href: "/preservar-bouquet-noiva" },
     { name: "Homenagem e Luto",       href: "/preservar-flores-luto-homenagem" },
     { name: "Batizado e Nascimento",  href: "/preservar-flores-batizado-nascimento" },
     { name: "Aniversário",            href: "/preservar-flores-aniversario" },
@@ -133,7 +133,7 @@ function SiteFooter() {
       { href: "/vale-presente",          label: "Vale-Presente" },
     ],
     momentos: [
-      { href: "/preservacao-bouquet-noiva",            label: "Bouquet de Noiva" },
+      { href: "/preservar-bouquet-noiva",            label: "Bouquet de Noiva" },
       { href: "/preservar-flores-luto-homenagem",      label: "Homenagem e Luto" },
       { href: "/preservar-flores-batizado-nascimento", label: "Batizado e Nascimento" },
       { href: "/preservar-flores-aniversario",         label: "Aniversário" },
