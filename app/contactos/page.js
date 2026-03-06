@@ -115,15 +115,13 @@ export default function ContactosEquipa() {
           overflow: hidden;
         }
 
-        /* ── Redes sociais: 2+1 no mobile, 3 em linha no desktop ── */
+        /* ── Redes sociais ── */
         .socials-row {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 8px;
         }
-        .socials-row > *:last-child {
-          grid-column: 1 / -1;
-        }
+        .socials-row > *:last-child { grid-column: 1 / -1; }
         @media (min-width: 400px) {
           .socials-row { grid-template-columns: repeat(3, 1fr); }
           .socials-row > *:last-child { grid-column: auto; }
@@ -138,33 +136,67 @@ export default function ContactosEquipa() {
           .contact-split { grid-template-columns: 1fr 1fr; }
         }
 
-        /* ── Linha de equipa: foto à esquerda, texto à direita ── */
+        /* ════════════════════════════════════════
+           EQUIPA — linha com foto-cartão à esquerda
+           e bio à direita
+        ════════════════════════════════════════ */
         .team-row {
           display: flex;
-          align-items: center;
-          gap: clamp(16px, 4vw, 36px);
-          padding: clamp(20px, 4vw, 32px);
+          align-items: stretch;
+          gap: 0;
           border-radius: 20px;
+          overflow: hidden;
           background: rgba(250,247,240,0.04);
           border: 1px solid rgba(250,247,240,0.08);
-          backdrop-filter: blur(4px);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
-          margin-bottom: clamp(12px, 2vw, 20px);
+          margin-bottom: clamp(14px, 2.5vw, 22px);
         }
         .team-row:last-child { margin-bottom: 0; }
         .team-row:hover {
           transform: translateY(-4px);
-          box-shadow: 0 20px 48px rgba(0,0,0,0.3);
+          box-shadow: 0 20px 48px rgba(0,0,0,0.35);
         }
 
-        /* Foto redonda */
-        .team-avatar {
-          width: clamp(80px, 22vw, 130px);
-          height: clamp(80px, 22vw, 130px);
-          border-radius: 50%;
+        /* Foto à esquerda — cartão com overlay */
+        .team-photo-card {
+          position: relative;
+          flex-shrink: 0;
+          /* largura fixa no mobile, cresce no desktop */
+          width: clamp(120px, 38vw, 200px);
+        }
+
+        .team-photo-card img {
+          width: 100%;
+          height: 100%;
           object-fit: cover;
           display: block;
-          flex-shrink: 0;
+          transition: transform 0.7s ease;
+        }
+        .team-row:hover .team-photo-card img {
+          transform: scale(1.05);
+        }
+
+        /* Gradiente + texto sobrepostos na foto */
+        .team-photo-overlay {
+          position: absolute;
+          bottom: 0; left: 0; right: 0;
+          padding: 14px 12px;
+          background: linear-gradient(
+            to top,
+            rgba(20,12,8,0.96) 0%,
+            rgba(20,12,8,0.5) 55%,
+            transparent 100%
+          );
+        }
+
+        /* Bio à direita */
+        .team-bio-col {
+          flex: 1;
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: clamp(16px, 3vw, 28px);
         }
 
         /* ── CTAs ── */
@@ -386,7 +418,7 @@ export default function ContactosEquipa() {
       </section>
 
       {/* ════════════════════════════════════════════
-          2. EQUIPA — 3 linhas, foto à esquerda
+          2. EQUIPA — cartão foto à esquerda, bio à direita
       ════════════════════════════════════════════ */}
       <section
         aria-label="A nossa equipa"
@@ -438,39 +470,43 @@ export default function ContactosEquipa() {
             <Reveal key={i} delay={i * 0.12}>
               <div className="team-row">
 
-                {/* Foto redonda */}
-                <img
-                  src={member.img}
-                  alt={`${member.name} — ${member.role} na Flores à Beira-Rio`}
-                  className="team-avatar"
-                  loading="lazy"
-                  style={{ border: `3px solid ${member.accent}66` }}
-                />
+                {/* Foto com nome e cargo sobrepostos */}
+                <div className="team-photo-card">
+                  <img
+                    src={member.img}
+                    alt={`${member.name} — ${member.role} na Flores à Beira-Rio`}
+                    loading="lazy"
+                  />
+                  <div className="team-photo-overlay">
+                    <p style={{
+                      fontFamily: "'TAN-MEMORIES', serif",
+                      fontSize: "clamp(1rem, 3.5vw, 1.35rem)",
+                      color: "#FAF7F0", margin: "0 0 5px", lineHeight: 1.1,
+                      textShadow: "0 2px 8px rgba(0,0,0,0.4)",
+                    }}>
+                      {member.name}
+                    </p>
+                    <span style={{
+                      display: "inline-block",
+                      fontSize: "0.42rem", fontWeight: 700,
+                      letterSpacing: "1.8px", textTransform: "uppercase",
+                      color: "#FAF7F0", fontFamily: "Roboto, sans-serif",
+                      backgroundColor: member.accent,
+                      padding: "3px 10px", borderRadius: 100,
+                    }}>
+                      {member.role}
+                    </span>
+                  </div>
+                </div>
 
-                {/* Texto */}
-                <div style={{ minWidth: 0 }}>
-                  <p style={{
-                    fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize: "clamp(1.2rem, 4vw, 1.6rem)",
-                    color: "#FAF7F0", margin: "0 0 6px", lineHeight: 1.15,
-                  }}>
-                    {member.name}
-                  </p>
-                  <span style={{
-                    display: "inline-block",
-                    fontSize: "0.5rem", fontWeight: 700,
-                    letterSpacing: "2px", textTransform: "uppercase",
-                    color: "#FAF7F0", fontFamily: "Roboto, sans-serif",
-                    backgroundColor: member.accent,
-                    padding: "4px 12px", borderRadius: 100,
-                    marginBottom: 12,
-                  }}>
-                    {member.role}
-                  </span>
+                {/* Bio à direita */}
+                <div className="team-bio-col">
                   <p style={{
                     fontFamily: "Roboto, sans-serif", fontWeight: 300,
-                    fontSize: "clamp(0.82rem, 2.5vw, 0.9rem)", lineHeight: 1.72,
-                    color: "rgba(250,247,240,0.55)", margin: 0,
+                    fontSize: "clamp(0.8rem, 2.2vw, 0.92rem)",
+                    lineHeight: 1.75,
+                    color: "rgba(250,247,240,0.6)",
+                    margin: 0,
                   }}>
                     {member.bio}
                   </p>
