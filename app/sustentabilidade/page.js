@@ -44,10 +44,11 @@ const METHODS = [
       </svg>
     ),
     points: [
-      { good: true,  text: "100% natural, sem químicos nem plásticos no processo" },
-      { good: true,  text: "Flores mantêm a sua essência real e orgânica" },
-      { good: true,  text: "Vidro museu anti-UV garante décadas de durabilidade" },
-      { good: true,  text: "Materiais biodegradáveis no fim de vida útil" },
+      { good: true,  text: "100% natural, sem solventes, sem emissões." },
+      { good: true,  text: "Flores mantêm a sua essência real e orgânica." },
+      { good: true,  text: "Não há exposição a produtos químicos perigosos." },
+      { good: true,  text: "Processo 100% mecânico. Não gera resíduos tóxicos." },
+      { good: true,  text: "Materiais biodegradáveis no fim de vida útil." },
     ],
     verdict:      "A escolha mais sustentável, mais duradoura e mais cuidadosa para as flores e para o planeta.",
     verdictColor: "#3D6B5E",
@@ -70,10 +71,11 @@ const METHODS = [
       </svg>
     ),
     points: [
-      { good: false, text: "Polímero derivado do petróleo, não biodegradável" },
-      { good: false, text: "Liberta COVs tóxicos durante a cura" },
-      { good: false, text: "Amarelece com a luz UV ao longo do tempo" },
-      { good: false, text: "Risco de dermatite e alergias crónicas para quem manuseia" },
+      { good: false, text: "Polímero sintético derivado do petróleo, não biodegradável." },
+      { good: false, text: "Liberta COVs tóxicos durante a cura e produção." },
+      { good: false, text: "Permanece no ambiente durante centenas de anos." },
+      { good: false, text: "Difícil ou impossível de restaurar se danificado." },
+      { good: false, text: "Exige EPI rigoroso: máscara com filtro de vapores químicos, luvas de nitrilo e óculos de proteção." },
     ],
     verdict:      "Conveniente, mas incompatível com a nossa filosofia.",
     verdictColor: "#C4846B",
@@ -95,10 +97,10 @@ const METHODS = [
       </svg>
     ),
     points: [
-      { good: false, text: "Produção industrial com elevado consumo energético" },
-      { good: false, text: "Flores ficam extremamente frágeis após a secagem" },
-      { good: false, text: "Versões com cloreto de cobalto são tóxicas para a vida aquática" },
-      { good: false, text: "Pó irritante para as vias respiratórias durante o manuseio" },
+      { good: false, text: "Produção industrial com elevado consumo energético." },
+      { good: false, text: "Versões com cloreto de cobalto são tóxicas para a vida aquática." },
+      { good: false, text: "Exige o uso de máscara durante o manuseio." },
+      { good: false, text: "Perdem cor rapidamente sem proteção UV adequada." },
     ],
     verdict:      "Tecnicamente interessante, ecologicamente questionável.",
     verdictColor: "#9BA89F",
