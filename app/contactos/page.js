@@ -111,31 +111,66 @@ export default function ContactosEquipa() {
       <style dangerouslySetInnerHTML={{ __html: `
         * { box-sizing: border-box; }
 
+        /* ── Equipa: 1 coluna no mobile, 3 no desktop ── */
         .team-grid {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: clamp(10px, 2vw, 20px);
-        }
-        .team-grid > *:last-child {
-          grid-column: 1 / -1;
-          max-width: 50%;
-          margin: 0 auto;
+          grid-template-columns: 1fr;
+          gap: clamp(14px, 3vw, 24px);
         }
         @media (min-width: 640px) {
-          .team-grid { grid-template-columns: repeat(3, 1fr); }
-          .team-grid > *:last-child { grid-column: auto; max-width: none; margin: 0; }
+          .team-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
+        /* No mobile as fotos ficam horizontais para não ocupar demasiado espaço */
+        .team-card-inner {
+          aspect-ratio: 3/4;
+        }
+        @media (max-width: 639px) {
+          .team-card-inner {
+            aspect-ratio: 4/3;
+          }
         }
 
         .team-photo { transition: transform 0.7s ease; }
         .team-card:hover .team-photo { transform: scale(1.05); }
 
+        /* ── Split layout hero ── */
         .contact-split {
-          display: grid; grid-template-columns: 1fr;
+          display: grid;
+          grid-template-columns: 1fr;
         }
         @media (min-width: 768px) {
           .contact-split { grid-template-columns: 1fr 1fr; }
         }
 
+        /* ── Card de contacto: garante que não transborda ── */
+        .contact-card {
+          width: 100%;
+          min-width: 0;
+          overflow: hidden;
+        }
+
+        /* ── Redes sociais: 2+1 no mobile, 3 em linha no desktop ── */
+        .socials-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+        }
+        .socials-row > *:last-child {
+          grid-column: 1 / -1;
+        }
+        @media (min-width: 400px) {
+          .socials-row {
+            grid-template-columns: repeat(3, 1fr);
+          }
+          .socials-row > *:last-child {
+            grid-column: auto;
+          }
+        }
+
+        /* ── CTAs ── */
         .cta-row {
           display: flex; flex-direction: column;
           align-items: stretch; gap: 14px;
@@ -168,7 +203,6 @@ export default function ContactosEquipa() {
           font-family: Roboto, sans-serif; min-height: 56px;
         }
         .btn-wa-big:hover { background: #1da851; transform: translateY(-3px); }
-
 
         a:focus-visible, button:focus-visible {
           outline: 3px solid #8BA888;
@@ -252,11 +286,12 @@ export default function ContactosEquipa() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="contact-card"
               style={{
                 backgroundColor: "rgba(250,247,240,0.07)",
                 backdropFilter: "blur(20px)",
                 border: "1px solid rgba(250,247,240,0.12)",
-                borderRadius: 20, padding: "clamp(28px,4vw,40px)",
+                borderRadius: 20, padding: "clamp(20px,4vw,40px)",
               }}
             >
               <p style={{
@@ -280,6 +315,7 @@ export default function ContactosEquipa() {
                       borderBottom: "1px solid rgba(250,247,240,0.08)",
                       textDecoration: "none", color: "inherit",
                       transition: "opacity 0.2s",
+                      minWidth: 0,
                     }}
                     onMouseEnter={item.href ? e => { e.currentTarget.style.opacity = "0.75"; } : undefined}
                     onMouseLeave={item.href ? e => { e.currentTarget.style.opacity = "1"; } : undefined}
@@ -292,11 +328,15 @@ export default function ContactosEquipa() {
                     }}>
                       {item.icon}
                     </div>
-                    <div>
+                    <div style={{ minWidth: 0 }}>
                       <p style={{
                         fontFamily: "'TAN-MEMORIES', serif",
-                        fontSize: "0.95rem", color: "#FAF7F0",
+                        fontSize: "clamp(0.8rem, 3.5vw, 0.95rem)",
+                        color: "#FAF7F0",
                         margin: 0, lineHeight: 1.2,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
                       }}>
                         {item.label}
                       </p>
@@ -320,15 +360,17 @@ export default function ContactosEquipa() {
               }}>
                 Siga-nos
               </p>
-              <div style={{ display: "flex", gap: 8 }}>
+              <div className="socials-row">
                 {SOCIALS.map((s, i) => (
                   <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
                     aria-label={s.label}
                     style={{
-                      flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
-                      gap: 8, padding: "12px 8px", borderRadius: 12,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      flexDirection: "column",
+                      gap: 6, padding: "12px 8px", borderRadius: 12,
                       background: s.bg, textDecoration: "none", color: "#fff",
                       transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                      minWidth: 0,
                     }}
                     onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.25)"; }}
                     onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
@@ -336,7 +378,8 @@ export default function ContactosEquipa() {
                     <span style={{ display: "flex", alignItems: "center" }}>{s.icon}</span>
                     <span style={{
                       fontFamily: "Roboto, sans-serif", fontWeight: 600,
-                      fontSize: "0.7rem", letterSpacing: "0.5px",
+                      fontSize: "0.65rem", letterSpacing: "0.3px",
+                      textAlign: "center", lineHeight: 1.2,
                     }}>
                       {s.label}
                     </span>
@@ -411,8 +454,8 @@ export default function ContactosEquipa() {
                   onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-6px)"; e.currentTarget.style.boxShadow = "0 20px 48px rgba(0,0,0,0.3)"; }}
                   onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
                 >
-                  <div style={{
-                    aspectRatio: "3/4", overflow: "hidden",
+                  <div className="team-card-inner" style={{
+                    overflow: "hidden",
                     position: "relative", backgroundColor: "#2A1F16",
                   }}>
                     <img
