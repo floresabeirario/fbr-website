@@ -43,7 +43,7 @@ const METHODS = [
       </svg>
     ),
     pros: [
-      "100% natural — sem químicos, sem plásticos",
+      "100% natural, sem químicos, sem plásticos no processo",
       "Técnica artesanal usada há séculos em botânica",
       "Flores mantêm a sua essência real e orgânica",
       "Resultado artístico, único e intemporalmente belo",
@@ -51,7 +51,7 @@ const METHODS = [
       "Materiais biodegradáveis no fim de vida útil",
       "Sem libertação de compostos voláteis nocivos",
     ],
-    verdict: "A escolha mais sustentável, mais duradoura e mais honesta.",
+    verdict: "A escolha mais sustentável, mais duradoura e mais cuidadosa para as flores e para o planeta.",
     verdictColor: "#3D6B5E",
     highlight: true,
   },
@@ -124,7 +124,7 @@ const MATERIALS = [
   },
   {
     icon: "🌲",
-    title: "Molduras de Madeira Local",
+    title: "Molduras de Produção Local",
     desc: "As molduras são fabricadas à medida em Portugal, em madeira ou materiais lacados de alta qualidade. Cada moldura é única, produzida especificamente para a peça que vai receber.",
     accent: "#3D6B5E",
   },
@@ -137,7 +137,7 @@ const MATERIALS = [
   {
     icon: "🌿",
     title: "Zero Químicos Agressivos",
-    desc: "A prensagem botânica é puramente mecânica. Pressão, temperatura controlada e tempo — sem solventes, sem resinas, sem substâncias que comprometam a integridade da flor ou o ambiente.",
+    desc: "A prensagem botânica é puramente mecânica. Pressão, temperatura controlada e tempo, sem solventes, sem resinas, sem substâncias que comprometam a integridade da flor ou o ambiente.",
     accent: "#8BA888",
   },
   {
@@ -149,7 +149,7 @@ const MATERIALS = [
   {
     icon: "📦",
     title: "Embalagem com Propósito",
-    desc: "As embalagens são feitas à mão pelos utentes da APCC Coimbra, com materiais pensados para serem reutilizados — não para serem deitados fora.",
+    desc: "As embalagens são feitas à mão pelos utentes da APCC Coimbra, com materiais pensados para serem reutilizados, não para serem deitados fora.",
     accent: "#C4846B",
   },
 ];
@@ -158,25 +158,25 @@ const PILLARS = [
   {
     n: "01",
     title: "Artesanal acima de tudo",
-    body: "Cada flor é tratada individualmente, com atenção e tempo. Não existe linha de montagem — existe uma pessoa com as mãos nas flores, a tomar decisões estéticas a cada passo.",
+    body: "Cada flor é tratada individualmente, com atenção e tempo. Não existe linha de montagem, existe uma pessoa com as mãos nas flores, a tomar decisões estéticas a cada passo.",
     color: "#3D6B5E",
   },
   {
     n: "02",
-    title: "Natural de origem a destino",
-    body: "Da flor fresca ao quadro emoldurado, não introduzimos nenhum material sintético. Madeira, vidro, papel de pH neutro, cola neutra. Uma composição que a própria botânica aprovaria.",
+    title: "Natural e local de origem a destino",
+    body: "Da flor fresca ao quadro emoldurado, privilegiamos materiais portugueses e não introduzimos nenhum material sintético no processo de preservação. Madeira, vidro, papel de pH neutro, cola neutra.",
     color: "#8BA888",
   },
   {
     n: "03",
     title: "Feito para durar décadas",
-    body: "A melhor forma de ser sustentável é não precisar de substituir. Um quadro feito com os nossos materiais dura décadas — é o oposto do descartável.",
+    body: "A melhor forma de ser sustentável é não precisar de substituir. Um quadro feito com os nossos materiais dura décadas, é o oposto do descartável.",
     color: "#B8954A",
   },
   {
     n: "04",
     title: "Impacto social positivo",
-    body: "Parte das embalagens é produzida em parceria com a APCC Coimbra, apoiando a autonomia e o trabalho de pessoas com paralisia cerebral. Não é uma ação pontual — é parte do nosso modelo de negócio.",
+    body: "Parte das embalagens é produzida em parceria com a APCC Coimbra, apoiando a autonomia e o trabalho de pessoas com paralisia cerebral. Não é uma ação pontual, é parte do nosso modelo de negócio.",
     color: "#C4846B",
   },
 ];
@@ -358,14 +358,30 @@ export default function Sustentabilidade() {
             paddingBottom: "clamp(60px,10vw,100px)",
             paddingLeft:   "clamp(20px,5vw,48px)",
             paddingRight:  "clamp(20px,5vw,48px)",
-            background:    "linear-gradient(168deg, #1E2D2A 0%, #2D4A3E 45%, #1E2D2A 100%)",
             position:      "relative",
             overflow:      "hidden",
           }}
         >
+          {/* Imagem de fundo */}
+          <div aria-hidden="true" style={{
+            position:   "absolute",
+            inset:      0,
+            backgroundImage: "url('/fotoquadrocloseup2.webp')",
+            backgroundSize:  "cover",
+            backgroundPosition: "center",
+            zIndex: 0,
+          }}/>
+          {/* Overlay escuro */}
+          <div aria-hidden="true" style={{
+            position:   "absolute",
+            inset:      0,
+            background: "linear-gradient(168deg, rgba(30,45,42,0.88) 0%, rgba(45,74,62,0.82) 45%, rgba(30,45,42,0.88) 100%)",
+            zIndex:     1,
+          }}/>
+
           {/* Textura decorativa */}
           <div aria-hidden="true" style={{
-            position: "absolute", inset: 0, opacity: 0.04,
+            position: "absolute", inset: 0, opacity: 0.04, zIndex: 2,
             backgroundImage: "repeating-linear-gradient(45deg, #8BA888 0px, #8BA888 1px, transparent 1px, transparent 44px)",
             pointerEvents: "none",
           }}/>
@@ -375,10 +391,10 @@ export default function Sustentabilidade() {
             position: "absolute", top: "-20%", right: "-5%",
             width: "clamp(280px,45vw,540px)", height: "clamp(280px,45vw,540px)",
             background: "radial-gradient(circle, rgba(139,168,136,0.08) 0%, transparent 65%)",
-            borderRadius: "50%", pointerEvents: "none",
+            borderRadius: "50%", pointerEvents: "none", zIndex: 2,
           }}/>
 
-          <div style={{ maxWidth: "860px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+          <div style={{ maxWidth: "860px", margin: "0 auto", position: "relative", zIndex: 3 }}>
             <motion.div
               initial={{ opacity: 0, y: 26 }}
               animate={{ opacity: 1, y: 0 }}
@@ -418,7 +434,7 @@ export default function Sustentabilidade() {
                 margin:     "0 0 clamp(28px,4vw,40px)",
               }}>
                 Na Flores à Beira-Rio, preservar flores significa preservar também
-                o planeta. Sem resinas petroquímicas, sem sílica industrial, sem plásticos —
+                o planeta. Sem resinas petroquímicas, sem sílica industrial,
                 apenas prensagem botânica artesanal com materiais de conservação museu.
               </p>
 
@@ -481,7 +497,7 @@ export default function Sustentabilidade() {
                 margin:     "0 0 clamp(20px,3vw,28px)",
                 lineHeight: 1.1,
               }}>
-                Artesanal. Natural.<br/>
+                Artesanal. Natural. Local.<br/>
                 <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>Para durar décadas.</em>
               </h2>
               <div style={{
@@ -490,16 +506,17 @@ export default function Sustentabilidade() {
                 lineHeight: 1.88,
               }}>
                 <p style={{ margin: "0 0 18px" }}>
-                  Quando um casal nos confia o bouquet do seu casamento, a responsabilidade não
-                  é só artística — é também ambiental. As flores passaram semanas a crescer,
-                  meses a ser cultivadas, e o seu casamento foi um momento único. Preservá-las
-                  com plásticos ou produtos petroquímicos seria uma contradição.
+                  Quando recebemos as flores de um momento marcante, a responsabilidade não
+                  é só artística, é também ambiental. Seja um bouquet de casamento, flores
+                  de um batizado, ou qualquer outro momento que valha a pena guardar,
+                  preservá-las com plásticos ou produtos petroquímicos seria uma contradição.
                 </p>
                 <p style={{ margin: 0 }}>
-                  Por isso escolhemos — e continuaremos a escolher — a prensagem botânica
-                  artesanal como método exclusivo de trabalho. É mais lenta, mais exigente,
-                  e produz resultados que nenhuma resina consegue igualar em termos de
-                  beleza natural, longevidade e integridade ecológica.
+                  Por isso escolhemos, e continuaremos a escolher, a prensagem botânica
+                  artesanal como método exclusivo de trabalho. É uma técnica mais lenta e
+                  mais exigente, mas os resultados falam por si: beleza natural que nenhuma
+                  resina consegue imitar, longevidade que se mede em décadas, e um processo
+                  que respeita a integridade da flor e do planeta.
                 </p>
               </div>
             </motion.div>
@@ -541,8 +558,8 @@ export default function Sustentabilidade() {
                 maxWidth: "500px",
                 margin:   "0 auto",
               }}>
-                Três métodos populares de eternizar flores. Apenas um que respeitamos —
-                o da natureza.
+                Três métodos populares de eternizar flores. Cada um com as suas
+                promessas, mas só um verdadeiramente pensado para durar.
               </p>
             </motion.div>
 
@@ -708,13 +725,13 @@ export default function Sustentabilidade() {
                 },
                 {
                   title: "A sílica industrial tem um custo ambiental alto",
-                  body: "O gel de sílica é produzido industrialmente a partir de sílicio, com processos que envolvem elevado consumo energético e emissões consideráveis. Para cada peça de preservação 3D, são necessárias grandes quantidades de gel — que depois precisam de ser tratadas como resíduo especial. As flores resultantes são extremamente frágeis, perdem cor rapidamente sem proteção UV adequada, e exigem condições de humidade rigorosamente controladas que tornam a sua exposição em casa difícil.",
+                  body: "O gel de sílica é produzido industrialmente a partir de sílicio, com processos que envolvem elevado consumo energético e emissões consideráveis. Para cada peça de preservação 3D, são necessárias grandes quantidades de gel, que depois precisam de ser tratadas como resíduo especial. As flores resultantes são extremamente frágeis, perdem cor rapidamente sem proteção UV adequada, e exigem condições de humidade rigorosamente controladas que tornam a sua exposição em casa difícil.",
                   accent: "#9BA89F",
                   icon: "🧪",
                 },
                 {
-                  title: "A prensagem botânica é a técnica mais honesta",
-                  body: "A prensagem botânica tem séculos de história — foi usada por botânicos, artistas e naturalistas muito antes da indústria química existir. Não adiciona nada à flor: remove apenas a humidade através de pressão, calor controlado e tempo. O resultado é uma flor que mantém a sua essência real, encapsulada de forma permanente com materiais que o próprio planeta pode absorver de volta.",
+                  title: "A prensagem botânica é a técnica mais respeitosa",
+                  body: "A prensagem botânica tem séculos de história, foi usada por botânicos, artistas e naturalistas muito antes da indústria química existir. Não adiciona nada à flor: remove apenas a humidade através de pressão, calor controlado e tempo. O resultado é uma flor que mantém a sua essência real, encapsulada de forma permanente com materiais que o próprio planeta pode absorver de volta.",
                   accent: "#3D6B5E",
                   icon: "🌿",
                 },
@@ -997,14 +1014,14 @@ export default function Sustentabilidade() {
                   fontSize:   "clamp(0.92rem,1.8vw,1rem)",
                   margin:     "0 0 28px",
                 }}>
-                  Cada saco é único. É pensado para ser reutilizado — para guardar
+                  Cada saco é único. É pensado para ser reutilizado, para guardar
                   roupa, coisas de praia, ou o que couber. Não é uma embalagem
                   para deitar fora. É um objeto com alma, feito com cuidado por
                   pessoas que desafiam estigmas e celebram a sua singularidade.
                 </p>
 
                 {[
-                  { icon: "🤝", title: "Impacto direto e contínuo", desc: "Cada encomenda da FBR apoia diretamente o trabalho e a autonomia dos utentes da APCC. Não é uma ação pontual — é o nosso modelo de negócio." },
+                  { icon: "🤝", title: "Impacto direto e contínuo", desc: "Cada encomenda da FBR apoia diretamente o trabalho e a autonomia dos utentes da APCC. Não é uma ação pontual, é o nosso modelo de negócio." },
                   { icon: "♻️", title: "Embalagem que se reutiliza", desc: "O saco serve o quadro na entrega e serve a vida depois. Zero desperdício por design." },
                   { icon: "🌿", title: "Arte consciente e local", desc: "Artesanato português, materiais sem desperdício, flores preservadas para durar décadas." },
                 ].map((item, i) => (
@@ -1141,17 +1158,6 @@ export default function Sustentabilidade() {
             </motion.div>
 
             <div className="lifecycle-grid" style={{ position: "relative" }}>
-              {/* Linha de ligação — só desktop */}
-              <div aria-hidden="true" style={{
-                position:  "absolute",
-                top:       "clamp(28px,4vw,36px)",
-                left:      "10%",
-                right:     "10%",
-                height:    "1px",
-                background:"linear-gradient(to right, transparent, rgba(61,107,94,0.2), rgba(61,107,94,0.2), rgba(61,107,94,0.2), transparent)",
-                display:   "none",
-              }} className="lifecycle-line"/>
-
               {[
                 { icon: "🌸", label: "As flores crescem", desc: "Na natureza, sem intervenção nossa." },
                 { icon: "💐", label: "O seu momento especial", desc: "Casamento, batizado, aniversário." },
@@ -1222,7 +1228,7 @@ export default function Sustentabilidade() {
                 fontFamily: "Roboto, sans-serif",
               }}
             >
-              Nenhum plástico. Nenhum produto petroquímico. Nenhum resíduo tóxico.
+              Nenhum plástico no processo de preservação. Nenhum produto petroquímico. Nenhum resíduo tóxico.
             </motion.p>
           </div>
         </section>
@@ -1259,7 +1265,7 @@ export default function Sustentabilidade() {
               lineHeight: 1.1,
             }}>
               Preserve as suas flores<br/>
-              <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>da forma mais honesta</em>
+              <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>da forma mais cuidadosa</em>
             </h2>
             <p style={{
               color:      "#5A6B60",
@@ -1268,7 +1274,7 @@ export default function Sustentabilidade() {
               margin:     "0 0 34px",
             }}>
               Sem resina, sem sílica, sem compromissos. Apenas flores,
-              tempo e artesanato botânico — da forma como sempre deveria ser feito.
+              tempo e artesanato botânico, da forma como sempre deveria ser feito.
             </p>
 
             <div className="cta-row" style={{ marginBottom: "28px" }}>
