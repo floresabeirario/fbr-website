@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 
-// ─── JSON-LD Schema ───────────────────────────────────────────────────────────
 const Schema = () => (
   <script
     type="application/ld+json"
@@ -24,7 +23,6 @@ const Schema = () => (
   />
 );
 
-// ─── Dados da comparação ──────────────────────────────────────────────────────
 const METHODS = [
   {
     id:       "prensagem",
@@ -49,8 +47,19 @@ const METHODS = [
       "Resultado artístico, único e intemporalmente belo",
       "Vidro museu anti-UV garante décadas de durabilidade",
       "Materiais biodegradáveis no fim de vida útil",
-      "Sem libertação de compostos voláteis nocivos",
     ],
+    health: {
+      label: "Seguro",
+      color: "#3D6B5E",
+      bg:    "rgba(61,107,94,0.08)",
+      text:  "Sem exposição a químicos perigosos. O único cuidado é evitar poeira orgânica se as flores apodrecerem antes de chegarem ao atelier.",
+    },
+    ecology: {
+      label: "Impacto mínimo",
+      color: "#3D6B5E",
+      bg:    "rgba(61,107,94,0.08)",
+      text:  "Processo puramente mecânico. Sem solventes, sem emissões, sem resíduos especiais. Todos os materiais são biodegradáveis ou recicláveis no fim de vida.",
+    },
     verdict: "A escolha mais sustentável, mais duradoura e mais cuidadosa para as flores e para o planeta.",
     verdictColor: "#3D6B5E",
     highlight: true,
@@ -74,12 +83,23 @@ const METHODS = [
     cons: [
       "Polímero sintético derivado do petróleo",
       "Não é biodegradável nem reciclável",
-      "Liberta compostos orgânicos voláteis (COVs) durante a cura",
-      "Amarelece ao longo do tempo com a exposição à luz",
+      "Liberta COVs durante a cura",
+      "Amarelece ao longo do tempo com a luz UV",
       "Resultado artificial, excessivamente brilhante",
-      "Difícil ou impossível de restaurar se danificado",
-      "Impacto ambiental considerável na produção",
+      "Impossível de restaurar se danificado",
     ],
+    health: {
+      label: "Risco elevado",
+      color: "#C4846B",
+      bg:    "rgba(196,132,107,0.08)",
+      text:  "A resina líquida liberta Compostos Orgânicos Voláteis (COVs). O contacto com a pele pode causar dermatite severa e alergias crónicas. Lixar a resina gera pó tóxico. Exige máscara com filtro químico, luvas de nitrilo e óculos de proteção.",
+    },
+    ecology: {
+      label: "Impacto elevado",
+      color: "#C4846B",
+      bg:    "rgba(196,132,107,0.08)",
+      text:  "Derivada do petróleo, não biodegradável e não reciclável. Emite COVs durante a produção. Permanece no ambiente durante centenas de anos.",
+    },
     verdict: "Conveniente, mas incompatível com a nossa filosofia.",
     verdictColor: "#C4846B",
     highlight: false,
@@ -106,9 +126,20 @@ const METHODS = [
       "Flores ficam extremamente frágeis após a secagem",
       "Perdem cor rapidamente sem proteção UV adequada",
       "Exigem humidade rigorosamente controlada",
-      "Dificilmente adaptável ao emolduramento permanente",
       "Resultado volumoso, difícil de expor com elegância",
     ],
+    health: {
+      label: "Risco moderado",
+      color: "#9BA89F",
+      bg:    "rgba(155,168,159,0.1)",
+      text:  "O pó fino libertado durante o manuseio irrita as vias respiratórias e os olhos. Exige máscara contra poeira. Alguns tipos contêm cloreto de cobalto, classificado como cancerígeno suspeito.",
+    },
+    ecology: {
+      label: "Impacto moderado",
+      color: "#9BA89F",
+      bg:    "rgba(155,168,159,0.1)",
+      text:  "Produção industrial com elevado consumo energético. Versões com cloreto de cobalto são tóxicas para a vida aquática e classificadas como resíduo especial na União Europeia.",
+    },
     verdict: "Tecnicamente interessante, ecologicamente questionável.",
     verdictColor: "#9BA89F",
     highlight: false,
@@ -142,7 +173,7 @@ const MATERIALS = [
   },
   {
     icon: "♻️",
-    title: "Fim de Vida Honesto",
+    title: "Fim de Vida Responsável",
     desc: "No final da vida útil do quadro, todos os componentes podem ser devolvidos à natureza ou reciclados. Sem resíduos plásticos, sem compostos tóxicos. Uma peça que não deixa marcas negativas no planeta.",
     accent: "#3D6B5E",
   },
@@ -181,7 +212,6 @@ const PILLARS = [
   },
 ];
 
-// ─── Componente CheckRow ──────────────────────────────────────────────────────
 const Row = ({ text, good, color }) => (
   <div style={{ display: "flex", gap: "12px", alignItems: "flex-start", padding: "9px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
     <div style={{ flexShrink: 0, marginTop: "2px" }}>
@@ -199,11 +229,21 @@ const Row = ({ text, good, color }) => (
   </div>
 );
 
-// ─── Main ─────────────────────────────────────────────────────────────────────
+const MiniBlock = ({ label, color, bg, text, icon }) => (
+  <div style={{ backgroundColor: bg, borderRadius: "10px", padding: "12px 14px", marginTop: "10px" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
+      <span style={{ fontSize: "0.75rem" }} aria-hidden="true">{icon}</span>
+      <span style={{
+        fontSize: "0.62rem", fontWeight: 700, letterSpacing: "1.5px",
+        textTransform: "uppercase", color: color, fontFamily: "Roboto, sans-serif",
+      }}>{label}</span>
+    </div>
+    <p style={{ margin: 0, fontSize: "0.8rem", color: "#5A6B60", lineHeight: 1.62 }}>{text}</p>
+  </div>
+);
+
 export default function Sustentabilidade() {
   const FORM = "https://wkf.ms/3RfoNAc";
-  const WA = "https://wa.me/351934680300?text=" +
-    encodeURIComponent("Olá! Gostaria de saber mais sobre a sustentabilidade da Flores à Beira-Rio.");
 
   return (
     <>
@@ -221,7 +261,6 @@ export default function Sustentabilidade() {
             --cream:   #FAF7F0;
             --mid:     #5A6B60;
           }
-
           .eyebrow {
             display: block;
             font-size: 0.58rem; font-weight: 700;
@@ -231,7 +270,6 @@ export default function Sustentabilidade() {
           }
           .eyebrow-green { color: var(--green) !important; }
           .eyebrow-gold  { color: var(--gold)  !important; }
-
           .text-link {
             color: var(--green); font-weight: 600;
             text-decoration: none;
@@ -240,8 +278,6 @@ export default function Sustentabilidade() {
             transition: border-color 0.2s ease;
           }
           .text-link:hover { border-color: var(--green); }
-
-          /* ── Comparison grid ─────────────────────── */
           .compare-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -250,8 +286,6 @@ export default function Sustentabilidade() {
           @media (min-width: 768px) {
             .compare-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
           }
-
-          /* ── Materials grid ──────────────────────── */
           .materials-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -263,8 +297,6 @@ export default function Sustentabilidade() {
           @media (min-width: 900px) {
             .materials-grid { grid-template-columns: 1fr 1fr 1fr; }
           }
-
-          /* ── Pillars grid ────────────────────────── */
           .pillars-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -273,8 +305,6 @@ export default function Sustentabilidade() {
           @media (min-width: 640px) {
             .pillars-grid { grid-template-columns: 1fr 1fr; }
           }
-
-          /* ── APCC split ──────────────────────────── */
           .apcc-split {
             display: grid;
             grid-template-columns: 1fr;
@@ -284,8 +314,6 @@ export default function Sustentabilidade() {
           @media (min-width: 768px) {
             .apcc-split { grid-template-columns: 1fr 1fr; gap: 80px; }
           }
-
-          /* ── Lifecycle timeline ──────────────────── */
           .lifecycle-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -294,8 +322,6 @@ export default function Sustentabilidade() {
           @media (min-width: 560px) {
             .lifecycle-grid { grid-template-columns: repeat(5, 1fr); }
           }
-
-          /* ── CTA row ─────────────────────────────── */
           .cta-row {
             display: flex;
             flex-direction: column;
@@ -305,8 +331,6 @@ export default function Sustentabilidade() {
           @media (min-width: 460px) {
             .cta-row { flex-direction: row; justify-content: center; align-items: center; }
           }
-
-          /* ── Buttons ─────────────────────────────── */
           .btn-primary {
             display: inline-flex; align-items: center; justify-content: center;
             background: var(--green); color: var(--cream);
@@ -319,7 +343,6 @@ export default function Sustentabilidade() {
             font-family: Roboto, sans-serif;
           }
           .btn-primary:hover { background: var(--green-d); transform: translateY(-3px); }
-
           .btn-outline {
             display: inline-flex; align-items: center; justify-content: center;
             border: 2px solid var(--green); color: var(--green);
@@ -331,26 +354,14 @@ export default function Sustentabilidade() {
             font-family: Roboto, sans-serif;
           }
           .btn-outline:hover { background: var(--green); color: var(--cream); transform: translateY(-3px); }
-
-          .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-          }
-          .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 18px 48px rgba(30,45,42,0.11);
-          }
-
+          .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+          .card-hover:hover { transform: translateY(-4px); box-shadow: 0 18px 48px rgba(30,45,42,0.11); }
           @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-              animation-duration: 0.01ms !important;
-              transition-duration: 0.01ms !important;
-            }
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
           }
         `}} />
 
-        {/* ══════════════════════════════════════════════════════
-            HERO
-        ══════════════════════════════════════════════════════ */}
+        {/* ══════ HERO ══════ */}
         <section
           aria-label="Sustentabilidade e filosofia da Flores à Beira-Rio"
           style={{
@@ -358,43 +369,24 @@ export default function Sustentabilidade() {
             paddingBottom: "clamp(60px,10vw,100px)",
             paddingLeft:   "clamp(20px,5vw,48px)",
             paddingRight:  "clamp(20px,5vw,48px)",
+            background:    "linear-gradient(168deg, #1E2D2A 0%, #2D4A3E 45%, #1E2D2A 100%)",
             position:      "relative",
             overflow:      "hidden",
           }}
         >
-          {/* Imagem de fundo */}
           <div aria-hidden="true" style={{
-            position:   "absolute",
-            inset:      0,
-            backgroundImage: "url('/fotoquadrocloseup2.webp')",
-            backgroundSize:  "cover",
-            backgroundPosition: "center",
-            zIndex: 0,
-          }}/>
-          {/* Overlay escuro */}
-          <div aria-hidden="true" style={{
-            position:   "absolute",
-            inset:      0,
-            background: "linear-gradient(168deg, rgba(30,45,42,0.88) 0%, rgba(45,74,62,0.82) 45%, rgba(30,45,42,0.88) 100%)",
-            zIndex:     1,
-          }}/>
-
-          {/* Textura decorativa */}
-          <div aria-hidden="true" style={{
-            position: "absolute", inset: 0, opacity: 0.04, zIndex: 2,
+            position: "absolute", inset: 0, opacity: 0.04,
             backgroundImage: "repeating-linear-gradient(45deg, #8BA888 0px, #8BA888 1px, transparent 1px, transparent 44px)",
             pointerEvents: "none",
           }}/>
-
-          {/* Glow ambiental */}
           <div aria-hidden="true" style={{
             position: "absolute", top: "-20%", right: "-5%",
             width: "clamp(280px,45vw,540px)", height: "clamp(280px,45vw,540px)",
             background: "radial-gradient(circle, rgba(139,168,136,0.08) 0%, transparent 65%)",
-            borderRadius: "50%", pointerEvents: "none", zIndex: 2,
+            borderRadius: "50%", pointerEvents: "none",
           }}/>
 
-          <div style={{ maxWidth: "860px", margin: "0 auto", position: "relative", zIndex: 3 }}>
+          <div style={{ maxWidth: "860px", margin: "0 auto", position: "relative", zIndex: 1 }}>
             <motion.div
               initial={{ opacity: 0, y: 26 }}
               animate={{ opacity: 1, y: 0 }}
@@ -404,14 +396,12 @@ export default function Sustentabilidade() {
                 display: "inline-flex", alignItems: "center", gap: "8px",
                 background: "rgba(139,168,136,0.12)",
                 border: "1px solid rgba(139,168,136,0.25)",
-                borderRadius: "100px", padding: "7px 16px",
-                marginBottom: "24px",
+                borderRadius: "100px", padding: "7px 16px", marginBottom: "24px",
               }}>
                 <span style={{ color: "#8BA888", fontSize: "0.9rem" }} aria-hidden="true">♻</span>
                 <span style={{
                   fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3px",
-                  textTransform: "uppercase", color: "#8BA888",
-                  fontFamily: "Roboto, sans-serif",
+                  textTransform: "uppercase", color: "#8BA888", fontFamily: "Roboto, sans-serif",
                 }}>Os nossos valores</span>
               </span>
 
@@ -438,12 +428,7 @@ export default function Sustentabilidade() {
                 apenas prensagem botânica artesanal com materiais de conservação museu.
               </p>
 
-              <div style={{
-                display:   "flex",
-                flexWrap:  "wrap",
-                gap:       "clamp(8px,2vw,14px)",
-                alignItems:"center",
-              }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px,2vw,14px)", alignItems: "center" }}>
                 {["Sem resina epóxi", "Sem sílica industrial", "Sem químicos agressivos", "100% artesanal"].map((tag, i) => (
                   <motion.span
                     key={i}
@@ -451,30 +436,19 @@ export default function Sustentabilidade() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 + i * 0.08, duration: 0.5 }}
                     style={{
-                      display:         "inline-block",
-                      fontSize:        "0.64rem",
-                      fontWeight:      700,
-                      letterSpacing:   "1.5px",
-                      textTransform:   "uppercase",
-                      color:           "#8BA888",
-                      fontFamily:      "Roboto, sans-serif",
-                      backgroundColor: "rgba(139,168,136,0.1)",
-                      border:          "1px solid rgba(139,168,136,0.2)",
-                      padding:         "6px 14px",
-                      borderRadius:    "100px",
+                      display: "inline-block", fontSize: "0.64rem", fontWeight: 700,
+                      letterSpacing: "1.5px", textTransform: "uppercase", color: "#8BA888",
+                      fontFamily: "Roboto, sans-serif", backgroundColor: "rgba(139,168,136,0.1)",
+                      border: "1px solid rgba(139,168,136,0.2)", padding: "6px 14px", borderRadius: "100px",
                     }}
-                  >
-                    {tag}
-                  </motion.span>
+                  >{tag}</motion.span>
                 ))}
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════
-            INTRO / MANIFESTO
-        ══════════════════════════════════════════════════════ */}
+        {/* ══════ FILOSOFIA ══════ */}
         <section
           aria-label="A nossa filosofia de preservação sustentável"
           style={{
@@ -500,38 +474,26 @@ export default function Sustentabilidade() {
                 Artesanal. Natural. Local.<br/>
                 <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>Para durar décadas.</em>
               </h2>
-              <div style={{
-                color:      "#5A6B60",
-                fontSize:   "clamp(0.95rem,1.8vw,1.05rem)",
-                lineHeight: 1.88,
-              }}>
+              <div style={{ color: "#5A6B60", fontSize: "clamp(0.95rem,1.8vw,1.05rem)", lineHeight: 1.88 }}>
                 <p style={{ margin: "0 0 18px" }}>
                   Quando recebemos as flores de um momento marcante, a responsabilidade não
-                  é só artística, é também ambiental. Seja um bouquet de casamento, flores
-                  de um batizado, ou qualquer outro momento que valha a pena guardar,
-                  preservá-las com plásticos ou produtos petroquímicos seria uma contradição.
+                  é só artística, é também ambiental.
                 </p>
                 <p style={{ margin: 0 }}>
                   Por isso escolhemos, e continuaremos a escolher, a prensagem botânica
                   artesanal como método exclusivo de trabalho. É uma técnica mais lenta e
-                  mais exigente, mas os resultados falam por si: beleza natural que nenhuma
-                  resina consegue imitar, longevidade que se mede em décadas, e um processo
-                  que respeita a integridade da flor e do planeta.
+                  mais exigente, mas os resultados falam por si: beleza natural, longevidade,
+                  e um processo que respeita a integridade da flor e do planeta.
                 </p>
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════
-            COMPARAÇÃO DAS 3 TÉCNICAS
-        ══════════════════════════════════════════════════════ */}
+        {/* ══════ COMPARAÇÃO ══════ */}
         <section
           aria-label="Comparação entre prensagem botânica, resina epóxi e gel de sílica"
-          style={{
-            padding:         "clamp(52px,8vw,84px) clamp(20px,5vw,48px)",
-            backgroundColor: "#FAF7F0",
-          }}
+          style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", backgroundColor: "#FAF7F0" }}
         >
           <div style={{ maxWidth: "1140px", margin: "0 auto" }}>
             <motion.div
@@ -552,14 +514,11 @@ export default function Sustentabilidade() {
                 <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>vs resina vs sílica</em>
               </h2>
               <p style={{
-                color:    "#5A6B60",
-                fontSize: "clamp(0.9rem,1.8vw,0.98rem)",
-                lineHeight: 1.8,
-                maxWidth: "500px",
-                margin:   "0 auto",
+                color: "#5A6B60", fontSize: "clamp(0.9rem,1.8vw,0.98rem)",
+                lineHeight: 1.8, maxWidth: "500px", margin: "0 auto",
               }}>
-                Três métodos populares de eternizar flores. Cada um com as suas
-                promessas, mas só um verdadeiramente pensado para durar.
+                Três métodos populares de eternizar flores. Só um que nunca coloca
+                em risco quem trabalha nem o planeta.
               </p>
             </motion.div>
 
@@ -584,8 +543,7 @@ export default function Sustentabilidade() {
                 >
                   {m.highlight && (
                     <div aria-hidden="true" style={{
-                      position:   "absolute", top: 0, right: 0,
-                      width:      "80px", height: "80px",
+                      position: "absolute", top: 0, right: 0, width: "80px", height: "80px",
                       background: "radial-gradient(circle at top right, rgba(61,107,94,0.08) 0%, transparent 70%)",
                       pointerEvents: "none",
                     }}/>
@@ -593,72 +551,41 @@ export default function Sustentabilidade() {
 
                   <div style={{ marginBottom: "16px" }}>
                     <span style={{
-                      display:         "inline-block",
-                      fontSize:        "0.56rem",
-                      fontWeight:      700,
-                      letterSpacing:   "2px",
-                      textTransform:   "uppercase",
-                      color:           m.tagColor,
-                      fontFamily:      "Roboto, sans-serif",
-                      backgroundColor: `${m.tagColor}14`,
-                      padding:         "4px 12px",
-                      borderRadius:    "50px",
-                      marginBottom:    "12px",
-                    }}>
-                      {m.tag}
-                    </span>
+                      display: "inline-block", fontSize: "0.56rem", fontWeight: 700,
+                      letterSpacing: "2px", textTransform: "uppercase", color: m.tagColor,
+                      fontFamily: "Roboto, sans-serif", backgroundColor: `${m.tagColor}14`,
+                      padding: "4px 12px", borderRadius: "50px", marginBottom: "12px",
+                    }}>{m.tag}</span>
                     <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
                       {m.icon}
                       <h3 style={{
-                        fontFamily: "'TAN-MEMORIES', serif",
-                        fontSize:   "1.25rem",
-                        color:      "#1E2D2A",
-                        margin:     0,
-                        lineHeight: 1.2,
-                      }}>
-                        {m.title}
-                      </h3>
+                        fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.25rem",
+                        color: "#1E2D2A", margin: 0, lineHeight: 1.2,
+                      }}>{m.title}</h3>
                     </div>
                     <p style={{
-                      color:      "#9BA89F",
-                      fontSize:   "0.76rem",
-                      margin:     0,
-                      fontStyle:  "italic",
-                      fontFamily: "Roboto, sans-serif",
-                    }}>
-                      {m.subtitle}
-                    </p>
+                      color: "#9BA89F", fontSize: "0.76rem", margin: 0,
+                      fontStyle: "italic", fontFamily: "Roboto, sans-serif",
+                    }}>{m.subtitle}</p>
                   </div>
 
-                  <div style={{ marginBottom: "18px" }}>
+                  <div style={{ marginBottom: "6px" }}>
                     {(m.pros || m.cons).map((item, j) => (
-                      <Row
-                        key={j}
-                        text={item}
-                        good={!!m.pros}
-                        color={m.highlight ? m.tagColor : m.tagColor}
-                      />
+                      <Row key={j} text={item} good={!!m.pros} color={m.tagColor} />
                     ))}
                   </div>
 
+                  <MiniBlock icon="🩺" label={"Saúde: " + m.health.label} color={m.health.color} bg={m.health.bg} text={m.health.text} />
+                  <MiniBlock icon="🌍" label={"Pegada ecológica: " + m.ecology.label} color={m.ecology.color} bg={m.ecology.bg} text={m.ecology.text} />
+
                   <div style={{
-                    padding:         "12px 16px",
-                    borderRadius:    "10px",
-                    backgroundColor: `${m.tagColor}0D`,
-                    border:          `1px solid ${m.tagColor}20`,
-                    marginTop:       "auto",
+                    padding: "12px 16px", borderRadius: "10px",
+                    backgroundColor: `${m.tagColor}0D`, border: `1px solid ${m.tagColor}20`, marginTop: "14px",
                   }}>
                     <p style={{
-                      color:      m.verdictColor,
-                      fontSize:   "0.82rem",
-                      fontWeight: 600,
-                      lineHeight: 1.5,
-                      margin:     0,
-                      fontFamily: "Roboto, sans-serif",
-                      fontStyle:  "italic",
-                    }}>
-                      {m.verdict}
-                    </p>
+                      color: m.verdictColor, fontSize: "0.82rem", fontWeight: 600,
+                      lineHeight: 1.5, margin: 0, fontFamily: "Roboto, sans-serif", fontStyle: "italic",
+                    }}>{m.verdict}</p>
                   </div>
                 </motion.div>
               ))}
@@ -666,9 +593,7 @@ export default function Sustentabilidade() {
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════
-            POR QUE RECUSAMOS — detalhe
-        ══════════════════════════════════════════════════════ */}
+        {/* ══════ POR QUE RECUSAMOS ══════ */}
         <section
           aria-label="Porque não usamos resina epóxi nem gel de sílica"
           style={{
@@ -692,23 +617,14 @@ export default function Sustentabilidade() {
               style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}
             >
               <span style={{
-                display:       "block",
-                fontSize:      "0.58rem",
-                fontWeight:    700,
-                letterSpacing: "3.5px",
-                textTransform: "uppercase",
-                color:         "#8BA888",
-                marginBottom:  "12px",
-                fontFamily:    "Roboto, sans-serif",
-              }}>
-                A nossa posição
-              </span>
+                display: "block", fontSize: "0.58rem", fontWeight: 700,
+                letterSpacing: "3.5px", textTransform: "uppercase",
+                color: "#8BA888", marginBottom: "12px", fontFamily: "Roboto, sans-serif",
+              }}>A nossa posição</span>
               <h2 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize:   "clamp(1.8rem,4.5vw,3rem)",
-                color:      "#FAF7F0",
-                margin:     0,
-                lineHeight: 1.1,
+                color:      "#FAF7F0", margin: 0, lineHeight: 1.1,
               }}>
                 Porque dizemos não<br/>
                 <em style={{ fontStyle: "italic", color: "#8BA888" }}>à resina e à sílica</em>
@@ -719,21 +635,18 @@ export default function Sustentabilidade() {
               {[
                 {
                   title: "A resina epóxi é plástico",
-                  body: "A resina epóxi é um polímero sintético derivado do petróleo. Não é biodegradável, não é reciclável, e o seu processo de cura liberta compostos orgânicos voláteis (COVs) que são nocivos para quem trabalha com ela e para o ambiente. A longo prazo, amarelece com a exposição à luz UV, comprometendo a estética da peça que se pretendia preservar para sempre.",
-                  accent: "#C4846B",
-                  icon: "⚗️",
+                  body: "A resina epóxi é um polímero sintético derivado do petróleo. Não é biodegradável, não é reciclável, e o seu processo de cura liberta compostos orgânicos voláteis (COVs) nocivos para quem trabalha com ela e para o ambiente. O contacto com a pele pode causar dermatite severa e alergias crónicas. A longo prazo, amarelece com a exposição à luz UV, comprometendo a estética da peça que se pretendia preservar para sempre.",
+                  accent: "#C4846B", icon: "⚗️",
                 },
                 {
-                  title: "A sílica industrial tem um custo ambiental alto",
-                  body: "O gel de sílica é produzido industrialmente a partir de sílicio, com processos que envolvem elevado consumo energético e emissões consideráveis. Para cada peça de preservação 3D, são necessárias grandes quantidades de gel, que depois precisam de ser tratadas como resíduo especial. As flores resultantes são extremamente frágeis, perdem cor rapidamente sem proteção UV adequada, e exigem condições de humidade rigorosamente controladas que tornam a sua exposição em casa difícil.",
-                  accent: "#9BA89F",
-                  icon: "🧪",
+                  title: "A sílica industrial tem um custo ambiental e humano alto",
+                  body: "O gel de sílica é produzido industrialmente com elevado consumo energético. Para cada peça, são necessárias grandes quantidades de gel, que depois precisam de ser tratadas como resíduo especial. Algumas versões contêm cloreto de cobalto, tóxico para a vida aquática e classificado como cancerígeno suspeito na União Europeia. Durante o manuseio, o pó libertado irrita as vias respiratórias e os olhos, exigindo equipamento de proteção.",
+                  accent: "#9BA89F", icon: "🧪",
                 },
                 {
                   title: "A prensagem botânica é a técnica mais respeitosa",
-                  body: "A prensagem botânica tem séculos de história, foi usada por botânicos, artistas e naturalistas muito antes da indústria química existir. Não adiciona nada à flor: remove apenas a humidade através de pressão, calor controlado e tempo. O resultado é uma flor que mantém a sua essência real, encapsulada de forma permanente com materiais que o próprio planeta pode absorver de volta.",
-                  accent: "#3D6B5E",
-                  icon: "🌿",
+                  body: "A prensagem botânica tem séculos de história, foi usada por botânicos, artistas e naturalistas muito antes da indústria química existir. Não adiciona nada à flor: remove apenas a humidade através de pressão, calor controlado e tempo. Sem químicos, sem riscos para a saúde, sem resíduos especiais. O resultado é uma flor que mantém a sua essência real, encapsulada de forma permanente com materiais que o próprio planeta pode absorver de volta.",
+                  accent: "#3D6B5E", icon: "🌿",
                 },
               ].map((item, i) => (
                 <motion.div
@@ -743,47 +656,25 @@ export default function Sustentabilidade() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.65 }}
                   style={{
-                    display:         "flex",
-                    gap:             "clamp(16px,3vw,24px)",
-                    alignItems:      "flex-start",
-                    backgroundColor: "rgba(250,247,240,0.05)",
-                    borderRadius:    "18px",
-                    padding:         "clamp(20px,3vw,28px)",
-                    border:          "1px solid rgba(250,247,240,0.07)",
+                    display: "flex", gap: "clamp(16px,3vw,24px)", alignItems: "flex-start",
+                    backgroundColor: "rgba(250,247,240,0.05)", borderRadius: "18px",
+                    padding: "clamp(20px,3vw,28px)", border: "1px solid rgba(250,247,240,0.07)",
                   }}
                 >
                   <div style={{
-                    flexShrink:      0,
-                    width:           "44px",
-                    height:          "44px",
-                    borderRadius:    "12px",
-                    backgroundColor: `${item.accent}20`,
-                    display:         "flex",
-                    alignItems:      "center",
-                    justifyContent:  "center",
-                    fontSize:        "1.2rem",
-                    marginTop:       "2px",
-                  }} aria-hidden="true">
-                    {item.icon}
-                  </div>
+                    flexShrink: 0, width: "44px", height: "44px", borderRadius: "12px",
+                    backgroundColor: `${item.accent}20`, display: "flex", alignItems: "center",
+                    justifyContent: "center", fontSize: "1.2rem", marginTop: "2px",
+                  }} aria-hidden="true">{item.icon}</div>
                   <div>
                     <h3 style={{
-                      fontFamily: "'TAN-MEMORIES', serif",
-                      fontSize:   "clamp(1rem,2.2vw,1.25rem)",
-                      color:      "#FAF7F0",
-                      margin:     "0 0 10px",
-                      lineHeight: 1.2,
-                    }}>
-                      {item.title}
-                    </h3>
+                      fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem,2.2vw,1.25rem)",
+                      color: "#FAF7F0", margin: "0 0 10px", lineHeight: 1.2,
+                    }}>{item.title}</h3>
                     <p style={{
-                      color:      "rgba(250,247,240,0.6)",
-                      fontSize:   "clamp(0.88rem,1.6vw,0.94rem)",
-                      lineHeight: 1.82,
-                      margin:     0,
-                    }}>
-                      {item.body}
-                    </p>
+                      color: "rgba(250,247,240,0.6)", fontSize: "clamp(0.88rem,1.6vw,0.94rem)",
+                      lineHeight: 1.82, margin: 0,
+                    }}>{item.body}</p>
                   </div>
                 </motion.div>
               ))}
@@ -791,15 +682,10 @@ export default function Sustentabilidade() {
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════
-            MATERIAIS E QUALIDADE
-        ══════════════════════════════════════════════════════ */}
+        {/* ══════ MATERIAIS ══════ */}
         <section
           aria-label="Materiais de qualidade museu usados na preservação de flores"
-          style={{
-            padding:    "clamp(52px,8vw,84px) clamp(20px,5vw,48px)",
-            background: "linear-gradient(180deg, #FAF7F0 0%, #EDF2E8 100%)",
-          }}
+          style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", background: "linear-gradient(180deg, #FAF7F0 0%, #EDF2E8 100%)" }}
         >
           <div style={{ maxWidth: "1140px", margin: "0 auto" }}>
             <motion.div
@@ -810,11 +696,8 @@ export default function Sustentabilidade() {
             >
               <span className="eyebrow eyebrow-gold">Qualidade museu</span>
               <h2 style={{
-                fontFamily: "'TAN-MEMORIES', serif",
-                fontSize:   "clamp(1.8rem,4.5vw,3rem)",
-                color:      "#1E2D2A",
-                margin:     0,
-                lineHeight: 1.1,
+                fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,3rem)",
+                color: "#1E2D2A", margin: 0, lineHeight: 1.1,
               }}>
                 Materiais que respeitam<br/>
                 <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>a flor e o planeta</em>
@@ -831,59 +714,35 @@ export default function Sustentabilidade() {
                   transition={{ delay: i * 0.07, duration: 0.6 }}
                   className="card-hover"
                   style={{
-                    backgroundColor: "#fff",
-                    borderRadius:    "16px",
-                    padding:         "clamp(18px,2.5vw,26px)",
-                    border:          "1px solid rgba(61,107,94,0.08)",
-                    boxShadow:       "0 3px 16px rgba(30,45,42,0.05)",
+                    backgroundColor: "#fff", borderRadius: "16px",
+                    padding: "clamp(18px,2.5vw,26px)", border: "1px solid rgba(61,107,94,0.08)",
+                    boxShadow: "0 3px 16px rgba(30,45,42,0.05)",
                   }}
                 >
                   <div style={{
-                    width:           "44px",
-                    height:          "44px",
-                    borderRadius:    "12px",
-                    backgroundColor: `${mat.accent}12`,
-                    display:         "flex",
-                    alignItems:      "center",
-                    justifyContent:  "center",
-                    fontSize:        "1.25rem",
-                    marginBottom:    "14px",
-                  }} aria-hidden="true">
-                    {mat.icon}
-                  </div>
+                    width: "44px", height: "44px", borderRadius: "12px",
+                    backgroundColor: `${mat.accent}12`, display: "flex",
+                    alignItems: "center", justifyContent: "center",
+                    fontSize: "1.25rem", marginBottom: "14px",
+                  }} aria-hidden="true">{mat.icon}</div>
                   <h3 style={{
-                    fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize:   "1rem",
-                    color:      "#1E2D2A",
-                    margin:     "0 0 8px",
-                    lineHeight: 1.25,
-                  }}>
-                    {mat.title}
-                  </h3>
-                  <p style={{
-                    color:      "#5A6B60",
-                    fontSize:   "0.86rem",
-                    lineHeight: 1.72,
-                    margin:     0,
-                  }}>
-                    {mat.desc}
-                  </p>
+                    fontFamily: "'TAN-MEMORIES', serif", fontSize: "1rem",
+                    color: "#1E2D2A", margin: "0 0 8px", lineHeight: 1.25,
+                  }}>{mat.title}</h3>
+                  <p style={{ color: "#5A6B60", fontSize: "0.86rem", lineHeight: 1.72, margin: 0 }}>{mat.desc}</p>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════
-            EMBALAGEM / APCC
-        ══════════════════════════════════════════════════════ */}
+        {/* ══════ APCC ══════ */}
         <section
           aria-label="Embalagem artesanal em parceria com a APCC Coimbra"
           style={{
             padding:    "clamp(60px,10vw,96px) clamp(20px,5vw,48px)",
             background: "linear-gradient(155deg, #2D1F14 0%, #3A2A1C 45%, #1E2D2A 100%)",
-            position:   "relative",
-            overflow:   "hidden",
+            position:   "relative", overflow: "hidden",
           }}
         >
           <div aria-hidden="true" style={{
@@ -894,8 +753,6 @@ export default function Sustentabilidade() {
 
           <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
             <div className="apcc-split">
-
-              {/* Foto */}
               <motion.div
                 initial={{ opacity: 0, x: -22 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -905,20 +762,16 @@ export default function Sustentabilidade() {
               >
                 <div style={{ position: "relative", maxWidth: "360px", width: "100%" }}>
                   <div aria-hidden="true" style={{
-                    position:   "absolute", inset: 0,
-                    transform:  "translate(10px, 10px) rotate(1.5deg)",
-                    borderRadius:"18px",
-                    background: "rgba(184,149,74,0.1)",
-                    border:     "1px solid rgba(184,149,74,0.15)",
+                    position: "absolute", inset: 0,
+                    transform: "translate(10px, 10px) rotate(1.5deg)",
+                    borderRadius: "18px", background: "rgba(184,149,74,0.1)",
+                    border: "1px solid rgba(184,149,74,0.15)",
                   }}/>
                   <div style={{
-                    position:   "relative",
-                    transform:  "rotate(-1.5deg)",
-                    borderRadius:"18px",
-                    overflow:   "hidden",
-                    border:     "1px solid rgba(184,149,74,0.2)",
-                    aspectRatio:"3/4",
-                    boxShadow:  "0 28px 56px rgba(0,0,0,0.4)",
+                    position: "relative", transform: "rotate(-1.5deg)",
+                    borderRadius: "18px", overflow: "hidden",
+                    border: "1px solid rgba(184,149,74,0.2)",
+                    aspectRatio: "3/4", boxShadow: "0 28px 56px rgba(0,0,0,0.4)",
                   }}>
                     <img
                       src="/oficinaapcc.webp"
@@ -935,28 +788,13 @@ export default function Sustentabilidade() {
                         <div style={{
                           width: "34px", height: "34px", borderRadius: "8px",
                           backgroundColor: "#FAF7F0", flexShrink: 0,
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          overflow: "hidden",
+                          display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
                         }}>
-                          <img
-                            src="/apcc.webp"
-                            alt="Logótipo APCC Coimbra"
-                            style={{ width: "26px", height: "26px", objectFit: "contain" }}
-                          />
+                          <img src="/apcc.webp" alt="Logótipo APCC Coimbra" style={{ width: "26px", height: "26px", objectFit: "contain" }} />
                         </div>
                         <div>
-                          <p style={{
-                            margin: 0, fontWeight: 700, color: "#FAF7F0",
-                            fontSize: "0.72rem", fontFamily: "Roboto, sans-serif",
-                          }}>
-                            APCC Coimbra
-                          </p>
-                          <p style={{
-                            margin: "2px 0 0", color: "#B8954A",
-                            fontSize: "0.62rem", fontFamily: "Roboto, sans-serif",
-                          }}>
-                            Marca Mão Doida
-                          </p>
+                          <p style={{ margin: 0, fontWeight: 700, color: "#FAF7F0", fontSize: "0.72rem", fontFamily: "Roboto, sans-serif" }}>APCC Coimbra</p>
+                          <p style={{ margin: "2px 0 0", color: "#B8954A", fontSize: "0.62rem", fontFamily: "Roboto, sans-serif" }}>Marca Mão Doida</p>
                         </div>
                       </div>
                     </div>
@@ -964,7 +802,6 @@ export default function Sustentabilidade() {
                 </div>
               </motion.div>
 
-              {/* Texto */}
               <motion.div
                 initial={{ opacity: 0, x: 22 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -972,48 +809,26 @@ export default function Sustentabilidade() {
                 transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div style={{
-                  display:         "inline-flex", alignItems: "center", gap: "8px",
-                  background:      "rgba(184,149,74,0.1)",
-                  border:          "1px solid rgba(184,149,74,0.25)",
-                  borderRadius:    "100px", padding: "7px 16px",
-                  marginBottom:    "20px",
+                  display: "inline-flex", alignItems: "center", gap: "8px",
+                  background: "rgba(184,149,74,0.1)", border: "1px solid rgba(184,149,74,0.25)",
+                  borderRadius: "100px", padding: "7px 16px", marginBottom: "20px",
                 }}>
                   <span style={{ color: "#B8954A", fontSize: "0.9rem" }} aria-hidden="true">♥</span>
-                  <span style={{
-                    fontSize:      "0.58rem", fontWeight: 700, letterSpacing: "3px",
-                    textTransform: "uppercase", color: "#B8954A",
-                    fontFamily:    "Roboto, sans-serif",
-                  }}>Parceria solidária</span>
+                  <span style={{ fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: "#B8954A", fontFamily: "Roboto, sans-serif" }}>Parceria solidária</span>
                 </div>
 
-                <h2 style={{
-                  fontFamily: "'TAN-MEMORIES', serif",
-                  fontSize:   "clamp(2rem,4.5vw,3rem)",
-                  color:      "#FAF7F0",
-                  margin:     "0 0 16px",
-                  lineHeight: 1.1,
-                }}>
+                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>
                   A embalagem que<br/>
                   <em style={{ fontStyle: "italic", color: "#B8954A" }}>conta uma história</em>
                 </h2>
 
-                <p style={{
-                  color:      "rgba(250,247,240,0.7)",
-                  lineHeight: 1.85,
-                  fontSize:   "clamp(0.92rem,1.8vw,1rem)",
-                  margin:     "0 0 22px",
-                }}>
+                <p style={{ color: "rgba(250,247,240,0.7)", lineHeight: 1.85, fontSize: "clamp(0.92rem,1.8vw,1rem)", margin: "0 0 22px" }}>
                   A embalagem que protege o seu quadro não é comprada a um fornecedor
                   industrial. É feita à mão pelos utentes da Oficina de Tecelagem
                   de Almalaguês e Costura da APCC Coimbra, sob a marca Mão Doida.
                 </p>
 
-                <p style={{
-                  color:      "rgba(250,247,240,0.7)",
-                  lineHeight: 1.85,
-                  fontSize:   "clamp(0.92rem,1.8vw,1rem)",
-                  margin:     "0 0 28px",
-                }}>
+                <p style={{ color: "rgba(250,247,240,0.7)", lineHeight: 1.85, fontSize: "clamp(0.92rem,1.8vw,1rem)", margin: "0 0 28px" }}>
                   Cada saco é único. É pensado para ser reutilizado, para guardar
                   roupa, coisas de praia, ou o que couber. Não é uma embalagem
                   para deitar fora. É um objeto com alma, feito com cuidado por
@@ -1026,39 +841,25 @@ export default function Sustentabilidade() {
                   { icon: "🌿", title: "Arte consciente e local", desc: "Artesanato português, materiais sem desperdício, flores preservadas para durar décadas." },
                 ].map((item, i) => (
                   <div key={i} style={{
-                    display:     "flex",
-                    gap:         "14px",
-                    alignItems:  "flex-start",
-                    padding:     "13px 0",
+                    display: "flex", gap: "14px", alignItems: "flex-start", padding: "13px 0",
                     borderBottom: i < 2 ? "1px solid rgba(250,247,240,0.07)" : "none",
                   }}>
                     <span style={{ fontSize: "1.05rem", marginTop: "2px", flexShrink: 0 }} aria-hidden="true">{item.icon}</span>
                     <div>
-                      <p style={{
-                        margin: "0 0 3px", fontWeight: 700, color: "#FAF7F0",
-                        fontSize: "0.88rem", fontFamily: "Roboto, sans-serif",
-                      }}>{item.title}</p>
-                      <p style={{ margin: 0, color: "rgba(250,247,240,0.55)", fontSize: "0.84rem", lineHeight: 1.65 }}>
-                        {item.desc}
-                      </p>
+                      <p style={{ margin: "0 0 3px", fontWeight: 700, color: "#FAF7F0", fontSize: "0.88rem", fontFamily: "Roboto, sans-serif" }}>{item.title}</p>
+                      <p style={{ margin: 0, color: "rgba(250,247,240,0.55)", fontSize: "0.84rem", lineHeight: 1.65 }}>{item.desc}</p>
                     </div>
                   </div>
                 ))}
               </motion.div>
-
             </div>
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════
-            PILARES DA SUSTENTABILIDADE
-        ══════════════════════════════════════════════════════ */}
+        {/* ══════ PILARES ══════ */}
         <section
           aria-label="Os quatro pilares da sustentabilidade da Flores à Beira-Rio"
-          style={{
-            padding:         "clamp(52px,8vw,80px) clamp(20px,5vw,48px)",
-            backgroundColor: "#FAF7F0",
-          }}
+          style={{ padding: "clamp(52px,8vw,80px) clamp(20px,5vw,48px)", backgroundColor: "#FAF7F0" }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
             <motion.div
@@ -1068,13 +869,7 @@ export default function Sustentabilidade() {
               style={{ textAlign: "center", marginBottom: "clamp(24px,4vw,40px)" }}
             >
               <span className="eyebrow">A nossa prática</span>
-              <h2 style={{
-                fontFamily: "'TAN-MEMORIES', serif",
-                fontSize:   "clamp(1.8rem,4.5vw,3rem)",
-                color:      "#1E2D2A",
-                margin:     0,
-                lineHeight: 1.1,
-              }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,3rem)", color: "#1E2D2A", margin: 0, lineHeight: 1.1 }}>
                 Quatro pilares,<br/>
                 <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>uma filosofia coerente</em>
               </h2>
@@ -1089,53 +884,27 @@ export default function Sustentabilidade() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08, duration: 0.65 }}
                   style={{
-                    padding:     "clamp(28px,3.5vw,36px) clamp(20px,3vw,32px)",
+                    padding: "clamp(28px,3.5vw,36px) clamp(20px,3vw,32px)",
                     borderBottom: i < 2 ? "1px solid rgba(61,107,94,0.09)" : "none",
                     borderRight:  i % 2 === 0 ? "1px solid rgba(61,107,94,0.09)" : "none",
                   }}
                 >
                   <div style={{
-                    fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize:   "clamp(3rem,7vw,5rem)",
-                    color:      `${p.color}18`,
-                    lineHeight: 0.9,
-                    marginBottom:"10px",
-                    userSelect: "none",
-                  }} aria-hidden="true">
-                    {p.n}
-                  </div>
-                  <h3 style={{
-                    fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize:   "clamp(1.1rem,2.2vw,1.4rem)",
-                    color:      "#1E2D2A",
-                    margin:     "0 0 12px",
-                    lineHeight: 1.2,
-                  }}>
-                    {p.title}
-                  </h3>
-                  <p style={{
-                    color:      "#5A6B60",
-                    fontSize:   "clamp(0.88rem,1.6vw,0.94rem)",
-                    lineHeight: 1.82,
-                    margin:     0,
-                  }}>
-                    {p.body}
-                  </p>
+                    fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3rem,7vw,5rem)",
+                    color: `${p.color}18`, lineHeight: 0.9, marginBottom: "10px", userSelect: "none",
+                  }} aria-hidden="true">{p.n}</div>
+                  <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.1rem,2.2vw,1.4rem)", color: "#1E2D2A", margin: "0 0 12px", lineHeight: 1.2 }}>{p.title}</h3>
+                  <p style={{ color: "#5A6B60", fontSize: "clamp(0.88rem,1.6vw,0.94rem)", lineHeight: 1.82, margin: 0 }}>{p.body}</p>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════
-            CICLO DE VIDA — linha do tempo
-        ══════════════════════════════════════════════════════ */}
+        {/* ══════ CICLO DE VIDA ══════ */}
         <section
           aria-label="Ciclo de vida de um quadro da Flores à Beira-Rio do bouquet ao planeta"
-          style={{
-            padding:    "clamp(52px,8vw,84px) clamp(20px,5vw,48px)",
-            background: "linear-gradient(180deg, #EDF2E8 0%, #FAF7F0 100%)",
-          }}
+          style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", background: "linear-gradient(180deg, #EDF2E8 0%, #FAF7F0 100%)" }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
             <motion.div
@@ -1145,13 +914,7 @@ export default function Sustentabilidade() {
               style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}
             >
               <span className="eyebrow eyebrow-green">Do bouquet ao planeta</span>
-              <h2 style={{
-                fontFamily: "'TAN-MEMORIES', serif",
-                fontSize:   "clamp(1.8rem,4.5vw,3rem)",
-                color:      "#1E2D2A",
-                margin:     0,
-                lineHeight: 1.1,
-              }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,3rem)", color: "#1E2D2A", margin: 0, lineHeight: 1.1 }}>
                 Um ciclo de vida<br/>
                 <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>honesto e completo</em>
               </h2>
@@ -1159,11 +922,11 @@ export default function Sustentabilidade() {
 
             <div className="lifecycle-grid" style={{ position: "relative" }}>
               {[
-                { icon: "🌸", label: "As flores crescem", desc: "Na natureza, sem intervenção nossa." },
+                { icon: "🌸", label: "As flores crescem",    desc: "Na natureza, sem intervenção nossa." },
                 { icon: "💐", label: "O seu momento especial", desc: "Casamento, batizado, aniversário." },
-                { icon: "🤲", label: "Chegam ao atelier", desc: "Em até 5 dias, ainda frescas." },
-                { icon: "🖼️", label: "Arte para décadas", desc: "Prensagem, composição, moldura museu." },
-                { icon: "🌍", label: "Fim de vida digno", desc: "Madeira, vidro e papel voltam à terra." },
+                { icon: "🤲", label: "Chegam ao atelier",    desc: "Em até 5 dias, ainda frescas." },
+                { icon: "🖼️", label: "Arte para décadas",     desc: "Prensagem, composição, moldura museu." },
+                { icon: "🌍", label: "Fim de vida digno",     desc: "Madeira, vidro e papel voltam à terra." },
               ].map((step, i) => (
                 <motion.div
                   key={i}
@@ -1172,43 +935,19 @@ export default function Sustentabilidade() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.6 }}
                   style={{
-                    textAlign:    "center",
-                    padding:      "clamp(16px,2.5vw,24px) clamp(10px,2vw,16px)",
+                    textAlign: "center",
+                    padding: "clamp(16px,2.5vw,24px) clamp(10px,2vw,16px)",
                     borderBottom: "1px solid rgba(61,107,94,0.08)",
                   }}
                 >
                   <div style={{
-                    width:           "52px",
-                    height:          "52px",
-                    borderRadius:    "50%",
-                    backgroundColor: "rgba(61,107,94,0.08)",
-                    border:          "1.5px solid rgba(61,107,94,0.15)",
-                    display:         "flex",
-                    alignItems:      "center",
-                    justifyContent:  "center",
-                    fontSize:        "1.4rem",
-                    margin:          "0 auto 12px",
-                  }} aria-hidden="true">
-                    {step.icon}
-                  </div>
-                  <p style={{
-                    fontFamily: "'TAN-MEMORIES', serif",
-                    fontSize:   "0.95rem",
-                    color:      "#1E2D2A",
-                    margin:     "0 0 6px",
-                    lineHeight: 1.2,
-                  }}>
-                    {step.label}
-                  </p>
-                  <p style={{
-                    color:      "#9BA89F",
-                    fontSize:   "0.78rem",
-                    lineHeight: 1.6,
-                    margin:     0,
-                    fontFamily: "Roboto, sans-serif",
-                  }}>
-                    {step.desc}
-                  </p>
+                    width: "52px", height: "52px", borderRadius: "50%",
+                    backgroundColor: "rgba(61,107,94,0.08)", border: "1.5px solid rgba(61,107,94,0.15)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: "1.4rem", margin: "0 auto 12px",
+                  }} aria-hidden="true">{step.icon}</div>
+                  <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.95rem", color: "#1E2D2A", margin: "0 0 6px", lineHeight: 1.2 }}>{step.label}</p>
+                  <p style={{ color: "#9BA89F", fontSize: "0.78rem", lineHeight: 1.6, margin: 0, fontFamily: "Roboto, sans-serif" }}>{step.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -1219,23 +958,17 @@ export default function Sustentabilidade() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
               style={{
-                textAlign:  "center",
-                marginTop:  "clamp(20px,3vw,32px)",
-                color:      "#9BA89F",
-                fontSize:   "0.82rem",
-                lineHeight: 1.7,
-                fontStyle:  "italic",
-                fontFamily: "Roboto, sans-serif",
+                textAlign: "center", marginTop: "clamp(20px,3vw,32px)",
+                color: "#9BA89F", fontSize: "0.82rem", lineHeight: 1.7,
+                fontStyle: "italic", fontFamily: "Roboto, sans-serif",
               }}
             >
-              Nenhum plástico no processo de preservação. Nenhum produto petroquímico. Nenhum resíduo tóxico.
+              Nenhum produto petroquímico. Nenhum resíduo tóxico. Nenhum plástico no processo de preservação.
             </motion.p>
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════
-            CTA FINAL
-        ══════════════════════════════════════════════════════ */}
+        {/* ══════ CTA ══════ */}
         <section
           aria-label="Reservar preservação sustentável de flores"
           style={{
@@ -1252,47 +985,25 @@ export default function Sustentabilidade() {
             style={{ maxWidth: "580px", margin: "0 auto" }}
           >
             <div aria-hidden="true" style={{
-              width:      "44px", height: "1px",
-              margin:     "0 auto 28px",
+              width: "44px", height: "1px", margin: "0 auto 28px",
               background: "linear-gradient(to right, transparent, #3D6B5E, transparent)",
             }}/>
             <span className="eyebrow eyebrow-green">Pronta para começar?</span>
-            <h2 style={{
-              fontFamily: "'TAN-MEMORIES', serif",
-              fontSize:   "clamp(2rem,5.5vw,3.5rem)",
-              color:      "#1E2D2A",
-              margin:     "0 0 16px",
-              lineHeight: 1.1,
-            }}>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5.5vw,3.5rem)", color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1 }}>
               Preserve as suas flores<br/>
               <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>da forma mais cuidadosa</em>
             </h2>
-            <p style={{
-              color:      "#5A6B60",
-              lineHeight: 1.88,
-              fontSize:   "clamp(0.9rem,2vw,1rem)",
-              margin:     "0 0 34px",
-            }}>
+            <p style={{ color: "#5A6B60", lineHeight: 1.88, fontSize: "clamp(0.9rem,2vw,1rem)", margin: "0 0 34px" }}>
               Sem resina, sem sílica, sem compromissos. Apenas flores,
               tempo e artesanato botânico, da forma como sempre deveria ser feito.
             </p>
 
             <div className="cta-row" style={{ marginBottom: "28px" }}>
-              <a href={FORM} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                Reservar a Minha Data
-              </a>
-              <a href="/como-funciona" className="btn-outline">
-                Ver Como Funciona
-              </a>
+              <a href={FORM} target="_blank" rel="noopener noreferrer" className="btn-primary">Reservar a Minha Data</a>
+              <a href="/como-funciona" className="btn-outline">Ver Como Funciona</a>
             </div>
 
-            <div style={{
-              display:        "flex",
-              flexWrap:       "wrap",
-              justifyContent: "center",
-              gap:            "20px",
-              fontSize:       "0.82rem",
-            }}>
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px", fontSize: "0.82rem" }}>
               {[
                 { href: "/opcoes-e-precos",      label: "Ver preços" },
                 { href: "/perguntas-frequentes", label: "Perguntas frequentes" },
