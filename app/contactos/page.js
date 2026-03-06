@@ -126,7 +126,7 @@ export default function ContactosEquipa() {
           overflow: hidden;
         }
 
-        /* ── Redes sociais: grelha 2 colunas no mobile, 4 no desktop ── */
+        /* ── Redes sociais ── */
         .socials-row {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -146,62 +146,103 @@ export default function ContactosEquipa() {
         }
 
         /* ════════════════════════════════════════
-           EQUIPA — linha com foto-cartão à esquerda
-           e bio à direita
+           EQUIPA — mobile: linha horizontal
+                    desktop: grelha 3 colunas
         ════════════════════════════════════════ */
-        .team-row {
+
+        /* Contentor geral */
+        .team-list {
+          display: flex;
+          flex-direction: column;
+          gap: clamp(14px, 2.5vw, 22px);
+        }
+        @media (min-width: 640px) {
+          .team-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(10px, 2vw, 20px);
+          }
+        }
+
+        /* ── MOBILE: linha com foto à esquerda e bio à direita ── */
+        .team-card {
           display: flex;
           align-items: stretch;
-          gap: 0;
           border-radius: 20px;
           overflow: hidden;
           background: rgba(250,247,240,0.04);
           border: 1px solid rgba(250,247,240,0.08);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
-          margin-bottom: clamp(14px, 2.5vw, 22px);
         }
-        .team-row:last-child { margin-bottom: 0; }
-        .team-row:hover {
+        .team-card:hover {
           transform: translateY(-4px);
           box-shadow: 0 20px 48px rgba(0,0,0,0.35);
         }
 
-        .team-photo-card {
+        /* Foto mobile: coluna estreita à esquerda */
+        .team-photo-wrap {
           position: relative;
           flex-shrink: 0;
           width: clamp(120px, 38vw, 200px);
         }
 
-        .team-photo-card img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-          transition: transform 0.7s ease;
-        }
-        .team-row:hover .team-photo-card img {
-          transform: scale(1.05);
-        }
-
-        .team-photo-overlay {
-          position: absolute;
-          bottom: 0; left: 0; right: 0;
-          padding: 14px 12px;
-          background: linear-gradient(
-            to top,
-            rgba(20,12,8,0.96) 0%,
-            rgba(20,12,8,0.5) 55%,
-            transparent 100%
-          );
-        }
-
+        /* Bio mobile: à direita */
         .team-bio-col {
           flex: 1;
           min-width: 0;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding: clamp(16px, 3vw, 28px);
+          padding: clamp(16px, 3vw, 24px);
+        }
+        /* No desktop a bio fica abaixo da foto — esconde-se a coluna lateral */
+        @media (min-width: 640px) {
+          .team-bio-col {
+            display: none;
+          }
+        }
+
+        /* ── DESKTOP: bloco da bio abaixo da foto ── */
+        .team-bio-below {
+          display: none;
+          padding: 20px 20px 24px;
+        }
+        @media (min-width: 640px) {
+          .team-card {
+            flex-direction: column;
+          }
+          .team-photo-wrap {
+            width: 100%;
+            aspect-ratio: 3/4;
+          }
+          .team-bio-below {
+            display: block;
+          }
+        }
+
+        /* Imagem */
+        .team-photo-wrap img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.7s ease;
+        }
+        .team-card:hover .team-photo-wrap img {
+          transform: scale(1.05);
+        }
+
+        /* Overlay com nome e cargo na foto */
+        .team-photo-overlay {
+          position: absolute;
+          bottom: 0; left: 0; right: 0;
+          padding: 14px 12px;
+          background: linear-gradient(
+            to top,
+            rgba(42,31,22,0.96) 0%,
+            rgba(42,31,22,0.5) 55%,
+            transparent 100%
+          );
         }
 
         /* ── CTAs ── */
@@ -424,6 +465,8 @@ export default function ContactosEquipa() {
 
       {/* ════════════════════════════════════════════
           2. EQUIPA
+          Mobile: linhas horizontais (foto esq + bio dir)
+          Desktop: grelha 3 colunas (foto grande + bio abaixo)
       ════════════════════════════════════════════ */}
       <section
         aria-label="A nossa equipa"
@@ -439,7 +482,7 @@ export default function ContactosEquipa() {
           pointerEvents: "none",
         }} />
 
-        <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(40px,7vw,64px)" }}>
               <span style={{
@@ -471,51 +514,68 @@ export default function ContactosEquipa() {
             </div>
           </Reveal>
 
-          {TEAM.map((member, i) => (
-            <Reveal key={i} delay={i * 0.12}>
-              <div className="team-row">
-                <div className="team-photo-card">
-                  <img
-                    src={member.img}
-                    alt={`${member.name} — ${member.role} na Flores à Beira-Rio`}
-                    loading="lazy"
-                  />
-                  <div className="team-photo-overlay">
-                    <p style={{
-                      fontFamily: "'TAN-MEMORIES', serif",
-                      fontSize: "clamp(1rem, 3.5vw, 1.35rem)",
-                      color: "#FAF7F0", margin: "0 0 5px", lineHeight: 1.1,
-                      textShadow: "0 2px 8px rgba(0,0,0,0.4)",
-                    }}>
-                      {member.name}
-                    </p>
-                    <span style={{
-                      display: "inline-block",
-                      fontSize: "0.42rem", fontWeight: 700,
-                      letterSpacing: "1.8px", textTransform: "uppercase",
-                      color: "#FAF7F0", fontFamily: "Roboto, sans-serif",
-                      backgroundColor: member.accent,
-                      padding: "3px 10px", borderRadius: 100,
-                    }}>
-                      {member.role}
-                    </span>
-                  </div>
-                </div>
+          <div className="team-list">
+            {TEAM.map((member, i) => (
+              <Reveal key={i} delay={i * 0.12}>
+                <div className="team-card">
 
-                <div className="team-bio-col">
-                  <p style={{
-                    fontFamily: "Roboto, sans-serif", fontWeight: 300,
-                    fontSize: "clamp(0.8rem, 2.2vw, 0.92rem)",
-                    lineHeight: 1.75,
-                    color: "rgba(250,247,240,0.6)",
-                    margin: 0,
-                  }}>
-                    {member.bio}
-                  </p>
+                  {/* Foto com nome e cargo sobrepostos (visível sempre) */}
+                  <div className="team-photo-wrap">
+                    <img
+                      src={member.img}
+                      alt={`${member.name} — ${member.role} na Flores à Beira-Rio`}
+                      loading="lazy"
+                    />
+                    <div className="team-photo-overlay">
+                      <p style={{
+                        fontFamily: "'TAN-MEMORIES', serif",
+                        fontSize: "clamp(1rem, 3.5vw, 1.6rem)",
+                        color: "#FAF7F0", margin: "0 0 6px", lineHeight: 1.1,
+                        textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+                      }}>
+                        {member.name}
+                      </p>
+                      <span style={{
+                        display: "inline-block",
+                        fontSize: "0.5rem", fontWeight: 700,
+                        letterSpacing: "2px", textTransform: "uppercase",
+                        color: "#FAF7F0", fontFamily: "Roboto, sans-serif",
+                        backgroundColor: member.accent,
+                        padding: "4px 12px", borderRadius: 100,
+                      }}>
+                        {member.role}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Bio à direita — só no mobile */}
+                  <div className="team-bio-col">
+                    <p style={{
+                      fontFamily: "Roboto, sans-serif", fontWeight: 300,
+                      fontSize: "clamp(0.8rem, 2.2vw, 0.92rem)",
+                      lineHeight: 1.75,
+                      color: "rgba(250,247,240,0.6)",
+                      margin: 0,
+                    }}>
+                      {member.bio}
+                    </p>
+                  </div>
+
+                  {/* Bio abaixo da foto — só no desktop */}
+                  <div className="team-bio-below">
+                    <p style={{
+                      fontFamily: "Roboto, sans-serif", fontWeight: 300,
+                      fontSize: "0.86rem", lineHeight: 1.72,
+                      color: "rgba(250,247,240,0.55)", margin: 0,
+                    }}>
+                      {member.bio}
+                    </p>
+                  </div>
+
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
