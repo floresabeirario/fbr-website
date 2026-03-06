@@ -184,6 +184,7 @@ export default function ContactosEquipa() {
           position: relative;
           flex-shrink: 0;
           width: clamp(120px, 38vw, 200px);
+          overflow: hidden;
         }
 
         /* Bio mobile: à direita */
