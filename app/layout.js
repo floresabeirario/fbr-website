@@ -276,7 +276,7 @@ function SiteFooter() {
               ))}
             </div>
             <div style={{ display: "flex", gap: "14px" }}>
-              <a href="/pt" style={{ ...linkStyle, color: "#FAF7F0", fontWeight: "600", fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}>
+              <a href="/" style={{ ...linkStyle, color: "#FAF7F0", fontWeight: "600", fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}>
                 PT <FlagPT/>
               </a>
               <a href="/en" style={{ ...linkStyle, fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}
@@ -328,7 +328,6 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
       transition={{ delay, duration: 0.24 }}
       style={{ borderBottom: "1px solid rgba(250,247,240,0.07)" }}
     >
-      {/* Linha principal — toque abre/fecha */}
       <button
         onClick={() => setOpen(o => !o)}
         aria-expanded={open}
@@ -354,7 +353,6 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
         }}>
           {menu.label}
         </span>
-        {/* Chevron rotativo */}
         <motion.svg
           width="16" height="16" viewBox="0 0 16 16" fill="none"
           animate={{ rotate: open ? 180 : 0 }}
@@ -366,7 +364,6 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
         </motion.svg>
       </button>
 
-      {/* Sub-itens */}
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
@@ -376,7 +373,6 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
             transition={{ duration: 0.26, ease: [0.25, 0.1, 0.25, 1] }}
             style={{ overflow: "hidden" }}
           >
-            {/* Link "Ver tudo" */}
             <a
               href={menu.href}
               onClick={onClose}
@@ -397,7 +393,6 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
             >
               Ver tudo →
             </a>
-            {/* Lista de páginas */}
             {menu.items.map((item, i) => (
               <a
                 key={i}
@@ -435,6 +430,16 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
+  // ─── Hreflang: calcula URLs canónicas PT e EN ─────────────────────────────
+  const BASE_URL = "https://floresabeirario.pt";
+  const isEnPage = pathname.startsWith("/en");
+  // caminho PT: remove o prefixo /en se existir
+  const ptPath = isEnPage ? (pathname.replace(/^\/en/, "") || "/") : pathname;
+  // caminho EN: adiciona /en se ainda não existir
+  const enPath = isEnPage ? pathname : `/en${pathname}`;
+  const ptUrl  = `${BASE_URL}${ptPath}`;
+  const enUrl  = `${BASE_URL}${enPath}`;
+
   useEffect(() => {
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
@@ -458,9 +463,15 @@ export default function RootLayout({ children }) {
   const shouldShowScrolled = scrolled || !isHome;
 
   return (
-    <html lang="pt">
+    <html lang={isEnPage ? "en" : "pt"}>
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+
+        {/* ─── Hreflang: indica ao Google as versões PT e EN ─────────────── */}
+        <link rel="alternate" hrefLang="pt" href={ptUrl} />
+        <link rel="alternate" hrefLang="en" href={enUrl} />
+        <link rel="alternate" hrefLang="x-default" href={ptUrl} />
+
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
             font-family: 'TAN-MEMORIES';
@@ -473,7 +484,6 @@ export default function RootLayout({ children }) {
             font-weight: normal; font-style: italic; font-display: swap;
           }
 
-          /* ── Crítico: tudo antes do primeiro paint ── */
           *, *::before, *::after { box-sizing: border-box; }
           @media (max-width: 1279px) { .desktop-only { display: none !important; } }
           @media (min-width: 1280px) { .mobile-only  { display: none !important; } }
@@ -584,7 +594,8 @@ export default function RootLayout({ children }) {
 
             {/* LEFT */}
             <div className="nav-left">
-              <div className="lang-container desktop-only" style={{ position: "relative", display: "flex", alignItems: "center" }}>                <a href="/pt" className="nav-link lang-trigger" style={{
+              <div className="lang-container desktop-only" style={{ position: "relative", display: "flex", alignItems: "center" }}>
+                <a href="/" className="nav-link lang-trigger" style={{
                   fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
                   letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
                   display: "flex", alignItems: "center", cursor: "pointer"
@@ -653,7 +664,6 @@ export default function RootLayout({ children }) {
         <AnimatePresence>
           {isOpen && (
             <>
-              {/* Backdrop */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -668,7 +678,6 @@ export default function RootLayout({ children }) {
                 }}
               />
 
-              {/* Panel */}
               <motion.div
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
@@ -685,7 +694,6 @@ export default function RootLayout({ children }) {
                   overflowY: "auto",
                 }}
               >
-                {/* Cabeçalho */}
                 <div style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -722,24 +730,17 @@ export default function RootLayout({ children }) {
                   </button>
                 </div>
 
-                {/* Lista principal */}
                 <nav style={{ flex: 1, overflowY: "auto", padding: "6px 0" }}>
-
-                  {/* Accordion: Preservação de Flores */}
                   <MobileAccordion
                     menu={NAV_PRESERVACAO}
                     onClose={() => setIsOpen(false)}
                     delay={0.06}
                   />
-
-                  {/* Accordion: Momentos Especiais */}
                   <MobileAccordion
                     menu={NAV_MOMENTOS}
                     onClose={() => setIsOpen(false)}
                     delay={0.10}
                   />
-
-                  {/* Links simples — mesmo nível que os accordions */}
                   {[
                     { name: "Recriação de Bouquet", href: "/recriacao",           delay: 0.15 },
                     { name: "Oferecer Preservação", href: "/vale-presente",        delay: 0.18 },
@@ -774,7 +775,6 @@ export default function RootLayout({ children }) {
                   ))}
                 </nav>
 
-                {/* Rodapé */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -814,7 +814,7 @@ export default function RootLayout({ children }) {
                     <IconWhatsApp/> +351 934 680 300
                   </a>
                   <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>
-                    <a href="/pt" style={{ color: "#FAF7F0", fontSize: "0.66rem", fontFamily: "Roboto, sans-serif", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", display: "flex", alignItems: "center", textDecoration: "none" }}>
+                    <a href="/" style={{ color: "#FAF7F0", fontSize: "0.66rem", fontFamily: "Roboto, sans-serif", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", display: "flex", alignItems: "center", textDecoration: "none" }}>
                       PT <FlagPT/>
                     </a>
                     <a href="/en" style={{ color: "rgba(250,247,240,0.28)", fontSize: "0.66rem", fontFamily: "Roboto, sans-serif", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", display: "flex", alignItems: "center", textDecoration: "none" }}
@@ -832,7 +832,6 @@ export default function RootLayout({ children }) {
 
         <main>{children}</main>
         <SiteFooter/>
-
 
       </body>
     </html>
