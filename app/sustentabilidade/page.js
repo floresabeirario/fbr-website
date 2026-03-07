@@ -50,7 +50,7 @@ const METHODS = [
       { good: true,  text: "Processo 100% mecânico. Não gera resíduos tóxicos." },
       { good: true,  text: "Materiais biodegradáveis no fim de vida útil." },
     ],
-    verdict:      "A escolha mais sustentável, mais duradoura e mais cuidadosa para as flores e para o planeta.",
+    verdict:      "A escolha mais sustentável e mais cuidadosa para as flores e para o planeta.",
     verdictColor: "#3D6B5E",
     highlight:    true,
   },
@@ -101,7 +101,7 @@ const METHODS = [
       { good: false, text: "Versões com cloreto de cobalto são tóxicas para a vida aquática." },
       { good: false, text: "Exige o uso de máscara durante o manuseio." },
       { good: false, text: "Perdem cor rapidamente sem proteção UV adequada." },
-      { good: false, text: "A secagem ao ar livre é uma alternativa, mas não preserva as cores originais. Por isso não a consideramos um método de preservação profissional." },
+      { good: false, text: "A secagem ao ar livre é uma alternativa, mas não preserva as cores originais, pelo que não a consideramos um método de preservação comparável aos métodos profissionais." },
     ],
     verdict:      "Tecnicamente interessante, ecologicamente questionável.",
     verdictColor: "#9BA89F",
@@ -125,13 +125,13 @@ const VALUES = [
   {
     icon: "🌿",
     title: "Zero químicos agressivos",
-    desc: "A prensagem botânica é puramente mecânica: pressão, temperatura controlada e tempo. Sem solventes, sem resinas, sem substâncias que comprometam a flor ou o ambiente.",
+    desc: "A prensagem botânica não utiliza solventes, resinas nem substâncias sintéticas. O processo combina pressão, calor controlado e tempo, com recurso a desidratadores e, em alguns casos, microondas para folhagens. Nenhuma substância é adicionada à flor.",
     accent: "#8BA888",
   },
   {
     icon: "🔁",
     title: "Embalagem pensada para reutilizar",
-    desc: "Todos os elementos da embalagem foram pensados para ter uma segunda vida. Do saco artesanal ao cartão, nada é feito para ser deitado fora.",
+    desc: "Tentamos que a maior parte dos elementos da embalagem tenham uma segunda vida, e que o mínimo de resíduos necessários para o embalamento seja logo descartado. Cada escolha de material começa com esta pergunta.",
     accent: "#3D6B5E",
   },
   {
@@ -142,8 +142,8 @@ const VALUES = [
   },
   {
     icon: "📦",
-    title: "O único plástico que não conseguimos evitar",
-    desc: "Quando os quadros são enviados por correio, usamos enchimento insuflável para proteger o vidro durante o transporte. A segurança da peça tem de vir primeiro. Estamos ativamente à procura de alternativas sustentáveis para esta situação.",
+    title: "O plástico que ainda usamos",
+    desc: "Para garantir que o seu quadro chega em perfeitas condições, ainda utilizamos enchimento insuflável para proteger o vidro. Atualmente, este é o único plástico nas nossas embalagens, pois a integridade da sua peça durante o transporte é a nossa prioridade. O nosso compromisso mantém-se: estamos ativamente a testar e a procurar alternativas 100% sustentáveis que garantam a mesma segurança.",
     accent: "#9BA89F",
   },
   {
