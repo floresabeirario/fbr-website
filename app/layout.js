@@ -119,6 +119,53 @@ const DesktopDropdown = ({ menu, scrolled }) => {
   );
 };
 
+// ─── Footer Accordion (mobile) ────────────────────────────────────────────────
+const FooterAccordion = ({ label, children }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div style={{ borderBottom: "1px solid rgba(250,247,240,0.07)" }}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        style={{
+          width: "100%", display: "flex", alignItems: "center",
+          justifyContent: "space-between", padding: "14px 0",
+          background: "none", border: "none", cursor: "pointer",
+        }}
+      >
+        <span style={{
+          fontSize: "0.52rem", letterSpacing: "3.5px", textTransform: "uppercase",
+          color: "rgba(250,247,240,0.4)", fontFamily: "Roboto, sans-serif",
+        }}>
+          {label}
+        </span>
+        <motion.svg
+          width="12" height="12" viewBox="0 0 12 12" fill="none"
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.22, ease: "easeInOut" }}
+          aria-hidden="true"
+        >
+          <path d="M2 4.5L6 8.5L10 4.5" stroke="rgba(250,247,240,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </motion.svg>
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.24, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{ overflow: "hidden" }}
+          >
+            <div style={{ paddingBottom: "14px" }}>
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 // ─── Footer ───────────────────────────────────────────────────────────────────
 const FORM_URL = "https://wkf.ms/3RfoNAc";
 
@@ -140,10 +187,10 @@ function SiteFooter() {
       { href: "/preservar-flores-pedido-casamento",    label: "Pedido de Casamento" },
     ],
     ajuda: [
-      { href: "/perguntas-frequentes", label: "Perguntas Frequentes" },
-      { href: "/contactos",            label: "Contactos e Equipa" },
-      { href: "/acompanhar-encomenda", label: "Acompanhar Encomenda" },
-      { href: "/blog",                 label: "Blog" },
+      { href: "/perguntas-frequentes",              label: "Perguntas Frequentes" },
+      { href: "/contactos",                         label: "Contactos e Equipa" },
+      { href: "https://status.floresabeirario.pt",  label: "Acompanhar Encomenda", external: true },
+      { href: "/blog",                              label: "Blog" },
     ],
     legal: [
       { href: "/politica-de-privacidade", label: "Política de Privacidade" },
@@ -171,6 +218,20 @@ function SiteFooter() {
     fontFamily: "Roboto, sans-serif",
     display: "block",
   };
+
+  const renderLinks = (list) =>
+    list.map((l, i) => (
+      <a
+        key={i}
+        href={l.href}
+        {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        style={linkStyle}
+        onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+        onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
+      >
+        {l.label}
+      </a>
+    ));
 
   return (
     <footer style={{ backgroundColor: "#0F1E1A", color: "#FAF7F0", position: "relative" }}>
@@ -226,7 +287,8 @@ function SiteFooter() {
 
       <div style={{ height: "1px", background: "linear-gradient(to right, transparent, rgba(250,247,240,0.1), transparent)" }}/>
 
-      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "48px 40px" }}>
+      {/* ─── Desktop links grid ─────────────────────────────────── */}
+      <div className="footer-desktop" style={{ maxWidth: "1100px", margin: "0 auto", padding: "48px 40px" }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
@@ -235,45 +297,25 @@ function SiteFooter() {
           <div>
             <span style={labelStyle}>Serviços</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              {links.servicos.map((l, i) => (
-                <a key={i} href={l.href} style={linkStyle}
-                  onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
-                >{l.label}</a>
-              ))}
+              {renderLinks(links.servicos)}
             </div>
           </div>
           <div>
             <span style={labelStyle}>Momentos</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              {links.momentos.map((l, i) => (
-                <a key={i} href={l.href} style={linkStyle}
-                  onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
-                >{l.label}</a>
-              ))}
+              {renderLinks(links.momentos)}
             </div>
           </div>
           <div>
             <span style={labelStyle}>Ajuda</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              {links.ajuda.map((l, i) => (
-                <a key={i} href={l.href} style={linkStyle}
-                  onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
-                >{l.label}</a>
-              ))}
+              {renderLinks(links.ajuda)}
             </div>
           </div>
           <div>
             <span style={labelStyle}>Legal</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "24px" }}>
-              {links.legal.map((l, i) => (
-                <a key={i} href={l.href} style={linkStyle}
-                  onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                  onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
-                >{l.label}</a>
-              ))}
+              {renderLinks(links.legal)}
             </div>
             <div style={{ display: "flex", gap: "14px" }}>
               <a href="/" style={{ ...linkStyle, color: "#FAF7F0", fontWeight: "600", fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}>
@@ -300,6 +342,51 @@ function SiteFooter() {
               >+351 934 680 300</a>
               <span style={{ ...linkStyle, color: "rgba(250,247,240,0.28)", cursor: "default" }}>Coimbra, Portugal</span>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ─── Mobile links acordeão ──────────────────────────────── */}
+      <div className="footer-mobile" style={{ padding: "8px 24px 24px" }}>
+        <FooterAccordion label="Serviços">
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            {renderLinks(links.servicos)}
+          </div>
+        </FooterAccordion>
+        <FooterAccordion label="Momentos">
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            {renderLinks(links.momentos)}
+          </div>
+        </FooterAccordion>
+        <FooterAccordion label="Ajuda">
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            {renderLinks(links.ajuda)}
+          </div>
+        </FooterAccordion>
+        <FooterAccordion label="Legal">
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            {renderLinks(links.legal)}
+          </div>
+        </FooterAccordion>
+        <div style={{ paddingTop: "20px", display: "flex", flexDirection: "column", gap: "8px" }}>
+          <a href="mailto:info@floresabeirario.pt" style={{ ...linkStyle, fontSize: "0.8rem" }}
+            onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+            onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
+          >info@floresabeirario.pt</a>
+          <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer" style={{ ...linkStyle, fontSize: "0.8rem" }}
+            onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+            onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
+          >+351 934 680 300</a>
+          <div style={{ display: "flex", gap: "16px", paddingTop: "4px" }}>
+            <a href="/" style={{ ...linkStyle, color: "#FAF7F0", fontWeight: "600", fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}>
+              PT <FlagPT/>
+            </a>
+            <a href="/en" style={{ ...linkStyle, fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}
+              onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
+              onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
+            >
+              EN <FlagEN/>
+            </a>
           </div>
         </div>
       </div>
@@ -430,12 +517,9 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  // ─── Hreflang: calcula URLs canónicas PT e EN ─────────────────────────────
   const BASE_URL = "https://floresabeirario.pt";
   const isEnPage = pathname.startsWith("/en");
-  // caminho PT: remove o prefixo /en se existir
   const ptPath = isEnPage ? (pathname.replace(/^\/en/, "") || "/") : pathname;
-  // caminho EN: adiciona /en se ainda não existir
   const enPath = isEnPage ? pathname : `/en${pathname}`;
   const ptUrl  = `${BASE_URL}${ptPath}`;
   const enUrl  = `${BASE_URL}${enPath}`;
@@ -466,8 +550,6 @@ export default function RootLayout({ children }) {
     <html lang={isEnPage ? "en" : "pt"}>
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
-
-        {/* ─── Hreflang: indica ao Google as versões PT e EN ─────────────── */}
         <link rel="alternate" hrefLang="pt" href={ptUrl} />
         <link rel="alternate" hrefLang="en" href={enUrl} />
         <link rel="alternate" hrefLang="x-default" href={ptUrl} />
@@ -487,6 +569,13 @@ export default function RootLayout({ children }) {
           *, *::before, *::after { box-sizing: border-box; }
           @media (max-width: 1279px) { .desktop-only { display: none !important; } }
           @media (min-width: 1280px) { .mobile-only  { display: none !important; } }
+
+          /* Footer: desktop mostra grid, mobile mostra acordeão */
+          .footer-mobile { display: none; }
+          @media (max-width: 767px) {
+            .footer-desktop { display: none !important; }
+            .footer-mobile  { display: block !important; }
+          }
 
           h1, h2, h3, .serif { font-family: 'TAN-MEMORIES', serif !important; font-weight: 400; line-height: 1.1; }
 
@@ -714,14 +803,10 @@ export default function RootLayout({ children }) {
                     onClick={() => setIsOpen(false)}
                     aria-label="Fechar menu"
                     style={{
-                      background: "none",
-                      border: "none",
+                      background: "none", border: "none",
                       color: "rgba(250,247,240,0.45)",
-                      cursor: "pointer",
-                      padding: "8px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
+                      cursor: "pointer", padding: "8px",
+                      display: "flex", alignItems: "center", justifyContent: "center",
                     }}
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -731,16 +816,8 @@ export default function RootLayout({ children }) {
                 </div>
 
                 <nav style={{ flex: 1, overflowY: "auto", padding: "6px 0" }}>
-                  <MobileAccordion
-                    menu={NAV_PRESERVACAO}
-                    onClose={() => setIsOpen(false)}
-                    delay={0.06}
-                  />
-                  <MobileAccordion
-                    menu={NAV_MOMENTOS}
-                    onClose={() => setIsOpen(false)}
-                    delay={0.10}
-                  />
+                  <MobileAccordion menu={NAV_PRESERVACAO} onClose={() => setIsOpen(false)} delay={0.06} />
+                  <MobileAccordion menu={NAV_MOMENTOS}    onClose={() => setIsOpen(false)} delay={0.10} />
                   {[
                     { name: "Recriação de Bouquet", href: "/recriacao",           delay: 0.15 },
                     { name: "Oferecer Preservação", href: "/vale-presente",        delay: 0.18 },
@@ -783,9 +860,7 @@ export default function RootLayout({ children }) {
                     padding: "20px 28px 44px",
                     borderTop: "1px solid rgba(250,247,240,0.07)",
                     flexShrink: 0,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "10px",
+                    display: "flex", flexDirection: "column", gap: "10px",
                   }}
                 >
                   <a href={FORM_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
