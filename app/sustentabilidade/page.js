@@ -77,7 +77,7 @@ const METHODS = [
       { good: false, text: "Difícil ou impossível de restaurar se danificado." },
       { good: false, text: "Exige EPI rigoroso: máscara com filtro de vapores químicos, luvas de nitrilo e óculos de proteção." },
     ],
-    verdict:      "Nociva para a saúde, para o ambiente e para a longevidade da peça.",
+    verdict:      "Nociva para a saúde e para o ambiente.",
     verdictColor: "#C4846B",
     highlight:    false,
   },
@@ -101,6 +101,7 @@ const METHODS = [
       { good: false, text: "Versões com cloreto de cobalto são tóxicas para a vida aquática." },
       { good: false, text: "Exige o uso de máscara durante o manuseio." },
       { good: false, text: "Perdem cor rapidamente sem proteção UV adequada." },
+      { good: false, text: "A secagem ao ar livre é uma alternativa, mas não preserva as cores originais. Por isso não a consideramos um método de preservação profissional." },
     ],
     verdict:      "Tecnicamente interessante, ecologicamente questionável.",
     verdictColor: "#9BA89F",
@@ -109,12 +110,6 @@ const METHODS = [
 ];
 
 const VALUES = [
-  {
-    icon: "🪟",
-    title: "Vidro Museu UltraVue® UV70",
-    desc: "O mesmo vidro utilizado em museus e galerias. Filtra 70% dos raios UV e elimina reflexos, garantindo que as cores se mantêm vivas durante décadas.",
-    accent: "#B8954A",
-  },
   {
     icon: "🌲",
     title: "Emolduramento local",
@@ -144,6 +139,18 @@ const VALUES = [
     title: "Impacto social integrado",
     desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da Associação de Paralisia Cerebral de Coimbra. Não é uma ação pontual, é parte do nosso modelo de negócio.",
     accent: "#C4846B",
+  },
+  {
+    icon: "📦",
+    title: "O único plástico que não conseguimos evitar",
+    desc: "Quando os quadros são enviados por correio, usamos enchimento insuflável para proteger o vidro durante o transporte. A segurança da peça tem de vir primeiro. Estamos ativamente à procura de alternativas sustentáveis para esta situação.",
+    accent: "#9BA89F",
+  },
+  {
+    icon: "🪟",
+    title: "Vidro Museu UltraVue® UV70",
+    desc: "O mesmo vidro utilizado em museus e galerias. Filtra 70% dos raios UV e elimina reflexos, garantindo que as cores se mantêm vivas durante décadas.",
+    accent: "#B8954A",
   },
 ];
 
@@ -297,7 +304,7 @@ export default function Sustentabilidade() {
               </p>
 
               <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px,2vw,14px)", alignItems: "center" }}>
-                {["Sem resina epóxi", "Sem sílica industrial", "Sem químicos agressivos", "100% artesanal"].map((tag, i) => (
+                {["Sem resina epóxi", "Sem sílica industrial", "Sem químicos agressivos", "100% artesanal", "Orgulhosamente de Coimbra"].map((tag, i) => (
                   <motion.span
                     key={i}
                     initial={{ opacity: 0, y: 10 }}
@@ -514,7 +521,7 @@ export default function Sustentabilidade() {
                           <img src="/apcc.webp" alt="Logótipo APCC Coimbra" style={{ width: "24px", height: "24px", objectFit: "contain" }} />
                         </div>
                         <div>
-                          <p style={{ margin: 0, fontWeight: 700, color: "#FAF7F0", fontSize: "0.7rem", fontFamily: "Roboto, sans-serif" }}>APCC Coimbra</p>
+                          <p style={{ margin: 0, fontWeight: 700, color: "#FAF7F0", fontSize: "0.7rem", fontFamily: "Roboto, sans-serif" }}>Associação de Paralisia Cerebral de Coimbra</p>
                           <p style={{ margin: "1px 0 0", color: "#B8954A", fontSize: "0.6rem", fontFamily: "Roboto, sans-serif" }}>Marca Mão Doida</p>
                         </div>
                       </div>
