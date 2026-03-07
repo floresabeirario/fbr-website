@@ -133,8 +133,9 @@ const FooterAccordion = ({ label, children }) => {
         }}
       >
         <span style={{
-          fontSize: "0.52rem", letterSpacing: "3.5px", textTransform: "uppercase",
-          color: "rgba(250,247,240,0.4)", fontFamily: "Roboto, sans-serif",
+          fontSize: "0.72rem", letterSpacing: "2px", textTransform: "uppercase",
+          color: "rgba(250,247,240,0.75)", fontFamily: "Roboto, sans-serif",
+          fontWeight: 500,
         }}>
           {label}
         </span>
@@ -393,8 +394,8 @@ function SiteFooter() {
 
       <div style={{ borderTop: "1px solid rgba(250,247,240,0.07)", padding: "20px 24px 28px", textAlign: "center" }}>
         <p style={{
-          fontSize: "0.58rem", letterSpacing: "2px",
-          color: "rgba(250,247,240,0.2)", fontFamily: "Roboto, sans-serif",
+          fontSize: "0.68rem", letterSpacing: "1px",
+          color: "rgba(250,247,240,0.45)", fontFamily: "Roboto, sans-serif",
           textTransform: "uppercase", margin: 0,
         }}>
           © 2026 Flores à Beira-Rio · Todos os direitos reservados
