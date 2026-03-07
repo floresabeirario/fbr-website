@@ -9,12 +9,12 @@ const Schema = () => (
       __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "Preservação Botânica Sustentável — Flores à Beira-Rio",
-        "description": "A filosofia de sustentabilidade da Flores à Beira-Rio: prensagem botânica artesanal, materiais de qualidade museu e parceria solidária com a APCC Coimbra.",
-        "author": { "@type": "Organization", "name": "Flores à Beira-Rio" },
+        "headline": "Preservacao Botanica Sustentavel - Flores a Beira-Rio",
+        "description": "A filosofia de sustentabilidade da Flores a Beira-Rio: prensagem botanica artesanal, materiais de qualidade museu e parceria solidaria com a Associacao de Paralisia Cerebral de Coimbra.",
+        "author": { "@type": "Organization", "name": "Flores a Beira-Rio" },
         "publisher": {
           "@type": "Organization",
-          "name": "Flores à Beira-Rio",
+          "name": "Flores a Beira-Rio",
           "logo": { "@type": "ImageObject", "url": "https://floresabeirario.pt/logo.webp" }
         },
         "mainEntityOfPage": { "@type": "WebPage", "@id": "https://floresabeirario.pt/sustentabilidade" }
@@ -22,8 +22,6 @@ const Schema = () => (
     }}
   />
 );
-
-// ─── Dados ────────────────────────────────────────────────────────────────────
 
 const METHODS = [
   {
@@ -33,7 +31,7 @@ const METHODS = [
     border:    "rgba(61,107,94,0.22)",
     bg:        "#fff",
     shadow:    "0 8px 32px rgba(61,107,94,0.10)",
-    title:     "Prensagem Botânica",
+    title:     "Prensagem Bot\u00e2nica",
     subtitle:  "Artesanal. Natural.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
@@ -44,13 +42,13 @@ const METHODS = [
       </svg>
     ),
     points: [
-      { good: true,  text: "100% natural, sem solventes, sem emissões." },
-      { good: true,  text: "Flores mantêm a sua essência real e orgânica." },
-      { good: true,  text: "Não há exposição a produtos químicos perigosos." },
-      { good: true,  text: "Processo 100% mecânico. Não gera resíduos tóxicos." },
-      { good: true,  text: "Materiais biodegradáveis no fim de vida útil." },
+      { good: true,  text: "100% natural, sem solventes, sem emiss\u00f5es." },
+      { good: true,  text: "Flores mant\u00eam a sua ess\u00eancia real e org\u00e2nica." },
+      { good: true,  text: "N\u00e3o h\u00e1 exposi\u00e7\u00e3o a produtos qu\u00edmicos perigosos." },
+      { good: true,  text: "Processo 100% mec\u00e2nico. N\u00e3o gera res\u00edduos t\u00f3xicos." },
+      { good: true,  text: "Materiais biodegrad\u00e1veis no fim de vida \u00fatil." },
     ],
-    verdict:      "A escolha mais sustentável e mais cuidadosa para as flores e para o planeta.",
+    verdict:      "A escolha mais sustent\u00e1vel e mais cuidadosa para as flores e para o planeta.",
     verdictColor: "#3D6B5E",
     highlight:    true,
   },
@@ -61,8 +59,8 @@ const METHODS = [
     border:    "rgba(196,132,107,0.18)",
     bg:        "rgba(196,132,107,0.03)",
     shadow:    "none",
-    title:     "Resina Epóxi",
-    subtitle:  "Plástico petroquímico encapsulado.",
+    title:     "Resina Ep\u00f3xi",
+    subtitle:  "Pl\u00e1stico petroqu\u00edmico encapsulado.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <path d="M8 22 L10 6 L14 10 L18 6 L20 22 Z"
@@ -71,25 +69,25 @@ const METHODS = [
       </svg>
     ),
     points: [
-      { good: false, text: "Polímero sintético derivado do petróleo, não biodegradável." },
-      { good: false, text: "Liberta COVs tóxicos durante a cura e produção." },
+      { good: false, text: "Pol\u00edmero sint\u00e9tico derivado do petr\u00f3leo, n\u00e3o biodegrad\u00e1vel." },
+      { good: false, text: "Liberta COVs t\u00f3xicos durante a cura e produ\u00e7\u00e3o." },
       { good: false, text: "Permanece no ambiente durante centenas de anos." },
-      { good: false, text: "Difícil ou impossível de restaurar se danificado." },
-      { good: false, text: "Exige EPI rigoroso: máscara com filtro de vapores químicos, luvas de nitrilo e óculos de proteção." },
+      { good: false, text: "Dif\u00edcil ou imposs\u00edvel de restaurar se danificado." },
+      { good: false, text: "Exige EPI rigoroso: m\u00e1scara com filtro de vapores qu\u00edmicos, luvas de nitrilo e \u00f3culos de prote\u00e7\u00e3o." },
     ],
-    verdict:      "Nociva para a saúde e para o ambiente.",
+    verdict:      "Nociva para a sa\u00fade e para o ambiente.",
     verdictColor: "#C4846B",
     highlight:    false,
   },
   {
     id:        "silica",
-    tag:       "Preservação 3D",
+    tag:       "Preserva\u00e7\u00e3o 3D",
     tagColor:  "#9BA89F",
     border:    "rgba(155,168,159,0.18)",
     bg:        "rgba(155,168,159,0.03)",
     shadow:    "none",
-    title:     "Gel de Sílica",
-    subtitle:  "Industrial. Frágil. Exigente.",
+    title:     "Gel de S\u00edlica",
+    subtitle:  "Industrial. Fr\u00e1gil. Exigente.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <circle cx="14" cy="14" r="9" stroke="#9BA89F" strokeWidth="1.6" fill="rgba(155,168,159,0.08)"/>
@@ -97,13 +95,13 @@ const METHODS = [
       </svg>
     ),
     points: [
-      { good: false, text: "Produção industrial com elevado consumo energético." },
-      { good: false, text: "Versões com cloreto de cobalto são tóxicas para a vida aquática." },
-      { good: false, text: "Exige o uso de máscara durante o manuseio." },
-      { good: false, text: "Perdem cor rapidamente sem proteção UV adequada." },
-      { good: false, text: "A secagem ao ar livre é uma alternativa, mas não preserva as cores originais, pelo que não a consideramos um método de preservação comparável aos métodos profissionais." },
+      { good: false, text: "Produ\u00e7\u00e3o industrial com elevado consumo energ\u00e9tico." },
+      { good: false, text: "Vers\u00f5es com cloreto de cobalto s\u00e3o t\u00f3xicas para a vida aqu\u00e1tica." },
+      { good: false, text: "Exige o uso de m\u00e1scara durante o manuseio." },
+      { good: false, text: "Perdem cor rapidamente sem prote\u00e7\u00e3o UV adequada." },
+      { good: false, text: "A secagem ao ar livre \u00e9 uma alternativa, mas n\u00e3o preserva as cores originais, pelo que n\u00e3o a consideramos um m\u00e9todo de preserva\u00e7\u00e3o compar\u00e1vel aos m\u00e9todos profissionais." },
     ],
-    verdict:      "Tecnicamente interessante, ecologicamente questionável.",
+    verdict:      "Tecnicamente interessante, ecologicamente question\u00e1vel.",
     verdictColor: "#9BA89F",
     highlight:    false,
   },
@@ -111,50 +109,48 @@ const METHODS = [
 
 const VALUES = [
   {
-    icon: "🌲",
+    icon: "\ud83c\udf32",
     title: "Emolduramento local",
-    desc: "Os quadros são emoldurados numa molduraria local portuguesa, com madeira e materiais lacados de alta qualidade. Cada moldura é produzida à medida para a peça que vai receber.",
+    desc: "Os quadros s\u00e3o emoldurados numa molduraria local portuguesa, com madeira e materiais lacados de alta qualidade. Cada moldura \u00e9 produzida \u00e0 medida para a pe\u00e7a que vai receber.",
     accent: "#3D6B5E",
   },
   {
-    icon: "🎨",
+    icon: "\ud83c\udfa8",
     title: "Arte local em cada detalhe",
-    desc: "Apoiamos artistas portugueses locais que criaram os elementos gráficos da nossa marca, incluindo o cartão que acompanha as embalagens e o vale presente.",
+    desc: "Apoiamos artistas portugueses locais que criaram os elementos gr\u00e1ficos da nossa marca, incluindo o cart\u00e3o que acompanha as embalagens e o vale presente.",
     accent: "#3D6B5E",
   },
   {
-    icon: "🌿",
-    title: "Zero químicos agressivos",
-    desc: "A prensagem botânica não utiliza solventes, resinas nem substâncias sintéticas. O processo combina pressão, calor controlado e tempo, com recurso a desidratadores e, em alguns casos, microondas para folhagens. Nenhuma substância é adicionada à flor.",
+    icon: "\ud83c\udf3f",
+    title: "Zero qu\u00edmicos agressivos",
+    desc: "A prensagem bot\u00e2nica n\u00e3o utiliza solventes, resinas nem subst\u00e2ncias sint\u00e9ticas. O processo combina press\u00e3o, calor controlado e tempo, com recurso a desidratadores e, em alguns casos, microondas para folhagens. Nenhuma subst\u00e2ncia \u00e9 adicionada \u00e0 flor.",
     accent: "#8BA888",
   },
   {
-    icon: "🔁",
+    icon: "\ud83d\udd01",
     title: "Embalagem pensada para reutilizar",
-    desc: "Tentamos que a maior parte dos elementos da embalagem tenham uma segunda vida, e que o mínimo de resíduos necessários para o embalamento seja logo descartado. Cada escolha de material começa com esta pergunta.",
+    desc: "Tentamos que a maior parte dos elementos da embalagem tenham uma segunda vida, e que o m\u00ednimo de res\u00edduos necess\u00e1rios para o embalamento seja logo descartado. Cada escolha de material come\u00e7a com esta pergunta.",
     accent: "#3D6B5E",
   },
   {
-    icon: "🤝",
+    icon: "\ud83e\udd1d",
     title: "Impacto social integrado",
-    desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da Associação de Paralisia Cerebral de Coimbra. Não é uma ação pontual, é parte do nosso modelo de negócio.",
+    desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da Associa\u00e7\u00e3o de Paralisia Cerebral de Coimbra. N\u00e3o \u00e9 uma a\u00e7\u00e3o pontual, \u00e9 parte do nosso modelo de neg\u00f3cio.",
     accent: "#C4846B",
   },
   {
-    icon: "📦",
-    title: "O plástico que ainda usamos",
-    desc: "Para garantir que o seu quadro chega em perfeitas condições, ainda utilizamos enchimento insuflável para proteger o vidro. Atualmente, este é o único plástico nas nossas embalagens, pois a integridade da sua peça durante o transporte é a nossa prioridade. O nosso compromisso mantém-se: estamos ativamente a testar e a procurar alternativas 100% sustentáveis que garantam a mesma segurança.",
+    icon: "\ud83d\udce6",
+    title: "O pl\u00e1stico que ainda usamos",
+    desc: "Para garantir que o seu quadro chega em perfeitas condi\u00e7\u00f5es, ainda utilizamos enchimento insuflu00e1vel para proteger o vidro. Atualmente, este \u00e9 o \u00fanico pl\u00e1stico nas nossas embalagens, pois a integridade da sua pe\u00e7a durante o transporte \u00e9 a nossa prioridade. O nosso compromisso mant\u00e9m-se: estamos ativamente a testar e a procurar alternativas 100% sustent\u00e1veis que garantam a mesma seguran\u00e7a.",
     accent: "#9BA89F",
   },
   {
-    icon: "🪟",
-    title: "Vidro Museu UltraVue® UV70",
-    desc: "O mesmo vidro utilizado em museus e galerias. Filtra 70% dos raios UV e elimina reflexos, garantindo que as cores se mantêm vivas durante décadas.",
+    icon: "\ud83e\ude9f",
+    title: "Vidro Museu UltraVue\u00ae UV70",
+    desc: "O mesmo vidro utilizado em museus e galerias. Filtra 70% dos raios UV e elimina reflexos, garantindo que as cores se mant\u00eam vivas durante d\u00e9cadas.",
     accent: "#B8954A",
   },
 ];
-
-// ─── Sub-componentes ──────────────────────────────────────────────────────────
 
 const Dot = ({ good, color }) => (
   <div style={{ flexShrink: 0, marginTop: "3px" }}>
@@ -167,8 +163,6 @@ const Dot = ({ good, color }) => (
     </svg>
   </div>
 );
-
-// ─── Página ───────────────────────────────────────────────────────────────────
 
 export default function Sustentabilidade() {
   const FORM = "https://wkf.ms/3RfoNAc";
@@ -211,10 +205,23 @@ export default function Sustentabilidade() {
           }
           @media (min-width: 560px) { .values-grid { grid-template-columns: 1fr 1fr; } }
           @media (min-width: 900px) { .values-grid { grid-template-columns: 1fr 1fr 1fr; } }
-          .apcc-split {
-            display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center;
+          .apcc-inner {
+            display: grid; grid-template-columns: 1fr; gap: clamp(28px,4vw,44px);
           }
-          @media (min-width: 768px) { .apcc-split { grid-template-columns: 1fr 1fr; gap: 72px; } }
+          .apcc-photo  { order: 2; display: flex; justify-content: center; }
+          .apcc-copy   { order: 1; }
+          .apcc-topics { order: 3; }
+          @media (min-width: 768px) {
+            .apcc-inner {
+              grid-template-columns: 1fr 1fr;
+              grid-template-rows: auto auto;
+              column-gap: clamp(48px,6vw,72px);
+              row-gap: clamp(20px,3vw,32px);
+            }
+            .apcc-photo  { order: 1; grid-column: 1; grid-row: 1 / 3; align-self: start; }
+            .apcc-copy   { order: 2; grid-column: 2; grid-row: 1; align-self: end; }
+            .apcc-topics { order: 3; grid-column: 2; grid-row: 2; align-self: start; }
+          }
           .cta-row {
             display: flex; flex-direction: column; align-items: stretch; gap: 12px;
           }
@@ -247,9 +254,9 @@ export default function Sustentabilidade() {
           }
         `}} />
 
-        {/* ══════ HERO ══════ */}
+        {/* HERO */}
         <section
-          aria-label="Sustentabilidade e filosofia da Flores à Beira-Rio"
+          aria-label="Sustentabilidade e filosofia da Flores a Beira-Rio"
           style={{
             paddingTop:    "clamp(120px,18vw,200px)",
             paddingBottom: "clamp(60px,10vw,100px)",
@@ -269,7 +276,6 @@ export default function Sustentabilidade() {
             background: "radial-gradient(circle, rgba(139,168,136,0.08) 0%, transparent 65%)",
             borderRadius: "50%", pointerEvents: "none",
           }}/>
-
           <div style={{ maxWidth: "860px", margin: "0 auto", position: "relative", zIndex: 1 }}>
             <motion.div
               initial={{ opacity: 0, y: 26 }}
@@ -281,10 +287,9 @@ export default function Sustentabilidade() {
                 background: "rgba(139,168,136,0.12)", border: "1px solid rgba(139,168,136,0.25)",
                 borderRadius: "100px", padding: "7px 16px", marginBottom: "24px",
               }}>
-                <span style={{ color: "#8BA888", fontSize: "0.9rem" }} aria-hidden="true">♻</span>
+                <span style={{ color: "#8BA888", fontSize: "0.9rem" }} aria-hidden="true">&#9851;</span>
                 <span style={{ fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: "#8BA888", fontFamily: "Roboto, sans-serif" }}>Os nossos valores</span>
               </span>
-
               <h1 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(2.8rem,9vw,5.8rem)",
@@ -293,18 +298,16 @@ export default function Sustentabilidade() {
                 Sustentabilidade<br/>
                 <em style={{ fontStyle: "italic", color: "#8BA888" }}>sem compromissos</em>
               </h1>
-
               <p style={{
                 color: "rgba(250,247,240,0.7)", fontSize: "clamp(0.95rem,2vw,1.1rem)",
                 lineHeight: 1.88, maxWidth: "580px", margin: "0 0 clamp(28px,4vw,40px)",
               }}>
-                Na Flores à Beira-Rio, preservar flores significa preservar também
-                o planeta. Sem resinas petroquímicas, sem sílica industrial,
-                apenas prensagem botânica artesanal com materiais de conservação museu.
+                Na Flores &#224; Beira-Rio, preservar flores significa preservar tamb&#233;m
+                o planeta. Sem resinas petroqu&#237;micas, sem s&#237;lica industrial,
+                apenas prensagem bot&#226;nica artesanal com materiais de conserva&#231;&#227;o museu.
               </p>
-
               <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px,2vw,14px)", alignItems: "center" }}>
-                {["Sem resina epóxi", "Sem sílica industrial", "Sem químicos agressivos", "100% artesanal", "Orgulhosamente de Coimbra"].map((tag, i) => (
+                {["Sem resina ep&#243;xi", "Sem s&#237;lica industrial", "Sem qu&#237;micos agressivos", "100% artesanal", "Orgulhosamente de Coimbra"].map((tag, i) => (
                   <motion.span
                     key={i}
                     initial={{ opacity: 0, y: 10 }}
@@ -316,16 +319,17 @@ export default function Sustentabilidade() {
                       fontFamily: "Roboto, sans-serif", backgroundColor: "rgba(139,168,136,0.1)",
                       border: "1px solid rgba(139,168,136,0.2)", padding: "6px 14px", borderRadius: "100px",
                     }}
-                  >{tag}</motion.span>
+                    dangerouslySetInnerHTML={{ __html: tag }}
+                  />
                 ))}
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* ══════ FILOSOFIA ══════ */}
+        {/* FILOSOFIA */}
         <section
-          aria-label="A nossa filosofia de preservação sustentável"
+          aria-label="A nossa filosofia de preservacao sustentavel"
           style={{
             padding: "clamp(56px,9vw,88px) clamp(20px,5vw,48px)",
             background: "linear-gradient(180deg, #EDF2E8 0%, #FAF7F0 100%)",
@@ -345,16 +349,16 @@ export default function Sustentabilidade() {
                 color: "#1E2D2A", margin: "0 0 clamp(18px,3vw,24px)", lineHeight: 1.1,
               }}>
                 Artesanal. Natural. Local.<br/>
-                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>Para durar décadas.</em>
+                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>Para durar d&#233;cadas.</em>
               </h2>
               <div style={{ color: "#5A6B60", fontSize: "clamp(0.95rem,1.8vw,1.05rem)", lineHeight: 1.88 }}>
                 <p style={{ margin: "0 0 16px" }}>
-                  Quando recebemos as flores de um momento marcante, a responsabilidade não
-                  é só artística, é também ambiental.
+                  Quando recebemos as flores de um momento marcante, a responsabilidade n&#227;o
+                  &#233; s&#243; art&#237;stica, &#233; tamb&#233;m ambiental.
                 </p>
                 <p style={{ margin: 0 }}>
-                  Por isso escolhemos, e continuaremos a escolher, a prensagem botânica
-                  artesanal como método exclusivo de trabalho. É uma técnica mais lenta e
+                  Por isso escolhemos, e continuaremos a escolher, a prensagem bot&#226;nica
+                  artesanal como m&#233;todo exclusivo de trabalho. &#201; uma t&#233;cnica mais lenta e
                   mais exigente, mas os resultados falam por si: beleza natural, longevidade,
                   e um processo que respeita a integridade da flor e do planeta.
                 </p>
@@ -363,9 +367,9 @@ export default function Sustentabilidade() {
           </div>
         </section>
 
-        {/* ══════ COMPARAÇÃO ══════ */}
+        {/* COMPARACAO */}
         <section
-          aria-label="Comparação entre prensagem botânica, resina epóxi e gel de sílica"
+          aria-label="Comparacao entre prensagem botanica, resina epoxi e gel de silica"
           style={{ padding: "clamp(48px,7vw,76px) clamp(20px,5vw,48px)", backgroundColor: "#FAF7F0" }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
@@ -375,17 +379,17 @@ export default function Sustentabilidade() {
               viewport={{ once: true }}
               style={{ textAlign: "center", marginBottom: "clamp(24px,4vw,44px)" }}
             >
-              <span className="eyebrow">Comparação de técnicas</span>
+              <span className="eyebrow">Compara&#231;&#227;o de t&#233;cnicas</span>
               <h2 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(1.8rem,4.5vw,3rem)",
                 color: "#1E2D2A", margin: "0 0 10px", lineHeight: 1.1,
               }}>
                 Prensagem, resina<br/>
-                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>e sílica</em>
+                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>e s&#237;lica</em>
               </h2>
               <p style={{ color: "#5A6B60", fontSize: "clamp(0.88rem,1.7vw,0.96rem)", lineHeight: 1.75, maxWidth: "460px", margin: "0 auto" }}>
-                Os três métodos mais populares para eternizar flores. Eis porque escolhemos a prensagem.
+                Os tr&#234;s m&#233;todos mais populares para eternizar flores. Eis porque escolhemos a prensagem.
               </p>
             </motion.div>
 
@@ -412,15 +416,12 @@ export default function Sustentabilidade() {
                       pointerEvents: "none",
                     }}/>
                   )}
-
-                  {/* Cabeçalho */}
                   <span style={{
                     display: "inline-block", fontSize: "0.55rem", fontWeight: 700,
                     letterSpacing: "2px", textTransform: "uppercase", color: m.tagColor,
                     fontFamily: "Roboto, sans-serif", backgroundColor: `${m.tagColor}12`,
                     padding: "3px 11px", borderRadius: "50px", marginBottom: "12px",
                   }}>{m.tag}</span>
-
                   <div style={{ display: "flex", alignItems: "center", gap: "9px", marginBottom: "4px" }}>
                     {m.icon}
                     <h3 style={{
@@ -432,24 +433,17 @@ export default function Sustentabilidade() {
                     color: "#9BA89F", fontSize: "0.74rem", margin: "0 0 16px",
                     fontStyle: "italic", fontFamily: "Roboto, sans-serif",
                   }}>{m.subtitle}</p>
-
-                  {/* Tópicos */}
                   <div style={{ marginBottom: "16px" }}>
                     {m.points.map((pt, j) => (
                       <div key={j} style={{
-                        display: "flex", gap: "10px", alignItems: "flex-start",
-                        padding: "7px 0",
+                        display: "flex", gap: "10px", alignItems: "flex-start", padding: "7px 0",
                         borderBottom: j < m.points.length - 1 ? "1px solid rgba(0,0,0,0.045)" : "none",
                       }}>
                         <Dot good={pt.good} color={m.tagColor} />
-                        <p style={{ margin: 0, fontSize: "clamp(0.8rem,1.4vw,0.86rem)", color: "#5A6B60", lineHeight: 1.6 }}>
-                          {pt.text}
-                        </p>
+                        <p style={{ margin: 0, fontSize: "clamp(0.8rem,1.4vw,0.86rem)", color: "#5A6B60", lineHeight: 1.6 }}>{pt.text}</p>
                       </div>
                     ))}
                   </div>
-
-                  {/* Conclusão */}
                   <div style={{
                     padding: "11px 14px", borderRadius: "10px",
                     backgroundColor: `${m.tagColor}0D`, border: `1px solid ${m.tagColor}1A`,
@@ -465,9 +459,9 @@ export default function Sustentabilidade() {
           </div>
         </section>
 
-        {/* ══════ APCC ══════ */}
+        {/* APCC */}
         <section
-          aria-label="Embalagem artesanal em parceria com a APCC Coimbra"
+          aria-label="Embalagem artesanal em parceria com a Associacao de Paralisia Cerebral de Coimbra"
           style={{
             padding: "clamp(56px,9vw,88px) clamp(20px,5vw,48px)",
             background: "linear-gradient(155deg, #2D1F14 0%, #3A2A1C 45%, #1E2D2A 100%)",
@@ -478,17 +472,16 @@ export default function Sustentabilidade() {
             position: "absolute", inset: 0, opacity: 0.03, pointerEvents: "none",
             backgroundImage: "repeating-linear-gradient(45deg, #B8954A 0px, #B8954A 1px, transparent 1px, transparent 50px)",
           }}/>
-
           <div style={{ maxWidth: "1060px", margin: "0 auto", position: "relative", zIndex: 1 }}>
-            <div className="apcc-split">
+            <div className="apcc-inner">
 
-              {/* Foto */}
+              {/* Foto — order:2 mobile, col 1 desktop */}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                className="apcc-photo"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                style={{ display: "flex", justifyContent: "center" }}
               >
                 <div style={{ position: "relative", maxWidth: "340px", width: "100%" }}>
                   <div aria-hidden="true" style={{
@@ -504,7 +497,7 @@ export default function Sustentabilidade() {
                   }}>
                     <img
                       src="/oficinaapcc.webp"
-                      alt="Utentes da Oficina de Tecelagem de Almalaguês e Costura da APCC Coimbra a produzir as embalagens artesanais para a Flores à Beira-Rio"
+                      alt="Utentes da Oficina de Tecelagem de Almalaques e Costura da Associacao de Paralisia Cerebral de Coimbra a produzir as embalagens artesanais para a Flores a Beira-Rio"
                       style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                       loading="lazy"
                     />
@@ -518,11 +511,13 @@ export default function Sustentabilidade() {
                           width: "32px", height: "32px", borderRadius: "8px", backgroundColor: "#FAF7F0",
                           flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
                         }}>
-                          <img src="/apcc.webp" alt="Logótipo APCC Coimbra" style={{ width: "24px", height: "24px", objectFit: "contain" }} />
+                          <img src="/apcc.webp" alt="Logotipo Associacao de Paralisia Cerebral de Coimbra" style={{ width: "24px", height: "24px", objectFit: "contain" }} />
                         </div>
                         <div>
-                          <p style={{ margin: 0, fontWeight: 700, color: "#FAF7F0", fontSize: "0.7rem", fontFamily: "Roboto, sans-serif" }}>Associação de Paralisia Cerebral de Coimbra</p>
-                          <p style={{ margin: "1px 0 0", color: "#B8954A", fontSize: "0.6rem", fontFamily: "Roboto, sans-serif" }}>Marca Mão Doida</p>
+                          <p style={{ margin: 0, fontWeight: 700, color: "#FAF7F0", fontSize: "0.68rem", fontFamily: "Roboto, sans-serif", lineHeight: 1.3 }}>
+                            Associa&#231;&#227;o de Paralisia Cerebral de Coimbra
+                          </p>
+                          <p style={{ margin: "2px 0 0", color: "#B8954A", fontSize: "0.6rem", fontFamily: "Roboto, sans-serif" }}>Marca M&#227;o Doida</p>
                         </div>
                       </div>
                     </div>
@@ -530,39 +525,48 @@ export default function Sustentabilidade() {
                 </div>
               </motion.div>
 
-              {/* Texto */}
+              {/* Badge, titulo e texto — order:1 mobile */}
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                className="apcc-copy"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.75 }}
               >
                 <div style={{
                   display: "inline-flex", alignItems: "center", gap: "8px",
                   background: "rgba(184,149,74,0.1)", border: "1px solid rgba(184,149,74,0.25)",
                   borderRadius: "100px", padding: "7px 16px", marginBottom: "20px",
                 }}>
-                  <span style={{ color: "#B8954A", fontSize: "0.9rem" }} aria-hidden="true">♥</span>
-                  <span style={{ fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: "#B8954A", fontFamily: "Roboto, sans-serif" }}>Parceria solidária</span>
+                  <span style={{ color: "#B8954A", fontSize: "0.9rem" }} aria-hidden="true">&#9829;</span>
+                  <span style={{ fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: "#B8954A", fontFamily: "Roboto, sans-serif" }}>Parceria solid&#225;ria</span>
                 </div>
-
                 <h2 style={{
                   fontFamily: "'TAN-MEMORIES', serif",
                   fontSize: "clamp(2rem,4.5vw,3rem)",
                   color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1,
                 }}>
                   A embalagem que<br/>
-                  <em style={{ fontStyle: "italic", color: "#B8954A" }}>conta uma história</em>
+                  <em style={{ fontStyle: "italic", color: "#B8954A" }}>conta uma hist&#243;ria</em>
                 </h2>
-
-                <p style={{ color: "rgba(250,247,240,0.7)", lineHeight: 1.85, fontSize: "clamp(0.9rem,1.8vw,0.98rem)", margin: "0 0 20px" }}>
-                  Parte da embalagem que protege o seu quadro é feita à mão pelos utentes da
-                  Oficina de Tecelagem de Almalaguês e Costura da Associação de Paralisia Cerebral de Coimbra, sob a marca Mão Doida.
+                <p style={{ color: "rgba(250,247,240,0.7)", lineHeight: 1.85, fontSize: "clamp(0.9rem,1.8vw,0.98rem)", margin: 0 }}>
+                  Parte da embalagem que protege o seu quadro &#233; feita &#224; m&#227;o pelos utentes da
+                  Oficina de Tecelagem de Almalaqu&#234;s e Costura da Associa&#231;&#227;o de Paralisia Cerebral
+                  de Coimbra, sob a marca M&#227;o Doida.
                 </p>
+              </motion.div>
 
+              {/* Topicos — order:3 mobile */}
+              <motion.div
+                className="apcc-topics"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.1 }}
+              >
                 {[
-                  { icon: "🤝", title: "Impacto direto e contínuo", desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da Associação de Paralisia Cerebral de Coimbra." },
-                  { icon: "♻️", title: "Pensado para reutilizar", desc: "O saco protege o quadro e pode depois ser usado para guardar roupa, coisas de praia, o que couber." },
+                  { icon: "\ud83e\udd1d", title: "Impacto direto e cont\u00ednuo", desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da Associa\u00e7\u00e3o de Paralisia Cerebral de Coimbra. N\u00e3o \u00e9 uma a\u00e7\u00e3o pontual, \u00e9 parte do nosso modelo de neg\u00f3cio." },
+                  { icon: "\u267b\ufe0f", title: "Pensado para reutilizar", desc: "O saco protege o quadro e pode depois ser usado para guardar roupa, coisas de praia, o que couber." },
                 ].map((item, i) => (
                   <div key={i} style={{
                     display: "flex", gap: "14px", alignItems: "flex-start", padding: "12px 0",
@@ -581,9 +585,9 @@ export default function Sustentabilidade() {
           </div>
         </section>
 
-        {/* ══════ VALORES + MATERIAIS ══════ */}
+        {/* VALORES */}
         <section
-          aria-label="Os valores e materiais da Flores à Beira-Rio"
+          aria-label="Os valores e materiais da Flores a Beira-Rio"
           style={{
             padding: "clamp(56px,9vw,88px) clamp(20px,5vw,48px)",
             background: "linear-gradient(180deg, #FAF7F0 0%, #EDF2E8 100%)",
@@ -602,11 +606,10 @@ export default function Sustentabilidade() {
                 fontSize: "clamp(1.8rem,4.5vw,3rem)",
                 color: "#1E2D2A", margin: 0, lineHeight: 1.1,
               }}>
-                O que torna cada peça<br/>
-                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>verdadeiramente sustentável</em>
+                O que torna cada pe&#231;a<br/>
+                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>verdadeiramente sustent&#225;vel</em>
               </h2>
             </motion.div>
-
             <div className="values-grid">
               {VALUES.map((v, i) => (
                 <motion.div
@@ -640,9 +643,9 @@ export default function Sustentabilidade() {
           </div>
         </section>
 
-        {/* ══════ CTA ══════ */}
+        {/* CTA */}
         <section
-          aria-label="Reservar preservação sustentável de flores"
+          aria-label="Reservar preservacao sustentavel de flores"
           style={{
             padding: "clamp(60px,10vw,100px) clamp(20px,5vw,48px)",
             background: "linear-gradient(140deg, #EDF2E8 0%, #FAF7F0 55%, #F0EBE0 100%)",
@@ -660,28 +663,27 @@ export default function Sustentabilidade() {
               width: "44px", height: "1px", margin: "0 auto 28px",
               background: "linear-gradient(to right, transparent, #3D6B5E, transparent)",
             }}/>
-            <span className="eyebrow eyebrow-green">Pronta para começar?</span>
+            <span className="eyebrow eyebrow-green">Pronta para come&#231;ar?</span>
             <h2 style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize: "clamp(2rem,5.5vw,3.5rem)",
               color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1,
             }}>
-              Preserve as suas flores<br/>
-              <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>da forma mais cuidadosa</em>
+              Flores que duram<br/>
+              <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>porque o planeta tamb&#233;m importa</em>
             </h2>
             <p style={{ color: "#5A6B60", lineHeight: 1.88, fontSize: "clamp(0.9rem,2vw,1rem)", margin: "0 0 34px" }}>
-              Sem resina, sem sílica, sem compromissos. Apenas flores,
-              tempo e artesanato botânico, da forma como sempre deveria ser feito.
+              Sem resina, sem s&#237;lica, sem compromissos com o ambiente.
+              Apenas flores, artesanato bot&#226;nico e materiais de museu,
+              feitos para durar d&#233;cadas.
             </p>
-
             <div className="cta-row" style={{ marginBottom: "28px" }}>
               <a href={FORM} target="_blank" rel="noopener noreferrer" className="btn-primary">Reservar a Minha Data</a>
               <a href="/como-funciona" className="btn-outline">Ver Como Funciona</a>
             </div>
-
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px", fontSize: "0.82rem" }}>
               {[
-                { href: "/opcoes-e-precos",      label: "Ver preços" },
+                { href: "/opcoes-e-precos",      label: "Ver pre\u00e7os" },
                 { href: "/perguntas-frequentes", label: "Perguntas frequentes" },
                 { href: "/contactos",            label: "Falar connosco" },
               ].map((l, i) => (
