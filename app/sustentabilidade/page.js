@@ -34,7 +34,7 @@ const METHODS = [
     bg:        "#fff",
     shadow:    "0 8px 32px rgba(61,107,94,0.10)",
     title:     "Prensagem Botânica",
-    subtitle:  "Artesanal. Natural. Para sempre.",
+    subtitle:  "Artesanal. Natural.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <path d="M14 4 C9 4 5 8 5 13 C5 20 14 26 14 26 C14 26 23 20 23 13 C23 8 19 4 14 4Z"
@@ -77,7 +77,7 @@ const METHODS = [
       { good: false, text: "Difícil ou impossível de restaurar se danificado." },
       { good: false, text: "Exige EPI rigoroso: máscara com filtro de vapores químicos, luvas de nitrilo e óculos de proteção." },
     ],
-    verdict:      "Conveniente, mas incompatível com a nossa filosofia.",
+    verdict:      "Nociva para a saúde, para o ambiente e para a longevidade da peça.",
     verdictColor: "#C4846B",
     highlight:    false,
   },
@@ -108,7 +108,6 @@ const METHODS = [
   },
 ];
 
-// Materiais e pilares fundidos
 const VALUES = [
   {
     icon: "🪟",
@@ -118,8 +117,14 @@ const VALUES = [
   },
   {
     icon: "🌲",
-    title: "Materiais de produção local",
-    desc: "Privilegiamos fornecedores portugueses em cada etapa. Das molduras ao cartão de pH neutro, o processo é local de origem a destino.",
+    title: "Emolduramento local",
+    desc: "Os quadros são emoldurados numa molduraria local portuguesa, com madeira e materiais lacados de alta qualidade. Cada moldura é produzida à medida para a peça que vai receber.",
+    accent: "#3D6B5E",
+  },
+  {
+    icon: "🎨",
+    title: "Arte local em cada detalhe",
+    desc: "Apoiamos artistas portugueses locais que criaram os elementos gráficos da nossa marca, incluindo o cartão que acompanha as embalagens e o vale presente.",
     accent: "#3D6B5E",
   },
   {
@@ -130,21 +135,15 @@ const VALUES = [
   },
   {
     icon: "🔁",
-    title: "Feito para durar, não para substituir",
-    desc: "A melhor forma de ser sustentável é não precisar de substituir. Um quadro feito com os nossos materiais dura décadas. No fim de vida, madeira, vidro e papel voltam à terra.",
+    title: "Embalagem pensada para reutilizar",
+    desc: "Todos os elementos da embalagem foram pensados para ter uma segunda vida. Do saco artesanal ao cartão, nada é feito para ser deitado fora.",
     accent: "#3D6B5E",
   },
   {
     icon: "🤝",
     title: "Impacto social integrado",
-    desc: "As embalagens são feitas à mão pela APCC Coimbra. Não é uma ação pontual, é parte do nosso modelo de negócio.",
+    desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da Associação de Paralisia Cerebral de Coimbra. Não é uma ação pontual, é parte do nosso modelo de negócio.",
     accent: "#C4846B",
-  },
-  {
-    icon: "📦",
-    title: "Embalagem que se reutiliza",
-    desc: "O saco artesanal que protege o quadro na entrega foi pensado para servir a vida depois. Zero desperdício por design.",
-    accent: "#B8954A",
   },
 ];
 
@@ -379,8 +378,7 @@ export default function Sustentabilidade() {
                 <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>e sílica</em>
               </h2>
               <p style={{ color: "#5A6B60", fontSize: "clamp(0.88rem,1.7vw,0.96rem)", lineHeight: 1.75, maxWidth: "460px", margin: "0 auto" }}>
-                Três métodos de eternizar flores. Só um que nunca coloca em risco
-                quem trabalha nem o planeta.
+                Os três métodos mais populares para eternizar flores. Eis porque escolhemos a prensagem.
               </p>
             </motion.div>
 
@@ -551,19 +549,13 @@ export default function Sustentabilidade() {
                 </h2>
 
                 <p style={{ color: "rgba(250,247,240,0.7)", lineHeight: 1.85, fontSize: "clamp(0.9rem,1.8vw,0.98rem)", margin: "0 0 20px" }}>
-                  A embalagem que protege o seu quadro é feita à mão pelos utentes da
-                  Oficina de Tecelagem de Almalaguês e Costura da APCC Coimbra, sob a marca Mão Doida.
-                </p>
-
-                <p style={{ color: "rgba(250,247,240,0.7)", lineHeight: 1.85, fontSize: "clamp(0.9rem,1.8vw,0.98rem)", margin: "0 0 28px" }}>
-                  Cada saco é único e pensado para ser reutilizado. Não é uma embalagem
-                  para deitar fora. É um objeto com alma, feito por pessoas que desafiam
-                  estigmas e celebram a sua singularidade.
+                  Parte da embalagem que protege o seu quadro é feita à mão pelos utentes da
+                  Oficina de Tecelagem de Almalaguês e Costura da Associação de Paralisia Cerebral de Coimbra, sob a marca Mão Doida.
                 </p>
 
                 {[
-                  { icon: "🤝", title: "Impacto direto e contínuo", desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da APCC. Não é uma ação pontual, é parte do nosso modelo de negócio." },
-                  { icon: "♻️", title: "Zero desperdício por design", desc: "O saco serve o quadro na entrega e serve a vida depois. Para roupa, para a praia, para o que couber." },
+                  { icon: "🤝", title: "Impacto direto e contínuo", desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da Associação de Paralisia Cerebral de Coimbra." },
+                  { icon: "♻️", title: "Pensado para reutilizar", desc: "O saco protege o quadro e pode depois ser usado para guardar roupa, coisas de praia, o que couber." },
                 ].map((item, i) => (
                   <div key={i} style={{
                     display: "flex", gap: "14px", alignItems: "flex-start", padding: "12px 0",
