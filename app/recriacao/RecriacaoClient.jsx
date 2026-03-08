@@ -1,4 +1,4 @@
-// app/_components/RecriacaoClient.jsx
+// app/recriacao/RecriacaoClient.jsx
 "use client";
 
 import { useRef } from "react";
