@@ -5,6 +5,8 @@ import { motion, useInView } from "framer-motion";
 import { IconInstagram, IconFacebook, IconTikTok, IconWhatsApp, IconEmail, IconCasamentos } from "../_components/Icons";
 import { FORM_URL, WA_URL } from "../_lib/constants";
 
+const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
+
 // ─── Reveal ───────────────────────────────────────────────────────────────────
 function Reveal({ children, delay = 0, style, className }) {
   const ref = useRef(null);
@@ -71,10 +73,10 @@ export default function ContactosClient() {
         .cta-row { display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
         @media (min-width: 460px) { .cta-row { flex-direction: row; justify-content: center; align-items: center; } }
 
-        .btn-primary-light { display: inline-flex; align-items: center; justify-content: center; background: #FAF7F0; color: #3D6B5E; padding: 16px 38px; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; transition: all 0.3s ease; font-family: Roboto, sans-serif; min-height: 56px; }
+        .btn-primary-light { display: inline-flex; align-items: center; justify-content: center; background: #FAF7F0; color: #3D6B5E; padding: 16px 38px; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; transition: all 0.3s ease; font-family: var(--font-google-sans), 'Google Sans', sans-serif; min-height: 56px; }
         .btn-primary-light:hover { background: #EDE5D4; transform: translateY(-3px); }
 
-        .btn-wa-big { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: #25D366; color: #fff; padding: 16px 36px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; box-shadow: 0 6px 24px rgba(37,211,102,0.3); transition: all 0.3s ease; font-family: Roboto, sans-serif; min-height: 56px; }
+        .btn-wa-big { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: #25D366; color: #fff; padding: 16px 36px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; box-shadow: 0 6px 24px rgba(37,211,102,0.3); transition: all 0.3s ease; font-family: var(--font-google-sans), 'Google Sans', sans-serif; min-height: 56px; }
         .btn-wa-big:hover { background: #1da851; transform: translateY(-3px); }
 
         a:focus-visible, button:focus-visible { outline: 3px solid #8BA888; outline-offset: 4px; border-radius: 4px; }
@@ -94,18 +96,18 @@ export default function ContactosClient() {
           <div className="contact-split" style={{ gap: "clamp(40px,6vw,80px)", alignItems: "center" }}>
 
             <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-              <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#8BA888", marginBottom: 16, fontFamily: "Roboto, sans-serif" }}>Fale connosco</span>
+              <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#8BA888", marginBottom: 16, fontFamily: GS }}>Fale connosco</span>
               <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.8rem,8vw,5.2rem)", color: "#FAF7F0", margin: "0 0 20px", lineHeight: 1.02 }}>
                 Contactos<br />
                 <em style={{ fontStyle: "italic", color: "#8BA888" }}>e Equipa</em>
               </h1>
-              <p style={{ color: "rgba(250,247,240,0.72)", fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.08rem)", lineHeight: 1.88, maxWidth: 480, margin: "0 0 32px" }}>
+              <p style={{ color: "rgba(250,247,240,0.72)", fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.08rem)", lineHeight: 1.88, maxWidth: 480, margin: "0 0 32px" }}>
                 Estamos disponíveis para responder a todas as suas dúvidas. Adoramos conhecer a história por detrás das flores que nos chegam.
               </p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="contact-card" style={{ backgroundColor: "rgba(250,247,240,0.07)", backdropFilter: "blur(20px)", border: "1px solid rgba(250,247,240,0.12)", borderRadius: 20, padding: "clamp(20px,4vw,40px)" }}>
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 700, fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase", color: "#B8954A", marginBottom: 24 }}>Contacto direto</p>
+              <p style={{ fontFamily: GS, fontWeight: 700, fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase", color: "#B8954A", marginBottom: 24 }}>Contacto direto</p>
 
               {[
                 { icon: <IconWhatsApp size={22} />, label: "+351 934 680 300", sub: "Respondemos em 24 horas", href: "https://wa.me/351934680300", color: "#25D366" },
@@ -119,12 +121,12 @@ export default function ContactosClient() {
                   <div style={{ width: 40, height: 40, borderRadius: 10, flexShrink: 0, background: `${item.color}22`, display: "flex", alignItems: "center", justifyContent: "center", color: item.color }}>{item.icon}</div>
                   <div style={{ minWidth: 0 }}>
                     <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.8rem, 3.5vw, 0.95rem)", color: "#FAF7F0", margin: 0, lineHeight: 1.2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{item.label}</p>
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.74rem", color: "rgba(250,247,240,0.45)", margin: "3px 0 0" }}>{item.sub}</p>
+                    <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.74rem", color: "rgba(250,247,240,0.45)", margin: "3px 0 0" }}>{item.sub}</p>
                   </div>
                 </a>
               ))}
 
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 700, fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase", color: "#8BA888", margin: "20px 0 14px" }}>Siga-nos</p>
+              <p style={{ fontFamily: GS, fontWeight: 700, fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase", color: "#8BA888", margin: "20px 0 14px" }}>Siga-nos</p>
               <div className="socials-row">
                 {SOCIALS.map((s, i) => (
                   <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
@@ -133,7 +135,7 @@ export default function ContactosClient() {
                     onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
                   >
                     <span style={{ display: "flex", alignItems: "center" }}>{s.icon}</span>
-                    <span style={{ fontFamily: "Roboto, sans-serif", fontWeight: 600, fontSize: "0.65rem", letterSpacing: "0.3px", textAlign: "center", lineHeight: 1.2 }}>{s.label}</span>
+                    <span style={{ fontFamily: GS, fontWeight: 600, fontSize: "0.65rem", letterSpacing: "0.3px", textAlign: "center", lineHeight: 1.2 }}>{s.label}</span>
                   </a>
                 ))}
               </div>
@@ -148,12 +150,12 @@ export default function ContactosClient() {
         <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(40px,7vw,64px)" }}>
-              <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#B8954A", marginBottom: 14, fontFamily: "Roboto, sans-serif" }}>Quem somos</span>
+              <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#B8954A", marginBottom: 14, fontFamily: GS }}>Quem somos</span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,5.5vw,3.8rem)", fontWeight: 400, color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.08 }}>
                 A equipa por detrás<br />
                 <em style={{ fontStyle: "italic", color: "#C4846B" }}>de cada peça</em>
               </h2>
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.05rem)", lineHeight: 1.85, color: "rgba(250,247,240,0.55)", maxWidth: 500, margin: "0 auto" }}>
+              <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.05rem)", lineHeight: 1.85, color: "rgba(250,247,240,0.55)", maxWidth: 500, margin: "0 auto" }}>
                 Somos uma equipa pequena baseada em Coimbra, unida pela paixão de transformar flores em memórias que duram para sempre.
               </p>
             </div>
@@ -167,14 +169,14 @@ export default function ContactosClient() {
                     <img src={member.img} alt={`${member.name} — ${member.role} na Flores à Beira-Rio`} loading="lazy" />
                     <div className="team-photo-overlay">
                       <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem, 3.5vw, 1.6rem)", color: "#FAF7F0", margin: "0 0 6px", lineHeight: 1.1, textShadow: "0 2px 10px rgba(0,0,0,0.3)" }}>{member.name}</p>
-                      <span style={{ display: "inline-block", fontSize: "0.5rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#FAF7F0", fontFamily: "Roboto, sans-serif", backgroundColor: member.accent, padding: "4px 12px", borderRadius: 100 }}>{member.role}</span>
+                      <span style={{ display: "inline-block", fontSize: "0.5rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#FAF7F0", fontFamily: GS, backgroundColor: member.accent, padding: "4px 12px", borderRadius: 100 }}>{member.role}</span>
                     </div>
                   </div>
                   <div className="team-bio-col">
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "clamp(0.8rem, 2.2vw, 0.92rem)", lineHeight: 1.75, color: "rgba(250,247,240,0.6)", margin: 0 }}>{member.bio}</p>
+                    <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.8rem, 2.2vw, 0.92rem)", lineHeight: 1.75, color: "rgba(250,247,240,0.6)", margin: 0 }}>{member.bio}</p>
                   </div>
                   <div className="team-bio-below">
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.86rem", lineHeight: 1.72, color: "rgba(250,247,240,0.55)", margin: 0 }}>{member.bio}</p>
+                    <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.86rem", lineHeight: 1.72, color: "rgba(250,247,240,0.55)", margin: 0 }}>{member.bio}</p>
                   </div>
                 </div>
               </Reveal>
@@ -189,12 +191,12 @@ export default function ContactosClient() {
 
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: 640, margin: "0 auto", position: "relative", zIndex: 1 }}>
           <div aria-hidden="true" style={{ width: 44, height: 1, margin: "0 auto 28px", background: "linear-gradient(to right, transparent, #B8954A, transparent)" }} />
-          <span style={{ display: "block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#8BA888", marginBottom: 14, fontFamily: "Roboto, sans-serif" }}>Pronta para começar?</span>
+          <span style={{ display: "block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#8BA888", marginBottom: 14, fontFamily: GS }}>Pronta para começar?</span>
           <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,6vw,3.8rem)", fontWeight: 400, margin: "0 0 18px", lineHeight: 1.08, color: "#FAF7F0" }}>
             Fale connosco<br />
             <em style={{ fontStyle: "italic", color: "#C4846B" }}>sem compromisso</em>
           </h2>
-          <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "clamp(0.9rem,2vw,1rem)", lineHeight: 1.85, color: "rgba(250,247,240,0.55)", margin: "0 0 36px" }}>
+          <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.9rem,2vw,1rem)", lineHeight: 1.85, color: "rgba(250,247,240,0.55)", margin: "0 0 36px" }}>
             Quer saber mais, pedir orçamento ou simplesmente contar-nos a história das suas flores? Respondemos sempre com cuidado e atenção.
           </p>
 
@@ -212,7 +214,7 @@ export default function ContactosClient() {
               { href: "/opcoes-e-precos", label: "Ver preços" },
               { href: "/perguntas-frequentes", label: "Perguntas frequentes" },
             ].map((l, i) => (
-              <a key={i} href={l.href} style={{ color: "rgba(250,247,240,0.45)", fontWeight: 600, textDecoration: "none", fontFamily: "Roboto, sans-serif", borderBottom: "1px solid rgba(250,247,240,0.15)", paddingBottom: 2, transition: "color 0.2s ease, border-color 0.2s ease" }}
+              <a key={i} href={l.href} style={{ color: "rgba(250,247,240,0.45)", fontWeight: 600, textDecoration: "none", fontFamily: GS, borderBottom: "1px solid rgba(250,247,240,0.15)", paddingBottom: 2, transition: "color 0.2s ease, border-color 0.2s ease" }}
                 onMouseEnter={e => { e.currentTarget.style.color = "#FAF7F0"; e.currentTarget.style.borderColor = "rgba(250,247,240,0.5)"; }}
                 onMouseLeave={e => { e.currentTarget.style.color = "rgba(250,247,240,0.45)"; e.currentTarget.style.borderColor = "rgba(250,247,240,0.15)"; }}
               >
