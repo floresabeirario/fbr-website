@@ -41,12 +41,12 @@ const CREME    = "#FAF7F0";
 const ESCURO   = "#0F1E1A";
 
 const ocasioes = [
-  { emoji: "💍", titulo: "Casamento", descricao: "O bouquet de noiva passou meses a ser pensado ao pormenor. Transforme-o numa obra de arte que vai durar para sempre na parede de casa do casal." },
-  { emoji: "🍼", titulo: "Batizado", descricao: "As flores do altar, do vestido ou da decoração do batizado podem tornar-se numa recordação permanente deste dia tão especial." },
-  { emoji: "🌸", titulo: "Aniversário de Casamento", descricao: "Ofereça ao casal a possibilidade de preservar as flores do seu aniversário, criando uma nova memória para celebrar os anos juntos." },
-  { emoji: "🎓", titulo: "Formatura", descricao: "Anos de esforço e dedicação merecem ser celebrados. As flores da cerimónia preservadas num quadro são um símbolo de conquista." },
-  { emoji: "🕊️", titulo: "Homenagem e Luto", descricao: "Em momentos de perda, as flores carregam uma carga emocional enorme. Preservá-las é uma forma de manter viva a memória de alguém amado." },
-  { emoji: "💛", titulo: "Simplesmente Porque Sim", descricao: "Não é preciso uma ocasião especial para dar um presente especial. Um vale oferta é um gesto de amor puro, sem data marcada." },
+  { emoji: "💍", titulo: "Casamento", descricao: "O bouquet de noiva passou meses a ser pensado ao pormenor. Transforme-o numa obra de arte que vai durar para sempre." },
+  { emoji: "🍼", titulo: "Batizado", descricao: "As flores do altar ou da decoração podem tornar-se numa recordação permanente deste dia especial." },
+  { emoji: "🌸", titulo: "Aniversário de Casamento", descricao: "Preserve as flores do aniversário e crie uma nova memória para celebrar os anos juntos." },
+  { emoji: "🎓", titulo: "Formatura", descricao: "As flores da cerimónia preservadas num quadro são um símbolo de conquista e dedicação." },
+  { emoji: "🕊️", titulo: "Homenagem e Luto", descricao: "Em momentos de perda, preservar as flores é uma forma de manter viva a memória de alguém amado." },
+  { emoji: "💛", titulo: "Simplesmente Porque Sim", descricao: "Não é preciso uma ocasião especial para dar um presente especial. Um vale oferta é um gesto de amor puro." },
 ];
 
 const passos = [
@@ -117,14 +117,13 @@ export default function OfereceClient() {
 
         .ocasiao-card {
           background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22);
-          border-radius: 18px; padding: clamp(1.4rem,2.5vw,2rem) clamp(1.2rem,2vw,1.8rem);
+          border-radius: 18px; padding: clamp(1.1rem,2vw,1.6rem) clamp(1rem,1.8vw,1.4rem);
           transition: background 0.25s, border-color 0.25s, transform 0.25s;
         }
         .ocasiao-card:hover { background: rgba(255,255,255,0.24); border-color: rgba(255,255,255,0.45); transform: translateY(-4px); }
 
-        .ocasioes-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-        @media (min-width: 560px) { .ocasioes-grid { grid-template-columns: 1fr 1fr; } }
-        @media (min-width: 900px) { .ocasioes-grid { grid-template-columns: 1fr 1fr 1fr; } }
+        .ocasioes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+        @media (min-width: 900px) { .ocasioes-grid { grid-template-columns: 1fr 1fr 1fr; gap: 1rem; } }
 
         .passo-card {
           display: flex; gap: clamp(1.2rem,2.5vw,1.8rem); align-items: flex-start;
@@ -137,72 +136,171 @@ export default function OfereceClient() {
         .cond-item { display: flex; gap: 0.9rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid rgba(123,143,199,0.1); }
         .cond-item:last-child { border-bottom: none; }
 
-        .fotos-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
-        @media (min-width: 768px) { .fotos-grid { grid-template-columns: 1fr 1fr 1fr; } }
+        /* HERO com foto */
+        .hero-layout {
+          display: grid;
+          grid-template-columns: 1fr;
+          min-height: 100svh;
+          position: relative;
+          overflow: hidden;
+        }
+        @media (min-width: 900px) {
+          .hero-layout {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+
+        .hero-text-col {
+          display: flex; flex-direction: column; justify-content: center;
+          padding: clamp(110px,14vw,160px) clamp(24px,5vw,64px) clamp(60px,8vw,90px);
+          position: relative; z-index: 2;
+        }
+
+        .hero-foto-col {
+          position: relative; overflow: hidden;
+          min-height: clamp(340px, 50vw, 600px);
+          order: -1;
+        }
+        @media (min-width: 900px) {
+          .hero-foto-col { order: 0; min-height: unset; }
+        }
+
+        .hero-foto-col img {
+          width: 100%; height: 100%; object-fit: cover; object-position: center top;
+          display: block;
+        }
+
+        /* Secção cartão (foto + texto) */
+        .cartao-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          align-items: center;
+        }
+        @media (min-width: 768px) {
+          .cartao-grid {
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 3rem;
+          }
+        }
+
+        .cartao-foto-wrap {
+          width: 100%;
+          flex-shrink: 0;
+        }
+        @media (min-width: 768px) {
+          .cartao-foto-wrap { width: 42%; }
+        }
+
+        .cartao-foto { border-radius: 20px; overflow: hidden; box-shadow: 0 12px 48px rgba(15,30,26,0.14); aspect-ratio: 3/4; background: ${AZUL_FND}; }
+        .cartao-foto img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
+        .cartao-foto:hover img { transform: scale(1.04); }
+
+        /* Entrega cartão */
+        .entrega-lista { display: flex; flex-direction: column; gap: 0; }
+        .entrega-item { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.9rem 0; border-bottom: 1px solid rgba(123,143,199,0.12); }
+        .entrega-item:last-child { border-bottom: none; }
+        .entrega-icon { font-size: 1.2rem; margin-top: 1px; flex-shrink: 0; }
+        .entrega-texto strong { display: block; font-weight: 600; font-size: 0.88rem; color: ${ESCURO}; font-family: Roboto, sans-serif; margin-bottom: 2px; }
+        .entrega-texto span { font-size: 0.83rem; color: #5A6B60; line-height: 1.5; }
 
         .foto-moldura { border-radius: 20px; overflow: hidden; box-shadow: 0 12px 48px rgba(15,30,26,0.14); aspect-ratio: 3/4; background: ${AZUL_FND}; }
         .foto-moldura img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
         .foto-moldura:hover img { transform: scale(1.04); }
-
-        .entrega-card { display: flex; gap: 0.9rem; align-items: center; background: rgba(232,236,248,0.6); border-radius: 12px; padding: 0.75rem 1rem; border: 1px solid rgba(123,143,199,0.15); }
 
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
         a:focus-visible, button:focus-visible { outline: 3px solid ${AZUL}; outline-offset: 4px; border-radius: 4px; }
       `,
       }} />
 
-      {/* HERO */}
-      <section style={{ minHeight: "100svh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "clamp(110px,16vw,170px) clamp(20px,5vw,48px) clamp(60px,8vw,90px)", background: `linear-gradient(165deg, ${AZUL_FND} 0%, rgba(232,236,248,0.45) 45%, ${CREME} 75%)`, position: "relative", overflow: "hidden" }}>
-        <div aria-hidden="true" style={{ position: "absolute", top: "-10%", right: "-8%", width: "clamp(280px,45vw,600px)", height: "clamp(280px,45vw,600px)", borderRadius: "50%", background: "radial-gradient(circle, rgba(123,143,199,0.18) 0%, transparent 70%)", pointerEvents: "none" }} />
-        <div aria-hidden="true" style={{ position: "absolute", bottom: "5%", left: "-5%", width: "clamp(200px,30vw,400px)", height: "clamp(200px,30vw,400px)", borderRadius: "50%", background: "radial-gradient(circle, rgba(184,196,232,0.22) 0%, transparent 70%)", pointerEvents: "none" }} />
+      {/* HERO com foto vale2.webp */}
+      <section className="hero-layout" style={{ background: `linear-gradient(165deg, ${AZUL_FND} 0%, rgba(232,236,248,0.45) 45%, ${CREME} 75%)` }}>
+        {/* Coluna texto — aparece primeiro no telemóvel */}
+        <div className="hero-text-col">
+          <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "580px" }}>
+            <Eyebrow>Um presente com alma</Eyebrow>
+            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: ESCURO, margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)" }}>
+              Ofereça uma memória<br />
+              <em style={{ fontStyle: "italic", color: AZUL }}>que dura para sempre</em>
+            </h1>
+            <p style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "#5A6B60", margin: "0 0 clamp(1.8rem, 3.5vw, 2.8rem)" }}>
+              O vale oferta da Flores à Beira-Rio transforma flores reais em arte emoldurada feita à mão, guardando para sempre as memórias de um dia especial.
+            </p>
+            <div className="cta-row-vale" style={{ marginBottom: "1.4rem" }}>
+              <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary-vale">Encomendar Vale Oferta</a>
+              <a href="/como-funciona" className="btn-outline-vale">Como Funciona</a>
+            </div>
+            <p style={{ fontSize: "0.78rem", color: "#9BA89F", letterSpacing: "0.05em" }}>A partir de 300€ · Sem data de validade · Entrega digital gratuita</p>
+          </motion.div>
+        </div>
 
-        <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ position: "relative", zIndex: 1, maxWidth: "780px" }}>
-          <Eyebrow>Um presente com alma</Eyebrow>
-          <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.6rem, 8vw, 5.8rem)", lineHeight: 1.0, color: ESCURO, margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)" }}>
-            Ofereça uma memória<br />
-            <em style={{ fontStyle: "italic", color: AZUL }}>que dura para sempre</em>
-          </h1>
-          <p style={{ fontSize: "clamp(0.96rem, 2vw, 1.12rem)", lineHeight: 1.85, maxWidth: "520px", color: "#5A6B60", margin: "0 auto clamp(2rem, 4vw, 3rem)" }}>
-            O vale oferta da Flores à Beira-Rio transforma flores reais em arte emoldurada feita à mão, guardando para sempre as memórias de um dia especial.
-          </p>
-          <div className="cta-row-vale" style={{ marginBottom: "1.4rem" }}>
-            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary-vale">Encomendar Vale Oferta</a>
-            <a href="/como-funciona" className="btn-outline-vale">Como Funciona</a>
-          </div>
-          <p style={{ fontSize: "0.78rem", color: "#9BA89F", letterSpacing: "0.05em" }}>A partir de 300€ · Sem data de validade · Entrega digital gratuita</p>
-        </motion.div>
+        {/* Coluna foto — aparece por cima no telemóvel */}
+        <div className="hero-foto-col">
+          <img src="/vale2.webp" alt="Cartão presente da Flores à Beira-Rio" />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 60%, rgba(232,236,248,0.3) 100%)", pointerEvents: "none" }} aria-hidden="true" />
+        </div>
       </section>
 
-      {/* FOTOS DO CARTÃO */}
-      <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", maxWidth: "1200px", margin: "0 auto" }}>
-        <div className="fotos-grid">
-          <Reveal delay={0}>
-            <div className="foto-moldura"><img src="/vale1.webp" alt="Cartão presente da Flores à Beira-Rio versão colorida com ilustrações de flores" /></div>
+      {/* CARTÃO com vale1.webp */}
+      <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", maxWidth: "1100px", margin: "0 auto" }}>
+        <Reveal>
+          <div className="cartao-grid">
+            <div className="cartao-foto-wrap">
+              <div className="cartao-foto">
+                <img src="/vale1.webp" alt="Cartão presente da Flores à Beira-Rio versão colorida com ilustrações de flores" />
+              </div>
+            </div>
+            <div style={{ flex: 1 }}>
+              <Eyebrow color={AZUL}>O cartão</Eyebrow>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", lineHeight: 1.15, margin: "0 0 1.2rem", color: ESCURO }}>Ilustrado por uma artista de Coimbra</h2>
+              <p style={{ lineHeight: 1.85, fontSize: "0.96rem", color: "#5A6B60", marginBottom: "1.6rem" }}>
+                Pode ser enviado por email ou entregue fisicamente. Existe em versão colorida e em tons neutros e elegantes.
+              </p>
+              <div className="entrega-lista">
+                <div className="entrega-item">
+                  <span className="entrega-icon" aria-hidden="true">✉️</span>
+                  <div className="entrega-texto">
+                    <strong>Envio por email</strong>
+                    <span>Gratuito — recebe o cartão em formato digital</span>
+                  </div>
+                </div>
+                <div className="entrega-item">
+                  <span className="entrega-icon" aria-hidden="true">📦</span>
+                  <div className="entrega-texto">
+                    <strong>Envio físico por correio</strong>
+                    <span>5€ pelo cartão impresso, mais portes de envio do envelope</span>
+                  </div>
+                </div>
+                <div className="entrega-item">
+                  <span className="entrega-icon" aria-hidden="true">📍</span>
+                  <div className="entrega-texto">
+                    <strong>Recolha em Coimbra</strong>
+                    <span>Gratuita — levanta o cartão físico sem custos adicionais</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* INFORMAÇÕES SOBRE O VALE — movido para antes das ocasiões */}
+      <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", background: `linear-gradient(145deg, ${ESCURO} 0%, #1E3530 100%)`, color: CREME, position: "relative", overflow: "hidden" }}>
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle at 80% 20%, rgba(123,143,199,0.12) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(184,196,232,0.08) 0%, transparent 50%)`, pointerEvents: "none" }} />
+        <div style={{ maxWidth: "820px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+          <Reveal>
+            <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
+              <Eyebrow light>Transparência total</Eyebrow>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.2rem)", lineHeight: 1.1, margin: 0, color: CREME }}>Informações sobre o vale</h2>
+            </div>
           </Reveal>
           <Reveal delay={0.08}>
-            <div className="foto-moldura"><img src="/vale2.webp" alt="Cartão presente da Flores à Beira-Rio verso com condições do vale oferta" /></div>
-          </Reveal>
-          <Reveal delay={0.14} style={{ padding: "0.5rem 0" }}>
-            <Eyebrow color={AZUL}>O cartão</Eyebrow>
-            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", lineHeight: 1.15, margin: "0 0 1.2rem", color: ESCURO }}>Ilustrado por uma artista de Coimbra</h2>
-            <p style={{ lineHeight: 1.85, fontSize: "0.96rem", color: "#5A6B60", marginBottom: "1.1rem" }}>
-              O cartão presente é desenhado à mão por <strong>@damais_cenas</strong>, artista local. Existe em duas versões: uma colorida e alegre, outra em tons neutros e elegantes.
-            </p>
-            <p style={{ lineHeight: 1.85, fontSize: "0.96rem", color: "#5A6B60", marginBottom: "1.6rem" }}>
-              Pode ser enviado por email gratuitamente, ou entregue fisicamente por 5€ mais portes. A recolha em Coimbra é gratuita.
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.7rem" }}>
-              {[
-                { ico: "✉️", label: "Email", desc: "Envio digital gratuito" },
-                { ico: "📦", label: "Correio", desc: "5€ mais portes" },
-                { ico: "📍", label: "Recolha em Coimbra", desc: "Gratuita" },
-              ].map((item, i) => (
-                <div key={i} className="entrega-card">
-                  <span style={{ fontSize: "1.1rem" }} aria-hidden="true">{item.ico}</span>
-                  <div>
-                    <span style={{ fontWeight: 600, fontSize: "0.88rem", color: ESCURO, fontFamily: "Roboto, sans-serif" }}>{item.label}</span>
-                    <span style={{ color: AZUL, fontSize: "0.82rem", marginLeft: "0.5rem" }}>{item.desc}</span>
-                  </div>
+            <div style={{ background: "rgba(250,247,240,0.04)", border: "1px solid rgba(250,247,240,0.1)", borderRadius: "20px", padding: "clamp(1.5rem, 3vw, 2.2rem) clamp(1.2rem, 2.5vw, 2rem)" }}>
+              {condicoes.map((cond, i) => (
+                <div key={i} className="cond-item">
+                  <span style={{ color: AZUL_CLR, marginTop: "3px", flexShrink: 0, fontSize: "0.9rem" }} aria-hidden="true">✦</span>
+                  <p style={{ fontSize: "0.94rem", lineHeight: 1.75, color: "rgba(250,247,240,0.8)", margin: 0 }}>{cond}</p>
                 </div>
               ))}
             </div>
@@ -215,21 +313,21 @@ export default function OfereceClient() {
         <div aria-hidden="true" style={{ position: "absolute", top: "-20%", right: "-10%", width: "clamp(300px,50vw,700px)", height: "clamp(300px,50vw,700px)", borderRadius: "50%", background: "radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 65%)", pointerEvents: "none" }} />
         <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
-            <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
+            <div style={{ textAlign: "center", marginBottom: "clamp(2rem, 4vw, 3rem)" }}>
               <Eyebrow light>Momentos especiais</Eyebrow>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1, margin: "0 0 0.9rem" }}>Para cada momento da vida</h2>
-              <p style={{ color: "rgba(250,247,240,0.75)", fontSize: "clamp(0.9rem, 1.8vw, 1rem)", lineHeight: 1.8, maxWidth: "500px", margin: "0 auto" }}>
-                Um presente que vai muito além das flores. É uma forma de dizer que aquele momento merece durar para sempre.
+              <p style={{ color: "rgba(250,247,240,0.75)", fontSize: "clamp(0.88rem, 1.6vw, 1rem)", lineHeight: 1.75, maxWidth: "460px", margin: "0 auto" }}>
+                Um presente que vai muito além das flores.
               </p>
             </div>
           </Reveal>
           <div className="ocasioes-grid">
             {ocasioes.map((item, i) => (
-              <Reveal key={i} delay={i * 0.07}>
+              <Reveal key={i} delay={i * 0.06}>
                 <article className="ocasiao-card">
-                  <div style={{ fontSize: "2rem", marginBottom: "0.9rem" }} aria-hidden="true">{item.emoji}</div>
-                  <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem, 2vw, 1.2rem)", marginBottom: "0.6rem", color: CREME, lineHeight: 1.2 }}>{item.titulo}</h3>
-                  <p style={{ fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(250,247,240,0.8)", margin: 0 }}>{item.descricao}</p>
+                  <div style={{ fontSize: "1.6rem", marginBottom: "0.6rem" }} aria-hidden="true">{item.emoji}</div>
+                  <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.9rem, 1.8vw, 1.1rem)", marginBottom: "0.45rem", color: CREME, lineHeight: 1.2 }}>{item.titulo}</h3>
+                  <p style={{ fontSize: "0.82rem", lineHeight: 1.65, color: "rgba(250,247,240,0.78)", margin: 0 }}>{item.descricao}</p>
                 </article>
               </Reveal>
             ))}
@@ -281,29 +379,6 @@ export default function OfereceClient() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CONDIÇÕES */}
-      <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", background: `linear-gradient(145deg, ${ESCURO} 0%, #1E3530 100%)`, color: CREME, position: "relative", overflow: "hidden" }}>
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle at 80% 20%, rgba(123,143,199,0.12) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(184,196,232,0.08) 0%, transparent 50%)`, pointerEvents: "none" }} />
-        <div style={{ maxWidth: "820px", margin: "0 auto", position: "relative", zIndex: 1 }}>
-          <Reveal>
-            <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
-              <Eyebrow light>Transparência total</Eyebrow>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.2rem)", lineHeight: 1.1, margin: 0, color: CREME }}>Informações sobre o vale</h2>
-            </div>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <div style={{ background: "rgba(250,247,240,0.04)", border: "1px solid rgba(250,247,240,0.1)", borderRadius: "20px", padding: "clamp(1.5rem, 3vw, 2.2rem) clamp(1.2rem, 2.5vw, 2rem)" }}>
-              {condicoes.map((cond, i) => (
-                <div key={i} className="cond-item">
-                  <span style={{ color: AZUL_CLR, marginTop: "3px", flexShrink: 0, fontSize: "0.9rem" }} aria-hidden="true">✦</span>
-                  <p style={{ fontSize: "0.94rem", lineHeight: 1.75, color: "rgba(250,247,240,0.8)", margin: 0 }}>{cond}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
         </div>
       </section>
 
