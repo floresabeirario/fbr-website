@@ -13,7 +13,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const post = getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   if (!post) return { title: "Artigo não encontrado | Flores à Beira-Rio" };
 
   return {
@@ -180,7 +181,8 @@ const mdxComponents = {
 };
 
 export default async function ArticlePage({ params }) {
-  const post = getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   if (!post) notFound();
 
   const related = getRelatedPosts(post.slug, post.category, post.tags);
