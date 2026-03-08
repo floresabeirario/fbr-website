@@ -1,7 +1,7 @@
 // app/perguntas-frequentes/page.js
 // SERVER COMPONENT — exporta metadata estática para SEO perfeito
 
-import PerguntasFrequentesClient from "../_components/PerguntasFrequentesClient";
+import PerguntasFrequentesClient from "./PerguntasFrequentesClient";
 
 export const metadata = {
   title: "Perguntas Frequentes sobre Preservação de Flores",
