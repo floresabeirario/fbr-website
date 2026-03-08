@@ -129,23 +129,31 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
   );
 };
 
-const NavCTA = ({ shouldShowScrolled }) => (
-  
-    href={FORM_URL}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="nav-cta"
-    style={{
-      backgroundColor: shouldShowScrolled ? "#3D6B5E" : "rgba(250,247,240,0.12)",
-      color: shouldShowScrolled ? "#FAF7F0" : "rgba(250,247,240,0.92)",
-      border: shouldShowScrolled ? "1.5px solid #3D6B5E" : "1.5px solid rgba(250,247,240,0.35)",
-      backdropFilter: shouldShowScrolled ? "none" : "blur(8px)",
-      boxShadow: shouldShowScrolled ? "0 3px 14px rgba(61,107,94,0.22)" : "none",
-    }}
-  >
-    Reservar Data
-  </a>
-);
+function NavCTA({ shouldShowScrolled }) {
+  const bgColor     = shouldShowScrolled ? "#3D6B5E" : "rgba(250,247,240,0.12)";
+  const textColor   = shouldShowScrolled ? "#FAF7F0" : "rgba(250,247,240,0.92)";
+  const borderColor = shouldShowScrolled ? "1.5px solid #3D6B5E" : "1.5px solid rgba(250,247,240,0.35)";
+  const bdFilter    = shouldShowScrolled ? "none" : "blur(8px)";
+  const shadow      = shouldShowScrolled ? "0 3px 14px rgba(61,107,94,0.22)" : "none";
+
+  return (
+    
+      href={FORM_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="nav-cta"
+      style={{
+        backgroundColor: bgColor,
+        color: textColor,
+        border: borderColor,
+        backdropFilter: bdFilter,
+        boxShadow: shadow,
+      }}
+    >
+      Reservar Data
+    </a>
+  );
+}
 
 export default function NavClient() {
   const [isOpen, setIsOpen]     = useState(false);
@@ -251,7 +259,6 @@ export default function NavClient() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
           <>
