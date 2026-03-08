@@ -177,10 +177,10 @@ export default function OfereceClient() {
       <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", maxWidth: "1200px", margin: "0 auto" }}>
         <div className="fotos-grid">
           <Reveal delay={0}>
-            <div className="foto-moldura"><img src="/images/vale1.webp" alt="Cartão presente da Flores à Beira-Rio versão colorida com ilustrações de flores" /></div>
+            <div className="foto-moldura"><img src="/vale1.webp" alt="Cartão presente da Flores à Beira-Rio versão colorida com ilustrações de flores" /></div>
           </Reveal>
           <Reveal delay={0.08}>
-            <div className="foto-moldura"><img src="/images/vale2.webp" alt="Cartão presente da Flores à Beira-Rio verso com condições do vale oferta" /></div>
+            <div className="foto-moldura"><img src="/vale2.webp" alt="Cartão presente da Flores à Beira-Rio verso com condições do vale oferta" /></div>
           </Reveal>
           <Reveal delay={0.14} style={{ padding: "0.5rem 0" }}>
             <Eyebrow color={AZUL}>O cartão</Eyebrow>
