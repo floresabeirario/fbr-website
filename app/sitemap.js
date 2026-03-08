@@ -14,7 +14,7 @@ export default function sitemap() {
     { url: `${base}/momentos-especiais`,                      priority: 0.75, changeFrequency: "monthly" },
     { url: `${base}/emoldurar-flores-secas`,                  priority: 0.75, changeFrequency: "monthly" },
     { url: `${base}/recriacao`,                               priority: 0.8,  changeFrequency: "monthly" },
-    { url: `${base}/vale-presente`,                           priority: 0.75, changeFrequency: "monthly" },
+    { url: `${base}/oferecer-preservacao`,                    priority: 0.8,  changeFrequency: "monthly" },
     { url: `${base}/sustentabilidade`,                        priority: 0.7,  changeFrequency: "monthly" },
     { url: `${base}/perguntas-frequentes`,                    priority: 0.8,  changeFrequency: "monthly" },
     { url: `${base}/contactos`,                               priority: 0.7,  changeFrequency: "yearly"  },
