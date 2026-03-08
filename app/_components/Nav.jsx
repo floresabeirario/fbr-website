@@ -225,9 +225,13 @@ export default function NavClient() {
                 style={{
                   backgroundColor: shouldShowScrolled ? "#3D6B5E" : "rgba(250,247,240,0.12)",
                   color: shouldShowScrolled ? "#FAF7F0" : "rgba(250,247,240,0.92)",
-                  border: shouldShowScrolled ? "1.5px solid #3D6B5E" : "1.5px solid rgba(250,247,240,0.35)",
+                  border: shouldShowScrolled
+                    ? "1.5px solid #3D6B5E"
+                    : "1.5px solid rgba(250,247,240,0.35)",
                   backdropFilter: shouldShowScrolled ? "none" : "blur(8px)",
-                  boxShadow: shouldShowScrolled ? "0 3px 14px rgba(61,107,94,0.22)" : "none",
+                  boxShadow: shouldShowScrolled
+                    ? "0 3px 14px rgba(61,107,94,0.22)"
+                    : "none",
                 }}
               >
                 Reservar Data
