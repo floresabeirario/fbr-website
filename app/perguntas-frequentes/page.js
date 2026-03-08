@@ -4,16 +4,18 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const FAQ_DATA = [
-  // ── PROCESSO ──────────────────────────────────────────────────────────────
+  // PROCESSO
   {
     cat: "processo",
     q: "Quando devo agendar a preservação do meu bouquet?",
-    plain: "O ideal é agendar assim que souber a data do casamento. As vagas são limitadas e em época de casamentos esgotam rapidamente. Se as flores já secaram, podemos fazer uma recriação do bouquet a partir de uma fotografia.",
+    plain: "O ideal é agendar assim que souber a data do evento. As vagas são limitadas e em época de maior procura esgotam rapidamente. Se o evento já aconteceu, contacte-nos assim que possível. No caso de o evento ter acontecido há mais de 5 dias e as flores não estiverem em bom estado, podemos fazer uma recriação do bouquet com flores frescas semelhantes, a partir de uma fotografia.",
     a: <>
-      O ideal é agendar <strong>assim que souber a data do casamento</strong> — não precisa esperar pela data do evento.
+      O ideal é agendar <strong>assim que souber a data do evento</strong> — não precisa esperar pela data.
       As vagas são limitadas e em meses de maior procura algumas datas esgotam com muita antecedência.
       <br/><br/>
-      Se o evento já ocorreu e as flores não estão em bom estado, podemos fazer uma{" "}
+      Se o evento já aconteceu, <strong>contacte-nos assim que possível</strong>.
+      No caso de o evento ter acontecido há mais de 5 dias e as flores não estiverem em bom estado,
+      podemos fazer uma{" "}
       <a href="/recriacao" className="faq-link">recriação do bouquet</a> com flores frescas semelhantes,
       a partir de uma fotografia.
     </>
@@ -21,35 +23,32 @@ const FAQ_DATA = [
   {
     cat: "processo",
     q: "Quanto tempo demora a preservação?",
-    plain: "O tempo médio desde a recepção das flores até o quadro pronto é de até 6 meses. Nunca sacrificamos a qualidade em favor da rapidez.",
+    plain: "O nosso tempo médio é de até 6 meses desde a recepção das flores até ao quadro emoldurado. Fazemos sempre o possível para ser mais rápidos, mas a prensagem é um processo delicado que não pode ser apressado. Nunca sacrificamos a qualidade em favor da rapidez. No caso de a encomenda incluir vários quadros, é possível que o prazo se estenda um pouco.",
     a: <>
       O nosso tempo médio é de <strong>até 6 meses</strong> desde a recepção das flores até ao quadro emoldurado.
       Fazemos sempre o possível para ser mais rápidos, mas a prensagem é um processo delicado que não pode ser apressado.
       <strong> Nunca sacrificamos a qualidade em favor da rapidez.</strong>
+      <br/><br/>
+      No caso de a encomenda incluir vários quadros, é possível que o prazo se estenda um pouco.
     </>
   },
   {
     cat: "processo",
     q: "Como funciona o processo completo?",
-    plain: "Começa com a reserva da vaga e sinal de 30%. Depois entrega das flores, prensagem artesanal, aprovação da composição por fotografia, e envio do quadro emoldurado.",
+    plain: "Explicamos o processo todo em detalhe na página Como Funciona.",
     a: <>
-      Tudo começa com a <strong>reserva da vaga e pagamento do sinal de 30%</strong>.
-      Depois, envie ou entregue as flores preferencialmente até 3 dias após o evento.
+      Explicamos o processo todo em detalhe na nossa página dedicada.
       <br/><br/>
-      As flores são prensadas e secas artesanalmente. Criamos a composição e enviamos uma
-      <strong> fotografia para aprovação</strong> antes de selarmos a moldura.
-      Só após a sua aprovação — e pagamento final — o quadro é enviado.
-      <br/><br/>
-      <a href="/como-funciona" className="faq-link">Ver o processo detalhado →</a>
+      <a href="/como-funciona" className="faq-link">Ver o processo passo a passo →</a>
     </>
   },
   {
     cat: "processo",
-    q: "Podem recolher as flores no local do casamento?",
+    q: "Podem recolher as flores no local do evento?",
     plain: "Sim, deslocamo-nos ao local do evento ou hotel para recolher as flores em mãos, mediante orçamento e disponibilidade.",
     a: <>
-      Sim. Deslocamo-nos ao local do evento, hotel ou quinta para recolha em mãos —
-      é a opção mais recomendada pois as flores chegam no seu melhor estado.
+      Sim. Deslocamo-nos ao local do evento, hotel ou quinta para recolha em mãos.
+      É a opção mais recomendada pois as flores chegam no seu melhor estado.
       Esta recolha tem <strong>custo adicional e está sujeita a disponibilidade</strong>.
       Contacte-nos com antecedência para verificar se cobrimos a sua zona.
     </>
@@ -61,7 +60,7 @@ const FAQ_DATA = [
     a: <>
       Sim! Pode personalizar o quadro com elementos que tenham significado especial:
       fitas do bouquet, um pedaço de tecido do vestido ou véu, uma coleira de animal de estimação,
-      convites de casamento, cartas ou fotografias impressas.
+      convites, cartas ou fotografias impressas.
       <br/><br/>
       Mencione este detalhe <strong>no formulário de reserva</strong> ou por email após agendar.
     </>
@@ -69,68 +68,72 @@ const FAQ_DATA = [
   {
     cat: "processo",
     q: "Recebem flores de fora de Portugal?",
-    plain: "Sim, recebemos flores de toda a Europa por CTT ou transportadora. O cliente é responsável pelos custos e condições de envio até ao atelier.",
+    plain: "Sim, recebemos flores de toda a Europa. O envio internacional é feito por transportadora em correio frágil/urgente e os custos e responsabilidade do envio até ao nosso atelier são do remetente. Recomendamos que o envio seja feito o mais rápido possível após o evento.",
     a: <>
       Sim, recebemos flores de <strong>toda a Europa</strong>.
-      O envio internacional é feito por CTT correio frágil/urgente ou transportadora à escolha do cliente —
-      os custos e responsabilidade do envio até ao nosso atelier são do remetente.
+      O envio internacional é feito por transportadora em correio frágil/urgente
+      e os custos e responsabilidade do envio até ao nosso atelier são do remetente.
       <br/><br/>
-      Recomendamos que o envio seja feito <strong>o mais rápido possível</strong> após o evento,
-      preferencialmente com gelo seco para conservação.
+      Recomendamos que o envio seja feito <strong>o mais rápido possível</strong> após o evento.
     </>
   },
 
-  // ── FLORES ─────────────────────────────────────────────────────────────────
+  // FLORES
   {
     cat: "flores",
     q: "Preservam apenas bouquets de casamento?",
-    plain: "Não. Preservamos flores de batizados, aniversários, bodas de prata e ouro, cerimónias fúnebres e qualquer flor com valor sentimental.",
+    plain: "Não. Preservamos flores de qualquer ocasião com significado emocional: batizados, aniversários, bodas de prata e ouro, homenagens e cerimónias fúnebres. O nosso vale-presente é uma forma muito especial de oferecer uma preservação, seja para uma noiva, para quem acabou de perder alguém especial, ou para celebrar uma data importante.",
     a: <>
       Não! Preservamos <strong>qualquer flor com significado emocional</strong>:
       ramos de batizado, flores de aniversário, bodas de prata e ouro,
-      homenagens e cerimónias fúnebres, ou até flores espontâneas com valor sentimental.
+      homenagens e cerimónias fúnebres, ou qualquer flor que mereça ser guardada para sempre.
       <br/><br/>
-      O nosso vale-presente é especialmente popular para oferecer a noivas —
-      <a href="/vale-presente" className="faq-link"> ver o vale-presente</a>.
+      O nosso <strong>vale-presente</strong> é uma forma muito especial de oferecer uma preservação.
+      Pode ser o presente ideal para uma noiva que ainda não agendou,
+      para quem acabou de perder alguém especial e quer guardar as flores da cerimónia,
+      ou para celebrar uma data importante na vida de alguém.
+      <br/><br/>
+      <a href="/vale-presente" className="faq-link">Saber mais sobre o vale-presente →</a>
     </>
   },
   {
     cat: "flores",
     q: "Preservam todo o tipo de flores?",
-    plain: "A grande maioria das flores responde bem à prensagem. Flores com muito teor de água como suculentas ou antúrios podem ser mais difíceis de preservar.",
+    plain: "Sim. Após muitas aprendizagens, testes e conclusões, podemos afirmar que preservamos todo o tipo de flores.",
     a: <>
-      A <strong>grande maioria</strong> das flores responde muito bem à prensagem.
-      No entanto, flores com <strong>elevado teor de água</strong> (suculentas, antúrios, orquídeas carnosas)
-      ou formatos muito volumosos podem ser mais difíceis de preservar na sua forma original.
-      <br/><br/>
-      Em caso de dúvida sobre o seu bouquet específico,{" "}
-      <a href="/contactos" className="faq-link">contacte-nos antes de reservar</a> — adoramos ajudar.
+      <strong>Sim.</strong> Após muitas aprendizagens, testes e conclusões ao longo dos anos,
+      podemos afirmar com confiança que preservamos todo o tipo de flores.
+      Cada espécie tem as suas particularidades e é precisamente essa experiência acumulada
+      que nos permite garantir os melhores resultados em qualquer bouquet.
     </>
   },
   {
     cat: "flores",
     q: "As cores mantêm-se iguais depois de secas?",
-    plain: "Haverá alguma mudança natural de cor pois a humidade é removida. Rosas vermelhas tornam-se bordô, por exemplo. É a beleza do processo artesanal.",
+    plain: "Há sempre alguma mudança de cor, é inevitável quando retiramos toda a humidade da flor. Algumas flores mantêm cores muito vibrantes; outras desbotam ligeiramente. Esta transformação faz parte da beleza natural do processo.",
     a: <>
-      Haverá sempre <strong>alguma mudança de cor</strong> — é inevitável quando retiramos toda a humidade da flor.
-      Algumas flores mantêm cores muito vibrantes; outras desbotam ligeiramente (rosas vermelhas tornam-se bordô, por exemplo).
+      Há sempre <strong>alguma mudança de cor</strong> — é inevitável quando retiramos toda a humidade da flor.
+      Algumas flores mantêm cores muito vibrantes; outras desbotam ligeiramente
+      (rosas vermelhas tornam-se bordô, por exemplo).
       <br/><br/>
-      Esta transformação faz parte da <strong>beleza natural do processo</strong>:
-      a essência autentica da flor, preservada para sempre.
+      Esta transformação faz parte da <strong>beleza natural do processo</strong>.
     </>
   },
   {
     cat: "flores",
-    q: "Tenho flores de casamento de há vários anos. O que posso fazer?",
-    plain: "Flores antigas dificilmente são preserváveis. Mas podemos recriar o bouquet com flores frescas iguais às do dia, usando fotografias como referência.",
+    q: "Tenho flores secas de há vários anos. O que posso fazer?",
+    plain: "Tem duas opções: a recriação de bouquet, onde reproduzimos o ramo com flores frescas e iguais às originais usando fotografias como referência; ou a emolduração das flores originais numa moldura mais funda com uma composição feita com elas.",
     a: <>
-      Flores muito antigas dificilmente podem ser preservadas na sua forma original.
-      Para estes casos criámos a nossa{" "}
-      <a href="/recriacao" className="faq-link">recriação de bouquet</a>:
-      reproduzimos o ramo com flores <strong>frescas e iguais às originais</strong>,
-      usando as fotografias do dia do casamento como referência.
+      Tem duas opções:
       <br/><br/>
+      <strong>Recriação de bouquet</strong> — reproduzimos o ramo com flores frescas e iguais às originais,
+      usando as fotografias do dia como referência. Preservamos então essas flores frescas.
       É também o presente ideal para filhos que queiram eternizar o bouquet do casamento dos pais, décadas depois.
+      <br/><br/>
+      <strong>Emolduração das flores originais</strong> — podemos emoldurar numa moldura mais funda
+      as flores originais e fazer uma composição com elas tal como estão.
+      <br/><br/>
+      <a href="/recriacao" className="faq-link">Saber mais sobre a recriação de bouquet →</a>
     </>
   },
   {
@@ -145,55 +148,51 @@ const FAQ_DATA = [
       a viabilidade da preservação das flores originais. Nesse caso, recomendamos o nosso{" "}
       <a href="/recriacao" className="faq-link">serviço de recriação de bouquet</a>,
       onde reproduzimos o ramo com flores frescas iguais às do dia,
-      usando fotografias como referência — com resultados igualmente belos e duradouros.
+      usando fotografias como referência.
     </>
   },
   {
     cat: "flores",
     q: "Porque não preservam flores em resina?",
-    plain: "A resina é um plástico de origem petroquímica, não biodegradável e de difícil reciclagem. A nossa abordagem é 100% artesanal e sustentável: prensagem natural, moldura de madeira e vidro museu — sem químicos, sem plástico.",
+    plain: "A resina é um plástico de origem petroquímica, não biodegradável e de difícil reciclagem. A nossa abordagem é 100% artesanal e sustentável: prensagem natural, moldura de madeira e vidro museu, sem químicos e sem plástico.",
     a: <>
       A resina é um <strong>plástico de origem petroquímica</strong>: não é biodegradável,
       não é reciclável e o seu processo de cura liberta compostos voláteis nocivos.
       Não se enquadra nos nossos valores de sustentabilidade e trabalho artesanal.
       <br/><br/>
       A nossa preservação é <strong>100% natural</strong>: prensagem artesanal, moldura de madeira
-      e vidro museu — sem químicos, sem plástico, sem impacto ambiental desnecessário.
+      e vidro museu, sem químicos, sem plástico, sem impacto ambiental desnecessário.
       O resultado é uma obra de arte que dura décadas e que, no fim da sua vida útil,
       pode ser devolvida à natureza sem deixar resíduos tóxicos.
     </>
   },
   {
     cat: "flores",
-    q: "Porque não fazem preservação de flores em 3D (liofilização ou sílica)?",
-    plain: "A preservação em 3D com sílica utiliza gel de sílica em grandes quantidades, que é produzido industrialmente e tem impacto ambiental considerável. A prensagem artesanal que praticamos é a forma mais sustentável de eternizar flores.",
+    q: "Porque não fazem preservação de flores em 3D?",
+    plain: "A preservação em 3D habitualmente utiliza gel de sílica em grandes quantidades: um material produzido industrialmente, com elevado consumo energético e impacto ambiental considerável. A prensagem artesanal que praticamos é a forma mais sustentável, duradoura e esteticamente rica de eternizar as suas flores, com resultados que se mantêm belos durante décadas.",
     a: <>
-      A preservação em 3D (seja por liofilização ou por sílica) utiliza <strong>gel de sílica
-      em grandes quantidades</strong> — um material produzido industrialmente,
-      com elevado consumo energético e impacto ambiental considerável.
-      <br/><br/>
-      Para além disso, as flores preservadas em 3D são <strong>extremamente frágeis</strong>,
-      perdem a cor rapidamente e exigem condições de humidade rigorosas para não desmoronarem.
+      A preservação em 3D habitualmente utiliza <strong>gel de sílica em grandes quantidades</strong>:
+      um material produzido industrialmente, com elevado consumo energético e impacto ambiental considerável.
       <br/><br/>
       A <strong>prensagem artesanal</strong> que praticamos é a forma mais sustentável, duradoura
-      e esteticamente rica de eternizar as suas flores — com resultados que se mantêm
+      e esteticamente rica de eternizar as suas flores, com resultados que se mantêm
       belos durante décadas.
     </>
   },
   {
     cat: "flores",
     q: "Quanto tempo as flores podem estar sem ser entregues?",
-    plain: "Recomendamos entregar as flores preferencialmente 1 a 3 dias após o evento, no máximo 5 dias, para garantir a melhor preservação possível.",
+    plain: "Recomendamos que as flores cheguem até nós preferencialmente 1 a 3 dias após o evento, no máximo 5 dias para a maior parte das flores. Quanto mais frescas chegarem, melhor o resultado final. Enquanto não as entrega, guarde as flores num vaso com água fresca, longe de calor e da luz solar.",
     a: <>
-      Recomendamos que as flores cheguem ao atelier <strong>preferencialmente 1 a 3 dias</strong> após o evento,
-      no máximo 5 dias. Quanto mais frescas chegarem, melhor o resultado final.
+      Recomendamos que as flores cheguem até nós <strong>preferencialmente 1 a 3 dias</strong> após o evento,
+      no máximo 5 dias para a maior parte das flores. Quanto mais frescas chegarem, melhor o resultado final.
       <br/><br/>
-      Enquanto aguarda, guarde as flores <strong>num vaso com água fresca</strong>,
-      longe de calor directo e luz solar intensa.
+      Enquanto não as entrega, guarde as flores <strong>num vaso com água fresca</strong>,
+      longe de calor e da luz solar.
     </>
   },
 
-  // ── ENTREGA ────────────────────────────────────────────────────────────────
+  // ENTREGA
   {
     cat: "entrega",
     q: "Consigo acompanhar o estado da minha encomenda?",
@@ -210,38 +209,38 @@ const FAQ_DATA = [
   {
     cat: "entrega",
     q: "Como faço chegar as flores ao atelier?",
-    plain: "Pode entregar em mãos em Ceira (Coimbra), enviar por CTT correio frágil e urgente, ou pedir recolha no local do evento.",
+    plain: "Tem três opções: entrega em mãos no atelier em Ceira (Coimbra) mediante agendamento prévio; envio por CTT em correio frágil e urgente com custos a cargo do cliente; ou recolha no local do evento sujeita a orçamento e disponibilidade.",
     a: <>
       Tem três opções:
       <br/><br/>
       <strong>Entrega em mãos</strong> — gratuita, no nosso atelier em Ceira, Coimbra, mediante agendamento prévio.
-      <br/>
+      <br/><br/>
       <strong>Envio por CTT</strong> — correio frágil e urgente, custos a cargo do cliente.
-      <br/>
+      <br/><br/>
       <strong>Recolha no evento</strong> — deslocamo-nos ao local, sujeito a orçamento e disponibilidade.
     </>
   },
   {
     cat: "entrega",
     q: "Como é entregue o quadro final?",
-    plain: "O quadro é enviado por CTT com rastreio e acondicionamento especial para peças frágeis, ou pode ser levantado pessoalmente no atelier.",
+    plain: "O quadro pode ser enviado para casa via transportadora com rastreio e embalagem especial para peças frágeis, com custos calculados por tamanho e zona. Ou pode ser levantado no atelier em Ceira, Coimbra, num horário a agendar. O envio ou levantamento só acontece após o pagamento total da encomenda.",
     a: <>
       O quadro pode ser:
       <br/><br/>
-      <strong>Enviado para casa</strong> via CTT com rastreio, embalagem especial para peças frágeis
-      e seguro de transporte. Os custos de envio são calculados por tamanho e zona.
-      <br/>
+      <strong>Enviado para casa</strong> via transportadora com rastreio e embalagem especial para peças frágeis.
+      Os custos de envio são calculados por tamanho e zona.
+      <br/><br/>
       <strong>Levantado no atelier</strong> em Ceira, Coimbra, num horário a agendar.
       <br/><br/>
-      O envio ou levantamento só acontece após <strong>aprovação da composição e pagamento total</strong>.
+      O envio ou levantamento só acontece após <strong>o pagamento total da encomenda</strong>.
     </>
   },
 
-  // ── PAGAMENTOS ─────────────────────────────────────────────────────────────
+  // PAGAMENTOS
   {
     cat: "pagamentos",
     q: "Quanto custa a preservação?",
-    plain: "Os preços começam nos 300€ com moldura e vidro museu incluídos. O valor varia consoante o tamanho e tipo de moldura escolhida.",
+    plain: "Os preços começam nos 300€ e incluem sempre o emolduramento com vidro museu anti-reflexo e proteção UV. O valor varia consoante o tamanho e o tipo de moldura escolhida.",
     a: <>
       Os preços <strong>começam nos 300€</strong> e incluem sempre o emolduramento artesanal
       com vidro museu anti-reflexo e proteção UV.
@@ -253,7 +252,7 @@ const FAQ_DATA = [
   {
     cat: "pagamentos",
     q: "Como funciona o pagamento?",
-    plain: "O pagamento é feito em três prestações: 30% de sinal na reserva, 40% na recepção das flores e 30% antes do envio do quadro.",
+    plain: "O pagamento divide-se em três prestações: 30% de sinal na reserva (não reembolsável), 40% na recepção e início da preservação das flores, e 30% antes do envio ou levantamento do quadro final. Em caso de reagendamento, os valores já pagos podem ser transferidos para a nova data, desde que haja disponibilidade.",
     a: <>
       O pagamento divide-se em <strong>três prestações</strong>:
       <br/><br/>
@@ -265,10 +264,12 @@ const FAQ_DATA = [
         <strong style={{ color:"#3D6B5E", flexShrink:0 }}>40%</strong>
         Na recepção e início da preservação das flores.
       </span>
-      <span style={{ display:"flex", gap:"10px" }}>
+      <span style={{ display:"flex", gap:"10px", marginBottom:"16px" }}>
         <strong style={{ color:"#3D6B5E", flexShrink:0 }}>30%</strong>
         Antes do envio ou levantamento do quadro final.
       </span>
+      Em caso de reagendamento, os valores já pagos podem ser transferidos para a nova data,
+      desde que haja disponibilidade.
     </>
   },
   {
@@ -293,7 +294,7 @@ const FAQ_DATA = [
       feita à mão com muito tempo e dedicação.
       <br/><br/>
       Por isso enviamos sempre uma fotografia da composição para aprovação
-      <strong> antes de selar a moldura</strong>, garantindo que fica completamente satisfeito/a.
+      <strong> antes de selar a moldura</strong>, garantindo que fica completamente satisfeito.
     </>
   },
 ];
@@ -404,9 +405,9 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm }) => {
 };
 
 export default function PerguntasFrequentes() {
-  const [openIndex, setOpenIndex]       = useState(null);
+  const [openIndex, setOpenIndex]           = useState(null);
   const [activeCategory, setActiveCategory] = useState("todas");
-  const [search, setSearch]             = useState("");
+  const [search, setSearch]                 = useState("");
 
   const toggle = (i) => setOpenIndex(openIndex === i ? null : i);
 
@@ -445,7 +446,6 @@ export default function PerguntasFrequentes() {
           }
           .faq-link:hover { border-color: #3D6B5E; }
 
-          /* ── ALTERAÇÃO: flex-wrap em vez de overflow scroll ── */
           .pills-row {
             display: flex; gap: 8px;
             flex-wrap: wrap;
@@ -567,7 +567,7 @@ export default function PerguntasFrequentes() {
         `}}/>
 
         <section
-          aria-label="Perguntas frequentes sobre preservação de flores de casamento"
+          aria-label="Perguntas frequentes sobre preservação de flores"
           style={{
             paddingTop: "clamp(110px,16vw,170px)",
             paddingBottom: "clamp(44px,7vw,72px)",
@@ -604,7 +604,7 @@ export default function PerguntasFrequentes() {
               color: "#5A6B60", fontSize: "clamp(0.94rem,2vw,1.05rem)",
               lineHeight: 1.85, maxWidth: "520px", margin: "0 auto"
             }}>
-              Tudo o que precisa de saber sobre preservação de flores de casamento,
+              Tudo o que precisa de saber sobre preservação de flores,
               processo artesanal, entrega e pagamentos.
             </p>
           </motion.div>
