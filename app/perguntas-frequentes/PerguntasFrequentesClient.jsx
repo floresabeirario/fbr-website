@@ -1,4 +1,4 @@
-// app/_components/PerguntasFrequentesClient.jsx
+// app/perguntas-frequentes/PerguntasFrequentesClient.jsx
 "use client";
 
 import { useState, useMemo } from "react";
