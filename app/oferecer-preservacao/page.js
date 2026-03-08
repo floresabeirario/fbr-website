@@ -1,3 +1,5 @@
+export { metadata } from "./metadata.js";
+
 "use client";
 
 import { useRef } from "react";
