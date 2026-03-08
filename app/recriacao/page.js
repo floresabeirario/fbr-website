@@ -1,7 +1,7 @@
 // app/recriacao/page.js
 // SERVER COMPONENT — exporta metadata estática para SEO perfeito
 
-import RecriacaoClient from "../_components/RecriacaoClient";
+import RecriacaoClient from "./RecriacaoClient";
 
 export const metadata = {
   title: "Recriação de Bouquet de Casamento | Preservação Botânica",
