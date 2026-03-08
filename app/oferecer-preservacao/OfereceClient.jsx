@@ -41,24 +41,24 @@ const CREME    = "#FAF7F0";
 const ESCURO   = "#0F1E1A";
 
 const ocasioes = [
-  { num: "I",    titulo: "Casamento",               descricao: "O bouquet de noiva passou meses a ser pensado ao pormenor. Transforme-o numa obra de arte que vai durar para sempre." },
-  { num: "II",   titulo: "Batizado",                descricao: "As flores do altar ou da decoração podem tornar-se numa recordação permanente deste dia especial." },
-  { num: "III",  titulo: "Aniversário de Casamento", descricao: "Preserve as flores do aniversário e crie uma nova memória para celebrar os anos juntos." },
-  { num: "IV",   titulo: "Formatura",               descricao: "As flores da cerimónia preservadas num quadro são um símbolo de conquista e dedicação." },
-  { num: "V",    titulo: "Homenagem e Luto",        descricao: "Em momentos de perda, preservar as flores é uma forma de manter viva a memória de alguém amado." },
-  { num: "VI",   titulo: "Simplesmente Porque Sim", descricao: "Não é preciso uma ocasião especial para dar um presente especial. Um vale oferta é um gesto de amor puro." },
+  { emoji: "💍", titulo: "Casamento",               descricao: "O bouquet de noiva passou meses a ser pensado ao pormenor. Transforme-o numa obra de arte que vai durar para sempre." },
+  { emoji: "🕊️", titulo: "Batizado",                descricao: "As flores do altar ou da decoração podem tornar-se numa recordação permanente deste dia especial." },
+  { emoji: "🌿", titulo: "Aniversário de Casamento", descricao: "Preserve as flores do aniversário e crie uma nova memória para celebrar os anos juntos." },
+  { emoji: "🎓", titulo: "Formatura",               descricao: "As flores da cerimónia preservadas num quadro são um símbolo de conquista e dedicação." },
+  { emoji: "🕯️", titulo: "Homenagem e Luto",        descricao: "Em momentos de perda, preservar as flores é uma forma de manter viva a memória de alguém amado." },
+  { emoji: "🌸", titulo: "Simplesmente Porque Sim", descricao: "Não é preciso uma ocasião especial para dar um presente especial. Um vale oferta é um gesto de amor puro." },
 ];
 
 const passos = [
-  { n: "01", titulo: "Escolha o valor", texto: "O vale pode ter o valor que quiser, com um mínimo de 300€. Pode personalizar o valor para se adaptar ao serviço que deseja oferecer." },
+  { n: "01", titulo: "Escolha o valor", texto: "O vale pode ter o valor que quiser, com um mínimo de 300€. Pode personalizar o valor para se adaptar ao serviço que deseja oferecer.", link: { href: "/opcoes-e-precos", label: "Ver preços" } },
   { n: "02", titulo: "Receba o cartão ilustrado", texto: "Enviamos o cartão por email gratuitamente, ou fisicamente por 5€ mais portes. Se preferir levantar em Coimbra, a recolha é gratuita." },
-  { n: "03", titulo: "Ofereça com amor", texto: "O cartão tem campos para escrever de quem é e para quem é. Pode oferecer em mão ou enviar diretamente à pessoa presenteada." },
-  { n: "04", titulo: "A pessoa usa quando quiser", texto: "O vale não tem data de validade. A pessoa contacta-nos quando estiver pronta, pelo site ou pelo WhatsApp, e tratamos de tudo juntos." },
+  { n: "03", titulo: "Ofereça com amor", texto: "O cartão tem campos para escrever de quem é e para quem é. Podemos entregar o vale ao remetente ou enviar diretamente à pessoa presenteada." },
+  { n: "04", titulo: "A pessoa usa quando quiser", texto: "O vale não tem data de validade. O presenteado deve contactar-nos quando quiser, pelo site ou pelo WhatsApp, e tratamos de tudo juntos. Recomendamos fazer a reserva com o máximo de antecedência para garantir vaga na data desejada.", link: { href: "/como-funciona", label: "Ver processo completo" } },
 ];
 
 const condicoes = [
   "Valor mínimo de 300€, correspondente à nossa moldura mais pequena",
-  "Sem data de validade — pode ser usado quando quiser",
+  "Sem data de validade, pode ser usado quando quiser",
   "Não é reembolsável",
   "Válido exclusivamente para os serviços da Flores à Beira-Rio",
   "Entrega digital gratuita por email",
@@ -68,7 +68,7 @@ const condicoes = [
 
 const condicoesCartao = [
   "Valor mínimo de 300€, correspondente à nossa moldura mais pequena",
-  "Sem data de validade — pode ser usado quando quiser",
+  "Sem data de validade, pode ser usado quando quiser",
   "Não é reembolsável",
   "Válido exclusivamente para os serviços da Flores à Beira-Rio",
 ];
@@ -133,9 +133,7 @@ export default function OfereceClient() {
         .ocasiao-card:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.38); transform: translateY(-3px); }
 
         .ocasiao-num {
-          font-family: 'TAN-MEMORIES', serif;
-          font-size: clamp(1.4rem, 3vw, 2rem);
-          color: rgba(250,247,240,0.25);
+          font-size: clamp(1.6rem, 3vw, 2.2rem);
           line-height: 1;
           margin-bottom: 0.2rem;
         }
@@ -167,7 +165,7 @@ export default function OfereceClient() {
           position: absolute; inset: 0;
         }
         .hero-foto-bg img {
-          width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;
+          width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block;
         }
         .hero-foto-bg::after {
           content: ''; position: absolute; inset: 0;
@@ -249,12 +247,14 @@ export default function OfereceClient() {
               Ofereça uma memória<br />
               <em style={{ fontStyle: "italic", color: AZUL_CLR }}>que dura para sempre</em>
             </h1>
-            <p className="hero-texto" style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 0 clamp(1.8rem, 3.5vw, 2.8rem)" }}>
-              O vale oferta da Flores à Beira-Rio transforma flores reais em arte emoldurada feita à mão, guardando para sempre as memórias de um dia especial.
+            <p className="hero-texto" style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 0 0.9rem" }}>
+              O vale oferta da Flores à Beira-Rio permite oferecer a preservação de flores num quadro emoldurado, tornando-se na prenda perfeita para qualquer ocasião.
+            </p>
+            <p className="hero-texto" style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.75)", margin: "0 0 clamp(1.8rem, 3.5vw, 2.8rem)" }}>
+              O vale transforma flores reais em arte emoldurada feita à mão, guardando para sempre as memórias de um dia especial.
             </p>
             <div className="cta-row-vale" style={{ marginBottom: "1.4rem" }}>
               <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary-vale">Encomendar Vale Oferta</a>
-              <a href="/como-funciona" className="btn-outline-vale" style={{ color: CREME, borderColor: "rgba(250,247,240,0.35)" }}>Como Funciona</a>
             </div>
             <p style={{ fontSize: "0.78rem", color: "rgba(250,247,240,0.5)", letterSpacing: "0.05em", textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}>A partir de 300€ · Sem data de validade · Entrega digital gratuita</p>
           </motion.div>
@@ -289,50 +289,27 @@ export default function OfereceClient() {
                   <span className="entrega-icon" aria-hidden="true">✉️</span>
                   <div className="entrega-texto">
                     <strong>Envio por email</strong>
-                    <span>Gratuito — recebe o cartão em formato digital</span>
+                    <span>Gratuito, recebe o cartão em formato digital</span>
                   </div>
                 </div>
                 <div className="entrega-item">
                   <span className="entrega-icon" aria-hidden="true">📦</span>
                   <div className="entrega-texto">
                     <strong>Envio físico por correio</strong>
-                    <span>5€ pelo cartão impresso, mais portes de envio do envelope</span>
+                    <span>5€ pelo vale físico, mais portes de envio. Vai pronto a oferecer, com envelope incluído.</span>
                   </div>
                 </div>
                 <div className="entrega-item">
                   <span className="entrega-icon" aria-hidden="true">📍</span>
                   <div className="entrega-texto">
                     <strong>Recolha em Coimbra</strong>
-                    <span>Gratuita — levanta o cartão físico sem custos adicionais</span>
+                    <span>5€ pelo vale físico, recolha gratuita. Vai pronto a oferecer, com envelope incluído.</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </Reveal>
-      </section>
-
-      {/* INFORMAÇÕES SOBRE O VALE */}
-      <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", background: `linear-gradient(145deg, ${AZUL_ESC} 0%, ${AZUL} 100%)`, color: CREME, position: "relative", overflow: "hidden" }}>
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(184,196,232,0.12) 0%, transparent 50%)`, pointerEvents: "none" }} />
-        <div style={{ maxWidth: "820px", margin: "0 auto", position: "relative", zIndex: 1 }}>
-          <Reveal>
-            <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
-              <Eyebrow light>Transparência total</Eyebrow>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.2rem)", lineHeight: 1.1, margin: 0, color: CREME }}>Informações sobre o vale</h2>
-            </div>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <div style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "20px", padding: "clamp(1.5rem, 3vw, 2.2rem) clamp(1.2rem, 2.5vw, 2rem)" }}>
-              {condicoes.map((cond, i) => (
-                <div key={i} className="cond-item">
-                  <span style={{ color: AZUL_CLR, marginTop: "3px", flexShrink: 0, fontSize: "0.9rem" }} aria-hidden="true">✦</span>
-                  <p style={{ fontSize: "0.94rem", lineHeight: 1.75, color: "rgba(250,247,240,0.88)", margin: 0 }}>{cond}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
       </section>
 
       {/* OCASIÕES */}
@@ -352,7 +329,7 @@ export default function OfereceClient() {
             {ocasioes.map((item, i) => (
               <Reveal key={i} delay={i * 0.06}>
                 <article className="ocasiao-card">
-                  <div className="ocasiao-num" aria-hidden="true">{item.num}</div>
+                  <div className="ocasiao-num" aria-hidden="true">{item.emoji}</div>
                   <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.9rem, 1.8vw, 1.1rem)", marginBottom: "0.35rem", color: CREME, lineHeight: 1.2 }}>{item.titulo}</h3>
                   <p style={{ fontSize: "0.82rem", lineHeight: 1.65, color: "rgba(250,247,240,0.78)", margin: 0 }}>{item.descricao}</p>
                 </article>
@@ -400,7 +377,13 @@ export default function OfereceClient() {
                   <div style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 4vw, 2.8rem)", color: AZUL, lineHeight: 1, minWidth: "60px", opacity: 0.7 }} aria-hidden="true">{passo.n}</div>
                   <div>
                     <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem, 2vw, 1.2rem)", marginBottom: "0.5rem", color: ESCURO, lineHeight: 1.2 }}>{passo.titulo}</h3>
-                    <p style={{ fontSize: "0.92rem", lineHeight: 1.8, color: "#5A6B60", margin: 0 }}>{passo.texto}</p>
+                    <p style={{ fontSize: "0.92rem", lineHeight: 1.8, color: "#5A6B60", margin: passo.link ? "0 0 0.7rem" : "0" }}>{passo.texto}</p>
+                    {passo.link && (
+                      <a href={passo.link.href} style={{ fontSize: "0.78rem", fontWeight: 600, color: AZUL, textDecoration: "none", letterSpacing: "0.05em", borderBottom: `1px solid ${AZUL}44`, paddingBottom: "1px", transition: "border-color 0.2s" }}
+                        onMouseEnter={e => e.currentTarget.style.borderColor = AZUL}
+                        onMouseLeave={e => e.currentTarget.style.borderColor = `${AZUL}44`}
+                      >{passo.link.label} →</a>
+                    )}
                   </div>
                 </div>
               </Reveal>
