@@ -178,7 +178,7 @@ function SiteFooter() {
       { href: "/como-funciona",          label: "Como Funciona" },
       { href: "/emoldurar-flores-secas", label: "Emoldurar Flores Secas" },
       { href: "/recriacao",              label: "Recriação de Bouquet" },
-      { href: "/oferecer-preservação",          label: "Oferecer preservação" },
+      { href: "/oferecer-preservacao",          label: "Oferecer preservação" },
     ],
     momentos: [
       { href: "/preservar-bouquet-noiva",            label: "Bouquet de Noiva" },
@@ -821,7 +821,7 @@ export default function RootLayout({ children }) {
                   <MobileAccordion menu={NAV_MOMENTOS}    onClose={() => setIsOpen(false)} delay={0.10} />
                   {[
                     { name: "Recriação de Bouquet", href: "/recriacao",           delay: 0.15 },
-                    { name: "Oferecer Preservação", href: "/oferecer-preservação",        delay: 0.18 },
+                    { name: "Oferecer Preservação", href: "/oferecer-preservacao",        delay: 0.18 },
                     { name: "Perguntas Frequentes", href: "/perguntas-frequentes", delay: 0.21 },
                     { name: "Contactos e Equipa",   href: "/contactos",            delay: 0.24 },
                     { name: "Blog",                 href: "/blog",                 delay: 0.27 },
