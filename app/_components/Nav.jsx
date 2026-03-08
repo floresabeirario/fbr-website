@@ -137,7 +137,7 @@ function NavCTA({ shouldShowScrolled }) {
   const shadow      = shouldShowScrolled ? "0 3px 14px rgba(61,107,94,0.22)" : "none";
 
   return (
-    
+    <a
       href={FORM_URL}
       target="_blank"
       rel="noopener noreferrer"
@@ -191,7 +191,6 @@ export default function NavClient() {
       >
         <div className="nav-bar">
 
-          {/* LEFT */}
           <div className="nav-left">
             <div className="lang-container desktop-only" style={{ position: "relative", display: "flex", alignItems: "center" }}>
               <a href="/" className="nav-link lang-trigger" style={{
@@ -220,7 +219,6 @@ export default function NavClient() {
             <DesktopDropdown menu={NAV_MOMENTOS}    scrolled={shouldShowScrolled} />
           </div>
 
-          {/* CENTER */}
           <motion.a
             href="/"
             className="nav-logo"
@@ -232,7 +230,6 @@ export default function NavClient() {
             Flores à Beira&#8209;Rio
           </motion.a>
 
-          {/* RIGHT */}
           <div className="nav-right-col">
             <div className="nav-right desktop-only">
               {NAV_RIGHT.map(item => (
