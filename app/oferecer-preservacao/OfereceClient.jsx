@@ -133,41 +133,33 @@ export default function OfereceClient() {
         }
         .passo-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(123,143,199,0.2); }
 
-        .cond-item { display: flex; gap: 0.9rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid rgba(123,143,199,0.1); }
+        .cond-item { display: flex; gap: 0.9rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
         .cond-item:last-child { border-bottom: none; }
 
-        /* HERO com foto */
+        /* HERO com foto de fundo e texto por cima */
         .hero-layout {
-          display: grid;
-          grid-template-columns: 1fr;
-          min-height: 100svh;
           position: relative;
+          min-height: 100svh;
           overflow: hidden;
+          display: flex;
+          align-items: flex-end;
         }
-        @media (min-width: 900px) {
-          .hero-layout {
-            grid-template-columns: 1fr 1fr;
-          }
+
+        .hero-foto-bg {
+          position: absolute; inset: 0;
+        }
+        .hero-foto-bg img {
+          width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;
+        }
+        .hero-foto-bg::after {
+          content: ''; position: absolute; inset: 0;
+          background: linear-gradient(to top, rgba(15,30,26,0.72) 0%, rgba(15,30,26,0.35) 50%, rgba(15,30,26,0.08) 100%);
         }
 
         .hero-text-col {
-          display: flex; flex-direction: column; justify-content: center;
-          padding: clamp(110px,14vw,160px) clamp(24px,5vw,64px) clamp(60px,8vw,90px);
           position: relative; z-index: 2;
-        }
-
-        .hero-foto-col {
-          position: relative; overflow: hidden;
-          min-height: clamp(340px, 50vw, 600px);
-          order: -1;
-        }
-        @media (min-width: 900px) {
-          .hero-foto-col { order: 0; min-height: unset; }
-        }
-
-        .hero-foto-col img {
-          width: 100%; height: 100%; object-fit: cover; object-position: center top;
-          display: block;
+          width: 100%;
+          padding: clamp(110px,14vw,160px) clamp(24px,5vw,72px) clamp(60px,8vw,90px);
         }
 
         /* Secção cartão (foto + texto) */
@@ -193,7 +185,7 @@ export default function OfereceClient() {
           .cartao-foto-wrap { width: 42%; }
         }
 
-        .cartao-foto { border-radius: 20px; overflow: hidden; box-shadow: 0 12px 48px rgba(15,30,26,0.14); aspect-ratio: 3/4; background: ${AZUL_FND}; }
+        .cartao-foto { border-radius: 20px; overflow: hidden; box-shadow: 0 12px 48px rgba(15,30,26,0.14); aspect-ratio: 4/3; background: ${AZUL_FND}; }
         .cartao-foto img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
         .cartao-foto:hover img { transform: scale(1.04); }
 
@@ -214,31 +206,30 @@ export default function OfereceClient() {
       `,
       }} />
 
-      {/* HERO com foto vale2.webp */}
-      <section className="hero-layout" style={{ background: `linear-gradient(165deg, ${AZUL_FND} 0%, rgba(232,236,248,0.45) 45%, ${CREME} 75%)` }}>
-        {/* Coluna texto — aparece primeiro no telemóvel */}
+      {/* HERO com foto vale2.webp de fundo */}
+      <section className="hero-layout">
+        {/* Foto de fundo */}
+        <div className="hero-foto-bg">
+          <img src="/vale2.webp" alt="" aria-hidden="true" />
+        </div>
+
+        {/* Texto por cima */}
         <div className="hero-text-col">
-          <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "580px" }}>
-            <Eyebrow>Um presente com alma</Eyebrow>
-            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: ESCURO, margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)" }}>
+          <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px" }}>
+            <Eyebrow light>Um presente com alma</Eyebrow>
+            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: CREME, margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)" }}>
               Ofereça uma memória<br />
-              <em style={{ fontStyle: "italic", color: AZUL }}>que dura para sempre</em>
+              <em style={{ fontStyle: "italic", color: AZUL_CLR }}>que dura para sempre</em>
             </h1>
-            <p style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "#5A6B60", margin: "0 0 clamp(1.8rem, 3.5vw, 2.8rem)" }}>
+            <p style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.82)", margin: "0 0 clamp(1.8rem, 3.5vw, 2.8rem)" }}>
               O vale oferta da Flores à Beira-Rio transforma flores reais em arte emoldurada feita à mão, guardando para sempre as memórias de um dia especial.
             </p>
             <div className="cta-row-vale" style={{ marginBottom: "1.4rem" }}>
               <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary-vale">Encomendar Vale Oferta</a>
-              <a href="/como-funciona" className="btn-outline-vale">Como Funciona</a>
+              <a href="/como-funciona" className="btn-outline-vale" style={{ color: CREME, borderColor: "rgba(250,247,240,0.35)" }}>Como Funciona</a>
             </div>
-            <p style={{ fontSize: "0.78rem", color: "#9BA89F", letterSpacing: "0.05em" }}>A partir de 300€ · Sem data de validade · Entrega digital gratuita</p>
+            <p style={{ fontSize: "0.78rem", color: "rgba(250,247,240,0.5)", letterSpacing: "0.05em" }}>A partir de 300€ · Sem data de validade · Entrega digital gratuita</p>
           </motion.div>
-        </div>
-
-        {/* Coluna foto — aparece por cima no telemóvel */}
-        <div className="hero-foto-col">
-          <img src="/vale2.webp" alt="Cartão presente da Flores à Beira-Rio" />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 60%, rgba(232,236,248,0.3) 100%)", pointerEvents: "none" }} aria-hidden="true" />
         </div>
       </section>
 
@@ -253,7 +244,8 @@ export default function OfereceClient() {
             </div>
             <div style={{ flex: 1 }}>
               <Eyebrow color={AZUL}>O cartão</Eyebrow>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", lineHeight: 1.15, margin: "0 0 1.2rem", color: ESCURO }}>Ilustrado por uma artista de Coimbra</h2>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem, 3vw, 2rem)", lineHeight: 1.15, margin: "0 0 0.4rem", color: ESCURO }}>O cartão presente</h2>
+              <p style={{ fontSize: "0.78rem", color: AZUL, letterSpacing: "0.05em", marginBottom: "1.2rem", fontFamily: "Roboto, sans-serif" }}>Ilustrado por uma artista de Coimbra</p>
               <p style={{ lineHeight: 1.85, fontSize: "0.96rem", color: "#5A6B60", marginBottom: "1.6rem" }}>
                 Pode ser enviado por email ou entregue fisicamente. Existe em versão colorida e em tons neutros e elegantes.
               </p>
@@ -286,8 +278,8 @@ export default function OfereceClient() {
       </section>
 
       {/* INFORMAÇÕES SOBRE O VALE — movido para antes das ocasiões */}
-      <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", background: `linear-gradient(145deg, ${ESCURO} 0%, #1E3530 100%)`, color: CREME, position: "relative", overflow: "hidden" }}>
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle at 80% 20%, rgba(123,143,199,0.12) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(184,196,232,0.08) 0%, transparent 50%)`, pointerEvents: "none" }} />
+      <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", background: `linear-gradient(145deg, ${AZUL_ESC} 0%, ${AZUL} 100%)`, color: CREME, position: "relative", overflow: "hidden" }}>
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(184,196,232,0.12) 0%, transparent 50%)`, pointerEvents: "none" }} />
         <div style={{ maxWidth: "820px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
@@ -296,7 +288,7 @@ export default function OfereceClient() {
             </div>
           </Reveal>
           <Reveal delay={0.08}>
-            <div style={{ background: "rgba(250,247,240,0.04)", border: "1px solid rgba(250,247,240,0.1)", borderRadius: "20px", padding: "clamp(1.5rem, 3vw, 2.2rem) clamp(1.2rem, 2.5vw, 2rem)" }}>
+            <div style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "20px", padding: "clamp(1.5rem, 3vw, 2.2rem) clamp(1.2rem, 2.5vw, 2rem)" }}>
               {condicoes.map((cond, i) => (
                 <div key={i} className="cond-item">
                   <span style={{ color: AZUL_CLR, marginTop: "3px", flexShrink: 0, fontSize: "0.9rem" }} aria-hidden="true">✦</span>
