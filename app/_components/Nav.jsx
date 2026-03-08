@@ -105,7 +105,7 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
               letterSpacing: "1.5px", textTransform: "uppercase",
               padding: "2px 28px 14px", transition: "color 0.18s",
             }}>
-              Ver tudo →
+              Ver tudo
             </a>
             {menu.items.map((item, i) => (
               <a key={i} href={item.href} onClick={onClose} style={{
@@ -121,7 +121,7 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
                 {item.name}
               </a>
             ))}
-            <div style={{ height: "10px" }}/>
+            <div style={{ height: "10px" }} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -130,10 +130,10 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
 };
 
 export default function NavClient() {
-  const [isOpen, setIsOpen]   = useState(false);
+  const [isOpen, setIsOpen]     = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
-  const isHome = pathname === "/";
+  const pathname  = usePathname();
+  const isHome    = pathname === "/";
 
   useEffect(() => {
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
@@ -191,7 +191,7 @@ export default function NavClient() {
             </div>
 
             <DesktopDropdown menu={NAV_PRESERVACAO} scrolled={shouldShowScrolled} />
-            <DesktopDropdown menu={NAV_MOMENTOS} scrolled={shouldShowScrolled} />
+            <DesktopDropdown menu={NAV_MOMENTOS}    scrolled={shouldShowScrolled} />
           </div>
 
           {/* CENTER */}
@@ -367,10 +367,18 @@ export default function NavClient() {
                   <IconWhatsApp size={20} /> +351 934 680 300
                 </a>
                 <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>
-                  <a href="/" style={{ color: "#FAF7F0", fontSize: "0.66rem", fontFamily: "Roboto, sans-serif", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", display: "flex", alignItems: "center", textDecoration: "none" }}>
+                  <a href="/" style={{
+                    color: "#FAF7F0", fontSize: "0.66rem", fontFamily: "Roboto, sans-serif",
+                    fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase",
+                    display: "flex", alignItems: "center", textDecoration: "none",
+                  }}>
                     PT <FlagPT />
                   </a>
-                  <a href="/en" style={{ color: "rgba(250,247,240,0.28)", fontSize: "0.66rem", fontFamily: "Roboto, sans-serif", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", display: "flex", alignItems: "center", textDecoration: "none" }}
+                  <a href="/en" style={{
+                    color: "rgba(250,247,240,0.28)", fontSize: "0.66rem", fontFamily: "Roboto, sans-serif",
+                    fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase",
+                    display: "flex", alignItems: "center", textDecoration: "none",
+                  }}
                     onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
                     onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.28)"}
                   >
