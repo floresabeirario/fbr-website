@@ -207,8 +207,6 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
         style={{ padding: "clamp(16px,4vw,40px) clamp(20px,5vw,48px) clamp(72px,12vw,120px)", backgroundColor: "#FAF7F0" }}
       >
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-
-          {/* Filtros */}
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "16px", flexWrap: "wrap", marginBottom: "32px" }}>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.3rem,3vw,1.8rem)", color: "#1E2D2A", margin: 0 }}>
               Todos os artigos
@@ -238,7 +236,6 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
             </div>
           </div>
 
-          {/* Grid */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory}
@@ -277,10 +274,4 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
       </section>
     </main>
   );
-}
-
-function formatDate(dateStr) {
-  if (!dateStr) return "";
-  const d = new Date(dateStr);
-  return d.toLocaleDateString("pt-PT", { day: "numeric", month: "long", year: "numeric" });
 }
