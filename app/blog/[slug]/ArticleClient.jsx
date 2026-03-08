@@ -1,11 +1,9 @@
 "use client";
 
-import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote } from "next-mdx-remote/client";
 import { motion } from "framer-motion";
 
 // ─── Componentes MDX personalizados ──────────────────────────────────────────
-// Estes substituem os elementos HTML padrão dentro do conteúdo MDX
-
 const mdxComponents = {
   h2: (props) => (
     <h2
