@@ -3,6 +3,8 @@
 import { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 
+const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
+
 const fadeUp = {
   hidden: { opacity: 0, y: 36 },
   show:   { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.25, 0.1, 0.25, 1] } },
@@ -25,7 +27,7 @@ function Label({ children, light }) {
     <p style={{
       fontSize: "0.6rem", letterSpacing: "4px", textTransform: "uppercase",
       color: light ? "rgba(250,247,240,0.5)" : "#B8954A",
-      fontFamily: "Roboto, sans-serif", margin: "0 0 20px", fontWeight: 500
+      fontFamily: GS, margin: "0 0 20px", fontWeight: 500
     }}>
       {children}
     </p>
@@ -220,7 +222,7 @@ export default function OpcoesClient() {
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            style={{ fontSize: "0.6rem", letterSpacing: "4px", textTransform: "uppercase", color: "rgba(250,247,240,0.6)", fontFamily: "Roboto, sans-serif", margin: "0 0 20px", fontWeight: 500 }}>
+            style={{ fontSize: "0.6rem", letterSpacing: "4px", textTransform: "uppercase", color: "rgba(250,247,240,0.6)", fontFamily: GS, margin: "0 0 20px", fontWeight: 500 }}>
             O seu bouquet, para sempre
           </motion.p>
           <motion.h1
@@ -233,7 +235,7 @@ export default function OpcoesClient() {
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.28 }}
-            style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "clamp(0.95rem, 2vw, 1.1rem)", lineHeight: 1.75, color: "rgba(250,247,240,0.75)", maxWidth: "520px", margin: 0 }}>
+            style={{ fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem, 2vw, 1.1rem)", lineHeight: 1.75, color: "rgba(250,247,240,0.75)", maxWidth: "520px", margin: 0 }}>
             Cada quadro é uma peça única, feita à mão em Coimbra.
             Escolha o fundo, o tamanho e os elementos que tornam
             a sua composição verdadeiramente sua.
@@ -296,7 +298,7 @@ export default function OpcoesClient() {
                       backgroundColor: item.tagSolid ? "#3D6B5E" : "rgba(15,30,26,0.55)",
                       color: "#FAF7F0",
                       fontSize: "0.52rem", letterSpacing: "2px", textTransform: "uppercase",
-                      fontFamily: "Roboto, sans-serif", fontWeight: 600,
+                      fontFamily: GS, fontWeight: 600,
                       padding: "5px 11px", borderRadius: "100px",
                       backdropFilter: "blur(4px)"
                     }}>
@@ -308,11 +310,11 @@ export default function OpcoesClient() {
                   <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.2, color: "#1a1a1a" }}>
                     {item.title}
                   </h3>
-                  <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.82rem", lineHeight: 1.75, color: "rgba(26,26,26,0.58)", margin: 0 }}>
+                  <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.82rem", lineHeight: 1.75, color: "rgba(26,26,26,0.58)", margin: 0 }}>
                     {item.desc}
                   </p>
                   {item.note && (
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.74rem", color: "rgba(26,26,26,0.36)", margin: "6px 0 0", fontStyle: "italic" }}>
+                    <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.74rem", color: "rgba(26,26,26,0.36)", margin: "6px 0 0", fontStyle: "italic" }}>
                       {item.note}
                     </p>
                   )}
@@ -334,7 +336,7 @@ export default function OpcoesClient() {
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 14px", lineHeight: 1.1 }}>
                 Presentes com <em style={{ color: "#3D6B5E" }}>memória</em>
               </h2>
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(26,26,26,0.55)", maxWidth: "460px", margin: 0 }}>
+              <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(26,26,26,0.55)", maxWidth: "460px", margin: 0 }}>
                 Para além do seu quadro principal, pode encomendar peças adicionais. Presentes pessoais e cheios de significado para quem ama.
               </p>
             </div>
@@ -375,16 +377,16 @@ export default function OpcoesClient() {
                       className="presente-img" />
                   </div>
                   <div style={{ padding: "18px 18px 20px" }}>
-                    <span style={{ display: "inline-block", backgroundColor: item.badgeBg, color: item.badgeColor, fontSize: "0.5rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", fontWeight: 600, padding: "4px 10px", borderRadius: "100px", marginBottom: "10px" }}>
+                    <span style={{ display: "inline-block", backgroundColor: item.badgeBg, color: item.badgeColor, fontSize: "0.5rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: GS, fontWeight: 600, padding: "4px 10px", borderRadius: "100px", marginBottom: "10px" }}>
                       {item.badge}
                     </span>
                     <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", fontWeight: 400, margin: "0 0 8px", color: "#1a1a1a", lineHeight: 1.2 }}>
                       {item.title}
                     </h3>
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.78rem", lineHeight: 1.6, color: "rgba(26,26,26,0.6)", margin: "0 0 6px" }}>
+                    <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.78rem", lineHeight: 1.6, color: "rgba(26,26,26,0.6)", margin: "0 0 6px" }}>
                       {item.desc}
                     </p>
-                    <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.72rem", color: "rgba(26,26,26,0.35)", margin: 0, fontStyle: "italic" }}>
+                    <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.72rem", color: "rgba(26,26,26,0.35)", margin: 0, fontStyle: "italic" }}>
                       {item.note}
                     </p>
                   </div>
@@ -408,14 +410,14 @@ export default function OpcoesClient() {
           <Reveal delay={0.06}>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "20px" }}>
               {["Convite do casamento","Votos manuscritos","Joias ou medalhas","Fitas e rendas","Coleiras de animais","Cartas e bilhetes","Objetos pessoais"].map((item, i) => (
-                <span key={i} style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.8rem", color: "rgba(26,26,26,0.75)", backgroundColor: "rgba(26,26,26,0.05)", border: "1px solid rgba(26,26,26,0.1)", padding: "7px 14px", borderRadius: "100px" }}>
+                <span key={i} style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.8rem", color: "rgba(26,26,26,0.75)", backgroundColor: "rgba(26,26,26,0.05)", border: "1px solid rgba(26,26,26,0.1)", padding: "7px 14px", borderRadius: "100px" }}>
                   {item}
                 </span>
               ))}
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.8rem", lineHeight: 1.7, color: "rgba(26,26,26,0.45)", margin: 0, maxWidth: "640px", fontStyle: "italic" }}>
+            <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.8rem", lineHeight: 1.7, color: "rgba(26,26,26,0.45)", margin: 0, maxWidth: "640px", fontStyle: "italic" }}>
               Se os acessórios forem mais volumosos, poderá ser necessário aumentar a profundidade da moldura. O orçamento será ajustado conforme as características da peça.
             </p>
           </Reveal>
@@ -432,7 +434,7 @@ export default function OpcoesClient() {
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 20px", lineHeight: 1.1, color: "#FAF7F0" }}>
                 Tamanhos & Preços
               </h2>
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(250,247,240,0.5)", maxWidth: "440px", margin: "0 auto" }}>
+              <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(250,247,240,0.5)", maxWidth: "440px", margin: "0 auto" }}>
                 Cada quadro que criamos é único. Feito à mão, com atenção aos detalhes e dedicação à história por detrás das flores.
               </p>
             </div>
@@ -462,7 +464,7 @@ export default function OpcoesClient() {
                       backgroundColor: "rgba(250,247,240,0.15)",
                       color: "#FAF7F0",
                       fontSize: "0.5rem", letterSpacing: "2px", textTransform: "uppercase",
-                      fontFamily: "Roboto, sans-serif", fontWeight: 600,
+                      fontFamily: GS, fontWeight: 600,
                       padding: "4px 10px", borderRadius: "100px",
                     }}>
                       {item.badge || "Para oferecer"}
@@ -493,7 +495,7 @@ export default function OpcoesClient() {
                         lineHeight: 1,
                       }}>
                         {item.size}
-                        <span style={{ fontSize: "0.8rem", fontFamily: "Roboto, sans-serif", fontWeight: 400, marginLeft: "4px", color: item.addon ? "rgba(250,247,240,0.45)" : "rgba(15,30,26,0.4)" }}>
+                        <span style={{ fontSize: "0.8rem", fontFamily: GS, fontWeight: 400, marginLeft: "4px", color: item.addon ? "rgba(250,247,240,0.45)" : "rgba(15,30,26,0.4)" }}>
                           {item.unit}
                         </span>
                       </p>
@@ -506,7 +508,7 @@ export default function OpcoesClient() {
                         {item.price}€
                       </p>
                       <p style={{
-                        fontFamily: "Roboto, sans-serif",
+                        fontFamily: GS,
                         fontWeight: 300,
                         fontSize: "0.75rem",
                         lineHeight: 1.6,
@@ -541,7 +543,7 @@ export default function OpcoesClient() {
                 <line x1="4" y1="6" x2="8" y2="2" stroke="rgba(196,165,90,0.7)" strokeWidth="1.1" strokeLinecap="round"/>
                 <line x1="9" y1="5" x2="11" y2="3" stroke="rgba(196,165,90,0.5)" strokeWidth="1.1" strokeLinecap="round"/>
               </svg>
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.88rem", color: "rgba(250,247,240,0.8)", margin: 0, letterSpacing: "0.2px" }}>
+              <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.88rem", color: "rgba(250,247,240,0.8)", margin: 0, letterSpacing: "0.2px" }}>
                 Todos os quadros são emoldurados com{" "}
                 <strong style={{ fontWeight: 700, color: "#C4A55A" }}>vidro museu UltraVue®</strong>
                 {" "}— praticamente invisível, com proteção UV70
@@ -558,7 +560,7 @@ export default function OpcoesClient() {
                 </p>
               </div>
               <a href="/contactos"
-                style={{ display: "inline-flex", alignItems: "center", gap: "10px", color: "#FAF7F0", fontFamily: "Roboto, sans-serif", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "10px", color: "#FAF7F0", fontFamily: GS, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = "0.65"; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
               >
@@ -578,11 +580,11 @@ export default function OpcoesClient() {
                   <circle cx="9" cy="7.5" r="2.5" stroke="#8BA888" strokeWidth="1.3" fill="none"/>
                   <path d="M9 2C5.686 2 3 4.686 3 8c0 4.5 6 9 6 9s6-4.5 6-9c0-3.314-2.686-6-6-6z" stroke="#8BA888" strokeWidth="1.3" fill="none"/>
                 </svg>
-                <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.82rem", color: "rgba(250,247,240,0.45)", margin: 0 }}>
+                <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.82rem", color: "rgba(250,247,240,0.45)", margin: 0 }}>
                   Já encomendou? Acompanhe o estado da sua peça em tempo real.
                 </p>
               </div>
-              <a href="https://status.floresabeirario.pt" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#8BA888", fontFamily: "Roboto, sans-serif", fontSize: "0.68rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
+              <a href="https://status.floresabeirario.pt" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#8BA888", fontFamily: GS, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = "0.65"; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}>
                 Ver estado
@@ -605,7 +607,7 @@ export default function OpcoesClient() {
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 20px", lineHeight: 1.1 }}>
                 Materiais & Qualidade
               </h2>
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(26,26,26,0.5)", maxWidth: "500px", margin: "0 auto" }}>
+              <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(26,26,26,0.5)", maxWidth: "500px", margin: "0 auto" }}>
                 Cada peça é produzida com materiais de conservação museu, selecionados para garantir que as suas flores permanecem belas ao longo dos anos.
               </p>
             </div>
@@ -633,7 +635,7 @@ export default function OpcoesClient() {
           </div>
 
           <Reveal>
-            <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 500, fontSize: "0.88rem", lineHeight: 1.7, color: "rgba(26,26,26,0.7)", margin: "0 0 32px", letterSpacing: "0.2px" }}>
+            <p style={{ fontFamily: GS, fontWeight: 500, fontSize: "0.88rem", lineHeight: 1.7, color: "rgba(26,26,26,0.7)", margin: "0 0 32px", letterSpacing: "0.2px" }}>
               Todas as molduras são feitas <strong style={{ color: "#1a1a1a" }}>à medida</strong> para cada peça, em Coimbra.
             </p>
           </Reveal>
@@ -643,7 +645,7 @@ export default function OpcoesClient() {
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "1px" }}>
                 <path d="M10 2 L11.8 7.6 L17.6 7.6 L13 11 L14.8 16.6 L10 13.2 L5.2 16.6 L7 11 L2.4 7.6 L8.2 7.6 Z" stroke="#B8954A" strokeWidth="1.3" strokeLinejoin="round" fill="none"/>
               </svg>
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400, fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(26,26,26,0.65)", margin: 0 }}>
+              <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(26,26,26,0.65)", margin: 0 }}>
                 Todos os quadros utilizam <strong style={{ color: "#1a1a1a", fontWeight: 600 }}>cartão e cola de pH neutro</strong> — os mesmos materiais usados em museus e arquivos para preservar obras ao longo de décadas.
               </p>
             </div>
@@ -664,7 +666,7 @@ export default function OpcoesClient() {
                     "Ilumina cores e níveis de contraste",
                     "Superfície duradoura e de fácil limpeza",
                   ].map((feat, i) => (
-                    <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "14px", padding: "14px 0", borderBottom: "1px solid rgba(26,26,26,0.07)", fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.6, color: "rgba(26,26,26,0.75)" }}>
+                    <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "14px", padding: "14px 0", borderBottom: "1px solid rgba(26,26,26,0.07)", fontFamily: GS, fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.6, color: "rgba(26,26,26,0.75)" }}>
                       <span style={{ width: "20px", height: "20px", borderRadius: "50%", backgroundColor: "#3D6B5E", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "1px" }} aria-hidden="true">
                         <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#FAF7F0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                       </span>
@@ -678,8 +680,8 @@ export default function OpcoesClient() {
               <div style={{ width: "clamp(200px, 28vw, 340px)", borderRadius: "10px", overflow: "hidden", boxShadow: "0 12px 40px rgba(26,26,26,0.12)", flexShrink: 0 }}>
                 <img src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" loading="lazy" style={{ width: "100%", display: "block" }} />
                 <div style={{ backgroundColor: "#F2EDE4", padding: "12px 16px", display: "flex", justifyContent: "space-between" }}>
-                  <span style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", fontWeight: 500 }}>Normal</span>
-                  <span style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "#3D6B5E", fontWeight: 700 }}>UltraVue®</span>
+                  <span style={{ fontFamily: GS, fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", fontWeight: 500 }}>Normal</span>
+                  <span style={{ fontFamily: GS, fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "#3D6B5E", fontWeight: 700 }}>UltraVue®</span>
                 </div>
               </div>
             </Reveal>
@@ -692,11 +694,11 @@ export default function OpcoesClient() {
               <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem, 3.5vw, 2.2rem)", fontWeight: 400, margin: "0 0 14px", lineHeight: 1.15, color: "#FAF7F0" }}>
                 Garanta a <em style={{ color: "#8BA888" }}>qualidade museu</em> para o seu quadro
               </h3>
-              <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(250,247,240,0.65)", margin: "0 0 28px" }}>
+              <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(250,247,240,0.65)", margin: "0 0 28px" }}>
                 Materiais premium que preservam as suas flores durante décadas.
               </p>
               <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "14px 36px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "52px" }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "14px 36px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "52px" }}
                 onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }}
                 onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
                 Reservar a Minha Data
@@ -714,18 +716,18 @@ export default function OpcoesClient() {
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 6vw, 4rem)", fontWeight: 400, margin: "0 0 24px", lineHeight: 1.05, color: "#FAF7F0" }}>
               Pronta para preservar<br/><em style={{ color: "#8BA888" }}>o seu bouquet?</em>
             </h2>
-            <p style={{ fontFamily: "Roboto, sans-serif", fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.8, color: "rgba(250,247,240,0.65)", margin: "0 0 44px" }}>
+            <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.8, color: "rgba(250,247,240,0.65)", margin: "0 0 44px" }}>
               Reserve a sua data o mais cedo possível. As vagas são limitadas e os bouquets devem ser enviados dentro de poucos dias após o evento.
             </p>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
               <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", minHeight: "56px" }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "56px" }}
                 onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }}
                 onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
                 Reservar Data
               </a>
               <a href="/perguntas-frequentes"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "transparent", color: "rgba(250,247,240,0.85)", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", border: "1.5px solid rgba(250,247,240,0.3)", transition: "all 0.3s ease", minHeight: "56px" }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "transparent", color: "rgba(250,247,240,0.85)", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, border: "1.5px solid rgba(250,247,240,0.3)", transition: "all 0.3s ease", minHeight: "56px" }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.7)"; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.3)"; }}>
                 Perguntas Frequentes
@@ -769,7 +771,7 @@ export default function OpcoesClient() {
         .slider-hint {
           display: block;
           text-align: center;
-          font-family: Roboto, sans-serif;
+          font-family: var(--font-google-sans), 'Google Sans', sans-serif;
           font-size: 0.6rem;
           letter-spacing: 2.5px;
           text-transform: uppercase;
