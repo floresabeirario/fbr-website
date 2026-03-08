@@ -2,6 +2,7 @@
 // Server Component — gera metadata dinâmica por artigo e passa conteúdo ao Client
 
 import { notFound } from "next/navigation";
+import { serialize } from "next-mdx-remote/serialize";
 import { getPostBySlug, getAllPosts, getRelatedPosts } from "../../_lib/blog";
 import ArticleClient from "./ArticleClient";
 import { SITE_URL } from "../../_lib/constants";
@@ -60,8 +61,6 @@ export default async function ArticlePage({ params }) {
 
   const related = getRelatedPosts(post.slug, post.category, post.tags);
 
-  // Serializar o MDX no servidor
-  const { serialize } = await import("next-mdx-remote/serialize");
   const mdxSource = await serialize(post.content);
 
   return (
