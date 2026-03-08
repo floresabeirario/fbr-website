@@ -1,16 +1,15 @@
 // app/layout.js
 // Server Component — NÃO tem "use client"
-
-import { Roboto } from "next/font/google";
+import { Google_Sans } from "next/font/google";
 import "./globals.css";
 import NavClient from "./_components/Nav";
 import FooterClient from "./_components/Footer";
 import { SITE_URL } from "./_lib/constants";
 
-const roboto = Roboto({
+const googleSans = Google_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-  variable: "--font-roboto",
+  weight: ["400", "500", "700"],
+  variable: "--font-google-sans",
   display: "swap",
 });
 
@@ -71,8 +70,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt" className={roboto.variable}>
-      <body>
+    <html lang="pt" className={googleSans.variable}>
+      <body style={{ fontFamily: "var(--font-google-sans), sans-serif" }}>
         <NavClient />
         <main>{children}</main>
         <FooterClient />
