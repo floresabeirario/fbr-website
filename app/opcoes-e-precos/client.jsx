@@ -230,10 +230,13 @@ export default function OpcoesClient() {
             <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.5)", fontFamily: GS, margin: "0 0 14px", fontWeight: 700 }}>
               Opções e Preços
             </p>
-            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: "#FAF7F0", margin: 0, textShadow: "0 2px 20px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.5)" }}>
+            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: "#FAF7F0", margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)", textShadow: "0 2px 20px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.5)" }}>
               Preserve as flores<br />
               <em style={{ fontStyle: "italic", color: VERDE_CLARO }}>que contam a sua história</em>
             </h1>
+            <p style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto" }}>
+              Cada quadro é uma peça única, feita à mão em Coimbra. Escolha o fundo, o tamanho e os detalhes que tornam a sua composição verdadeiramente sua.
+            </p>
           </motion.div>
         </div>
       </section>
