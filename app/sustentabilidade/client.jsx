@@ -286,6 +286,25 @@ export default function Sustentabilidade() {
           .card-hover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
           .card-hover:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(30,45,42,0.10); }
 
+          /* VALUES GRID */
+          .values-grid-wrap {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1px;
+            background: rgba(61,107,94,0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(61,107,94,0.15);
+          }
+          @media (min-width: 600px) {
+            .values-grid-wrap { grid-template-columns: repeat(2, 1fr); }
+          }
+          @media (min-width: 900px) {
+            .values-grid-wrap { grid-template-columns: repeat(3, 1fr); }
+            /* 7 items = 2 rows of 3 + 1 last. Make last item span all 3 cols */
+            .values-grid-wrap > *:last-child { grid-column: 1 / -1; max-width: 380px; margin: 0 auto; width: 100%; }
+          }
+
           /* HERO */
           .hero-sustentabilidade {
             position: relative;
@@ -338,14 +357,14 @@ export default function Sustentabilidade() {
               <h1 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(2.4rem,6vw,5rem)",
-                color: "#FAF7F0", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)", lineHeight: 1.05,
+                color: "#FAF7F0", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)", lineHeight: 1.05, textShadow: "0 2px 24px rgba(0,0,0,0.55), 0 4px 48px rgba(0,0,0,0.35)",
               }}>
                 Sustentabilidade<br/>
-                <em style={{ fontStyle: "italic", color: "#8BA888" }}>sem compromissos</em>
+                <em style={{ fontStyle: "italic", color: "#5C8A6A" }}>sem compromissos</em>
               </h1>
               <p style={{
                 fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.85,
-                maxWidth: "460px", color: "rgba(250,247,240,0.82)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)",
+                maxWidth: "460px", color: "rgba(250,247,240,0.82)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)", textShadow: "0 1px 14px rgba(0,0,0,0.6)",
               }}>
                 Na Flores &#224; Beira-Rio, preservar flores significa preservar tamb&#233;m
                 o planeta. Sem resinas petroqu&#237;micas, sem s&#237;lica industrial,
@@ -355,19 +374,7 @@ export default function Sustentabilidade() {
             </motion.div>
           </div>
 
-          <motion.div
-            aria-hidden="true"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
-            style={{ position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)", zIndex: 2 }}
-          >
-            <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M12 5v14M5 12l7 7 7-7" stroke="rgba(250,247,240,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </motion.div>
-          </motion.div>
+
         </section>
 
         {/* FILOSOFIA */}
@@ -678,18 +685,18 @@ export default function Sustentabilidade() {
               viewport={{ once: true }}
               style={{ textAlign: "center", marginBottom: "clamp(36px,5vw,60px)" }}
             >
-              <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#8BA888", marginBottom: "12px", fontFamily: "Roboto, sans-serif" }}>Da flor ao quadro</span>
+              <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#5C8A6A", marginBottom: "12px", fontFamily: "Roboto, sans-serif" }}>Da flor ao quadro</span>
               <h2 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(1.8rem,4.5vw,3rem)",
                 color: "#FAF7F0", margin: 0, lineHeight: 1.1,
               }}>
                 O que torna cada pe&#231;a<br/>
-                <em style={{ fontStyle: "italic", color: "#8BA888" }}>verdadeiramente sustent&#225;vel</em>
+                <em style={{ fontStyle: "italic", color: "#5C8A6A" }}>verdadeiramente sustent&#225;vel</em>
               </h2>
             </motion.div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%,300px), 1fr))", gap: "1px", background: "rgba(61,107,94,0.15)", borderRadius: "20px", overflow: "hidden", border: "1px solid rgba(61,107,94,0.15)" }}>
+            <div className="values-grid-wrap">
               {VALUES.map((v, i) => (
                 <motion.div
                   key={i}
@@ -770,7 +777,7 @@ export default function Sustentabilidade() {
               color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1,
             }}>
               Reserve a sua data<br/>
-              <em style={{ fontStyle: "italic", color: "#8BA888" }}>e tratamos do resto</em>
+              <em style={{ fontStyle: "italic", color: "#5C8A6A" }}>e tratamos do resto</em>
             </h2>
             <p style={{ color: "rgba(250,247,240,0.65)", lineHeight: 1.88, fontSize: "clamp(0.9rem,2vw,1rem)", margin: "0 0 34px" }}>
               Preenche o formul&#225;rio e entramos em contacto para combinar todos os detalhes.
