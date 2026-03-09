@@ -228,27 +228,12 @@ export default function OpcoesClient() {
             style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}
           >
             <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.5)", fontFamily: GS, margin: "0 0 14px", fontWeight: 700 }}>
-              Feito à mão, para si
+              Opções e Preços
             </p>
-            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: "#FAF7F0", margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)" }}>
+            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: "#FAF7F0", margin: 0, textShadow: "0 2px 20px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.5)" }}>
               Preserve as flores<br />
               <em style={{ fontStyle: "italic", color: VERDE_CLARO }}>que contam a sua história</em>
             </h1>
-            <p style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto clamp(1.8rem, 3.5vw, 2.8rem)" }}>
-              Cada quadro é uma peça única, feita à mão em Coimbra. Escolha o fundo, o tamanho e os detalhes que tornam a sua composição verdadeiramente sua.
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
-              <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "#FAF7F0", color: "#3D6B5E", padding: "15px 36px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", boxShadow: "0 6px 24px rgba(15,30,26,0.22)" }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; e.currentTarget.style.transform = "translateY(-3px)"; }}
-                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; e.currentTarget.style.transform = "translateY(0)"; }}
-              >
-                Reservar a Minha Data
-              </a>
-              <p style={{ fontSize: "0.78rem", color: "rgba(250,247,240,0.5)", letterSpacing: "0.05em", margin: 0 }}>
-                A partir de 300€ · Feito à mão em Coimbra
-              </p>
-            </div>
           </motion.div>
         </div>
       </section>
