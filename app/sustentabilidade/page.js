@@ -28,4 +28,4 @@ export const metadata = {
   },
 };
 
-export { default } from "./client";
+export { default } from "./client.jsx";
