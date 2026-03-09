@@ -128,6 +128,23 @@ button:focus-visible {
 }
 .nav-link:hover { border-bottom: 1px solid currentColor; }
 
+/* ── Mobile: logo centrado, MENU à direita ─────────────── */
+@media (max-width: 1279px) {
+  .nav-bar {
+    justify-content: space-between;
+  }
+
+  /* O logo no mobile está sempre visível — o framer-motion
+     anima opacity mas o CSS garante que pointer-events funciona */
+  .nav-logo-desktop-animated {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    color: inherit !important;
+    padding: 0 !important;
+  }
+}
+
 /* ── Dropdown desktop ──────────────────────────────────── */
 .lang-trigger { border-bottom: 1px solid transparent !important; }
 .lang-trigger:hover { border-bottom: 1px solid currentColor !important; }
@@ -150,57 +167,6 @@ button:focus-visible {
   pointer-events: auto;
 }
 
-.dd-container {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-.dd-trigger { cursor: default; }
-.dd-panel {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding-top: 14px;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  z-index: 200;
-  transition: opacity 0.22s ease, visibility 0.22s ease;
-}
-.dd-container:hover .dd-panel,
-.dd-container:focus-within .dd-panel {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-.dd-panel-inner {
-  background: #FAFAF8;
-  border: 1px solid rgba(61,107,94,0.13);
-  border-radius: 16px;
-  padding: 6px;
-  box-shadow:
-    0 4px 6px rgba(30,45,42,0.04),
-    0 12px 32px rgba(30,45,42,0.13),
-    0 24px 48px rgba(30,45,42,0.07);
-  min-width: 220px;
-  transform: translateY(-6px);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-}
-.dd-container:hover .dd-panel-inner { transform: translateY(0); }
-.dd-panel-inner::before {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-  width: 10px;
-  height: 10px;
-  background: #FAFAF8;
-  border-left: 1px solid rgba(61,107,94,0.13);
-  border-top: 1px solid rgba(61,107,94,0.13);
-}
 .dd-item {
   display: flex;
   align-items: center;
