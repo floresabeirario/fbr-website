@@ -52,8 +52,8 @@ button:focus-visible {
 }
 
 /* ── Utilitários de layout ─────────────────────────────── */
-@media (max-width: 1279px) { .desktop-only { display: none !important; } }
-@media (min-width: 1280px) { .mobile-only  { display: none !important; } }
+@media (max-width: 1439px) { .desktop-only { display: none !important; } }
+@media (min-width: 1440px) { .mobile-only  { display: none !important; } }
 
 .footer-mobile  { display: none; }
 @media (max-width: 767px) {
@@ -132,7 +132,7 @@ button:focus-visible {
 .nav-link:hover { border-bottom: 1px solid currentColor; }
 
 /* ── Mobile: logo centrado, MENU à direita ─────────────── */
-@media (max-width: 1279px) {
+@media (max-width: 1439px) {
   .nav-bar {
     justify-content: space-between;
   }
