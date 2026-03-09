@@ -13,7 +13,7 @@ const HowToSchema = () => (
         "@type": "HowTo",
         name: "Como funciona a preservação de flores de momentos especiais",
         description:
-          "Processo artesanal completo de preservação botânica de flores — casamentos, batizados, funerais, aniversários e outros momentos especiais — desde a reserva até ao quadro emoldurado com vidro museu anti-UV, pronto a pendurar em casa.",
+          "Processo artesanal completo de preservação botânica de flores desde a reserva até ao quadro emoldurado com vidro museu anti-UV, pronto a pendurar em casa.",
         totalTime: "P6M",
         estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "300" },
         supply: [
@@ -47,7 +47,7 @@ const STEPS = [
     noteJsx: (
       <>
         As vagas são limitadas, especialmente entre Maio e Setembro. O processo começa muito antes do evento: assim que souber a data, garanta a sua vaga com o{" "}
-        <a href={FORM_URL} target="_blank" rel="noopener noreferrer" style={{ color: "#3D6B5E", fontWeight: 600, textDecoration: "none", borderBottom: "1px solid rgba(61,107,94,0.3)", paddingBottom: "1px" }}>
+        <a href={FORM_URL} target="_blank" rel="noopener noreferrer" style={{ color: "#9B3060", fontWeight: 600, textDecoration: "none", borderBottom: "1px solid rgba(155,48,96,0.3)", paddingBottom: "1px" }}>
           formulário de reserva
         </a>.
       </>
@@ -63,7 +63,7 @@ const STEPS = [
     body: "Depois do dia do evento, as flores têm de chegar até nós o mais frescas possível, preferencialmente em 1 a 3 dias, no máximo 5. Enquanto aguarda, mantenha as flores num vaso com água fresca longe do sol e do calor. O pagamento de 40% da encomenda será solicitado após recebermos as flores.",
     noteJsx: (
       <>
-        <strong style={{ display: "block", marginBottom: "10px", color: "#3D6B5E", fontSize: "0.88rem" }}>Três opções de entrega:</strong>
+        <strong style={{ display: "block", marginBottom: "10px", color: "#9B3060", fontSize: "0.88rem" }}>Três opções de entrega:</strong>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           {[
             { label: "Entrega em mãos", desc: "Gratuitamente no nosso atelier em Coimbra, mediante agendamento." },
@@ -71,8 +71,8 @@ const STEPS = [
             { label: "Recolha no evento", desc: "Deslocamo-nos ao local do evento, mediante orçamento e disponibilidade." },
           ].map((item, i) => (
             <div key={i} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
-              <span style={{ color: "#3D6B5E", fontWeight: 700, flexShrink: 0, fontSize: "0.88rem", marginTop: "1px" }}>→</span>
-              <p style={{ margin: 0, fontSize: "0.88rem", lineHeight: 1.65, color: "#3D6B5E" }}>
+              <span style={{ color: "#9B3060", fontWeight: 700, flexShrink: 0, fontSize: "0.88rem", marginTop: "1px" }}>+</span>
+              <p style={{ margin: 0, fontSize: "0.88rem", lineHeight: 1.65, color: "#5A4050" }}>
                 <strong>{item.label}:</strong> {item.desc}
               </p>
             </div>
@@ -111,15 +111,15 @@ const STEPS = [
     body: "Antes do envio ou da recolha, será solicitado o pagamento da 3.ª e última prestação, 30% do valor total. O quadro inclui instruções de cuidados para garantir a sua durabilidade.",
     noteJsx: (
       <>
-        <strong style={{ display: "block", marginBottom: "10px", color: "#3D6B5E", fontSize: "0.88rem" }}>Com o quadro pronto, tem duas opções:</strong>
+        <strong style={{ display: "block", marginBottom: "10px", color: "#9B3060", fontSize: "0.88rem" }}>Com o quadro pronto, tem duas opções:</strong>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           {[
             { label: "Envio pelos CTT", desc: "Receberá um número de rastreamento assim que a encomenda for enviada." },
             { label: "Recolha no atelier", desc: "Agende um horário para recolha em Coimbra." },
           ].map((item, i) => (
             <div key={i} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
-              <span style={{ color: "#3D6B5E", fontWeight: 700, flexShrink: 0, fontSize: "0.88rem", marginTop: "1px" }}>→</span>
-              <p style={{ margin: 0, fontSize: "0.88rem", lineHeight: 1.65, color: "#3D6B5E" }}>
+              <span style={{ color: "#9B3060", fontWeight: 700, flexShrink: 0, fontSize: "0.88rem", marginTop: "1px" }}>+</span>
+              <p style={{ margin: 0, fontSize: "0.88rem", lineHeight: 1.65, color: "#5A4050" }}>
                 <strong>{item.label}:</strong> {item.desc}
               </p>
             </div>
@@ -133,16 +133,8 @@ const STEPS = [
 const INCLUDED = [
   { label: "Vidro museu anti-UV", desc: "O mesmo vidro usado em museus. Bloqueia os raios que desbotam as cores." },
   { label: "Aprovação antes de selar", desc: "Enviamos fotografia. Nada é definitivo sem o seu acordo." },
-  { label: "Composição artística", desc: "Não é só secar flores — é criar uma composição pensada." },
-  { label: "Hardware de montagem", desc: "O quadro chega pronto a pendurar. Sem surpresas." },
+  { label: "Composição artística", desc: "Não é só secar flores. É criar uma composição pensada." },
   { label: "Acompanhamento completo", desc: "Atualizações ao longo do processo. Nunca fica sem saber o estado." },
-  { label: "Envio com rastreio", desc: "Embalagem especial para peças frágeis, com número de rastreio CTT." },
-];
-
-const DELIVERY = [
-  { title: "Entrega em mãos", sub: "Gratuita", body: "No atelier em Ceira, Coimbra. Com agendamento prévio — para garantirmos a melhor receção das flores.", c: "#3D6B5E" },
-  { title: "Envio por CTT", sub: "Correio frágil", body: "De Portugal ou de qualquer país da Europa. CTT correio frágil e urgente. Custos a cargo do cliente.", c: "#B8954A" },
-  { title: "Recolha no evento", sub: "Sob orçamento", body: "Deslocamo-nos ao local do evento ou cerimónia. Sujeito a disponibilidade e orçamento adicional.", c: "#C4846B" },
 ];
 
 // ─── Componente Step ──────────────────────────────────────────────────────────
@@ -150,14 +142,14 @@ const Step = ({ step, index }) => {
   const isEven = index % 2 === 0;
 
   const photoInner = (
-    <div style={{ position: "relative", borderRadius: "clamp(14px,2.5vw,22px)", overflow: "hidden", backgroundColor: "#D4DECC", boxShadow: "0 16px 48px rgba(30,45,42,0.12)" }}>
-      <div style={{ position: "absolute", top: "16px", left: "16px", zIndex: 2, backgroundColor: "#3D6B5E", color: "#FAF7F0", padding: "5px 14px", borderRadius: "50px", display: "flex", alignItems: "center", gap: "7px" }}>
+    <div style={{ position: "relative", borderRadius: "clamp(14px,2.5vw,22px)", overflow: "hidden", backgroundColor: "#F2D6E4", boxShadow: "0 16px 48px rgba(100,20,60,0.12)" }}>
+      <div style={{ position: "absolute", top: "16px", left: "16px", zIndex: 2, backgroundColor: "#9B3060", color: "#FAF7F0", padding: "5px 14px", borderRadius: "50px", display: "flex", alignItems: "center", gap: "7px" }}>
         <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.7rem", lineHeight: 1 }}>{step.n}</span>
         <span style={{ fontSize: "0.55rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", opacity: 0.8 }}>{step.tag}</span>
       </div>
       {step.imgLink && (
-        <div style={{ position: "absolute", bottom: "14px", right: "14px", zIndex: 2, backgroundColor: "rgba(250,247,240,0.92)", color: "#3D6B5E", padding: "5px 12px", borderRadius: "50px", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", backdropFilter: "blur(4px)" }}>
-          Reservar →
+        <div style={{ position: "absolute", bottom: "14px", right: "14px", zIndex: 2, backgroundColor: "rgba(250,247,240,0.92)", color: "#9B3060", padding: "5px 12px", borderRadius: "50px", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", backdropFilter: "blur(4px)" }}>
+          Reservar
         </div>
       )}
       <img src={step.img} alt={step.imgAlt} style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block", transition: "transform 0.6s ease" }} loading="lazy" className="step-img" />
@@ -166,7 +158,7 @@ const Step = ({ step, index }) => {
 
   return (
     <article id={step.id} aria-labelledby={`${step.id}-title`} style={{ marginBottom: "clamp(64px,12vw,110px)" }}>
-      <div aria-hidden="true" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(5rem,18vw,14rem)", lineHeight: 0.85, color: "rgba(61,107,94,0.13)", userSelect: "none", pointerEvents: "none", marginBottom: "-2rem", paddingLeft: isEven ? "clamp(16px,5vw,48px)" : undefined, paddingRight: !isEven ? "clamp(16px,5vw,48px)" : undefined, textAlign: isEven ? "left" : "right" }}>
+      <div aria-hidden="true" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(5rem,18vw,14rem)", lineHeight: 0.85, color: "rgba(155,48,96,0.1)", userSelect: "none", pointerEvents: "none", marginBottom: "-2rem", paddingLeft: isEven ? "clamp(16px,5vw,48px)" : undefined, paddingRight: !isEven ? "clamp(16px,5vw,48px)" : undefined, textAlign: isEven ? "left" : "right" }}>
         {step.n}
       </div>
 
@@ -182,7 +174,7 @@ const Step = ({ step, index }) => {
             {step.title}
           </h2>
           {step.imgLink ? (
-            <a href={step.imgLink} target="_blank" rel="noopener noreferrer" aria-label={`Reservar — ${step.title}`} style={{ display: "block", textDecoration: "none", cursor: "pointer" }}>
+            <a href={step.imgLink} target="_blank" rel="noopener noreferrer" aria-label={`Reservar`} style={{ display: "block", textDecoration: "none", cursor: "pointer" }}>
               {photoInner}
             </a>
           ) : (
@@ -198,11 +190,11 @@ const Step = ({ step, index }) => {
             {step.body}
           </div>
           {(step.note || step.noteJsx) && (
-            <div style={{ padding: "clamp(14px,2vw,18px) clamp(16px,2.5vw,22px)", borderRadius: "12px", backgroundColor: "rgba(61,107,94,0.06)", borderLeft: "3px solid rgba(61,107,94,0.3)" }}>
+            <div style={{ padding: "clamp(14px,2vw,18px) clamp(16px,2.5vw,22px)", borderRadius: "12px", backgroundColor: "rgba(155,48,96,0.05)", borderLeft: "3px solid rgba(155,48,96,0.25)" }}>
               {step.noteJsx ? (
-                <div style={{ color: "#3D6B5E", lineHeight: 1.78, fontSize: "clamp(0.84rem,1.6vw,0.92rem)" }}>{step.noteJsx}</div>
+                <div style={{ color: "#9B3060", lineHeight: 1.78, fontSize: "clamp(0.84rem,1.6vw,0.92rem)" }}>{step.noteJsx}</div>
               ) : (
-                <p style={{ color: "#3D6B5E", lineHeight: 1.78, fontSize: "clamp(0.84rem,1.6vw,0.92rem)", margin: 0, fontStyle: "italic" }}>{step.note}</p>
+                <p style={{ color: "#9B3060", lineHeight: 1.78, fontSize: "clamp(0.84rem,1.6vw,0.92rem)", margin: 0, fontStyle: "italic" }}>{step.note}</p>
               )}
             </div>
           )}
@@ -239,35 +231,37 @@ export default function ComoFuncionaClient() {
 
           .included-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
           @media (min-width: 480px) { .included-grid { grid-template-columns: 1fr 1fr; } }
-          @media (min-width: 900px) { .included-grid { grid-template-columns: 1fr 1fr 1fr; } }
-
-          .delivery-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-          @media (min-width: 600px) { .delivery-grid { grid-template-columns: repeat(3, 1fr); } }
-
-          .compare-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-          @media (min-width: 560px) { .compare-grid { grid-template-columns: 1fr 1fr; } }
 
           .cta-row { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
           @media (min-width: 480px) { .cta-row { flex-direction: row; justify-content: center; align-items: center; } }
 
           .btn-primary {
-            display: inline-block; background: #3D6B5E; color: #FAF7F0;
+            display: inline-block; background: #9B3060; color: #FAF7F0;
             padding: 15px 34px; border-radius: 100px; text-decoration: none;
             font-weight: 600; font-size: 0.82rem; letter-spacing: 1.4px;
             text-transform: uppercase; text-align: center;
-            box-shadow: 0 6px 22px rgba(61,107,94,0.28); transition: all 0.3s ease;
+            box-shadow: 0 6px 22px rgba(155,48,96,0.28); transition: all 0.3s ease;
             font-family: Roboto, sans-serif;
           }
-          .btn-primary:hover { background: #1E2D2A; transform: translateY(-3px); }
+          .btn-primary:hover { background: #6B1E42; transform: translateY(-3px); }
 
           .btn-outline {
-            display: inline-block; border: 2px solid #3D6B5E; color: #3D6B5E;
+            display: inline-block; border: 2px solid rgba(255,184,208,0.7); color: #FAF7F0;
             padding: 13px 32px; border-radius: 100px; text-decoration: none;
             font-weight: 600; font-size: 0.82rem; letter-spacing: 1.4px;
             text-transform: uppercase; text-align: center; transition: all 0.3s ease;
             font-family: Roboto, sans-serif;
           }
-          .btn-outline:hover { background: #3D6B5E; color: #FAF7F0; transform: translateY(-3px); }
+          .btn-outline:hover { background: rgba(255,184,208,0.15); transform: translateY(-3px); }
+
+          .btn-outline-dark {
+            display: inline-block; border: 2px solid #9B3060; color: #9B3060;
+            padding: 13px 32px; border-radius: 100px; text-decoration: none;
+            font-weight: 600; font-size: 0.82rem; letter-spacing: 1.4px;
+            text-transform: uppercase; text-align: center; transition: all 0.3s ease;
+            font-family: Roboto, sans-serif;
+          }
+          .btn-outline-dark:hover { background: #9B3060; color: #FAF7F0; transform: translateY(-3px); }
 
           .btn-wa {
             display: inline-flex; align-items: center; gap: 8px;
@@ -277,39 +271,49 @@ export default function ComoFuncionaClient() {
           }
           .btn-wa:hover { background: #1da851; transform: translateY(-3px); }
 
-          .eyebrow { display: block; font-size: 0.58rem; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: #C4846B; margin-bottom: 12px; font-family: Roboto, sans-serif; }
-          .text-link { color: #3D6B5E; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(61,107,94,0.3); padding-bottom: 1px; transition: border-color 0.2s ease; }
-          .text-link:hover { border-color: #3D6B5E; }
+          .eyebrow { display: block; font-size: 0.58rem; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: #9B3060; margin-bottom: 12px; font-family: Roboto, sans-serif; }
+          .text-link { color: #9B3060; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(155,48,96,0.3); padding-bottom: 1px; transition: border-color 0.2s ease; }
+          .text-link:hover { border-color: #9B3060; }
 
           [id^="passo-"] { scroll-margin-top: 100px; }
 
           @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
           }
-          a:focus-visible, button:focus-visible { outline: 3px solid #3D6B5E; outline-offset: 4px; border-radius: 4px; }
+          a:focus-visible, button:focus-visible { outline: 3px solid #9B3060; outline-offset: 4px; border-radius: 4px; }
         `,
         }} />
 
-        {/* HERO */}
+        {/* HERO com fotoquadrocloseup2.webp */}
         <section
           aria-label="Como funciona a preservação de flores"
-          style={{ paddingTop: "clamp(110px,16vw,170px)", paddingBottom: "clamp(52px,8vw,88px)", paddingLeft: "clamp(20px,5vw,48px)", paddingRight: "clamp(20px,5vw,48px)", background: "linear-gradient(175deg, #EDF2E8 0%, #FAF7F0 100%)" }}
+          style={{ position: "relative", minHeight: "clamp(420px,60vw,680px)", display: "flex", alignItems: "flex-end", overflow: "hidden" }}
         >
-          <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-            <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-              <span className="eyebrow">O nosso processo</span>
-              <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.8rem,9vw,5.8rem)", color: "#1E2D2A", margin: "0 0 clamp(18px,3vw,28px)", lineHeight: 1.0 }}>
-                Da flor fresca<br />
-                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>ao quadro para sempre</em>
-              </h1>
-              <p style={{ color: "#5A6B60", fontSize: "clamp(0.95rem,2vw,1.08rem)", lineHeight: 1.88, maxWidth: "580px", margin: "0 0 clamp(28px,4vw,40px)" }}>
-                Cinco passos para transformar as suas flores numa obra de arte botânica que dura décadas — explicados com toda a transparência.
-              </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(6px,1.5vw,10px)", alignItems: "center" }}>
-                <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ fontSize: "0.78rem" }}>Reservar Data</a>
-                <a href="/perguntas-frequentes" className="btn-outline" style={{ fontSize: "0.78rem" }}>Ver Perguntas Frequentes</a>
-              </div>
-            </motion.div>
+          <img
+            src="/fotoquadrocloseup2.webp"
+            alt=""
+            aria-hidden="true"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", zIndex: 0 }}
+          />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(40,5,25,0.80) 0%, rgba(40,5,25,0.40) 50%, rgba(40,5,25,0.15) 100%)", zIndex: 1 }} />
+
+          <div style={{ position: "relative", zIndex: 2, width: "100%", padding: "clamp(80px,12vw,130px) clamp(20px,5vw,64px) clamp(52px,8vw,80px)" }}>
+            <div style={{ maxWidth: "700px" }}>
+              <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+                <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(255,190,210,0.9)", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>O nosso processo</span>
+                <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.6rem,8vw,5.2rem)", color: "#FAF7F0", margin: "0 0 clamp(16px,2.5vw,22px)", lineHeight: 1.0 }}>
+                  Da flor fresca<br />
+                  <em style={{ fontStyle: "italic", color: "#FFB8D0" }}>ao quadro para sempre</em>
+                </h1>
+                <p style={{ color: "rgba(250,247,240,0.82)", fontSize: "clamp(0.93rem,1.9vw,1.05rem)", lineHeight: 1.8, maxWidth: "520px", margin: "0 0 clamp(28px,4vw,36px)" }}>
+                  Cinco passos para transformar as suas flores numa obra de arte botânica que dura décadas, explicados com toda a transparência.
+                </p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px,1.5vw,12px)", alignItems: "center" }}>
+                  <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ fontSize: "0.78rem" }}>Reservar Data</a>
+                  <a href="/perguntas-frequentes" className="btn-outline" style={{ fontSize: "0.78rem" }}>Ver Perguntas Frequentes</a>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -323,19 +327,19 @@ export default function ComoFuncionaClient() {
         </section>
 
         {/* O QUE ESTÁ INCLUÍDO */}
-        <section aria-label="O que está incluído" style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", background: "linear-gradient(180deg, #EDF2E8 0%, #FAF7F0 100%)" }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+        <section aria-label="O que está incluído" style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", background: "linear-gradient(180deg, #F9EDF3 0%, #FAF7F0 100%)" }}>
+          <div style={{ maxWidth: "900px", margin: "0 auto" }}>
             <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}>
               <span className="eyebrow">Sem surpresas</span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,3rem)", color: "#1E2D2A", margin: 0, lineHeight: 1.1 }}>Tudo incluído no preço</h2>
             </motion.div>
             <div className="included-grid">
               {INCLUDED.map((item, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07, duration: 0.6 }} style={{ backgroundColor: "#fff", borderRadius: "14px", padding: "clamp(16px,2.5vw,22px)", border: "1px solid rgba(61,107,94,0.09)", boxShadow: "0 3px 14px rgba(30,45,42,0.05)", display: "flex", gap: "14px", alignItems: "flex-start" }}>
+                <motion.div key={i} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07, duration: 0.6 }} style={{ backgroundColor: "#fff", borderRadius: "14px", padding: "clamp(16px,2.5vw,22px)", border: "1px solid rgba(155,48,96,0.09)", boxShadow: "0 3px 14px rgba(100,20,60,0.05)", display: "flex", gap: "14px", alignItems: "flex-start" }}>
                   <div style={{ flexShrink: 0, marginTop: "2px" }}>
                     <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                      <circle cx="10" cy="10" r="10" fill="rgba(61,107,94,0.1)" />
-                      <path d="M6 10l3 3 5-5" stroke="#3D6B5E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      <circle cx="10" cy="10" r="10" fill="rgba(155,48,96,0.1)" />
+                      <path d="M6 10l3 3 5-5" stroke="#9B3060" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                   <div>
@@ -347,49 +351,25 @@ export default function ComoFuncionaClient() {
             </div>
             <div style={{ textAlign: "center", marginTop: "clamp(28px,4vw,40px)", fontSize: "0.88rem", color: "#5A6B60", lineHeight: 1.7 }}>
               Os preços começam em <strong style={{ color: "#1E2D2A" }}>300€</strong>, incluindo emolduramento e vidro museu.{" "}
-              <a href="/opcoes-e-precos" className="text-link">Ver todos os preços e tamanhos →</a>
+              <a href="/opcoes-e-precos" className="text-link">Ver todos os preços e tamanhos</a>
             </div>
-          </div>
-        </section>
-
-        {/* ENTREGA */}
-        <section aria-label="Como entregar as flores" style={{ padding: "clamp(52px,8vw,80px) clamp(20px,5vw,48px)", backgroundColor: "#FAF7F0" }}>
-          <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "clamp(24px,4vw,40px)" }}>
-              <span className="eyebrow">Logística</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.7rem,4vw,2.8rem)", color: "#1E2D2A", margin: "0 0 12px", lineHeight: 1.1 }}>Como nos fazer chegar as flores</h2>
-              <p style={{ color: "#5A6B60", fontSize: "clamp(0.9rem,1.8vw,0.98rem)", lineHeight: 1.8, maxWidth: "480px", margin: "0 auto" }}>Recebemos flores de toda a Europa. Escolha a opção que funciona melhor para si.</p>
-            </motion.div>
-            <div className="delivery-grid">
-              {DELIVERY.map((opt, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.65 }} style={{ backgroundColor: "#fff", borderRadius: "18px", padding: "clamp(20px,3vw,28px)", border: `1px solid ${opt.c}18`, boxShadow: "0 4px 20px rgba(30,45,42,0.06)" }}>
-                  <span style={{ display: "inline-block", fontSize: "0.57rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: opt.c, fontFamily: "Roboto, sans-serif", backgroundColor: `${opt.c}12`, padding: "4px 12px", borderRadius: "50px", marginBottom: "12px" }}>{opt.sub}</span>
-                  <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.15rem", color: "#1E2D2A", margin: "0 0 8px", lineHeight: 1.2 }}>{opt.title}</h3>
-                  <p style={{ color: "#5A6B60", fontSize: "0.88rem", lineHeight: 1.75, margin: 0 }}>{opt.body}</p>
-                </motion.div>
-              ))}
-            </div>
-            <p style={{ textAlign: "center", marginTop: "20px", color: "#9BA89F", fontSize: "0.82rem", lineHeight: 1.7 }}>
-              Em caso de dúvida sobre o envio,{" "}
-              <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="text-link">fale connosco pelo WhatsApp</a>.
-            </p>
           </div>
         </section>
 
         {/* PAGAMENTO */}
-        <section aria-label="Pagamento em três prestações" style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", background: "linear-gradient(135deg, #1E2D2A 0%, #2D5045 100%)" }}>
+        <section aria-label="Pagamento em três prestações" style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", background: "linear-gradient(135deg, #2D1020 0%, #6B1E42 100%)" }}>
           <div style={{ maxWidth: "820px", margin: "0 auto" }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
               <div style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}>
-                <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#8BA888", marginBottom: "12px", fontFamily: "Roboto, sans-serif" }}>Transparência total</span>
+                <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#FFB8D0", marginBottom: "12px", fontFamily: "Roboto, sans-serif" }}>Transparência total</span>
                 <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.7rem,4vw,2.8rem)", color: "#FAF7F0", margin: "0 0 12px", lineHeight: 1.1 }}>Pagamento em três momentos</h2>
-                <p style={{ color: "rgba(250,247,240,0.6)", fontSize: "clamp(0.88rem,1.8vw,0.96rem)", lineHeight: 1.8, maxWidth: "440px", margin: "0 auto" }}>Para não pesar no orçamento — o valor é repartido ao longo do processo.</p>
+                <p style={{ color: "rgba(250,247,240,0.6)", fontSize: "clamp(0.88rem,1.8vw,0.96rem)", lineHeight: 1.8, maxWidth: "440px", margin: "0 auto" }}>Para não pesar no orçamento, o valor é repartido ao longo do processo.</p>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(8px,2vw,16px)" }}>
                 {[
-                  { pct: "30%", label: "Na reserva", desc: "Sinal que garante a sua vaga. Não reembolsável.", c: "#8BA888" },
-                  { pct: "40%", label: "Início do trabalho", desc: "Quando as flores chegam e iniciamos a prensagem.", c: "#B8954A" },
-                  { pct: "30%", label: "Antes da entrega", desc: "Após aprovação da composição e antes de enviarmos o quadro.", c: "#C4846B" },
+                  { pct: "30%", label: "Na reserva", desc: "Sinal que garante a sua vaga. Não reembolsável.", c: "#FFB8D0" },
+                  { pct: "40%", label: "Início do trabalho", desc: "Quando as flores chegam e iniciamos a prensagem.", c: "#F4A0B8" },
+                  { pct: "30%", label: "Antes da entrega", desc: "Após aprovação da composição e antes de enviarmos o quadro.", c: "#E880A0" },
                 ].map((p, i) => (
                   <div key={i} style={{ backgroundColor: "rgba(250,247,240,0.06)", borderRadius: "clamp(12px,2vw,18px)", padding: "clamp(16px,2.5vw,26px) clamp(12px,2vw,18px)", border: "1px solid rgba(250,247,240,0.09)", textAlign: "center" }}>
                     <span style={{ display: "block", fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,2.8rem)", color: p.c, lineHeight: 1, marginBottom: "6px" }}>{p.pct}</span>
@@ -402,53 +382,17 @@ export default function ComoFuncionaClient() {
           </div>
         </section>
 
-        {/* BOTÂNICA vs RESINA */}
-        <section aria-label="Diferença entre preservação botânica e resina epóxi" style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", backgroundColor: "#FAF7F0" }}>
-          <div style={{ maxWidth: "920px", margin: "0 auto" }}>
-            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "clamp(28px,4vw,44px)" }}>
-              <span className="eyebrow">Porque botânica</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,3rem)", color: "#1E2D2A", margin: 0, lineHeight: 1.1 }}>
-                Prensagem botânica<br /><em style={{ fontStyle: "italic", color: "#3D6B5E" }}>vs resina epóxi</em>
-              </h2>
-            </motion.div>
-            <div className="compare-grid">
-              {[
-                { title: "Prensagem botânica", tag: "O que fazemos", tagC: "#3D6B5E", bg: "rgba(61,107,94,0.04)", border: "rgba(61,107,94,0.15)", items: ["100% orgânico — sem químicos, sem plásticos", "Resultado mais natural e autêntico", "Vidro museu anti-UV — dura décadas", "A flor mantém a sua essência real", "Estética artística, não industrial"], check: "#3D6B5E", isGood: true },
-                { title: "Resina epóxi", tag: "A alternativa", tagC: "#9BA89F", bg: "rgba(155,168,159,0.04)", border: "rgba(155,168,159,0.15)", items: ["Polímero sintético (plástico) líquido", "A flor fica encapsulada em resina", "Pode amarelecer ao longo do tempo", "Resultado mais artificial e brilhante", "Difícil de restaurar ou conservar"], check: "#C4846B", isGood: false },
-              ].map((col, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.65 }} style={{ backgroundColor: col.bg, borderRadius: "20px", padding: "clamp(22px,3vw,32px)", border: `1.5px solid ${col.border}` }}>
-                  <div style={{ marginBottom: "20px" }}>
-                    <span style={{ display: "inline-block", fontSize: "0.57rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: col.tagC, fontFamily: "Roboto, sans-serif", backgroundColor: `${col.tagC}14`, padding: "4px 12px", borderRadius: "50px", marginBottom: "10px" }}>{col.tag}</span>
-                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.3rem", color: "#1E2D2A", margin: 0, lineHeight: 1.2 }}>{col.title}</h3>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                    {col.items.map((item, j) => (
-                      <div key={j} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true" style={{ flexShrink: 0, marginTop: "2px" }}>
-                          <circle cx="10" cy="10" r="10" fill={`${col.check}15`} />
-                          {col.isGood
-                            ? <path d="M6 10l3 3 5-5" stroke={col.check} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                            : <path d="M7 7l6 6M13 7l-6 6" stroke={col.check} strokeWidth="1.8" strokeLinecap="round" />
-                          }
-                        </svg>
-                        <p style={{ color: "#5A6B60", fontSize: "0.88rem", lineHeight: 1.65, margin: 0 }}>{item}</p>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* CTA FINAL */}
-        <section aria-label="Reservar preservação" style={{ padding: "clamp(60px,10vw,100px) clamp(20px,5vw,48px)", background: "linear-gradient(140deg, #EDF2E8 0%, #FAF7F0 55%, #F0EBE0 100%)", textAlign: "center" }}>
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }} style={{ maxWidth: "580px", margin: "0 auto" }}>
-            <div aria-hidden="true" style={{ width: "44px", height: "1px", margin: "0 auto 28px", background: "linear-gradient(to right, transparent, #B8954A, transparent)" }} />
-            <span className="eyebrow" style={{ color: "#B8954A" }}>Pronta para começar?</span>
+        <section aria-label="Reservar preservação" style={{ padding: "clamp(60px,10vw,100px) clamp(20px,5vw,48px)", background: "linear-gradient(140deg, #F9EDF3 0%, #FAF7F0 55%, #F5E8F0 100%)", textAlign: "center" }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }} style={{ maxWidth: "620px", margin: "0 auto" }}>
+            <div aria-hidden="true" style={{ width: "44px", height: "1px", margin: "0 auto 28px", background: "linear-gradient(to right, transparent, #9B3060, transparent)" }} />
+            <span className="eyebrow">Pronta para começar?</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5.5vw,3.5rem)", color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1 }}>Reserve a sua vaga hoje</h2>
-            <p style={{ color: "#5A6B60", lineHeight: 1.88, fontSize: "clamp(0.9rem,2vw,1rem)", margin: "0 0 34px" }}>
-              Não espere pelo último momento — as vagas em época de casamentos esgotam com muita antecedência.
+            <p style={{ color: "#5A6B60", lineHeight: 1.88, fontSize: "clamp(0.9rem,2vw,1rem)", margin: "0 0 10px" }}>
+              As vagas esgotam com muita antecedência, especialmente em época de casamentos.
+            </p>
+            <p style={{ color: "#9B3060", lineHeight: 1.75, fontSize: "clamp(0.85rem,1.8vw,0.94rem)", margin: "0 0 34px", fontStyle: "italic" }}>
+              As suas flores só vivem dias, mas o quadro pode durar décadas. Não deixe para depois o que só pode ser feito agora.
             </p>
             <div className="cta-row" style={{ marginBottom: "28px" }}>
               <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">Preencher Formulário de Reserva</a>
