@@ -146,6 +146,10 @@ button:focus-visible {
     backdrop-filter: none !important;
     padding: 20px 0 !important;
   }
+  nav[role="navigation"][data-scrolled="false"] .nav-logo,
+  nav[role="navigation"][data-scrolled="false"] .nav-mobile-btn {
+    color: #FAF7F0 !important;
+  }
 }
 
 /* ── Dropdown desktop ──────────────────────────────────── */
