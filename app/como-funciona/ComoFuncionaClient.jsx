@@ -99,7 +99,7 @@ const STEPS = [
     img: "/detalhe.webp",
     imgAlt: "Composição artística de flores prensadas dentro de moldura",
     body: "Escolhemos as flores melhor preservadas e iniciamos a criação do seu quadro. Quando a composição estiver pronta, receberá um e-mail com imagens do design.",
-    note: "Terá 72 horas para aprovar ou solicitar alterações. Após a sua aprovação, o quadro segue para a molduraria e é finalizado.",
+    note: "Terá 72 horas para aprovar ou solicitar alterações. Após o quadro estar emoldurado e antes de o enviarmos.",
   },
   {
     id: "passo-5",
@@ -114,7 +114,7 @@ const STEPS = [
         <strong style={{ display: "block", marginBottom: "10px", color: "#C8522A", fontSize: "0.88rem" }}>Com o quadro pronto, tem duas opções:</strong>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           {[
-            { label: "Envio pelos CTT", desc: "Receberá um número de rastreamento assim que a encomenda for enviada." },
+            { label: "Envio pelos CTT", desc: "Receberá um número de rastreamento assim que a encomenda for enviada. Custos de envio a cargo do cliente." },
             { label: "Recolha no atelier", desc: "Agende um horário para recolha em Coimbra." },
           ].map((item, i) => (
             <div key={i} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
@@ -232,47 +232,50 @@ export default function ComoFuncionaClient() {
           .included-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
           @media (min-width: 480px) { .included-grid { grid-template-columns: 1fr 1fr; } }
 
-          .cta-row { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
+          .cta-row { display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
           @media (min-width: 480px) { .cta-row { flex-direction: row; justify-content: center; align-items: center; } }
 
           .btn-primary {
-            display: inline-block; background: #C8522A; color: #FAF7F0;
-            padding: 0 28px; height: 48px; line-height: 48px; border-radius: 100px;
-            text-decoration: none; font-weight: 600; font-size: 0.75rem; letter-spacing: 1.4px;
+            display: flex; align-items: center; justify-content: center;
+            background: #C8522A; color: #FAF7F0;
+            padding: 0 22px; height: 44px; border-radius: 100px;
+            text-decoration: none; font-weight: 600; font-size: 0.7rem; letter-spacing: 1.3px;
             text-transform: uppercase; text-align: center; border: 2px solid #C8522A;
-            box-shadow: 0 6px 22px rgba(200,82,42,0.28); transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(200,82,42,0.28); transition: all 0.3s ease;
             font-family: Roboto, sans-serif; white-space: nowrap; box-sizing: border-box;
           }
-          .btn-primary:hover { background: #A03D1C; border-color: #A03D1C; transform: translateY(-3px); }
+          .btn-primary:hover { background: #A03D1C; border-color: #A03D1C; transform: translateY(-2px); }
 
           .btn-outline {
-            display: inline-block; border: 2px solid rgba(240,190,150,0.8); color: #FAF7F0;
-            padding: 0 28px; height: 48px; line-height: 44px; border-radius: 100px;
-            text-decoration: none; font-weight: 600; font-size: 0.75rem; letter-spacing: 1.4px;
+            display: flex; align-items: center; justify-content: center;
+            border: 2px solid rgba(240,190,150,0.8); color: #FAF7F0;
+            padding: 0 22px; height: 44px; border-radius: 100px;
+            text-decoration: none; font-weight: 600; font-size: 0.7rem; letter-spacing: 1.3px;
             text-transform: uppercase; text-align: center; transition: all 0.3s ease;
             font-family: Roboto, sans-serif; white-space: nowrap; box-sizing: border-box;
           }
-          .btn-outline:hover { background: rgba(240,190,150,0.15); transform: translateY(-3px); }
+          .btn-outline:hover { background: rgba(240,190,150,0.15); transform: translateY(-2px); }
 
           .btn-outline-dark {
-            display: inline-block; border: 2px solid #C8522A; color: #C8522A;
-            padding: 0 28px; height: 48px; line-height: 44px; border-radius: 100px;
-            text-decoration: none; font-weight: 600; font-size: 0.75rem; letter-spacing: 1.4px;
+            display: flex; align-items: center; justify-content: center;
+            border: 2px solid #C8522A; color: #C8522A;
+            padding: 0 22px; height: 44px; border-radius: 100px;
+            text-decoration: none; font-weight: 600; font-size: 0.7rem; letter-spacing: 1.3px;
             text-transform: uppercase; text-align: center; transition: all 0.3s ease;
             font-family: Roboto, sans-serif; white-space: nowrap; box-sizing: border-box;
           }
-          .btn-outline-dark:hover { background: #C8522A; color: #FAF7F0; transform: translateY(-3px); }
+          .btn-outline-dark:hover { background: #C8522A; color: #FAF7F0; transform: translateY(-2px); }
 
           .btn-wa {
-            display: inline-flex; align-items: center; gap: 8px;
+            display: flex; align-items: center; justify-content: center; gap: 7px;
             background: #25D366; color: #fff; border: 2px solid #25D366;
-            padding: 0 28px; height: 48px; border-radius: 100px;
-            text-decoration: none; font-weight: 600; font-size: 0.75rem; letter-spacing: 1px;
+            padding: 0 22px; height: 44px; border-radius: 100px;
+            text-decoration: none; font-weight: 600; font-size: 0.7rem; letter-spacing: 1px;
             text-transform: uppercase;
             transition: all 0.3s ease; font-family: Roboto, sans-serif; white-space: nowrap;
             box-sizing: border-box;
           }
-          .btn-wa:hover { background: #1da851; border-color: #1da851; transform: translateY(-3px); }
+          .btn-wa:hover { background: #1da851; border-color: #1da851; transform: translateY(-2px); }
 
           .eyebrow { display: block; font-size: 0.58rem; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: #C8522A; margin-bottom: 12px; font-family: Roboto, sans-serif; }
           .text-link { color: #C8522A; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(200,82,42,0.3); padding-bottom: 1px; transition: border-color 0.2s ease; }
@@ -290,7 +293,7 @@ export default function ComoFuncionaClient() {
         {/* HERO com fotoquadrocloseup2.webp */}
         <section
           aria-label="Como funciona a preservação de flores"
-          style={{ position: "relative", minHeight: "clamp(560px,80vw,820px)", display: "flex", alignItems: "center", overflow: "hidden" }}
+          style={{ position: "relative", minHeight: "clamp(600px,100vw,860px)", display: "flex", alignItems: "center", overflow: "hidden" }}
         >
           <img
             src="/fotoquadrocloseup2.webp"
@@ -300,7 +303,7 @@ export default function ComoFuncionaClient() {
           />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(35,15,5,0.85) 0%, rgba(35,15,5,0.45) 55%, rgba(35,15,5,0.18) 100%)", zIndex: 1 }} />
 
-          <div style={{ position: "relative", zIndex: 2, width: "100%", padding: "clamp(100px,14vw,150px) clamp(20px,5vw,64px) clamp(60px,10vw,100px)", display: "flex", justifyContent: "center" }}>
+          <div style={{ position: "relative", zIndex: 2, width: "100%", padding: "clamp(110px,16vw,160px) clamp(20px,5vw,64px) clamp(64px,10vw,100px)", display: "flex", justifyContent: "center" }}>
             <div style={{ maxWidth: "680px", textAlign: "center", width: "100%" }}>
               <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
                 <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(255,190,130,0.9)", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>O nosso processo</span>
@@ -395,7 +398,7 @@ export default function ComoFuncionaClient() {
               Basta preencher o formulário de reserva. Respondemos em 72 horas com a confirmação e todas as instruções para os passos seguintes.
             </p>
             <div className="cta-row" style={{ marginBottom: "28px" }}>
-              <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">Preencher Formulário de Reserva</a>
+              <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ background: "#C8522A", borderColor: "#C8522A", color: "#FAF7F0", boxShadow: "0 4px 16px rgba(200,82,42,0.28)" }}>Preencher Formulário de Reserva</a>
               <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 Falar pelo WhatsApp
