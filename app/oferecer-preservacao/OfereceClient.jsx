@@ -234,10 +234,10 @@ export default function OfereceClient() {
       `,
       }} />
 
-      {/* HERO com foto vale2.webp de fundo */}
+      {/* HERO com foto vale1.webp de fundo */}
       <section className="hero-layout">
         <div className="hero-foto-bg">
-          <img src="/vale2.webp" alt="" aria-hidden="true" />
+          <img src="/vale1.webp" alt="" aria-hidden="true" />
         </div>
 
         <div className="hero-text-col">
