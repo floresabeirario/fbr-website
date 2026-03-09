@@ -1,421 +1,870 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { FORM_URL, WA_URL } from "../_lib/constants";
+import { useRef, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
 
-// ─── HowTo Schema ─────────────────────────────────────────────────────────────
-const HowToSchema = () => (
-  <script
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{
-      __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        name: "Como funciona a preservação de flores de momentos especiais",
-        description:
-          "Processo artesanal completo de preservação botânica de flores desde a reserva até ao quadro emoldurado com vidro museu anti-UV, pronto a pendurar em casa.",
-        totalTime: "P6M",
-        estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "300" },
-        supply: [
-          { "@type": "HowToSupply", name: "Flores frescas (até 5 dias após o evento)" },
-          { "@type": "HowToSupply", name: "Fotografias do dia (opcional, para referência)" },
-        ],
-        tool: [{ "@type": "HowToTool", name: "Formulário de reserva online" }],
-        step: [
-          { "@type": "HowToStep", position: 1, name: "Reservar a data", text: "Preencha o formulário de reserva com a data do evento e detalhes das flores. Pague o sinal de 30% para garantir a sua vaga.", url: "https://floresabeirario.pt/como-funciona#passo-1" },
-          { "@type": "HowToStep", position: 2, name: "Entregar as flores", text: "Entregue em mãos no atelier (Ceira, Coimbra), envie por CTT correio frágil urgente, ou solicite recolha no local do evento. Preferencialmente até 3 dias após o evento.", url: "https://floresabeirario.pt/como-funciona#passo-2" },
-          { "@type": "HowToStep", position: 3, name: "Prensagem e secagem artesanal", text: "Cada pétala é prensada e seca individualmente com técnicas de botânica artesanal, sem químicos agressivos, sem plásticos.", url: "https://floresabeirario.pt/como-funciona#passo-3" },
-          { "@type": "HowToStep", position: 4, name: "Composição e aprovação", text: "Criamos a composição artística e enviamos fotografia para aprovação. Pode pedir ajustes antes de selarmos a moldura definitivamente.", url: "https://floresabeirario.pt/como-funciona#passo-4" },
-          { "@type": "HowToStep", position: 5, name: "Emolduramento e entrega do quadro", text: "O quadro é emoldurado com vidro museu anti-reflexo com proteção UV e enviado por CTT com rastreio, ou levantado no atelier em Coimbra.", url: "https://floresabeirario.pt/como-funciona#passo-5" },
-        ],
-      }),
-    }}
-  />
-);
+const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
 
-// ─── Dados ────────────────────────────────────────────────────────────────────
-const STEPS = [
-  {
-    id: "passo-1",
-    n: "01",
-    tag: "Antes do evento",
-    title: "Reserve a sua data",
-    img: "/reserva.webp",
-    imgAlt: "Calendário com data de evento marcada para reserva de preservação de flores",
-    imgLink: FORM_URL,
-    body: "Respondemos em 72 horas com a confirmação e as instruções de pagamento do sinal de 30%. O pagamento deve ser efetuado no prazo de 24 horas para garantir a reserva; caso contrário, o agendamento será cancelado. O sinal não é reembolsável.",
-    noteJsx: (
-      <>
-        As vagas são limitadas, especialmente entre Maio e Setembro. O processo começa muito antes do evento: assim que souber a data, garanta a sua vaga com o{" "}
-        <a href={FORM_URL} target="_blank" rel="noopener noreferrer" style={{ color: "#C8522A", fontWeight: 600, textDecoration: "none", borderBottom: "1px solid rgba(200,82,42,0.3)", paddingBottom: "1px" }}>
-          formulário de reserva
-        </a>.
-      </>
-    ),
-  },
-  {
-    id: "passo-2",
-    n: "02",
-    tag: "Até 5 dias após",
-    title: "As flores chegam até nós",
-    img: "/ramojoana.webp",
-    imgAlt: "Flores frescas a ser entregues no atelier para preservação botânica",
-    body: "Depois do dia do evento, as flores têm de chegar até nós o mais frescas possível, preferencialmente em 1 a 3 dias, no máximo 5. Enquanto aguarda, mantenha as flores num vaso com água fresca longe do sol e do calor. O pagamento de 40% da encomenda será solicitado após recebermos as flores.",
-    noteJsx: (
-      <>
-        <strong style={{ display: "block", marginBottom: "10px", color: "#C8522A", fontSize: "0.88rem" }}>Três opções de entrega:</strong>
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          {[
-            { label: "Entrega em mãos", desc: "Gratuitamente no nosso atelier em Coimbra, mediante agendamento." },
-            { label: "Envio por CTT", desc: "Correio frágil e urgente os custos de envio são a cargo do cliente." },
-            { label: "Recolha no evento", desc: "Deslocamo-nos ao local do evento, mediante orçamento e disponibilidade." },
-          ].map((item, i) => (
-            <div key={i} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
-              <span style={{ color: "#C8522A", fontWeight: 700, flexShrink: 0, fontSize: "0.88rem", marginTop: "1px" }}>+</span>
-              <p style={{ margin: 0, fontSize: "0.88rem", lineHeight: 1.65, color: "#5A4050" }}>
-                <strong>{item.label}:</strong> {item.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </>
-    ),
-  },
-  {
-    id: "passo-3",
-    n: "03",
-    tag: "Até 6 meses",
-    title: "Prensagem pétala a pétala",
-    img: "/prensa.webp",
-    imgAlt: "Pétalas de flores a serem prensadas artesanalmente em papel botânico",
-    body: "É aqui que acontece a magia e também a parte que não pode ser apressada. Cada pétala, folha e raminho é prensado individualmente em condições controladas de temperatura e humidade.",
-    note: "Após estarem preservadas, as flores são também congeladas para eliminar qualquer inseto que possa ainda estar presente.",
-  },
-  {
-    id: "passo-4",
-    n: "04",
-    tag: "Aprovação",
-    title: "Composição e aprovação",
-    img: "/detalhe.webp",
-    imgAlt: "Composição artística de flores prensadas dentro de moldura",
-    body: "Escolhemos as flores melhor preservadas e iniciamos a criação do seu quadro. Quando a composição estiver pronta, receberá um e-mail com imagens do design.",
-    note: "Terá 72 horas para aprovar ou solicitar alterações. Após o quadro estar emoldurado e antes de o enviarmos.",
-  },
-  {
-    id: "passo-5",
-    n: "05",
-    tag: "A vida toda",
-    title: "O quadro chega a casa",
-    img: "/joanaceu.webp",
-    imgAlt: "Quadro botânico de flores prensadas emoldurado com vidro museu anti-UV",
-    body: "Antes do envio ou da recolha, será solicitado o pagamento da 3.ª e última prestação, 30% do valor total. O quadro inclui instruções de cuidados para garantir a sua durabilidade.",
-    noteJsx: (
-      <>
-        <strong style={{ display: "block", marginBottom: "10px", color: "#C8522A", fontSize: "0.88rem" }}>Com o quadro pronto, tem duas opções:</strong>
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          {[
-            { label: "Envio pelos CTT", desc: "Receberá um número de rastreamento assim que a encomenda for enviada. Custos de envio a cargo do cliente." },
-            { label: "Recolha no atelier", desc: "Agende um horário para recolha em Coimbra." },
-          ].map((item, i) => (
-            <div key={i} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
-              <span style={{ color: "#C8522A", fontWeight: 700, flexShrink: 0, fontSize: "0.88rem", marginTop: "1px" }}>+</span>
-              <p style={{ margin: 0, fontSize: "0.88rem", lineHeight: 1.65, color: "#5A4050" }}>
-                <strong>{item.label}:</strong> {item.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </>
-    ),
-  },
-];
-
-const INCLUDED = [
-  { label: "Vidro museu anti-UV", desc: "O mesmo vidro usado em museus. Bloqueia os raios que desbotam as cores." },
-  { label: "Aprovação antes de selar", desc: "Enviamos fotografia. Nada é definitivo sem o seu acordo." },
-  { label: "Composição artística", desc: "Não é só secar flores. É criar uma composição pensada." },
-  { label: "Acompanhamento completo", desc: "Atualizações ao longo do processo. Nunca fica sem saber o estado." },
-];
-
-// ─── Componente Step ──────────────────────────────────────────────────────────
-const Step = ({ step, index }) => {
-  const isEven = index % 2 === 0;
-
-  const photoInner = (
-    <div style={{ position: "relative", borderRadius: "clamp(14px,2.5vw,22px)", overflow: "hidden", backgroundColor: "#F2D6E4", boxShadow: "0 16px 48px rgba(160,60,20,0.12)" }}>
-      <div style={{ position: "absolute", top: "16px", left: "16px", zIndex: 2, backgroundColor: "#C8522A", color: "#FAF7F0", padding: "5px 14px", borderRadius: "50px", display: "flex", alignItems: "center", gap: "7px" }}>
-        <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.7rem", lineHeight: 1 }}>{step.n}</span>
-        <span style={{ fontSize: "0.55rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", opacity: 0.8 }}>{step.tag}</span>
-      </div>
-      {step.imgLink && (
-        <div style={{ position: "absolute", bottom: "14px", right: "14px", zIndex: 2, backgroundColor: "rgba(250,247,240,0.92)", color: "#C8522A", padding: "5px 12px", borderRadius: "50px", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", backdropFilter: "blur(4px)" }}>
-          Reservar
-        </div>
-      )}
-      <img src={step.img} alt={step.imgAlt} style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block", transition: "transform 0.6s ease" }} loading="lazy" className="step-img" />
-    </div>
-  );
-
-  return (
-    <article id={step.id} aria-labelledby={`${step.id}-title`} style={{ marginBottom: "clamp(64px,12vw,110px)" }}>
-      <div aria-hidden="true" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(5rem,18vw,14rem)", lineHeight: 0.85, color: "rgba(200,82,42,0.1)", userSelect: "none", pointerEvents: "none", marginBottom: "-2rem", paddingLeft: isEven ? "clamp(16px,5vw,48px)" : undefined, paddingRight: !isEven ? "clamp(16px,5vw,48px)" : undefined, textAlign: isEven ? "left" : "right" }}>
-        {step.n}
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 28 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-8%" }}
-        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-        className={`step-grid${isEven ? " step-grid--even" : " step-grid--odd"}`}
-      >
-        <div className="step-photo-wrap">
-          <h2 className="step-title-mobile" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem,4vw,2.5rem)", color: "#1E2D2A", margin: "0 0 clamp(12px,2vw,16px)", lineHeight: 1.1 }}>
-            {step.title}
-          </h2>
-          {step.imgLink ? (
-            <a href={step.imgLink} target="_blank" rel="noopener noreferrer" aria-label={`Reservar`} style={{ display: "block", textDecoration: "none", cursor: "pointer" }}>
-              {photoInner}
-            </a>
-          ) : (
-            photoInner
-          )}
-        </div>
-
-        <div className="step-text">
-          <h2 id={`${step.id}-title`} className="step-title-desktop" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem,4vw,2.5rem)", color: "#1E2D2A", margin: "0 0 clamp(12px,2vw,18px)", lineHeight: 1.1 }}>
-            {step.title}
-          </h2>
-          <div style={{ color: "#5A6B60", lineHeight: 1.88, fontSize: "clamp(0.92rem,1.8vw,1.02rem)", margin: "0 0 clamp(16px,2.5vw,22px)" }}>
-            {step.body}
-          </div>
-          {(step.note || step.noteJsx) && (
-            <div style={{ padding: "clamp(14px,2vw,18px) clamp(16px,2.5vw,22px)", borderRadius: "12px", backgroundColor: "rgba(200,82,42,0.05)", borderLeft: "3px solid rgba(200,82,42,0.25)" }}>
-              {step.noteJsx ? (
-                <div style={{ color: "#C8522A", lineHeight: 1.78, fontSize: "clamp(0.84rem,1.6vw,0.92rem)" }}>{step.noteJsx}</div>
-              ) : (
-                <p style={{ color: "#C8522A", lineHeight: 1.78, fontSize: "clamp(0.84rem,1.6vw,0.92rem)", margin: 0, fontStyle: "italic" }}>{step.note}</p>
-              )}
-            </div>
-          )}
-        </div>
-      </motion.div>
-    </article>
-  );
+const fadeUp = {
+  hidden: { opacity: 0, y: 36 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.25, 0.1, 0.25, 1] } },
 };
 
-// ─── Main ─────────────────────────────────────────────────────────────────────
-export default function ComoFuncionaClient() {
+function Reveal({ children, delay = 0, style, className }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <>
-      <HowToSchema />
+    <motion.div ref={ref} variants={fadeUp} initial="hidden"
+      animate={inView ? "show" : "hidden"} transition={{ delay }}
+      style={style} className={className}>
+      {children}
+    </motion.div>
+  );
+}
 
-      <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
-        <style dangerouslySetInnerHTML={{
-          __html: `
-          * { box-sizing: border-box; }
+function Label({ children, light }) {
+  return (
+    <p style={{
+      fontSize: "0.6rem", letterSpacing: "4px", textTransform: "uppercase",
+      color: light ? "rgba(250,247,240,0.5)" : "#B8954A",
+      fontFamily: GS, margin: "0 0 20px", fontWeight: 500
+    }}>
+      {children}
+    </p>
+  );
+}
 
-          .step-grid { display: grid; grid-template-columns: 1fr; gap: clamp(24px,5vw,48px); align-items: center; }
-          .step-title-mobile  { display: block; }
-          .step-title-desktop { display: none; }
+function Flower({ cx, cy, scale = 1, rotate = 0, opacity = 0.45, dark = false }) {
+  const r = dark ? `rgba(15,30,26,${opacity})` : `rgba(250,247,240,${opacity})`;
+  const rs = dark ? `rgba(15,30,26,${opacity * 0.7})` : `rgba(250,247,240,${opacity * 0.75})`;
+  return (
+    <g transform={`translate(${cx}, ${cy}) rotate(${rotate}) scale(${scale}) translate(-100, -125)`}>
+      <path
+        d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120"
+        stroke={r} strokeWidth="1.5" fill="none"
+        strokeLinejoin="round" strokeLinecap="round"
+      />
+      <path
+        d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108"
+        stroke={rs} strokeWidth="1" strokeLinecap="round"
+      />
+      <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)"
+        stroke={r} strokeWidth="1.5" fill="none"
+      />
+    </g>
+  );
+}
 
-          @media (min-width: 768px) {
-            .step-grid { grid-template-columns: 1fr 1fr; gap: clamp(40px,5vw,80px); }
-            .step-grid--odd .step-photo-wrap { order: 2; }
-            .step-grid--odd .step-text       { order: 1; }
-            .step-title-mobile  { display: none; }
-            .step-title-desktop { display: block; }
-          }
+function FrameSVG({ vw, vh, flowers, svgWidth, label, dark = false }) {
+  const stroke1 = dark ? "rgba(15,30,26,0.45)" : "rgba(250,247,240,0.55)";
+  const stroke2 = dark ? "rgba(15,30,26,0.22)" : "rgba(250,247,240,0.28)";
+  const strokeGlass = dark ? "rgba(15,30,26,0.14)" : "rgba(250,247,240,0.18)";
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox={`0 0 ${vw} ${vh}`}
+      style={{ width: svgWidth, height: "auto", display: "block" }}
+      aria-label={`Ilustração moldura ${label}`}
+    >
+      <rect x="10" y="10" width={vw - 20} height={vh - 20}
+        stroke={stroke1} strokeWidth="2" fill="none" />
+      <rect x="18" y="18" width={vw - 36} height={vh - 36}
+        stroke={stroke2} strokeWidth="1.2" fill="none" />
+      <line x1="32" y1={vh * 0.28} x2={vw * 0.42} y2="28"
+        stroke={strokeGlass} strokeWidth="1.4" strokeLinecap="round" />
+      <line x1="48" y1={vh * 0.38} x2={vw * 0.56} y2="44"
+        stroke={strokeGlass} strokeWidth="1.1" strokeLinecap="round" />
+      <line x1={vw - 44} y1={vh - 60} x2={vw - 24} y2={vh - 82}
+        stroke={strokeGlass} strokeWidth="1.3" strokeLinecap="round" />
+      {flowers.map((f, i) => (
+        <Flower key={i} {...f} dark={dark} />
+      ))}
+    </svg>
+  );
+}
 
-          .step-img:hover { transform: scale(1.03); }
+function OrnamentSVG({ svgWidth, light = false }) {
+  const s = light ? "rgba(250,247,240,0.55)" : "rgba(15,30,26,0.45)";
+  const s2 = light ? "rgba(250,247,240,0.35)" : "rgba(15,30,26,0.28)";
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"
+      style={{ width: svgWidth, height: "auto", display: "block" }}
+      aria-label="Ilustração ornamento de natal">
+      <path d="M 130 -10 Q 165 70 192 145" stroke={s} strokeWidth="2" fill="none" strokeLinecap="round"/>
+      <path d="M 270 -10 Q 235 70 208 145" stroke={s} strokeWidth="2" fill="none" strokeLinecap="round"/>
+      <path d="M 160 -10 Q 185 60 198 135" stroke={s2} strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      <path d="M 240 -10 Q 215 60 202 135" stroke={s2} strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      <circle cx="200" cy="142" r="8" stroke={s} strokeWidth="2.5" fill="none"/>
+      <circle cx="200" cy="280" r="130" stroke={s} strokeWidth="2.5" fill="none"/>
+      <circle cx="200" cy="280" r="120" stroke={s2} strokeWidth="1.5" fill="none"/>
+      <line x1="120" y1="210" x2="160" y2="170" stroke={s2} strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="135" y1="235" x2="175" y2="195" stroke={s2} strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="240" y1="360" x2="280" y2="320" stroke={s2} strokeWidth="1.5" strokeLinecap="round"/>
+      <g transform="translate(200, 280) scale(1.6) translate(-100, -125)">
+        <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120"
+          stroke={s} strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
+        <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108"
+          stroke={s2} strokeWidth="1" strokeLinecap="round"/>
+        <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)" stroke={s} strokeWidth="1.5" fill="none"/>
+      </g>
+    </svg>
+  );
+}
 
-          .included-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
-          @media (min-width: 480px) { .included-grid { grid-template-columns: 1fr 1fr; } }
+function PendantSVG({ svgWidth, light = false }) {
+  const s = light ? "rgba(250,247,240,0.55)" : "rgba(15,30,26,0.45)";
+  const s2 = light ? "rgba(250,247,240,0.35)" : "rgba(15,30,26,0.28)";
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"
+      style={{ width: svgWidth, height: "auto", display: "block" }}
+      aria-label="Ilustração pendente para colar">
+      <path d="M 197 186 L 120 0" stroke={s2} strokeWidth="1" fill="none" strokeLinecap="round"/>
+      <path d="M 203 186 L 280 0" stroke={s2} strokeWidth="1" fill="none" strokeLinecap="round"/>
+      <circle cx="200" cy="193" r="7" stroke={s} strokeWidth="2" fill="none"/>
+      <circle cx="200" cy="300" r="100" stroke={s} strokeWidth="2.5" fill="none"/>
+      <circle cx="200" cy="300" r="90" stroke={s2} strokeWidth="1.5" fill="none"/>
+      <line x1="140" y1="245" x2="170" y2="215" stroke={s2} strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="155" y1="265" x2="180" y2="240" stroke={s2} strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="230" y1="360" x2="260" y2="330" stroke={s2} strokeWidth="1.5" strokeLinecap="round"/>
+      <g transform="translate(200, 300) scale(1.2) translate(-100, -125)">
+        <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120"
+          stroke={s} strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
+        <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108"
+          stroke={s2} strokeWidth="1" strokeLinecap="round"/>
+        <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)" stroke={s} strokeWidth="1.5" fill="none"/>
+      </g>
+    </svg>
+  );
+}
 
-          .cta-row { display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
-          @media (min-width: 480px) { .cta-row { flex-direction: row; justify-content: center; align-items: center; } }
+const frames = [
+  {
+    size: "30×40", unit: "cm", price: "300",
+    desc: "Perfeito para peças mais íntimas ou como elemento de conjunto.",
+    vw: 180, vh: 240, svgWidth: "88px",
+    flowers: [
+      { cx: 90, cy: 120, scale: 0.9, rotate: -8, opacity: 0.45 },
+    ],
+  },
+  {
+    size: "40×50", unit: "cm", price: "400",
+    desc: "Equilibra presença e elegância.",
+    vw: 200, vh: 250, svgWidth: "118px",
+    flowers: [
+      { cx: 82,  cy: 118, scale: 0.95, rotate: -15, opacity: 0.48 },
+      { cx: 128, cy: 142, scale: 0.85, rotate:  12, opacity: 0.38 },
+    ],
+  },
+  {
+    size: "50×70", unit: "cm", price: "500",
+    desc: "Uma peça de destaque, que domina qualquer parede.",
+    vw: 200, vh: 280, svgWidth: "148px",
+    flowers: [
+      { cx: 100, cy: 90,  scale: 1.0,  rotate: -10, opacity: 0.5  },
+      { cx: 62,  cy: 168, scale: 0.82, rotate:  18, opacity: 0.38 },
+      { cx: 148, cy: 188, scale: 0.76, rotate: -22, opacity: 0.32 },
+    ],
+  },
+  {
+    size: "20×25", unit: "cm", price: "90",
+    desc: "Só disponível em conjunto com a compra de um quadro maior.",
+    addon: true,
+    vw: 160, vh: 200, svgWidth: "62px",
+    flowers: [
+      { cx: 80, cy: 100, scale: 0.72, rotate: 6, opacity: 0.42 },
+    ],
+  },
+  {
+    size: "Ornamento de Natal", unit: "~8 cm", price: "35",
+    desc: "Ornamento de Natal com vidro duplo soldado sem chumbo, com prata. Só disponível em conjunto com a compra de um quadro maior.",
+    addon: true,
+    addonColor: "#6B1F2A",
+    badge: "Para oferecer",
+    customSvg: "ornament",
+    svgWidth: "72px",
+  },
+  {
+    size: "Pendente para Colar", unit: "~3 cm", price: "35",
+    desc: "Pendente com vidro duplo soldado sem chumbo, com prata. Só disponível em conjunto com a compra de um quadro maior.",
+    addon: true,
+    addonColor: "#3A3050",
+    badge: "Joalharia",
+    customSvg: "pendant",
+    svgWidth: "56px",
+  },
+];
 
-          .btn-primary {
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(255,255,255,0.15); color: #FAF7F0;
-            padding: 0 22px; height: 44px; border-radius: 100px;
-            text-decoration: none; font-weight: 600; font-size: 0.7rem; letter-spacing: 1.3px;
-            text-transform: uppercase; text-align: center; border: 2px solid rgba(255,255,255,0.7);
-            backdrop-filter: blur(6px); transition: all 0.3s ease;
-            font-family: Roboto, sans-serif; white-space: nowrap; box-sizing: border-box;
-          }
-          .btn-primary:hover { background: rgba(255,255,255,0.28); border-color: #fff; transform: translateY(-2px); }
+export default function OpcoesClient() {
 
-          .btn-outline {
-            display: flex; align-items: center; justify-content: center;
-            background: transparent; border: 2px solid rgba(255,255,255,0.45); color: rgba(250,247,240,0.88);
-            padding: 0 22px; height: 44px; border-radius: 100px;
-            text-decoration: none; font-weight: 600; font-size: 0.7rem; letter-spacing: 1.3px;
-            text-transform: uppercase; text-align: center; transition: all 0.3s ease;
-            font-family: Roboto, sans-serif; white-space: nowrap; box-sizing: border-box;
-          }
-          .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.75); transform: translateY(-2px); }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-          .btn-outline-dark {
-            display: flex; align-items: center; justify-content: center;
-            border: 2px solid #C8522A; color: #C8522A;
-            padding: 0 22px; height: 44px; border-radius: 100px;
-            text-decoration: none; font-weight: 600; font-size: 0.7rem; letter-spacing: 1.3px;
-            text-transform: uppercase; text-align: center; transition: all 0.3s ease;
-            font-family: Roboto, sans-serif; white-space: nowrap; box-sizing: border-box;
-          }
-          .btn-outline-dark:hover { background: #C8522A; color: #FAF7F0; transform: translateY(-2px); }
+  return (
+    <div style={{ backgroundColor: "#FAF7F0", color: "#1a1a1a", overflowX: "hidden" }}>
 
-          .btn-wa {
-            display: flex; align-items: center; justify-content: center; gap: 7px;
-            background: #25D366; color: #fff; border: 2px solid #25D366;
-            padding: 0 22px; height: 44px; border-radius: 100px;
-            text-decoration: none; font-weight: 600; font-size: 0.7rem; letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.3s ease; font-family: Roboto, sans-serif; white-space: nowrap;
-            box-sizing: border-box;
-          }
-          .btn-wa:hover { background: #1da851; border-color: #1da851; transform: translateY(-2px); }
+      {/* HERO — ecrã inteiro, conteúdo centrado */}
+      <section style={{ position: "relative", height: "100vh", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0 }}>
+          <div style={{
+            width: "100%", height: "100%",
+            backgroundImage: "url('/fotoquadro1.webp')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            filter: "brightness(0.65)"
+          }}/>
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(to bottom, rgba(15,30,26,0.1) 0%, rgba(15,30,26,0.35) 50%, rgba(15,30,26,0.7) 100%)"
+          }} />
+        </div>
+        <div style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: "900px", margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            style={{ fontSize: "0.6rem", letterSpacing: "4px", textTransform: "uppercase", color: "rgba(250,247,240,0.6)", fontFamily: GS, margin: "0 0 20px", fontWeight: 500 }}>
+            O seu bouquet, para sempre
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.18 }}
+            style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3.2rem, 11vw, 8rem)", lineHeight: 0.92, margin: "0 0 28px", color: "#FAF7F0", fontWeight: 400, textShadow: "0 4px 24px rgba(0,0,0,0.3)" }}>
+            Opções<br/>
+            <em style={{ color: "#8BA888" }}>&amp; Preços</em>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.28 }}
+            style={{ fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem, 2vw, 1.1rem)", lineHeight: 1.75, color: "rgba(250,247,240,0.75)", maxWidth: "520px", margin: "0 auto" }}>
+            Cada quadro é uma peça única, feita à mão em Coimbra.
+            Escolha o fundo, o tamanho e os elementos que tornam
+            a sua composição verdadeiramente sua.
+          </motion.p>
+        </div>
+      </section>
 
-          .eyebrow { display: block; font-size: 0.58rem; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: #C8522A; margin-bottom: 12px; font-family: Roboto, sans-serif; }
-          .text-link { color: #C8522A; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(200,82,42,0.3); padding-bottom: 1px; transition: border-color 0.2s ease; }
-          .text-link:hover { border-color: #C8522A; }
+      {/* TIPOS DE FUNDO */}
+      <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(40px,7vw,70px) 0 clamp(50px,8vw,80px)" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px clamp(32px,5vw,48px)" }}>
+          <Reveal>
+            <Label>Personalização</Label>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: 0, lineHeight: 1.05, color: "#1a1a1a" }}>
+              Tipos de Fundo
+            </h2>
+          </Reveal>
+        </div>
 
-          [id^="passo-"] { scroll-margin-top: 100px; }
-
-          @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-          }
-          a:focus-visible, button:focus-visible { outline: 3px solid #C8522A; outline-offset: 4px; border-radius: 4px; }
-        `,
-        }} />
-
-        {/* HERO com fotoquadrocloseup2.webp */}
-        <section
-          aria-label="Como funciona a preservação de flores"
-          style={{ position: "relative", minHeight: "100svh", display: "flex", alignItems: "center", overflow: "hidden" }}
-        >
-          <img
-            src="/fotoquadrocloseup2.webp"
-            alt=""
-            aria-hidden="true"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", zIndex: 0 }}
-          />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(35,15,5,0.85) 0%, rgba(35,15,5,0.45) 55%, rgba(35,15,5,0.18) 100%)", zIndex: 1 }} />
-
-          <div style={{ position: "relative", zIndex: 2, width: "100%", padding: "clamp(110px,16vw,160px) clamp(20px,5vw,64px) clamp(64px,10vw,100px)", display: "flex", justifyContent: "center" }}>
-            <div style={{ maxWidth: "680px", textAlign: "center", width: "100%" }}>
-              <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-                <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(255,190,130,0.9)", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>O nosso processo</span>
-                <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.6rem,8vw,5.2rem)", color: "#FAF7F0", margin: "0 0 clamp(16px,2.5vw,22px)", lineHeight: 1.0, textShadow: "0 2px 12px rgba(0,0,0,0.55)" }}>
-                  Da flor fresca<br />
-                  <em style={{ fontStyle: "italic", color: "#FF8A50" }}>ao quadro para sempre</em>
-                </h1>
-                <p style={{ color: "rgba(250,247,240,0.82)", fontSize: "clamp(0.93rem,1.9vw,1.05rem)", lineHeight: 1.8, maxWidth: "520px", margin: "0 auto clamp(28px,4vw,36px)", textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}>
-                  Cinco passos para transformar as suas flores numa obra de arte botânica que dura décadas, explicados com toda a transparência.
-                </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", alignItems: "center", justifyContent: "center" }}>
-                  <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">Reservar Data</a>
-                  <a href="/perguntas-frequentes" className="btn-outline">Ver Perguntas Frequentes</a>
+        <div style={{ overflowX: "hidden" }}>
+          <div className="fundos-track">
+            {[
+              {
+                img: "/quadrovidrosobrevidro.webp",
+                alt: "Quadro de flores prensadas em vidro sobre vidro com efeito transparente",
+                tag: "Mais popular", tagSolid: true,
+                title: "Vidro sobre Vidro",
+                desc: "As flores ficam suspensas entre dois vidros, sem fundo opaco. Efeito leve e moderno, ideal para espaços luminosos.",
+              },
+              {
+                img: "/quadrofoto.webp",
+                alt: "Quadro de flores prensadas com fotografia personalizada como fundo",
+                tag: "Custo adicional", tagSolid: false,
+                title: "Fundo com Fotografia",
+                desc: "Uma paisagem, um retrato, ou qualquer imagem com significado especial. A fotografia é profissionalmente impressa.",
+              },
+              {
+                img: "/quadropreto.webp",
+                alt: "Quadro de flores prensadas com fundo preto ou colorido personalizado",
+                tag: null,
+                title: "Fundo Colorido",
+                desc: "Aplicamos qualquer cor de fundo para realçar as flores. Sugerimos tonalidades que combinem com a paleta do bouquet.",
+              },
+              {
+                img: "/quadrobranco.webp",
+                alt: "Quadro de flores prensadas com fundo branco minimalista",
+                tag: null,
+                title: "Fundo Branco",
+                desc: "Minimalista e intemporal. Realça naturalmente as cores e formas das flores com máxima simplicidade.",
+              },
+            ].map((item, i) => (
+              <div key={i} className="fundo-card-new">
+                <div style={{ aspectRatio: "4/3", overflow: "hidden", borderRadius: "6px", backgroundColor: "#e0dbd3", position: "relative" }}>
+                  <img src={item.img} alt={item.alt} loading="lazy"
+                    style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.9s ease" }}
+                    className="fundo-img-new" />
+                  {item.tag && (
+                    <span style={{
+                      position: "absolute", top: "12px", left: "12px",
+                      backgroundColor: item.tagSolid ? "#3D6B5E" : "rgba(15,30,26,0.55)",
+                      color: "#FAF7F0",
+                      fontSize: "0.52rem", letterSpacing: "2px", textTransform: "uppercase",
+                      fontFamily: GS, fontWeight: 600,
+                      padding: "5px 11px", borderRadius: "100px",
+                      backdropFilter: "blur(4px)"
+                    }}>
+                      {item.tag}
+                    </span>
+                  )}
                 </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* STEPS */}
-        <section aria-label="Os cinco passos da preservação" style={{ padding: "clamp(60px,10vw,110px) clamp(20px,5vw,64px)" }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-            {STEPS.map((step, i) => (
-              <Step key={step.id} step={step} index={i} />
+                <div style={{ padding: "18px 4px 0" }}>
+                  <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)", fontWeight: 400, margin: "0 0 8px", lineHeight: 1.2, color: "#1a1a1a" }}>
+                    {item.title}
+                  </h3>
+                  <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.82rem", lineHeight: 1.75, color: "rgba(26,26,26,0.58)", margin: 0 }}>
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
-        </section>
+        </div>
 
-        {/* O QUE ESTÁ INCLUÍDO */}
-        <section aria-label="O que está incluído" style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", background: "linear-gradient(180deg, #F5EDE0 0%, #FAF7F0 100%)" }}>
-          <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}>
-              <span className="eyebrow">Sem surpresas</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,3rem)", color: "#1E2D2A", margin: 0, lineHeight: 1.1 }}>Tudo incluído no preço</h2>
-            </motion.div>
-            <div className="included-grid">
-              {INCLUDED.map((item, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07, duration: 0.6 }} style={{ backgroundColor: "#fff", borderRadius: "14px", padding: "clamp(16px,2.5vw,22px)", border: "1px solid rgba(200,82,42,0.09)", boxShadow: "0 3px 14px rgba(160,60,20,0.05)", display: "flex", gap: "14px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, marginTop: "2px" }}>
-                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                      <circle cx="10" cy="10" r="10" fill="rgba(200,82,42,0.1)" />
-                      <path d="M6 10l3 3 5-5" stroke="#C8522A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+        <p className="slider-hint" aria-live="polite" style={{ color: "rgba(26,26,26,0.28)" }}>deslize para ver mais</p>
+      </section>
+
+      {/* PRESENTES PARA OFERECER */}
+      <section style={{ backgroundColor: "#F2EDE4", padding: "clamp(36px,5vw,56px) 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ marginBottom: "28px" }}>
+              <Label>Para oferecer</Label>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 14px", lineHeight: 1.1 }}>
+                Presentes com <em style={{ color: "#3D6B5E" }}>memória</em>
+              </h2>
+              <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(26,26,26,0.55)", maxWidth: "460px", margin: 0 }}>
+                Para além do seu quadro principal, pode encomendar peças adicionais. Presentes pessoais e cheios de significado para quem ama.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="presentes-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}>
+            {[
+              {
+                img: "/miniquadros.webp",
+                alt: "Mini quadros 20x25cm de flores preservadas",
+                badge: "Mini quadro", badgeBg: "rgba(61,107,94,0.12)", badgeColor: "#3D6B5E",
+                title: "20×25 cm",
+                desc: "Uma moldura com as flores do seu bouquet para oferecer a familiares, padrinhos ou damas de honor. Um presente com memória e significado.",
+                note: "Só com a compra de um quadro maior.",
+              },
+              {
+                img: "/ornamento1.webp",
+                alt: "Ornamento de natal com flores prensadas",
+                badge: "Natal", badgeBg: "rgba(107,31,42,0.1)", badgeColor: "#6B1F2A",
+                title: "Ornamento de Natal",
+                desc: "Para si ou para oferecer — um pedaço do seu dia especial para decorar o Natal de quem ama, ano após ano.",
+                note: "Só com a compra de um quadro maior.",
+              },
+              {
+                img: "/pendente1.webp",
+                alt: "Pendente floral para colar",
+                badge: "Joalharia", badgeBg: "rgba(58,48,80,0.1)", badgeColor: "#3A3050",
+                title: "Pendente para Colar",
+                desc: "Uma flor do seu bouquet para usar sempre perto do coração. Uma memória que se transforma em joia.",
+                note: "Só com a compra de um quadro maior.",
+              },
+            ].map((item, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div style={{ borderRadius: "10px", overflow: "hidden", boxShadow: "0 6px 24px rgba(26,26,26,0.08)", backgroundColor: "#FAF7F0" }}>
+                  <div style={{ overflow: "hidden" }}>
+                    <img src={item.img} alt={item.alt} loading="lazy"
+                      style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block", transition: "transform 0.7s ease" }}
+                      className="presente-img" />
                   </div>
-                  <div>
-                    <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.98rem", color: "#1E2D2A", margin: "0 0 4px", lineHeight: 1.2 }}>{item.label}</p>
-                    <p style={{ color: "#5A6B60", fontSize: "0.84rem", lineHeight: 1.65, margin: 0 }}>{item.desc}</p>
+                  <div style={{ padding: "18px 18px 20px" }}>
+                    <span style={{ display: "inline-block", backgroundColor: item.badgeBg, color: item.badgeColor, fontSize: "0.5rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: GS, fontWeight: 600, padding: "4px 10px", borderRadius: "100px", marginBottom: "10px" }}>
+                      {item.badge}
+                    </span>
+                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", fontWeight: 400, margin: "0 0 8px", color: "#1a1a1a", lineHeight: 1.2 }}>
+                      {item.title}
+                    </h3>
+                    <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.78rem", lineHeight: 1.6, color: "rgba(26,26,26,0.6)", margin: "0 0 6px" }}>
+                      {item.desc}
+                    </p>
+                    <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.72rem", color: "rgba(26,26,26,0.35)", margin: 0, fontStyle: "italic" }}>
+                      {item.note}
+                    </p>
                   </div>
-                </motion.div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ELEMENTOS COM VALOR SIMBÓLICO — versão compacta em linha */}
+      <section style={{ backgroundColor: "#FAF7F0", borderTop: "1px solid rgba(26,26,26,0.07)", padding: "clamp(28px,4vw,44px) 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "10px 16px" }}>
+              <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.95rem, 1.8vw, 1.15rem)", fontWeight: 400, margin: 0, color: "rgba(26,26,26,0.55)", flexShrink: 0, whiteSpace: "nowrap" }}>
+                Pode incluir no quadro
+              </p>
+              {["Convite do casamento","Votos manuscritos","Joias ou medalhas","Fitas e rendas","Coleiras de animais","Cartas e bilhetes","Objetos pessoais"].map((item, i) => (
+                <span key={i} style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.78rem", color: "rgba(26,26,26,0.7)", backgroundColor: "rgba(26,26,26,0.05)", border: "1px solid rgba(26,26,26,0.1)", padding: "5px 12px", borderRadius: "100px", whiteSpace: "nowrap" }}>
+                  {item}
+                </span>
               ))}
+              <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.75rem", color: "rgba(26,26,26,0.38)", margin: 0, fontStyle: "italic", width: "100%" }}>
+                Objetos mais volumosos podem implicar ajuste na profundidade da moldura e no orçamento.
+              </p>
             </div>
-            <div style={{ textAlign: "center", marginTop: "clamp(28px,4vw,40px)", fontSize: "0.88rem", color: "#5A6B60", lineHeight: 1.7 }}>
-              Os preços começam em <strong style={{ color: "#1E2D2A" }}>300€</strong>, incluindo emolduramento e vidro museu.{" "}
-              <a href="/opcoes-e-precos" className="text-link">Ver todos os preços e tamanhos</a>
-            </div>
-          </div>
-        </section>
+          </Reveal>
+        </div>
+      </section>
 
-        {/* PAGAMENTO */}
-        <section aria-label="Pagamento em três prestações" style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", background: "linear-gradient(135deg, #2D1A08 0%, #5C2E14 100%)" }}>
-          <div style={{ maxWidth: "820px", margin: "0 auto" }}>
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
-              <div style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}>
-                <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#F0C8A0", marginBottom: "12px", fontFamily: "Roboto, sans-serif" }}>Transparência total</span>
-                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.7rem,4vw,2.8rem)", color: "#FAF7F0", margin: "0 0 12px", lineHeight: 1.1 }}>Pagamento em três momentos</h2>
-                <p style={{ color: "rgba(250,247,240,0.6)", fontSize: "clamp(0.88rem,1.8vw,0.96rem)", lineHeight: 1.8, maxWidth: "440px", margin: "0 auto" }}>Para não pesar no orçamento, o valor é repartido ao longo do processo.</p>
-              </div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(8px,2vw,16px)" }}>
-                {[
-                  { pct: "30%", label: "Na reserva", desc: "Sinal que garante a sua vaga. Não reembolsável.", c: "#F0C8A0" },
-                  { pct: "40%", label: "Início do trabalho", desc: "Quando as flores chegam e iniciamos a prensagem.", c: "#E8B080" },
-                  { pct: "30%", label: "Antes da entrega", desc: "Após o quadro estar emoldurado e antes de o enviarmos.", c: "#D09060" },
-                ].map((p, i) => (
-                  <div key={i} style={{ backgroundColor: "rgba(250,247,240,0.06)", borderRadius: "clamp(12px,2vw,18px)", padding: "clamp(16px,2.5vw,26px) clamp(12px,2vw,18px)", border: "1px solid rgba(250,247,240,0.09)", textAlign: "center" }}>
-                    <span style={{ display: "block", fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,2.8rem)", color: p.c, lineHeight: 1, marginBottom: "6px" }}>{p.pct}</span>
-                    <span style={{ display: "block", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "#FAF7F0", fontFamily: "Roboto, sans-serif", marginBottom: "8px" }}>{p.label}</span>
-                    <p style={{ color: "rgba(250,247,240,0.55)", fontSize: "clamp(0.75rem,1.4vw,0.84rem)", lineHeight: 1.65, margin: 0 }}>{p.desc}</p>
+      {/* TAMANHOS E PREÇOS */}
+      <section style={{ backgroundColor: "#0F1E1A", padding: "clamp(50px,8vw,90px) 24px 0" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+
+          <Reveal>
+            <div style={{ textAlign: "center", marginBottom: "clamp(40px,6vw,64px)" }}>
+              <Label light>Feito à mão, para si</Label>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 20px", lineHeight: 1.1, color: "#FAF7F0" }}>
+                Tamanhos & Preços
+              </h2>
+              <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(250,247,240,0.5)", maxWidth: "440px", margin: "0 auto" }}>
+                Cada quadro que criamos é único. Feito à mão, com atenção aos detalhes e dedicação à história por detrás das flores.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px", marginBottom: "48px" }}>
+            {frames.map((item, i) => (
+              <Reveal key={i} delay={(i % 3) * 0.1}>
+                <div style={{
+                  backgroundColor: item.addonColor
+                    ? item.addonColor
+                    : item.addon
+                    ? "#3D6B5E"
+                    : i === 0 ? "#FAF7F0" : i === 1 ? "#F2EDE4" : "#EAE3D8",
+                  padding: "28px 24px 28px",
+                  display: "flex",
+                  flexDirection: "column",
+                  height: "100%",
+                  boxSizing: "border-box",
+                  borderRadius: "4px",
+                  border: "none",
+                  position: "relative",
+                }}>
+                  {item.addon && (
+                    <span style={{
+                      position: "absolute", top: "16px", right: "16px",
+                      backgroundColor: "rgba(250,247,240,0.15)",
+                      color: "#FAF7F0",
+                      fontSize: "0.5rem", letterSpacing: "2px", textTransform: "uppercase",
+                      fontFamily: GS, fontWeight: 600,
+                      padding: "4px 10px", borderRadius: "100px",
+                    }}>
+                      {item.badge || "Para oferecer"}
+                    </span>
+                  )}
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "20px" }}>
+                    <div style={{ flexShrink: 0 }}>
+                      {item.customSvg === "ornament" ? (
+                        <OrnamentSVG svgWidth={item.svgWidth} light={true} />
+                      ) : item.customSvg === "pendant" ? (
+                        <PendantSVG svgWidth={item.svgWidth} light={true} />
+                      ) : (
+                        <FrameSVG
+                          vw={item.vw} vh={item.vh}
+                          flowers={item.flowers}
+                          svgWidth={item.svgWidth}
+                          label={item.size}
+                          dark={item.addon ? false : true}
+                        />
+                      )}
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", paddingTop: "8px" }}>
+                      <p style={{
+                        fontFamily: "'TAN-MEMORIES', serif",
+                        fontSize: item.addon ? "clamp(1.2rem, 2vw, 1.7rem)" : "clamp(1.7rem, 2.6vw, 2.4rem)",
+                        color: item.addon ? "#FAF7F0" : "#0F1E1A",
+                        margin: "0",
+                        lineHeight: 1,
+                      }}>
+                        {item.size}
+                        <span style={{ fontSize: "0.8rem", fontFamily: GS, fontWeight: 400, marginLeft: "4px", color: item.addon ? "rgba(250,247,240,0.45)" : "rgba(15,30,26,0.4)" }}>
+                          {item.unit}
+                        </span>
+                      </p>
+                      <p style={{
+                        fontFamily: "'TAN-MEMORIES', serif",
+                        fontSize: item.addon ? "clamp(1rem, 1.8vw, 1.3rem)" : "clamp(1.2rem, 2vw, 1.6rem)",
+                        color: item.addon ? "#8BA888" : "#3D6B5E",
+                        margin: "8px 0 10px",
+                      }}>
+                        {item.price}€
+                      </p>
+                      <p style={{
+                        fontFamily: GS,
+                        fontWeight: 300,
+                        fontSize: "0.75rem",
+                        lineHeight: 1.6,
+                        color: item.addon ? "rgba(250,247,240,0.5)" : "rgba(15,30,26,0.5)",
+                        margin: 0,
+                        fontStyle: item.addon ? "italic" : "normal",
+                      }}>
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </motion.div>
+                </div>
+              </Reveal>
+            ))}
           </div>
-        </section>
 
-        {/* CTA FINAL */}
-        <section aria-label="Reservar preservação" style={{ padding: "clamp(60px,10vw,100px) clamp(20px,5vw,48px)", background: "linear-gradient(140deg, #F5EDE0 0%, #FAF7F0 55%, #F0E8D8 100%)", textAlign: "center" }}>
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }} style={{ maxWidth: "620px", margin: "0 auto" }}>
-            <div aria-hidden="true" style={{ width: "44px", height: "1px", margin: "0 auto 28px", background: "linear-gradient(to right, transparent, #C8522A, transparent)" }} />
-            <span className="eyebrow">Pronta para começar?</span>
-            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5.5vw,3.5rem)", color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1 }}>Reserve a sua vaga hoje</h2>
-            <p style={{ color: "#5A6B60", lineHeight: 1.88, fontSize: "clamp(0.9rem,2vw,1rem)", margin: "0 0 34px" }}>
-              Basta preencher o formulário de reserva. Respondemos em 72 horas com a confirmação e todas as instruções para os passos seguintes.
-            </p>
-            <div className="cta-row" style={{ marginBottom: "28px" }}>
-              <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ background: "#C8522A", borderColor: "#C8522A", color: "#FAF7F0", boxShadow: "0 4px 16px rgba(200,82,42,0.28)" }}>Preencher Formulário de Reserva</a>
-              <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Falar pelo WhatsApp
+          {/* Nota vidro museu */}
+          <Reveal>
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "18px",
+              margin: "0 0 48px",
+              padding: "22px 32px",
+              backgroundColor: "rgba(184,149,74,0.1)",
+              border: "1px solid rgba(184,149,74,0.3)",
+              borderRadius: "4px",
+            }}>
+              <svg width="22" height="22" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+                <rect x="1.5" y="1.5" width="15" height="15" rx="1" stroke="#C4A55A" strokeWidth="1.4" fill="none"/>
+                <line x1="4" y1="6" x2="8" y2="2" stroke="rgba(196,165,90,0.7)" strokeWidth="1.1" strokeLinecap="round"/>
+                <line x1="9" y1="5" x2="11" y2="3" stroke="rgba(196,165,90,0.5)" strokeWidth="1.1" strokeLinecap="round"/>
+              </svg>
+              <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.88rem", color: "rgba(250,247,240,0.8)", margin: 0, letterSpacing: "0.2px" }}>
+                Todos os quadros são emoldurados com{" "}
+                <strong style={{ fontWeight: 700, color: "#C4A55A" }}>vidro museu UltraVue®</strong>
+                {" "}— praticamente invisível, com proteção UV70
+              </p>
+            </div>
+          </Reveal>
+
+          {/* Linha "Pretende outro formato" */}
+          <Reveal>
+            <div style={{ display: "flex", alignItems: "center", gap: "28px", padding: "0 0 40px", borderBottom: "1px solid rgba(250,247,240,0.12)" }}>
+              <div style={{ flex: 1 }}>
+                <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem, 2vw, 1.3rem)", fontWeight: 400, color: "rgba(250,247,240,0.6)", margin: 0, lineHeight: 1.4 }}>
+                  Pretende outro formato<br/>ou uma composição diferente?
+                </p>
+              </div>
+              <a href="/contactos"
+                style={{ display: "inline-flex", alignItems: "center", gap: "10px", color: "#FAF7F0", fontFamily: GS, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
+                onMouseEnter={e => { e.currentTarget.style.opacity = "0.65"; }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
+              >
+                Falar connosco
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="#FAF7F0" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </a>
             </div>
-            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px", fontSize: "0.82rem" }}>
-              {[
-                { href: "/opcoes-e-precos", label: "Ver preços" },
-                { href: "/recriacao", label: "Recriação de bouquet" },
-                { href: "/perguntas-frequentes", label: "Perguntas frequentes" },
-              ].map((l, i) => (
-                <a key={i} href={l.href} className="text-link">{l.label}</a>
-              ))}
+          </Reveal>
+
+          {/* TRACKING */}
+          <Reveal>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px", padding: "28px 0 40px", flexWrap: "wrap" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0 }}>
+                  <circle cx="9" cy="7.5" r="2.5" stroke="#8BA888" strokeWidth="1.3" fill="none"/>
+                  <path d="M9 2C5.686 2 3 4.686 3 8c0 4.5 6 9 6 9s6-4.5 6-9c0-3.314-2.686-6-6-6z" stroke="#8BA888" strokeWidth="1.3" fill="none"/>
+                </svg>
+                <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.82rem", color: "rgba(250,247,240,0.45)", margin: 0 }}>
+                  Já encomendou? Acompanhe o estado da sua peça em tempo real.
+                </p>
+              </div>
+              <a href="https://status.floresabeirario.pt" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#8BA888", fontFamily: GS, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
+                onMouseEnter={e => { e.currentTarget.style.opacity = "0.65"; }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}>
+                Ver estado
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="#8BA888" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
             </div>
-          </motion.div>
-        </section>
-      </main>
-    </>
+          </Reveal>
+
+        </div>
+      </section>
+
+      {/* MATERIAIS E QUALIDADE */}
+      <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(50px,8vw,90px) 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ textAlign: "center", marginBottom: "48px" }}>
+              <Label>Feito para durar</Label>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 20px", lineHeight: 1.1 }}>
+                Materiais & Qualidade
+              </h2>
+              <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(26,26,26,0.5)", maxWidth: "500px", margin: "0 auto" }}>
+                Cada peça é produzida com materiais de conservação museu, selecionados para garantir que as suas flores permanecem belas ao longo dos anos.
+              </p>
+            </div>
+          </Reveal>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1px", backgroundColor: "rgba(26,26,26,0.07)", marginBottom: "40px" }}>
+            {[
+              { img: "/molduranogueira.webp", title: "Moldura de Nogueira" },
+              { img: "/moldurabranca.webp",   title: "Moldura Lacada a Branco" },
+              { img: "/moldurapreta.webp",    title: "Moldura Lacada a Preto" },
+            ].map((item, i) => (
+              <Reveal key={i} delay={i * 0.07}>
+                <div style={{ position: "relative", overflow: "hidden", minHeight: "260px" }}>
+                  <img src={item.img} alt={item.title} loading="lazy"
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", position: "absolute", inset: 0 }} />
+                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.72) 0%, rgba(15,30,26,0.05) 45%, transparent 100%)" }} />
+                  <div style={{ position: "relative", padding: "22px 22px 0", minHeight: "260px" }}>
+                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.05rem", fontWeight: 400, margin: 0, lineHeight: 1.2, color: "#FAF7F0", textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}>
+                      {item.title}
+                    </h3>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal>
+            <p style={{ fontFamily: GS, fontWeight: 500, fontSize: "0.88rem", lineHeight: 1.7, color: "rgba(26,26,26,0.7)", margin: "0 0 32px", letterSpacing: "0.2px" }}>
+              Todas as molduras são feitas <strong style={{ color: "#1a1a1a" }}>à medida</strong> para cada peça, em Coimbra.
+            </p>
+          </Reveal>
+
+          <Reveal>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "16px", padding: "22px 28px", backgroundColor: "rgba(184,149,74,0.07)", border: "1px solid rgba(184,149,74,0.2)", borderRadius: "4px", marginBottom: "56px" }}>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "1px" }}>
+                <path d="M10 2 L11.8 7.6 L17.6 7.6 L13 11 L14.8 16.6 L10 13.2 L5.2 16.6 L7 11 L2.4 7.6 L8.2 7.6 Z" stroke="#B8954A" strokeWidth="1.3" strokeLinejoin="round" fill="none"/>
+              </svg>
+              <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(26,26,26,0.65)", margin: 0 }}>
+                Todos os quadros utilizam <strong style={{ color: "#1a1a1a", fontWeight: 600 }}>cartão e cola de pH neutro,</strong>  os mesmos materiais usados em museus e arquivos para preservar obras ao longo de décadas.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="ultravue-grid" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "clamp(40px, 6vw, 80px)", alignItems: "center" }}>
+            <Reveal>
+              <div>
+                <Label>Vidro museu</Label>
+                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem, 3.5vw, 2.2rem)", fontWeight: 400, margin: "0 0 24px", lineHeight: 1.15 }}>
+                  UltraVue® UV70<br/><em style={{ color: "#3D6B5E" }}>clareza verdadeiramente incrível</em>
+                </h3>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {[
+                    "Praticamente elimina reflexos",
+                    "Filtra até 70% dos raios UV nocivos",
+                    "Vidro Water White com transmissão de cores cristalinas",
+                    "Ilumina cores e níveis de contraste",
+                    "Superfície duradoura e de fácil limpeza",
+                  ].map((feat, i) => (
+                    <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "14px", padding: "14px 0", borderBottom: "1px solid rgba(26,26,26,0.07)", fontFamily: GS, fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.6, color: "rgba(26,26,26,0.75)" }}>
+                      <span style={{ width: "20px", height: "20px", borderRadius: "50%", backgroundColor: "#3D6B5E", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "1px" }} aria-hidden="true">
+                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#FAF7F0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </span>
+                      {feat}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div style={{ width: "clamp(200px, 28vw, 340px)", borderRadius: "10px", overflow: "hidden", boxShadow: "0 12px 40px rgba(26,26,26,0.12)", flexShrink: 0 }}>
+                <img src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" loading="lazy" style={{ width: "100%", display: "block" }} />
+                <div style={{ backgroundColor: "#F2EDE4", padding: "12px 16px", display: "flex", justifyContent: "space-between" }}>
+                  <span style={{ fontFamily: GS, fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", fontWeight: 500 }}>Normal</span>
+                  <span style={{ fontFamily: GS, fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "#3D6B5E", fontWeight: 700 }}>UltraVue®</span>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+
+        <Reveal delay={0.1}>
+          <div style={{ maxWidth: "720px", margin: "clamp(48px,8vw,80px) auto 0", padding: "0 24px", textAlign: "center" }}>
+            <div style={{ backgroundColor: "#3D6B5E", padding: "40px 32px", borderRadius: "12px" }}>
+              <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem, 3.5vw, 2.2rem)", fontWeight: 400, margin: "0 0 14px", lineHeight: 1.15, color: "#FAF7F0" }}>
+                Garanta a <em style={{ color: "#8BA888" }}>qualidade museu</em> para o seu quadro
+              </h3>
+              <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(250,247,240,0.65)", margin: "0 0 28px" }}>
+                Materiais premium que preservam as suas flores durante décadas.
+              </p>
+              <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "14px 36px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "52px" }}
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }}
+                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
+                Reservar a Minha Data
+              </a>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* CTA RESERVAR DATA */}
+      <section style={{ backgroundColor: "#3D6B5E", padding: "clamp(60px,10vw,100px) 24px", textAlign: "center" }}>
+        <div style={{ maxWidth: "640px", margin: "0 auto" }}>
+          <Reveal>
+            <Label light>Próximo passo</Label>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 6vw, 4rem)", fontWeight: 400, margin: "0 0 24px", lineHeight: 1.05, color: "#FAF7F0" }}>
+              Pronta para preservar<br/><em style={{ color: "#8BA888" }}>o seu bouquet?</em>
+            </h2>
+            <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.8, color: "rgba(250,247,240,0.65)", margin: "0 0 44px" }}>
+              Reserve a sua data o mais cedo possível. As vagas são limitadas e os bouquets devem ser enviados dentro de poucos dias após o evento.
+            </p>
+            <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
+              <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "56px" }}
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }}
+                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
+                Reservar Data
+              </a>
+              <a href="/perguntas-frequentes"
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "transparent", color: "rgba(250,247,240,0.85)", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, border: "1.5px solid rgba(250,247,240,0.3)", transition: "all 0.3s ease", minHeight: "56px" }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.7)"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.3)"; }}>
+                Perguntas Frequentes
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* VALE PRESENTE */}
+      <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(50px,8vw,90px) 24px" }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+          <Reveal>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "0",
+              borderRadius: "16px",
+              overflow: "hidden",
+              boxShadow: "0 16px 56px rgba(26,26,26,0.1)",
+            }} className="vale-grid">
+              {/* Lado esquerdo — imagem */}
+              <div style={{ position: "relative", minHeight: "320px", backgroundColor: "#0F1E1A", overflow: "hidden" }}>
+                <div style={{
+                  width: "100%", height: "100%",
+                  backgroundImage: "url('/fotoquadro1.webp')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  filter: "brightness(0.5) saturate(0.7)",
+                  position: "absolute", inset: 0,
+                }}/>
+                <div style={{
+                  position: "absolute", inset: 0,
+                  background: "linear-gradient(135deg, rgba(184,149,74,0.25) 0%, rgba(15,30,26,0.6) 100%)",
+                }}/>
+                <div style={{ position: "relative", padding: "clamp(28px,4vw,44px)", height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", boxSizing: "border-box" }}>
+                  <span style={{
+                    display: "inline-block",
+                    backgroundColor: "rgba(184,149,74,0.25)",
+                    border: "1px solid rgba(184,149,74,0.5)",
+                    color: "#C4A55A",
+                    fontSize: "0.5rem", letterSpacing: "3px", textTransform: "uppercase",
+                    fontFamily: GS, fontWeight: 600,
+                    padding: "5px 12px", borderRadius: "100px", marginBottom: "14px",
+                    width: "fit-content",
+                  }}>
+                    Para oferecer
+                  </span>
+                  <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 3vw, 2.4rem)", fontWeight: 400, color: "#FAF7F0", margin: 0, lineHeight: 1.1 }}>
+                    Vale<br/><em style={{ color: "#8BA888" }}>Presente</em>
+                  </p>
+                </div>
+              </div>
+
+              {/* Lado direito — texto */}
+              <div style={{ backgroundColor: "#F2EDE4", padding: "clamp(28px,4vw,44px)", display: "flex", flexDirection: "column", justifyContent: "center", gap: "16px" }}>
+                <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(26,26,26,0.65)", margin: 0 }}>
+                  Ofereça a alguém especial a possibilidade de preservar o seu bouquet — sem precisar de saber a data, o tamanho ou os detalhes do casamento.
+                </p>
+                <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(26,26,26,0.65)", margin: 0 }}>
+                  O vale tem validade de 18 meses e pode ser usado para qualquer quadro do nosso catálogo.
+                </p>
+                <div style={{ borderTop: "1px solid rgba(26,26,26,0.1)", paddingTop: "20px", marginTop: "4px" }}>
+                  <a href="/vale-presente"
+                    style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "#1a1a1a", color: "#FAF7F0", padding: "13px 28px", borderRadius: "100px", textDecoration: "none", fontWeight: 600, fontSize: "0.72rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.25s ease" }}
+                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#3D6B5E"; }}
+                    onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#1a1a1a"; }}>
+                    Saber mais
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8h10M9 4l4 4-4 4" stroke="#FAF7F0" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <style jsx global>{`
+        .fundos-track {
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          gap: 16px;
+          padding: 0 24px 4px;
+        }
+        .fundos-track::-webkit-scrollbar { display: none; }
+        .fundo-card-new {
+          flex: 0 0 78vw;
+          max-width: 320px;
+          scroll-snap-align: start;
+        }
+        @media (min-width: 900px) {
+          .fundos-track {
+            overflow-x: visible;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            gap: 24px;
+          }
+          .fundo-card-new {
+            flex: 1 1 0;
+            max-width: none;
+            scroll-snap-align: unset;
+          }
+        }
+        .fundo-img-new:hover { transform: scale(1.05); }
+        .slider-hint {
+          display: block;
+          text-align: center;
+          font-family: var(--font-google-sans), 'Google Sans', sans-serif;
+          font-size: 0.6rem;
+          letter-spacing: 2.5px;
+          text-transform: uppercase;
+          padding: 16px 0 0;
+          margin: 0;
+        }
+        @media (min-width: 900px) {
+          .slider-hint { display: none; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+          video { animation: none !important; }
+        }
+        a:focus-visible, button:focus-visible {
+          outline: 3px solid #3D6B5E;
+          outline-offset: 4px;
+          border-radius: 4px;
+        }
+        .presente-img:hover { transform: scale(1.04); }
+        @media (max-width: 640px) {
+          .ultravue-grid { grid-template-columns: 1fr !important; }
+          .ultravue-grid > div:last-child { width: 100% !important; max-width: 360px; margin: 0 auto; }
+          .presentes-grid { grid-template-columns: 1fr !important; }
+          .pricing-grid { grid-template-columns: 1fr !important; }
+          .vale-grid { grid-template-columns: 1fr !important; }
+          .vale-grid > div:first-child { min-height: 200px !important; }
+        }
+        @media (min-width: 641px) and (max-width: 1023px) {
+          .pricing-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+      `}</style>
+    </div>
   );
 }
