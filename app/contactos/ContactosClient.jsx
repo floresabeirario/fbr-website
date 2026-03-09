@@ -188,6 +188,8 @@ export default function ContactosClient() {
         /* no mobile mostra a parte inferior da imagem do hero */
         @media (max-width: 767px) {
           .hero-bg { background-position: center 80% !important; }
+          .hero-text-col { text-align: center; }
+          .hero-text-col p { margin-left: auto; margin-right: auto; }
         }
 
         a:focus-visible, button:focus-visible { outline: 3px solid ${C.salmon}; outline-offset: 4px; border-radius: 4px; }
@@ -228,7 +230,7 @@ export default function ContactosClient() {
         <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1100px", margin: "0 auto", padding: "clamp(140px,18vw,200px) 24px clamp(80px,12vw,120px)" }}>
           <div className="contact-split" style={{ gap: "clamp(40px,6vw,80px)", alignItems: "center" }}>
 
-            <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
+            <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="hero-text-col">
               <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmonLight, marginBottom: 16, fontFamily: GS }}>Fale connosco</span>
               <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.8rem,8vw,5.2rem)", color: C.cream, margin: "0 0 20px", lineHeight: 1.02 }}>
                 Contactos<br />
