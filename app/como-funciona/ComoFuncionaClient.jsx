@@ -94,7 +94,7 @@ const STEPS = [
   {
     id: "passo-4",
     n: "04",
-    tag: "Aprovação sua",
+    tag: "Aprovação",
     title: "Composição e aprovação",
     img: "/detalhe.webp",
     imgAlt: "Composição artística de flores prensadas dentro de moldura",
@@ -293,7 +293,7 @@ export default function ComoFuncionaClient() {
         {/* HERO com fotoquadrocloseup2.webp */}
         <section
           aria-label="Como funciona a preservação de flores"
-          style={{ position: "relative", minHeight: "clamp(600px,100vw,860px)", display: "flex", alignItems: "center", overflow: "hidden" }}
+          style={{ position: "relative", minHeight: "100svh", display: "flex", alignItems: "center", overflow: "hidden" }}
         >
           <img
             src="/fotoquadrocloseup2.webp"
@@ -375,7 +375,7 @@ export default function ComoFuncionaClient() {
                 {[
                   { pct: "30%", label: "Na reserva", desc: "Sinal que garante a sua vaga. Não reembolsável.", c: "#F0C8A0" },
                   { pct: "40%", label: "Início do trabalho", desc: "Quando as flores chegam e iniciamos a prensagem.", c: "#E8B080" },
-                  { pct: "30%", label: "Antes da entrega", desc: "Após aprovação da composição e antes de enviarmos o quadro.", c: "#D09060" },
+                  { pct: "30%", label: "Antes da entrega", desc: "Após o quadro estar emoldurado e antes de o enviarmos.", c: "#D09060" },
                 ].map((p, i) => (
                   <div key={i} style={{ backgroundColor: "rgba(250,247,240,0.06)", borderRadius: "clamp(12px,2vw,18px)", padding: "clamp(16px,2.5vw,26px) clamp(12px,2vw,18px)", border: "1px solid rgba(250,247,240,0.09)", textAlign: "center" }}>
                     <span style={{ display: "block", fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,2.8rem)", color: p.c, lineHeight: 1, marginBottom: "6px" }}>{p.pct}</span>
