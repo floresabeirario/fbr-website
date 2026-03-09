@@ -3,8 +3,11 @@
 
 export const SITE_URL = "https://floresabeirario.pt";
 
-// Formulário Monday.com
+// Formulário Monday.com — reserva de preservação
 export const FORM_URL = "https://wkf.ms/3RfoNAc";
+
+// Formulário Monday.com — vale oferta
+export const FORM_URL_VALE = "https://wkf.ms/4jUqeAR";
 
 // WhatsApp
 export const WA_NUMBER = "351934680300";
