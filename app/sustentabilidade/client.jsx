@@ -306,35 +306,7 @@ export default function Sustentabilidade() {
             padding: clamp(110px,14vw,160px) clamp(24px,5vw,72px) clamp(60px,8vw,90px);
           }
 
-          /* VALUES alternating layout */
-          .values-alt { display: flex; flex-direction: column; gap: 0; }
-          .value-row {
-            display: grid; grid-template-columns: 1fr;
-            border-bottom: 1px solid rgba(61,107,94,0.08);
-            transition: background 0.2s;
-          }
-          .value-row:last-child { border-bottom: none; }
-          .value-row:hover { background: rgba(61,107,94,0.025); }
-          @media (min-width: 640px) {
-            .value-row { grid-template-columns: 200px 1fr; align-items: center; }
-          }
-          .value-number {
-            font-family: 'TAN-MEMORIES', serif;
-            font-size: clamp(2.8rem, 5vw, 4rem);
-            color: rgba(61,107,94,0.12);
-            line-height: 1;
-            padding: clamp(20px,3vw,28px) clamp(16px,2vw,24px) 0;
-            display: flex; align-items: flex-start; gap: 14px;
-          }
-          @media (min-width: 640px) {
-            .value-number { padding: clamp(24px,3.5vw,36px) clamp(20px,2.5vw,32px); justify-content: flex-end; border-right: 1px solid rgba(61,107,94,0.08); }
-          }
-          .value-content {
-            padding: clamp(12px,2vw,20px) clamp(16px,2vw,24px) clamp(20px,3vw,28px);
-          }
-          @media (min-width: 640px) {
-            .value-content { padding: clamp(24px,3.5vw,36px) clamp(28px,4vw,48px); }
-          }
+
 
           @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -366,7 +338,7 @@ export default function Sustentabilidade() {
                 color: "#FAF7F0", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)", lineHeight: 1.05,
               }}>
                 Sustentabilidade<br/>
-                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>sem compromissos</em>
+                <em style={{ fontStyle: "italic", color: "#8FD4BE" }}>sem compromissos</em>
               </h1>
               <p style={{
                 fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.85,
@@ -376,23 +348,32 @@ export default function Sustentabilidade() {
                 o planeta. Sem resinas petroqu&#237;micas, sem s&#237;lica industrial,
                 apenas prensagem bot&#226;nica artesanal com materiais de conserva&#231;&#227;o museu.
               </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px,2vw,10px)", alignItems: "center", justifyContent: "center", marginBottom: "1.4rem" }}>
-                {["Sem resina ep&#243;xi", "Sem s&#237;lica industrial", "Sem qu&#237;micos agressivos", "100% artesanal", "Orgulhosamente de Coimbra"].map((tag, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 + i * 0.08, duration: 0.5 }}
-                    style={{
-                      display: "inline-block", fontSize: "0.64rem", fontWeight: 700,
-                      letterSpacing: "1.5px", textTransform: "uppercase", color: "#8BA888",
-                      fontFamily: "Roboto, sans-serif", backgroundColor: "rgba(61,107,94,0.2)",
-                      border: "1px solid rgba(139,168,136,0.25)", padding: "6px 14px", borderRadius: "100px",
-                    }}
-                    dangerouslySetInnerHTML={{ __html: tag }}
-                  />
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.55, duration: 0.6 }}
+                style={{
+                  display: "flex", flexDirection: "row", justifyContent: "center",
+                  borderTop: "1px solid rgba(250,247,240,0.15)",
+                  borderBottom: "1px solid rgba(250,247,240,0.15)",
+                  padding: "clamp(14px,2.5vw,20px) 0",
+                }}
+              >
+                {[
+                  { label: "100% Artesanal", sub: "Sem processos industriais" },
+                  { label: "Orgulhosamente de Coimbra", sub: "Feito com orgulho local" },
+                  { label: "Prensagem Bot\u00e2nica", sub: "M\u00e9todo exclusivo" },
+                ].map((item, i) => (
+                  <div key={i} style={{
+                    flex: 1, textAlign: "center",
+                    borderRight: i < 2 ? "1px solid rgba(250,247,240,0.15)" : "none",
+                    padding: "0 clamp(10px,2vw,24px)",
+                  }}>
+                    <p style={{ margin: 0, fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.76rem,1.4vw,0.9rem)", color: "#FAF7F0", lineHeight: 1.2 }}>{item.label}</p>
+                    <p style={{ margin: "3px 0 0", fontSize: "0.58rem", color: "rgba(250,247,240,0.5)", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif" }}>{item.sub}</p>
+                  </div>
                 ))}
-              </div>
+              </motion.div>
             </motion.div>
           </div>
 
@@ -692,69 +673,80 @@ export default function Sustentabilidade() {
           </div>
         </section>
 
-        {/* VALORES — layout editorial com numeracao */}
+        {/* VALORES */}
         <section
           aria-label="Os valores e materiais da Flores a Beira-Rio"
           style={{
             padding: "clamp(56px,9vw,88px) clamp(20px,5vw,48px)",
-            background: "linear-gradient(170deg, #EDF2E8 0%, #FAF7F0 45%, #F5F9F3 100%)",
+            background: "linear-gradient(170deg, #1E2D2A 0%, #243D33 50%, #1E2D2A 100%)",
             position: "relative", overflow: "hidden",
           }}
         >
           <div aria-hidden="true" style={{
-            position: "absolute", top: "-60px", left: "-80px",
-            width: "450px", height: "450px",
-            background: "radial-gradient(circle, rgba(61,107,94,0.06) 0%, transparent 65%)",
+            position: "absolute", top: "50%", left: "50%",
+            transform: "translate(-50%,-50%)",
+            width: "800px", height: "800px",
+            background: "radial-gradient(circle, rgba(61,107,94,0.10) 0%, transparent 65%)",
             borderRadius: "50%", pointerEvents: "none",
           }}/>
-          <div style={{ maxWidth: "960px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+          <div aria-hidden="true" style={{
+            position: "absolute", inset: 0, opacity: 0.025, pointerEvents: "none",
+            backgroundImage: "repeating-linear-gradient(45deg, #3D6B5E 0px, #3D6B5E 1px, transparent 1px, transparent 50px)",
+          }}/>
+          <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              style={{ marginBottom: "clamp(32px,5vw,56px)" }}
+              style={{ textAlign: "center", marginBottom: "clamp(36px,5vw,60px)" }}
             >
-              <span className="eyebrow eyebrow-green">Da flor ao quadro</span>
+              <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#8BA888", marginBottom: "12px", fontFamily: "Roboto, sans-serif" }}>Da flor ao quadro</span>
               <h2 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(1.8rem,4.5vw,3rem)",
-                color: "#1E2D2A", margin: 0, lineHeight: 1.1,
+                color: "#FAF7F0", margin: 0, lineHeight: 1.1,
               }}>
                 O que torna cada pe&#231;a<br/>
-                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>verdadeiramente sustent&#225;vel</em>
+                <em style={{ fontStyle: "italic", color: "#8FD4BE" }}>verdadeiramente sustent&#225;vel</em>
               </h2>
             </motion.div>
 
-            <div className="values-alt">
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%,300px), 1fr))", gap: "1px", background: "rgba(61,107,94,0.15)", borderRadius: "20px", overflow: "hidden", border: "1px solid rgba(61,107,94,0.15)" }}>
               {VALUES.map((v, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: -12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.06, duration: 0.55 }}
-                  className="value-row"
+                  transition={{ delay: i * 0.05, duration: 0.55 }}
+                  style={{
+                    background: "rgba(26,45,38,0.95)",
+                    padding: "clamp(22px,3vw,32px)",
+                    position: "relative", overflow: "hidden",
+                    transition: "background 0.2s",
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.background = "rgba(36,61,51,0.98)"}
+                  onMouseLeave={e => e.currentTarget.style.background = "rgba(26,45,38,0.95)"}
                 >
-                  <div className="value-number">
-                    <div style={{
-                      width: "36px", height: "36px", borderRadius: "10px",
-                      background: "linear-gradient(135deg, rgba(61,107,94,0.14) 0%, rgba(61,107,94,0.06) 100%)",
-                      border: "1px solid rgba(61,107,94,0.14)",
-                      display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-                    }}>
-                      {v.icon}
-                    </div>
-                    <span style={{ fontSize: "clamp(1.8rem,3vw,2.4rem)" }}>
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
+                  <div aria-hidden="true" style={{
+                    position: "absolute", top: 0, right: 0, width: "60px", height: "60px",
+                    background: "radial-gradient(circle at top right, rgba(61,107,94,0.12) 0%, transparent 70%)",
+                    pointerEvents: "none",
+                  }}/>
+                  <div style={{
+                    width: "38px", height: "38px", borderRadius: "10px",
+                    background: "rgba(61,107,94,0.2)",
+                    border: "1px solid rgba(61,107,94,0.25)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    marginBottom: "14px", flexShrink: 0,
+                  }}>
+                    {v.icon}
                   </div>
-                  <div className="value-content">
-                    <h3 style={{
-                      fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.98rem,1.8vw,1.1rem)",
-                      color: "#1E2D2A", margin: "0 0 6px", lineHeight: 1.25,
-                    }}>{v.title}</h3>
-                    <p style={{ color: "#5A6B60", fontSize: "0.85rem", lineHeight: 1.75, margin: 0 }}>{v.desc}</p>
-                  </div>
+                  <h3 style={{
+                    fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.92rem,1.6vw,1.05rem)",
+                    color: "#FAF7F0", margin: "0 0 8px", lineHeight: 1.25,
+                  }}>{v.title}</h3>
+                  <p style={{ color: "rgba(250,247,240,0.55)", fontSize: "0.83rem", lineHeight: 1.72, margin: 0 }}>{v.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -793,18 +785,18 @@ export default function Sustentabilidade() {
               width: "44px", height: "1px", margin: "0 auto 28px",
               background: "linear-gradient(to right, transparent, #8BA888, transparent)",
             }}/>
-            <span className="eyebrow" style={{ color: "#8BA888" }}>Um momento que merece durar</span>
+            <span className="eyebrow" style={{ color: "#8BA888" }}>Pronto para preservar?</span>
             <h2 style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize: "clamp(2rem,5.5vw,3.5rem)",
               color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1,
             }}>
-              H&#225; flores que n&#227;o deviam<br/>
-              <em style={{ fontStyle: "italic", color: "#8BA888" }}>murchar em silêncio</em>
+              Reserve a sua data<br/>
+              <em style={{ fontStyle: "italic", color: "#8FD4BE" }}>e tratamos do resto</em>
             </h2>
             <p style={{ color: "rgba(250,247,240,0.65)", lineHeight: 1.88, fontSize: "clamp(0.9rem,2vw,1rem)", margin: "0 0 34px" }}>
-              Cada flor guardou um instante que importou. Preserve-o da forma mais honesta
-              que existe: artesanal, natural e feita para durar uma vida inteira.
+              Preenche o formul&#225;rio e entramos em contacto para combinar todos os detalhes.
+              Tempo de entrega estimado: 4 a 6 semanas ap&#243;s recebermos as flores.
             </p>
             <div className="cta-row" style={{ marginBottom: "28px" }}>
               <a href={FORM} target="_blank" rel="noopener noreferrer" className="btn-primary">Reservar a Minha Data</a>
