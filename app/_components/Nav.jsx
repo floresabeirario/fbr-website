@@ -305,7 +305,6 @@ function NavCTA({ shouldShowScrolled, pathname }) {
 export default function NavClient() {
   const [isOpen, setIsOpen]     = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
   const isHome   = pathname === "/";
 
@@ -320,19 +319,9 @@ export default function NavClient() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 768px)");
-    setIsMobile(mq.matches);
-    const handler = (e) => setIsMobile(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-
   useEffect(() => { setIsOpen(false); }, [pathname]);
 
   const show = scrolled || !isHome;
-  // No mobile, o fundo só aparece ao fazer scroll. No desktop, aparece sempre em páginas internas.
-  const showBg = isMobile ? scrolled : show;
 
   const rightLinks = NAV_RIGHT.filter(item => item.name !== "Blog" && item.name !== "FAQ");
 
@@ -342,13 +331,12 @@ export default function NavClient() {
       <nav
         role="navigation"
         aria-label="Navegação principal"
-        className={!scrolled && !isHome ? "nav-mobile-transparent" : ""}
         style={{
           position: "fixed", top: 0, width: "100%", zIndex: 100,
-          backgroundColor: showBg ? "rgba(250,247,240,0.95)" : "transparent",
-          backdropFilter: showBg ? "blur(10px)" : "none",
+          backgroundColor: show ? "rgba(250,247,240,0.95)" : "transparent",
+          backdropFilter: show ? "blur(10px)" : "none",
           transition: "all 0.4s ease",
-          padding: showBg ? "14px 0" : "24px 0",
+          padding: show ? "14px 0" : "24px 0",
         }}
       >
         <div className="nav-bar">
@@ -391,7 +379,7 @@ export default function NavClient() {
             animate={{ opacity: show ? 1 : 0 }}
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             style={{
-              color: scrolled ? "#1a1a1a" : "#FAF7F0",
+              color: show ? "#1a1a1a" : "#FAF7F0",
               pointerEvents: show ? "auto" : "none",
               position: "fixed",
               left: "50%",
@@ -454,7 +442,7 @@ export default function NavClient() {
               onClick={() => setIsOpen(true)}
               aria-label="Abrir menu de navegação"
               aria-expanded={isOpen}
-              style={{ color: scrolled ? "#1a1a1a" : "#FAF7F0", marginLeft: "auto" }}
+              style={{ color: show ? "#1a1a1a" : "#FAF7F0", marginLeft: "auto" }}
             >
               MENU
             </button>
