@@ -58,34 +58,25 @@ const elementosIcons = {
   ),
   fita: (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-      {/* Laço elaborado com loops e nó central com textura de renda */}
       <path d="M9 8.5 C7 7 3.5 5.5 3 3.5 C2.6 2 4 1 5.5 1.5 C7 2 8 4.5 9 8.5Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" fill="none"/>
       <path d="M9 8.5 C11 7 14.5 5.5 15 3.5 C15.4 2 14 1 12.5 1.5 C11 2 10 4.5 9 8.5Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" fill="none"/>
-      {/* Linhas de renda nos loops */}
       <path d="M5 3.5 C5.8 3.8 6.5 4.8 7.2 6.2" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.6"/>
       <path d="M4.2 4.8 C5.2 5 6 5.8 6.8 7" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.6"/>
       <path d="M13 3.5 C12.2 3.8 11.5 4.8 10.8 6.2" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.6"/>
       <path d="M13.8 4.8 C12.8 5 12 5.8 11.2 7" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.6"/>
-      {/* Nó central */}
       <ellipse cx="9" cy="8.8" rx="1.6" ry="1.1" stroke="currentColor" strokeWidth="1.2" fill="none"/>
-      {/* Fitas a cair */}
       <path d="M7.8 9.6 C7 11.5 6.5 13.5 7 16" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" fill="none"/>
       <path d="M10.2 9.6 C11 11.5 11.5 13.5 11 16" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" fill="none"/>
-      {/* Tracejado nas fitas */}
       <path d="M7.5 11 L7.2 12 M7.2 13 L7 14" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.5"/>
       <path d="M10.5 11 L10.8 12 M10.8 13 L11 14" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.5"/>
     </svg>
   ),
   coleira: (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-      {/* Coleira — tira com fivela */}
       <path d="M3 7 C3 4.8 5.8 3 9 3 C12.2 3 15 4.8 15 7 C15 9.2 12.2 11 9 11 C5.8 11 3 9.2 3 7Z" stroke="currentColor" strokeWidth="1.3" fill="none"/>
-      {/* Fivela */}
       <rect x="7.5" y="5.8" width="3" height="2.4" rx="0.5" stroke="currentColor" strokeWidth="1.1" fill="none"/>
       <line x1="9" y1="5.8" x2="9" y2="8.2" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round"/>
-      {/* Argola para identificação a pender */}
       <path d="M9 11 L9 12.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-      {/* Osso */}
       <circle cx="7.2" cy="15" r="1.1" stroke="currentColor" strokeWidth="1.1" fill="none"/>
       <circle cx="10.8" cy="15" r="1.1" stroke="currentColor" strokeWidth="1.1" fill="none"/>
       <line x1="8.3" y1="14.55" x2="9.7" y2="14.55" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
@@ -94,11 +85,8 @@ const elementosIcons = {
   ),
   carta: (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-      {/* Envelope */}
       <rect x="1.5" y="3.5" width="15" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.3" fill="none"/>
-      {/* Aba do envelope em V */}
       <path d="M1.5 5 L9 10 L16.5 5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
-      {/* Coração no centro visível pela aba */}
       <path d="M9 8 C9 8 7.2 6.5 7.2 5.4 C7.2 4.6 7.8 4 8.5 4 C8.85 4 9 4.3 9 4.3 C9 4.3 9.15 4 9.5 4 C10.2 4 10.8 4.6 10.8 5.4 C10.8 6.5 9 8 9 8Z" stroke="currentColor" strokeWidth="0.9" fill="currentColor" fillOpacity="0.25"/>
     </svg>
   ),
@@ -218,24 +206,50 @@ export default function OpcoesClient() {
   return (
     <div style={{ backgroundColor: "#FAF7F0", color: "#1a1a1a", overflowX: "hidden" }}>
 
-      {/* ── HERO ── */}
-      <section className="hero-section">
-        <div style={{ width: "100%", maxWidth: "860px", padding: "0 24px", textAlign: "center", position: "relative", zIndex: 1 }}>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
-            style={{ fontSize: "0.6rem", letterSpacing: "4px", textTransform: "uppercase", color: "rgba(250,247,240,0.55)", fontFamily: GS, margin: "0 0 22px", fontWeight: 500 }}>
-            O seu bouquet, para sempre
-          </motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.18 }}
-            style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3rem, 10vw, 7.5rem)", lineHeight: 0.93, margin: "0 0 30px", color: "#FAF7F0", fontWeight: 400, textShadow: "0 4px 32px rgba(0,0,0,0.35)" }}>
-            Opções<br/>
-            <em style={{ color: VERDE_CLARO }}>&amp; Preços</em>
-          </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.28 }}
-            style={{ fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.9rem, 1.8vw, 1.05rem)", lineHeight: 1.8, color: "rgba(250,247,240,0.72)", maxWidth: "480px", margin: "0 auto" }}>
-            Cada quadro é uma peça única, feita à mão em Coimbra.
-            Escolha o fundo, o tamanho e os elementos que tornam
-            a sua composição verdadeiramente sua.
-          </motion.p>
+      {/* ── HERO: estrutura igual ao de oferecer-preservacao ── */}
+      <section style={{ position: "relative", minHeight: "100svh", overflow: "hidden", display: "flex", alignItems: "flex-end" }}>
+        {/* Foto de fundo */}
+        <div style={{ position: "absolute", inset: 0 }}>
+          <img
+            src="/fotoquadro1.webp"
+            alt=""
+            aria-hidden="true"
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+          />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,20,16,0.92) 0%, rgba(10,20,16,0.55) 45%, rgba(10,20,16,0.15) 100%)" }} />
+        </div>
+
+        {/* Texto alinhado ao fundo, centrado */}
+        <div style={{ position: "relative", zIndex: 2, width: "100%", padding: "clamp(110px,14vw,160px) clamp(24px,5vw,72px) clamp(60px,8vw,90px)" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}
+          >
+            <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.5)", fontFamily: GS, margin: "0 0 14px", fontWeight: 700 }}>
+              Feito à mão, para si
+            </p>
+            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: "#FAF7F0", margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)" }}>
+              Preserve as flores<br />
+              <em style={{ fontStyle: "italic", color: VERDE_CLARO }}>que contam a sua história</em>
+            </h1>
+            <p style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto clamp(1.8rem, 3.5vw, 2.8rem)" }}>
+              Cada quadro é uma peça única, feita à mão em Coimbra. Escolha o fundo, o tamanho e os detalhes que tornam a sua composição verdadeiramente sua.
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+              <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "#FAF7F0", color: "#3D6B5E", padding: "15px 36px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", boxShadow: "0 6px 24px rgba(15,30,26,0.22)" }}
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; e.currentTarget.style.transform = "translateY(0)"; }}
+              >
+                Reservar a Minha Data
+              </a>
+              <p style={{ fontSize: "0.78rem", color: "rgba(250,247,240,0.5)", letterSpacing: "0.05em", margin: 0 }}>
+                A partir de 300€ · Feito à mão em Coimbra
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -317,23 +331,22 @@ export default function OpcoesClient() {
         </div>
       </section>
 
-      {/* ── ELEMENTOS ESPECIAIS — banda compacta com grid de items ── */}
-      <section style={{ backgroundColor: "#FAF7F0", borderTop: "1px solid rgba(26,26,26,0.06)", padding: "clamp(20px,3vw,32px) 24px" }}>
+      {/* ── ELEMENTOS ESPECIAIS ── */}
+      <section style={{ backgroundColor: "#FAF7F0", borderTop: "1px solid rgba(26,26,26,0.06)", padding: "clamp(28px,4vw,40px) 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
-            {/* Header compacto em linha */}
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "6px 16px", marginBottom: "14px" }}>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.3rem, 2.4vw, 1.75rem)", fontWeight: 400, margin: 0, color: "#1a1a1a", lineHeight: 1.2 }}>
-                Pode incluir <em style={{ color: VERDE_CLARO }}>elementos especiais</em> no seu quadro
-              </h2>
-              <span style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.72rem", color: "rgba(26,26,26,0.38)", fontStyle: "italic", lineHeight: 1.4 }}>
-                Se os acessórios forem mais volumosos, a profundidade da moldura será ajustada e o orçamento recalculado.
-              </span>
-            </div>
-            {/* Grid de 7 items com icon + label */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+            {/* Título */}
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.2rem, 2.4vw, 1.75rem)", fontWeight: 400, margin: "0 0 6px", color: "#1a1a1a", lineHeight: 1.25 }}>
+              Pode incluir <em style={{ color: VERDE_CLARO }}>elementos especiais</em> no seu quadro
+            </h2>
+            {/* Nota */}
+            <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.76rem", color: "rgba(26,26,26,0.4)", fontStyle: "italic", lineHeight: 1.5, margin: "0 0 18px", maxWidth: "560px" }}>
+              Se os acessórios forem mais volumosos, a profundidade da moldura será ajustada e o orçamento recalculado.
+            </p>
+            {/* Grid de pills */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
               {elementosEspeciais.map((item) => (
-                <span key={item.key} style={{ display: "inline-flex", alignItems: "center", gap: "7px", fontFamily: GS, fontWeight: 400, fontSize: "0.78rem", color: "rgba(26,26,26,0.68)", backgroundColor: "rgba(139,168,136,0.06)", border: "1px solid rgba(139,168,136,0.2)", padding: "7px 13px 7px 10px", borderRadius: "8px" }}>
+                <span key={item.key} style={{ display: "inline-flex", alignItems: "center", gap: "7px", fontFamily: GS, fontWeight: 400, fontSize: "0.82rem", color: "rgba(26,26,26,0.68)", backgroundColor: "rgba(139,168,136,0.06)", border: "1px solid rgba(139,168,136,0.2)", padding: "9px 14px 9px 11px", borderRadius: "10px" }}>
                   <span style={{ color: VERDE_CLARO, display: "flex", alignItems: "center", flexShrink: 0 }}>{item.icon}</span>
                   {item.label}
                 </span>
@@ -343,7 +356,7 @@ export default function OpcoesClient() {
         </div>
       </section>
 
-      {/* ── TAMANHOS E PREÇOS ── intocado */}
+      {/* ── TAMANHOS E PREÇOS ── */}
       <section style={{ backgroundColor: "#0F1E1A", padding: "clamp(50px,8vw,90px) 24px 0" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
@@ -510,7 +523,7 @@ export default function OpcoesClient() {
           </div>
         </div>
 
-        {/* CTA Garanta a qualidade museu — card arredondado centrado */}
+        {/* CTA Garanta a qualidade museu */}
         <div style={{ padding: "clamp(48px,8vw,80px) 24px", textAlign: "center" }}>
           <Reveal>
             <div style={{ maxWidth: "780px", margin: "0 auto", backgroundColor: "#3D6B5E", borderRadius: "20px", padding: "clamp(40px,6vw,64px) clamp(32px,5vw,80px)" }}>
@@ -530,7 +543,7 @@ export default function OpcoesClient() {
         </div>
       </section>
 
-      {/* ── CTA RESERVAR DATA com gradiente — exatamente como estava ── */}
+      {/* ── CTA RESERVAR DATA ── */}
       <section style={{ background: `linear-gradient(160deg, #3D6B5E 0%, ${VERDE_CLARO} 100%)`, padding: "clamp(60px,10vw,100px) 24px", textAlign: "center" }}>
         <div style={{ maxWidth: "640px", margin: "0 auto" }}>
           <Reveal>
@@ -557,96 +570,7 @@ export default function OpcoesClient() {
         </div>
       </section>
 
-      {/* ── VALE PRESENTE — ecrã inteiro ── */}
-      <section style={{ position: "relative", minHeight: "100vh", overflow: "hidden" }} aria-label="Vale Presente">
-        {/* Fundo foto */}
-        <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-          <div style={{ width: "100%", height: "100%", backgroundImage: "url('/vale1.webp')", backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.42) saturate(0.8)" }}/>
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.1) 0%, rgba(15,30,26,0.5) 40%, rgba(15,30,26,0.9) 100%)" }}/>
-        </div>
-        {/* Conteúdo alinhado ao fundo */}
-        <div style={{ position: "absolute", inset: 0, zIndex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
-          <div style={{ padding: "clamp(60px,10vw,120px) clamp(24px,6vw,80px) clamp(56px,8vw,88px)", maxWidth: "1200px", margin: "0 auto", width: "100%" }}>
-            <Reveal>
-              {/* Badge */}
-              <span style={{ display: "inline-block", backgroundColor: "rgba(139,168,136,0.18)", border: "1px solid rgba(139,168,136,0.45)", color: VERDE_CLARO, fontSize: "0.55rem", letterSpacing: "3.5px", textTransform: "uppercase", fontFamily: GS, fontWeight: 600, padding: "6px 14px", borderRadius: "100px", marginBottom: "22px" }}>
-                Para oferecer
-              </span>
-
-              {/* Título */}
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.6rem, 7.5vw, 6rem)", fontWeight: 400, color: "#FAF7F0", margin: "0 0 clamp(28px,4vw,44px)", lineHeight: 0.95, maxWidth: "760px" }}>
-                O bouquet dela,<br/>
-                <em style={{ color: VERDE_CLARO }}>para sempre.</em>
-              </h2>
-
-              {/* Grid de propostas de valor + CTA */}
-              <div className="vale-bottom-grid" style={{ display: "grid", gap: "clamp(16px,3vw,28px)", alignItems: "end" }}>
-                <div>
-                  <p style={{ fontFamily: GS, fontWeight: 600, fontSize: "0.6rem", letterSpacing: "3px", textTransform: "uppercase", color: VERDE_CLARO, margin: "0 0 7px" }}>O presente perfeito</p>
-                  <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.86rem", lineHeight: 1.7, color: "rgba(250,247,240,0.72)", margin: 0 }}>
-                    Ofereça a preservação do bouquet sem precisar de saber a data ou os detalhes. O presenteado trata do resto.
-                  </p>
-                </div>
-                <div>
-                  <p style={{ fontFamily: GS, fontWeight: 600, fontSize: "0.6rem", letterSpacing: "3px", textTransform: "uppercase", color: VERDE_CLARO, margin: "0 0 7px" }}>Sem data de validade</p>
-                  <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.86rem", lineHeight: 1.7, color: "rgba(250,247,240,0.72)", margin: 0 }}>
-                    O vale pode ser usado quando a pessoa quiser, com todo o tempo do mundo para decidir.
-                  </p>
-                </div>
-                <div>
-                  <p style={{ fontFamily: GS, fontWeight: 600, fontSize: "0.6rem", letterSpacing: "3px", textTransform: "uppercase", color: VERDE_CLARO, margin: "0 0 7px" }}>Feito à mão em Coimbra</p>
-                  <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.86rem", lineHeight: 1.7, color: "rgba(250,247,240,0.72)", margin: 0 }}>
-                    Cada quadro é único. Materiais de conservação museu, vidro UltraVue® e moldura à medida.
-                  </p>
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "10px", flexShrink: 0 }}>
-                  <a href="/oferecer-preservacao"
-                    style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "15px 32px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.25s ease", whiteSpace: "nowrap" }}
-                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                    onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; e.currentTarget.style.transform = "translateY(0)"; }}>
-                    Saber mais
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#3D6B5E" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  </a>
-                  <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.68rem", color: "rgba(250,247,240,0.38)", margin: 0, textAlign: "center" }}>A partir de 300€</p>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       <style jsx global>{`
-        /* ── HERO: a imagem de fundo fica num pseudo-element para não criar
-           stacking context, e o flex centra o conteúdo verdadeiramente ── */
-        .hero-section {
-          position: relative;
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-        }
-        .hero-section::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background-image: url('/fotoquadro1.webp');
-          background-size: cover;
-          background-position: center;
-          filter: brightness(0.52);
-          z-index: 0;
-        }
-        .hero-section::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to bottom,
-            rgba(15,30,26,0.05) 0%,
-            rgba(15,30,26,0.25) 50%,
-            rgba(15,30,26,0.65) 100%);
-          z-index: 0;
-        }
-
         .fundos-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 16px; padding: 0 24px 4px; }
         .fundos-track::-webkit-scrollbar { display: none; }
         .fundo-card-new { flex: 0 0 78vw; max-width: 320px; scroll-snap-align: start; }
@@ -657,10 +581,6 @@ export default function OpcoesClient() {
         .fundo-img-new:hover { transform: scale(1.05); }
         .slider-hint { display: block; text-align: center; font-family: var(--font-google-sans), 'Google Sans', sans-serif; font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase; padding: 16px 0 0; margin: 0; }
         @media (min-width: 900px) { .slider-hint { display: none; } }
-
-        .vale-bottom-grid { grid-template-columns: 1fr; }
-        @media (min-width: 640px) { .vale-bottom-grid { grid-template-columns: 1fr 1fr; } }
-        @media (min-width: 1024px) { .vale-bottom-grid { grid-template-columns: 1fr 1fr 1fr auto; } }
 
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
         a:focus-visible, button:focus-visible { outline: 3px solid #8BA888; outline-offset: 4px; border-radius: 4px; }
