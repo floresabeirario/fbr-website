@@ -326,7 +326,7 @@ export default function NavClient() {
   const show = scrolled || !isHome;
 
   // Links da direita sem Blog
-  const rightLinks = NAV_RIGHT.filter(item => item.name !== "Blog");
+  const rightLinks = NAV_RIGHT.filter(item => item.name !== "Blog" && item.name !== "FAQ");
 
   return (
     <>
@@ -344,9 +344,16 @@ export default function NavClient() {
       >
         <div className="nav-bar">
 
-          {/* ── ESQUERDA (desktop): Reservar Data | Preservação | Momentos ── */}
+          {/* ── ESQUERDA (desktop): Reservar Data | FAQ | Preservação | Momentos ── */}
           <div className="nav-left desktop-only">
             <NavCTA shouldShowScrolled={show} pathname={pathname} />
+            <NavDivider scrolled={show} />
+            <a href="/perguntas-frequentes" className="nav-link" style={{
+              fontWeight: "500", textTransform: "uppercase",
+              color: show ? "#1a1a1a" : "#fff",
+            }}>
+              FAQ
+            </a>
             <NavDivider scrolled={show} />
             <DesktopDropdown menu={NAV_PRESERVACAO} scrolled={show} />
             <NavDivider scrolled={show} />
