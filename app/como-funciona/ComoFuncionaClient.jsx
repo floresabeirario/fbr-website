@@ -47,7 +47,7 @@ const STEPS = [
     noteJsx: (
       <>
         As vagas são limitadas, especialmente entre Maio e Setembro. O processo começa muito antes do evento: assim que souber a data, garanta a sua vaga com o{" "}
-        <a href={FORM_URL} target="_blank" rel="noopener noreferrer" style={{ color: "#9B3060", fontWeight: 600, textDecoration: "none", borderBottom: "1px solid rgba(155,48,96,0.3)", paddingBottom: "1px" }}>
+        <a href={FORM_URL} target="_blank" rel="noopener noreferrer" style={{ color: "#8B4A2A", fontWeight: 600, textDecoration: "none", borderBottom: "1px solid rgba(139,74,42,0.3)", paddingBottom: "1px" }}>
           formulário de reserva
         </a>.
       </>
@@ -63,7 +63,7 @@ const STEPS = [
     body: "Depois do dia do evento, as flores têm de chegar até nós o mais frescas possível, preferencialmente em 1 a 3 dias, no máximo 5. Enquanto aguarda, mantenha as flores num vaso com água fresca longe do sol e do calor. O pagamento de 40% da encomenda será solicitado após recebermos as flores.",
     noteJsx: (
       <>
-        <strong style={{ display: "block", marginBottom: "10px", color: "#9B3060", fontSize: "0.88rem" }}>Três opções de entrega:</strong>
+        <strong style={{ display: "block", marginBottom: "10px", color: "#8B4A2A", fontSize: "0.88rem" }}>Três opções de entrega:</strong>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           {[
             { label: "Entrega em mãos", desc: "Gratuitamente no nosso atelier em Coimbra, mediante agendamento." },
@@ -71,7 +71,7 @@ const STEPS = [
             { label: "Recolha no evento", desc: "Deslocamo-nos ao local do evento, mediante orçamento e disponibilidade." },
           ].map((item, i) => (
             <div key={i} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
-              <span style={{ color: "#9B3060", fontWeight: 700, flexShrink: 0, fontSize: "0.88rem", marginTop: "1px" }}>+</span>
+              <span style={{ color: "#8B4A2A", fontWeight: 700, flexShrink: 0, fontSize: "0.88rem", marginTop: "1px" }}>+</span>
               <p style={{ margin: 0, fontSize: "0.88rem", lineHeight: 1.65, color: "#5A4050" }}>
                 <strong>{item.label}:</strong> {item.desc}
               </p>
@@ -111,14 +111,14 @@ const STEPS = [
     body: "Antes do envio ou da recolha, será solicitado o pagamento da 3.ª e última prestação, 30% do valor total. O quadro inclui instruções de cuidados para garantir a sua durabilidade.",
     noteJsx: (
       <>
-        <strong style={{ display: "block", marginBottom: "10px", color: "#9B3060", fontSize: "0.88rem" }}>Com o quadro pronto, tem duas opções:</strong>
+        <strong style={{ display: "block", marginBottom: "10px", color: "#8B4A2A", fontSize: "0.88rem" }}>Com o quadro pronto, tem duas opções:</strong>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           {[
             { label: "Envio pelos CTT", desc: "Receberá um número de rastreamento assim que a encomenda for enviada." },
             { label: "Recolha no atelier", desc: "Agende um horário para recolha em Coimbra." },
           ].map((item, i) => (
             <div key={i} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
-              <span style={{ color: "#9B3060", fontWeight: 700, flexShrink: 0, fontSize: "0.88rem", marginTop: "1px" }}>+</span>
+              <span style={{ color: "#8B4A2A", fontWeight: 700, flexShrink: 0, fontSize: "0.88rem", marginTop: "1px" }}>+</span>
               <p style={{ margin: 0, fontSize: "0.88rem", lineHeight: 1.65, color: "#5A4050" }}>
                 <strong>{item.label}:</strong> {item.desc}
               </p>
@@ -142,13 +142,13 @@ const Step = ({ step, index }) => {
   const isEven = index % 2 === 0;
 
   const photoInner = (
-    <div style={{ position: "relative", borderRadius: "clamp(14px,2.5vw,22px)", overflow: "hidden", backgroundColor: "#F2D6E4", boxShadow: "0 16px 48px rgba(100,20,60,0.12)" }}>
-      <div style={{ position: "absolute", top: "16px", left: "16px", zIndex: 2, backgroundColor: "#9B3060", color: "#FAF7F0", padding: "5px 14px", borderRadius: "50px", display: "flex", alignItems: "center", gap: "7px" }}>
+    <div style={{ position: "relative", borderRadius: "clamp(14px,2.5vw,22px)", overflow: "hidden", backgroundColor: "#F2D6E4", boxShadow: "0 16px 48px rgba(100,60,30,0.12)" }}>
+      <div style={{ position: "absolute", top: "16px", left: "16px", zIndex: 2, backgroundColor: "#8B4A2A", color: "#FAF7F0", padding: "5px 14px", borderRadius: "50px", display: "flex", alignItems: "center", gap: "7px" }}>
         <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.7rem", lineHeight: 1 }}>{step.n}</span>
         <span style={{ fontSize: "0.55rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", opacity: 0.8 }}>{step.tag}</span>
       </div>
       {step.imgLink && (
-        <div style={{ position: "absolute", bottom: "14px", right: "14px", zIndex: 2, backgroundColor: "rgba(250,247,240,0.92)", color: "#9B3060", padding: "5px 12px", borderRadius: "50px", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", backdropFilter: "blur(4px)" }}>
+        <div style={{ position: "absolute", bottom: "14px", right: "14px", zIndex: 2, backgroundColor: "rgba(250,247,240,0.92)", color: "#8B4A2A", padding: "5px 12px", borderRadius: "50px", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", backdropFilter: "blur(4px)" }}>
           Reservar
         </div>
       )}
@@ -158,7 +158,7 @@ const Step = ({ step, index }) => {
 
   return (
     <article id={step.id} aria-labelledby={`${step.id}-title`} style={{ marginBottom: "clamp(64px,12vw,110px)" }}>
-      <div aria-hidden="true" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(5rem,18vw,14rem)", lineHeight: 0.85, color: "rgba(155,48,96,0.1)", userSelect: "none", pointerEvents: "none", marginBottom: "-2rem", paddingLeft: isEven ? "clamp(16px,5vw,48px)" : undefined, paddingRight: !isEven ? "clamp(16px,5vw,48px)" : undefined, textAlign: isEven ? "left" : "right" }}>
+      <div aria-hidden="true" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(5rem,18vw,14rem)", lineHeight: 0.85, color: "rgba(139,74,42,0.1)", userSelect: "none", pointerEvents: "none", marginBottom: "-2rem", paddingLeft: isEven ? "clamp(16px,5vw,48px)" : undefined, paddingRight: !isEven ? "clamp(16px,5vw,48px)" : undefined, textAlign: isEven ? "left" : "right" }}>
         {step.n}
       </div>
 
@@ -190,11 +190,11 @@ const Step = ({ step, index }) => {
             {step.body}
           </div>
           {(step.note || step.noteJsx) && (
-            <div style={{ padding: "clamp(14px,2vw,18px) clamp(16px,2.5vw,22px)", borderRadius: "12px", backgroundColor: "rgba(155,48,96,0.05)", borderLeft: "3px solid rgba(155,48,96,0.25)" }}>
+            <div style={{ padding: "clamp(14px,2vw,18px) clamp(16px,2.5vw,22px)", borderRadius: "12px", backgroundColor: "rgba(139,74,42,0.05)", borderLeft: "3px solid rgba(139,74,42,0.25)" }}>
               {step.noteJsx ? (
-                <div style={{ color: "#9B3060", lineHeight: 1.78, fontSize: "clamp(0.84rem,1.6vw,0.92rem)" }}>{step.noteJsx}</div>
+                <div style={{ color: "#8B4A2A", lineHeight: 1.78, fontSize: "clamp(0.84rem,1.6vw,0.92rem)" }}>{step.noteJsx}</div>
               ) : (
-                <p style={{ color: "#9B3060", lineHeight: 1.78, fontSize: "clamp(0.84rem,1.6vw,0.92rem)", margin: 0, fontStyle: "italic" }}>{step.note}</p>
+                <p style={{ color: "#8B4A2A", lineHeight: 1.78, fontSize: "clamp(0.84rem,1.6vw,0.92rem)", margin: 0, fontStyle: "italic" }}>{step.note}</p>
               )}
             </div>
           )}
@@ -236,32 +236,32 @@ export default function ComoFuncionaClient() {
           @media (min-width: 480px) { .cta-row { flex-direction: row; justify-content: center; align-items: center; } }
 
           .btn-primary {
-            display: inline-block; background: #9B3060; color: #FAF7F0;
-            padding: 15px 34px; border-radius: 100px; text-decoration: none;
-            font-weight: 600; font-size: 0.82rem; letter-spacing: 1.4px;
+            display: inline-block; background: #8B4A2A; color: #FAF7F0;
+            padding: 14px 28px; border-radius: 100px; text-decoration: none;
+            font-weight: 600; font-size: 0.76rem; letter-spacing: 1.4px;
             text-transform: uppercase; text-align: center;
-            box-shadow: 0 6px 22px rgba(155,48,96,0.28); transition: all 0.3s ease;
-            font-family: Roboto, sans-serif;
+            box-shadow: 0 6px 22px rgba(139,74,42,0.3); transition: all 0.3s ease;
+            font-family: Roboto, sans-serif; white-space: nowrap;
           }
-          .btn-primary:hover { background: #6B1E42; transform: translateY(-3px); }
+          .btn-primary:hover { background: #5C2E14; transform: translateY(-3px); }
 
           .btn-outline {
-            display: inline-block; border: 2px solid rgba(255,184,208,0.7); color: #FAF7F0;
-            padding: 13px 32px; border-radius: 100px; text-decoration: none;
-            font-weight: 600; font-size: 0.82rem; letter-spacing: 1.4px;
+            display: inline-block; border: 2px solid rgba(240,200,160,0.75); color: #FAF7F0;
+            padding: 12px 28px; border-radius: 100px; text-decoration: none;
+            font-weight: 600; font-size: 0.76rem; letter-spacing: 1.4px;
             text-transform: uppercase; text-align: center; transition: all 0.3s ease;
-            font-family: Roboto, sans-serif;
+            font-family: Roboto, sans-serif; white-space: nowrap;
           }
-          .btn-outline:hover { background: rgba(255,184,208,0.15); transform: translateY(-3px); }
+          .btn-outline:hover { background: rgba(240,200,160,0.15); transform: translateY(-3px); }
 
           .btn-outline-dark {
-            display: inline-block; border: 2px solid #9B3060; color: #9B3060;
-            padding: 13px 32px; border-radius: 100px; text-decoration: none;
-            font-weight: 600; font-size: 0.82rem; letter-spacing: 1.4px;
+            display: inline-block; border: 2px solid #8B4A2A; color: #8B4A2A;
+            padding: 12px 28px; border-radius: 100px; text-decoration: none;
+            font-weight: 600; font-size: 0.76rem; letter-spacing: 1.4px;
             text-transform: uppercase; text-align: center; transition: all 0.3s ease;
-            font-family: Roboto, sans-serif;
+            font-family: Roboto, sans-serif; white-space: nowrap;
           }
-          .btn-outline-dark:hover { background: #9B3060; color: #FAF7F0; transform: translateY(-3px); }
+          .btn-outline-dark:hover { background: #8B4A2A; color: #FAF7F0; transform: translateY(-3px); }
 
           .btn-wa {
             display: inline-flex; align-items: center; gap: 8px;
@@ -271,16 +271,16 @@ export default function ComoFuncionaClient() {
           }
           .btn-wa:hover { background: #1da851; transform: translateY(-3px); }
 
-          .eyebrow { display: block; font-size: 0.58rem; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: #9B3060; margin-bottom: 12px; font-family: Roboto, sans-serif; }
-          .text-link { color: #9B3060; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(155,48,96,0.3); padding-bottom: 1px; transition: border-color 0.2s ease; }
-          .text-link:hover { border-color: #9B3060; }
+          .eyebrow { display: block; font-size: 0.58rem; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: #8B4A2A; margin-bottom: 12px; font-family: Roboto, sans-serif; }
+          .text-link { color: #8B4A2A; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(139,74,42,0.3); padding-bottom: 1px; transition: border-color 0.2s ease; }
+          .text-link:hover { border-color: #8B4A2A; }
 
           [id^="passo-"] { scroll-margin-top: 100px; }
 
           @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
           }
-          a:focus-visible, button:focus-visible { outline: 3px solid #9B3060; outline-offset: 4px; border-radius: 4px; }
+          a:focus-visible, button:focus-visible { outline: 3px solid #8B4A2A; outline-offset: 4px; border-radius: 4px; }
         `,
         }} />
 
@@ -295,22 +295,22 @@ export default function ComoFuncionaClient() {
             aria-hidden="true"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", zIndex: 0 }}
           />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(40,5,25,0.80) 0%, rgba(40,5,25,0.40) 50%, rgba(40,5,25,0.15) 100%)", zIndex: 1 }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(40,20,10,0.80) 0%, rgba(40,20,10,0.40) 50%, rgba(40,20,10,0.15) 100%)", zIndex: 1 }} />
 
-          <div style={{ position: "relative", zIndex: 2, width: "100%", padding: "clamp(80px,12vw,130px) clamp(20px,5vw,64px) clamp(52px,8vw,80px)" }}>
-            <div style={{ maxWidth: "700px" }}>
+          <div style={{ position: "relative", zIndex: 2, width: "100%", padding: "clamp(80px,12vw,130px) clamp(20px,5vw,64px) clamp(52px,8vw,80px)", display: "flex", justifyContent: "center" }}>
+            <div style={{ maxWidth: "680px", textAlign: "center", width: "100%" }}>
               <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-                <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(255,190,210,0.9)", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>O nosso processo</span>
+                <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(240,200,160,0.9)", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>O nosso processo</span>
                 <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.6rem,8vw,5.2rem)", color: "#FAF7F0", margin: "0 0 clamp(16px,2.5vw,22px)", lineHeight: 1.0 }}>
                   Da flor fresca<br />
-                  <em style={{ fontStyle: "italic", color: "#FFB8D0" }}>ao quadro para sempre</em>
+                  <em style={{ fontStyle: "italic", color: "#F0C8A0" }}>ao quadro para sempre</em>
                 </h1>
-                <p style={{ color: "rgba(250,247,240,0.82)", fontSize: "clamp(0.93rem,1.9vw,1.05rem)", lineHeight: 1.8, maxWidth: "520px", margin: "0 0 clamp(28px,4vw,36px)" }}>
+                <p style={{ color: "rgba(250,247,240,0.82)", fontSize: "clamp(0.93rem,1.9vw,1.05rem)", lineHeight: 1.8, maxWidth: "520px", margin: "0 auto clamp(28px,4vw,36px)" }}>
                   Cinco passos para transformar as suas flores numa obra de arte botânica que dura décadas, explicados com toda a transparência.
                 </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px,1.5vw,12px)", alignItems: "center" }}>
-                  <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ fontSize: "0.78rem" }}>Reservar Data</a>
-                  <a href="/perguntas-frequentes" className="btn-outline" style={{ fontSize: "0.78rem" }}>Ver Perguntas Frequentes</a>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", alignItems: "center", justifyContent: "center" }}>
+                  <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">Reservar Data</a>
+                  <a href="/perguntas-frequentes" className="btn-outline">Ver Perguntas Frequentes</a>
                 </div>
               </motion.div>
             </div>
@@ -327,7 +327,7 @@ export default function ComoFuncionaClient() {
         </section>
 
         {/* O QUE ESTÁ INCLUÍDO */}
-        <section aria-label="O que está incluído" style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", background: "linear-gradient(180deg, #F9EDF3 0%, #FAF7F0 100%)" }}>
+        <section aria-label="O que está incluído" style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", background: "linear-gradient(180deg, #F5EDE0 0%, #FAF7F0 100%)" }}>
           <div style={{ maxWidth: "900px", margin: "0 auto" }}>
             <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}>
               <span className="eyebrow">Sem surpresas</span>
@@ -335,11 +335,11 @@ export default function ComoFuncionaClient() {
             </motion.div>
             <div className="included-grid">
               {INCLUDED.map((item, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07, duration: 0.6 }} style={{ backgroundColor: "#fff", borderRadius: "14px", padding: "clamp(16px,2.5vw,22px)", border: "1px solid rgba(155,48,96,0.09)", boxShadow: "0 3px 14px rgba(100,20,60,0.05)", display: "flex", gap: "14px", alignItems: "flex-start" }}>
+                <motion.div key={i} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07, duration: 0.6 }} style={{ backgroundColor: "#fff", borderRadius: "14px", padding: "clamp(16px,2.5vw,22px)", border: "1px solid rgba(139,74,42,0.09)", boxShadow: "0 3px 14px rgba(100,60,30,0.05)", display: "flex", gap: "14px", alignItems: "flex-start" }}>
                   <div style={{ flexShrink: 0, marginTop: "2px" }}>
                     <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                      <circle cx="10" cy="10" r="10" fill="rgba(155,48,96,0.1)" />
-                      <path d="M6 10l3 3 5-5" stroke="#9B3060" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      <circle cx="10" cy="10" r="10" fill="rgba(139,74,42,0.1)" />
+                      <path d="M6 10l3 3 5-5" stroke="#8B4A2A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                   <div>
@@ -357,19 +357,19 @@ export default function ComoFuncionaClient() {
         </section>
 
         {/* PAGAMENTO */}
-        <section aria-label="Pagamento em três prestações" style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", background: "linear-gradient(135deg, #2D1020 0%, #6B1E42 100%)" }}>
+        <section aria-label="Pagamento em três prestações" style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", background: "linear-gradient(135deg, #2D1A08 0%, #5C2E14 100%)" }}>
           <div style={{ maxWidth: "820px", margin: "0 auto" }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
               <div style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}>
-                <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#FFB8D0", marginBottom: "12px", fontFamily: "Roboto, sans-serif" }}>Transparência total</span>
+                <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#F0C8A0", marginBottom: "12px", fontFamily: "Roboto, sans-serif" }}>Transparência total</span>
                 <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.7rem,4vw,2.8rem)", color: "#FAF7F0", margin: "0 0 12px", lineHeight: 1.1 }}>Pagamento em três momentos</h2>
                 <p style={{ color: "rgba(250,247,240,0.6)", fontSize: "clamp(0.88rem,1.8vw,0.96rem)", lineHeight: 1.8, maxWidth: "440px", margin: "0 auto" }}>Para não pesar no orçamento, o valor é repartido ao longo do processo.</p>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(8px,2vw,16px)" }}>
                 {[
-                  { pct: "30%", label: "Na reserva", desc: "Sinal que garante a sua vaga. Não reembolsável.", c: "#FFB8D0" },
-                  { pct: "40%", label: "Início do trabalho", desc: "Quando as flores chegam e iniciamos a prensagem.", c: "#F4A0B8" },
-                  { pct: "30%", label: "Antes da entrega", desc: "Após aprovação da composição e antes de enviarmos o quadro.", c: "#E880A0" },
+                  { pct: "30%", label: "Na reserva", desc: "Sinal que garante a sua vaga. Não reembolsável.", c: "#F0C8A0" },
+                  { pct: "40%", label: "Início do trabalho", desc: "Quando as flores chegam e iniciamos a prensagem.", c: "#E8B080" },
+                  { pct: "30%", label: "Antes da entrega", desc: "Após aprovação da composição e antes de enviarmos o quadro.", c: "#D09060" },
                 ].map((p, i) => (
                   <div key={i} style={{ backgroundColor: "rgba(250,247,240,0.06)", borderRadius: "clamp(12px,2vw,18px)", padding: "clamp(16px,2.5vw,26px) clamp(12px,2vw,18px)", border: "1px solid rgba(250,247,240,0.09)", textAlign: "center" }}>
                     <span style={{ display: "block", fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,2.8rem)", color: p.c, lineHeight: 1, marginBottom: "6px" }}>{p.pct}</span>
@@ -383,15 +383,15 @@ export default function ComoFuncionaClient() {
         </section>
 
         {/* CTA FINAL */}
-        <section aria-label="Reservar preservação" style={{ padding: "clamp(60px,10vw,100px) clamp(20px,5vw,48px)", background: "linear-gradient(140deg, #F9EDF3 0%, #FAF7F0 55%, #F5E8F0 100%)", textAlign: "center" }}>
+        <section aria-label="Reservar preservação" style={{ padding: "clamp(60px,10vw,100px) clamp(20px,5vw,48px)", background: "linear-gradient(140deg, #F5EDE0 0%, #FAF7F0 55%, #F0E8D8 100%)", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }} style={{ maxWidth: "620px", margin: "0 auto" }}>
-            <div aria-hidden="true" style={{ width: "44px", height: "1px", margin: "0 auto 28px", background: "linear-gradient(to right, transparent, #9B3060, transparent)" }} />
+            <div aria-hidden="true" style={{ width: "44px", height: "1px", margin: "0 auto 28px", background: "linear-gradient(to right, transparent, #8B4A2A, transparent)" }} />
             <span className="eyebrow">Pronta para começar?</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5.5vw,3.5rem)", color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1 }}>Reserve a sua vaga hoje</h2>
             <p style={{ color: "#5A6B60", lineHeight: 1.88, fontSize: "clamp(0.9rem,2vw,1rem)", margin: "0 0 10px" }}>
               As vagas esgotam com muita antecedência, especialmente em época de casamentos.
             </p>
-            <p style={{ color: "#9B3060", lineHeight: 1.75, fontSize: "clamp(0.85rem,1.8vw,0.94rem)", margin: "0 0 34px", fontStyle: "italic" }}>
+            <p style={{ color: "#8B4A2A", lineHeight: 1.75, fontSize: "clamp(0.85rem,1.8vw,0.94rem)", margin: "0 0 34px", fontStyle: "italic" }}>
               As suas flores só vivem dias, mas o quadro pode durar décadas. Não deixe para depois o que só pode ser feito agora.
             </p>
             <div className="cta-row" style={{ marginBottom: "28px" }}>
