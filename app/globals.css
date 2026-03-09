@@ -125,8 +125,8 @@ button:focus-visible {
   border-bottom: 1px solid transparent;
   line-height: 1.4;
   padding-bottom: 2px;
-  font-size: clamp(0.58rem, 0.62vw, 0.72rem) !important;
-  letter-spacing: clamp(0.9px, 0.12vw, 1.4px) !important;
+  font-size: clamp(0.62rem, 0.68vw, 0.76rem) !important;
+  letter-spacing: clamp(1px, 0.13vw, 1.4px) !important;
   white-space: nowrap;
 }
 .nav-link:hover { border-bottom: 1px solid currentColor; }
@@ -188,13 +188,13 @@ button:focus-visible {
 .nav-cta {
   display: inline-flex;
   align-items: center;
-  font-size: clamp(0.58rem, 0.62vw, 0.68rem);
+  font-size: clamp(0.62rem, 0.68vw, 0.72rem);
   font-weight: 600;
-  letter-spacing: clamp(0.9px, 0.12vw, 1.4px);
+  letter-spacing: clamp(1px, 0.13vw, 1.4px);
   text-transform: uppercase;
   text-decoration: none !important;
   font-family: var(--font-google-sans), 'Google Sans', sans-serif;
-  padding: clamp(7px, 0.55vw, 9px) clamp(12px, 1.2vw, 20px);
+  padding: clamp(7px, 0.6vw, 10px) clamp(14px, 1.3vw, 22px);
   border-radius: 100px;
   transition: all 0.3s ease;
   white-space: nowrap;
