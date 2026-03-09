@@ -499,13 +499,13 @@ export default function Sustentabilidade() {
           aria-label="Embalagem artesanal em parceria com a Associacao de Paralisia Cerebral de Coimbra"
           style={{
             padding: "clamp(56px,9vw,88px) clamp(20px,5vw,48px)",
-            background: "linear-gradient(155deg, #2D1F14 0%, #3A2A1C 45%, #1E2D2A 100%)",
+            background: "linear-gradient(155deg, #1A2E26 0%, #243D33 45%, #1E2D2A 100%)",
             position: "relative", overflow: "hidden",
           }}
         >
           <div aria-hidden="true" style={{
             position: "absolute", inset: 0, opacity: 0.03, pointerEvents: "none",
-            backgroundImage: "repeating-linear-gradient(45deg, #B8954A 0px, #B8954A 1px, transparent 1px, transparent 50px)",
+            backgroundImage: "repeating-linear-gradient(45deg, #3D6B5E 0px, #3D6B5E 1px, transparent 1px, transparent 50px)",
           }}/>
           <div style={{ maxWidth: "1060px", margin: "0 auto", position: "relative", zIndex: 1 }}>
             <div className="apcc-inner">
@@ -520,12 +520,12 @@ export default function Sustentabilidade() {
                   <div aria-hidden="true" style={{
                     position: "absolute", inset: 0,
                     transform: "translate(10px, 10px) rotate(1.5deg)",
-                    borderRadius: "18px", background: "rgba(184,149,74,0.1)",
-                    border: "1px solid rgba(184,149,74,0.15)",
+                    borderRadius: "18px", background: "rgba(45,74,62,0.2)",
+                    border: "1px solid rgba(61,107,94,0.2)",
                   }}/>
                   <div style={{
                     position: "relative", transform: "rotate(-1.5deg)", borderRadius: "18px",
-                    overflow: "hidden", border: "1px solid rgba(184,149,74,0.2)",
+                    overflow: "hidden", border: "1px solid rgba(61,107,94,0.3)",
                     aspectRatio: "3/4", boxShadow: "0 24px 52px rgba(0,0,0,0.4)",
                   }}>
                     <img
@@ -536,7 +536,7 @@ export default function Sustentabilidade() {
                     />
                     <div style={{
                       position: "absolute", bottom: 0, left: 0, right: 0, height: "50%",
-                      background: "linear-gradient(to top, rgba(42,31,22,0.92) 0%, transparent 100%)",
+                      background: "linear-gradient(to top, rgba(26,46,38,0.95) 0%, transparent 100%)",
                     }} aria-hidden="true"/>
                     <div style={{ position: "absolute", bottom: "16px", left: "16px", right: "16px" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -550,7 +550,7 @@ export default function Sustentabilidade() {
                           <p style={{ margin: 0, fontWeight: 700, color: "#FAF7F0", fontSize: "0.68rem", fontFamily: "Roboto, sans-serif", lineHeight: 1.3 }}>
                             Associa&#231;&#227;o de Paralisia Cerebral de Coimbra
                           </p>
-                          <p style={{ margin: "2px 0 0", color: "#B8954A", fontSize: "0.6rem", fontFamily: "Roboto, sans-serif" }}>Marca M&#227;o Doida</p>
+                          <p style={{ margin: "2px 0 0", color: "#8BA888", fontSize: "0.6rem", fontFamily: "Roboto, sans-serif" }}>Marca M&#227;o Doida</p>
                         </div>
                       </div>
                     </div>
@@ -566,11 +566,11 @@ export default function Sustentabilidade() {
               >
                 <div style={{
                   display: "inline-flex", alignItems: "center", gap: "8px",
-                  background: "rgba(184,149,74,0.1)", border: "1px solid rgba(184,149,74,0.25)",
+                  background: "rgba(45,74,62,0.35)", border: "1px solid rgba(139,168,136,0.3)",
                   borderRadius: "100px", padding: "7px 16px", marginBottom: "20px",
                 }}>
-                  <span style={{ color: "#B8954A", fontSize: "0.9rem" }} aria-hidden="true">&#9829;</span>
-                  <span style={{ fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: "#B8954A", fontFamily: "Roboto, sans-serif" }}>Parceria solid&#225;ria</span>
+                  <span style={{ color: "#8BA888", fontSize: "0.9rem" }} aria-hidden="true">&#9829;</span>
+                  <span style={{ fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: "#8BA888", fontFamily: "Roboto, sans-serif" }}>Parceria solid&#225;ria</span>
                 </div>
                 <h2 style={{
                   fontFamily: "'TAN-MEMORIES', serif",
@@ -578,7 +578,7 @@ export default function Sustentabilidade() {
                   color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1,
                 }}>
                   A embalagem que<br/>
-                  <em style={{ fontStyle: "italic", color: "#B8954A" }}>conta uma hist&#243;ria</em>
+                  <em style={{ fontStyle: "italic", color: "#8BA888" }}>conta uma hist&#243;ria</em>
                 </h2>
                 <p style={{ color: "rgba(250,247,240,0.7)", lineHeight: 1.85, fontSize: "clamp(0.9rem,1.8vw,0.98rem)", margin: 0 }}>
                   Parte da embalagem que protege o seu quadro &#233; feita &#224; m&#227;o pelos utentes da
