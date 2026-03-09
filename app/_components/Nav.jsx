@@ -333,10 +333,10 @@ export default function NavClient() {
         aria-label="Navegação principal"
         style={{
           position: "fixed", top: 0, width: "100%", zIndex: 100,
-          backgroundColor: show ? "rgba(250,247,240,0.95)" : "transparent",
-          backdropFilter: show ? "blur(10px)" : "none",
+          backgroundColor: scrolled ? "rgba(250,247,240,0.92)" : "transparent",
+          backdropFilter: scrolled ? "blur(12px)" : "none",
           transition: "all 0.4s ease",
-          padding: show ? "14px 0" : "24px 0",
+          padding: scrolled ? "14px 0" : "20px 0",
         }}
       >
         <div className="nav-bar">
@@ -379,7 +379,7 @@ export default function NavClient() {
             animate={{ opacity: show ? 1 : 0 }}
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             style={{
-              color: show ? "#1a1a1a" : "#fff",
+              color: scrolled ? "#1a1a1a" : "#FAF7F0",
               pointerEvents: show ? "auto" : "none",
               position: "fixed",
               left: "50%",
@@ -442,7 +442,7 @@ export default function NavClient() {
               onClick={() => setIsOpen(true)}
               aria-label="Abrir menu de navegação"
               aria-expanded={isOpen}
-              style={{ color: show ? "#1a1a1a" : "#fff", marginLeft: "auto" }}
+              style={{ color: scrolled ? "#1a1a1a" : "#FAF7F0", marginLeft: "auto" }}
             >
               MENU
             </button>
