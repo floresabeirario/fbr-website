@@ -384,9 +384,9 @@ export default function NavClient() {
             style={{
               color: show ? "#1a1a1a" : "#fff",
               pointerEvents: show ? "auto" : "none",
-              position: "absolute",
+              position: "fixed",
               left: "50%",
-              transform: "translateX(-50%)",
+              transform: show ? "translateX(-50%)" : "translateX(-50%) translateY(8px)",
             }}
             aria-label="Flores à Beira-Rio — página inicial"
           >
