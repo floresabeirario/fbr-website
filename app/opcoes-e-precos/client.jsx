@@ -646,7 +646,7 @@ export default function OpcoesClient() {
                 <path d="M10 2 L11.8 7.6 L17.6 7.6 L13 11 L14.8 16.6 L10 13.2 L5.2 16.6 L7 11 L2.4 7.6 L8.2 7.6 Z" stroke="#B8954A" strokeWidth="1.3" strokeLinejoin="round" fill="none"/>
               </svg>
               <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(26,26,26,0.65)", margin: 0 }}>
-                Todos os quadros utilizam <strong style={{ color: "#1a1a1a", fontWeight: 600 }}>cartão e cola de pH neutro</strong> — os mesmos materiais usados em museus e arquivos para preservar obras ao longo de décadas.
+                Todos os quadros utilizam <strong style={{ color: "#1a1a1a", fontWeight: 600 }}>cartão e cola de pH neutro,</strong>  os mesmos materiais usados em museus e arquivos para preservar obras ao longo de décadas.
               </p>
             </div>
           </Reveal>
