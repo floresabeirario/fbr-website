@@ -1,31 +1,33 @@
 // app/_components/Nav.jsx
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { FlagPT, FlagEN, IconWhatsApp } from "./Icons";
 import { NAV_PRESERVACAO, NAV_MOMENTOS, NAV_RIGHT } from "../_lib/data/navigation";
 import { FORM_URL } from "../_lib/constants";
 
-// Mapeamento de páginas para cores do botão CTA
+// Cores do botão CTA por página
 const PAGE_COLORS = {
-  "/oferecer-preservacao":              { bg: "#4A7BA8", hover: "#2D5C82", shadow: "rgba(74,123,168,0.32)" },
-  "/preservar-bouquet-noiva":           { bg: "#A87B8C", hover: "#82576A", shadow: "rgba(168,123,140,0.32)" },
-  "/preservar-flores-luto-homenagem":   { bg: "#6B7A8D", hover: "#4A5768", shadow: "rgba(107,122,141,0.32)" },
-  "/preservar-flores-batizado-nascimento": { bg: "#7BA88C", hover: "#578268", shadow: "rgba(123,168,140,0.32)" },
-  "/preservar-flores-aniversario":      { bg: "#A8886B", hover: "#826448", shadow: "rgba(168,136,107,0.32)" },
-  "/preservar-flores-pedido-casamento": { bg: "#A86B7B", hover: "#824857", shadow: "rgba(168,107,123,0.32)" },
-  "/recriacao":                         { bg: "#8B6BA8", hover: "#674882", shadow: "rgba(139,107,168,0.32)" },
+  "/oferecer-preservacao":                 { bg: "#4A7BA8", shadow: "rgba(74,123,168,0.32)" },
+  "/preservar-bouquet-noiva":              { bg: "#A87B8C", shadow: "rgba(168,123,140,0.32)" },
+  "/preservar-flores-luto-homenagem":      { bg: "#6B7A8D", shadow: "rgba(107,122,141,0.32)" },
+  "/preservar-flores-batizado-nascimento": { bg: "#7BA88C", shadow: "rgba(123,168,140,0.32)" },
+  "/preservar-flores-aniversario":         { bg: "#A8886B", shadow: "rgba(168,136,107,0.32)" },
+  "/preservar-flores-pedido-casamento":    { bg: "#A86B7B", shadow: "rgba(168,107,123,0.32)" },
+  "/recriacao":                            { bg: "#8B6BA8", shadow: "rgba(139,107,168,0.32)" },
 };
-
-const DEFAULT_CTA_COLOR = { bg: "#3D6B5E", hover: "#1E2D2A", shadow: "rgba(61,107,94,0.32)" };
+const DEFAULT_CTA = { bg: "#3D6B5E", shadow: "rgba(61,107,94,0.32)" };
 
 const MOBILE_ICONS = {
   "/preservacao-de-flores": (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 2C12 2 6 6 6 12a6 6 0 0 0 12 0c0-6-6-10-6-10z"/>
-      <path d="M12 12V22"/>
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M12 2a3 3 0 0 1 3 3c0 1.5-1 2.5-1 4a3 3 0 0 1-4 0c0-1.5-1-2.5-1-4a3 3 0 0 1 3-3z"/>
+      <path d="M12 22a3 3 0 0 0 3-3c0-1.5-1-2.5-1-4a3 3 0 0 0-4 0c0 1.5-1 2.5-1 4a3 3 0 0 0 3 3z"/>
+      <path d="M2 12a3 3 0 0 0 3 3c1.5 0 2.5-1 4-1a3 3 0 0 0 0-4c-1.5 0-2.5-1-4-1a3 3 0 0 0-3 3z"/>
+      <path d="M22 12a3 3 0 0 1-3 3c-1.5 0-2.5-1-4-1a3 3 0 0 1 0-4c1.5 0 2.5-1 4-1a3 3 0 0 1 3 3z"/>
     </svg>
   ),
   "/momentos-especiais": (
@@ -41,9 +43,11 @@ const MOBILE_ICONS = {
   ),
   "/oferecer-preservacao": (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="2" y="7" width="20" height="14" rx="2"/>
-      <path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 1 4 0"/>
-      <path d="M12 12v5M9.5 14.5l2.5-2.5 2.5 2.5"/>
+      <polyline points="20 12 20 22 4 22 4 12"/>
+      <rect x="2" y="7" width="20" height="5"/>
+      <line x1="12" y1="22" x2="12" y2="7"/>
+      <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+      <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
     </svg>
   ),
   "/perguntas-frequentes": (
@@ -81,10 +85,28 @@ const Chevron = ({ open, color, size = 10 }) => (
   </motion.svg>
 );
 
+// Dropdown com timer para não fechar ao atravessar o espaço entre trigger e painel
 const DesktopDropdown = ({ menu, scrolled }) => {
+  const [open, setOpen] = useState(false);
+  const timerRef = useRef(null);
   const textColor = scrolled ? "#1a1a1a" : "#fff";
+
+  const handleEnter = () => {
+    clearTimeout(timerRef.current);
+    setOpen(true);
+  };
+  const handleLeave = () => {
+    timerRef.current = setTimeout(() => setOpen(false), 120);
+  };
+
+  useEffect(() => () => clearTimeout(timerRef.current), []);
+
   return (
-    <div className="dd-container desktop-only">
+    <div
+      className="dd-container desktop-only"
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
       <a href={menu.href} className="nav-link dd-trigger" style={{
         fontSize: "0.68rem", fontWeight: 500, textTransform: "uppercase",
         letterSpacing: "1.3px", color: textColor,
@@ -92,23 +114,40 @@ const DesktopDropdown = ({ menu, scrolled }) => {
         whiteSpace: "nowrap",
       }}>
         {menu.label}
-        <Chevron color={textColor} />
+        <Chevron open={open} color={textColor} />
       </a>
-      <div className="dd-panel">
-        <div className="dd-panel-inner">
-          {menu.items.map((item, i) => (
-            <a key={i} href={item.href} className="dd-item">{item.name}</a>
-          ))}
-          <div style={{ margin: "4px 6px 2px", borderTop: "1px solid rgba(61,107,94,0.1)", paddingTop: "4px" }}>
-            <a href={menu.href} className="dd-item dd-item-all">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
-                <path d="M2 6h8M6 2l4 4-4 4" stroke="#3D6B5E" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              Ver tudo
-            </a>
-          </div>
-        </div>
-      </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            style={{
+              position: "absolute",
+              top: "100%",
+              left: "50%",
+              transform: "translateX(-50%)",
+              paddingTop: "14px",
+              zIndex: 200,
+            }}
+          >
+            <div className="dd-panel-inner">
+              {menu.items.map((item, i) => (
+                <a key={i} href={item.href} className="dd-item">{item.name}</a>
+              ))}
+              <div style={{ margin: "4px 6px 2px", borderTop: "1px solid rgba(61,107,94,0.1)", paddingTop: "4px" }}>
+                <a href={menu.href} className="dd-item dd-item-all">
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
+                    <path d="M2 6h8M6 2l4 4-4 4" stroke="#3D6B5E" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  Ver tudo
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
@@ -199,10 +238,20 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
   );
 };
 
+const NavDivider = ({ scrolled }) => (
+  <span style={{
+    display: "inline-block",
+    width: "1px",
+    height: "14px",
+    backgroundColor: scrolled ? "rgba(26,26,26,0.15)" : "rgba(250,247,240,0.2)",
+    flexShrink: 0,
+    alignSelf: "center",
+  }} aria-hidden="true" />
+);
+
 function NavCTA({ shouldShowScrolled, pathname }) {
-  const pageColor = PAGE_COLORS[pathname] || DEFAULT_CTA_COLOR;
+  const pageColor = PAGE_COLORS[pathname] || DEFAULT_CTA;
   const bgColor     = shouldShowScrolled ? pageColor.bg : "rgba(250,247,240,0.12)";
-  const textColor   = shouldShowScrolled ? "#FAF7F0" : "rgba(250,247,240,0.92)";
   const borderColor = shouldShowScrolled ? `1.5px solid ${pageColor.bg}` : "1.5px solid rgba(250,247,240,0.35)";
   const bdFilter    = shouldShowScrolled ? "none" : "blur(8px)";
   const shadow      = shouldShowScrolled ? `0 3px 14px ${pageColor.shadow}` : "none";
@@ -215,7 +264,7 @@ function NavCTA({ shouldShowScrolled, pathname }) {
       className="nav-cta"
       style={{
         backgroundColor: bgColor,
-        color: textColor,
+        color: "#FAF7F0",
         border: borderColor,
         backdropFilter: bdFilter,
         boxShadow: shadow,
@@ -247,7 +296,7 @@ export default function NavClient() {
   useEffect(() => { setIsOpen(false); }, [pathname]);
 
   const shouldShowScrolled = scrolled || !isHome;
-  const ctaPageColor = PAGE_COLORS[pathname] || DEFAULT_CTA_COLOR;
+  const ctaPageColor = PAGE_COLORS[pathname] || DEFAULT_CTA;
 
   return (
     <>
@@ -264,12 +313,16 @@ export default function NavClient() {
       >
         <div className="nav-bar">
 
+          {/* ESQUERDA */}
           <div className="nav-left">
             <NavCTA shouldShowScrolled={shouldShowScrolled} pathname={pathname} />
+            <NavDivider scrolled={shouldShowScrolled} />
             <DesktopDropdown menu={NAV_PRESERVACAO} scrolled={shouldShowScrolled} />
-            <DesktopDropdown menu={NAV_MOMENTOS}    scrolled={shouldShowScrolled} />
+            <NavDivider scrolled={shouldShowScrolled} />
+            <DesktopDropdown menu={NAV_MOMENTOS} scrolled={shouldShowScrolled} />
           </div>
 
+          {/* CENTRO */}
           <motion.a
             href="/"
             className="nav-logo"
@@ -281,16 +334,21 @@ export default function NavClient() {
             Flores à Beira&#8209;Rio
           </motion.a>
 
+          {/* DIREITA */}
           <div className="nav-right-col">
             <div className="nav-right desktop-only">
-              {NAV_RIGHT.filter(item => item.name !== "Blog").map(item => (
-                <a key={item.name} href={item.href} className="nav-link" style={{
-                  fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
-                  letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff", whiteSpace: "nowrap",
-                }}>
-                  {item.name === "Contactos" ? "Contactos e Equipa" : item.name}
-                </a>
+              {NAV_RIGHT.filter(item => item.name !== "Blog").map((item, i, arr) => (
+                <React.Fragment key={item.name}>
+                  <a href={item.href} className="nav-link" style={{
+                    fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
+                    letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff", whiteSpace: "nowrap",
+                  }}>
+                    {item.name === "Contactos" ? "Contactos e Equipa" : item.name}
+                  </a>
+                  {i < arr.length - 1 && <NavDivider scrolled={shouldShowScrolled} />}
+                </React.Fragment>
               ))}
+              <NavDivider scrolled={shouldShowScrolled} />
               <div className="lang-container" style={{ position: "relative", display: "flex", alignItems: "center" }}>
                 <a href="/" className="nav-link lang-trigger" style={{
                   fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
@@ -328,6 +386,7 @@ export default function NavClient() {
         </div>
       </nav>
 
+      {/* MENU MOBILE */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -426,6 +485,7 @@ export default function NavClient() {
                 })}
               </nav>
 
+              {/* Rodapé mobile — só WhatsApp e bandeiras, sem Reservar Data */}
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 transition={{ delay: 0.32 }}
@@ -435,19 +495,6 @@ export default function NavClient() {
                   flexShrink: 0, display: "flex", flexDirection: "column", gap: "10px",
                 }}
               >
-                <a href={FORM_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
-                  style={{
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    backgroundColor: ctaPageColor.bg, color: "#FAF7F0",
-                    padding: "15px 24px", borderRadius: "100px", textDecoration: "none",
-                    fontWeight: 600, fontSize: "0.76rem", letterSpacing: "1.5px",
-                    textTransform: "uppercase",
-                    fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
-                    transition: "background 0.4s ease",
-                  }}
-                >
-                  Reservar Data
-                </a>
                 <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
                   style={{
                     display: "flex", alignItems: "center", justifyContent: "center", gap: "9px",
