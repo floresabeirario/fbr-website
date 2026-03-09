@@ -139,6 +139,15 @@ button:focus-visible {
   }
 }
 
+/* ── Mobile: nav transparente no topo das páginas internas */
+@media (max-width: 1439px) {
+  nav[role="navigation"][data-scrolled="false"] {
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    padding: 20px 0 !important;
+  }
+}
+
 /* ── Dropdown desktop ──────────────────────────────────── */
 .lang-trigger { border-bottom: 1px solid transparent !important; }
 .lang-trigger:hover { border-bottom: 1px solid currentColor !important; }
@@ -262,7 +271,7 @@ button:focus-visible {
   text-transform: uppercase;
   text-align: center;
   transition: all 0.3s ease;
-  font-family: var(--font-google-sans), 'Google Sans', sans-serif;
+  font-family: var(--font-google-sans), 'Google Sales', sans-serif;
   backdrop-filter: blur(8px);
   background: rgba(250,247,240,0.08);
   min-height: 56px;
