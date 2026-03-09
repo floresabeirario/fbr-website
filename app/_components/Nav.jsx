@@ -356,7 +356,7 @@ export default function NavClient() {
           </div>
 
           {/* ── CENTRO: Logo ── */}
-          {/* Desktop: só aparece após scroll ou fora da home (controlado por framer-motion) */}
+          {/* Desktop: framer-motion anima opacity */}
           <motion.a
             href="/"
             className="nav-logo desktop-only"
@@ -370,15 +370,20 @@ export default function NavClient() {
           >
             Flores à Beira&#8209;Rio
           </motion.a>
-          {/* Mobile: logo sempre visível, cor depende do fundo */}
-          <a
+          {/* Mobile: mesmo comportamento — esconde na home até scroll */}
+          <motion.a
             href="/"
             className="nav-logo mobile-only"
-            style={{ color: show ? "#1a1a1a" : "#fff" }}
+            animate={{ opacity: show ? 1 : 0, y: show ? 0 : 8 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{
+              color: show ? "#1a1a1a" : "#fff",
+              pointerEvents: show ? "auto" : "none",
+            }}
             aria-label="Flores à Beira-Rio — página inicial"
           >
             Flores à Beira&#8209;Rio
-          </a>
+          </motion.a>
 
           {/* ── DIREITA (desktop): links + PT flag | MENU (mobile) ── */}
           <div className="nav-right-col">
@@ -538,7 +543,7 @@ export default function NavClient() {
                 ))}
               </nav>
 
-              {/* Rodapé do drawer — só WhatsApp e idioma */}
+              {/* Rodapé do drawer — Reservar Data + WhatsApp + idioma */}
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 transition={{ delay: 0.32 }}
@@ -548,6 +553,24 @@ export default function NavClient() {
                   flexShrink: 0, display: "flex", flexDirection: "column", gap: "10px",
                 }}
               >
+                <a
+                  href={FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                  style={{
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    backgroundColor: (PAGE_COLORS[pathname] || DEFAULT_CTA).bg,
+                    color: "#FAF7F0",
+                    padding: "15px 24px", borderRadius: "100px", textDecoration: "none",
+                    fontWeight: 600, fontSize: "0.76rem", letterSpacing: "1.5px",
+                    textTransform: "uppercase",
+                    fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
+                    transition: "background 0.4s ease",
+                  }}
+                >
+                  Reservar Data
+                </a>
                 <a
                   href="https://wa.me/351934680300"
                   target="_blank"
