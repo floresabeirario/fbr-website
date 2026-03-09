@@ -59,7 +59,7 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
           loading="lazy"
         />
         {/* gradiente: topo suave para numero, fundo forte para texto */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(20,12,4,0.38) 0%, transparent 28%, transparent 42%, rgba(20,12,4,0.82) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(20,12,4,0.42) 0%, transparent 28%, transparent 35%, rgba(20,12,4,0.94) 100%)" }} />
 
         {/* Numero discreto no canto superior esquerdo */}
         <div style={{
@@ -145,7 +145,8 @@ export default function RecriacaoClient() {
   const heroTextY   = useTransform(heroP, [0, 1], ["0%", "40%"]);
   const heroOpacity = useTransform(heroP, [0, 0.85], [1, 0]);
 
-  const whatsappUrl = `https://wa.me/351934680300?text=${encodeURIComponent("Olá! Gostaria de pedir um orçamento para recriação de bouquet de casamento. Envio fotografias em anexo.")}`;
+  const whatsappUrl = `https://wa.me/351934680300?text=${encodeURIComponent("Olá! Gostaria que recriassem num quadro o seguinte bouquet. Envio fotografias em anexo.")}`;
+  const whatsappUrlRecriacao = `https://wa.me/351934680300?text=${encodeURIComponent("Olá! Gostaria que recriassem num quadro o seguinte bouquet. Envio fotografias em anexo.")}`;
 
   const steps = [
     {
@@ -282,17 +283,17 @@ export default function RecriacaoClient() {
           padding: 10px 20px;
           border-radius: 100px;
           text-decoration: none;
-          font-weight: 500;
+          font-weight: 400;
           font-size: 0.7rem;
           letter-spacing: 0.8px;
           text-transform: uppercase;
-          border: 1px solid rgba(250,245,236,0.25);
+          border: 1px solid rgba(250,245,236,0.22);
           backdrop-filter: blur(8px);
           transition: all 0.3s ease;
           font-family: Roboto, sans-serif;
           white-space: nowrap;
         }
-        .btn-wa-hero:hover { background: rgba(250,245,236,0.2); transform: translateY(-2px); }
+        .btn-wa-hero:hover { background: rgba(250,245,236,0.18); transform: translateY(-2px); }
 
         /* WhatsApp nas outras seccoes: verde */
         .btn-whatsapp {
@@ -355,7 +356,7 @@ export default function RecriacaoClient() {
       >
         <motion.div
           aria-hidden="true"
-          style={{ position: "absolute", inset: "-20%", backgroundImage: "url('/sandra1.webp')", backgroundSize: "cover", backgroundPosition: "center", y: heroBgY }}
+          style={{ position: "absolute", inset: "-20%", backgroundImage: "url('/sandra2.webp')", backgroundSize: "cover", backgroundPosition: "center", y: heroBgY }}
         />
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, zIndex: 1, background: "linear-gradient(to bottom, rgba(20,12,4,0.28) 0%, rgba(20,12,4,0.5) 60%, rgba(20,12,4,0.7) 100%)" }} />
 
@@ -365,7 +366,7 @@ export default function RecriacaoClient() {
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.7 }}
             style={{ fontSize: "clamp(0.52rem,1.3vw,0.62rem)", letterSpacing: "4px", textTransform: "uppercase", fontWeight: "700", marginBottom: "18px", opacity: 0.6, fontFamily: "Roboto, sans-serif" }}
           >
-            Quando as flores j&aacute; desapareceram
+            A beleza do passado, a florescer no presente.
           </motion.p>
 
           <motion.h1
@@ -525,7 +526,7 @@ export default function RecriacaoClient() {
           </h2>
           <p style={{ color: "rgba(250,245,236,0.66)", fontSize: "clamp(0.88rem,2vw,0.98rem)", lineHeight: 1.85, margin: "0 auto 34px", maxWidth: "480px" }}>
             Seja para preservar flores de casamento, oferecer um <strong style={{ color: "rgba(250,245,236,0.85)" }}>presente de aniversário especial</strong> ou reviver uma memória de décadas atrás,
-            basta enviar-nos as fotos. <strong style={{ color: "rgba(250,245,236,0.85)" }}>Resposta em 24 horas.</strong>
+            basta enviar-nos as fotos.
           </p>
           <div className="cta-row">
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
