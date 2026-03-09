@@ -286,40 +286,66 @@ export default function ComoFuncionaClient() {
           @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
           }
+
+          /* HERO */
+          .hero-layout {
+            position: relative;
+            min-height: 100svh;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+          }
+          .hero-foto-bg {
+            position: absolute; inset: 0;
+          }
+          .hero-foto-bg img {
+            width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+          }
+          .hero-foto-bg::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(35,15,5,0.88) 0%, rgba(35,15,5,0.55) 45%, rgba(35,15,5,0.15) 100%);
+          }
+          .hero-text-col {
+            position: relative; z-index: 2;
+            width: 100%;
+            padding: clamp(110px,14vw,160px) clamp(24px,5vw,72px) clamp(60px,8vw,90px);
+          }
+          .cta-row-hero { display: flex; justify-content: center; }
+          .btn-outline-hero {
+            display: inline-flex; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.55); color: #FAF7F0;
+            padding: 0 28px; height: 44px; border-radius: 100px;
+            text-decoration: none; font-weight: 600; font-size: 0.72rem; letter-spacing: 1.4px;
+            text-transform: uppercase; text-align: center; transition: all 0.3s ease;
+            font-family: Roboto, sans-serif; white-space: nowrap; box-sizing: border-box;
+            backdrop-filter: blur(6px);
+          }
+          .btn-outline-hero:hover { background: rgba(255,255,255,0.22); border-color: #fff; transform: translateY(-2px); }
+
           a:focus-visible, button:focus-visible { outline: 3px solid #C8522A; outline-offset: 4px; border-radius: 4px; }
         `,
         }} />
 
         {/* HERO com fotoquadrocloseup2.webp */}
-        <section
-          aria-label="Como funciona a preservação de flores"
-          style={{ position: "relative", minHeight: "100svh", display: "flex", alignItems: "center", overflow: "hidden" }}
-        >
-          <img
-            src="/fotoquadrocloseup2.webp"
-            alt=""
-            aria-hidden="true"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", zIndex: 0 }}
-          />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(35,15,5,0.85) 0%, rgba(35,15,5,0.45) 55%, rgba(35,15,5,0.18) 100%)", zIndex: 1 }} />
+        <section className="hero-layout" aria-label="Como funciona a preservação de flores">
+          <div className="hero-foto-bg">
+            <img src="/fotoquadrocloseup2.webp" alt="" aria-hidden="true" />
+          </div>
 
-          <div style={{ position: "relative", zIndex: 2, width: "100%", padding: "clamp(110px,16vw,160px) clamp(20px,5vw,64px) clamp(64px,10vw,100px)", display: "flex", justifyContent: "center" }}>
-            <div style={{ maxWidth: "680px", textAlign: "center", width: "100%" }}>
-              <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-                <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(255,190,130,0.9)", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>O nosso processo</span>
-                <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.6rem,8vw,5.2rem)", color: "#FAF7F0", margin: "0 0 clamp(16px,2.5vw,22px)", lineHeight: 1.0, textShadow: "0 2px 12px rgba(0,0,0,0.55)" }}>
-                  Da flor fresca<br />
-                  <em style={{ fontStyle: "italic", color: "#FF8A50" }}>ao quadro para sempre</em>
-                </h1>
-                <p style={{ color: "rgba(250,247,240,0.82)", fontSize: "clamp(0.93rem,1.9vw,1.05rem)", lineHeight: 1.8, maxWidth: "520px", margin: "0 auto clamp(28px,4vw,36px)", textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}>
-                  Cinco passos para transformar as suas flores numa obra de arte botânica que dura décadas, explicados com toda a transparência.
-                </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", alignItems: "center", justifyContent: "center" }}>
-                  <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">Reservar Data</a>
-                  <a href="/perguntas-frequentes" className="btn-outline">Ver Perguntas Frequentes</a>
-                </div>
-              </motion.div>
-            </div>
+          <div className="hero-text-col">
+            <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
+              <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(255,190,130,0.7)", fontFamily: "Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700, display: "block", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>O nosso processo</p>
+              <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.05, color: "#FAF7F0", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)", textShadow: "0 2px 16px rgba(0,0,0,0.6)" }}>
+                Da flor fresca<br />
+                <em style={{ fontStyle: "italic", color: "#FF8A50" }}>ao quadro para sempre</em>
+              </h1>
+              <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)", textShadow: "0 1px 10px rgba(0,0,0,0.55)" }}>
+                Cinco passos para transformar as suas flores numa obra de arte botânica que dura décadas, explicados com toda a transparência.
+              </p>
+              <div className="cta-row-hero">
+                <a href="/perguntas-frequentes" className="btn-outline-hero">Ver Perguntas Frequentes</a>
+              </div>
+            </motion.div>
           </div>
         </section>
 
