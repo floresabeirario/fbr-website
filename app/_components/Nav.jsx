@@ -16,17 +16,17 @@ const PAGE_COLORS = {
   "/preservar-flores-batizado-nascimento": { bg: "#7BA88C", shadow: "rgba(123,168,140,0.32)" },
   "/preservar-flores-aniversario":         { bg: "#A8886B", shadow: "rgba(168,136,107,0.32)" },
   "/preservar-flores-pedido-casamento":    { bg: "#A86B7B", shadow: "rgba(168,107,123,0.32)" },
-  "/recriacao":                            { bg: "#8B6BA8", shadow: "rgba(139,107,168,0.32)" },
+  "/recriacao":                            { bg: "#F0CC70", shadow: "rgba(240,204,112,0.32)" },
   "/contactos":                            { bg: "#C4846B", shadow: "rgba(196,132,107,0.32)" },
+  "/opcoes-e-precos":                      { bg: "#8BA888", shadow: "rgba(139,168,136,0.32)" },
+  "/como-funciona":                        { bg: "#C8522A", shadow: "rgba(200,82,42,0.32)" },
 };
 const DEFAULT_CTA = { bg: "#3D6B5E", shadow: "rgba(61,107,94,0.32)" };
 
 // ── Ícones do menu mobile ────────────────────────────────
 const IconFlor6 = () => (
-  // flor com 6 pétalas usando elipses rodadas
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <circle cx="12" cy="12" r="2.2"/>
-    {/* 6 pétalas a 0°, 60°, 120°, 180°, 240°, 300° */}
     <ellipse cx="12" cy="6.5" rx="1.5" ry="3" />
     <ellipse cx="12" cy="17.5" rx="1.5" ry="3" />
     <ellipse cx="17.2" cy="9.25" rx="1.5" ry="3" transform="rotate(60 17.2 9.25)" />
@@ -134,7 +134,6 @@ const DesktopDropdown = ({ menu, scrolled }) => {
               zIndex: 300,
             }}
           >
-            {/* Ponte invisível entre o trigger e o painel */}
             <div style={{
               position: "absolute", top: "-14px", left: 0, right: 0, height: "14px",
             }} />
@@ -147,7 +146,6 @@ const DesktopDropdown = ({ menu, scrolled }) => {
               minWidth: "220px",
               position: "relative",
             }}>
-              {/* Seta de cima alinhada ao trigger */}
               <div style={{
                 position: "absolute", top: "-5px", left: "24px",
                 transform: "rotate(45deg)",
@@ -325,7 +323,6 @@ export default function NavClient() {
 
   const show = scrolled || !isHome;
 
-  // Links da direita sem Blog
   const rightLinks = NAV_RIGHT.filter(item => item.name !== "Blog" && item.name !== "FAQ");
 
   return (
@@ -484,7 +481,7 @@ export default function NavClient() {
                 zIndex: 200, display: "flex", flexDirection: "column", overflowY: "auto",
               }}
             >
-              {/* Cabeçalho do drawer — SÓ logo e botão fechar */}
+              {/* Cabeçalho do drawer */}
               <div style={{
                 display: "flex", justifyContent: "space-between", alignItems: "center",
                 padding: "20px 28px", borderBottom: "1px solid rgba(250,247,240,0.07)", flexShrink: 0,
@@ -553,7 +550,7 @@ export default function NavClient() {
                 ))}
               </nav>
 
-              {/* Rodapé do drawer — Reservar Data + WhatsApp + idioma */}
+              {/* Rodapé do drawer */}
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 transition={{ delay: 0.32 }}
