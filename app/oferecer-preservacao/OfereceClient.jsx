@@ -51,9 +51,8 @@ const ocasioes = [
 
 const passos = [
   { n: "01", titulo: "Escolha o valor", texto: "O vale pode ter o valor que quiser, com um mínimo de 300€. Pode personalizar o valor para se adaptar ao serviço que deseja oferecer.", link: { href: "/opcoes-e-precos", label: "Ver preços" } },
-  { n: "02", titulo: "Receba o cartão ilustrado", texto: "Enviamos o cartão por email gratuitamente, ou fisicamente por 5€ mais portes. Se preferir levantar em Coimbra, a recolha é gratuita." },
-  { n: "03", titulo: "Ofereça com amor", texto: "O cartão tem campos para escrever de quem é e para quem é. Podemos entregar o vale ao remetente ou enviar diretamente à pessoa presenteada." },
-  { n: "04", titulo: "A pessoa usa quando quiser", texto: "O vale não tem data de validade. O presenteado deve contactar-nos quando quiser, pelo site ou pelo WhatsApp, e tratamos de tudo juntos. Recomendamos fazer a reserva com o máximo de antecedência para garantir vaga na data desejada.", link: { href: "/como-funciona", label: "Ver processo completo" } },
+  { n: "02", titulo: "Receba e ofereça o cartão", texto: "Enviamos o cartão por email gratuitamente, ou fisicamente por 9€ mais portes, pronto a oferecer com envelope incluído. Se preferir levantar em Coimbra, 9€ com recolha gratuita. O cartão tem campos para escrever de quem é e para quem é, e podemos enviar diretamente à pessoa presenteada." },
+  { n: "03", titulo: "A pessoa usa quando quiser", texto: "O vale não tem data de validade. O presenteado deve contactar-nos quando quiser, pelo site ou pelo WhatsApp, e tratamos de tudo juntos. Recomendamos fazer a reserva com o máximo de antecedência para garantir vaga na data desejada.", link: { href: "/como-funciona", label: "Ver processo completo" } },
 ];
 
 const condicoes = [
@@ -62,7 +61,7 @@ const condicoes = [
   "Não é reembolsável",
   "Válido exclusivamente para os serviços da Flores à Beira-Rio",
   "Entrega digital gratuita por email",
-  "Entrega física por 5€ mais portes de envio",
+  "Entrega física por 9€ mais portes de envio",
   "Recolha gratuita em Coimbra",
 ];
 
@@ -178,13 +177,9 @@ export default function OfereceClient() {
           padding: clamp(110px,14vw,160px) clamp(24px,5vw,72px) clamp(60px,8vw,90px);
         }
 
-        .hero-titulo {
-          text-shadow: 0 2px 24px rgba(0,0,0,0.45), 0 1px 6px rgba(0,0,0,0.3);
-        }
+        .hero-titulo { }
 
-        .hero-texto {
-          text-shadow: 0 1px 12px rgba(0,0,0,0.4);
-        }
+        .hero-texto { }
 
         /* Secção cartão (foto + texto) */
         .cartao-grid {
@@ -241,39 +236,40 @@ export default function OfereceClient() {
         </div>
 
         <div className="hero-text-col">
-          <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px" }}>
+          <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
             <Eyebrow light>Um presente com alma</Eyebrow>
             <h1 className="hero-titulo" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: CREME, margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)" }}>
               Ofereça uma memória<br />
               <em style={{ fontStyle: "italic", color: AZUL_CLR }}>que dura para sempre</em>
             </h1>
-            <p className="hero-texto" style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 0 0.9rem" }}>
+            <p className="hero-texto" style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto clamp(1.8rem, 3.5vw, 2.8rem)" }}>
               O vale oferta da Flores à Beira-Rio permite oferecer a preservação de flores num quadro emoldurado, tornando-se na prenda perfeita para qualquer ocasião.
             </p>
-            <p className="hero-texto" style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.75)", margin: "0 0 clamp(1.8rem, 3.5vw, 2.8rem)" }}>
-              O vale transforma flores reais em arte emoldurada feita à mão, guardando para sempre as memórias de um dia especial.
-            </p>
-            <div className="cta-row-vale" style={{ marginBottom: "1.4rem" }}>
+            <div className="cta-row-vale" style={{ marginBottom: "1.4rem", justifyContent: "center" }}>
               <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary-vale">Encomendar Vale Oferta</a>
             </div>
-            <p style={{ fontSize: "0.78rem", color: "rgba(250,247,240,0.5)", letterSpacing: "0.05em", textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}>A partir de 300€ · Sem data de validade · Entrega digital gratuita</p>
+            <p style={{ fontSize: "0.78rem", color: "rgba(250,247,240,0.5)", letterSpacing: "0.05em" }}>A partir de 300€ · Sem data de validade · Entrega digital gratuita</p>
           </motion.div>
         </div>
       </section>
 
-      {/* CARTÃO com vale1.webp */}
+      {/* CARTÃO com vale2.webp */}
       <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", maxWidth: "1100px", margin: "0 auto" }}>
         <Reveal>
           <div className="cartao-grid">
             <div className="cartao-foto-wrap">
               <div className="cartao-foto">
-                <img src="/vale1.webp" alt="Cartão presente da Flores à Beira-Rio versão colorida com ilustrações de flores" />
+                <img src="/vale2.webp" alt="Cartão presente da Flores à Beira-Rio versão colorida com ilustrações de flores" />
               </div>
             </div>
             <div style={{ flex: 1 }}>
               <Eyebrow color={AZUL}>O cartão</Eyebrow>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem, 3vw, 2rem)", lineHeight: 1.15, margin: "0 0 0.3rem", color: ESCURO }}>Vale oferta de preservação</h2>
-              <p style={{ fontSize: "0.78rem", color: AZUL, letterSpacing: "0.05em", marginBottom: "1.4rem", fontFamily: "'Google Sans', sans-serif" }}>Ilustrado por uma artista de Coimbra</p>
+              <p style={{ fontSize: "0.78rem", color: AZUL, letterSpacing: "0.05em", marginBottom: "1.4rem", fontFamily: "'Google Sans', sans-serif" }}>
+                Ilustrado por a artista{" "}
+                <a href="https://www.instagram.com/damais_cenas" target="_blank" rel="noopener noreferrer" style={{ color: AZUL, fontWeight: 600, textDecoration: "none", borderBottom: `1px solid ${AZUL}66`, paddingBottom: "1px" }}>@damais_cenas</a>
+                {" "}de Coimbra
+              </p>
 
               <div style={{ marginBottom: "1.6rem" }}>
                 {condicoesCartao.map((cond, i) => (
@@ -296,14 +292,14 @@ export default function OfereceClient() {
                   <span className="entrega-icon" aria-hidden="true">📦</span>
                   <div className="entrega-texto">
                     <strong>Envio físico por correio</strong>
-                    <span>5€ pelo vale físico, mais portes de envio. Vai pronto a oferecer, com envelope incluído.</span>
+                    <span>9€ pelo vale físico, mais portes de envio. Vai pronto a oferecer, com envelope incluído.</span>
                   </div>
                 </div>
                 <div className="entrega-item">
                   <span className="entrega-icon" aria-hidden="true">📍</span>
                   <div className="entrega-texto">
                     <strong>Recolha em Coimbra</strong>
-                    <span>5€ pelo vale físico, recolha gratuita. Vai pronto a oferecer, com envelope incluído.</span>
+                    <span>9€ pelo vale físico, recolha gratuita. Vai pronto a oferecer, com envelope incluído.</span>
                   </div>
                 </div>
               </div>
