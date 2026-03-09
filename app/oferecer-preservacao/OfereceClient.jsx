@@ -51,8 +51,8 @@ const ocasioes = [
 
 const passos = [
   { n: "01", titulo: "Escolha o valor", texto: "O vale pode ter o valor que quiser, com um mínimo de 300€. Pode personalizar o valor para se adaptar ao serviço que deseja oferecer.", link: { href: "/opcoes-e-precos", label: "Ver preços" } },
-  { n: "02", titulo: "Receba e ofereça o cartão", texto: "Enviamos o cartão por email gratuitamente, ou fisicamente por 9€ mais portes, pronto a oferecer com envelope incluído. Se preferir levantar em Coimbra, 9€ com recolha gratuita. O cartão tem campos para escrever de quem é e para quem é, e podemos enviar diretamente à pessoa presenteada." },
-  { n: "03", titulo: "A pessoa usa quando quiser", texto: "O vale não tem data de validade. O presenteado deve contactar-nos quando quiser, pelo site ou pelo WhatsApp, e tratamos de tudo juntos. Recomendamos fazer a reserva com o máximo de antecedência para garantir vaga na data desejada.", link: { href: "/como-funciona", label: "Ver processo completo" } },
+  { n: "02", titulo: "Receba e ofereça o cartão", texto: "Enviamos o cartão por email gratuitamente, ou fisicamente por 9€ + portes, pronto a oferecer com envelope incluído. Se preferir levantar em Coimbra, 9€ com recolha gratuita. O cartão tem campos para escrever de quem é e para quem é, e podemos entregar ao remetente ou enviar diretamente à pessoa presenteada." },
+  { n: "03", titulo: "A pessoa usa quando quiser", texto: "O vale não tem data de validade. O presenteado deve contactar-nos quando quiser, pelo site ou pelo WhatsApp, e tratamos de tudo juntos. Recomendamos fazer a reserva da presrvação das flores com o máximo de antecedência para garantir vaga na data desejada.", link: { href: "/como-funciona", label: "Ver processo completo" } },
 ];
 
 const condicoes = [
