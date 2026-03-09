@@ -112,9 +112,9 @@ const VALUES = [
     desc: "Os quadros s\u00e3o emoldurados numa molduraria local portuguesa, com madeira e materiais lacados de alta qualidade. Cada moldura \u00e9 produzida \u00e0 medida para a pe\u00e7a que vai receber.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <rect x="3" y="3" width="18" height="18" rx="2" stroke="#3D6B5E" strokeWidth="1.5"/>
-        <rect x="7" y="7" width="10" height="10" rx="1" stroke="#3D6B5E" strokeWidth="1.2" strokeDasharray="2 1.5"/>
-        <circle cx="12" cy="12" r="1.5" fill="#3D6B5E" opacity="0.5"/>
+        <rect x="3" y="3" width="18" height="18" rx="2" stroke="#3D6B5E" strokeWidth="1.8" fill="rgba(61,107,94,0.1)"/>
+        <rect x="7" y="7" width="10" height="10" rx="1" stroke="#8BA888" strokeWidth="1.2"/>
+        <circle cx="12" cy="12" r="2" fill="#3D6B5E"/>
       </svg>
     ),
   },
@@ -123,8 +123,9 @@ const VALUES = [
     desc: "Apoiamos artistas portugueses locais que criaram os elementos gr\u00e1ficos da nossa marca, incluindo o cart\u00e3o que acompanha as embalagens e o vale presente.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 2 C8 2 5 5 5 9 C5 14 12 22 12 22 C12 22 19 14 19 9 C19 5 16 2 12 2Z" stroke="#3D6B5E" strokeWidth="1.5" fill="rgba(61,107,94,0.08)"/>
-        <path d="M12 22 L12 9 M12 9 C9 7.5 7.5 5 8 3 M12 9 C15 7.5 16.5 5 16 3" stroke="#3D6B5E" strokeWidth="1" strokeLinecap="round"/>
+        <path d="M12 2 C8 2 5 5 5 9 C5 14 12 22 12 22 C12 22 19 14 19 9 C19 5 16 2 12 2Z" stroke="#3D6B5E" strokeWidth="1.6" fill="rgba(61,107,94,0.18)"/>
+        <path d="M12 22 L12 9" stroke="#8BA888" strokeWidth="1.4" strokeLinecap="round"/>
+        <path d="M12 9 C9 7.5 7.5 5 8 3 M12 9 C15 7.5 16.5 5 16 3" stroke="#3D6B5E" strokeWidth="1" strokeLinecap="round"/>
       </svg>
     ),
   },
@@ -133,7 +134,8 @@ const VALUES = [
     desc: "A prensagem bot\u00e2nica n\u00e3o utiliza solventes, resinas nem subst\u00e2ncias sint\u00e9ticas. O processo combina press\u00e3o, calor controlado e tempo. Nenhuma subst\u00e2ncia \u00e9 adicionada \u00e0 flor.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 3 L14.5 8.5 L20.5 9.3 L16.2 13.5 L17.3 19.5 L12 16.7 L6.7 19.5 L7.8 13.5 L3.5 9.3 L9.5 8.5 Z" stroke="#3D6B5E" strokeWidth="1.5" fill="rgba(61,107,94,0.08)" strokeLinejoin="round"/>
+        <path d="M12 3 L14.5 8.5 L20.5 9.3 L16.2 13.5 L17.3 19.5 L12 16.7 L6.7 19.5 L7.8 13.5 L3.5 9.3 L9.5 8.5 Z" stroke="#3D6B5E" strokeWidth="1.6" fill="rgba(61,107,94,0.22)" strokeLinejoin="round"/>
+        <path d="M12 7 L13.5 10.5 L17 11 L14.5 13.4 L15.2 17 L12 15.2 L8.8 17 L9.5 13.4 L7 11 L10.5 10.5 Z" fill="#3D6B5E" opacity="0.35"/>
       </svg>
     ),
   },
@@ -142,10 +144,10 @@ const VALUES = [
     desc: "Tentamos que a maior parte dos elementos da embalagem tenham uma segunda vida, e que o m\u00ednimo de res\u00edduos necess\u00e1rios para o embalamento seja logo descartado.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M4 12 C4 8 7 5 11 5 L13 5" stroke="#3D6B5E" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M11 3 L13 5 L11 7" stroke="#3D6B5E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M20 12 C20 16 17 19 13 19 L11 19" stroke="#3D6B5E" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M13 21 L11 19 L13 17" stroke="#3D6B5E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M4 12 C4 8 7 5 11 5 L13 5" stroke="#3D6B5E" strokeWidth="1.8" strokeLinecap="round"/>
+        <path d="M11 3 L13 5 L11 7" stroke="#3D6B5E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="rgba(61,107,94,0.3)"/>
+        <path d="M20 12 C20 16 17 19 13 19 L11 19" stroke="#8BA888" strokeWidth="1.8" strokeLinecap="round"/>
+        <path d="M13 21 L11 19 L13 17" stroke="#8BA888" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="rgba(139,168,136,0.3)"/>
       </svg>
     ),
   },
@@ -154,12 +156,12 @@ const VALUES = [
     desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da Associa\u00e7\u00e3o de Paralisia Cerebral de Coimbra. N\u00e3o \u00e9 uma a\u00e7\u00e3o pontual, \u00e9 parte do nosso modelo de neg\u00f3cio.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M17 21 V19 C17 17.9 16.1 17 15 17 H9 C7.9 17 7 17.9 7 19 V21" stroke="#3D6B5E" strokeWidth="1.5" strokeLinecap="round"/>
-        <circle cx="12" cy="10" r="3" stroke="#3D6B5E" strokeWidth="1.5"/>
-        <path d="M21 21 V19 C21 17.9 20.1 17 19 17 H18" stroke="#3D6B5E" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M3 21 V19 C3 17.9 3.9 17 5 17 H6" stroke="#3D6B5E" strokeWidth="1.5" strokeLinecap="round"/>
-        <circle cx="19" cy="10" r="2" stroke="#3D6B5E" strokeWidth="1.5"/>
-        <circle cx="5" cy="10" r="2" stroke="#3D6B5E" strokeWidth="1.5"/>
+        <path d="M17 21 V19 C17 17.9 16.1 17 15 17 H9 C7.9 17 7 17.9 7 19 V21" stroke="#3D6B5E" strokeWidth="1.6" strokeLinecap="round"/>
+        <circle cx="12" cy="10" r="3" stroke="#3D6B5E" strokeWidth="1.6" fill="rgba(61,107,94,0.15)"/>
+        <path d="M21 21 V19 C21 17.9 20.1 17 19 17 H18" stroke="#8BA888" strokeWidth="1.4" strokeLinecap="round"/>
+        <path d="M3 21 V19 C3 17.9 3.9 17 5 17 H6" stroke="#8BA888" strokeWidth="1.4" strokeLinecap="round"/>
+        <circle cx="19" cy="10" r="2" stroke="#8BA888" strokeWidth="1.4" fill="rgba(139,168,136,0.1)"/>
+        <circle cx="5" cy="10" r="2" stroke="#8BA888" strokeWidth="1.4" fill="rgba(139,168,136,0.1)"/>
       </svg>
     ),
   },
@@ -168,9 +170,9 @@ const VALUES = [
     desc: "Para garantir que o seu quadro chega em perfeitas condi\u00e7\u00f5es, ainda utilizamos enchimento insufl\u00e1vel para proteger o vidro. Estamos ativamente a testar alternativas 100% sustent\u00e1veis.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="12" cy="12" r="9" stroke="#9BA89F" strokeWidth="1.5" fill="rgba(155,168,159,0.06)"/>
-        <path d="M12 8 L12 12 L15 15" stroke="#9BA89F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="12" cy="12" r="1" fill="#9BA89F" opacity="0.4"/>
+        <circle cx="12" cy="12" r="9" stroke="#9BA89F" strokeWidth="1.6" fill="rgba(155,168,159,0.12)"/>
+        <path d="M12 8 L12 12 L15 15" stroke="#9BA89F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="12" cy="12" r="1.5" fill="#9BA89F"/>
       </svg>
     ),
   },
@@ -179,12 +181,13 @@ const VALUES = [
     desc: "O mesmo vidro utilizado em museus e galerias. Filtra 70% dos raios UV e elimina reflexos, garantindo que as cores se mant\u00eam vivas durante d\u00e9cadas.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <rect x="4" y="4" width="16" height="16" rx="1.5" stroke="#3D6B5E" strokeWidth="1.5" fill="rgba(61,107,94,0.06)"/>
-        <path d="M4 8 L20 8" stroke="#3D6B5E" strokeWidth="1" opacity="0.4"/>
-        <path d="M4 16 L20 16" stroke="#3D6B5E" strokeWidth="1" opacity="0.4"/>
-        <path d="M8 4 L8 20" stroke="#3D6B5E" strokeWidth="1" opacity="0.4"/>
-        <path d="M16 4 L16 20" stroke="#3D6B5E" strokeWidth="1" opacity="0.4"/>
-        <path d="M7 7 L10 10" stroke="#3D6B5E" strokeWidth="1.2" strokeLinecap="round" opacity="0.6"/>
+        <rect x="4" y="4" width="16" height="16" rx="1.5" stroke="#3D6B5E" strokeWidth="1.8" fill="rgba(61,107,94,0.14)"/>
+        <path d="M4 9 L20 9" stroke="#8BA888" strokeWidth="1" opacity="0.5"/>
+        <path d="M4 15 L20 15" stroke="#8BA888" strokeWidth="1" opacity="0.5"/>
+        <path d="M9 4 L9 20" stroke="#8BA888" strokeWidth="1" opacity="0.5"/>
+        <path d="M15 4 L15 20" stroke="#8BA888" strokeWidth="1" opacity="0.5"/>
+        <path d="M6 6 L10 10" stroke="#FAF7F0" strokeWidth="1.4" strokeLinecap="round" opacity="0.7"/>
+        <circle cx="7" cy="7" r="1" fill="#8BA888" opacity="0.8"/>
       </svg>
     ),
   },
@@ -338,7 +341,7 @@ export default function Sustentabilidade() {
                 color: "#FAF7F0", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)", lineHeight: 1.05,
               }}>
                 Sustentabilidade<br/>
-                <em style={{ fontStyle: "italic", color: "#8FD4BE" }}>sem compromissos</em>
+                <em style={{ fontStyle: "italic", color: "#8BA888" }}>sem compromissos</em>
               </h1>
               <p style={{
                 fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.85,
@@ -348,32 +351,7 @@ export default function Sustentabilidade() {
                 o planeta. Sem resinas petroqu&#237;micas, sem s&#237;lica industrial,
                 apenas prensagem bot&#226;nica artesanal com materiais de conserva&#231;&#227;o museu.
               </p>
-              <motion.div
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.55, duration: 0.6 }}
-                style={{
-                  display: "flex", flexDirection: "row", justifyContent: "center",
-                  borderTop: "1px solid rgba(250,247,240,0.15)",
-                  borderBottom: "1px solid rgba(250,247,240,0.15)",
-                  padding: "clamp(14px,2.5vw,20px) 0",
-                }}
-              >
-                {[
-                  { label: "100% Artesanal", sub: "Sem processos industriais" },
-                  { label: "Orgulhosamente de Coimbra", sub: "Feito com orgulho local" },
-                  { label: "Prensagem Bot\u00e2nica", sub: "M\u00e9todo exclusivo" },
-                ].map((item, i) => (
-                  <div key={i} style={{
-                    flex: 1, textAlign: "center",
-                    borderRight: i < 2 ? "1px solid rgba(250,247,240,0.15)" : "none",
-                    padding: "0 clamp(10px,2vw,24px)",
-                  }}>
-                    <p style={{ margin: 0, fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.76rem,1.4vw,0.9rem)", color: "#FAF7F0", lineHeight: 1.2 }}>{item.label}</p>
-                    <p style={{ margin: "3px 0 0", fontSize: "0.58rem", color: "rgba(250,247,240,0.5)", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif" }}>{item.sub}</p>
-                  </div>
-                ))}
-              </motion.div>
+
             </motion.div>
           </div>
 
@@ -707,7 +685,7 @@ export default function Sustentabilidade() {
                 color: "#FAF7F0", margin: 0, lineHeight: 1.1,
               }}>
                 O que torna cada pe&#231;a<br/>
-                <em style={{ fontStyle: "italic", color: "#8FD4BE" }}>verdadeiramente sustent&#225;vel</em>
+                <em style={{ fontStyle: "italic", color: "#8BA888" }}>verdadeiramente sustent&#225;vel</em>
               </h2>
             </motion.div>
 
@@ -792,7 +770,7 @@ export default function Sustentabilidade() {
               color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1,
             }}>
               Reserve a sua data<br/>
-              <em style={{ fontStyle: "italic", color: "#8FD4BE" }}>e tratamos do resto</em>
+              <em style={{ fontStyle: "italic", color: "#8BA888" }}>e tratamos do resto</em>
             </h2>
             <p style={{ color: "rgba(250,247,240,0.65)", lineHeight: 1.88, fontSize: "clamp(0.9rem,2vw,1rem)", margin: "0 0 34px" }}>
               Preenche o formul&#225;rio e entramos em contacto para combinar todos os detalhes.
