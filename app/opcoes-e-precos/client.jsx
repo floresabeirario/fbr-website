@@ -58,22 +58,48 @@ const elementosIcons = {
   ),
   fita: (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-      <path d="M9 9C9 9 4 6 4 4a2 2 0 014 0c0 2-1 5 1 5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
-      <path d="M9 9C9 9 14 6 14 4a2 2 0 00-4 0c0 2 1 5-1 5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
-      <path d="M9 9v6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+      {/* Laço elaborado com loops e nó central com textura de renda */}
+      <path d="M9 8.5 C7 7 3.5 5.5 3 3.5 C2.6 2 4 1 5.5 1.5 C7 2 8 4.5 9 8.5Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" fill="none"/>
+      <path d="M9 8.5 C11 7 14.5 5.5 15 3.5 C15.4 2 14 1 12.5 1.5 C11 2 10 4.5 9 8.5Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" fill="none"/>
+      {/* Linhas de renda nos loops */}
+      <path d="M5 3.5 C5.8 3.8 6.5 4.8 7.2 6.2" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.6"/>
+      <path d="M4.2 4.8 C5.2 5 6 5.8 6.8 7" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.6"/>
+      <path d="M13 3.5 C12.2 3.8 11.5 4.8 10.8 6.2" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.6"/>
+      <path d="M13.8 4.8 C12.8 5 12 5.8 11.2 7" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.6"/>
+      {/* Nó central */}
+      <ellipse cx="9" cy="8.8" rx="1.6" ry="1.1" stroke="currentColor" strokeWidth="1.2" fill="none"/>
+      {/* Fitas a cair */}
+      <path d="M7.8 9.6 C7 11.5 6.5 13.5 7 16" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" fill="none"/>
+      <path d="M10.2 9.6 C11 11.5 11.5 13.5 11 16" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" fill="none"/>
+      {/* Tracejado nas fitas */}
+      <path d="M7.5 11 L7.2 12 M7.2 13 L7 14" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.5"/>
+      <path d="M10.5 11 L10.8 12 M10.8 13 L11 14" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.5"/>
     </svg>
   ),
   coleira: (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-      <circle cx="9" cy="8" r="5.5" stroke="currentColor" strokeWidth="1.3"/>
-      <path d="M7 13.5l1 3 1-3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-      <circle cx="9" cy="8" r="1.5" stroke="currentColor" strokeWidth="1.1"/>
+      {/* Coleira — tira com fivela */}
+      <path d="M3 7 C3 4.8 5.8 3 9 3 C12.2 3 15 4.8 15 7 C15 9.2 12.2 11 9 11 C5.8 11 3 9.2 3 7Z" stroke="currentColor" strokeWidth="1.3" fill="none"/>
+      {/* Fivela */}
+      <rect x="7.5" y="5.8" width="3" height="2.4" rx="0.5" stroke="currentColor" strokeWidth="1.1" fill="none"/>
+      <line x1="9" y1="5.8" x2="9" y2="8.2" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round"/>
+      {/* Argola para identificação a pender */}
+      <path d="M9 11 L9 12.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+      {/* Osso */}
+      <circle cx="7.2" cy="15" r="1.1" stroke="currentColor" strokeWidth="1.1" fill="none"/>
+      <circle cx="10.8" cy="15" r="1.1" stroke="currentColor" strokeWidth="1.1" fill="none"/>
+      <line x1="8.3" y1="14.55" x2="9.7" y2="14.55" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+      <line x1="8.3" y1="15.45" x2="9.7" y2="15.45" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
     </svg>
   ),
   carta: (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-      <path d="M3 5a1 1 0 011-1h3l2 2 2-2h3a1 1 0 011 1v8a1 1 0 01-1 1H4a1 1 0 01-1-1V5z" stroke="currentColor" strokeWidth="1.3"/>
-      <path d="M6 8h6M6 10.5h4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+      {/* Envelope */}
+      <rect x="1.5" y="3.5" width="15" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.3" fill="none"/>
+      {/* Aba do envelope em V */}
+      <path d="M1.5 5 L9 10 L16.5 5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
+      {/* Coração no centro visível pela aba */}
+      <path d="M9 8 C9 8 7.2 6.5 7.2 5.4 C7.2 4.6 7.8 4 8.5 4 C8.85 4 9 4.3 9 4.3 C9 4.3 9.15 4 9.5 4 C10.2 4 10.8 4.6 10.8 5.4 C10.8 6.5 9 8 9 8Z" stroke="currentColor" strokeWidth="0.9" fill="currentColor" fillOpacity="0.25"/>
     </svg>
   ),
   objeto: (
@@ -297,7 +323,7 @@ export default function OpcoesClient() {
           <Reveal>
             {/* Header compacto em linha */}
             <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "6px 16px", marginBottom: "14px" }}>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.95rem, 1.6vw, 1.1rem)", fontWeight: 400, margin: 0, color: "#1a1a1a", lineHeight: 1.2 }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.3rem, 2.4vw, 1.75rem)", fontWeight: 400, margin: 0, color: "#1a1a1a", lineHeight: 1.2 }}>
                 Pode incluir <em style={{ color: VERDE_CLARO }}>elementos especiais</em> no seu quadro
               </h2>
               <span style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.72rem", color: "rgba(26,26,26,0.38)", fontStyle: "italic", lineHeight: 1.4 }}>
@@ -484,18 +510,18 @@ export default function OpcoesClient() {
           </div>
         </div>
 
-        {/* CTA Garanta a qualidade museu — fundo VERDE_CLARO sólido, exatamente como estava */}
-        <div style={{ backgroundColor: VERDE_CLARO, padding: "clamp(40px,6vw,64px) 24px", marginTop: "clamp(48px,8vw,80px)", textAlign: "center" }}>
+        {/* CTA Garanta a qualidade museu — card arredondado centrado */}
+        <div style={{ padding: "clamp(48px,8vw,80px) 24px", textAlign: "center" }}>
           <Reveal>
-            <div style={{ maxWidth: "560px", margin: "0 auto" }}>
-              <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem, 3.5vw, 2.2rem)", fontWeight: 400, margin: "0 0 14px", lineHeight: 1.15, color: "#FAF7F0" }}>
-                Garanta a <em style={{ color: "rgba(250,247,240,0.72)" }}>qualidade museu</em> para o seu quadro
+            <div style={{ maxWidth: "780px", margin: "0 auto", backgroundColor: "#3D6B5E", borderRadius: "20px", padding: "clamp(40px,6vw,64px) clamp(32px,5vw,80px)" }}>
+              <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 400, margin: "0 0 16px", lineHeight: 1.1, color: "#FAF7F0" }}>
+                Garanta a <em style={{ color: VERDE_CLARO }}>qualidade museu</em> para o seu quadro
               </h3>
-              <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(250,247,240,0.72)", margin: "0 0 28px" }}>
+              <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(250,247,240,0.65)", margin: "0 0 32px" }}>
                 Materiais premium que preservam as suas flores durante décadas.
               </p>
               <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "14px 36px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "52px" }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "16px 48px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "54px" }}
                 onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }} onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
                 Reservar a Minha Data
               </a>
