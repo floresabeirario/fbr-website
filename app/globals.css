@@ -133,16 +133,6 @@ button:focus-visible {
   .nav-bar {
     justify-content: space-between;
   }
-
-  /* O logo no mobile está sempre visível — o framer-motion
-     anima opacity mas o CSS garante que pointer-events funciona */
-  .nav-logo-desktop-animated {
-    opacity: 1 !important;
-    transform: none !important;
-    pointer-events: auto !important;
-    color: inherit !important;
-    padding: 0 !important;
-  }
 }
 
 /* ── Dropdown desktop ──────────────────────────────────── */
