@@ -135,6 +135,7 @@ button:focus-visible {
 @media (max-width: 1439px) {
   .nav-bar {
     justify-content: space-between;
+    position: relative;
   }
 }
 
