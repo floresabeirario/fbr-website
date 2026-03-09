@@ -83,17 +83,13 @@ const Chevron = ({ open, color, size = 10 }) => (
 
 const DesktopDropdown = ({ menu, scrolled }) => {
   const textColor = scrolled ? "#1a1a1a" : "#fff";
-  const isMultiWord = menu.label.includes(" ");
   return (
     <div className="dd-container desktop-only">
       <a href={menu.href} className="nav-link dd-trigger" style={{
         fontSize: "0.68rem", fontWeight: 500, textTransform: "uppercase",
         letterSpacing: "1.3px", color: textColor,
         display: "inline-flex", alignItems: "center",
-        textAlign: "center",
-        maxWidth: isMultiWord ? "80px" : "none",
-        lineHeight: isMultiWord ? 1.3 : 1,
-        whiteSpace: isMultiWord ? "normal" : "nowrap",
+        whiteSpace: "nowrap",
       }}>
         {menu.label}
         <Chevron color={textColor} />
@@ -269,29 +265,7 @@ export default function NavClient() {
         <div className="nav-bar">
 
           <div className="nav-left">
-            <div className="lang-container desktop-only" style={{ position: "relative", display: "flex", alignItems: "center" }}>
-              <a href="/" className="nav-link lang-trigger" style={{
-                fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
-                letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                display: "flex", alignItems: "center", cursor: "pointer",
-              }}>
-                PT <FlagPT />
-              </a>
-              <div className="lang-dropdown" style={{ left: 0, right: "auto" }}>
-                <a href="/en" style={{
-                  fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
-                  letterSpacing: "1.3px", display: "flex", alignItems: "center",
-                  color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                  background: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
-                  backdropFilter: "blur(12px)", padding: "9px 14px", borderRadius: "6px",
-                  border: shouldShowScrolled ? "1px solid rgba(26,26,26,0.08)" : "1px solid rgba(255,255,255,0.12)",
-                  textDecoration: "none", transition: "background 0.3s ease",
-                }}>
-                  EN <FlagEN />
-                </a>
-              </div>
-            </div>
-
+            <NavCTA shouldShowScrolled={shouldShowScrolled} pathname={pathname} />
             <DesktopDropdown menu={NAV_PRESERVACAO} scrolled={shouldShowScrolled} />
             <DesktopDropdown menu={NAV_MOMENTOS}    scrolled={shouldShowScrolled} />
           </div>
@@ -309,15 +283,36 @@ export default function NavClient() {
 
           <div className="nav-right-col">
             <div className="nav-right desktop-only">
-              <NavCTA shouldShowScrolled={shouldShowScrolled} pathname={pathname} />
               {NAV_RIGHT.filter(item => item.name !== "Blog").map(item => (
                 <a key={item.name} href={item.href} className="nav-link" style={{
                   fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
                   letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff", whiteSpace: "nowrap",
                 }}>
-                  {item.name}
+                  {item.name === "Contactos" ? "Contactos e Equipa" : item.name}
                 </a>
               ))}
+              <div className="lang-container" style={{ position: "relative", display: "flex", alignItems: "center" }}>
+                <a href="/" className="nav-link lang-trigger" style={{
+                  fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
+                  letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                  display: "flex", alignItems: "center", cursor: "pointer",
+                }}>
+                  PT <FlagPT />
+                </a>
+                <div className="lang-dropdown" style={{ right: 0, left: "auto" }}>
+                  <a href="/en" style={{
+                    fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
+                    letterSpacing: "1.3px", display: "flex", alignItems: "center",
+                    color: shouldShowScrolled ? "#1a1a1a" : "#fff",
+                    background: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
+                    backdropFilter: "blur(12px)", padding: "9px 14px", borderRadius: "6px",
+                    border: shouldShowScrolled ? "1px solid rgba(26,26,26,0.08)" : "1px solid rgba(255,255,255,0.12)",
+                    textDecoration: "none", transition: "background 0.3s ease",
+                  }}>
+                    EN <FlagEN />
+                  </a>
+                </div>
+              </div>
             </div>
 
             <button
