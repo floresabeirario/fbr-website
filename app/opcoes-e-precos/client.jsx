@@ -35,6 +35,65 @@ function Label({ children, light }) {
   );
 }
 
+// ── SVG icons para elementos especiais ──────────────────────────────────────
+const elementosIcons = {
+  convite: (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <rect x="1.5" y="3.5" width="15" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.3"/>
+      <path d="M1.5 5l7.5 5.5L16.5 5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+    </svg>
+  ),
+  votos: (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <path d="M4 3h10a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V4a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.3"/>
+      <path d="M6 7h6M6 9.5h6M6 12h4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+    </svg>
+  ),
+  joia: (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <circle cx="9" cy="9" r="5.5" stroke="currentColor" strokeWidth="1.3"/>
+      <circle cx="9" cy="9" r="2" stroke="currentColor" strokeWidth="1.2"/>
+      <path d="M9 3.5V1M9 17v-2.5M3.5 9H1M17 9h-2.5" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round"/>
+    </svg>
+  ),
+  fita: (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <path d="M9 9C9 9 4 6 4 4a2 2 0 014 0c0 2-1 5 1 5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
+      <path d="M9 9C9 9 14 6 14 4a2 2 0 00-4 0c0 2 1 5-1 5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
+      <path d="M9 9v6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+    </svg>
+  ),
+  coleira: (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <circle cx="9" cy="8" r="5.5" stroke="currentColor" strokeWidth="1.3"/>
+      <path d="M7 13.5l1 3 1-3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="9" cy="8" r="1.5" stroke="currentColor" strokeWidth="1.1"/>
+    </svg>
+  ),
+  carta: (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <path d="M3 5a1 1 0 011-1h3l2 2 2-2h3a1 1 0 011 1v8a1 1 0 01-1 1H4a1 1 0 01-1-1V5z" stroke="currentColor" strokeWidth="1.3"/>
+      <path d="M6 8h6M6 10.5h4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+    </svg>
+  ),
+  objeto: (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <path d="M9 2l1.8 3.6L15 6.3l-3 2.9.7 4.1L9 11.1l-3.7 2.2.7-4.1L3 6.3l4.2-.7L9 2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
+    </svg>
+  ),
+};
+
+const elementosEspeciais = [
+  { key: "convite", label: "Convite do casamento",  icon: elementosIcons.convite },
+  { key: "votos",   label: "Votos manuscritos",     icon: elementosIcons.votos   },
+  { key: "joia",    label: "Joias ou medalhas",     icon: elementosIcons.joia    },
+  { key: "fita",    label: "Fitas e rendas",        icon: elementosIcons.fita    },
+  { key: "coleira", label: "Coleiras de animais",   icon: elementosIcons.coleira },
+  { key: "carta",   label: "Cartas e bilhetes",     icon: elementosIcons.carta   },
+  { key: "objeto",  label: "Objetos pessoais",      icon: elementosIcons.objeto  },
+];
+
+// ── FrameSVG ─────────────────────────────────────────────────────────────────
 function Flower({ cx, cy, scale = 1, rotate = 0, opacity = 0.45, dark = false }) {
   const r = dark ? `rgba(15,30,26,${opacity})` : `rgba(250,247,240,${opacity})`;
   const rs = dark ? `rgba(15,30,26,${opacity * 0.7})` : `rgba(250,247,240,${opacity * 0.75})`;
@@ -134,13 +193,8 @@ export default function OpcoesClient() {
     <div style={{ backgroundColor: "#FAF7F0", color: "#1a1a1a", overflowX: "hidden" }}>
 
       {/* ── HERO ── */}
-      <section style={{ position: "relative", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0 }}>
-          <div style={{ width: "100%", height: "100%", backgroundImage: "url('/fotoquadro1.webp')", backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.62)" }}/>
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.08) 0%, rgba(15,30,26,0.3) 45%, rgba(15,30,26,0.72) 100%)" }} />
-        </div>
-        {/* Texto centrado verticalmente, sem sobreposição com navbar */}
-        <div style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: "860px", margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
+      <section className="hero-section">
+        <div style={{ width: "100%", maxWidth: "860px", padding: "0 24px", textAlign: "center", position: "relative", zIndex: 1 }}>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
             style={{ fontSize: "0.6rem", letterSpacing: "4px", textTransform: "uppercase", color: "rgba(250,247,240,0.55)", fontFamily: GS, margin: "0 0 22px", fontWeight: 500 }}>
             O seu bouquet, para sempre
@@ -237,45 +291,27 @@ export default function OpcoesClient() {
         </div>
       </section>
 
-      {/* ── ELEMENTOS ESPECIAIS ── reestruturado com toda a info */}
-      <section style={{ backgroundColor: "#FAF7F0", borderTop: "1px solid rgba(26,26,26,0.07)", padding: "clamp(40px,6vw,64px) 24px" }}>
+      {/* ── ELEMENTOS ESPECIAIS — banda compacta com grid de items ── */}
+      <section style={{ backgroundColor: "#FAF7F0", borderTop: "1px solid rgba(26,26,26,0.06)", padding: "clamp(20px,3vw,32px) 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(32px,5vw,56px)", alignItems: "flex-start" }}>
-              {/* Coluna esquerda: título e intro */}
-              <div style={{ flex: "1 1 260px", minWidth: "220px" }}>
-                <Label>Personalização avançada</Label>
-                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", fontWeight: 400, margin: "0 0 14px", lineHeight: 1.1, color: "#1a1a1a" }}>
-                  Pode incluir <em style={{ color: VERDE_CLARO }}>elementos especiais</em> no seu quadro
-                </h2>
-                <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.85rem", lineHeight: 1.75, color: "rgba(26,26,26,0.55)", margin: "0 0 20px", maxWidth: "320px" }}>
-                  Além das flores, podemos incorporar objetos com significado pessoal na composição, tornando o quadro verdadeiramente único.
-                </p>
-                <div style={{ padding: "14px 18px", backgroundColor: "rgba(139,168,136,0.08)", border: "1px solid rgba(139,168,136,0.22)", borderRadius: "8px", maxWidth: "320px" }}>
-                  <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.78rem", lineHeight: 1.7, color: "rgba(26,26,26,0.6)", margin: 0, fontStyle: "italic" }}>
-                    Se os acessórios forem mais volumosos, poderá ser necessário aumentar a profundidade da moldura. O orçamento será ajustado conforme as características da peça.
-                  </p>
-                </div>
-              </div>
-              {/* Coluna direita: lista de elementos */}
-              <div style={{ flex: "2 1 320px" }}>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 200px), 1fr))", gap: "10px" }}>
-                  {[
-                    { label: "Convite do casamento", icon: "✉" },
-                    { label: "Votos manuscritos", icon: "📜" },
-                    { label: "Joias ou medalhas", icon: "💍" },
-                    { label: "Fitas e rendas", icon: "🎀" },
-                    { label: "Coleiras de animais", icon: "🐾" },
-                    { label: "Cartas e bilhetes", icon: "💌" },
-                    { label: "Objetos pessoais", icon: "✨" },
-                  ].map((item, i) => (
-                    <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "12px 14px", backgroundColor: "rgba(139,168,136,0.07)", border: "1px solid rgba(139,168,136,0.2)", borderRadius: "8px" }}>
-                      <span style={{ fontSize: "1rem", lineHeight: 1, flexShrink: 0 }} aria-hidden="true">{item.icon}</span>
-                      <span style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.82rem", color: "rgba(26,26,26,0.75)" }}>{item.label}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            {/* Header compacto em linha */}
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "6px 16px", marginBottom: "14px" }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.95rem, 1.6vw, 1.1rem)", fontWeight: 400, margin: 0, color: "#1a1a1a", lineHeight: 1.2 }}>
+                Pode incluir <em style={{ color: VERDE_CLARO }}>elementos especiais</em> no seu quadro
+              </h2>
+              <span style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.72rem", color: "rgba(26,26,26,0.38)", fontStyle: "italic", lineHeight: 1.4 }}>
+                Se os acessórios forem mais volumosos, a profundidade da moldura será ajustada e o orçamento recalculado.
+              </span>
+            </div>
+            {/* Grid de 7 items com icon + label */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+              {elementosEspeciais.map((item) => (
+                <span key={item.key} style={{ display: "inline-flex", alignItems: "center", gap: "7px", fontFamily: GS, fontWeight: 400, fontSize: "0.78rem", color: "rgba(26,26,26,0.68)", backgroundColor: "rgba(139,168,136,0.06)", border: "1px solid rgba(139,168,136,0.2)", padding: "7px 13px 7px 10px", borderRadius: "8px" }}>
+                  <span style={{ color: VERDE_CLARO, display: "flex", alignItems: "center", flexShrink: 0 }}>{item.icon}</span>
+                  {item.label}
+                </span>
+              ))}
             </div>
           </Reveal>
         </div>
@@ -371,7 +407,7 @@ export default function OpcoesClient() {
         </div>
       </section>
 
-      {/* ── MATERIAIS E QUALIDADE ── agora termina com o gradiente verde */}
+      {/* ── MATERIAIS E QUALIDADE ── */}
       <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(50px,8vw,90px) 24px 0" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
@@ -448,82 +484,96 @@ export default function OpcoesClient() {
           </div>
         </div>
 
-        {/* Gradiente final desta secção: reservar data */}
-        <div style={{ background: `linear-gradient(160deg, #3D6B5E 0%, ${VERDE_CLARO} 100%)`, marginTop: "clamp(48px,8vw,80px)", padding: "clamp(48px,7vw,80px) 24px", textAlign: "center" }}>
-          <Reveal delay={0.1}>
+        {/* CTA Garanta a qualidade museu — fundo VERDE_CLARO sólido, exatamente como estava */}
+        <div style={{ backgroundColor: VERDE_CLARO, padding: "clamp(40px,6vw,64px) 24px", marginTop: "clamp(48px,8vw,80px)", textAlign: "center" }}>
+          <Reveal>
             <div style={{ maxWidth: "560px", margin: "0 auto" }}>
               <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem, 3.5vw, 2.2rem)", fontWeight: 400, margin: "0 0 14px", lineHeight: 1.15, color: "#FAF7F0" }}>
                 Garanta a <em style={{ color: "rgba(250,247,240,0.72)" }}>qualidade museu</em> para o seu quadro
               </h3>
               <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(250,247,240,0.72)", margin: "0 0 28px" }}>
-                Reserve a sua data o mais cedo possível. As vagas são limitadas e os bouquets devem ser enviados dentro de poucos dias após o evento.
+                Materiais premium que preservam as suas flores durante décadas.
               </p>
-              <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
-                <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
-                  style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "14px 36px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "52px" }}
-                  onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }} onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
-                  Reservar a Minha Data
-                </a>
-                <a href="/perguntas-frequentes"
-                  style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "transparent", color: "rgba(250,247,240,0.85)", padding: "14px 32px", borderRadius: "100px", textDecoration: "none", fontWeight: 500, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, border: "1.5px solid rgba(250,247,240,0.35)", transition: "all 0.3s ease", minHeight: "52px" }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.75)"; }} onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.35)"; }}>
-                  Perguntas Frequentes
-                </a>
-              </div>
+              <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "14px 36px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "52px" }}
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }} onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
+                Reservar a Minha Data
+              </a>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ── VALE PRESENTE — ecrã inteiro, impactante ── */}
-      <section style={{ position: "relative", minHeight: "100vh", display: "flex", flexDirection: "column", overflow: "hidden" }} aria-label="Vale Presente">
-        {/* Fundo foto */}
-        <div style={{ position: "absolute", inset: 0 }}>
-          <div style={{ width: "100%", height: "100%", backgroundImage: "url('/vale1.webp')", backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.45) saturate(0.8)" }}/>
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.15) 0%, rgba(15,30,26,0.55) 40%, rgba(15,30,26,0.88) 100%)" }}/>
-        </div>
-
-        {/* Conteúdo */}
-        <div style={{ position: "relative", zIndex: 1, flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "clamp(80px,12vw,140px) clamp(24px,6vw,80px) clamp(60px,9vw,100px)" }}>
+      {/* ── CTA RESERVAR DATA com gradiente — exatamente como estava ── */}
+      <section style={{ background: `linear-gradient(160deg, #3D6B5E 0%, ${VERDE_CLARO} 100%)`, padding: "clamp(60px,10vw,100px) 24px", textAlign: "center" }}>
+        <div style={{ maxWidth: "640px", margin: "0 auto" }}>
           <Reveal>
-            <div style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}>
+            <Label light>Próximo passo</Label>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 6vw, 4rem)", fontWeight: 400, margin: "0 0 24px", lineHeight: 1.05, color: "#FAF7F0" }}>
+              Pronta para preservar<br/><em style={{ color: "rgba(250,247,240,0.72)" }}>o seu bouquet?</em>
+            </h2>
+            <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.8, color: "rgba(250,247,240,0.7)", margin: "0 0 44px" }}>
+              Reserve a sua data o mais cedo possível. As vagas são limitadas e os bouquets devem ser enviados dentro de poucos dias após o evento.
+            </p>
+            <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
+              <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "56px" }}
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }} onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
+                Reservar Data
+              </a>
+              <a href="/perguntas-frequentes"
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "transparent", color: "rgba(250,247,240,0.85)", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, border: "1.5px solid rgba(250,247,240,0.4)", transition: "all 0.3s ease", minHeight: "56px" }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.8)"; }} onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.4)"; }}>
+                Perguntas Frequentes
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
+      {/* ── VALE PRESENTE — ecrã inteiro ── */}
+      <section style={{ position: "relative", minHeight: "100vh", overflow: "hidden" }} aria-label="Vale Presente">
+        {/* Fundo foto */}
+        <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+          <div style={{ width: "100%", height: "100%", backgroundImage: "url('/vale1.webp')", backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.42) saturate(0.8)" }}/>
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.1) 0%, rgba(15,30,26,0.5) 40%, rgba(15,30,26,0.9) 100%)" }}/>
+        </div>
+        {/* Conteúdo alinhado ao fundo */}
+        <div style={{ position: "absolute", inset: 0, zIndex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
+          <div style={{ padding: "clamp(60px,10vw,120px) clamp(24px,6vw,80px) clamp(56px,8vw,88px)", maxWidth: "1200px", margin: "0 auto", width: "100%" }}>
+            <Reveal>
               {/* Badge */}
-              <span style={{ display: "inline-block", backgroundColor: "rgba(139,168,136,0.2)", border: "1px solid rgba(139,168,136,0.5)", color: VERDE_CLARO, fontSize: "0.55rem", letterSpacing: "3.5px", textTransform: "uppercase", fontFamily: GS, fontWeight: 600, padding: "6px 14px", borderRadius: "100px", marginBottom: "24px" }}>
+              <span style={{ display: "inline-block", backgroundColor: "rgba(139,168,136,0.18)", border: "1px solid rgba(139,168,136,0.45)", color: VERDE_CLARO, fontSize: "0.55rem", letterSpacing: "3.5px", textTransform: "uppercase", fontFamily: GS, fontWeight: 600, padding: "6px 14px", borderRadius: "100px", marginBottom: "22px" }}>
                 Para oferecer
               </span>
 
-              {/* Título grande */}
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.8rem, 8vw, 6.5rem)", fontWeight: 400, color: "#FAF7F0", margin: "0 0 clamp(20px,3vw,36px)", lineHeight: 0.95, maxWidth: "820px" }}>
+              {/* Título */}
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.6rem, 7.5vw, 6rem)", fontWeight: 400, color: "#FAF7F0", margin: "0 0 clamp(28px,4vw,44px)", lineHeight: 0.95, maxWidth: "760px" }}>
                 O bouquet dela,<br/>
                 <em style={{ color: VERDE_CLARO }}>para sempre.</em>
               </h2>
 
               {/* Grid de propostas de valor + CTA */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr auto", gap: "clamp(16px,3vw,32px)", alignItems: "end" }} className="vale-bottom-grid">
-
+              <div className="vale-bottom-grid" style={{ display: "grid", gap: "clamp(16px,3vw,28px)", alignItems: "end" }}>
                 <div>
-                  <p style={{ fontFamily: GS, fontWeight: 600, fontSize: "0.62rem", letterSpacing: "3px", textTransform: "uppercase", color: VERDE_CLARO, margin: "0 0 8px" }}>O presente perfeito</p>
-                  <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.7, color: "rgba(250,247,240,0.75)", margin: 0 }}>
+                  <p style={{ fontFamily: GS, fontWeight: 600, fontSize: "0.6rem", letterSpacing: "3px", textTransform: "uppercase", color: VERDE_CLARO, margin: "0 0 7px" }}>O presente perfeito</p>
+                  <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.86rem", lineHeight: 1.7, color: "rgba(250,247,240,0.72)", margin: 0 }}>
                     Ofereça a preservação do bouquet sem precisar de saber a data ou os detalhes. O presenteado trata do resto.
                   </p>
                 </div>
-
                 <div>
-                  <p style={{ fontFamily: GS, fontWeight: 600, fontSize: "0.62rem", letterSpacing: "3px", textTransform: "uppercase", color: VERDE_CLARO, margin: "0 0 8px" }}>Sem data de validade</p>
-                  <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.7, color: "rgba(250,247,240,0.75)", margin: 0 }}>
+                  <p style={{ fontFamily: GS, fontWeight: 600, fontSize: "0.6rem", letterSpacing: "3px", textTransform: "uppercase", color: VERDE_CLARO, margin: "0 0 7px" }}>Sem data de validade</p>
+                  <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.86rem", lineHeight: 1.7, color: "rgba(250,247,240,0.72)", margin: 0 }}>
                     O vale pode ser usado quando a pessoa quiser, com todo o tempo do mundo para decidir.
                   </p>
                 </div>
-
                 <div>
-                  <p style={{ fontFamily: GS, fontWeight: 600, fontSize: "0.62rem", letterSpacing: "3px", textTransform: "uppercase", color: VERDE_CLARO, margin: "0 0 8px" }}>Feito à mão em Coimbra</p>
-                  <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.7, color: "rgba(250,247,240,0.75)", margin: 0 }}>
+                  <p style={{ fontFamily: GS, fontWeight: 600, fontSize: "0.6rem", letterSpacing: "3px", textTransform: "uppercase", color: VERDE_CLARO, margin: "0 0 7px" }}>Feito à mão em Coimbra</p>
+                  <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.86rem", lineHeight: 1.7, color: "rgba(250,247,240,0.72)", margin: 0 }}>
                     Cada quadro é único. Materiais de conservação museu, vidro UltraVue® e moldura à medida.
                   </p>
                 </div>
-
-                <div style={{ display: "flex", flexDirection: "column", gap: "12px", flexShrink: 0 }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px", flexShrink: 0 }}>
                   <a href="/oferecer-preservacao"
                     style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "15px 32px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.25s ease", whiteSpace: "nowrap" }}
                     onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; e.currentTarget.style.transform = "translateY(-2px)"; }}
@@ -531,16 +581,46 @@ export default function OpcoesClient() {
                     Saber mais
                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#3D6B5E" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </a>
-                  <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.7rem", color: "rgba(250,247,240,0.4)", margin: 0, textAlign: "center" }}>A partir de 300€</p>
+                  <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.68rem", color: "rgba(250,247,240,0.38)", margin: 0, textAlign: "center" }}>A partir de 300€</p>
                 </div>
               </div>
-
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </section>
 
       <style jsx global>{`
+        /* ── HERO: a imagem de fundo fica num pseudo-element para não criar
+           stacking context, e o flex centra o conteúdo verdadeiramente ── */
+        .hero-section {
+          position: relative;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+        .hero-section::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image: url('/fotoquadro1.webp');
+          background-size: cover;
+          background-position: center;
+          filter: brightness(0.52);
+          z-index: 0;
+        }
+        .hero-section::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to bottom,
+            rgba(15,30,26,0.05) 0%,
+            rgba(15,30,26,0.25) 50%,
+            rgba(15,30,26,0.65) 100%);
+          z-index: 0;
+        }
+
         .fundos-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 16px; padding: 0 24px 4px; }
         .fundos-track::-webkit-scrollbar { display: none; }
         .fundo-card-new { flex: 0 0 78vw; max-width: 320px; scroll-snap-align: start; }
@@ -552,10 +632,9 @@ export default function OpcoesClient() {
         .slider-hint { display: block; text-align: center; font-family: var(--font-google-sans), 'Google Sans', sans-serif; font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase; padding: 16px 0 0; margin: 0; }
         @media (min-width: 900px) { .slider-hint { display: none; } }
 
-        /* Vale grid — mobile colapsa */
-        .vale-bottom-grid { grid-template-columns: 1fr !important; }
-        @media (min-width: 768px) { .vale-bottom-grid { grid-template-columns: 1fr 1fr auto !important; } }
-        @media (min-width: 1100px) { .vale-bottom-grid { grid-template-columns: 1fr 1fr 1fr auto !important; } }
+        .vale-bottom-grid { grid-template-columns: 1fr; }
+        @media (min-width: 640px) { .vale-bottom-grid { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 1024px) { .vale-bottom-grid { grid-template-columns: 1fr 1fr 1fr auto; } }
 
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
         a:focus-visible, button:focus-visible { outline: 3px solid #8BA888; outline-offset: 4px; border-radius: 4px; }
