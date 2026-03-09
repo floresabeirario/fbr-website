@@ -45,6 +45,18 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
     transition={{ delay, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
     style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
   >
+    {/* Numero fora da imagem, bem visivel */}
+    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px", paddingLeft: "2px" }}>
+      <span style={{
+        fontFamily: "Roboto, sans-serif",
+        fontSize: "0.6rem", fontWeight: "700", letterSpacing: "2.5px",
+        textTransform: "uppercase", color: "#8B6914",
+      }}>
+        Passo {number}
+      </span>
+      <div style={{ flex: 1, height: "1px", backgroundColor: "rgba(139,105,20,0.2)" }} />
+    </div>
+
     <div style={{
       borderRadius: "18px", overflow: "hidden",
       boxShadow: "0 14px 44px rgba(30,20,10,0.13)",
@@ -58,19 +70,8 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
           style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.6s ease" }}
           loading="lazy"
         />
-        {/* gradiente: topo suave para numero, fundo forte para texto */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(20,12,4,0.42) 0%, transparent 28%, transparent 35%, rgba(20,12,4,0.94) 100%)" }} />
-
-        {/* Numero discreto no canto superior esquerdo */}
-        <div style={{
-          position: "absolute", top: "14px", left: "16px",
-          color: "rgba(250,230,160,0.6)",
-          fontSize: "0.52rem", fontWeight: "700", letterSpacing: "2.5px",
-          textTransform: "uppercase", fontFamily: "Roboto, sans-serif",
-          textShadow: "0 1px 6px rgba(0,0,0,0.5)",
-        }}>
-          Passo {number}
-        </div>
+        {/* gradiente fundo forte para texto */}
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(20,12,4,0.94) 100%)" }} />
 
         {/* Titulo e descricao na base da foto */}
         <div style={{
@@ -366,7 +367,7 @@ export default function RecriacaoClient() {
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.7 }}
             style={{ fontSize: "clamp(0.52rem,1.3vw,0.62rem)", letterSpacing: "4px", textTransform: "uppercase", fontWeight: "700", marginBottom: "18px", opacity: 0.6, fontFamily: "Roboto, sans-serif" }}
           >
-            A beleza do passado, a florescer no presente.
+            A beleza do passado, a florescer no presente
           </motion.p>
 
           <motion.h1
@@ -435,10 +436,10 @@ export default function RecriacaoClient() {
       {/* 3. PARA QUEM E */}
       <section
         aria-label="Situacoes em que se usa a recriacao de bouquet"
-        style={{ padding: "64px 20px 76px", backgroundColor: "#FAF5EC" }}
+        style={{ padding: "36px 20px 76px", backgroundColor: "#FAF5EC" }}
       >
         <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <motion.header initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "48px" }}>
+          <motion.header initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "28px" }}>
             <span className="section-eyebrow">Para quem é este servi&ccedil;o</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,3rem)", color: "#2A1E0A", margin: 0, lineHeight: 1.1 }}>
               Mem&oacute;rias que merecem<br />
