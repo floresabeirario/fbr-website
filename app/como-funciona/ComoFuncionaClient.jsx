@@ -237,24 +237,24 @@ export default function ComoFuncionaClient() {
 
           .btn-primary {
             display: flex; align-items: center; justify-content: center;
-            background: #C8522A; color: #FAF7F0;
+            background: rgba(255,255,255,0.15); color: #FAF7F0;
             padding: 0 22px; height: 44px; border-radius: 100px;
             text-decoration: none; font-weight: 600; font-size: 0.7rem; letter-spacing: 1.3px;
-            text-transform: uppercase; text-align: center; border: 2px solid #C8522A;
-            box-shadow: 0 4px 16px rgba(200,82,42,0.28); transition: all 0.3s ease;
+            text-transform: uppercase; text-align: center; border: 2px solid rgba(255,255,255,0.7);
+            backdrop-filter: blur(6px); transition: all 0.3s ease;
             font-family: Roboto, sans-serif; white-space: nowrap; box-sizing: border-box;
           }
-          .btn-primary:hover { background: #A03D1C; border-color: #A03D1C; transform: translateY(-2px); }
+          .btn-primary:hover { background: rgba(255,255,255,0.28); border-color: #fff; transform: translateY(-2px); }
 
           .btn-outline {
             display: flex; align-items: center; justify-content: center;
-            border: 2px solid rgba(240,190,150,0.8); color: #FAF7F0;
+            background: transparent; border: 2px solid rgba(255,255,255,0.45); color: rgba(250,247,240,0.88);
             padding: 0 22px; height: 44px; border-radius: 100px;
             text-decoration: none; font-weight: 600; font-size: 0.7rem; letter-spacing: 1.3px;
             text-transform: uppercase; text-align: center; transition: all 0.3s ease;
             font-family: Roboto, sans-serif; white-space: nowrap; box-sizing: border-box;
           }
-          .btn-outline:hover { background: rgba(240,190,150,0.15); transform: translateY(-2px); }
+          .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.75); transform: translateY(-2px); }
 
           .btn-outline-dark {
             display: flex; align-items: center; justify-content: center;
@@ -307,11 +307,11 @@ export default function ComoFuncionaClient() {
             <div style={{ maxWidth: "680px", textAlign: "center", width: "100%" }}>
               <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
                 <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(255,190,130,0.9)", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>O nosso processo</span>
-                <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.6rem,8vw,5.2rem)", color: "#FAF7F0", margin: "0 0 clamp(16px,2.5vw,22px)", lineHeight: 1.0 }}>
+                <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.6rem,8vw,5.2rem)", color: "#FAF7F0", margin: "0 0 clamp(16px,2.5vw,22px)", lineHeight: 1.0, textShadow: "0 2px 12px rgba(0,0,0,0.55)" }}>
                   Da flor fresca<br />
-                  <em style={{ fontStyle: "italic", color: "#FFBF80" }}>ao quadro para sempre</em>
+                  <em style={{ fontStyle: "italic", color: "#FF8A50" }}>ao quadro para sempre</em>
                 </h1>
-                <p style={{ color: "rgba(250,247,240,0.82)", fontSize: "clamp(0.93rem,1.9vw,1.05rem)", lineHeight: 1.8, maxWidth: "520px", margin: "0 auto clamp(28px,4vw,36px)" }}>
+                <p style={{ color: "rgba(250,247,240,0.82)", fontSize: "clamp(0.93rem,1.9vw,1.05rem)", lineHeight: 1.8, maxWidth: "520px", margin: "0 auto clamp(28px,4vw,36px)", textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}>
                   Cinco passos para transformar as suas flores numa obra de arte botânica que dura décadas, explicados com toda a transparência.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", alignItems: "center", justifyContent: "center" }}>
