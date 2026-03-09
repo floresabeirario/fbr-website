@@ -185,6 +185,11 @@ export default function ContactosClient() {
         }
         .btn-wa-big:hover { background: #1da851; transform: translateY(-3px); }
 
+        /* no mobile mostra a parte inferior da imagem do hero */
+        @media (max-width: 767px) {
+          .hero-bg { background-position: center 80% !important; }
+        }
+
         a:focus-visible, button:focus-visible { outline: 3px solid ${C.salmon}; outline-offset: 4px; border-radius: 4px; }
 
         @media (prefers-reduced-motion: reduce) {
@@ -198,35 +203,25 @@ export default function ContactosClient() {
         aria-label="Contactos e Equipa — Flores à Beira-Rio"
         style={{ position: "relative", overflow: "hidden", minHeight: "85vh", display: "flex", alignItems: "center" }}
       >
-        {/* Foto — menos escura do que antes */}
+        {/* Foto de fundo */}
         <div
           aria-hidden="true"
+          className="hero-bg"
           style={{
             position: "absolute", inset: 0,
             backgroundImage: "url('/juliaquadro2.webp')",
-            backgroundSize: "cover", backgroundPosition: "center",
-            filter: "brightness(0.72) saturate(0.9)",
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+            filter: "brightness(0.55) saturate(0.8)",
           }}
         />
 
-        {/* Overlay suave no topo para legibilidade do texto */}
+        {/* Overlay escuro */}
         <div
           aria-hidden="true"
           style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(to bottom, rgba(15,38,34,0.22) 0%, rgba(15,38,34,0.12) 45%, transparent 70%)",
-          }}
-        />
-
-        {/* Transição seamless no fundo: cor da secção seguinte emerge gradualmente */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            bottom: 0, left: 0, right: 0,
-            height: "48%",
-            background: `linear-gradient(to top, ${C.teal} 0%, rgba(30,61,56,0.82) 35%, rgba(30,61,56,0.0) 100%)`,
-            pointerEvents: "none",
+            background: "linear-gradient(to bottom, rgba(15,38,34,0.4) 0%, rgba(15,38,34,0.6) 50%, rgba(15,38,34,0.85) 100%)",
           }}
         />
 
