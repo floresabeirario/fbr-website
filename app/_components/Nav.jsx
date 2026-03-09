@@ -405,12 +405,7 @@ export default function NavClient() {
                     fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
                     letterSpacing: "1.3px", color: show ? "#1a1a1a" : "#fff", whiteSpace: "nowrap",
                   }}>
-                    {item.name === "Contactos" ? (
-                      <>
-                        <span className="nav-contactos-full">Contactos e Equipa</span>
-                        <span className="nav-contactos-short">Contactos</span>
-                      </>
-                    ) : item.name}
+                    {item.name === "Contactos" ? "Contactos e Equipa" : item.name}
                   </a>
                   {i < rightLinks.length - 1 && <NavDivider scrolled={show} />}
                 </React.Fragment>
