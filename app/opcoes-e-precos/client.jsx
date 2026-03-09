@@ -5,6 +5,9 @@ import { motion, useInView } from "framer-motion";
 
 const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
 
+// Cor de destaque da página: verde claro
+const VERDE_CLARO = "#8BA888";
+
 const fadeUp = {
   hidden: { opacity: 0, y: 36 },
   show:   { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.25, 0.1, 0.25, 1] } },
@@ -26,7 +29,7 @@ function Label({ children, light }) {
   return (
     <p style={{
       fontSize: "0.6rem", letterSpacing: "4px", textTransform: "uppercase",
-      color: light ? "rgba(250,247,240,0.5)" : "#B8954A",
+      color: light ? "rgba(250,247,240,0.5)" : VERDE_CLARO,
       fontFamily: GS, margin: "0 0 20px", fontWeight: 500
     }}>
       {children}
@@ -203,7 +206,7 @@ export default function OpcoesClient() {
   return (
     <div style={{ backgroundColor: "#FAF7F0", color: "#1a1a1a", overflowX: "hidden" }}>
 
-      {/* HERO — ecrã inteiro, conteúdo centrado */}
+      {/* HERO */}
       <section style={{ position: "relative", height: "100vh", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0 }}>
           <div style={{
@@ -230,7 +233,7 @@ export default function OpcoesClient() {
             transition={{ duration: 0.8, delay: 0.18 }}
             style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3.2rem, 11vw, 8rem)", lineHeight: 0.92, margin: "0 0 28px", color: "#FAF7F0", fontWeight: 400, textShadow: "0 4px 24px rgba(0,0,0,0.3)" }}>
             Opções<br/>
-            <em style={{ color: "#8BA888" }}>&amp; Preços</em>
+            <em style={{ color: VERDE_CLARO }}>&amp; Preços</em>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
@@ -328,7 +331,7 @@ export default function OpcoesClient() {
             <div style={{ marginBottom: "28px" }}>
               <Label>Para oferecer</Label>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 14px", lineHeight: 1.1 }}>
-                Presentes com <em style={{ color: "#3D6B5E" }}>memória</em>
+                Presentes com <em style={{ color: VERDE_CLARO }}>memória</em>
               </h2>
               <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.75, color: "rgba(26,26,26,0.55)", maxWidth: "460px", margin: 0 }}>
                 Para além do seu quadro principal, pode encomendar peças adicionais. Presentes pessoais e cheios de significado para quem ama.
@@ -341,7 +344,7 @@ export default function OpcoesClient() {
               {
                 img: "/miniquadros.webp",
                 alt: "Mini quadros 20x25cm de flores preservadas",
-                badge: "Mini quadro", badgeBg: "rgba(61,107,94,0.12)", badgeColor: "#3D6B5E",
+                badge: "Mini quadro", badgeBg: "rgba(139,168,136,0.12)", badgeColor: VERDE_CLARO,
                 title: "20×25 cm",
                 desc: "Uma moldura com as flores do seu bouquet para oferecer a familiares, padrinhos ou damas de honor. Um presente com memória e significado.",
                 note: "Só com a compra de um quadro maior.",
@@ -351,7 +354,7 @@ export default function OpcoesClient() {
                 alt: "Ornamento de natal com flores prensadas",
                 badge: "Natal", badgeBg: "rgba(107,31,42,0.1)", badgeColor: "#6B1F2A",
                 title: "Ornamento de Natal",
-                desc: "Para si ou para oferecer — um pedaço do seu dia especial para decorar o Natal de quem ama, ano após ano.",
+                desc: "Para si ou para oferecer. Um pedaço do seu dia especial para decorar o Natal de quem ama, ano após ano.",
                 note: "Só com a compra de um quadro maior.",
               },
               {
@@ -391,7 +394,7 @@ export default function OpcoesClient() {
         </div>
       </section>
 
-      {/* ELEMENTOS COM VALOR SIMBÓLICO — versão compacta em linha */}
+      {/* ELEMENTOS COM VALOR SIMBÓLICO */}
       <section style={{ backgroundColor: "#FAF7F0", borderTop: "1px solid rgba(26,26,26,0.07)", padding: "clamp(28px,4vw,44px) 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
@@ -400,7 +403,7 @@ export default function OpcoesClient() {
                 Pode incluir no quadro
               </p>
               {["Convite do casamento","Votos manuscritos","Joias ou medalhas","Fitas e rendas","Coleiras de animais","Cartas e bilhetes","Objetos pessoais"].map((item, i) => (
-                <span key={i} style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.78rem", color: "rgba(26,26,26,0.7)", backgroundColor: "rgba(26,26,26,0.05)", border: "1px solid rgba(26,26,26,0.1)", padding: "5px 12px", borderRadius: "100px", whiteSpace: "nowrap" }}>
+                <span key={i} style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.78rem", color: "rgba(26,26,26,0.7)", backgroundColor: "rgba(139,168,136,0.08)", border: "1px solid rgba(139,168,136,0.25)", padding: "5px 12px", borderRadius: "100px", whiteSpace: "nowrap" }}>
                   {item}
                 </span>
               ))}
@@ -534,12 +537,12 @@ export default function OpcoesClient() {
               <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.88rem", color: "rgba(250,247,240,0.8)", margin: 0, letterSpacing: "0.2px" }}>
                 Todos os quadros são emoldurados com{" "}
                 <strong style={{ fontWeight: 700, color: "#C4A55A" }}>vidro museu UltraVue®</strong>
-                {" "}— praticamente invisível, com proteção UV70
+                {" "}praticamente invisível, com proteção UV70
               </p>
             </div>
           </Reveal>
 
-          {/* Linha "Pretende outro formato" */}
+          {/* Linha outro formato */}
           <Reveal>
             <div style={{ display: "flex", alignItems: "center", gap: "28px", padding: "0 0 40px", borderBottom: "1px solid rgba(250,247,240,0.12)" }}>
               <div style={{ flex: 1 }}>
@@ -629,12 +632,12 @@ export default function OpcoesClient() {
           </Reveal>
 
           <Reveal>
-            <div style={{ display: "flex", alignItems: "flex-start", gap: "16px", padding: "22px 28px", backgroundColor: "rgba(184,149,74,0.07)", border: "1px solid rgba(184,149,74,0.2)", borderRadius: "4px", marginBottom: "56px" }}>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "16px", padding: "22px 28px", backgroundColor: "rgba(139,168,136,0.08)", border: "1px solid rgba(139,168,136,0.22)", borderRadius: "4px", marginBottom: "56px" }}>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: "1px" }}>
-                <path d="M10 2 L11.8 7.6 L17.6 7.6 L13 11 L14.8 16.6 L10 13.2 L5.2 16.6 L7 11 L2.4 7.6 L8.2 7.6 Z" stroke="#B8954A" strokeWidth="1.3" strokeLinejoin="round" fill="none"/>
+                <path d="M10 2 L11.8 7.6 L17.6 7.6 L13 11 L14.8 16.6 L10 13.2 L5.2 16.6 L7 11 L2.4 7.6 L8.2 7.6 Z" stroke={VERDE_CLARO} strokeWidth="1.3" strokeLinejoin="round" fill="none"/>
               </svg>
               <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(26,26,26,0.65)", margin: 0 }}>
-                Todos os quadros utilizam <strong style={{ color: "#1a1a1a", fontWeight: 600 }}>cartão e cola de pH neutro,</strong>  os mesmos materiais usados em museus e arquivos para preservar obras ao longo de décadas.
+                Todos os quadros utilizam <strong style={{ color: "#1a1a1a", fontWeight: 600 }}>cartão e cola de pH neutro,</strong> os mesmos materiais usados em museus e arquivos para preservar obras ao longo de décadas.
               </p>
             </div>
           </Reveal>
@@ -644,7 +647,7 @@ export default function OpcoesClient() {
               <div>
                 <Label>Vidro museu</Label>
                 <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem, 3.5vw, 2.2rem)", fontWeight: 400, margin: "0 0 24px", lineHeight: 1.15 }}>
-                  UltraVue® UV70<br/><em style={{ color: "#3D6B5E" }}>clareza verdadeiramente incrível</em>
+                  UltraVue® UV70<br/><em style={{ color: VERDE_CLARO }}>clareza verdadeiramente incrível</em>
                 </h3>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {[
@@ -655,7 +658,7 @@ export default function OpcoesClient() {
                     "Superfície duradoura e de fácil limpeza",
                   ].map((feat, i) => (
                     <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "14px", padding: "14px 0", borderBottom: "1px solid rgba(26,26,26,0.07)", fontFamily: GS, fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.6, color: "rgba(26,26,26,0.75)" }}>
-                      <span style={{ width: "20px", height: "20px", borderRadius: "50%", backgroundColor: "#3D6B5E", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "1px" }} aria-hidden="true">
+                      <span style={{ width: "20px", height: "20px", borderRadius: "50%", backgroundColor: VERDE_CLARO, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "1px" }} aria-hidden="true">
                         <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#FAF7F0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                       </span>
                       {feat}
@@ -669,7 +672,7 @@ export default function OpcoesClient() {
                 <img src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" loading="lazy" style={{ width: "100%", display: "block" }} />
                 <div style={{ backgroundColor: "#F2EDE4", padding: "12px 16px", display: "flex", justifyContent: "space-between" }}>
                   <span style={{ fontFamily: GS, fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", fontWeight: 500 }}>Normal</span>
-                  <span style={{ fontFamily: GS, fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "#3D6B5E", fontWeight: 700 }}>UltraVue®</span>
+                  <span style={{ fontFamily: GS, fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: VERDE_CLARO, fontWeight: 700 }}>UltraVue®</span>
                 </div>
               </div>
             </Reveal>
@@ -678,11 +681,11 @@ export default function OpcoesClient() {
 
         <Reveal delay={0.1}>
           <div style={{ maxWidth: "720px", margin: "clamp(48px,8vw,80px) auto 0", padding: "0 24px", textAlign: "center" }}>
-            <div style={{ backgroundColor: "#3D6B5E", padding: "40px 32px", borderRadius: "12px" }}>
+            <div style={{ backgroundColor: VERDE_CLARO, padding: "40px 32px", borderRadius: "12px" }}>
               <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem, 3.5vw, 2.2rem)", fontWeight: 400, margin: "0 0 14px", lineHeight: 1.15, color: "#FAF7F0" }}>
-                Garanta a <em style={{ color: "#8BA888" }}>qualidade museu</em> para o seu quadro
+                Garanta a <em style={{ color: "rgba(250,247,240,0.75)" }}>qualidade museu</em> para o seu quadro
               </h3>
-              <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(250,247,240,0.65)", margin: "0 0 28px" }}>
+              <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(250,247,240,0.75)", margin: "0 0 28px" }}>
                 Materiais premium que preservam as suas flores durante décadas.
               </p>
               <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
@@ -696,15 +699,15 @@ export default function OpcoesClient() {
         </Reveal>
       </section>
 
-      {/* CTA RESERVAR DATA */}
-      <section style={{ backgroundColor: "#3D6B5E", padding: "clamp(60px,10vw,100px) 24px", textAlign: "center" }}>
+      {/* CTA RESERVAR DATA com gradiente verde claro */}
+      <section style={{ background: `linear-gradient(160deg, #3D6B5E 0%, ${VERDE_CLARO} 100%)`, padding: "clamp(60px,10vw,100px) 24px", textAlign: "center" }}>
         <div style={{ maxWidth: "640px", margin: "0 auto" }}>
           <Reveal>
             <Label light>Próximo passo</Label>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 6vw, 4rem)", fontWeight: 400, margin: "0 0 24px", lineHeight: 1.05, color: "#FAF7F0" }}>
-              Pronta para preservar<br/><em style={{ color: "#8BA888" }}>o seu bouquet?</em>
+              Pronta para preservar<br/><em style={{ color: "rgba(250,247,240,0.72)" }}>o seu bouquet?</em>
             </h2>
-            <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.8, color: "rgba(250,247,240,0.65)", margin: "0 0 44px" }}>
+            <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.8, color: "rgba(250,247,240,0.7)", margin: "0 0 44px" }}>
               Reserve a sua data o mais cedo possível. As vagas são limitadas e os bouquets devem ser enviados dentro de poucos dias após o evento.
             </p>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
@@ -715,9 +718,9 @@ export default function OpcoesClient() {
                 Reservar Data
               </a>
               <a href="/perguntas-frequentes"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "transparent", color: "rgba(250,247,240,0.85)", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, border: "1.5px solid rgba(250,247,240,0.3)", transition: "all 0.3s ease", minHeight: "56px" }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.7)"; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.3)"; }}>
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "transparent", color: "rgba(250,247,240,0.85)", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, border: "1.5px solid rgba(250,247,240,0.4)", transition: "all 0.3s ease", minHeight: "56px" }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.8)"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.4)"; }}>
                 Perguntas Frequentes
               </a>
             </div>
@@ -737,26 +740,26 @@ export default function OpcoesClient() {
               overflow: "hidden",
               boxShadow: "0 16px 56px rgba(26,26,26,0.1)",
             }} className="vale-grid">
-              {/* Lado esquerdo — imagem */}
+              {/* Foto vale1.webp */}
               <div style={{ position: "relative", minHeight: "320px", backgroundColor: "#0F1E1A", overflow: "hidden" }}>
                 <div style={{
                   width: "100%", height: "100%",
-                  backgroundImage: "url('/fotoquadro1.webp')",
+                  backgroundImage: "url('/vale1.webp')",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
-                  filter: "brightness(0.5) saturate(0.7)",
+                  filter: "brightness(0.52) saturate(0.85)",
                   position: "absolute", inset: 0,
                 }}/>
                 <div style={{
                   position: "absolute", inset: 0,
-                  background: "linear-gradient(135deg, rgba(184,149,74,0.25) 0%, rgba(15,30,26,0.6) 100%)",
+                  background: "linear-gradient(135deg, rgba(139,168,136,0.18) 0%, rgba(15,30,26,0.55) 100%)",
                 }}/>
                 <div style={{ position: "relative", padding: "clamp(28px,4vw,44px)", height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", boxSizing: "border-box" }}>
                   <span style={{
                     display: "inline-block",
-                    backgroundColor: "rgba(184,149,74,0.25)",
-                    border: "1px solid rgba(184,149,74,0.5)",
-                    color: "#C4A55A",
+                    backgroundColor: "rgba(139,168,136,0.2)",
+                    border: "1px solid rgba(139,168,136,0.5)",
+                    color: VERDE_CLARO,
                     fontSize: "0.5rem", letterSpacing: "3px", textTransform: "uppercase",
                     fontFamily: GS, fontWeight: 600,
                     padding: "5px 12px", borderRadius: "100px", marginBottom: "14px",
@@ -765,23 +768,23 @@ export default function OpcoesClient() {
                     Para oferecer
                   </span>
                   <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem, 3vw, 2.4rem)", fontWeight: 400, color: "#FAF7F0", margin: 0, lineHeight: 1.1 }}>
-                    Vale<br/><em style={{ color: "#8BA888" }}>Presente</em>
+                    Vale<br/><em style={{ color: VERDE_CLARO }}>Presente</em>
                   </p>
                 </div>
               </div>
 
-              {/* Lado direito — texto */}
+              {/* Texto */}
               <div style={{ backgroundColor: "#F2EDE4", padding: "clamp(28px,4vw,44px)", display: "flex", flexDirection: "column", justifyContent: "center", gap: "16px" }}>
                 <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(26,26,26,0.65)", margin: 0 }}>
-                  Ofereça a alguém especial a possibilidade de preservar o seu bouquet — sem precisar de saber a data, o tamanho ou os detalhes do casamento.
+                  Ofereça a alguém especial a possibilidade de preservar o seu bouquet, sem precisar de saber a data, o tamanho ou os detalhes do casamento.
                 </p>
                 <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(26,26,26,0.65)", margin: 0 }}>
                   O vale tem validade de 18 meses e pode ser usado para qualquer quadro do nosso catálogo.
                 </p>
                 <div style={{ borderTop: "1px solid rgba(26,26,26,0.1)", paddingTop: "20px", marginTop: "4px" }}>
-                  <a href="/vale-presente"
+                  <a href="/oferecer-preservacao"
                     style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "#1a1a1a", color: "#FAF7F0", padding: "13px 28px", borderRadius: "100px", textDecoration: "none", fontWeight: 600, fontSize: "0.72rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.25s ease" }}
-                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#3D6B5E"; }}
+                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = VERDE_CLARO; }}
                     onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#1a1a1a"; }}>
                     Saber mais
                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
@@ -845,10 +848,9 @@ export default function OpcoesClient() {
             animation-iteration-count: 1 !important;
             transition-duration: 0.01ms !important;
           }
-          video { animation: none !important; }
         }
         a:focus-visible, button:focus-visible {
-          outline: 3px solid #3D6B5E;
+          outline: 3px solid #8BA888;
           outline-offset: 4px;
           border-radius: 4px;
         }
