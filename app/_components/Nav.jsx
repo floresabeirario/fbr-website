@@ -331,6 +331,7 @@ export default function NavClient() {
       <nav
         role="navigation"
         aria-label="Navegação principal"
+        data-scrolled={scrolled ? "true" : "false"}
         style={{
           position: "fixed", top: 0, width: "100%", zIndex: 100,
           backgroundColor: show ? "rgba(250,247,240,0.95)" : "transparent",
