@@ -87,7 +87,7 @@ const METHODS = [
     bg:        "rgba(155,168,159,0.03)",
     shadow:    "none",
     title:     "Gel de S\u00edlica",
-    subtitle:  "Industrial. Fr\u00e1gil. Exigente.",
+    subtitle:  "Industrial.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <circle cx="14" cy="14" r="9" stroke="#9BA89F" strokeWidth="1.6" fill="rgba(155,168,159,0.08)"/>
@@ -98,7 +98,6 @@ const METHODS = [
       { good: false, text: "Produ\u00e7\u00e3o industrial com elevado consumo energ\u00e9tico." },
       { good: false, text: "Vers\u00f5es com cloreto de cobalto s\u00e3o t\u00f3xicas para a vida aqu\u00e1tica." },
       { good: false, text: "Exige o uso de m\u00e1scara durante o manuseio." },
-      { good: false, text: "Perdem cor rapidamente sem prote\u00e7\u00e3o UV adequada." },
       { good: false, text: "A secagem ao ar livre \u00e9 uma alternativa, mas n\u00e3o preserva as cores originais, pelo que n\u00e3o a consideramos um m\u00e9todo de preserva\u00e7\u00e3o compar\u00e1vel aos m\u00e9todos profissionais." },
     ],
     verdict:      "Tecnicamente interessante, ecologicamente question\u00e1vel.",
@@ -239,11 +238,6 @@ export default function Sustentabilidade() {
           @media (min-width: 768px) {
             .compare-grid { grid-template-columns: repeat(3, 1fr); }
           }
-          .values-grid {
-            display: grid; grid-template-columns: 1fr; gap: 12px;
-          }
-          @media (min-width: 560px) { .values-grid { grid-template-columns: 1fr 1fr; } }
-          @media (min-width: 900px) { .values-grid { grid-template-columns: 1fr 1fr 1fr; } }
           .apcc-inner {
             display: grid; grid-template-columns: 1fr; gap: clamp(28px,4vw,44px);
           }
@@ -279,85 +273,110 @@ export default function Sustentabilidade() {
           .btn-primary:hover { background: var(--green-d); transform: translateY(-3px); }
           .btn-outline {
             display: inline-flex; align-items: center; justify-content: center;
-            border: 2px solid var(--green); color: var(--green);
+            border: 2px solid rgba(139,168,136,0.5); color: #8BA888;
             padding: 13px 32px; border-radius: 100px; text-decoration: none;
             font-weight: 600; font-size: 0.82rem; letter-spacing: 1.4px;
             text-transform: uppercase; text-align: center;
-            transition: all 0.3s ease; font-family: Roboto, sans-serif;
+            transition: all 0.3s ease; font-family: Roboto, sans-serif; background: transparent;
           }
-          .btn-outline:hover { background: var(--green); color: var(--cream); transform: translateY(-3px); }
+          .btn-outline:hover { background: var(--green); color: var(--cream); border-color: var(--green); transform: translateY(-3px); }
           .card-hover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
           .card-hover:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(30,45,42,0.10); }
+
+          /* HERO */
+          .hero-sustentabilidade {
+            position: relative;
+            min-height: 100svh;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+          }
+          .hero-foto-bg {
+            position: absolute; inset: 0;
+          }
+          .hero-foto-bg img {
+            width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+          }
+          .hero-foto-bg::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(10,22,18,0.90) 0%, rgba(10,22,18,0.55) 45%, rgba(10,22,18,0.18) 100%);
+          }
+          .hero-text-col {
+            position: relative; z-index: 2; width: 100%;
+            padding: clamp(110px,14vw,160px) clamp(24px,5vw,72px) clamp(60px,8vw,90px);
+          }
+
+          /* VALUES alternating layout */
+          .values-alt { display: flex; flex-direction: column; gap: 0; }
+          .value-row {
+            display: grid; grid-template-columns: 1fr;
+            border-bottom: 1px solid rgba(61,107,94,0.08);
+            transition: background 0.2s;
+          }
+          .value-row:last-child { border-bottom: none; }
+          .value-row:hover { background: rgba(61,107,94,0.025); }
+          @media (min-width: 640px) {
+            .value-row { grid-template-columns: 200px 1fr; align-items: center; }
+          }
+          .value-number {
+            font-family: 'TAN-MEMORIES', serif;
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            color: rgba(61,107,94,0.12);
+            line-height: 1;
+            padding: clamp(20px,3vw,28px) clamp(16px,2vw,24px) 0;
+            display: flex; align-items: flex-start; gap: 14px;
+          }
+          @media (min-width: 640px) {
+            .value-number { padding: clamp(24px,3.5vw,36px) clamp(20px,2.5vw,32px); justify-content: flex-end; border-right: 1px solid rgba(61,107,94,0.08); }
+          }
+          .value-content {
+            padding: clamp(12px,2vw,20px) clamp(16px,2vw,24px) clamp(20px,3vw,28px);
+          }
+          @media (min-width: 640px) {
+            .value-content { padding: clamp(24px,3.5vw,36px) clamp(28px,4vw,48px); }
+          }
+
           @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
           }
         `}} />
 
-        {/* HERO */}
+        {/* HERO — foto a ecra todo, texto na base */}
         <section
+          className="hero-sustentabilidade"
           aria-label="Sustentabilidade e filosofia da Flores a Beira-Rio"
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "100vh",
-            minHeight: "560px",
-            overflow: "hidden",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
         >
-          <img
-            src="/ines1.webp"
-            alt="Prensagem botanica artesanal na Flores a Beira-Rio"
-            style={{
-              position: "absolute", inset: 0,
-              width: "100%", height: "100%",
-              objectFit: "cover", objectPosition: "center", display: "block",
-            }}
-          />
-          <div aria-hidden="true" style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(to bottom, rgba(30,45,42,0.35) 0%, rgba(30,45,42,0.60) 55%, rgba(30,45,42,0.85) 100%)",
-          }}/>
-          <div aria-hidden="true" style={{
-            position: "absolute", inset: 0, opacity: 0.03, pointerEvents: "none",
-            backgroundImage: "repeating-linear-gradient(45deg, #8BA888 0px, #8BA888 1px, transparent 1px, transparent 44px)",
-          }}/>
-          <div style={{
-            position: "relative", zIndex: 1, textAlign: "center",
-            padding: "0 clamp(20px,5vw,48px)", maxWidth: "860px", width: "100%",
-          }}>
+          <div className="hero-foto-bg">
+            <img src="/ines1.webp" alt="" aria-hidden="true" />
+          </div>
+
+          <div className="hero-text-col">
             <motion.div
-              initial={{ opacity: 0, y: 26 }}
+              initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}
             >
-              <span style={{
-                display: "inline-flex", alignItems: "center", gap: "8px",
-                background: "rgba(61,107,94,0.25)", border: "1px solid rgba(139,168,136,0.35)",
-                borderRadius: "100px", padding: "7px 16px", marginBottom: "24px",
-              }}>
-                <span style={{ color: "#8BA888", fontSize: "0.9rem" }} aria-hidden="true">&#9851;</span>
-                <span style={{ fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: "#8BA888", fontFamily: "Roboto, sans-serif" }}>Os nossos valores</span>
-              </span>
+              <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.5)", fontFamily: "Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700 }}>
+                Os nossos valores
+              </p>
               <h1 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
-                fontSize: "clamp(2.8rem,9vw,5.8rem)",
-                color: "#FAF7F0", margin: "0 0 clamp(18px,3vw,28px)", lineHeight: 1.0,
+                fontSize: "clamp(2.4rem,6vw,5rem)",
+                color: "#FAF7F0", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)", lineHeight: 1.05,
               }}>
                 Sustentabilidade<br/>
-                <em style={{ fontStyle: "italic", color: "#8BA888" }}>sem compromissos</em>
+                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>sem compromissos</em>
               </h1>
               <p style={{
-                color: "rgba(250,247,240,0.82)", fontSize: "clamp(0.95rem,2vw,1.1rem)",
-                lineHeight: 1.88, maxWidth: "580px", margin: "0 auto clamp(28px,4vw,40px)",
+                fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.85,
+                maxWidth: "460px", color: "rgba(250,247,240,0.82)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)",
               }}>
                 Na Flores &#224; Beira-Rio, preservar flores significa preservar tamb&#233;m
                 o planeta. Sem resinas petroqu&#237;micas, sem s&#237;lica industrial,
                 apenas prensagem bot&#226;nica artesanal com materiais de conserva&#231;&#227;o museu.
               </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px,2vw,10px)", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px,2vw,10px)", alignItems: "center", justifyContent: "center", marginBottom: "1.4rem" }}>
                 {["Sem resina ep&#243;xi", "Sem s&#237;lica industrial", "Sem qu&#237;micos agressivos", "100% artesanal", "Orgulhosamente de Coimbra"].map((tag, i) => (
                   <motion.span
                     key={i}
@@ -376,17 +395,15 @@ export default function Sustentabilidade() {
               </div>
             </motion.div>
           </div>
+
           <motion.div
             aria-hidden="true"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            style={{ position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)" }}
+            style={{ position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)", zIndex: 2 }}
           >
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            >
+            <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M12 5v14M5 12l7 7 7-7" stroke="rgba(250,247,240,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -675,7 +692,7 @@ export default function Sustentabilidade() {
           </div>
         </section>
 
-        {/* VALORES */}
+        {/* VALORES — layout editorial com numeracao */}
         <section
           aria-label="Os valores e materiais da Flores a Beira-Rio"
           style={{
@@ -690,12 +707,12 @@ export default function Sustentabilidade() {
             background: "radial-gradient(circle, rgba(61,107,94,0.06) 0%, transparent 65%)",
             borderRadius: "50%", pointerEvents: "none",
           }}/>
-          <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+          <div style={{ maxWidth: "960px", margin: "0 auto", position: "relative", zIndex: 1 }}>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              style={{ textAlign: "center", marginBottom: "clamp(24px,4vw,44px)" }}
+              style={{ marginBottom: "clamp(32px,5vw,56px)" }}
             >
               <span className="eyebrow eyebrow-green">Da flor ao quadro</span>
               <h2 style={{
@@ -707,41 +724,37 @@ export default function Sustentabilidade() {
                 <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>verdadeiramente sustent&#225;vel</em>
               </h2>
             </motion.div>
-            <div className="values-grid">
+
+            <div className="values-alt">
               {VALUES.map((v, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -12 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.07, duration: 0.6 }}
-                  className="card-hover"
-                  style={{
-                    backgroundColor: "#fff", borderRadius: "16px",
-                    padding: "clamp(18px,2.5vw,24px)",
-                    border: "1px solid rgba(61,107,94,0.08)",
-                    boxShadow: "0 3px 14px rgba(30,45,42,0.05)",
-                    position: "relative", overflow: "hidden",
-                  }}
+                  transition={{ delay: i * 0.06, duration: 0.55 }}
+                  className="value-row"
                 >
-                  <div aria-hidden="true" style={{
-                    position: "absolute", top: 0, right: 0,
-                    width: "80px", height: "80px",
-                    background: "radial-gradient(circle at top right, rgba(61,107,94,0.05) 0%, transparent 70%)",
-                    pointerEvents: "none",
-                  }}/>
-                  <div style={{
-                    width: "42px", height: "42px", borderRadius: "12px",
-                    background: "linear-gradient(135deg, rgba(61,107,94,0.12) 0%, rgba(61,107,94,0.06) 100%)",
-                    border: "1px solid rgba(61,107,94,0.12)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    marginBottom: "13px",
-                  }} aria-hidden="true">{v.icon}</div>
-                  <h3 style={{
-                    fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.98rem",
-                    color: "#1E2D2A", margin: "0 0 7px", lineHeight: 1.25,
-                  }}>{v.title}</h3>
-                  <p style={{ color: "#5A6B60", fontSize: "0.84rem", lineHeight: 1.72, margin: 0 }}>{v.desc}</p>
+                  <div className="value-number">
+                    <div style={{
+                      width: "36px", height: "36px", borderRadius: "10px",
+                      background: "linear-gradient(135deg, rgba(61,107,94,0.14) 0%, rgba(61,107,94,0.06) 100%)",
+                      border: "1px solid rgba(61,107,94,0.14)",
+                      display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                    }}>
+                      {v.icon}
+                    </div>
+                    <span style={{ fontSize: "clamp(1.8rem,3vw,2.4rem)" }}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <div className="value-content">
+                    <h3 style={{
+                      fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.98rem,1.8vw,1.1rem)",
+                      color: "#1E2D2A", margin: "0 0 6px", lineHeight: 1.25,
+                    }}>{v.title}</h3>
+                    <p style={{ color: "#5A6B60", fontSize: "0.85rem", lineHeight: 1.75, margin: 0 }}>{v.desc}</p>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -750,7 +763,7 @@ export default function Sustentabilidade() {
 
         {/* CTA */}
         <section
-          aria-label="Reservar preservacao sustentavel de flores"
+          aria-label="Comecar a preservar as tuas flores"
           style={{
             padding: "clamp(60px,10vw,100px) clamp(20px,5vw,48px)",
             background: "linear-gradient(150deg, #1E2D2A 0%, #243D33 50%, #2A4A3C 100%)",
@@ -780,26 +793,22 @@ export default function Sustentabilidade() {
               width: "44px", height: "1px", margin: "0 auto 28px",
               background: "linear-gradient(to right, transparent, #8BA888, transparent)",
             }}/>
-            <span className="eyebrow" style={{ color: "#8BA888" }}>Pronta para come&#231;ar?</span>
+            <span className="eyebrow" style={{ color: "#8BA888" }}>Um momento que merece durar</span>
             <h2 style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize: "clamp(2rem,5.5vw,3.5rem)",
               color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1,
             }}>
-              Flores que duram<br/>
-              <em style={{ fontStyle: "italic", color: "#8BA888" }}>porque o planeta tamb&#233;m importa</em>
+              H&#225; flores que n&#227;o deviam<br/>
+              <em style={{ fontStyle: "italic", color: "#8BA888" }}>murchar em silêncio</em>
             </h2>
             <p style={{ color: "rgba(250,247,240,0.65)", lineHeight: 1.88, fontSize: "clamp(0.9rem,2vw,1rem)", margin: "0 0 34px" }}>
-              Sem resina, sem s&#237;lica, sem compromissos com o ambiente.
-              Apenas flores, artesanato bot&#226;nico e materiais de museu,
-              feitos para durar d&#233;cadas.
+              Cada flor guardou um instante que importou. Preserve-o da forma mais honesta
+              que existe: artesanal, natural e feita para durar uma vida inteira.
             </p>
             <div className="cta-row" style={{ marginBottom: "28px" }}>
               <a href={FORM} target="_blank" rel="noopener noreferrer" className="btn-primary">Reservar a Minha Data</a>
-              <a href="/como-funciona" className="btn-outline" style={{ borderColor: "rgba(139,168,136,0.5)", color: "#8BA888" }}
-                onMouseEnter={e => { e.currentTarget.style.background = "#3D6B5E"; e.currentTarget.style.color = "#FAF7F0"; e.currentTarget.style.borderColor = "#3D6B5E"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#8BA888"; e.currentTarget.style.borderColor = "rgba(139,168,136,0.5)"; }}
-              >Ver Como Funciona</a>
+              <a href="/como-funciona" className="btn-outline">Ver Como Funciona</a>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px", fontSize: "0.82rem" }}>
               {[
