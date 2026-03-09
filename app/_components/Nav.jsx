@@ -8,7 +8,7 @@ import { FlagPT, FlagEN, IconWhatsApp } from "./Icons";
 import { NAV_PRESERVACAO, NAV_MOMENTOS, NAV_RIGHT } from "../_lib/data/navigation";
 import { FORM_URL } from "../_lib/constants";
 
-// Cores do botão CTA por página
+// ── Cores do botão CTA por página ───────────────────────
 const PAGE_COLORS = {
   "/oferecer-preservacao":                 { bg: "#4A7BA8", shadow: "rgba(74,123,168,0.32)" },
   "/preservar-bouquet-noiva":              { bg: "#A87B8C", shadow: "rgba(168,123,140,0.32)" },
@@ -20,119 +20,144 @@ const PAGE_COLORS = {
 };
 const DEFAULT_CTA = { bg: "#3D6B5E", shadow: "rgba(61,107,94,0.32)" };
 
-const MOBILE_ICONS = {
-  "/preservacao-de-flores": (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="3"/>
-      <path d="M12 2a3 3 0 0 1 3 3c0 1.5-1 2.5-1 4a3 3 0 0 1-4 0c0-1.5-1-2.5-1-4a3 3 0 0 1 3-3z"/>
-      <path d="M12 22a3 3 0 0 0 3-3c0-1.5-1-2.5-1-4a3 3 0 0 0-4 0c0 1.5-1 2.5-1 4a3 3 0 0 0 3 3z"/>
-      <path d="M2 12a3 3 0 0 0 3 3c1.5 0 2.5-1 4-1a3 3 0 0 0 0-4c-1.5 0-2.5-1-4-1a3 3 0 0 0-3 3z"/>
-      <path d="M22 12a3 3 0 0 1-3 3c-1.5 0-2.5-1-4-1a3 3 0 0 1 0-4c1.5 0 2.5-1 4-1a3 3 0 0 1 3 3z"/>
-    </svg>
-  ),
-  "/momentos-especiais": (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-    </svg>
-  ),
-  "/recriacao": (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-      <path d="M3 3v5h5"/>
-    </svg>
-  ),
-  "/oferecer-preservacao": (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <polyline points="20 12 20 22 4 22 4 12"/>
-      <rect x="2" y="7" width="20" height="5"/>
-      <line x1="12" y1="22" x2="12" y2="7"/>
-      <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
-      <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
-    </svg>
-  ),
-  "/perguntas-frequentes": (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="10"/>
-      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-      <line x1="12" y1="17" x2="12.01" y2="17" strokeWidth="2"/>
-    </svg>
-  ),
-  "/contactos": (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-    </svg>
-  ),
-  "/blog": (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-      <line x1="8" y1="7" x2="16" y2="7"/>
-      <line x1="8" y1="11" x2="16" y2="11"/>
-      <line x1="8" y1="15" x2="12" y2="15"/>
-    </svg>
-  ),
-};
-
-const Chevron = ({ open, color, size = 10 }) => (
-  <motion.svg
-    width={size} height={size} viewBox="0 0 10 10" fill="none"
-    animate={{ rotate: open ? 180 : 0 }}
-    transition={{ duration: 0.22, ease: "easeInOut" }}
-    style={{ marginLeft: "4px", flexShrink: 0 }}
-    aria-hidden="true"
-  >
-    <path d="M2 3.5L5 6.5L8 3.5" stroke={color || "currentColor"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-  </motion.svg>
+// ── Ícones do menu mobile ────────────────────────────────
+const IconFlor6 = () => (
+  // flor com 6 pétalas usando elipses rodadas
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="2.2"/>
+    {/* 6 pétalas a 0°, 60°, 120°, 180°, 240°, 300° */}
+    <ellipse cx="12" cy="6.5" rx="1.5" ry="3" />
+    <ellipse cx="12" cy="17.5" rx="1.5" ry="3" />
+    <ellipse cx="17.2" cy="9.25" rx="1.5" ry="3" transform="rotate(60 17.2 9.25)" />
+    <ellipse cx="6.8"  cy="9.25" rx="1.5" ry="3" transform="rotate(-60 6.8 9.25)" />
+    <ellipse cx="17.2" cy="14.75" rx="1.5" ry="3" transform="rotate(-60 17.2 14.75)" />
+    <ellipse cx="6.8"  cy="14.75" rx="1.5" ry="3" transform="rotate(60 6.8 14.75)" />
+  </svg>
 );
 
-// Dropdown com timer para não fechar ao atravessar o espaço entre trigger e painel
+const IconCoracao = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+  </svg>
+);
+
+const IconRecriacao = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+    <path d="M3 3v5h5"/>
+  </svg>
+);
+
+const IconPresente = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <polyline points="20 12 20 22 4 22 4 12"/>
+    <rect x="2" y="7" width="20" height="5"/>
+    <line x1="12" y1="22" x2="12" y2="7"/>
+    <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+    <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+  </svg>
+);
+
+const IconFAQ = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+    <line x1="12" y1="17" x2="12.01" y2="17" strokeWidth="2"/>
+  </svg>
+);
+
+const IconContactos = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+);
+
+const IconBlog = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    <line x1="8" y1="7" x2="16" y2="7"/>
+    <line x1="8" y1="11" x2="16" y2="11"/>
+    <line x1="8" y1="15" x2="12" y2="15"/>
+  </svg>
+);
+
+// ── Dropdown desktop com timer (não fecha ao atravessar o gap) ──
 const DesktopDropdown = ({ menu, scrolled }) => {
   const [open, setOpen] = useState(false);
   const timerRef = useRef(null);
+  const containerRef = useRef(null);
   const textColor = scrolled ? "#1a1a1a" : "#fff";
 
-  const handleEnter = () => {
-    clearTimeout(timerRef.current);
-    setOpen(true);
-  };
-  const handleLeave = () => {
-    timerRef.current = setTimeout(() => setOpen(false), 120);
-  };
-
+  const handleEnter = () => { clearTimeout(timerRef.current); setOpen(true); };
+  const handleLeave = () => { timerRef.current = setTimeout(() => setOpen(false), 150); };
   useEffect(() => () => clearTimeout(timerRef.current), []);
 
   return (
     <div
-      className="dd-container desktop-only"
+      ref={containerRef}
+      style={{ position: "relative", display: "inline-flex", alignItems: "center" }}
+      className="desktop-only"
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
     >
-      <a href={menu.href} className="nav-link dd-trigger" style={{
+      <a href={menu.href} className="nav-link" style={{
         fontSize: "0.68rem", fontWeight: 500, textTransform: "uppercase",
         letterSpacing: "1.3px", color: textColor,
-        display: "inline-flex", alignItems: "center",
-        whiteSpace: "nowrap",
+        display: "inline-flex", alignItems: "center", whiteSpace: "nowrap",
+        cursor: "pointer",
       }}>
         {menu.label}
-        <Chevron open={open} color={textColor} />
+        <motion.svg
+          width="10" height="10" viewBox="0 0 10 10" fill="none"
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+          style={{ marginLeft: "4px", flexShrink: 0 }}
+          aria-hidden="true"
+        >
+          <path d="M2 3.5L5 6.5L8 3.5" stroke={textColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </motion.svg>
       </a>
+
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -4 }}
+            initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.16, ease: "easeOut" }}
             style={{
               position: "absolute",
-              top: "100%",
+              top: "calc(100% + 14px)",
               left: "50%",
               transform: "translateX(-50%)",
-              paddingTop: "14px",
-              zIndex: 200,
+              zIndex: 300,
+              // Área invisível em cima para "capturar" o rato no gap
+              paddingTop: "0px",
             }}
           >
-            <div className="dd-panel-inner">
+            {/* Ponte invisível entre o trigger e o painel */}
+            <div style={{
+              position: "absolute", top: "-14px", left: 0, right: 0, height: "14px",
+            }} />
+            <div style={{
+              background: "#FAFAF8",
+              border: "1px solid rgba(61,107,94,0.13)",
+              borderRadius: "16px",
+              padding: "6px",
+              boxShadow: "0 4px 6px rgba(30,45,42,0.04), 0 12px 32px rgba(30,45,42,0.13), 0 24px 48px rgba(30,45,42,0.07)",
+              minWidth: "220px",
+              position: "relative",
+            }}>
+              {/* Seta de cima */}
+              <div style={{
+                position: "absolute", top: "-5px", left: "50%",
+                transform: "translateX(-50%) rotate(45deg)",
+                width: "10px", height: "10px",
+                background: "#FAFAF8",
+                borderLeft: "1px solid rgba(61,107,94,0.13)",
+                borderTop: "1px solid rgba(61,107,94,0.13)",
+              }} />
               {menu.items.map((item, i) => (
                 <a key={i} href={item.href} className="dd-item">{item.name}</a>
               ))}
@@ -152,9 +177,10 @@ const DesktopDropdown = ({ menu, scrolled }) => {
   );
 };
 
-const MobileAccordion = ({ menu, onClose, delay }) => {
+// ── Acordeão mobile ──────────────────────────────────────
+const MobileAccordion = ({ menu, onClose, delay, icon }) => {
   const [open, setOpen] = useState(false);
-  const icon = MOBILE_ICONS[menu.href];
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -165,7 +191,6 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
       <button
         onClick={() => setOpen(o => !o)}
         aria-expanded={open}
-        aria-controls={`mobile-menu-${menu.href.replace("/", "")}`}
         style={{
           width: "100%", display: "flex", alignItems: "center",
           justifyContent: "space-between", padding: "16px 28px",
@@ -173,16 +198,14 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
         }}
       >
         <span style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-          {icon && (
-            <span style={{ color: open ? "#8BA888" : "rgba(250,247,240,0.35)", flexShrink: 0, transition: "color 0.2s" }}>
-              {icon}
-            </span>
-          )}
+          <span style={{ color: open ? "#8BA888" : "rgba(250,247,240,0.35)", flexShrink: 0, transition: "color 0.2s", display: "flex" }}>
+            {icon}
+          </span>
           <span style={{
             fontFamily: "'TAN-MEMORIES', serif",
             fontSize: "clamp(1.05rem, 4vw, 1.3rem)",
             color: open ? "#8BA888" : "#FAF7F0",
-            lineHeight: 1.1, transition: "color 0.2s", letterSpacing: "0.2px",
+            lineHeight: 1.1, transition: "color 0.2s",
           }}>
             {menu.label}
           </span>
@@ -190,7 +213,7 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
         <motion.svg
           width="16" height="16" viewBox="0 0 16 16" fill="none"
           animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.22, ease: "easeInOut" }}
+          transition={{ duration: 0.22 }}
           style={{ flexShrink: 0, color: open ? "#8BA888" : "rgba(250,247,240,0.35)" }}
           aria-hidden="true"
         >
@@ -201,29 +224,38 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            id={`mobile-menu-${menu.href.replace("/", "")}`}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.26, ease: [0.25, 0.1, 0.25, 1] }}
             style={{ overflow: "hidden" }}
           >
-            <a href={menu.href} onClick={onClose} style={{
-              display: "block", color: "rgba(139,168,136,0.7)", textDecoration: "none",
-              fontSize: "0.72rem", fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif", fontWeight: 600,
-              letterSpacing: "1.5px", textTransform: "uppercase",
-              padding: "2px 28px 14px 62px", transition: "color 0.18s",
-            }}>
+            <a
+              href={menu.href}
+              onClick={onClose}
+              style={{
+                display: "block", color: "rgba(139,168,136,0.7)", textDecoration: "none",
+                fontSize: "0.72rem", fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
+                fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase",
+                padding: "2px 28px 14px 62px", transition: "color 0.18s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
+              onMouseLeave={e => e.currentTarget.style.color = "rgba(139,168,136,0.7)"}
+            >
               Ver tudo
             </a>
             {menu.items.map((item, i) => (
-              <a key={i} href={item.href} onClick={onClose} style={{
-                display: "block", color: "rgba(250,247,240,0.5)", textDecoration: "none",
-                fontSize: "0.93rem", fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif", fontWeight: 400,
-                padding: "12px 28px 12px 62px",
-                borderTop: "1px solid rgba(250,247,240,0.04)",
-                transition: "color 0.15s, background 0.15s",
-              }}
+              <a
+                key={i}
+                href={item.href}
+                onClick={onClose}
+                style={{
+                  display: "block", color: "rgba(250,247,240,0.5)", textDecoration: "none",
+                  fontSize: "0.93rem", fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
+                  fontWeight: 400, padding: "12px 28px 12px 62px",
+                  borderTop: "1px solid rgba(250,247,240,0.04)",
+                  transition: "color 0.15s, background 0.15s",
+                }}
                 onMouseEnter={e => { e.currentTarget.style.color = "#FAF7F0"; e.currentTarget.style.background = "rgba(250,247,240,0.03)"; }}
                 onMouseLeave={e => { e.currentTarget.style.color = "rgba(250,247,240,0.5)"; e.currentTarget.style.background = "none"; }}
               >
@@ -238,24 +270,21 @@ const MobileAccordion = ({ menu, onClose, delay }) => {
   );
 };
 
+// ── Divisória vertical ───────────────────────────────────
 const NavDivider = ({ scrolled }) => (
-  <span style={{
-    display: "inline-block",
-    width: "1px",
-    height: "14px",
-    backgroundColor: scrolled ? "rgba(26,26,26,0.15)" : "rgba(250,247,240,0.2)",
-    flexShrink: 0,
-    alignSelf: "center",
-  }} aria-hidden="true" />
+  <span
+    aria-hidden="true"
+    style={{
+      display: "inline-block", width: "1px", height: "14px", flexShrink: 0,
+      alignSelf: "center",
+      backgroundColor: scrolled ? "rgba(26,26,26,0.15)" : "rgba(250,247,240,0.2)",
+    }}
+  />
 );
 
+// ── Botão CTA ────────────────────────────────────────────
 function NavCTA({ shouldShowScrolled, pathname }) {
-  const pageColor = PAGE_COLORS[pathname] || DEFAULT_CTA;
-  const bgColor     = shouldShowScrolled ? pageColor.bg : "rgba(250,247,240,0.12)";
-  const borderColor = shouldShowScrolled ? `1.5px solid ${pageColor.bg}` : "1.5px solid rgba(250,247,240,0.35)";
-  const bdFilter    = shouldShowScrolled ? "none" : "blur(8px)";
-  const shadow      = shouldShowScrolled ? `0 3px 14px ${pageColor.shadow}` : "none";
-
+  const c = PAGE_COLORS[pathname] || DEFAULT_CTA;
   return (
     <a
       href={FORM_URL}
@@ -263,11 +292,11 @@ function NavCTA({ shouldShowScrolled, pathname }) {
       rel="noopener noreferrer"
       className="nav-cta"
       style={{
-        backgroundColor: bgColor,
+        backgroundColor: shouldShowScrolled ? c.bg : "rgba(250,247,240,0.12)",
         color: "#FAF7F0",
-        border: borderColor,
-        backdropFilter: bdFilter,
-        boxShadow: shadow,
+        border: shouldShowScrolled ? `1.5px solid ${c.bg}` : "1.5px solid rgba(250,247,240,0.35)",
+        backdropFilter: shouldShowScrolled ? "none" : "blur(8px)",
+        boxShadow: shouldShowScrolled ? `0 3px 14px ${c.shadow}` : "none",
         transition: "all 0.4s ease",
       }}
     >
@@ -276,11 +305,12 @@ function NavCTA({ shouldShowScrolled, pathname }) {
   );
 }
 
+// ── Componente principal ─────────────────────────────────
 export default function NavClient() {
   const [isOpen, setIsOpen]     = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname  = usePathname();
-  const isHome    = pathname === "/";
+  const pathname = usePathname();
+  const isHome   = pathname === "/";
 
   useEffect(() => {
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
@@ -288,72 +318,80 @@ export default function NavClient() {
   }, [pathname]);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 80);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => { setIsOpen(false); }, [pathname]);
 
-  const shouldShowScrolled = scrolled || !isHome;
-  const ctaPageColor = PAGE_COLORS[pathname] || DEFAULT_CTA;
+  const show = scrolled || !isHome;
+
+  // Links da direita sem Blog
+  const rightLinks = NAV_RIGHT.filter(item => item.name !== "Blog");
 
   return (
     <>
+      {/* ── BARRA DE NAVEGAÇÃO ── */}
       <nav
         role="navigation"
         aria-label="Navegação principal"
         style={{
           position: "fixed", top: 0, width: "100%", zIndex: 100,
-          backgroundColor: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "transparent",
-          backdropFilter: shouldShowScrolled ? "blur(10px)" : "none",
+          backgroundColor: show ? "rgba(250,247,240,0.95)" : "transparent",
+          backdropFilter: show ? "blur(10px)" : "none",
           transition: "all 0.4s ease",
-          padding: shouldShowScrolled ? "14px 0" : "24px 0",
+          padding: show ? "14px 0" : "24px 0",
         }}
       >
         <div className="nav-bar">
 
-          {/* ESQUERDA */}
+          {/* ── ESQUERDA (desktop): Reservar Data | Preservação | Momentos ── */}
           <div className="nav-left">
-            <NavCTA shouldShowScrolled={shouldShowScrolled} pathname={pathname} />
-            <NavDivider scrolled={shouldShowScrolled} />
-            <DesktopDropdown menu={NAV_PRESERVACAO} scrolled={shouldShowScrolled} />
-            <NavDivider scrolled={shouldShowScrolled} />
-            <DesktopDropdown menu={NAV_MOMENTOS} scrolled={shouldShowScrolled} />
+            <NavCTA shouldShowScrolled={show} pathname={pathname} />
+            <NavDivider scrolled={show} />
+            <DesktopDropdown menu={NAV_PRESERVACAO} scrolled={show} />
+            <NavDivider scrolled={show} />
+            <DesktopDropdown menu={NAV_MOMENTOS} scrolled={show} />
           </div>
 
-          {/* CENTRO */}
+          {/* ── CENTRO: Logo (só aparece após scroll / fora da home) ── */}
           <motion.a
             href="/"
             className="nav-logo"
-            animate={{ opacity: shouldShowScrolled ? 1 : 0, y: shouldShowScrolled ? 0 : 8 }}
+            animate={{ opacity: show ? 1 : 0, y: show ? 0 : 8 }}
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-            style={{ color: shouldShowScrolled ? "#1a1a1a" : "#fff", pointerEvents: shouldShowScrolled ? "auto" : "none" }}
+            style={{ color: show ? "#1a1a1a" : "#fff", pointerEvents: show ? "auto" : "none" }}
             aria-label="Flores à Beira-Rio — página inicial"
           >
             Flores à Beira&#8209;Rio
           </motion.a>
 
-          {/* DIREITA */}
+          {/* ── DIREITA (desktop): links + PT flag | MENU (mobile) ── */}
           <div className="nav-right-col">
+
+            {/* Desktop */}
             <div className="nav-right desktop-only">
-              {NAV_RIGHT.filter(item => item.name !== "Blog").map((item, i, arr) => (
+              {rightLinks.map((item, i) => (
                 <React.Fragment key={item.name}>
                   <a href={item.href} className="nav-link" style={{
                     fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
-                    letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff", whiteSpace: "nowrap",
+                    letterSpacing: "1.3px", color: show ? "#1a1a1a" : "#fff", whiteSpace: "nowrap",
                   }}>
                     {item.name === "Contactos" ? "Contactos e Equipa" : item.name}
                   </a>
-                  {i < arr.length - 1 && <NavDivider scrolled={shouldShowScrolled} />}
+                  {i < rightLinks.length - 1 && <NavDivider scrolled={show} />}
                 </React.Fragment>
               ))}
-              <NavDivider scrolled={shouldShowScrolled} />
-              <div className="lang-container" style={{ position: "relative", display: "flex", alignItems: "center" }}>
+              <NavDivider scrolled={show} />
+              {/* Língua */}
+              <div style={{ position: "relative", display: "inline-flex", alignItems: "center" }}
+                className="lang-container"
+              >
                 <a href="/" className="nav-link lang-trigger" style={{
                   fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
-                  letterSpacing: "1.3px", color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                  display: "flex", alignItems: "center", cursor: "pointer",
+                  letterSpacing: "1.3px", color: show ? "#1a1a1a" : "#fff",
+                  display: "flex", alignItems: "center",
                 }}>
                   PT <FlagPT />
                 </a>
@@ -361,10 +399,10 @@ export default function NavClient() {
                   <a href="/en" style={{
                     fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
                     letterSpacing: "1.3px", display: "flex", alignItems: "center",
-                    color: shouldShowScrolled ? "#1a1a1a" : "#fff",
-                    background: shouldShowScrolled ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
+                    color: show ? "#1a1a1a" : "#fff",
+                    background: show ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
                     backdropFilter: "blur(12px)", padding: "9px 14px", borderRadius: "6px",
-                    border: shouldShowScrolled ? "1px solid rgba(26,26,26,0.08)" : "1px solid rgba(255,255,255,0.12)",
+                    border: show ? "1px solid rgba(26,26,26,0.08)" : "1px solid rgba(255,255,255,0.12)",
                     textDecoration: "none", transition: "background 0.3s ease",
                   }}>
                     EN <FlagEN />
@@ -373,12 +411,13 @@ export default function NavClient() {
               </div>
             </div>
 
+            {/* Botão MENU — só mobile */}
             <button
               className="mobile-only nav-mobile-btn"
               onClick={() => setIsOpen(true)}
               aria-label="Abrir menu de navegação"
               aria-expanded={isOpen}
-              style={{ color: shouldShowScrolled ? "#1a1a1a" : "#fff", marginLeft: "auto" }}
+              style={{ color: show ? "#1a1a1a" : "#fff", marginLeft: "auto" }}
             >
               MENU
             </button>
@@ -386,21 +425,24 @@ export default function NavClient() {
         </div>
       </nav>
 
-      {/* MENU MOBILE */}
+      {/* ── MENU MOBILE (drawer) ── */}
       <AnimatePresence>
         {isOpen && (
           <>
+            {/* Fundo escuro */}
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               transition={{ duration: 0.28 }}
               onClick={() => setIsOpen(false)}
               style={{
-                position: "fixed", inset: 0,
+                position: "fixed", inset: 0, zIndex: 199,
                 backgroundColor: "rgba(15,30,26,0.55)",
-                zIndex: 199, backdropFilter: "blur(3px)",
+                backdropFilter: "blur(3px)",
               }}
               aria-hidden="true"
             />
+
+            {/* Painel do drawer */}
             <motion.div
               initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
               transition={{ duration: 0.36, ease: [0.32, 0.72, 0, 1] }}
@@ -414,23 +456,24 @@ export default function NavClient() {
                 zIndex: 200, display: "flex", flexDirection: "column", overflowY: "auto",
               }}
             >
+              {/* Cabeçalho do drawer — SÓ logo e botão fechar */}
               <div style={{
                 display: "flex", justifyContent: "space-between", alignItems: "center",
                 padding: "20px 28px", borderBottom: "1px solid rgba(250,247,240,0.07)", flexShrink: 0,
               }}>
-                <a href="/" onClick={() => setIsOpen(false)} style={{
-                  fontFamily: "'TAN-MEMORIES', serif", fontSize: "1rem",
-                  color: "#FAF7F0", textDecoration: "none",
-                }}>
+                <a
+                  href="/"
+                  onClick={() => setIsOpen(false)}
+                  style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1rem", color: "#FAF7F0", textDecoration: "none" }}
+                >
                   Flores à Beira&#8209;Rio
                 </a>
                 <button
                   onClick={() => setIsOpen(false)}
                   aria-label="Fechar menu"
                   style={{
-                    background: "none", border: "none",
-                    color: "rgba(250,247,240,0.45)", cursor: "pointer", padding: "8px",
-                    display: "flex", alignItems: "center", justifyContent: "center",
+                    background: "none", border: "none", cursor: "pointer", padding: "8px",
+                    color: "rgba(250,247,240,0.45)", display: "flex", alignItems: "center",
                   }}
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -439,53 +482,50 @@ export default function NavClient() {
                 </button>
               </div>
 
+              {/* Links do menu mobile */}
               <nav aria-label="Menu móvel" style={{ flex: 1, overflowY: "auto", padding: "6px 0" }}>
-                <MobileAccordion menu={NAV_PRESERVACAO} onClose={() => setIsOpen(false)} delay={0.06} />
-                <MobileAccordion menu={NAV_MOMENTOS}    onClose={() => setIsOpen(false)} delay={0.10} />
+                <MobileAccordion menu={NAV_PRESERVACAO} onClose={() => setIsOpen(false)} delay={0.06} icon={<IconFlor6 />} />
+                <MobileAccordion menu={NAV_MOMENTOS}    onClose={() => setIsOpen(false)} delay={0.10} icon={<IconCoracao />} />
+
                 {[
-                  { name: "Recriação de Bouquet", href: "/recriacao",            delay: 0.15 },
-                  { name: "Oferecer Preservação", href: "/oferecer-preservacao", delay: 0.18 },
-                  { name: "Perguntas Frequentes", href: "/perguntas-frequentes", delay: 0.21 },
-                  { name: "Contactos e Equipa",   href: "/contactos",            delay: 0.24 },
-                  { name: "Blog",                 href: "/blog",                 delay: 0.27 },
-                ].map((item) => {
-                  const icon = MOBILE_ICONS[item.href];
-                  return (
-                    <motion.a
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: item.delay, duration: 0.24 }}
-                      style={{
-                        display: "flex", alignItems: "center", gap: "14px",
-                        color: "#FAF7F0", textDecoration: "none",
-                        padding: "16px 28px",
-                        borderBottom: "1px solid rgba(250,247,240,0.07)",
-                        transition: "color 0.18s",
-                      }}
-                      onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
-                      onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
-                    >
-                      {icon && (
-                        <span style={{ color: "rgba(250,247,240,0.35)", flexShrink: 0 }}>
-                          {icon}
-                        </span>
-                      )}
-                      <span style={{
-                        fontFamily: "'TAN-MEMORIES', serif",
-                        fontSize: "clamp(1.05rem, 4vw, 1.3rem)",
-                        lineHeight: 1.1, letterSpacing: "0.2px",
-                      }}>
-                        {item.name}
-                      </span>
-                    </motion.a>
-                  );
-                })}
+                  { name: "Recriação de Bouquet", href: "/recriacao",            delay: 0.15, icon: <IconRecriacao /> },
+                  { name: "Oferecer Preservação", href: "/oferecer-preservacao", delay: 0.18, icon: <IconPresente /> },
+                  { name: "Perguntas Frequentes", href: "/perguntas-frequentes", delay: 0.21, icon: <IconFAQ /> },
+                  { name: "Contactos e Equipa",   href: "/contactos",            delay: 0.24, icon: <IconContactos /> },
+                  { name: "Blog",                 href: "/blog",                 delay: 0.27, icon: <IconBlog /> },
+                ].map((item) => (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: item.delay, duration: 0.24 }}
+                    style={{
+                      display: "flex", alignItems: "center", gap: "14px",
+                      color: "#FAF7F0", textDecoration: "none",
+                      padding: "16px 28px",
+                      borderBottom: "1px solid rgba(250,247,240,0.07)",
+                      transition: "color 0.18s",
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
+                    onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
+                  >
+                    <span style={{ color: "rgba(250,247,240,0.35)", flexShrink: 0, display: "flex" }}>
+                      {item.icon}
+                    </span>
+                    <span style={{
+                      fontFamily: "'TAN-MEMORIES', serif",
+                      fontSize: "clamp(1.05rem, 4vw, 1.3rem)",
+                      lineHeight: 1.1,
+                    }}>
+                      {item.name}
+                    </span>
+                  </motion.a>
+                ))}
               </nav>
 
-              {/* Rodapé mobile — só WhatsApp e bandeiras, sem Reservar Data */}
+              {/* Rodapé do drawer — só WhatsApp e idioma */}
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 transition={{ delay: 0.32 }}
@@ -495,14 +535,17 @@ export default function NavClient() {
                   flexShrink: 0, display: "flex", flexDirection: "column", gap: "10px",
                 }}
               >
-                <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
+                <a
+                  href="https://wa.me/351934680300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
                   style={{
                     display: "flex", alignItems: "center", justifyContent: "center", gap: "9px",
                     backgroundColor: "rgba(37,211,102,0.1)",
                     border: "1px solid rgba(37,211,102,0.22)",
                     color: "#25D366", padding: "14px 24px", borderRadius: "100px",
-                    textDecoration: "none", fontWeight: 500,
-                    fontSize: "0.78rem",
+                    textDecoration: "none", fontWeight: 500, fontSize: "0.78rem",
                     fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
                   }}
                 >
