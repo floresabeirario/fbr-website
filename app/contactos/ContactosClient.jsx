@@ -203,7 +203,7 @@ export default function ContactosClient() {
           aria-hidden="true"
           style={{
             position: "absolute", inset: 0,
-            backgroundImage: "url('/fotoquadrocloseup3.webp')",
+            backgroundImage: "url('/juliaquadro2.webp')",
             backgroundSize: "cover", backgroundPosition: "center",
             filter: "brightness(0.72) saturate(0.9)",
           }}
