@@ -384,6 +384,9 @@ export default function NavClient() {
             style={{
               color: show ? "#1a1a1a" : "#fff",
               pointerEvents: show ? "auto" : "none",
+              position: "absolute",
+              left: "50%",
+              transform: "translateX(-50%)",
             }}
             aria-label="Flores à Beira-Rio — página inicial"
           >
@@ -401,35 +404,41 @@ export default function NavClient() {
                     fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
                     letterSpacing: "1.3px", color: show ? "#1a1a1a" : "#fff", whiteSpace: "nowrap",
                   }}>
-                    {item.name === "Contactos" ? "Contactos e Equipa" : item.name}
+                    {item.name === "Contactos" ? (
+                      <>
+                        <span className="nav-contactos-full">Contactos e Equipa</span>
+                        <span className="nav-contactos-short">Contactos</span>
+                      </>
+                    ) : item.name}
                   </a>
                   {i < rightLinks.length - 1 && <NavDivider scrolled={show} />}
                 </React.Fragment>
               ))}
-              <NavDivider scrolled={show} />
-              {/* Língua */}
-              <div style={{ position: "relative", display: "inline-flex", alignItems: "center" }}
-                className="lang-container"
-              >
-                <a href="/" className="nav-link lang-trigger" style={{
-                  fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
-                  letterSpacing: "1.3px", color: show ? "#1a1a1a" : "#fff",
-                  display: "flex", alignItems: "center",
-                }}>
-                  PT <FlagPT />
-                </a>
-                <div className="lang-dropdown" style={{ right: 0, left: "auto" }}>
-                  <a href="/en" style={{
-                    fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
-                    letterSpacing: "1.3px", display: "flex", alignItems: "center",
+              <div className="nav-lang-desktop" style={{ display: "inline-flex", alignItems: "center", gap: "inherit" }}>
+                <NavDivider scrolled={show} />
+                <div style={{ position: "relative", display: "inline-flex", alignItems: "center" }}
+                  className="lang-container"
+                >
+                  <a href="/" className="nav-link lang-trigger" style={{
+                    fontWeight: "500", textTransform: "uppercase",
                     color: show ? "#1a1a1a" : "#fff",
-                    background: show ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
-                    backdropFilter: "blur(12px)", padding: "9px 14px", borderRadius: "6px",
-                    border: show ? "1px solid rgba(26,26,26,0.08)" : "1px solid rgba(255,255,255,0.12)",
-                    textDecoration: "none", transition: "background 0.3s ease",
+                    display: "flex", alignItems: "center",
                   }}>
-                    EN <FlagEN />
+                    PT <FlagPT />
                   </a>
+                  <div className="lang-dropdown" style={{ right: 0, left: "auto" }}>
+                    <a href="/en" style={{
+                      fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
+                      letterSpacing: "1.3px", display: "flex", alignItems: "center",
+                      color: show ? "#1a1a1a" : "#fff",
+                      background: show ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
+                      backdropFilter: "blur(12px)", padding: "9px 14px", borderRadius: "6px",
+                      border: show ? "1px solid rgba(26,26,26,0.08)" : "1px solid rgba(255,255,255,0.12)",
+                      textDecoration: "none", transition: "background 0.3s ease",
+                    }}>
+                      EN <FlagEN />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
