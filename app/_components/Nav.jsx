@@ -305,6 +305,7 @@ function NavCTA({ shouldShowScrolled, pathname }) {
 export default function NavClient() {
   const [isOpen, setIsOpen]     = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
   const isHome   = pathname === "/";
 
@@ -319,9 +320,19 @@ export default function NavClient() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mq.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   useEffect(() => { setIsOpen(false); }, [pathname]);
 
   const show = scrolled || !isHome;
+  // No mobile, o fundo só aparece ao fazer scroll. No desktop, aparece sempre em páginas internas.
+  const showBg = isMobile ? scrolled : show;
 
   const rightLinks = NAV_RIGHT.filter(item => item.name !== "Blog" && item.name !== "FAQ");
 
@@ -331,12 +342,13 @@ export default function NavClient() {
       <nav
         role="navigation"
         aria-label="Navegação principal"
+        className={!scrolled && !isHome ? "nav-mobile-transparent" : ""}
         style={{
           position: "fixed", top: 0, width: "100%", zIndex: 100,
-          backgroundColor: scrolled ? "rgba(250,247,240,0.92)" : "transparent",
-          backdropFilter: scrolled ? "blur(12px)" : "none",
+          backgroundColor: showBg ? "rgba(250,247,240,0.95)" : "transparent",
+          backdropFilter: showBg ? "blur(10px)" : "none",
           transition: "all 0.4s ease",
-          padding: scrolled ? "14px 0" : "20px 0",
+          padding: showBg ? "14px 0" : "24px 0",
         }}
       >
         <div className="nav-bar">
