@@ -376,7 +376,7 @@ export default function RecriacaoClient() {
       >
         <motion.div
           aria-hidden="true"
-          style={{ position: "absolute", inset: "-20%", backgroundImage: "url('/sandra1.webp')", backgroundSize: "cover", backgroundPosition: "center", y: heroBgY }}
+          style={{ position: "absolute", inset: "-20%", backgroundImage: "url('/sandra2.webp')", backgroundSize: "cover", backgroundPosition: "center", y: heroBgY }}
         />
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, zIndex: 1, background: "linear-gradient(to bottom, rgba(20,12,4,0.3) 0%, rgba(20,12,4,0.52) 60%, rgba(20,12,4,0.72) 100%)" }} />
 
