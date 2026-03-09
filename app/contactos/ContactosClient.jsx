@@ -7,6 +7,18 @@ import { FORM_URL, WA_URL } from "../_lib/constants";
 
 const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
 
+// Paleta principal
+const C = {
+  tealDeep:   "#0F2622",
+  teal:       "#1E3D38",
+  tealMid:    "#2A4F49",
+  tealLight:  "#3D6B5E",
+  salmon:     "#C4846B",
+  salmonLight:"#D9A090",
+  gold:       "#B8954A",
+  cream:      "#FAF7F0",
+};
+
 // ─── Reveal ───────────────────────────────────────────────────────────────────
 function Reveal({ children, delay = 0, style, className }) {
   const ref = useRef(null);
@@ -20,16 +32,16 @@ function Reveal({ children, delay = 0, style, className }) {
 
 // ─── Dados ────────────────────────────────────────────────────────────────────
 const TEAM = [
-  { name: "Maria João", img: "/mj.webp", role: "Cofundadora & Designer", bio: "A Maria João é a nossa cofundadora e designer. É a mão artística das nossas peças.", accent: "#C4846B" },
-  { name: "António", img: "/antonio.webp", role: "Cofundador & Operações", bio: "O António é o nosso cofundador e coordenador de operações. Gere o material, fornecedores, recebimento de flores e envios de quadros e muito mais.", accent: "#3D6B5E" },
-  { name: "Ana", img: "/ana.webp", role: "Comunicação", bio: "A Ana é a nossa especialista em comunicação. É quem garante que os nossos clientes estão felizes com o nosso trabalho.", accent: "#B8954A" },
+  { name: "Maria João", img: "/mj.webp", role: "Cofundadora & Designer", bio: "A Maria João é a nossa cofundadora e designer. É a mão artística das nossas peças.", accent: C.salmon },
+  { name: "António", img: "/antonio.webp", role: "Cofundador & Operações", bio: "O António é o nosso cofundador e coordenador de operações. Gere o material, fornecedores, recebimento de flores e envios de quadros e muito mais.", accent: C.tealLight },
+  { name: "Ana", img: "/ana.webp", role: "Comunicação", bio: "A Ana é a nossa especialista em comunicação. É quem garante que os nossos clientes estão felizes com o nosso trabalho.", accent: C.gold },
 ];
 
 const SOCIALS = [
   { icon: <IconInstagram size={22} />, label: "Instagram", href: "https://www.instagram.com/floresabeirario/", bg: "linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%)" },
   { icon: <IconFacebook size={22} />, label: "Facebook", href: "https://www.facebook.com/floresabeirario/", bg: "linear-gradient(135deg, #1877F2, #0C5DC7)" },
   { icon: <IconTikTok size={22} />, label: "TikTok", href: "https://www.tiktok.com/@floresabeirario", bg: "linear-gradient(135deg, #010101, #2b2b2b)" },
-  { icon: <IconCasamentos size={22} />, label: "Casamentos.pt", href: "https://www.casamentos.pt/ideias-criativas-para-casamentos/flores-a-beira-rio-preservacao-de-flores--e171385", bg: "linear-gradient(135deg, #E8927C, #D4735B)" },
+  { icon: <IconCasamentos size={22} />, label: "Casamentos.pt", href: "https://www.casamentos.pt/ideias-criativas-para-casamentos/flores-a-beira-rio-preservacao-de-flores--e171385", bg: `linear-gradient(135deg, ${C.salmon}, #C06050)` },
 ];
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
@@ -51,8 +63,8 @@ export default function ContactosClient() {
         .team-list { display: flex; flex-direction: column; gap: clamp(14px, 2.5vw, 22px); }
         @media (min-width: 640px) { .team-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 2vw, 20px); } }
 
-        .team-card { display: flex; align-items: stretch; border-radius: 20px; overflow: hidden; background: rgba(250,247,240,0.04); border: 1px solid rgba(250,247,240,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .team-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.35); }
+        .team-card { display: flex; align-items: stretch; border-radius: 20px; overflow: hidden; background: rgba(250,247,240,0.04); border: 1px solid rgba(196,132,107,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .team-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.4); }
 
         .team-photo-wrap { position: relative; flex-shrink: 0; width: clamp(120px, 38vw, 200px); overflow: hidden; }
         .team-bio-col { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: clamp(16px, 3vw, 24px); }
@@ -68,18 +80,21 @@ export default function ContactosClient() {
         .team-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
         .team-card:hover .team-photo-wrap img { transform: scale(1.05); }
 
-        .team-photo-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 12px; background: linear-gradient(to top, rgba(42,31,22,0.96) 0%, rgba(42,31,22,0.5) 55%, transparent 100%); }
+        .team-photo-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 12px; background: linear-gradient(to top, rgba(15,38,34,0.97) 0%, rgba(15,38,34,0.55) 55%, transparent 100%); }
 
         .cta-row { display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
         @media (min-width: 460px) { .cta-row { flex-direction: row; justify-content: center; align-items: center; } }
 
-        .btn-primary-light { display: inline-flex; align-items: center; justify-content: center; background: #FAF7F0; color: #3D6B5E; padding: 16px 38px; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; transition: all 0.3s ease; font-family: var(--font-google-sans), 'Google Sans', sans-serif; min-height: 56px; }
+        .btn-primary-light { display: inline-flex; align-items: center; justify-content: center; background: ${C.cream}; color: ${C.teal}; padding: 16px 38px; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; transition: all 0.3s ease; font-family: var(--font-google-sans), 'Google Sans', sans-serif; min-height: 56px; }
         .btn-primary-light:hover { background: #EDE5D4; transform: translateY(-3px); }
+
+        .btn-salmon-big { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: ${C.salmon}; color: #fff; padding: 16px 36px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; box-shadow: 0 6px 24px rgba(196,132,107,0.35); transition: all 0.3s ease; font-family: var(--font-google-sans), 'Google Sans', sans-serif; min-height: 56px; }
+        .btn-salmon-big:hover { background: ${C.salmonLight}; transform: translateY(-3px); }
 
         .btn-wa-big { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: #25D366; color: #fff; padding: 16px 36px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; box-shadow: 0 6px 24px rgba(37,211,102,0.3); transition: all 0.3s ease; font-family: var(--font-google-sans), 'Google Sans', sans-serif; min-height: 56px; }
         .btn-wa-big:hover { background: #1da851; transform: translateY(-3px); }
 
-        a:focus-visible, button:focus-visible { outline: 3px solid #8BA888; outline-offset: 4px; border-radius: 4px; }
+        a:focus-visible, button:focus-visible { outline: 3px solid ${C.salmon}; outline-offset: 4px; border-radius: 4px; }
 
         @media (prefers-reduced-motion: reduce) {
           *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -89,49 +104,49 @@ export default function ContactosClient() {
 
       {/* ════ 1. HERO ════ */}
       <section aria-label="Contactos e Equipa — Flores à Beira-Rio" style={{ position: "relative", overflow: "hidden", minHeight: "85vh", display: "flex", alignItems: "center" }}>
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/fotoquadro1.webp')", backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.55) saturate(0.8)" }} />
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.4) 0%, rgba(15,30,26,0.6) 50%, rgba(15,30,26,0.85) 100%)" }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/fotoquadrocloseup3.webp')", backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.5) saturate(0.85)" }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: `linear-gradient(to bottom, rgba(15,38,34,0.45) 0%, rgba(15,38,34,0.65) 50%, rgba(15,38,34,0.9) 100%)` }} />
 
         <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1100px", margin: "0 auto", padding: "clamp(140px,18vw,200px) 24px clamp(80px,12vw,120px)" }}>
           <div className="contact-split" style={{ gap: "clamp(40px,6vw,80px)", alignItems: "center" }}>
 
             <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-              <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#8BA888", marginBottom: 16, fontFamily: GS }}>Fale connosco</span>
-              <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.8rem,8vw,5.2rem)", color: "#FAF7F0", margin: "0 0 20px", lineHeight: 1.02 }}>
+              <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmonLight, marginBottom: 16, fontFamily: GS }}>Fale connosco</span>
+              <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.8rem,8vw,5.2rem)", color: C.cream, margin: "0 0 20px", lineHeight: 1.02 }}>
                 Contactos<br />
-                <em style={{ fontStyle: "italic", color: "#8BA888" }}>e Equipa</em>
+                <em style={{ fontStyle: "italic", color: C.salmon }}>e Equipa</em>
               </h1>
               <p style={{ color: "rgba(250,247,240,0.72)", fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.08rem)", lineHeight: 1.88, maxWidth: 480, margin: "0 0 32px" }}>
                 Estamos disponíveis para responder a todas as suas dúvidas. Adoramos conhecer a história por detrás das flores que nos chegam.
               </p>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="contact-card" style={{ backgroundColor: "rgba(250,247,240,0.07)", backdropFilter: "blur(20px)", border: "1px solid rgba(250,247,240,0.12)", borderRadius: 20, padding: "clamp(20px,4vw,40px)" }}>
-              <p style={{ fontFamily: GS, fontWeight: 700, fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase", color: "#B8954A", marginBottom: 24 }}>Contacto direto</p>
+            <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="contact-card" style={{ backgroundColor: "rgba(15,38,34,0.65)", backdropFilter: "blur(20px)", border: `1px solid rgba(196,132,107,0.2)`, borderRadius: 20, padding: "clamp(20px,4vw,40px)" }}>
+              <p style={{ fontFamily: GS, fontWeight: 700, fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase", color: C.salmon, marginBottom: 24 }}>Contacto direto</p>
 
               {[
                 { icon: <IconWhatsApp size={22} />, label: "+351 934 680 300", sub: "Respondemos em 24 horas", href: "https://wa.me/351934680300", color: "#25D366" },
-                { icon: <IconEmail size={22} />, label: "info@floresabeirario.pt", sub: "Resposta em 72 horas", href: "mailto:info@floresabeirario.pt", color: "#8BA888" },
+                { icon: <IconEmail size={22} />, label: "info@floresabeirario.pt", sub: "Resposta em 72 horas", href: "mailto:info@floresabeirario.pt", color: C.salmonLight },
               ].map((item, i) => (
                 <a key={i} href={item.href} {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 0", borderBottom: "1px solid rgba(250,247,240,0.08)", textDecoration: "none", color: "inherit", transition: "opacity 0.2s", minWidth: 0 }}
+                  style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 0", borderBottom: `1px solid rgba(196,132,107,0.12)`, textDecoration: "none", color: "inherit", transition: "opacity 0.2s", minWidth: 0 }}
                   onMouseEnter={e => { e.currentTarget.style.opacity = "0.75"; }}
                   onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
                 >
                   <div style={{ width: 40, height: 40, borderRadius: 10, flexShrink: 0, background: `${item.color}22`, display: "flex", alignItems: "center", justifyContent: "center", color: item.color }}>{item.icon}</div>
                   <div style={{ minWidth: 0 }}>
-                    <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.8rem, 3.5vw, 0.95rem)", color: "#FAF7F0", margin: 0, lineHeight: 1.2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{item.label}</p>
+                    <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.8rem, 3.5vw, 0.95rem)", color: C.cream, margin: 0, lineHeight: 1.2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{item.label}</p>
                     <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.74rem", color: "rgba(250,247,240,0.45)", margin: "3px 0 0" }}>{item.sub}</p>
                   </div>
                 </a>
               ))}
 
-              <p style={{ fontFamily: GS, fontWeight: 700, fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase", color: "#8BA888", margin: "20px 0 14px" }}>Siga-nos</p>
+              <p style={{ fontFamily: GS, fontWeight: 700, fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase", color: C.salmonLight, margin: "20px 0 14px" }}>Siga-nos</p>
               <div className="socials-row">
                 {SOCIALS.map((s, i) => (
                   <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
                     style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 6, padding: "12px 8px", borderRadius: 12, background: s.bg, textDecoration: "none", color: "#fff", transition: "transform 0.3s ease, box-shadow 0.3s ease", minWidth: 0 }}
-                    onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.25)"; }}
+                    onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.3)"; }}
                     onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
                   >
                     <span style={{ display: "flex", alignItems: "center" }}>{s.icon}</span>
@@ -145,15 +160,19 @@ export default function ContactosClient() {
       </section>
 
       {/* ════ 2. EQUIPA ════ */}
-      <section aria-label="A nossa equipa" style={{ padding: "clamp(60px,10vw,100px) 24px", background: "linear-gradient(165deg, #2D1F14 0%, #3A2A1C 40%, #1E2D2A 100%)", position: "relative", overflow: "hidden" }}>
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.03, backgroundImage: `repeating-linear-gradient(45deg, #B8954A 0px, #B8954A 1px, transparent 1px, transparent 50px)`, pointerEvents: "none" }} />
+      <section aria-label="A nossa equipa" style={{ padding: "clamp(60px,10vw,100px) 24px", background: `linear-gradient(165deg, ${C.teal} 0%, ${C.tealMid} 40%, ${C.tealDeep} 100%)`, position: "relative", overflow: "hidden" }}>
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: `repeating-linear-gradient(45deg, ${C.salmon} 0px, ${C.salmon} 1px, transparent 1px, transparent 50px)`, pointerEvents: "none" }} />
+        {/* Blobs decorativos */}
+        <div aria-hidden="true" style={{ position: "absolute", top: "-5%", left: "-5%", width: "clamp(200px,35vw,450px)", height: "clamp(200px,35vw,450px)", background: `radial-gradient(circle, rgba(196,132,107,0.08) 0%, transparent 65%)`, borderRadius: "50%", pointerEvents: "none" }} />
+        <div aria-hidden="true" style={{ position: "absolute", bottom: "-5%", right: "-5%", width: "clamp(200px,30vw,380px)", height: "clamp(200px,30vw,380px)", background: `radial-gradient(circle, rgba(196,132,107,0.06) 0%, transparent 65%)`, borderRadius: "50%", pointerEvents: "none" }} />
+
         <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(40px,7vw,64px)" }}>
-              <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#B8954A", marginBottom: 14, fontFamily: GS }}>Quem somos</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,5.5vw,3.8rem)", fontWeight: 400, color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.08 }}>
+              <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmonLight, marginBottom: 14, fontFamily: GS }}>Quem somos</span>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,5.5vw,3.8rem)", fontWeight: 400, color: C.cream, margin: "0 0 16px", lineHeight: 1.08 }}>
                 A equipa por detrás<br />
-                <em style={{ fontStyle: "italic", color: "#C4846B" }}>de cada peça</em>
+                <em style={{ fontStyle: "italic", color: C.salmon }}>de cada peça</em>
               </h2>
               <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.05rem)", lineHeight: 1.85, color: "rgba(250,247,240,0.55)", maxWidth: 500, margin: "0 auto" }}>
                 Somos uma equipa pequena baseada em Coimbra, unida pela paixão de transformar flores em memórias que duram para sempre.
@@ -168,8 +187,8 @@ export default function ContactosClient() {
                   <div className="team-photo-wrap">
                     <img src={member.img} alt={`${member.name} — ${member.role} na Flores à Beira-Rio`} loading="lazy" />
                     <div className="team-photo-overlay">
-                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem, 3.5vw, 1.6rem)", color: "#FAF7F0", margin: "0 0 6px", lineHeight: 1.1, textShadow: "0 2px 10px rgba(0,0,0,0.3)" }}>{member.name}</p>
-                      <span style={{ display: "inline-block", fontSize: "0.5rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#FAF7F0", fontFamily: GS, backgroundColor: member.accent, padding: "4px 12px", borderRadius: 100 }}>{member.role}</span>
+                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem, 3.5vw, 1.6rem)", color: C.cream, margin: "0 0 6px", lineHeight: 1.1, textShadow: "0 2px 10px rgba(0,0,0,0.3)" }}>{member.name}</p>
+                      <span style={{ display: "inline-block", fontSize: "0.5rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#fff", fontFamily: GS, backgroundColor: member.accent, padding: "4px 12px", borderRadius: 100 }}>{member.role}</span>
                     </div>
                   </div>
                   <div className="team-bio-col">
@@ -186,15 +205,16 @@ export default function ContactosClient() {
       </section>
 
       {/* ════ 3. CTA FINAL ════ */}
-      <section aria-label="Iniciar contacto" style={{ padding: "clamp(64px,10vw,100px) 24px", background: "linear-gradient(160deg, #1E2D2A 0%, #0F1E1A 100%)", textAlign: "center", position: "relative", overflow: "hidden" }}>
-        <div aria-hidden="true" style={{ position: "absolute", top: "-20%", right: "-10%", width: "clamp(300px,50vw,600px)", height: "clamp(300px,50vw,600px)", background: "radial-gradient(circle, rgba(184,149,74,0.06) 0%, transparent 65%)", borderRadius: "50%", pointerEvents: "none" }} />
+      <section aria-label="Iniciar contacto" style={{ padding: "clamp(64px,10vw,100px) 24px", background: `linear-gradient(160deg, ${C.tealMid} 0%, ${C.tealDeep} 100%)`, textAlign: "center", position: "relative", overflow: "hidden" }}>
+        <div aria-hidden="true" style={{ position: "absolute", top: "-20%", right: "-10%", width: "clamp(300px,50vw,600px)", height: "clamp(300px,50vw,600px)", background: `radial-gradient(circle, rgba(196,132,107,0.09) 0%, transparent 65%)`, borderRadius: "50%", pointerEvents: "none" }} />
+        <div aria-hidden="true" style={{ position: "absolute", bottom: "-15%", left: "-8%", width: "clamp(250px,40vw,500px)", height: "clamp(250px,40vw,500px)", background: `radial-gradient(circle, rgba(196,132,107,0.06) 0%, transparent 65%)`, borderRadius: "50%", pointerEvents: "none" }} />
 
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: 640, margin: "0 auto", position: "relative", zIndex: 1 }}>
-          <div aria-hidden="true" style={{ width: 44, height: 1, margin: "0 auto 28px", background: "linear-gradient(to right, transparent, #B8954A, transparent)" }} />
-          <span style={{ display: "block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#8BA888", marginBottom: 14, fontFamily: GS }}>Pronta para começar?</span>
-          <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,6vw,3.8rem)", fontWeight: 400, margin: "0 0 18px", lineHeight: 1.08, color: "#FAF7F0" }}>
+          <div aria-hidden="true" style={{ width: 44, height: 1, margin: "0 auto 28px", background: `linear-gradient(to right, transparent, ${C.salmon}, transparent)` }} />
+          <span style={{ display: "block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmonLight, marginBottom: 14, fontFamily: GS }}>Pronta para começar?</span>
+          <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,6vw,3.8rem)", fontWeight: 400, margin: "0 0 18px", lineHeight: 1.08, color: C.cream }}>
             Fale connosco<br />
-            <em style={{ fontStyle: "italic", color: "#C4846B" }}>sem compromisso</em>
+            <em style={{ fontStyle: "italic", color: C.salmon }}>sem compromisso</em>
           </h2>
           <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.9rem,2vw,1rem)", lineHeight: 1.85, color: "rgba(250,247,240,0.55)", margin: "0 0 36px" }}>
             Quer saber mais, pedir orçamento ou simplesmente contar-nos a história das suas flores? Respondemos sempre com cuidado e atenção.
@@ -214,9 +234,9 @@ export default function ContactosClient() {
               { href: "/opcoes-e-precos", label: "Ver preços" },
               { href: "/perguntas-frequentes", label: "Perguntas frequentes" },
             ].map((l, i) => (
-              <a key={i} href={l.href} style={{ color: "rgba(250,247,240,0.45)", fontWeight: 600, textDecoration: "none", fontFamily: GS, borderBottom: "1px solid rgba(250,247,240,0.15)", paddingBottom: 2, transition: "color 0.2s ease, border-color 0.2s ease" }}
-                onMouseEnter={e => { e.currentTarget.style.color = "#FAF7F0"; e.currentTarget.style.borderColor = "rgba(250,247,240,0.5)"; }}
-                onMouseLeave={e => { e.currentTarget.style.color = "rgba(250,247,240,0.45)"; e.currentTarget.style.borderColor = "rgba(250,247,240,0.15)"; }}
+              <a key={i} href={l.href} style={{ color: "rgba(250,247,240,0.45)", fontWeight: 600, textDecoration: "none", fontFamily: GS, borderBottom: `1px solid rgba(196,132,107,0.2)`, paddingBottom: 2, transition: "color 0.2s ease, border-color 0.2s ease" }}
+                onMouseEnter={e => { e.currentTarget.style.color = C.cream; e.currentTarget.style.borderColor = `rgba(196,132,107,0.6)`; }}
+                onMouseLeave={e => { e.currentTarget.style.color = "rgba(250,247,240,0.45)"; e.currentTarget.style.borderColor = `rgba(196,132,107,0.2)`; }}
               >
                 {l.label}
               </a>
