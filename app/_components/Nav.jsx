@@ -347,7 +347,7 @@ export default function NavClient() {
         <div className="nav-bar">
 
           {/* ── ESQUERDA (desktop): Reservar Data | Preservação | Momentos ── */}
-          <div className="nav-left">
+          <div className="nav-left desktop-only">
             <NavCTA shouldShowScrolled={show} pathname={pathname} />
             <NavDivider scrolled={show} />
             <DesktopDropdown menu={NAV_PRESERVACAO} scrolled={show} />
@@ -355,13 +355,17 @@ export default function NavClient() {
             <DesktopDropdown menu={NAV_MOMENTOS} scrolled={show} />
           </div>
 
-          {/* ── CENTRO: Logo (só aparece após scroll / fora da home) ── */}
+          {/* ── CENTRO: Logo ── */}
+          {/* No mobile: sempre visível. No desktop: aparece só após scroll / fora da home */}
           <motion.a
             href="/"
-            className="nav-logo"
+            className="nav-logo nav-logo-desktop-animated"
             animate={{ opacity: show ? 1 : 0, y: show ? 0 : 8 }}
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-            style={{ color: show ? "#1a1a1a" : "#fff", pointerEvents: show ? "auto" : "none" }}
+            style={{
+              color: show ? "#1a1a1a" : "#fff",
+              pointerEvents: show ? "auto" : "none",
+            }}
             aria-label="Flores à Beira-Rio — página inicial"
           >
             Flores à Beira&#8209;Rio
