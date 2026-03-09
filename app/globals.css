@@ -67,28 +67,27 @@ button:focus-visible {
   align-items: center;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 clamp(16px, 2vw, 40px);
 }
-@media (min-width: 1400px) { .nav-bar { padding: 0 32px; } }
 
 .nav-left {
   flex: 1;
   display: flex;
-  gap: clamp(4px, 0.6vw, 14px);
+  gap: clamp(6px, 0.9vw, 18px);
   align-items: center;
   justify-content: flex-end;
 }
 
 .nav-logo {
   flex: 0 0 auto;
-  font-size: clamp(0.85rem, 1.2vw, 1.4rem);
+  font-size: clamp(1rem, 1.3vw, 1.4rem);
   font-family: 'TAN-MEMORIES', serif;
   text-align: center;
   text-decoration: none !important;
   line-height: 1.1;
   letter-spacing: 0.5px;
   white-space: nowrap;
-  padding: 2px clamp(8px, 1vw, 20px);
+  padding: 2px clamp(10px, 1.5vw, 24px);
   border-bottom: 1px solid transparent;
   transition: all 0.3s ease;
 }
@@ -102,7 +101,7 @@ button:focus-visible {
 }
 .nav-right {
   display: flex;
-  gap: clamp(4px, 0.6vw, 14px);
+  gap: clamp(6px, 0.9vw, 18px);
   align-items: center;
 }
 
@@ -126,8 +125,8 @@ button:focus-visible {
   border-bottom: 1px solid transparent;
   line-height: 1.4;
   padding-bottom: 2px;
-  font-size: clamp(0.54rem, 0.55vw, 0.68rem) !important;
-  letter-spacing: clamp(0.8px, 0.1vw, 1.3px) !important;
+  font-size: clamp(0.58rem, 0.62vw, 0.72rem) !important;
+  letter-spacing: clamp(0.9px, 0.12vw, 1.4px) !important;
   white-space: nowrap;
 }
 .nav-link:hover { border-bottom: 1px solid currentColor; }
@@ -189,13 +188,13 @@ button:focus-visible {
 .nav-cta {
   display: inline-flex;
   align-items: center;
-  font-size: clamp(0.52rem, 0.55vw, 0.64rem);
+  font-size: clamp(0.58rem, 0.62vw, 0.68rem);
   font-weight: 600;
-  letter-spacing: clamp(0.8px, 0.1vw, 1.4px);
+  letter-spacing: clamp(0.9px, 0.12vw, 1.4px);
   text-transform: uppercase;
   text-decoration: none !important;
   font-family: var(--font-google-sans), 'Google Sans', sans-serif;
-  padding: clamp(6px, 0.5vw, 8px) clamp(10px, 1vw, 18px);
+  padding: clamp(7px, 0.55vw, 9px) clamp(12px, 1.2vw, 20px);
   border-radius: 100px;
   transition: all 0.3s ease;
   white-space: nowrap;
