@@ -290,7 +290,7 @@ export default function ContactosClient() {
                     onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
                   >
                     <span style={{ display: "flex", alignItems: "center" }}>{s.icon}</span>
-                    <span style={{ fontFamily: GS, fontWeight: 600, fontSize: "0.65rem", letterSpacing: "0.3px", textAlign: "center", lineHeight: 1.2 }}>{s.label}</span>
+                  <span style={{ fontFamily: GS, fontWeight: 600, fontSize: "0.58rem", letterSpacing: "0px", textAlign: "center", lineHeight: 1.2, whiteSpace: "nowrap" }}>{s.label}</span>  
                   </a>
                 ))}
               </div>
