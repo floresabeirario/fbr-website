@@ -227,7 +227,7 @@ export default function OpcoesClient() {
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
             style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}
           >
-            <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.5)", fontFamily: GS, margin: "0 0 14px", fontWeight: 700 }}>
+            <p style={{ fontSize: "0.62rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.9)", fontFamily: GS, margin: "0 0 14px", fontWeight: 700, textShadow: "0 1px 8px rgba(0,0,0,0.6)" }}>
               Opções e Preços
             </p>
             <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: "#FAF7F0", margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)", textShadow: "0 2px 20px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.5)" }}>
