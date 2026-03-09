@@ -7,6 +7,8 @@ import { IconInstagram, IconFacebook, IconWhatsApp, IconEmail, FlagPT, FlagEN } 
 import { FOOTER_LINKS } from "../_lib/data/navigation";
 import { FORM_URL } from "../_lib/constants";
 
+const FONT = "var(--font-google-sans), 'Google Sans', sans-serif";
+
 const FooterAccordion = ({ label, children }) => {
   const [open, setOpen] = useState(false);
   const id = `footer-acc-${label.toLowerCase().replace(/\s/g, "-")}`;
@@ -24,7 +26,7 @@ const FooterAccordion = ({ label, children }) => {
       >
         <span style={{
           fontSize: "0.72rem", letterSpacing: "2px", textTransform: "uppercase",
-          color: "rgba(250,247,240,0.75)", fontFamily: "Roboto, sans-serif", fontWeight: 500,
+          color: "rgba(250,247,240,0.75)", fontFamily: FONT, fontWeight: 500,
         }}>
           {label}
         </span>
@@ -58,13 +60,13 @@ const FooterAccordion = ({ label, children }) => {
 const linkStyle = {
   color: "rgba(250,247,240,0.5)", textDecoration: "none",
   fontSize: "0.84rem", fontWeight: "300", lineHeight: 1,
-  transition: "color 0.25s ease", fontFamily: "Roboto, sans-serif", display: "inline-block",
+  transition: "color 0.25s ease", fontFamily: FONT, display: "inline-block",
 };
 
 const labelStyle = {
   fontSize: "0.52rem", letterSpacing: "3.5px", textTransform: "uppercase",
   color: "rgba(250,247,240,0.22)", margin: "0 0 18px",
-  fontFamily: "Roboto, sans-serif", display: "block",
+  fontFamily: FONT, display: "block",
 };
 
 const renderLinks = (list) =>
@@ -93,7 +95,7 @@ export default function FooterClient() {
         </h2>
         <p style={{
           fontSize: "0.6rem", letterSpacing: "4px", textTransform: "uppercase",
-          color: "rgba(250,247,240,0.45)", margin: "0 0 36px", fontFamily: "Roboto, sans-serif",
+          color: "rgba(250,247,240,0.45)", margin: "0 0 36px", fontFamily: FONT,
         }}>
           Especialistas em Preservação de Flores · Coimbra, Portugal
         </p>
@@ -123,7 +125,7 @@ export default function FooterClient() {
             padding: "13px 28px", borderRadius: "100px",
             textDecoration: "none", fontWeight: "600",
             fontSize: "0.75rem", letterSpacing: "0.5px",
-            fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease",
+            fontFamily: FONT, transition: "all 0.3s ease",
             boxShadow: "0 4px 20px rgba(37,211,102,0.2)",
           }}
           onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#1db954"; e.currentTarget.style.transform = "translateY(-2px)"; }}
@@ -201,7 +203,7 @@ export default function FooterClient() {
       </div>
 
       <div style={{ borderTop: "1px solid rgba(250,247,240,0.07)", padding: "20px 24px 28px", textAlign: "center" }}>
-        <p style={{ fontSize: "0.68rem", letterSpacing: "1px", color: "rgba(250,247,240,0.45)", fontFamily: "Roboto, sans-serif", textTransform: "uppercase", margin: 0 }}>
+        <p style={{ fontSize: "0.68rem", letterSpacing: "1px", color: "rgba(250,247,240,0.45)", fontFamily: FONT, textTransform: "uppercase", margin: 0 }}>
           © 2026 Flores à Beira-Rio · Todos os direitos reservados
         </p>
       </div>
