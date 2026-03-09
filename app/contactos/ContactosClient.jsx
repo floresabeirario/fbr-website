@@ -213,7 +213,7 @@ export default function ContactosClient() {
             position: "absolute", inset: 0,
             backgroundImage: "url('/juliaquadro2.webp')",
             backgroundSize: "cover",
-            backgroundPosition: "center bottom",
+            backgroundPosition: "center center",
             filter: "brightness(0.55) saturate(0.8)",
           }}
         />
