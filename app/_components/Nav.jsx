@@ -17,6 +17,7 @@ const PAGE_COLORS = {
   "/preservar-flores-aniversario":         { bg: "#A8886B", shadow: "rgba(168,136,107,0.32)" },
   "/preservar-flores-pedido-casamento":    { bg: "#A86B7B", shadow: "rgba(168,107,123,0.32)" },
   "/recriacao":                            { bg: "#8B6BA8", shadow: "rgba(139,107,168,0.32)" },
+  "/contactos":                            { bg: "#C4846B", shadow: "rgba(196,132,107,0.32)" },
 };
 const DEFAULT_CTA = { bg: "#3D6B5E", shadow: "rgba(61,107,94,0.32)" };
 
@@ -129,11 +130,8 @@ const DesktopDropdown = ({ menu, scrolled }) => {
             style={{
               position: "absolute",
               top: "calc(100% + 14px)",
-              left: "50%",
-              transform: "translateX(-50%)",
+              left: "0",
               zIndex: 300,
-              // Área invisível em cima para "capturar" o rato no gap
-              paddingTop: "0px",
             }}
           >
             {/* Ponte invisível entre o trigger e o painel */}
@@ -149,10 +147,10 @@ const DesktopDropdown = ({ menu, scrolled }) => {
               minWidth: "220px",
               position: "relative",
             }}>
-              {/* Seta de cima */}
+              {/* Seta de cima alinhada ao trigger */}
               <div style={{
-                position: "absolute", top: "-5px", left: "50%",
-                transform: "translateX(-50%) rotate(45deg)",
+                position: "absolute", top: "-5px", left: "24px",
+                transform: "rotate(45deg)",
                 width: "10px", height: "10px",
                 background: "#FAFAF8",
                 borderLeft: "1px solid rgba(61,107,94,0.13)",
@@ -356,10 +354,10 @@ export default function NavClient() {
           </div>
 
           {/* ── CENTRO: Logo ── */}
-          {/* Desktop: framer-motion anima opacity */}
           <motion.a
             href="/"
             className="nav-logo desktop-only"
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: show ? 1 : 0, y: show ? 0 : 8 }}
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             style={{
@@ -370,10 +368,10 @@ export default function NavClient() {
           >
             Flores à Beira&#8209;Rio
           </motion.a>
-          {/* Mobile: mesmo comportamento — esconde na home até scroll */}
           <motion.a
             href="/"
             className="nav-logo mobile-only"
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: show ? 1 : 0, y: show ? 0 : 8 }}
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             style={{
