@@ -356,10 +356,10 @@ export default function NavClient() {
           </div>
 
           {/* ── CENTRO: Logo ── */}
-          {/* No mobile: sempre visível. No desktop: aparece só após scroll / fora da home */}
+          {/* Desktop: só aparece após scroll ou fora da home (controlado por framer-motion) */}
           <motion.a
             href="/"
-            className="nav-logo nav-logo-desktop-animated"
+            className="nav-logo desktop-only"
             animate={{ opacity: show ? 1 : 0, y: show ? 0 : 8 }}
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             style={{
@@ -370,6 +370,15 @@ export default function NavClient() {
           >
             Flores à Beira&#8209;Rio
           </motion.a>
+          {/* Mobile: logo sempre visível, cor depende do fundo */}
+          <a
+            href="/"
+            className="nav-logo mobile-only"
+            style={{ color: show ? "#1a1a1a" : "#fff" }}
+            aria-label="Flores à Beira-Rio — página inicial"
+          >
+            Flores à Beira&#8209;Rio
+          </a>
 
           {/* ── DIREITA (desktop): links + PT flag | MENU (mobile) ── */}
           <div className="nav-right-col">
