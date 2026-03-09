@@ -266,7 +266,7 @@ export default function OfereceClient() {
               <Eyebrow color={AZUL}>O cartão</Eyebrow>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem, 3vw, 2rem)", lineHeight: 1.15, margin: "0 0 0.3rem", color: ESCURO }}>Vale oferta de preservação</h2>
               <p style={{ fontSize: "0.78rem", color: AZUL, letterSpacing: "0.05em", marginBottom: "1.4rem", fontFamily: "'Google Sans', sans-serif" }}>
-                Ilustrado por a artista{" "}
+                Ilustrado pela artista{" "}
                 <a href="https://www.instagram.com/damais_cenas" target="_blank" rel="noopener noreferrer" style={{ color: AZUL, fontWeight: 600, textDecoration: "none", borderBottom: `1px solid ${AZUL}66`, paddingBottom: "1px" }}>@damais_cenas</a>
                 {" "}de Coimbra
               </p>
