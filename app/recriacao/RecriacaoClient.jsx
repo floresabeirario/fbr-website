@@ -1,8 +1,7 @@
 // app/recriacao/RecriacaoClient.jsx
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 // SVG Decorativos
 
@@ -140,11 +139,6 @@ const UseCaseCard = ({ imageSrc, tag, title, desc, delay }) => (
 // Page Client
 
 export default function RecriacaoClient() {
-  const heroRef = useRef(null);
-  const { scrollYProgress: heroP } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroBgY     = useTransform(heroP, [0, 1], ["0%", "25%"]);
-  const heroTextY   = useTransform(heroP, [0, 1], ["0%", "40%"]);
-  const heroOpacity = useTransform(heroP, [0, 0.85], [1, 0]);
 
   const whatsappUrl = `https://wa.me/351934680300?text=${encodeURIComponent("Olá! Gostaria que recriassem num quadro o seguinte bouquet. Envio fotografias em anexo.")}`;
   const whatsappUrlRecriacao = `https://wa.me/351934680300?text=${encodeURIComponent("Olá! Gostaria que recriassem num quadro o seguinte bouquet. Envio fotografias em anexo.")}`;
@@ -375,15 +369,14 @@ export default function RecriacaoClient() {
 
       {/* 1. HERO */}
       <section
-        ref={heroRef}
         aria-label="Recriacao de Bouquet de Casamento"
         className="hero-recriacao"
       >
-        <motion.div className="hero-recriacao-bg" style={{ y: heroBgY }}>
+        <div className="hero-recriacao-bg">
           <img src="/sandra2.webp" alt="" aria-hidden="true" />
-        </motion.div>
+        </div>
 
-        <motion.div className="hero-recriacao-text" style={{ y: heroTextY, opacity: heroOpacity }}>
+        <div className="hero-recriacao-text">
           <div style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
 
             <motion.p
@@ -420,7 +413,7 @@ export default function RecriacaoClient() {
               </a>
             </motion.div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* 2. PASSOS */}
