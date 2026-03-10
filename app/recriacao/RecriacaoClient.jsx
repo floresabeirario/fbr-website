@@ -1,7 +1,8 @@
 // app/recriacao/RecriacaoClient.jsx
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 // SVG Decorativos
 
@@ -139,6 +140,9 @@ const UseCaseCard = ({ imageSrc, tag, title, desc, delay }) => (
 // Page Client
 
 export default function RecriacaoClient() {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const textOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
 
   const whatsappUrl = `https://wa.me/351934680300?text=${encodeURIComponent("Olá! Gostaria que recriassem num quadro o seguinte bouquet. Envio fotografias em anexo.")}`;
   const whatsappUrlRecriacao = `https://wa.me/351934680300?text=${encodeURIComponent("Olá! Gostaria que recriassem num quadro o seguinte bouquet. Envio fotografias em anexo.")}`;
@@ -273,7 +277,8 @@ export default function RecriacaoClient() {
           min-height: 100svh;
           overflow: hidden;
           display: flex;
-          align-items: flex-end;
+          align-items: center;
+          justify-content: center;
         }
         .hero-recriacao-bg {
           position: absolute; inset: 0;
@@ -283,12 +288,12 @@ export default function RecriacaoClient() {
         }
         .hero-recriacao-bg::after {
           content: ''; position: absolute; inset: 0;
-          background: linear-gradient(to top, rgba(20,12,4,0.92) 0%, rgba(20,12,4,0.55) 45%, rgba(20,12,4,0.18) 100%);
+          background: linear-gradient(to top, rgba(20,12,4,0.85) 0%, rgba(20,12,4,0.45) 50%, rgba(20,12,4,0.2) 100%);
         }
         .hero-recriacao-text {
           position: relative; z-index: 2;
           width: 100%;
-          padding: clamp(110px,14vw,160px) clamp(24px,5vw,72px) clamp(60px,8vw,90px);
+          padding: clamp(24px,5vw,72px);
         }
 
         /* Botao WhatsApp hero: pequeno e discreto */
@@ -369,6 +374,7 @@ export default function RecriacaoClient() {
 
       {/* 1. HERO */}
       <section
+        ref={heroRef}
         aria-label="Recriacao de Bouquet de Casamento"
         className="hero-recriacao"
       >
@@ -376,7 +382,7 @@ export default function RecriacaoClient() {
           <img src="/sandra2.webp" alt="" aria-hidden="true" />
         </div>
 
-        <div className="hero-recriacao-text">
+        <motion.div className="hero-recriacao-text" style={{ opacity: textOpacity }}>
           <div style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
 
             <motion.p
@@ -413,7 +419,7 @@ export default function RecriacaoClient() {
               </a>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* 2. PASSOS */}
