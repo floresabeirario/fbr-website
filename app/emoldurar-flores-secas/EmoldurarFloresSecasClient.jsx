@@ -126,6 +126,7 @@ function SVGOpcao1Escuro({ width = "120px", accent = "#5A8FA8" }) {
 }
 
 
+const opcoes = [
   {
     n: "Opção 1", cor: C.azul,
     sub: "O ramo tal como ficou",
