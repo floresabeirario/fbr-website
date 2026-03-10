@@ -98,9 +98,37 @@ function SVGOpcao2({ width = "180px" }) {
   );
 }
 
-const opcoes = [
+// SVG Opção 1 versão fundo escuro — stroke colorido por acento
+function SVGOpcao1Escuro({ width = "120px", accent = "#5A8FA8" }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"
+      style={{ width, maxWidth: "100%", height: "auto", display: "block" }}
+      aria-hidden="true">
+      <rect x="10" y="10" width="380" height="480" rx="3" ry="3" stroke={accent} strokeWidth="4" fill="none" strokeOpacity="0.55"/>
+      <rect x="30" y="30" width="340" height="440" rx="1.5" ry="1.5" stroke={accent} strokeWidth="1.5" fill="none" strokeOpacity="0.3"/>
+      <line x1="30" y1="30" x2="60" y2="60" stroke={accent} strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.3"/>
+      <line x1="370" y1="30" x2="340" y2="60" stroke={accent} strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.3"/>
+      <line x1="30" y1="470" x2="60" y2="440" stroke={accent} strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.3"/>
+      <line x1="370" y1="470" x2="340" y2="440" stroke={accent} strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.3"/>
+      <rect x="60" y="60" width="280" height="380" stroke={accent} strokeWidth="1" fill="none" strokeOpacity="0.2"/>
+      <line x1="100" y1="180" x2="220" y2="60" stroke={accent} strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.2"/>
+      <line x1="250" y1="400" x2="330" y2="320" stroke={accent} strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.2"/>
+      <line x1="280" y1="430" x2="300" y2="410" stroke={accent} strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.2"/>
+      <g transform="translate(200, 250) scale(1.8) translate(-100, -125)">
+        <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120"
+          stroke={accent} strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round" strokeOpacity="0.8"/>
+        <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108"
+          stroke={accent} strokeWidth="1" strokeLinecap="round" strokeOpacity="0.55"/>
+        <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)" stroke={accent} strokeWidth="1.5" fill="none" strokeOpacity="0.8"/>
+      </g>
+    </svg>
+  );
+}
+
+
   {
     n: "Opção 1", cor: C.azul,
+    sub: "O ramo tal como ficou",
     titulo: "Emoldurar ramo original seco",
     desc: "Se secou as suas flores ao ar, ou o seu ramo já era composto de flores secas, podemos emoldurá-lo. Quer em forma de bouquet, quer desconstruído numa composição com as flores à volta de uma fotografia, por exemplo.",
     detalhe: "Moldura profunda com 4,5 cm de altura útil.",
@@ -109,6 +137,7 @@ const opcoes = [
   },
   {
     n: "Opção 2", cor: C.terra,
+    sub: "Cores mais vivas",
     titulo: "Recriação do bouquet",
     desc: "Caso já não tenha as suas flores ou as flores já não estão em bom estado, recriamos o ramo com flores frescas e eternizamo-lo num quadro emoldurado. As cores são preservadas e ficam mais próximas do dia original. Feito em conjunto com florista. Composição bidimensional, moldura pouco funda.",
     detalhe: "Visita a nossa página da recriação para mais detalhes.",
@@ -118,6 +147,7 @@ const opcoes = [
   },
   {
     n: "Opção 3", cor: C.azulClr,
+    sub: "O melhor dos dois mundos",
     titulo: "Combinação mista",
     desc: "Se ainda tem flores originais do dia especial, mas algumas não ficaram bem depois de secas, esta é a solução perfeita para si: aproveitamos as flores originais que ainda estão bem e substituímos as restantes. O quadro combina elementos do ramo original com réplicas de flores prensadas numa composição equilibrada.",
     detalhe: "Aplicam-se os preços de preservação de flores.",
@@ -130,7 +160,7 @@ const opcoes = [
 const processo = [
   { n: "01", titulo: "Entregue-nos o ramo",   desc: "Por correio (Transportador/CTT frágil) ou em mãos no atelier em Coimbra, mediante agendamento." },
   { n: "02", titulo: "Criamos a composição",  desc: "Trabalhamos a composição das flores. Após aprovação do design por si, o quadro é emoldurado, sempre com moldura feita à medida, com vidro museu anti-UV." },
-  { n: "03", titulo: "Entregamos o quadro",   desc: "Por transportadora/CTT com número de rastreamento, ou recolha gratuita no atelier em Coimbra." },
+  { n: "03", titulo: "Entregamos o quadro",   desc: "Por correio (Transportador/CTT frágil), ou recolha gratuita em mãos no atelier em Coimbra, mediante agendamento." },
 ];
 
 const precos = [
@@ -232,10 +262,6 @@ export default function EmoldurarFloresSecasClient() {
         .pag-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(27,75,107,0.1); border-radius: 20px; overflow: hidden; }
         .pag-item { background: ${C.creEsc}; padding: clamp(1rem,2vw,1.6rem) clamp(0.6rem,1.5vw,1.2rem); text-align: center; }
 
-        .preco-card { border-radius: 16px; padding: clamp(1rem,2vw,1.4rem) clamp(1rem,2vw,1.4rem); margin-bottom: 10px; display: flex; align-items: center; gap: 1rem; background: ${C.branco}; border: 1px solid rgba(15,30,26,0.08); box-shadow: 0 2px 12px rgba(15,30,26,0.06); transition: transform 0.22s, box-shadow 0.22s; }
-        .preco-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(15,30,26,0.10); }
-        .preco-svg-col { flex-shrink: 0; width: 100px; display: flex; align-items: center; justify-content: center; }
-        .preco-info { flex: 1; display: flex; justify-content: space-between; align-items: center; }
 
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
         a:focus-visible, button:focus-visible { outline: 3px solid ${C.azul}; outline-offset: 4px; border-radius: 4px; }
@@ -254,7 +280,7 @@ export default function EmoldurarFloresSecasClient() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             style={{ maxWidth: "640px", margin: "0 auto" }}
           >
-            <Eyebrow light>Preservação Botânica · Coimbra</Eyebrow>
+            <Eyebrow light>Dê uma moldura ao capítulo mais bonito da sua história.</Eyebrow>
             <h1 style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize: "clamp(2.8rem,9vw,5.5rem)",
@@ -263,8 +289,8 @@ export default function EmoldurarFloresSecasClient() {
               lineHeight: 1.05,
               textShadow: "0 4px 40px rgba(0,0,0,0.5)",
             }}>
-              Emoldurar flores já secas<br />
-              <em style={{ fontStyle: "italic", color: "#A8C4D4" }}>para sempre</em>
+              Emoldurar<br />
+              <em style={{ fontStyle: "italic", color: "#A8C4D4" }}>flores já secas</em>
             </h1>
             <p style={{
               fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.88, maxWidth: "480px",
@@ -276,9 +302,7 @@ export default function EmoldurarFloresSecasClient() {
             <div className="cta-row" style={{ justifyContent: "center", marginBottom: "1.6rem" }}>
               <a href="/contactos" className="btn-ghost-light">Falar connosco</a>
             </div>
-            <p style={{ fontSize: "0.72rem", color: "rgba(250,247,240,0.4)", letterSpacing: "0.06em", fontFamily: "'Google Sans', sans-serif" }}>
-              Recebemos ramos de toda a Europa · Atelier em Coimbra
-            </p>
+
           </motion.div>
         </div>
       </section>
@@ -303,6 +327,7 @@ export default function EmoldurarFloresSecasClient() {
                     <span style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.6rem", letterSpacing: "2.5px", textTransform: "uppercase", color: item.cor, fontWeight: 700 }}>{item.n}</span>
                     <div style={{ flex: 1, height: "1px", background: `${item.cor}2A` }} aria-hidden="true" />
                   </div>
+                  <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: item.cor, fontFamily: "'Google Sans', sans-serif", margin: "0 0 10px", fontWeight: 700 }}>{item.sub}</p>
                   <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.1rem,2.2vw,1.4rem)", color: C.escuro, margin: "0 0 0.7rem", lineHeight: 1.15 }}>{item.titulo}</h3>
                   <p style={{ fontSize: "0.9rem", lineHeight: 1.85, color: C.sec, margin: "0 0 0.8rem", fontWeight: 300 }}>{item.desc}</p>
                   <p style={{ fontSize: "0.77rem", color: C.azulClr, margin: "0 0 0.9rem", fontStyle: "italic" }}>{item.detalhe}</p>
@@ -440,15 +465,19 @@ export default function EmoldurarFloresSecasClient() {
       </section>
 
       {/* ══ 6. PREÇOS ═════════════════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: C.creme, padding: "clamp(80px,12vw,120px) clamp(20px,5vw,48px)" }} aria-labelledby="h2-precos">
-        <div style={{ maxWidth: "600px", margin: "0 auto" }}>
+      <section style={{ backgroundColor: C.escuro, padding: "clamp(80px,12vw,120px) clamp(20px,5vw,48px)", position: "relative", overflow: "hidden" }} aria-labelledby="h2-precos">
+        {/* Círculo decorativo de fundo */}
+        <div aria-hidden="true" style={{ position: "absolute", bottom: "-25%", left: "-10%", width: "clamp(320px,55vw,700px)", height: "clamp(320px,55vw,700px)", borderRadius: "50%", background: `radial-gradient(circle, ${C.azul}28 0%, transparent 68%)`, pointerEvents: "none" }} />
+        <div aria-hidden="true" style={{ position: "absolute", top: "-20%", right: "-8%", width: "clamp(200px,35vw,480px)", height: "clamp(200px,35vw,480px)", borderRadius: "50%", background: `radial-gradient(circle, ${C.terra}18 0%, transparent 68%)`, pointerEvents: "none" }} />
+
+        <div style={{ maxWidth: "960px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
-            <div style={{ textAlign: "center", marginBottom: "clamp(2rem,4vw,3rem)" }}>
-              <Eyebrow>Emoldurar flores já secas</Eyebrow>
-              <h2 id="h2-precos" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5vw,3.2rem)", color: C.escuro, margin: "0 0 0.8rem" }}>
+            <div style={{ marginBottom: "clamp(2.5rem,5vw,4rem)" }}>
+              <Eyebrow light>Emoldurar flores já secas</Eyebrow>
+              <h2 id="h2-precos" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5vw,3.4rem)", color: C.creme, margin: "0 0 1rem", lineHeight: 1.05 }}>
                 Tamanhos e preços
               </h2>
-              <p style={{ color: C.sec, fontSize: "0.85rem", lineHeight: 1.75, fontWeight: 300, margin: "0 auto", maxWidth: "440px" }}>
+              <p style={{ color: "rgba(250,247,240,0.5)", fontSize: "0.85rem", lineHeight: 1.75, fontWeight: 300, maxWidth: "480px" }}>
                 Preços para emoldurar flores já secas. Estes preços não incluem os nossos serviços de preservação. Caso as suas flores estejam frescas e precisem de ser preservadas, visite a{" "}
                 <a href="/opcoes-e-precos" style={{ color: C.azulClr, textDecoration: "none", borderBottom: `1px solid ${C.azulClr}50`, paddingBottom: "1px" }}>
                   página opções e preços
@@ -456,24 +485,45 @@ export default function EmoldurarFloresSecasClient() {
               </p>
             </div>
           </Reveal>
-          {precos.map((row, i) => (
-            <Reveal key={i} delay={i * 0.1}>
-              <div className="preco-card">
-                <div className="preco-svg-col">
-                  <SVGOpcao1 width={row.svgW} />
-                </div>
-                <div className="preco-info">
-                  <span style={{ fontFamily: "'Google Sans', sans-serif", color: C.sec, fontSize: "1rem", fontWeight: 300 }}>{row.size}</span>
-                  <span style={{ fontFamily: "'TAN-MEMORIES', serif", color: C.escuro, fontSize: "1.85rem" }}>{row.price}</span>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-          <Reveal delay={0.35}>
-            <p style={{ color: C.azulClr, fontSize: "0.8rem", textAlign: "center", marginTop: "1.4rem", lineHeight: 1.7 }}>
-              Todos os quadros incluem vidro museu anti-UV, moldura feita à medida e design artístico da composição.
-            </p>
-          </Reveal>
+
+          {/* Grelha de preços — horizontal no desktop */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "1px", background: "rgba(250,247,240,0.06)", borderRadius: "20px", overflow: "hidden" }}>
+            {precos.map((row, i) => {
+              const accent = [C.azul, C.terra, C.azulClr][i];
+              return (
+                <Reveal key={i} delay={i * 0.1}>
+                  <div style={{
+                    background: i === 1 ? `linear-gradient(160deg, ${C.azul}55, ${C.escuro} 70%)` : "rgba(250,247,240,0.03)",
+                    padding: "clamp(1.8rem,3vw,2.4rem) clamp(1.4rem,2.5vw,2rem)",
+                    display: "flex", flexDirection: "column", gap: "1.2rem",
+                    height: "100%", transition: "background 0.3s",
+                  }}
+                    onMouseEnter={e => { if (i !== 1) e.currentTarget.style.background = "rgba(250,247,240,0.06)"; }}
+                    onMouseLeave={e => { if (i !== 1) e.currentTarget.style.background = "rgba(250,247,240,0.03)"; }}
+                  >
+                    {/* Linha colorida topo */}
+                    <div style={{ width: "32px", height: "2px", background: accent, borderRadius: "2px" }} aria-hidden="true" />
+
+                    {/* SVG centrado */}
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <SVGOpcao1Escuro width={row.svgW} accent={accent} />
+                    </div>
+
+                    {/* Tamanho + preço */}
+                    <div>
+                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.45)", fontSize: "0.72rem", letterSpacing: "2px", textTransform: "uppercase", margin: "0 0 6px", fontWeight: 500 }}>{row.size}</p>
+                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", color: C.creme, fontSize: "clamp(2rem,4vw,2.8rem)", margin: 0, lineHeight: 1 }}>{row.price}</p>
+                    </div>
+
+                    {/* Nota incluído */}
+                    <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.28)", fontSize: "0.72rem", lineHeight: 1.6, margin: 0, fontWeight: 300 }}>
+                      Inclui vidro museu anti-UV, moldura feita à medida e design artístico.
+                    </p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -545,8 +595,7 @@ export default function EmoldurarFloresSecasClient() {
               </div>
               <p style={{ fontSize: "0.72rem", color: "rgba(250,247,240,0.35)", letterSpacing: "0.06em", fontFamily: "'Google Sans', sans-serif" }}>
                 A partir de 200€ · Vidro museu anti-UV incluído
-              </p>
-            </div>
+              </p>            </div>
           </div>
         </Reveal>
       </section>
