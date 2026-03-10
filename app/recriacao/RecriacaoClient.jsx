@@ -273,6 +273,30 @@ export default function RecriacaoClient() {
           .cta-row { flex-direction: row; justify-content: center; align-items: center; }
         }
 
+        /* Hero estrutura como OfereceClient */
+        .hero-recriacao {
+          position: relative;
+          min-height: 100svh;
+          overflow: hidden;
+          display: flex;
+          align-items: flex-end;
+        }
+        .hero-recriacao-bg {
+          position: absolute; inset: 0;
+        }
+        .hero-recriacao-bg img {
+          width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+        }
+        .hero-recriacao-bg::after {
+          content: ''; position: absolute; inset: 0;
+          background: linear-gradient(to top, rgba(20,12,4,0.92) 0%, rgba(20,12,4,0.55) 45%, rgba(20,12,4,0.18) 100%);
+        }
+        .hero-recriacao-text {
+          position: relative; z-index: 2;
+          width: 100%;
+          padding: clamp(110px,14vw,160px) clamp(24px,5vw,72px) clamp(60px,8vw,90px);
+        }
+
         /* Botao WhatsApp hero: pequeno e discreto */
         .btn-wa-hero {
           display: inline-flex;
@@ -353,49 +377,49 @@ export default function RecriacaoClient() {
       <section
         ref={heroRef}
         aria-label="Recriacao de Bouquet de Casamento"
-        style={{ height: "100vh", minHeight: "580px", position: "relative", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}
+        className="hero-recriacao"
       >
-        <motion.div
-          aria-hidden="true"
-          style={{ position: "absolute", inset: "-20%", backgroundImage: "url('/sandra2.webp')", backgroundSize: "cover", backgroundPosition: "center", y: heroBgY }}
-        />
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, zIndex: 1, background: "linear-gradient(to bottom, rgba(20,12,4,0.28) 0%, rgba(20,12,4,0.5) 60%, rgba(20,12,4,0.7) 100%)" }} />
+        <motion.div className="hero-recriacao-bg" style={{ y: heroBgY }}>
+          <img src="/sandra2.webp" alt="" aria-hidden="true" />
+        </motion.div>
 
-        <motion.div style={{ zIndex: 3, textAlign: "center", color: "#FAF5EC", padding: "0 20px", y: heroTextY, opacity: heroOpacity, maxWidth: "860px", width: "100%" }}>
+        <motion.div className="hero-recriacao-text" style={{ y: heroTextY, opacity: heroOpacity }}>
+          <div style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.7 }}
-            style={{ fontSize: "clamp(0.52rem,1.3vw,0.62rem)", letterSpacing: "4px", textTransform: "uppercase", fontWeight: "700", marginBottom: "18px", opacity: 0.6, fontFamily: "Roboto, sans-serif" }}
-          >
-            A beleza do passado, a florescer no presente
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.7 }}
+              style={{ fontSize: "clamp(0.52rem,1.3vw,0.62rem)", letterSpacing: "4px", textTransform: "uppercase", fontWeight: "700", marginBottom: "16px", color: "rgba(250,245,236,0.55)", fontFamily: "Roboto, sans-serif", textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}
+            >
+              A beleza do passado, a florescer no presente
+            </motion.p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3rem,10vw,6.2rem)", lineHeight: 1.05, margin: "0 0 20px", textShadow: "0 3px 24px rgba(0,0,0,0.3)" }}
-          >
-            Recria&ccedil;&atilde;o de<br />
-            <em style={{ fontStyle: "italic", color: "#F0CC70" }}>Bouquet</em>
-          </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,8vw,5.5rem)", lineHeight: 1.05, margin: "0 0 clamp(1rem,2.5vw,1.6rem)", color: "#FAF5EC", textShadow: "0 4px 32px rgba(0,0,0,0.55)" }}
+            >
+              Recria&ccedil;&atilde;o de<br />
+              <em style={{ fontStyle: "italic", color: "#F0CC70" }}>Bouquet</em>
+            </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }}
-            style={{ fontSize: "clamp(0.95rem,2.2vw,1.15rem)", lineHeight: 1.85, maxWidth: "560px", margin: "0 auto 30px", opacity: 0.88, fontWeight: "300" }}
-          >
-            O seu bouquet de noiva n&atilde;o foi preservado a tempo?
-            Com apenas uma fotografia, recriamos o ramo com flores frescas
-            e eternizamo-lo numa obra de arte bot&acirc;nica.
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }}
+              style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.85, maxWidth: "460px", margin: "0 auto clamp(1.8rem,3.5vw,2.6rem)", color: "rgba(250,245,236,0.88)", fontWeight: "300", textShadow: "0 2px 16px rgba(0,0,0,0.45)" }}
+            >
+              O seu bouquet de noiva n&atilde;o foi preservado a tempo?
+              Com apenas uma fotografia, recriamos o ramo com flores frescas
+              e eternizamo-lo numa obra de arte bot&acirc;nica.
+            </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.7 }}
-            style={{ display: "flex", justifyContent: "center" }}
-          >
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-wa-hero">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={WA_PATH} /></svg>
-              Envie-nos fotos do seu bouquet
-            </a>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.7 }}
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-wa-hero">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={WA_PATH} /></svg>
+                Envie-nos fotos do seu bouquet
+              </a>
+            </motion.div>
+          </div>
         </motion.div>
       </section>
 
