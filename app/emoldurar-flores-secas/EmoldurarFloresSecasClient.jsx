@@ -3,10 +3,8 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 
-const FORM_URL = "https://wkf.ms/3RfoNAc";
-const WA_URL   = "https://wa.me/351934680300?text=" + encodeURIComponent("Olá! Gostaria de saber mais sobre emoldurar flores secas.");
+const WA_URL = "https://wa.me/351934680300?text=" + encodeURIComponent("Olá! Gostaria de saber mais sobre emoldurar flores secas.");
 
-// ─── Paleta ───────────────────────────────────────────────────────────────────
 const C = {
   creme:   "#FAF7F0",
   creEsc:  "#EFF4F7",
@@ -18,7 +16,6 @@ const C = {
   branco:  "#FFFFFF",
 };
 
-// ─── Reveal ───────────────────────────────────────────────────────────────────
 function Reveal({ children, delay = 0, y = 28, style, className }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
@@ -32,7 +29,6 @@ function Reveal({ children, delay = 0, y = 28, style, className }) {
   );
 }
 
-// ─── Eyebrow ──────────────────────────────────────────────────────────────────
 function Eyebrow({ children, light, color }) {
   return (
     <p style={{
@@ -52,71 +48,53 @@ function Divider({ light }) {
   );
 }
 
-// ─── Contador animado ─────────────────────────────────────────────────────────
-function Counter({ target, suffix = "" }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-  useEffect(() => {
-    if (!inView) return;
-    let start = 0;
-    const step = Math.ceil(target / (1800 / 16));
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) { setCount(target); clearInterval(timer); }
-      else setCount(start);
-    }, 16);
-    return () => clearInterval(timer);
-  }, [inView, target]);
-  return <span ref={ref}>{count}{suffix}</span>;
-}
-
-// ─── Dados ────────────────────────────────────────────────────────────────────
 const opcoes = [
   {
     n: "01", cor: C.azul, sub: "Volume preservado",
-    titulo: "O ramo como está",
-    desc: "O ramo seco entra na moldura tal como chegou. Mantém o volume, a textura, a história. Ideal para quem quer preservar a memória exatamente como ficou.",
+    titulo: "Emoldurar ramo original seco",
+    desc: "Se secou as suas flores ao ar, ou o seu ramo já era composto de flores secas, podemos emoldurá-lo. Quer em forma de bouquet, quer desconstruído numa composição com as flores à volta de uma fotografia, por exemplo.",
     detalhe: "Moldura profunda com 4,5 cm de altura útil.",
     tags: ["Bouquets secos", "Volume natural", "Fiel ao original"],
     time: "até 3 meses",
+    svg: "bouquet",
   },
   {
     n: "02", cor: C.terra, sub: "Cores mais vivas",
-    titulo: "Recriação prensada",
-    desc: "Recriamos o bouquet com flores frescas e preservamo-las por prensagem. As cores ficam mais próximas do dia original. O resultado é um quadro plano de grande delicadeza.",
-    detalhe: "Feito em conjunto com florista. Composição bidimensional.",
+    titulo: "Recriação do bouquet",
+    desc: "Recriamos o ramo com flores frescas e eternizamo-lo numa obra de arte botânica. As cores são preservadas e ficam mais próximas do dia original. Feito em conjunto com florista. Composição bidimensional.",
+    detalhe: "Visita a nossa página da recriação para mais detalhes.",
     tags: ["Cores preservadas", "Alta definição", "Resultado refinado"],
     time: "até 6 meses",
-    link: { href: "/recriacao-bouquet", label: "Saber mais sobre recriação" },
+    link: { href: "/recriacao", label: "Saber mais sobre recriação" },
   },
   {
     n: "03", cor: C.azulClr, sub: "O melhor dos dois",
     titulo: "Combinação mista",
-    desc: "Aproveitamos as flores originais que ainda estão bem e substituímos as restantes. O quadro combina elementos reais com flores prensadas numa composição equilibrada.",
+    desc: "Aproveitamos as flores originais que ainda estão bem e substituímos as restantes. O quadro combina elementos do ramo original com réplicas de flores prensadas numa composição equilibrada.",
     detalhe: "Aplicam-se os preços de preservação de flores.",
     tags: ["Flores originais", "Substituição harmoniosa", "Composição mista"],
     time: "até 6 meses",
     link: { href: "/opcoes-e-precos", label: "Ver preços de preservação" },
+    svg: "mista",
   },
 ];
 
 const processo = [
-  { n: "01", titulo: "Envia o ramo",          desc: "Por correio (CTT frágil e urgente) ou em mãos no atelier em Coimbra, mediante agendamento." },
-  { n: "02", titulo: "Criamos a composição",  desc: "Trabalhamos a composição artística dentro da moldura feita à medida, com vidro museu anti-UV." },
-  { n: "03", titulo: "Aprovação sua",         desc: "Enviamos fotografias antes de selar. Tem 72 horas para aprovar ou pedir alterações. Nada é definitivo sem o seu acordo." },
-  { n: "04", titulo: "Entregamos o quadro",   desc: "Por CTT com número de rastreamento, ou recolha no atelier. Acompanhe em status.floresabeirario.pt" },
+  { n: "01", titulo: "Envia o ramo",         desc: "Por correio (CTT frágil e urgente) ou em mãos no atelier em Coimbra, mediante agendamento." },
+  { n: "02", titulo: "Criamos a composição", desc: "Trabalhamos a composição artística dentro da moldura feita à medida, com vidro museu anti-UV." },
+  { n: "03", titulo: "Aprovação sua",        desc: "Enviamos fotografias antes de selar. Tem 72 horas para aprovar ou pedir alterações. Nada é definitivo sem o seu acordo." },
+  { n: "04", titulo: "Entregamos o quadro",  desc: "Por CTT com número de rastreamento, ou recolha no atelier. Acompanhe em status.floresabeirario.pt" },
 ];
 
 const materiais = [
-  { titulo: "Vidro Museu Anti-UV",    desc: "UltraVue® 70 — o mesmo vidro usado em museus internacionais. Bloqueia os raios UV que desbotam as cores ao longo dos anos." },
+  { titulo: "Vidro Museu Anti-UV",    desc: "UltraVue® UV70 — o mesmo vidro usado em museus internacionais. Bloqueia os raios UV que desbotam as cores ao longo dos anos." },
   { titulo: "Moldura Feita à Medida", desc: "Produzida por molduraria em Coimbra, especificamente para cada quadro. Nunca em stock, sempre personalizada." },
   { titulo: "Composição Artística",   desc: "Cada quadro é desenhado como obra. Não colocamos flores numa moldura — criamos uma composição com intenção e cuidado." },
 ];
 
 const precos = [
   { size: "30 × 40 cm", price: "200€", popular: false },
-  { size: "40 × 50 cm", price: "270€", popular: true  },
+  { size: "40 × 50 cm", price: "270€", popular: false },
   { size: "50 × 70 cm", price: "360€", popular: false },
 ];
 
@@ -128,18 +106,83 @@ const pagamento = [
 
 const faqs = [
   { q: "Posso emoldurar um bouquet de noiva que já secou?",
-    a: "Sim — e é exatamente para isso que este serviço existe. Muitos ramos chegam-nos anos depois do casamento, e conseguimos trabalhar com eles. Se o ramo já estiver com algumas flores danificadas, podemos combinar os elementos originais com flores prensadas." },
+    a: "Sim, e é exatamente para isso que este serviço existe. Muitos ramos chegam-nos anos depois do casamento, e conseguimos trabalhar com eles. Se o ramo já estiver com algumas flores danificadas, podemos combinar os elementos originais com réplicas de flores prensadas que preservam as suas cores originais." },
   { q: "Recebem ramos de outras cidades ou países?",
-    a: "Sim. Trabalhamos com clientes de toda a Europa. O ramo pode ser enviado por CTT correio frágil e urgente. Os portes de envio ficam a cargo do cliente." },
+    a: "Sim. Trabalhamos com clientes de toda a Europa. O ramo pode ser enviado por transportadora ou CTT correio frágil. Os portes de envio ficam a cargo do cliente." },
   { q: "O ramo tem de estar perfeito?",
-    a: "Não. Trabalhamos com o que chega. Se algumas flores já não estiverem em bom estado, substituímos esses elementos por flores semelhantes preservadas por prensagem. O resultado final é sempre harmonioso." },
+    a: "Não. Trabalhamos com o que chega. Se algumas flores já não estiverem em bom estado, podemos substituir esses elementos por flores semelhantes preservadas por prensagem. O resultado final é sempre harmonioso. Nestes casos aplicam-se os preços da preservação (ver página opções e preços)." },
   { q: "Como sei em que fase está o meu quadro?",
-    a: "Pode acompanhar o estado da sua encomenda em qualquer momento em status.floresabeirario.pt — uma página dedicada ao acompanhamento de cada trabalho em curso." },
+    a: "Pode acompanhar o estado da sua encomenda em qualquer momento em status.floresabeirario.pt, uma página dedicada ao acompanhamento de cada trabalho em curso." },
   { q: "Posso incluir uma fotografia no quadro?",
-    a: "Sim. Em qualquer das três opções pode pedir que incluamos uma fotografia na composição — do casamento, do batizado, ou outra imagem com significado especial." },
+    a: "Sim. Em qualquer opção pode pedir que incluamos uma fotografia na composição, do casamento, do batizado, ou outra imagem com significado especial." },
 ];
 
-// ─── FAQ Item ─────────────────────────────────────────────────────────────────
+// SVG bouquet ilustração (opção 01)
+function SVGBouquet() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"
+      style={{ width: "100%", maxWidth: "180px", height: "auto", display: "block", margin: "0 auto 1.2rem" }}
+      aria-label="Ilustração moldura bouquet">
+      <defs>
+        <clipPath id="circuloBouquetPage">
+          <circle cx="200" cy="240" r="95"/>
+        </clipPath>
+        <g id="florPage">
+          <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120"
+            stroke="#b0a8a1" strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
+          <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108"
+            stroke="#b0a8a1" strokeWidth="1" strokeLinecap="round"/>
+          <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)" stroke="#b0a8a1" strokeWidth="1.5" fill="none"/>
+        </g>
+      </defs>
+      <rect x="10" y="10" width="380" height="480" rx="3" ry="3" stroke="#b0a8a1" strokeWidth="4" fill="none"/>
+      <rect x="30" y="30" width="340" height="440" rx="1.5" ry="1.5" stroke="#b0a8a1" strokeWidth="1.5" fill="none"/>
+      <line x1="30" y1="30" x2="60" y2="60" stroke="#b0a8a1" strokeWidth="1.5"/>
+      <line x1="370" y1="30" x2="340" y2="60" stroke="#b0a8a1" strokeWidth="1.5"/>
+      <line x1="30" y1="470" x2="60" y2="440" stroke="#b0a8a1" strokeWidth="1.5"/>
+      <line x1="370" y1="470" x2="340" y2="440" stroke="#b0a8a1" strokeWidth="1.5"/>
+      <rect x="60" y="60" width="280" height="380" stroke="#b0a8a1" strokeWidth="1" fill="none"/>
+      <g clipPath="url(#circuloBouquetPage)">
+        <use href="#florPage" transform="translate(200,210) scale(1.55) translate(-100,-125)"/>
+        <use href="#florPage" transform="translate(165,235) scale(1.45) rotate(-8) translate(-100,-125)"/>
+        <use href="#florPage" transform="translate(235,235) scale(1.45) rotate(8) translate(-100,-125)"/>
+        <use href="#florPage" transform="translate(180,195) scale(1.35) rotate(-12) translate(-100,-125)"/>
+        <use href="#florPage" transform="translate(220,195) scale(1.35) rotate(12) translate(-100,-125)"/>
+        <use href="#florPage" transform="translate(150,260) scale(1.35) rotate(-6) translate(-100,-125)"/>
+        <use href="#florPage" transform="translate(250,260) scale(1.35) rotate(6) translate(-100,-125)"/>
+        <use href="#florPage" transform="translate(200,260) scale(1.3) translate(-100,-125)"/>
+      </g>
+      <g transform="translate(200,240)">
+        <path d="M -50 140 L -20 20 M -30 140 L -10 20 M -10 140 L 0 20 M 10 140 L 10 20 M 30 140 L 20 20"
+          stroke="#b0a8a1" strokeWidth="1" fill="none" strokeLinecap="round"/>
+      </g>
+    </svg>
+  );
+}
+
+// SVG mista ilustração (opção 03)
+function SVGMista() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"
+      style={{ width: "100%", maxWidth: "180px", height: "auto", display: "block", margin: "0 auto 1.2rem" }}
+      aria-label="Ilustração moldura composição mista">
+      <rect x="20" y="20" width="360" height="460" stroke="#b0a8a1" strokeWidth="2.5" fill="none"/>
+      <rect x="35" y="35" width="330" height="430" stroke="#b0a8a1" strokeWidth="1.5" fill="none"/>
+      <line x1="60" y1="145" x2="155" y2="50" stroke="#b0a8a1" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="100" y1="180" x2="220" y2="60" stroke="#b0a8a1" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="250" y1="400" x2="330" y2="320" stroke="#b0a8a1" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="280" y1="430" x2="300" y2="410" stroke="#b0a8a1" strokeWidth="1.5" strokeLinecap="round"/>
+      <g transform="translate(200, 250) scale(1.8) translate(-100, -125)">
+        <path d="M 98 121 C 75 85, 125 85, 102 121 M 104 123 C 145 105, 135 145, 106 127 M 103 128 C 120 175, 80 165, 98 128 M 97 127 C 55 150, 65 110, 95 124 M 95 122 C 55 95, 80 75, 97 120"
+          stroke="#b0a8a1" strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
+        <path d="M 100 115 L 100 102 M 110 125 L 123 120 M 100 135 L 103 148 M 90 128 L 78 133 M 90 118 L 80 108"
+          stroke="#b0a8a1" strokeWidth="1" strokeLinecap="round"/>
+        <ellipse cx="100" cy="125" rx="7" ry="5" transform="rotate(-20 100 125)" stroke="#b0a8a1" strokeWidth="1.5" fill="none"/>
+      </g>
+    </svg>
+  );
+}
+
 function FAQItem({ faq, i }) {
   const [open, setOpen] = useState(false);
   return (
@@ -167,7 +210,6 @@ function FAQItem({ faq, i }) {
   );
 }
 
-// ─── Main ─────────────────────────────────────────────────────────────────────
 export default function EmoldurarFloresSecasClient() {
   const heroRef = useRef(null);
   const { scrollY } = useScroll();
@@ -216,46 +258,97 @@ export default function EmoldurarFloresSecasClient() {
         .hero-overlay { position: absolute; inset: 0; background: linear-gradient(170deg, rgba(10,22,40,0.20) 0%, rgba(10,22,40,0.55) 50%, rgba(10,22,40,0.82) 100%); }
         .hero-content { position: relative; z-index: 2; text-align: center; padding: clamp(100px,14vw,160px) clamp(20px,5vw,48px) clamp(60px,8vw,80px); width: 100%; }
 
-        .stats-bar { display: flex; flex-direction: column; }
-        @media (min-width: 640px) { .stats-bar { flex-direction: row; } }
-        .stat-item { flex: 1; padding: clamp(1.2rem,2.5vw,1.8rem) clamp(1.4rem,3vw,2.2rem); border-bottom: 1px solid rgba(15,30,26,0.07); text-align: center; }
-        @media (min-width: 640px) { .stat-item { border-bottom: none; border-right: 1px solid rgba(15,30,26,0.07); text-align: left; } .stat-item:last-child { border-right: none; } }
-
         .opcao-grid { display: flex; flex-direction: column; gap: 1px; background: rgba(15,30,26,0.06); border-radius: 20px; overflow: hidden; }
         @media (min-width: 860px) { .opcao-grid { flex-direction: row; } }
         .opcao-item { flex: 1; background: ${C.branco}; padding: clamp(1.8rem,3vw,2.4rem) clamp(1.4rem,2.5vw,2rem); transition: background 0.25s; }
         .opcao-item:hover { background: ${C.creEsc}; }
 
-        .processo-grid { display: flex; flex-direction: column; gap: 0; }
-        @media (min-width: 768px) { .processo-grid { flex-direction: row; } }
-        .processo-item { flex: 1; padding: clamp(1.4rem,2.5vw,2rem) clamp(1.2rem,2vw,1.6rem); position: relative; }
-        .processo-linha { display: none; }
+        .processo-section {
+          background: linear-gradient(145deg, ${C.escuro} 0%, ${C.azul} 100%);
+          padding: clamp(80px,12vw,120px) clamp(20px,5vw,48px);
+          position: relative; overflow: hidden;
+        }
+        .processo-header {
+          text-align: center;
+          margin-bottom: clamp(2.5rem,5vw,4rem);
+        }
+        .processo-steps {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
         @media (min-width: 768px) {
-          .processo-linha { display: block; position: absolute; top: 24px; left: calc(50% + 24px); right: -50%; height: 1px; background: linear-gradient(to right, rgba(250,247,240,0.25), transparent); }
-          .processo-item:last-child .processo-linha { display: none; }
+          .processo-steps { grid-template-columns: repeat(4, 1fr); }
+        }
+        .processo-step {
+          padding: clamp(1.4rem,2.5vw,2rem) clamp(1.2rem,2vw,1.6rem);
+          position: relative;
+        }
+        .processo-step-number {
+          display: inline-flex; align-items: center; justify-content: center;
+          width: 46px; height: 46px; border-radius: 50%;
+          border: 1px solid rgba(250,247,240,0.18);
+          margin-bottom: 1rem;
+        }
+        .processo-connector {
+          display: none;
+        }
+        @media (min-width: 768px) {
+          .processo-connector {
+            display: block;
+            position: absolute;
+            top: calc(clamp(1.4rem,2.5vw,2rem) + 23px);
+            left: calc(50% + 28px);
+            right: -50%;
+            height: 1px;
+            background: linear-gradient(to right, rgba(250,247,240,0.25), transparent);
+          }
+          .processo-step:last-child .processo-connector { display: none; }
         }
 
         .mat-grid { display: flex; flex-direction: column; gap: 1px; background: rgba(27,75,107,0.12); border-radius: 20px; overflow: hidden; }
         @media (min-width: 768px) { .mat-grid { flex-direction: row; } }
         .mat-item { flex: 1; background: ${C.escuro}; padding: clamp(1.8rem,3vw,2.4rem) clamp(1.4rem,2.5vw,2rem); }
 
+        .ultravue-box {
+          display: flex;
+          flex-direction: column;
+          gap: clamp(1.8rem,4vw,3rem);
+          align-items: flex-start;
+          padding: clamp(1.8rem,3vw,2.4rem);
+          background: ${C.branco};
+          border-radius: 16px;
+          border: 1px solid rgba(15,30,26,0.07);
+          margin-top: 1.5rem;
+        }
+        @media (min-width: 768px) {
+          .ultravue-box { flex-direction: row; align-items: center; }
+        }
+        .ultravue-img {
+          width: 100%;
+          max-width: 260px;
+          border-radius: 10px;
+          overflow: hidden;
+          flex-shrink: 0;
+        }
+        @media (max-width: 767px) {
+          .ultravue-img { max-width: 100%; }
+        }
+
         .preco-card { border-radius: 16px; padding: clamp(1.3rem,2.5vw,1.7rem) clamp(1.2rem,2vw,1.6rem); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; transition: transform 0.22s, box-shadow 0.22s; }
         .preco-card:hover { transform: translateY(-2px); }
-        .preco-popular { background: ${C.azul}; box-shadow: 0 8px 32px rgba(27,75,107,0.22); }
         .preco-normal  { background: ${C.branco}; border: 1px solid rgba(15,30,26,0.08); box-shadow: 0 2px 12px rgba(15,30,26,0.06); }
 
         .pag-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: rgba(27,75,107,0.1); border-radius: 20px; overflow: hidden; }
         @media (min-width: 600px) { .pag-grid { grid-template-columns: repeat(3, 1fr); } }
         .pag-item { background: ${C.creEsc}; padding: clamp(1.6rem,3vw,2rem) clamp(1.2rem,2vw,1.6rem); text-align: center; }
 
-        .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(27,75,107,0.07); border: 1px solid rgba(27,75,107,0.14); border-radius: 100px; padding: 8px 18px; font-size: 0.72rem; color: ${C.azul}; font-family: 'Google Sans', sans-serif; font-weight: 500; letter-spacing: 0.03em; }
-
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
         a:focus-visible, button:focus-visible { outline: 3px solid ${C.azul}; outline-offset: 4px; border-radius: 4px; }
       ` }} />
 
       {/* ══ 1. HERO ═══════════════════════════════════════════════════════════ */}
-      <section className="hero-wrap" ref={heroRef} aria-label="Emoldurar flores secas — hero">
+      <section className="hero-wrap" ref={heroRef} aria-label="Emoldurar flores secas">
         <motion.div className="hero-img" style={{ scale: heroScale }}>
           <img src="/quadrovidrosobrevidro.webp" alt="Quadro de flores secas emoldurado com vidro museu anti-UV" />
         </motion.div>
@@ -265,75 +358,26 @@ export default function EmoldurarFloresSecasClient() {
           <motion.div initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", margin: "0 auto" }}>
             <Eyebrow light>Preservação Botânica · Coimbra</Eyebrow>
             <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.8rem,9vw,5.5rem)", color: C.creme, margin: "0 0 clamp(1rem,2.5vw,1.6rem)", lineHeight: 1.0, textShadow: "0 4px 40px rgba(0,0,0,0.5)" }}>
-              O seu ramo merece<br />
-              <em style={{ fontStyle: "italic", color: "#A8C4D4" }}>durar para sempre</em>
+              Emoldurar flores secas
             </h1>
-            <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.88, maxWidth: "460px", color: "rgba(250,247,240,0.86)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)", fontWeight: 300, textShadow: "0 2px 16px rgba(0,0,0,0.4)" }}>
-              Transformamos ramos secos em peças de arte emolduradas com vidro museu anti-UV — feitas à mão em Coimbra, pensadas para durar décadas.
+            <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.88, maxWidth: "480px", color: "rgba(250,247,240,0.86)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)", fontWeight: 300, textShadow: "0 2px 16px rgba(0,0,0,0.4)" }}>
+              Muitos ramos de flores foram secados naturalmente com o passar do tempo. Alguns foram criados originalmente com flores secas. Na Flores à Beira-Rio, podemos transformar esse ramo numa peça artística emoldurada.
             </p>
             <div className="cta-row" style={{ justifyContent: "center", marginBottom: "1.6rem" }}>
-              <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-esc">Reservar Data</a>
-              <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-light">
+              <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 WhatsApp
               </a>
+              <a href="/contactos" className="btn-ghost-light">Falar connosco</a>
             </div>
             <p style={{ fontSize: "0.72rem", color: "rgba(250,247,240,0.4)", letterSpacing: "0.06em", fontFamily: "'Google Sans', sans-serif" }}>
               Recebemos ramos de toda a Europa · Atelier em Coimbra
             </p>
           </motion.div>
         </motion.div>
-
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4 }}
-          style={{ position: "absolute", bottom: "28px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "5px", zIndex: 2 }}>
-          <span style={{ color: "rgba(250,247,240,0.32)", fontSize: "0.55rem", letterSpacing: "3px", textTransform: "uppercase", fontFamily: "'Google Sans', sans-serif" }}>scroll</span>
-          <motion.div animate={{ y: [0, 7, 0] }} transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-            style={{ width: "1px", height: "28px", background: "linear-gradient(to bottom, rgba(250,247,240,0.35), transparent)" }} />
-        </motion.div>
       </section>
 
-      {/* ══ 2. STATS BAR ══════════════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: C.creme, borderBottom: "1px solid rgba(15,30,26,0.07)" }} aria-label="Destaques">
-        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <div className="stats-bar">
-            {[
-              { num: 8,  suf: "+",      label: "anos de experiência" },
-              { num: 3,  suf: " países", label: "de onde recebemos ramos" },
-              { num: 72, suf: "h",       label: "para aprovar antes de selar" },
-            ].map((s, i) => (
-              <div key={i} className="stat-item">
-                <div style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,2.8rem)", color: C.azul, lineHeight: 1, marginBottom: "4px" }}>
-                  <Counter target={s.num} suffix={s.suf} />
-                </div>
-                <p style={{ fontSize: "0.8rem", color: C.sec, margin: 0, fontWeight: 300 }}>{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══ 3. TENSÃO EMOCIONAL ═══════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: C.creme, padding: "clamp(80px,12vw,130px) clamp(20px,5vw,48px)" }} aria-labelledby="h2-tensao">
-        <div style={{ maxWidth: "660px", margin: "0 auto", textAlign: "center" }}>
-          <Reveal>
-            <Divider />
-            <div style={{ marginTop: "clamp(2rem,4vw,3rem)" }}>
-              <Eyebrow>A verdade sobre os ramos secos</Eyebrow>
-              <h2 id="h2-tensao" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5vw,3.2rem)", color: C.escuro, margin: "0 0 1.4rem", lineHeight: 1.1 }}>
-                O tempo não para
-              </h2>
-              <p style={{ color: C.sec, fontSize: "clamp(1rem,2.2vw,1.18rem)", lineHeight: 2, fontWeight: 300, marginBottom: "2rem" }}>
-                Um ramo seco sem proteção perde cor, torna-se frágil, e com o tempo desintegra-se. O que hoje ainda tem forma e memória, amanhã pode ser pó.
-              </p>
-              <p style={{ fontFamily: "'DM Serif Display', serif", fontStyle: "italic", fontSize: "clamp(1.2rem,2.8vw,1.65rem)", color: C.azul, lineHeight: 1.6, margin: "0 auto", maxWidth: "500px" }}>
-                "Preservar não é apenas guardar flores — é garantir que a memória do dia continua visível na sua casa."
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══ 4. TRÊS OPÇÕES ════════════════════════════════════════════════════ */}
+      {/* ══ 2. TRÊS OPÇÕES ════════════════════════════════════════════════════ */}
       <section style={{ backgroundColor: C.creEsc, padding: "clamp(80px,12vw,120px) clamp(20px,5vw,48px)" }} aria-labelledby="h2-opcoes">
         <div style={{ maxWidth: "1060px", margin: "0 auto" }}>
           <Reveal>
@@ -348,6 +392,8 @@ export default function EmoldurarFloresSecasClient() {
             <div className="opcao-grid" role="list">
               {opcoes.map((item, i) => (
                 <article key={i} className="opcao-item" role="listitem">
+                  {item.svg === "bouquet" && <SVGBouquet />}
+                  {item.svg === "mista" && <SVGMista />}
                   <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "1.2rem" }}>
                     <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.05rem", color: item.cor, opacity: 0.65 }} aria-hidden="true">{item.n}</span>
                     <div style={{ flex: 1, height: "1px", background: `${item.cor}2A` }} aria-hidden="true" />
@@ -374,18 +420,10 @@ export default function EmoldurarFloresSecasClient() {
               ))}
             </div>
           </Reveal>
-          <Reveal delay={0.2}>
-            <div style={{ textAlign: "center", marginTop: "2rem" }}>
-              <span className="badge">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                Aprovação fotográfica antes de selar — sempre
-              </span>
-            </div>
-          </Reveal>
         </div>
       </section>
 
-      {/* ══ 5. FOTOGRAFIA OPCIONAL ════════════════════════════════════════════ */}
+      {/* ══ 3. FOTOGRAFIA OPCIONAL ════════════════════════════════════════════ */}
       <section style={{ backgroundColor: C.creme, padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)" }}>
         <div style={{ maxWidth: "640px", margin: "0 auto", textAlign: "center" }}>
           <Reveal>
@@ -403,25 +441,25 @@ export default function EmoldurarFloresSecasClient() {
         </div>
       </section>
 
-      {/* ══ 6. PROCESSO ══════════════════════════════════════════════════════ */}
-      <section style={{ background: `linear-gradient(145deg, ${C.escuro} 0%, ${C.azul} 100%)`, padding: "clamp(80px,12vw,120px) clamp(20px,5vw,48px)", position: "relative", overflow: "hidden" }} aria-labelledby="h2-processo">
+      {/* ══ 4. PROCESSO ══════════════════════════════════════════════════════ */}
+      <section className="processo-section" aria-labelledby="h2-processo">
         <div aria-hidden="true" style={{ position: "absolute", top: "-30%", right: "-15%", width: "clamp(300px,55vw,800px)", height: "clamp(300px,55vw,800px)", borderRadius: "50%", background: "radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 65%)", pointerEvents: "none" }} />
         <div style={{ maxWidth: "1060px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
-            <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem,5vw,4rem)" }}>
+            <div className="processo-header">
               <Eyebrow light>Da sua casa ao quadro</Eyebrow>
-              <h2 id="h2-processo" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5vw,3.2rem)", color: C.creme, margin: 0 }}>
+              <h2 id="h2-processo" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5vw,3.2rem)", color: C.creme, margin: "0 0 clamp(0.5rem,1.5vw,1rem)" }}>
                 O processo, passo a passo
               </h2>
             </div>
           </Reveal>
-          <div className="processo-grid" role="list">
+          <div className="processo-steps" role="list">
             {processo.map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className="processo-item" role="listitem">
-                  <div style={{ position: "relative", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "46px", height: "46px", borderRadius: "50%", border: "1px solid rgba(250,247,240,0.18)", marginBottom: "1rem" }}>
+                <div className="processo-step" role="listitem">
+                  <div className="processo-step-number">
                     <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.82rem", color: "rgba(250,247,240,0.55)" }} aria-hidden="true">{item.n}</span>
-                    {i < processo.length - 1 && <div className="processo-linha" aria-hidden="true" />}
+                    {i < processo.length - 1 && <div className="processo-connector" aria-hidden="true" />}
                   </div>
                   <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem,2vw,1.2rem)", color: C.creme, margin: "0 0 0.6rem", lineHeight: 1.2 }}>{item.titulo}</h3>
                   <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "rgba(250,247,240,0.62)", margin: 0, fontWeight: 300 }}>{item.desc}</p>
@@ -432,14 +470,14 @@ export default function EmoldurarFloresSecasClient() {
         </div>
       </section>
 
-      {/* ══ 7. MATERIAIS ══════════════════════════════════════════════════════ */}
+      {/* ══ 5. MATERIAIS ══════════════════════════════════════════════════════ */}
       <section style={{ backgroundColor: C.creEsc, padding: "clamp(80px,12vw,120px) clamp(20px,5vw,48px)" }} aria-labelledby="h2-materiais">
         <div style={{ maxWidth: "1060px", margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem,5vw,4rem)" }}>
               <Eyebrow>Qualidade museológica</Eyebrow>
               <h2 id="h2-materiais" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5vw,3.2rem)", color: C.escuro, margin: 0 }}>
-                Materiais que protegem décadas
+                Materiais & Qualidade
               </h2>
             </div>
           </Reveal>
@@ -454,28 +492,64 @@ export default function EmoldurarFloresSecasClient() {
               ))}
             </div>
           </Reveal>
+
+          {/* UltraVue box */}
+          <Reveal delay={0.15}>
+            <div className="ultravue-box">
+              <div style={{ flex: 1 }}>
+                <Eyebrow color={C.azulClr}>Vidro museu</Eyebrow>
+                <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.3rem,2.5vw,1.8rem)", color: C.escuro, margin: "0 0 1rem", lineHeight: 1.15 }}>
+                  UltraVue® UV70<br />
+                  <em style={{ fontStyle: "italic", color: C.azulClr }}>clareza verdadeiramente incrível</em>
+                </h3>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {[
+                    "Praticamente elimina reflexos",
+                    "Filtra até 70% dos raios UV nocivos",
+                    "Vidro Water White com transmissão de cores cristalinas",
+                    "Ilumina cores e níveis de contraste",
+                    "Superfície duradoura e de fácil limpeza",
+                  ].map((feat, i) => (
+                    <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "12px", padding: "10px 0", borderBottom: "1px solid rgba(15,30,26,0.07)", fontFamily: "'Google Sans', sans-serif", fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.6, color: C.sec }}>
+                      <span style={{ width: "18px", height: "18px", borderRadius: "50%", backgroundColor: C.azulClr, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "2px" }} aria-hidden="true">
+                        <svg width="9" height="7" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#FAF7F0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </span>
+                      {feat}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="ultravue-img">
+                <img src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" loading="lazy" style={{ width: "100%", display: "block", borderRadius: "10px" }} />
+                <div style={{ backgroundColor: C.creEsc, padding: "10px 14px", display: "flex", justifyContent: "space-between", borderRadius: "0 0 10px 10px" }}>
+                  <span style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.6rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(15,30,26,0.35)", fontWeight: 500 }}>Normal</span>
+                  <span style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.6rem", letterSpacing: "1.5px", textTransform: "uppercase", color: C.azulClr, fontWeight: 700 }}>UltraVue®</span>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ══ 8. PREÇOS ═════════════════════════════════════════════════════════ */}
+      {/* ══ 6. PREÇOS ═════════════════════════════════════════════════════════ */}
       <section style={{ backgroundColor: C.creme, padding: "clamp(80px,12vw,120px) clamp(20px,5vw,48px)" }} aria-labelledby="h2-precos">
         <div style={{ maxWidth: "540px", margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(2rem,4vw,3rem)" }}>
               <Eyebrow>Investimento</Eyebrow>
-              <h2 id="h2-precos" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5vw,3.2rem)", color: C.escuro, margin: 0 }}>
+              <h2 id="h2-precos" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5vw,3.2rem)", color: C.escuro, margin: "0 0 0.8rem" }}>
                 Tamanhos e preços
               </h2>
+              <p style={{ color: C.sec, fontSize: "0.85rem", lineHeight: 1.75, fontWeight: 300, margin: "0 auto", maxWidth: "400px" }}>
+                Preços para emoldurar flores já secas. Estes preços não incluem os nossos serviços de preservação.
+              </p>
             </div>
           </Reveal>
           {precos.map((row, i) => (
             <Reveal key={i} delay={i * 0.1}>
-              <div className={`preco-card ${row.popular ? "preco-popular" : "preco-normal"}`} style={{ position: "relative" }}>
-                {row.popular && (
-                  <span style={{ position: "absolute", top: "-10px", left: "50%", transform: "translateX(-50%)", background: C.terra, color: "#fff", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", padding: "3px 12px", borderRadius: "100px", fontFamily: "'Google Sans', sans-serif", whiteSpace: "nowrap" }}>Mais escolhido</span>
-                )}
-                <span style={{ fontFamily: "'Google Sans', sans-serif", color: row.popular ? "rgba(250,247,240,0.8)" : C.sec, fontSize: "1rem", fontWeight: 300 }}>{row.size}</span>
-                <span style={{ fontFamily: "'TAN-MEMORIES', serif", color: row.popular ? C.creme : C.escuro, fontSize: "1.85rem" }}>{row.price}</span>
+              <div className="preco-card preco-normal">
+                <span style={{ fontFamily: "'Google Sans', sans-serif", color: C.sec, fontSize: "1rem", fontWeight: 300 }}>{row.size}</span>
+                <span style={{ fontFamily: "'TAN-MEMORIES', serif", color: C.escuro, fontSize: "1.85rem" }}>{row.price}</span>
               </div>
             </Reveal>
           ))}
@@ -487,7 +561,7 @@ export default function EmoldurarFloresSecasClient() {
         </div>
       </section>
 
-      {/* ══ 9. PAGAMENTO ══════════════════════════════════════════════════════ */}
+      {/* ══ 7. PAGAMENTO ══════════════════════════════════════════════════════ */}
       <section style={{ backgroundColor: C.creEsc, padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)" }} aria-labelledby="h2-pagamento">
         <div style={{ maxWidth: "820px", margin: "0 auto" }}>
           <Reveal>
@@ -512,7 +586,7 @@ export default function EmoldurarFloresSecasClient() {
         </div>
       </section>
 
-      {/* ══ 10. FAQ ═══════════════════════════════════════════════════════════ */}
+      {/* ══ 8. FAQ ═══════════════════════════════════════════════════════════ */}
       <section style={{ backgroundColor: C.creme, padding: "clamp(80px,12vw,120px) clamp(20px,5vw,48px)" }} aria-labelledby="h2-faq">
         <div style={{ maxWidth: "700px", margin: "0 auto" }}>
           <Reveal>
@@ -527,7 +601,7 @@ export default function EmoldurarFloresSecasClient() {
         </div>
       </section>
 
-      {/* ══ 11. CTA FINAL ═════════════════════════════════════════════════════ */}
+      {/* ══ 9. CTA FINAL ══════════════════════════════════════════════════════ */}
       <section style={{ background: `linear-gradient(145deg, ${C.escuro} 0%, ${C.azul} 100%)`, padding: "clamp(90px,16vw,150px) clamp(20px,5vw,48px)", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div aria-hidden="true" style={{ position: "absolute", bottom: "-20%", left: "50%", transform: "translateX(-50%)", width: "clamp(400px,70vw,900px)", height: "clamp(400px,70vw,900px)", borderRadius: "50%", background: "radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 65%)", pointerEvents: "none" }} />
         <Reveal>
@@ -543,14 +617,14 @@ export default function EmoldurarFloresSecasClient() {
                 Atelier em Coimbra. Recebemos ramos de toda a Europa. Cada quadro é único e assinado.
               </p>
               <div className="cta-row" style={{ marginBottom: "1.4rem" }}>
-                <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-esc" style={{ background: C.creme, color: C.escuro, boxShadow: "none" }}>Reservar Data</a>
                 <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                   Falar pelo WhatsApp
                 </a>
+                <a href="/contactos" className="btn-ghost-light">Falar connosco</a>
               </div>
               <p style={{ fontSize: "0.72rem", color: "rgba(250,247,240,0.35)", letterSpacing: "0.06em", fontFamily: "'Google Sans', sans-serif" }}>
-                A partir de 200€ · Vidro museu anti-UV incluído · Aprovação antes de selar
+                A partir de 200€ · Vidro museu anti-UV incluído
               </p>
             </div>
           </div>
