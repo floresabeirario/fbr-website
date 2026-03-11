@@ -105,7 +105,7 @@ const SUBPAGES = [
     img: "/prensa.webp",
     imgAlt: "Processo de prensagem botânica artesanal — Como Funciona",
     cta: "Ver o processo",
-    accent: "#C4846B",
+    accent: "#C8522A",
     n: "02",
   },
   {
@@ -116,7 +116,7 @@ const SUBPAGES = [
     img: "/ines1.webp",
     imgAlt: "Preservação botânica sustentável — Flores à Beira-Rio Coimbra",
     cta: "Conhecer os valores",
-    accent: "#C4846B",
+    accent: "#3D6B5E",
     n: "03",
   },
   {
@@ -127,7 +127,7 @@ const SUBPAGES = [
     img: "/quadrovidrosobrevidro.webp",
     imgAlt: "Emoldurar ramo de flores secas — bouquet de noiva já seco",
     cta: "Saber mais",
-    accent: "#C4846B",
+    accent: "#1B4B6B",
     n: "04",
   },
 ];
@@ -263,9 +263,13 @@ export default function PreservacaoDeFloresClient() {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
+            grid-auto-rows: 1fr;
           }
           @media (min-width: 640px) {
             .ocasioes-grid { grid-template-columns: repeat(3, 1fr); }
+          }
+          .ocasioes-grid a {
+            height: 100%;
           }
 
           .eyebrow {
@@ -314,7 +318,8 @@ export default function PreservacaoDeFloresClient() {
             min-height: 100svh;
             overflow: hidden;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
+            justify-content: center;
           }
           .hero-pf-bg {
             position: absolute; inset: 0;
@@ -324,11 +329,11 @@ export default function PreservacaoDeFloresClient() {
           }
           .hero-pf-bg::after {
             content: ''; position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(35,15,5,0.92) 0%, rgba(35,15,5,0.55) 45%, rgba(35,15,5,0.14) 100%);
+            background: linear-gradient(to top, rgba(35,15,5,0.82) 0%, rgba(35,15,5,0.55) 50%, rgba(35,15,5,0.18) 100%);
           }
           .hero-pf-text {
             position: relative; z-index: 2; width: 100%;
-            padding: clamp(110px,14vw,160px) clamp(24px,5vw,72px) clamp(60px,8vw,90px);
+            padding: clamp(110px,14vw,160px) clamp(24px,5vw,72px);
           }
 
           .cta-graduation {
@@ -388,11 +393,11 @@ export default function PreservacaoDeFloresClient() {
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px", fontSize: "0.8rem" }}>
                 {[
-                  { href: "/opcoes-e-precos", label: "Preços" },
-                  { href: "/como-funciona", label: "Como funciona" },
-                  { href: "/emoldurar-flores-secas", label: "Flores já secas" },
+                  { href: "/opcoes-e-precos", label: "Preços", color: "#8BA888" },
+                  { href: "/como-funciona", label: "Como funciona", color: "#C8522A" },
+                  { href: "/emoldurar-flores-secas", label: "Flores já secas", color: "#5A8FA8" },
                 ].map((l, i) => (
-                  <a key={i} href={l.href} style={{ color: "rgba(212,149,106,0.9)", fontWeight: 600, textDecoration: "none", borderBottom: "1px solid rgba(212,149,106,0.3)", paddingBottom: "1px", fontFamily: "Roboto, sans-serif", transition: "border-color 0.2s" }}>
+                  <a key={i} href={l.href} style={{ color: l.color, fontWeight: 600, textDecoration: "none", borderBottom: `1px solid ${l.color}55`, paddingBottom: "1px", fontFamily: "Roboto, sans-serif", transition: "border-color 0.2s" }}>
                     {l.label}
                   </a>
                 ))}
@@ -563,11 +568,11 @@ export default function PreservacaoDeFloresClient() {
             <div aria-hidden="true" style={{ width: "44px", height: "1px", margin: "0 auto 28px", background: "linear-gradient(to right, transparent, #D4956A, transparent)" }} />
             <span className="eyebrow" style={{ color: "rgba(212,149,106,0.85)" }}>Preserve o que importa</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5.5vw,3.5rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1, textShadow: "0 2px 16px rgba(0,0,0,0.5)" }}>
-              Alguns momentos<br />
-              <em style={{ fontStyle: "italic", color: "#D4956A" }}>merecem durar para sempre</em>
+              Alguns momentos merecem<br />
+              <em style={{ fontStyle: "italic", color: "#D4956A" }}>durar para sempre</em>
             </h2>
             <p style={{ color: "rgba(250,247,240,0.82)", lineHeight: 1.88, fontSize: "clamp(0.9rem,2vw,1rem)", margin: "0 0 34px", fontFamily: "Roboto, sans-serif", textShadow: "0 1px 10px rgba(0,0,0,0.5)" }}>
-              Casamento, licenciatura, batizado, o primeiro dia de alguém que parte. As flores que estiveram presentes nesses momentos não precisam de se perder. Preserve-as numa obra de arte botânica feita à mão e para durar décadas.
+              Casamento, licenciatura, batizado, noivado. As flores que estiveram presentes nesses momentos não precisam de se perder. Preserve-as numa obra de arte botânica feita para durar décadas.
             </p>
             <div className="cta-row" style={{ marginBottom: "28px" }}>
               <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
