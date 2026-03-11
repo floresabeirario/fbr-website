@@ -4,6 +4,11 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Cor de destaque: magenta arroxeado
+const ACCENT = "#8B3A6B";
+const ACCENT_LIGHT = "rgba(139,58,107,0.12)";
+const ACCENT_BORDER = "rgba(139,58,107,0.25)";
+
 // ─── Dados ────────────────────────────────────────────────────────────────────
 
 const FAQ_DATA = [
@@ -155,12 +160,12 @@ const FAQ_DATA = [
         Tem duas opções:
         <br /><br />
         <strong>Recriação de bouquet</strong> — reproduzimos o ramo com flores frescas e iguais às originais,
-        usando as fotografias do dia como referência.
+        usando as fotografias do dia como referência.{" "}
+        <a href="/recriacao" className="faq-link">Saber mais sobre a recriação de bouquet →</a>
         <br /><br />
         <strong>Emolduração das flores originais</strong> — podemos emoldurar numa moldura mais funda
-        as flores originais e fazer uma composição com elas tal como estão.
-        <br /><br />
-        <a href="/recriacao" className="faq-link">Saber mais sobre a recriação de bouquet →</a>
+        as flores originais e fazer uma composição com elas tal como estão.{" "}
+        <a href="https://fbr-website.vercel.app/emoldurar-flores-secas" className="faq-link">Saber mais sobre emoldurar flores já secas →</a>
       </>
     ),
   },
@@ -302,15 +307,15 @@ const FAQ_DATA = [
         O pagamento divide-se em <strong>três prestações</strong>:
         <br /><br />
         <span style={{ display: "flex", gap: "10px", marginBottom: "6px" }}>
-          <strong style={{ color: "#3D6B5E", flexShrink: 0 }}>30%</strong>
+          <strong style={{ color: ACCENT, flexShrink: 0 }}>30%</strong>
           Sinal no momento da reserva (não reembolsável).
         </span>
         <span style={{ display: "flex", gap: "10px", marginBottom: "6px" }}>
-          <strong style={{ color: "#3D6B5E", flexShrink: 0 }}>40%</strong>
+          <strong style={{ color: ACCENT, flexShrink: 0 }}>40%</strong>
           Na recepção e início da preservação das flores.
         </span>
         <span style={{ display: "flex", gap: "10px", marginBottom: "16px" }}>
-          <strong style={{ color: "#3D6B5E", flexShrink: 0 }}>30%</strong>
+          <strong style={{ color: ACCENT, flexShrink: 0 }}>30%</strong>
           Antes do envio ou levantamento do quadro final.
         </span>
         Em caso de reagendamento, os valores já pagos podem ser transferidos para a nova data,
@@ -357,8 +362,6 @@ const CATEGORIES = [
   { id: "pagamentos", label: "Pagamentos", count: FAQ_DATA.filter(f => f.cat === "pagamentos").length },
 ];
 
-// Schema.org JSON-LD para SEO — injetado no head pelo Server Component via generateMetadata
-// Aqui usamos script inline no body como fallback
 const SchemaScript = () => (
   <script
     type="application/ld+json"
@@ -387,7 +390,7 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm }) => {
     );
     return text.split(regex).map((part, i) =>
       regex.test(part) ? (
-        <mark key={i} style={{ backgroundColor: "rgba(184,149,74,0.28)", borderRadius: "3px", padding: "0 2px" }}>
+        <mark key={i} style={{ backgroundColor: "rgba(139,58,107,0.18)", borderRadius: "3px", padding: "0 2px" }}>
           {part}
         </mark>
       ) : part
@@ -395,7 +398,7 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm }) => {
   };
 
   return (
-    <div style={{ borderBottom: "1px solid rgba(61,107,94,0.11)" }}>
+    <div style={{ borderBottom: "1px solid rgba(139,58,107,0.1)" }}>
       <button
         onClick={onToggle}
         aria-expanded={isOpen}
@@ -410,7 +413,7 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm }) => {
         <span style={{
           fontFamily: "'TAN-MEMORIES', serif",
           fontSize: "clamp(1rem,2.2vw,1.18rem)",
-          color: isOpen ? "#3D6B5E" : "#1E2D2A",
+          color: isOpen ? ACCENT : "#1E2D2A",
           lineHeight: 1.3, flex: 1,
           transition: "color 0.22s ease",
         }}>
@@ -424,14 +427,14 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm }) => {
             flexShrink: 0,
             width: "clamp(30px,4vw,36px)", height: "clamp(30px,4vw,36px)",
             borderRadius: "50%",
-            backgroundColor: isOpen ? "#3D6B5E" : "rgba(61,107,94,0.09)",
+            backgroundColor: isOpen ? ACCENT : ACCENT_LIGHT,
             display: "flex", alignItems: "center", justifyContent: "center",
             transition: "background-color 0.22s ease",
           }}
           aria-hidden="true"
         >
           <svg width="13" height="13" viewBox="0 0 20 20" fill="none"
-            stroke={isOpen ? "#FAF7F0" : "#3D6B5E"}
+            stroke={isOpen ? "#FAF7F0" : ACCENT}
             strokeWidth="2.2" strokeLinecap="round">
             <path d="M10 4V16M4 10H16" />
           </svg>
@@ -495,40 +498,44 @@ export default function PerguntasFrequentesClient() {
       <main style={{ backgroundColor: "#FAF7F0", paddingBottom: "clamp(64px,10vw,100px)" }}>
         <style dangerouslySetInnerHTML={{ __html: `
           * { box-sizing: border-box; }
+
           .faq-link {
-            color: #3D6B5E; font-weight: 600;
+            color: ${ACCENT};
+            font-weight: 600;
             text-decoration: none;
-            border-bottom: 1px solid rgba(61,107,94,0.35);
+            border-bottom: 1px solid ${ACCENT_BORDER};
             padding-bottom: 1px;
             transition: border-color 0.2s ease;
           }
-          .faq-link:hover { border-color: #3D6B5E; }
+          .faq-link:hover { border-color: ${ACCENT}; }
+
           .pills-row { display: flex; gap: 8px; flex-wrap: wrap; padding-bottom: 2px; }
           .pill {
             display: inline-flex; align-items: center; gap: 6px;
             padding: 9px 18px; border-radius: 100px;
             font-size: 0.72rem; font-weight: 600;
             letter-spacing: 0.8px; text-transform: uppercase;
-            font-family: Roboto, sans-serif;
-            border: 1.5px solid rgba(61,107,94,0.18);
+            font-family: 'Google Sans', Roboto, sans-serif;
+            border: 1.5px solid ${ACCENT_BORDER};
             color: #5A6B60; background: transparent;
             cursor: pointer; transition: all 0.2s ease; white-space: nowrap;
           }
-          .pill:hover  { border-color: #3D6B5E; color: #3D6B5E; }
-          .pill.active { background: #3D6B5E; border-color: #3D6B5E; color: #FAF7F0; }
+          .pill:hover  { border-color: ${ACCENT}; color: ${ACCENT}; }
+          .pill.active { background: ${ACCENT}; border-color: ${ACCENT}; color: #FAF7F0; }
           .pill-count  { display: inline-block; font-size: 0.6rem; opacity: 0.6; }
           .pill.active .pill-count { opacity: 0.75; }
+
           .search-wrap { position: relative; margin-bottom: 24px; }
           .search-input {
             width: 100%; padding: 14px 20px 14px 46px;
-            border-radius: 100px; border: 1.5px solid rgba(61,107,94,0.2);
+            border-radius: 100px; border: 1.5px solid ${ACCENT_BORDER};
             background: #fff; font-size: 0.92rem; color: #1E2D2A;
-            font-family: Roboto, sans-serif; outline: none;
+            font-family: 'Google Sans', Roboto, sans-serif; outline: none;
             transition: border-color 0.22s ease, box-shadow 0.22s ease;
             -webkit-appearance: none;
           }
           .search-input::placeholder { color: #9BA89F; }
-          .search-input:focus { border-color: #3D6B5E; box-shadow: 0 0 0 3px rgba(61,107,94,0.1); }
+          .search-input:focus { border-color: ${ACCENT}; box-shadow: 0 0 0 3px rgba(139,58,107,0.1); }
           .search-icon {
             position: absolute; left: 16px; top: 50%;
             transform: translateY(-50%); color: #9BA89F;
@@ -541,87 +548,160 @@ export default function PerguntasFrequentesClient() {
             display: flex; align-items: center; transition: color 0.2s ease;
           }
           .search-clear:hover { color: #1E2D2A; }
+
           .result-count {
-            font-size: 0.72rem; color: #9BA89F; font-family: Roboto, sans-serif;
+            font-size: 0.72rem; color: #9BA89F;
+            font-family: 'Google Sans', Roboto, sans-serif;
             letter-spacing: 0.5px; margin-bottom: 8px; display: block;
           }
+
           .btn-primary {
-            display: inline-block; background: #3D6B5E; color: #FAF7F0;
+            display: inline-block; background: ${ACCENT}; color: #FAF7F0;
             padding: 14px 32px; border-radius: 100px; text-decoration: none;
             font-weight: 600; font-size: 0.8rem; letter-spacing: 1.4px;
             text-transform: uppercase; text-align: center;
-            box-shadow: 0 6px 22px rgba(61,107,94,0.26);
-            transition: all 0.3s ease; font-family: Roboto, sans-serif;
+            box-shadow: 0 6px 22px rgba(139,58,107,0.26);
+            transition: all 0.3s ease;
+            font-family: 'Google Sans', Roboto, sans-serif;
           }
-          .btn-primary:hover { background: #1E2D2A; transform: translateY(-3px); }
+          .btn-primary:hover { background: #6B2250; transform: translateY(-3px); }
+
           .btn-wa {
             display: inline-flex; align-items: center; gap: 8px;
             background: #25D366; color: #fff; padding: 14px 28px;
             border-radius: 100px; text-decoration: none; font-weight: 600;
             font-size: 0.8rem; letter-spacing: 1px;
-            transition: all 0.3s ease; font-family: Roboto, sans-serif;
+            transition: all 0.3s ease;
+            font-family: 'Google Sans', Roboto, sans-serif;
           }
           .btn-wa:hover { background: #1da851; transform: translateY(-3px); }
+
           .cta-row { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
           @media (min-width: 460px) {
             .cta-row { flex-direction: row; justify-content: center; align-items: center; }
           }
-          .related-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 48px; }
+
+          .related-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
           @media (min-width: 560px) { .related-grid { grid-template-columns: repeat(3, 1fr); } }
           .related-card {
-            display: block; text-decoration: none; background: #EDF2E8;
+            display: block; text-decoration: none;
+            background: rgba(139,58,107,0.05);
             border-radius: 16px; padding: 22px 20px;
-            border: 1px solid rgba(61,107,94,0.1);
+            border: 1px solid ${ACCENT_BORDER};
             transition: transform 0.25s ease, box-shadow 0.25s ease;
           }
-          .related-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(30,45,42,0.09); }
+          .related-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(139,58,107,0.1); }
+
+          /* Stat badges no hero */
+          .hero-stats {
+            display: flex; gap: 12px; flex-wrap: wrap;
+            justify-content: center; margin-top: 32px;
+          }
+          .hero-stat {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.22);
+            border-radius: 100px;
+            padding: 8px 18px;
+            font-family: 'Google Sans', Roboto, sans-serif;
+            font-size: 0.78rem;
+            color: rgba(250,247,240,0.92);
+            letter-spacing: 0.3px;
+          }
+          .hero-stat strong {
+            color: #fff;
+            font-weight: 700;
+          }
         `}} />
 
-        {/* Hero */}
+        {/* ── Hero com foto ────────────────────────────────────────────────── */}
         <section
           aria-label="Perguntas frequentes sobre preservação de flores"
           style={{
-            paddingTop: "clamp(110px,16vw,170px)",
-            paddingBottom: "clamp(44px,7vw,72px)",
-            paddingLeft: "20px", paddingRight: "20px",
-            background: "linear-gradient(175deg, #EDF2E8 0%, #FAF7F0 100%)",
-            textAlign: "center",
+            position: "relative",
+            minHeight: "clamp(420px, 65vh, 680px)",
+            display: "flex",
+            alignItems: "flex-end",
+            overflow: "hidden",
           }}
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span style={{
-              display: "block", fontSize: "0.58rem", fontWeight: "700",
-              letterSpacing: "3.5px", textTransform: "uppercase",
-              color: "#C4846B", marginBottom: "14px", fontFamily: "Roboto, sans-serif",
-            }}>
-              Tire as suas dúvidas
-            </span>
+          {/* Foto de fundo */}
+          <div style={{
+            position: "absolute", inset: 0,
+            backgroundImage: "url('/sandraclose.webp')",
+            backgroundSize: "cover",
+            backgroundPosition: "center 30%",
+          }} aria-hidden="true" />
 
-            <h1 style={{
-              fontFamily: "'TAN-MEMORIES', serif",
-              fontSize: "clamp(2.6rem,9vw,5.5rem)",
-              color: "#1E2D2A", margin: "0 0 20px", lineHeight: 1.02,
-            }}>
-              Perguntas<br />
-              <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>Frequentes</em>
-            </h1>
+          {/* Overlay escuro para legibilidade — mais denso em baixo */}
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(to bottom, rgba(20,8,18,0.28) 0%, rgba(20,8,18,0.55) 55%, rgba(20,8,18,0.82) 100%)",
+          }} aria-hidden="true" />
 
-            <p style={{
-              color: "#5A6B60", fontSize: "clamp(0.94rem,2vw,1.05rem)",
-              lineHeight: 1.85, maxWidth: "520px", margin: "0 auto",
-            }}>
-              Tudo o que precisa de saber sobre preservação de flores,
-              processo artesanal, entrega e pagamentos.
-            </p>
-          </motion.div>
+          {/* Conteúdo do hero */}
+          <div style={{
+            position: "relative", zIndex: 2,
+            width: "100%",
+            padding: "clamp(100px,14vw,160px) clamp(20px,6vw,80px) clamp(44px,7vw,72px)",
+            textAlign: "center",
+          }}>
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span style={{
+                display: "inline-block",
+                fontSize: "0.68rem", fontWeight: "700",
+                letterSpacing: "3.5px", textTransform: "uppercase",
+                color: "rgba(230,180,210,0.9)",
+                marginBottom: "16px",
+                fontFamily: "'Google Sans', Roboto, sans-serif",
+                background: "rgba(139,58,107,0.3)",
+                border: "1px solid rgba(230,180,210,0.3)",
+                borderRadius: "100px",
+                padding: "5px 16px",
+              }}>
+                Tire as suas dúvidas
+              </span>
+
+              <h1 style={{
+                fontFamily: "'TAN-MEMORIES', serif",
+                fontSize: "clamp(2.8rem,9vw,6rem)",
+                color: "#FAF7F0",
+                margin: "0 0 16px",
+                lineHeight: 1.02,
+                textShadow: "0 4px 32px rgba(0,0,0,0.3)",
+              }}>
+                Perguntas<br />
+                <em style={{ fontStyle: "italic", color: "rgba(230,180,210,0.95)" }}>Frequentes</em>
+              </h1>
+
+              <p style={{
+                color: "rgba(250,247,240,0.82)",
+                fontSize: "clamp(0.9rem,2vw,1.05rem)",
+                lineHeight: 1.85,
+                maxWidth: "500px",
+                margin: "0 auto",
+                fontFamily: "'Google Sans', Roboto, sans-serif",
+              }}>
+                Tudo o que precisa de saber sobre preservação de flores,
+                processo artesanal, entrega e pagamentos.
+              </p>
+
+              {/* Badges de contexto rápido */}
+              <div className="hero-stats">
+                <span className="hero-stat"><strong>+200</strong> bouquets preservados</span>
+                <span className="hero-stat"><strong>Até 6 meses</strong> de prazo</span>
+                <span className="hero-stat"><strong>Atelier</strong> em Coimbra</span>
+              </div>
+            </motion.div>
+          </div>
         </section>
 
-        {/* Conteúdo */}
-        <div style={{ maxWidth: "820px", margin: "0 auto", padding: "36px 20px 0" }}>
+        {/* ── Conteúdo principal ───────────────────────────────────────────── */}
+        <div style={{ maxWidth: "820px", margin: "0 auto", padding: "44px 20px 0" }}>
 
           {/* Pesquisa */}
           <div className="search-wrap">
@@ -666,7 +746,7 @@ export default function PerguntasFrequentesClient() {
             ))}
           </div>
 
-          {/* Contador */}
+          {/* Contador de resultados */}
           <AnimatePresence mode="wait">
             <motion.span
               key={`${activeCategory}-${search}`}
@@ -680,21 +760,29 @@ export default function PerguntasFrequentesClient() {
             </motion.span>
           </AnimatePresence>
 
-          {/* Lista */}
+          {/* Lista de FAQs */}
           <div role="list" aria-label="Perguntas e respostas">
             <AnimatePresence mode="wait">
               {filtered.length === 0 ? (
                 <motion.div
                   key="empty"
                   initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                  style={{ textAlign: "center", padding: "48px 20px", color: "#9BA89F", fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.2rem" }}
+                  style={{
+                    textAlign: "center", padding: "48px 20px",
+                    color: "#9BA89F", fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.2rem",
+                  }}
                 >
                   Nenhuma pergunta encontrada.<br />
-                  <span style={{ fontFamily: "Roboto, sans-serif", fontSize: "0.88rem", color: "#B8A898" }}>
+                  <span style={{ fontFamily: "'Google Sans', Roboto, sans-serif", fontSize: "0.88rem", color: "#B8A898" }}>
                     Tente outra pesquisa ou{" "}
                     <button
                       onClick={() => { setSearch(""); setActiveCategory("todas"); }}
-                      style={{ background: "none", border: "none", cursor: "pointer", color: "#3D6B5E", fontWeight: 600, fontSize: "0.88rem", padding: 0, fontFamily: "Roboto, sans-serif", borderBottom: "1px solid rgba(61,107,94,0.35)" }}
+                      style={{
+                        background: "none", border: "none", cursor: "pointer",
+                        color: ACCENT, fontWeight: 600, fontSize: "0.88rem", padding: 0,
+                        fontFamily: "'Google Sans', Roboto, sans-serif",
+                        borderBottom: `1px solid ${ACCENT_BORDER}`,
+                      }}
                     >
                       ver todas as perguntas
                     </button>
@@ -731,14 +819,18 @@ export default function PerguntasFrequentesClient() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p style={{ fontSize: "0.62rem", letterSpacing: "3px", textTransform: "uppercase", color: "#B8A898", fontFamily: "Roboto, sans-serif", margin: "48px 0 0", textAlign: "center" }}>
+            <p style={{
+              fontSize: "0.62rem", letterSpacing: "3px", textTransform: "uppercase",
+              color: "#B8A898", fontFamily: "'Google Sans', Roboto, sans-serif",
+              margin: "52px 0 0", textAlign: "center",
+            }}>
               Explorar
             </p>
             <div className="related-grid">
               {[
-                { href: "/como-funciona",  label: "Como Funciona",       desc: "O processo passo a passo da preservação" },
-                { href: "/opcoes-e-precos", label: "Preços e Tamanhos",  desc: "Escolha a moldura e formato certos" },
-                { href: "/recriacao",      label: "Recriação de Bouquet", desc: "Quando o tempo já passou" },
+                { href: "/como-funciona",   label: "Como Funciona",        desc: "O processo passo a passo da preservação" },
+                { href: "/opcoes-e-precos", label: "Preços e Tamanhos",    desc: "Escolha a moldura e formato certos" },
+                { href: "/recriacao",       label: "Recriação de Bouquet", desc: "Quando o tempo já passou" },
               ].map((l, i) => (
                 <a key={i} href={l.href} className="related-card">
                   <span style={{ display: "block", fontFamily: "'TAN-MEMORIES', serif", fontSize: "1rem", color: "#1E2D2A", marginBottom: "6px" }}>{l.label}</span>
@@ -756,12 +848,23 @@ export default function PerguntasFrequentesClient() {
             transition={{ duration: 0.65 }}
             style={{ textAlign: "center", marginTop: "56px" }}
           >
-            <div aria-hidden="true" style={{ width: "44px", height: "1px", margin: "0 auto 28px", background: "linear-gradient(to right, transparent, #B8954A, transparent)" }} />
-            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.7rem,4vw,2.6rem)", color: "#1E2D2A", margin: "0 0 12px", lineHeight: 1.15 }}>
+            <div aria-hidden="true" style={{
+              width: "44px", height: "1px", margin: "0 auto 28px",
+              background: `linear-gradient(to right, transparent, ${ACCENT}, transparent)`,
+            }} />
+            <h2 style={{
+              fontFamily: "'TAN-MEMORIES', serif",
+              fontSize: "clamp(1.7rem,4vw,2.6rem)",
+              color: "#1E2D2A", margin: "0 0 12px", lineHeight: 1.15,
+            }}>
               Ainda tem dúvidas?
             </h2>
-            <p style={{ color: "#5A6B60", fontSize: "clamp(0.9rem,2vw,0.97rem)", lineHeight: 1.82, margin: "0 auto 28px", maxWidth: "460px" }}>
-              Fale connosco directamente — respondemos em poucas horas
+            <p style={{
+              color: "#5A6B60", fontSize: "clamp(0.9rem,2vw,0.97rem)",
+              lineHeight: 1.82, margin: "0 auto 28px", maxWidth: "460px",
+              fontFamily: "'Google Sans', Roboto, sans-serif",
+            }}>
+              Fale connosco directamente. Respondemos em poucas horas
               e adoramos ajudar a encontrar a opção certa para si.
             </p>
             <div className="cta-row">
@@ -776,6 +879,7 @@ export default function PerguntasFrequentesClient() {
               </a>
             </div>
           </motion.div>
+
         </div>
       </main>
     </>
