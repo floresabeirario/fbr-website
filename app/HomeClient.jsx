@@ -239,7 +239,7 @@ export default function HomeClient() {
             height: 100%;
             object-fit: cover;
             display: block;
-            filter: brightness(1) saturate(0.6);
+            filter: brightness(1);
             transition: filter 0.5s ease;
           }
           @media (min-width: 768px) {
