@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { IconInstagram, IconWhatsApp } from "./_components/Icons";
+import { IconWhatsApp } from "./_components/Icons";
 import { FORM_URL, WA_URL, WA_URL_NOIVA } from "./_lib/constants";
 
 // ─── JSON-LD Structured Data ──────────────────────────────────────────────────
@@ -65,6 +65,240 @@ const StructuredData = () => (
     }}
   />
 );
+
+// ─── SVG Icons preenchidos para secção Tracking ──────────────────────────────
+const IconFlower = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    {/* pétala cima */}
+    <ellipse cx="12" cy="6.5" rx="2.5" ry="4" />
+    {/* pétala baixo */}
+    <ellipse cx="12" cy="17.5" rx="2.5" ry="4" />
+    {/* pétala esq */}
+    <ellipse cx="6.5" cy="12" rx="4" ry="2.5" />
+    {/* pétala dir */}
+    <ellipse cx="17.5" cy="12" rx="4" ry="2.5" />
+    {/* centro */}
+    <circle cx="12" cy="12" r="3" fill="white" opacity="0.6" />
+    <circle cx="12" cy="12" r="1.5" />
+  </svg>
+);
+
+const IconFrame = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    {/* moldura exterior */}
+    <rect x="2" y="2" width="20" height="20" rx="2.5" />
+    {/* janela interior — recorte com fill branco semitransparente */}
+    <rect x="6" y="6" width="12" height="12" rx="1.5" fill="white" opacity="0.55" />
+    {/* pequena flor no centro */}
+    <circle cx="12" cy="12" r="2" fill="currentColor" opacity="0.9" />
+  </svg>
+);
+
+const IconPackage = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    {/* tampa */}
+    <path d="M12 2 L22 7 L12 12 L2 7 Z" />
+    {/* lado esquerdo */}
+    <path d="M2 7 L2 17 L12 22 L12 12 Z" opacity="0.7" />
+    {/* lado direito */}
+    <path d="M22 7 L22 17 L12 22 L12 12 Z" opacity="0.85" />
+  </svg>
+);
+
+// ─── Before/After Slider ──────────────────────────────────────────────────────
+const BeforeAfterSlider = () => {
+  const [position, setPosition] = useState(50);
+  const containerRef = useRef(null);
+  const isDragging = useRef(false);
+
+  const getPosition = useCallback((clientX) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    setPosition((x / rect.width) * 100);
+  }, []);
+
+  const onMouseDown = (e) => {
+    isDragging.current = true;
+    e.preventDefault();
+  };
+  const onMouseMove = useCallback((e) => {
+    if (!isDragging.current) return;
+    getPosition(e.clientX);
+  }, [getPosition]);
+  const onMouseUp = () => { isDragging.current = false; };
+
+  const onTouchStart = () => { isDragging.current = true; };
+  const onTouchMove = useCallback((e) => {
+    if (!isDragging.current) return;
+    getPosition(e.touches[0].clientX);
+  }, [getPosition]);
+  const onTouchEnd = () => { isDragging.current = false; };
+
+  useEffect(() => {
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchend", onTouchEnd);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [onMouseMove, onTouchMove]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 20px" }}
+    >
+      <div style={{ textAlign: "center", marginBottom: "40px" }}>
+        <span className="eyebrow">Antes e depois</span>
+        <h2
+          style={{
+            fontFamily: "'TAN-MEMORIES', serif",
+            fontSize: "clamp(2rem,4.5vw,3.2rem)",
+            color: "#1E2D2A",
+            margin: 0,
+            lineHeight: 1.1,
+          }}
+        >
+          Do ramo ao quadro
+        </h2>
+        <p style={{ color: "#5A6B60", fontSize: "0.9rem", marginTop: "12px", letterSpacing: "0.5px" }}>
+          Arraste para comparar
+        </p>
+      </div>
+
+      <div
+        ref={containerRef}
+        style={{
+          position: "relative",
+          width: "100%",
+          maxWidth: "700px",
+          margin: "0 auto",
+          aspectRatio: "4/3",
+          borderRadius: "20px",
+          overflow: "hidden",
+          cursor: "ew-resize",
+          userSelect: "none",
+          boxShadow: "0 24px 64px rgba(30,45,42,0.16)",
+        }}
+        onMouseDown={onMouseDown}
+        onTouchStart={onTouchStart}
+      >
+        {/* Foto de depois (quadro) */}
+        <img
+          src="/quadro.webp"
+          alt="Quadro de flores preservadas — depois"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          draggable={false}
+        />
+        {/* Foto de antes (ramo) — recortada pelo clip */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            clipPath: `inset(0 ${100 - position}% 0 0)`,
+            transition: isDragging.current ? "none" : "clip-path 0.05s",
+          }}
+        >
+          <img
+            src="/ramo.webp"
+            alt="Ramo de flores — antes"
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            draggable={false}
+          />
+        </div>
+
+        {/* Labels */}
+        <div
+          style={{
+            position: "absolute",
+            top: "16px",
+            left: "16px",
+            backgroundColor: "rgba(30,45,42,0.75)",
+            color: "#FAF7F0",
+            padding: "5px 14px",
+            borderRadius: "50px",
+            fontSize: "0.72rem",
+            fontWeight: "700",
+            letterSpacing: "2px",
+            textTransform: "uppercase",
+            fontFamily: "Roboto, sans-serif",
+            backdropFilter: "blur(6px)",
+            opacity: position > 15 ? 1 : 0,
+            transition: "opacity 0.2s",
+          }}
+        >
+          Antes
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            top: "16px",
+            right: "16px",
+            backgroundColor: "rgba(61,107,94,0.8)",
+            color: "#FAF7F0",
+            padding: "5px 14px",
+            borderRadius: "50px",
+            fontSize: "0.72rem",
+            fontWeight: "700",
+            letterSpacing: "2px",
+            textTransform: "uppercase",
+            fontFamily: "Roboto, sans-serif",
+            backdropFilter: "blur(6px)",
+            opacity: position < 85 ? 1 : 0,
+            transition: "opacity 0.2s",
+          }}
+        >
+          Depois
+        </div>
+
+        {/* Divisor */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            left: `${position}%`,
+            transform: "translateX(-50%)",
+            width: "2px",
+            background: "rgba(250,247,240,0.9)",
+            pointerEvents: "none",
+          }}
+        />
+        {/* Handle */}
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: `${position}%`,
+            transform: "translate(-50%, -50%)",
+            width: "44px",
+            height: "44px",
+            borderRadius: "50%",
+            backgroundColor: "#FAF7F0",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            pointerEvents: "none",
+          }}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3D6B5E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6" />
+            <polyline points="9 18 3 12 9 6" style={{ transform: "scaleX(-1)", transformOrigin: "6px 12px" }} />
+          </svg>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 // ─── Step Card ────────────────────────────────────────────────────────────────
 const StepCard = ({ number, title, desc, imageSrc, delay }) => (
@@ -155,8 +389,8 @@ export default function HomeClient() {
     {
       number: "01",
       title: "Reserve a sua data",
-      desc: "As vagas são limitadas. Preencha o formulário de reserva com os detalhes do seu evento e garantimos a sua vaga com antecedência.",
-      imageSrc: "/recriacao-passo1-foto.jpg",
+      desc: "Preencha o formulário de reserva com os detalhes do seu evento e garantimos a sua vaga com antecedência. As vagas são limitadas.",
+      imageSrc: "/calendario.webp",
     },
     {
       number: "02",
@@ -176,7 +410,20 @@ export default function HomeClient() {
     <>
       <StructuredData />
 
-      <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
+      <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden", position: "relative" }}>
+
+        {/* Gradiente global subtil a percorrer toda a página */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "fixed",
+            inset: 0,
+            pointerEvents: "none",
+            zIndex: 0,
+            background:
+              "linear-gradient(175deg, rgba(29,52,44,0.07) 0%, rgba(250,247,240,0) 30%, rgba(184,149,74,0.06) 65%, rgba(61,107,94,0.05) 100%)",
+          }}
+        />
         <style dangerouslySetInnerHTML={{
           __html: `
           * { box-sizing: border-box; }
@@ -190,38 +437,11 @@ export default function HomeClient() {
             video { animation: none !important; }
           }
 
-          @keyframes driftA {
-            0%,100% { transform: translateY(0) rotate(0deg); }
-            50%      { transform: translateY(-16px) rotate(5deg); }
-          }
-          .drift-a { animation: driftA 8s ease-in-out infinite; }
-
           @keyframes floatPhone {
             0%,100% { transform: translateY(0px) rotate(-2deg); }
             50%      { transform: translateY(-12px) rotate(-2deg); }
           }
           .phone-float { animation: floatPhone 5s ease-in-out infinite; }
-
-          @keyframes scrollPulse {
-            0%,100% { opacity: 0.5; transform: scaleY(1); }
-            50%      { opacity: 1;   transform: scaleY(0.7); }
-          }
-
-          .scroll-hint {
-            position: absolute; bottom: 36px; left: 50%;
-            transform: translateX(-50%);
-            display: flex; flex-direction: column;
-            align-items: center; gap: 8px;
-            color: rgba(250,247,240,0.6);
-            font-size: 0.875rem; letter-spacing: 2px;
-            text-transform: uppercase; z-index: 5;
-            font-family: Roboto, sans-serif;
-          }
-          .scroll-line {
-            width: 1px; height: 36px;
-            background: linear-gradient(to bottom, rgba(250,247,240,0.7), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
-          }
 
           .steps-grid {
             display: grid; grid-template-columns: 1fr; gap: 48px;
@@ -277,10 +497,49 @@ export default function HomeClient() {
             .apcc-visual { order: unset; }
             .apcc-text   { order: unset; }
           }
+
+          /* Hero buttons discretos */
+          .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 24px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.78rem;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            font-family: Roboto, sans-serif;
+            white-space: nowrap;
+            min-height: 40px;
+          }
+          .hero-btn-outline {
+            border: 1px solid rgba(250,247,240,0.55);
+            color: rgba(250,247,240,0.9);
+            background: rgba(250,247,240,0.07);
+            backdrop-filter: blur(6px);
+          }
+          .hero-btn-outline:hover {
+            background: rgba(250,247,240,0.18);
+            border-color: rgba(250,247,240,0.9);
+            color: #FAF7F0;
+            transform: translateY(-2px);
+          }
+
+          .hero-cta-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+          }
         `,
         }} />
 
-        {/* ════ 1. HERO ════ */}
+        {/* ════ 1. HERO — vídeo ════ */}
         <section
           aria-label="Flores à Beira-Rio — Preservação de flores de casamento"
           style={{
@@ -293,24 +552,34 @@ export default function HomeClient() {
             justifyContent: "center",
           }}
         >
-          <div
+          {/* Vídeo de fundo */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             aria-hidden="true"
             style={{
               position: "absolute",
               inset: 0,
-              backgroundImage: "url('/fotoquadro1.webp')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              filter: "brightness(0.7)",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
             }}
-          />
+          >
+            <source src="/hero-video.webm" type="video/webm" />
+            {/* fallback imagem se o vídeo não carregar */}
+          </video>
+
+          {/* Overlay escuro */}
           <div
             aria-hidden="true"
             style={{
               position: "absolute",
               inset: 0,
               background:
-                "linear-gradient(to bottom, rgba(15,30,26,0.2) 0%, rgba(15,30,26,0.55) 65%, rgba(15,30,26,0.75) 100%)",
+                "linear-gradient(to bottom, rgba(15,30,26,0.25) 0%, rgba(15,30,26,0.55) 60%, rgba(15,30,26,0.78) 100%)",
             }}
           />
 
@@ -331,12 +600,13 @@ export default function HomeClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25, duration: 0.8 }}
               style={{
-                fontSize: "clamp(0.875rem,1.5vw,1rem)",
+                fontSize: "clamp(0.7rem,1.2vw,0.85rem)",
                 letterSpacing: "clamp(3px,1vw,5px)",
                 textTransform: "uppercase",
                 fontWeight: "600",
-                marginBottom: "clamp(24px,3.5vw,36px)",
-                color: "rgba(250,247,240,0.85)",
+                marginBottom: "clamp(20px,3vw,30px)",
+                color: "rgba(250,247,240,0.8)",
+                fontFamily: "Roboto, sans-serif",
               }}
             >
               Especialistas em preservação de flores
@@ -349,7 +619,7 @@ export default function HomeClient() {
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(3.5rem, 12vw, 8rem)",
                 lineHeight: 1.18,
-                margin: "0 0 clamp(28px,4vw,44px)",
+                margin: "0 0 clamp(24px,3.5vw,36px)",
                 textShadow: "0 4px 30px rgba(0,0,0,0.3)",
               }}
             >
@@ -360,28 +630,25 @@ export default function HomeClient() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.8 }}
-              className="cta-row"
-              style={{ justifyContent: "center" }}
+              className="hero-cta-row"
             >
-              <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+              <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="hero-btn hero-btn-outline">
                 Reservar Data
               </a>
-              <a href="/como-funciona" className="btn-ghost">
+              <a href="/como-funciona" className="hero-btn hero-btn-outline">
                 Como Funciona
+              </a>
+              <a href="/perguntas-frequentes" className="hero-btn hero-btn-outline">
+                Perguntas Frequentes
               </a>
             </motion.div>
           </motion.div>
-
-          <div className="scroll-hint" aria-hidden="true">
-            <div className="scroll-line" />
-            <span>scroll</span>
-          </div>
         </section>
 
         {/* ════ 2. O QUE FAZEMOS ════ */}
         <section
           aria-label="Serviços de preservação botânica"
-          style={{ padding: "80px 20px 76px", backgroundColor: "#FAF7F0" }}
+          style={{ padding: "80px 20px 76px", background: "linear-gradient(180deg, rgba(29,52,44,0.04) 0%, #FAF7F0 100%)", position: "relative", zIndex: 1 }}
         >
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <motion.div
@@ -407,12 +674,13 @@ export default function HomeClient() {
                   color: "#5A6B60",
                   fontSize: "clamp(1rem,2vw,1.1rem)",
                   lineHeight: 1.85,
-                  maxWidth: "580px",
+                  maxWidth: "600px",
                   margin: "0 auto",
                 }}
               >
                 Transformamos flores com valor emocional em quadros de arte botânica
-                que duram décadas. Recebemos de Portugal e de toda a Europa.
+                que duram décadas. Recebemos flores de Portugal e de toda a Europa
+                no nosso estúdio em Coimbra.
               </p>
             </motion.div>
 
@@ -441,9 +709,9 @@ export default function HomeClient() {
                   bg: "#EEF0F5",
                   accent: "#5A6B8A",
                   label: "◻",
-                  title: "Vale-Presente",
-                  desc: "Ofereça a preservação como prenda. O voucher perfeito para aniversários de casamento, bodas ou datas especiais.",
-                  cta: "Ver vale-presente",
+                  title: "Cartão-Oferta",
+                  desc: "Ofereça a preservação como prenda. O cartão perfeito para aniversários de casamento, bodas ou datas especiais.",
+                  cta: "Ver cartão-oferta",
                 },
               ].map((s, i) => (
                 <motion.a
@@ -518,7 +786,18 @@ export default function HomeClient() {
           </div>
         </section>
 
-        {/* ════ 3. TRÊS PASSOS ════ */}
+        {/* ════ 3. ANTES E DEPOIS ════ */}
+        <section
+          aria-label="Comparação antes e depois — ramo e quadro de flores preservadas"
+          style={{
+            padding: "60px 0 72px",
+            background: "linear-gradient(180deg, #F4F0E8 0%, #FAF7F0 100%)",
+          }}
+        >
+          <BeforeAfterSlider />
+        </section>
+
+        {/* ════ 4. TRÊS PASSOS ════ */}
         <section
           aria-label="Como funciona a preservação de flores em 3 passos"
           style={{
@@ -561,7 +840,7 @@ export default function HomeClient() {
           </div>
         </section>
 
-        {/* ════ 4. TRACKING ════ */}
+        {/* ════ 5. TRACKING ════ */}
         <section
           aria-label="Acompanhe a sua encomenda em tempo real"
           style={{ padding: "88px 20px", backgroundColor: "#FAF7F0" }}
@@ -694,9 +973,24 @@ export default function HomeClient() {
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
                   {[
-                    { icon: "🌸", title: "Receção das flores", desc: "Confirmamos a chegada e avaliamos o estado das flores no mesmo dia." },
-                    { icon: "🖼️", title: "Composição aprovada por si", desc: "Enviamos uma fotografia da composição antes de emoldurar. Tem sempre a palavra final." },
-                    { icon: "📦", title: "Envio com rastreio", desc: "A encomenda segue com número de rastreio CTT para acompanhar até à sua porta." },
+                    {
+                      icon: <IconFlower />,
+                      iconColor: "#3D6B5E",
+                      title: "Receção das flores",
+                      desc: "Confirmamos a chegada e avaliamos o estado das flores no mesmo dia.",
+                    },
+                    {
+                      icon: <IconFrame />,
+                      iconColor: "#3D6B5E",
+                      title: "Composição aprovada por si",
+                      desc: "Enviamos uma fotografia da composição antes de emoldurar. Tem sempre a palavra final.",
+                    },
+                    {
+                      icon: <IconPackage />,
+                      iconColor: "#3D6B5E",
+                      title: "Envio com rastreio",
+                      desc: "A encomenda segue com número de rastreio CTT para acompanhar até à sua porta.",
+                    },
                   ].map((item, i) => (
                     <motion.div
                       key={i}
@@ -721,11 +1015,10 @@ export default function HomeClient() {
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
-                          fontSize: "1.2rem",
+                          color: item.iconColor,
                           flexShrink: 0,
                           marginTop: "2px",
                         }}
-                        aria-hidden="true"
                       >
                         {item.icon}
                       </div>
@@ -743,7 +1036,7 @@ export default function HomeClient() {
           </div>
         </section>
 
-        {/* ════ 5. GOOGLE REVIEWS ════ */}
+        {/* ════ 6. GOOGLE REVIEWS ════ */}
         <section
           aria-label="Avaliações de clientes da Flores à Beira-Rio"
           style={{ padding: "76px 20px", backgroundColor: "#1E2D2A", color: "#FAF7F0", textAlign: "center" }}
@@ -764,7 +1057,7 @@ export default function HomeClient() {
           </motion.div>
         </section>
 
-        {/* ════ 6. APCC ════ */}
+        {/* ════ 7. APCC ════ */}
         <section
           aria-label="Parceria solidária com a APCC Coimbra"
           style={{ padding: "96px 20px", background: "linear-gradient(160deg, #1E2D2A 0%, #2D4A3E 50%, #1E2D2A 100%)", position: "relative", overflow: "hidden" }}
@@ -813,6 +1106,32 @@ export default function HomeClient() {
                     </div>
                   </motion.div>
                 ))}
+
+                {/* Link para sustentabilidade */}
+                <div style={{ marginTop: "28px" }}>
+                  <a
+                    href="/sustentabilidade"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      color: "#8BA888",
+                      textDecoration: "none",
+                      fontSize: "0.85rem",
+                      fontWeight: "600",
+                      letterSpacing: "1.5px",
+                      textTransform: "uppercase",
+                      fontFamily: "Roboto, sans-serif",
+                      borderBottom: "1px solid rgba(139,168,136,0.4)",
+                      paddingBottom: "2px",
+                      transition: "border-color 0.2s ease, color 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#8BA888"; e.currentTarget.style.color = "#A8C8A5"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(139,168,136,0.4)"; e.currentTarget.style.color = "#8BA888"; }}
+                  >
+                    Saber mais sobre sustentabilidade →
+                  </a>
+                </div>
               </motion.div>
 
               <motion.div
@@ -846,95 +1165,271 @@ export default function HomeClient() {
           </div>
         </section>
 
-        {/* ════ 7. VALE-PRESENTE ════ */}
-        <section aria-label="Vale-Presente — ofereça a preservação de flores" style={{ padding: "88px 20px", backgroundColor: "#FAF7F0" }}>
-          <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-            <div className="vale-grid">
-              <motion.div
-                initial={{ opacity: 0, x: -28 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                style={{ borderRadius: "22px", overflow: "hidden", boxShadow: "0 20px 60px rgba(30,45,42,0.12)", aspectRatio: "9/16", maxHeight: "560px", backgroundColor: "#D4DECC", position: "relative" }}
-              >
-                <video autoPlay loop muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} aria-label="Vídeo do vale-presente">
-                  <source src="/vale-presente-video.mp4" type="video/mp4" />
-                </video>
-                <div style={{ position: "absolute", top: "20px", left: "20px", backgroundColor: "#B8954A", color: "#FAF7F0", padding: "8px 18px", borderRadius: "50px", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", boxShadow: "0 4px 14px rgba(184,149,74,0.4)" }}>
-                  Vale-Presente
-                </div>
-              </motion.div>
+        {/* ════ 8. CARTÃO-OFERTA ════ */}
+        <section
+          aria-label="Cartão-Oferta — ofereça a preservação de flores"
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            minHeight: "560px",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          {/* Fundo: foto vale1.webp */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: "url('/vale1.webp')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+          {/* Overlay gradiente */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(100deg, rgba(15,28,22,0.88) 0%, rgba(15,28,22,0.72) 50%, rgba(15,28,22,0.4) 100%)",
+            }}
+          />
 
+          <div
+            style={{
+              position: "relative",
+              zIndex: 1,
+              maxWidth: "1100px",
+              margin: "0 auto",
+              padding: "88px 20px",
+              width: "100%",
+            }}
+          >
+            <div style={{ maxWidth: "560px" }}>
               <motion.div
-                initial={{ opacity: 0, x: 28 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
               >
-                <span className="eyebrow" style={{ color: "#B8954A" }}>O presente mais especial</span>
-                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.5rem)", color: "#1E2D2A", margin: "0 0 20px", lineHeight: 1.1 }}>
-                  Ofereça memórias<br />
-                  <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>que duram para sempre</em>
-                </h2>
-                <p style={{ color: "#5A6B60", lineHeight: 1.85, fontSize: "clamp(1rem,2vw,1.1rem)", margin: "0 0 34px" }}>
-                  O vale-presente da Flores à Beira-Rio oferece a quem recebe a experiência completa de preservação do seu bouquet — da entrega das flores até ao quadro emoldurado em casa.
-                </p>
-                <div className="cta-row" style={{ justifyContent: "flex-start" }}>
-                  <a href="/oferecer-preservacao" className="btn-primary">Ver Vale-Presente</a>
-                  <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-dark">Perguntar pelo WhatsApp</a>
+                <div
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    background: "rgba(184,149,74,0.15)",
+                    border: "1px solid rgba(184,149,74,0.35)",
+                    borderRadius: "100px",
+                    padding: "6px 16px",
+                    marginBottom: "20px",
+                  }}
+                >
+                  <span style={{ fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#D4A84B", fontFamily: "Roboto, sans-serif" }}>
+                    O presente mais especial
+                  </span>
                 </div>
+
+                <h2
+                  style={{
+                    fontFamily: "'TAN-MEMORIES', serif",
+                    fontSize: "clamp(2.2rem,4.5vw,3.5rem)",
+                    color: "#FAF7F0",
+                    margin: "0 0 20px",
+                    lineHeight: 1.1,
+                  }}
+                >
+                  Ofereça memórias<br />
+                  <em style={{ fontStyle: "italic", color: "#D4A84B" }}>que duram para sempre</em>
+                </h2>
+
+                <p
+                  style={{
+                    color: "rgba(250,247,240,0.75)",
+                    lineHeight: 1.85,
+                    fontSize: "clamp(1rem,2vw,1.08rem)",
+                    margin: "0 0 34px",
+                  }}
+                >
+                  Ofereça a preservação das flores na forma do nosso cartão-oferta
+                  e deixe que os presenteados escolham a preservação ao seu gosto.
+                </p>
+
+                <a
+                  href="/oferecer-preservacao"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#D4A84B",
+                    color: "#1E2D2A",
+                    padding: "14px 34px",
+                    borderRadius: "100px",
+                    textDecoration: "none",
+                    fontWeight: "700",
+                    fontSize: "0.8rem",
+                    letterSpacing: "1.8px",
+                    textTransform: "uppercase",
+                    fontFamily: "Roboto, sans-serif",
+                    transition: "all 0.3s ease",
+                    boxShadow: "0 6px 24px rgba(184,149,74,0.35)",
+                    minHeight: "48px",
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#C49A38"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#D4A84B"; e.currentTarget.style.transform = "translateY(0)"; }}
+                >
+                  Descobrir o Cartão-Oferta
+                </a>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* ════ 8. CTA SPLIT ════ */}
+        {/* ════ 9. CTA SPLIT ════ */}
         <div className="cta-split">
+          {/* Noivas */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            style={{ background: "linear-gradient(140deg, #1E2D2A 0%, #2D5045 100%)", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", position: "relative", overflow: "hidden" }}
+            style={{
+              position: "relative",
+              overflow: "hidden",
+              padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)",
+              textAlign: "center",
+              minHeight: "480px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            <div style={{ position: "relative", zIndex: 1, maxWidth: "480px", margin: "0 auto" }}>
-              <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "#8BA888", marginBottom: "16px", fontFamily: "Roboto, sans-serif" }}>Para noivas</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4vw,3.2rem)", color: "#FAF7F0", margin: "0 0 18px", lineHeight: 1.1 }}>Vai casar em breve?</h2>
-              <p style={{ color: "rgba(250,247,240,0.75)", fontSize: "1.05rem", lineHeight: 1.82, margin: "0 0 34px" }}>
-                Reserve a sua vaga com antecedência — as datas em época de casamentos esgotam rapidamente.
+            {/* Fundo: foto noiva.webp */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                inset: 0,
+                backgroundImage: "url('/noiva.webp')",
+                backgroundSize: "cover",
+                backgroundPosition: "center top",
+                filter: "brightness(0.55)",
+              }}
+            />
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(to bottom, rgba(15,30,26,0.3) 0%, rgba(15,30,26,0.65) 100%)",
+              }}
+            />
+            <div style={{ position: "relative", zIndex: 1, maxWidth: "440px", margin: "0 auto" }}>
+              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.75)", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>Para noivas</span>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4vw,3.2rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>
+                Vai casar em breve?
+              </h2>
+              <p style={{ color: "rgba(250,247,240,0.8)", fontSize: "1rem", lineHeight: 1.82, margin: "0 0 32px" }}>
+                Reserve a sua vaga com antecedência, as datas em época de casamentos esgotam rapidamente.
               </p>
-              <div className="cta-row" style={{ justifyContent: "center" }}>
-                <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost">Reservar Data</a>
+              <div style={{ display: "flex", justifyContent: "center" }}>
                 <a
-                  href={WA_URL_NOIVA}
+                  href={FORM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "9px", backgroundColor: "#25D366", color: "#fff", padding: "16px 32px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.95rem", letterSpacing: "1.5px", textTransform: "uppercase", transition: "all 0.3s ease", fontFamily: "Roboto, sans-serif", whiteSpace: "nowrap", minHeight: "56px" }}
-                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1da851"; e.currentTarget.style.transform = "translateY(-3px)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#25D366"; e.currentTarget.style.transform = "translateY(0)"; }}
+                  className="btn-ghost"
                 >
-                  <IconWhatsApp size={20} /> WhatsApp
+                  Reservar Data
                 </a>
               </div>
             </div>
           </motion.div>
 
+          {/* Sessão de esclarecimento */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            style={{ background: "linear-gradient(140deg, #F0EBE0 0%, #EDF2E8 100%)", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", position: "relative", overflow: "hidden" }}
+            style={{
+              background: "linear-gradient(140deg, #EDF2E8 0%, #F4F0E8 100%)",
+              padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)",
+              textAlign: "center",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            <div style={{ position: "relative", zIndex: 1, maxWidth: "480px", margin: "0 auto" }}>
-              <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "#B8954A", marginBottom: "16px", fontFamily: "Roboto, sans-serif" }}>Presente especial</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4vw,3.2rem)", color: "#1E2D2A", margin: "0 0 18px", lineHeight: 1.1 }}>Ofereça memórias eternas</h2>
-              <p style={{ color: "#5A6B60", fontSize: "1.05rem", lineHeight: 1.82, margin: "0 0 34px" }}>
-                Desde bodas de prata até aniversários de casamento — ofereça um vale-presente ou a recriação do bouquet.
+            <div style={{ maxWidth: "440px", margin: "0 auto" }}>
+              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "#3D6B5E", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>
+                Apoio personalizado
+              </span>
+              <h2
+                style={{
+                  fontFamily: "'TAN-MEMORIES', serif",
+                  fontSize: "clamp(2rem,4vw,3rem)",
+                  color: "#1E2D2A",
+                  margin: "0 0 16px",
+                  lineHeight: 1.1,
+                }}
+              >
+                À procura de<br />
+                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>mais ajuda?</em>
+              </h2>
+              <p
+                style={{
+                  color: "#5A6B60",
+                  fontSize: "0.97rem",
+                  lineHeight: 1.82,
+                  margin: "0 0 10px",
+                }}
+              >
+                Agende uma sessão de esclarecimento gratuita por videochamada antes de fazer o seu pedido.
+              </p>
+              <p
+                style={{
+                  color: "#5A6B60",
+                  fontSize: "0.92rem",
+                  lineHeight: 1.75,
+                  margin: "0 0 32px",
+                }}
+              >
+                Podemos ajudá-lo a entender o processo de preservação e a escolher os produtos que melhor se adequam a si. Esta sessão tem a duração aproximada de 30 minutos.
               </p>
               <div className="cta-row" style={{ justifyContent: "center" }}>
-                <a href="/oferecer-preservacao" className="btn-primary">Vale-Presente</a>
-                <a href="/recriacao" className="btn-outline">Recriação de Bouquet</a>
+                <a href="/contactos" className="btn-primary">
+                  Contactos
+                </a>
+                <a
+                  href={WA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
+                    backgroundColor: "#25D366",
+                    color: "#fff",
+                    padding: "14px 28px",
+                    borderRadius: "100px",
+                    textDecoration: "none",
+                    fontWeight: "600",
+                    fontSize: "0.8rem",
+                    letterSpacing: "1.5px",
+                    textTransform: "uppercase",
+                    transition: "all 0.3s ease",
+                    fontFamily: "Roboto, sans-serif",
+                    whiteSpace: "nowrap",
+                    minHeight: "48px",
+                    boxShadow: "0 4px 16px rgba(37,211,102,0.25)",
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1da851"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#25D366"; e.currentTarget.style.transform = "translateY(0)"; }}
+                >
+                  <IconWhatsApp size={18} /> WhatsApp
+                </a>
               </div>
             </div>
           </motion.div>
