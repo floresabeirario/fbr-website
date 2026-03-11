@@ -123,15 +123,15 @@ const BeforeAfterSlider = () => {
         <div style={{ position: "absolute", inset: 0, clipPath: `inset(0 ${100 - position}% 0 0)`, willChange: "clip-path" }}>
           <img src="/ramo.webp" alt="Ramo de flores — antes" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} draggable={false} />
         </div>
-        <div style={{ position: "absolute", top: "16px", left: "16px", backgroundColor: "rgba(30,45,42,0.72)", color: "#FAF7F0", padding: "5px 14px", borderRadius: "50px", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", backdropFilter: "blur(6px)", opacity: position > 12 ? 1 : 0, transition: "opacity 0.2s", pointerEvents: "none" }}>Antes</div>
-        <div style={{ position: "absolute", top: "16px", right: "16px", backgroundColor: "rgba(61,107,94,0.8)", color: "#FAF7F0", padding: "5px 14px", borderRadius: "50px", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", backdropFilter: "blur(6px)", opacity: position < 88 ? 1 : 0, transition: "opacity 0.2s", pointerEvents: "none" }}>Depois</div>
+        <div style={{ position: "absolute", top: "16px", left: "16px", backgroundColor: "rgba(30,45,42,0.72)", color: "#FAF7F0", padding: "5px 14px", borderRadius: "50px", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", backdropFilter: "blur(6px)", opacity: position > 12 ? 1 : 0, transition: "opacity 0.2s", pointerEvents: "none" }}>Antes</div>
+        <div style={{ position: "absolute", top: "16px", right: "16px", backgroundColor: "rgba(61,107,94,0.8)", color: "#FAF7F0", padding: "5px 14px", borderRadius: "50px", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", backdropFilter: "blur(6px)", opacity: position < 88 ? 1 : 0, transition: "opacity 0.2s", pointerEvents: "none" }}>Depois</div>
         <div style={{ position: "absolute", top: 0, bottom: 0, left: `${position}%`, transform: "translateX(-50%)", width: "2px", background: "rgba(250,247,240,0.9)", pointerEvents: "none", willChange: "left" }} />
         <div style={{ position: "absolute", top: "50%", left: `${position}%`, transform: "translate(-50%, -50%)", width: "46px", height: "46px", borderRadius: "50%", backgroundColor: "#FAF7F0", boxShadow: "0 4px 20px rgba(0,0,0,0.28)", display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none", willChange: "left" }}>
           <svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="#3D6B5E" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <line x1="0" y1="7" x2="22" y2="7" /><polyline points="5,1 0,7 5,13" /><polyline points="17,1 22,7 17,13" />
           </svg>
         </div>
-        <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", backgroundColor: "rgba(0,0,0,0.42)", color: "#FAF7F0", padding: "4px 14px", borderRadius: "50px", fontSize: "0.68rem", fontWeight: "600", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", backdropFilter: "blur(4px)", pointerEvents: "none", whiteSpace: "nowrap" }}>
+        <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", backgroundColor: "rgba(0,0,0,0.42)", color: "#FAF7F0", padding: "4px 14px", borderRadius: "50px", fontSize: "0.68rem", fontWeight: "600", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", backdropFilter: "blur(4px)", pointerEvents: "none", whiteSpace: "nowrap" }}>
           Arraste para comparar
         </div>
       </div>
@@ -208,9 +208,8 @@ export default function HomeClient() {
             flex: 1;
             overflow: hidden;
             border-radius: 20px;
-            /* Mobile: sempre vertical — aspect-ratio 3/4 */
-            aspect-ratio: 3/4;
-            /* não pode ficar mais largo que alto */
+            /* Mobile: mais horizontal para não ocupar tanto espaço vertical */
+            aspect-ratio: 16/10;
             max-width: 100%;
           }
 
@@ -218,7 +217,6 @@ export default function HomeClient() {
             .step-card {
               aspect-ratio: 3/4;
               border-radius: 24px;
-              /* desktop: impede que fiquem demasiado largos */
               max-width: none;
             }
           }
@@ -314,7 +312,7 @@ export default function HomeClient() {
             padding: 10px 26px; border-radius: 100px; text-decoration: none;
             font-weight: 500; font-size: 0.78rem; letter-spacing: 1.8px;
             text-transform: uppercase; transition: all 0.3s ease;
-            font-family: Roboto, sans-serif; white-space: nowrap; min-height: 40px;
+            font-family: 'Google Sans', Roboto, sans-serif; white-space: nowrap; min-height: 40px;
             border: 1px solid rgba(250,247,240,0.55); color: rgba(250,247,240,0.9);
             background: rgba(250,247,240,0.07); backdrop-filter: blur(6px);
           }
@@ -325,7 +323,7 @@ export default function HomeClient() {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             padding: 0 28px; height: 52px; border-radius: 100px; text-decoration: none;
             font-weight: 600; font-size: 0.82rem; letter-spacing: 1.5px;
-            text-transform: uppercase; font-family: Roboto, sans-serif;
+            text-transform: uppercase; font-family: 'Google Sans', Roboto, sans-serif;
             transition: all 0.3s ease; white-space: nowrap; flex: 1; min-width: 0;
             border: 1.5px solid rgba(255,255,255,0.35); color: #FAF7F0;
             background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);
@@ -336,7 +334,7 @@ export default function HomeClient() {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             padding: 0 28px; height: 52px; border-radius: 100px; text-decoration: none;
             font-weight: 600; font-size: 0.82rem; letter-spacing: 1.5px;
-            text-transform: uppercase; font-family: Roboto, sans-serif;
+            text-transform: uppercase; font-family: 'Google Sans', Roboto, sans-serif;
             transition: all 0.3s ease; white-space: nowrap; flex: 1; min-width: 0;
             background: #25D366; color: #fff;
             box-shadow: 0 4px 16px rgba(37,211,102,0.3);
@@ -348,7 +346,7 @@ export default function HomeClient() {
             display: inline-flex; align-items: center; justify-content: center;
             padding: 0 36px; height: 52px; border-radius: 100px; text-decoration: none;
             font-weight: 600; font-size: 0.82rem; letter-spacing: 1.5px;
-            text-transform: uppercase; font-family: Roboto, sans-serif;
+            text-transform: uppercase; font-family: 'Google Sans', Roboto, sans-serif;
             transition: all 0.3s ease; white-space: nowrap;
             border: 1.5px solid rgba(250,247,240,0.6); color: #FAF7F0;
             background: rgba(250,247,240,0.1); backdrop-filter: blur(8px);
@@ -361,7 +359,13 @@ export default function HomeClient() {
 
         {/* ════ 1. HERO ════ */}
         <section aria-label="Flores à Beira-Rio — Preservação de flores de casamento"
-          style={{ height: "100dvh", minHeight: "100vh", maxHeight: "100dvh", position: "relative", overflow: "hidden" }}
+          style={{
+            height: "100dvh",
+            maxHeight: "100dvh",
+            minHeight: "100dvh",
+            position: "relative",
+            overflow: "hidden",
+          }}
         >
           <video autoPlay loop muted playsInline aria-hidden="true"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
@@ -370,30 +374,38 @@ export default function HomeClient() {
           </video>
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.2) 0%, rgba(15,30,26,0.5) 60%, rgba(15,30,26,0.82) 100%)" }} />
 
-          {/* Título — centrado no ecrã */}
-          <motion.div style={{
-            position: "absolute", inset: 0,
-            zIndex: 2, textAlign: "center", color: "#FAF7F0",
+          {/* Título — absolutamente centrado no ecrã, não sofre parallax */}
+          <div style={{
+            position: "absolute",
+            top: 0, left: 0, right: 0, bottom: 0,
+            zIndex: 2,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+            color: "#FAF7F0",
             padding: "0 20px",
-            display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-            opacity: titleOpacity, y: titleY,
+            pointerEvents: "none",
           }}>
-            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.8 }}
-              style={{ fontSize: "clamp(0.7rem,1.2vw,0.85rem)", letterSpacing: "clamp(3px,1vw,5px)", textTransform: "uppercase", fontWeight: "600", marginBottom: "clamp(16px,2.5vw,24px)", color: "rgba(250,247,240,0.8)", fontFamily: "Roboto, sans-serif" }}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.8 }}
+              style={{ fontSize: "clamp(0.65rem,1.2vw,0.82rem)", letterSpacing: "clamp(3px,1vw,5px)", textTransform: "uppercase", fontWeight: "700", marginBottom: "clamp(14px,2.5vw,22px)", color: "rgba(250,247,240,0.78)", fontFamily: "'Google Sans', Roboto, sans-serif" }}
             >
               Especialistas em preservação de flores
             </motion.p>
-            <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3.5rem, 12vw, 8rem)", lineHeight: 1.18, margin: 0, textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
+            <motion.h1
+              initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3.2rem, 11vw, 8rem)", lineHeight: 1.15, margin: 0, textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
             >
               Flores à<br /><span style={{ whiteSpace: "nowrap" }}>Beira&#8209;Rio</span>
             </motion.h1>
-          </motion.div>
+          </div>
 
-          {/* Botão — fixo em baixo */}
+          {/* Botão — fixo em baixo, independente do título */}
           <motion.div
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.8 }}
-            style={{ position: "absolute", bottom: "clamp(48px,8vh,88px)", left: 0, right: 0, zIndex: 3, display: "flex", justifyContent: "center" }}
+            style={{ position: "absolute", bottom: "clamp(44px,7vh,80px)", left: 0, right: 0, zIndex: 3, display: "flex", justifyContent: "center" }}
           >
             <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="hero-btn">Reservar Data</a>
           </motion.div>
@@ -422,13 +434,13 @@ export default function HomeClient() {
           {/* Header da secção */}
           <div style={{ padding: "56px 20px 40px", textAlign: "center", maxWidth: "800px", margin: "0 auto" }}>
             <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3.5px", textTransform: "uppercase", color: "#7AADCA", marginBottom: "12px", fontFamily: "Roboto, sans-serif" }}>
+              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3.5px", textTransform: "uppercase", color: "#7AADCA", marginBottom: "12px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
                 Do bouquet ao quadro
               </span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", color: "#FAF7F0", margin: "0 0 12px", lineHeight: 1.1 }}>
                 O seu quadro em três passos
               </h2>
-              <p style={{ color: "rgba(250,247,240,0.5)", fontSize: "0.9rem", fontFamily: "Roboto, sans-serif", margin: 0 }}>
+              <p style={{ color: "rgba(250,247,240,0.5)", fontSize: "0.9rem", fontFamily: "'Google Sans', Roboto, sans-serif", margin: 0 }}>
                 Um processo simples, com acompanhamento em cada etapa.
               </p>
             </motion.div>
@@ -459,25 +471,25 @@ export default function HomeClient() {
             ))}
           </div>
 
-          {/* Botões */}
+          {/* Botões — Como Funciona | Reservar | Perguntas */}
           <div style={{ padding: "32px 20px 56px" }}>
             <div className="steps-buttons">
-              <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(90deg, #3A6FBF 0%, #2E8A72 100%)", color: "#FAF7F0", padding: "0 36px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "700", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", boxShadow: "0 6px 28px rgba(46,138,114,0.35)", whiteSpace: "nowrap" }}
-                onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.88"; e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 10px 32px rgba(46,138,114,0.5)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(46,138,114,0.35)"; }}
-              >
-                Reservar a Minha Data
-              </a>
               <a href="/como-funciona"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(90deg, rgba(58,111,191,0.18) 0%, rgba(46,138,114,0.18) 100%)", border: "1.5px solid rgba(100,175,200,0.35)", color: "rgba(250,247,240,0.88)", padding: "0 28px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", whiteSpace: "nowrap" }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(90deg, rgba(58,111,191,0.18) 0%, rgba(46,138,114,0.18) 100%)", border: "1.5px solid rgba(100,175,200,0.35)", color: "rgba(250,247,240,0.88)", padding: "0 28px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", transition: "all 0.3s ease", whiteSpace: "nowrap" }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = "linear-gradient(90deg, rgba(58,111,191,0.32) 0%, rgba(46,138,114,0.32) 100%)"; e.currentTarget.style.borderColor = "rgba(100,175,200,0.7)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = "linear-gradient(90deg, rgba(58,111,191,0.18) 0%, rgba(46,138,114,0.18) 100%)"; e.currentTarget.style.borderColor = "rgba(100,175,200,0.35)"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 Como Funciona
               </a>
+              <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(90deg, #3A6FBF 0%, #2E8A72 100%)", color: "#FAF7F0", padding: "0 36px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "700", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", transition: "all 0.3s ease", boxShadow: "0 6px 28px rgba(46,138,114,0.35)", whiteSpace: "nowrap" }}
+                onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.88"; e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 10px 32px rgba(46,138,114,0.5)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(46,138,114,0.35)"; }}
+              >
+                Reservar a Minha Data
+              </a>
               <a href="/perguntas-frequentes"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(90deg, rgba(58,111,191,0.18) 0%, rgba(46,138,114,0.18) 100%)", border: "1.5px solid rgba(100,175,200,0.35)", color: "rgba(250,247,240,0.88)", padding: "0 28px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", whiteSpace: "nowrap" }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(90deg, rgba(58,111,191,0.18) 0%, rgba(46,138,114,0.18) 100%)", border: "1.5px solid rgba(100,175,200,0.35)", color: "rgba(250,247,240,0.88)", padding: "0 28px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", transition: "all 0.3s ease", whiteSpace: "nowrap" }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = "linear-gradient(90deg, rgba(58,111,191,0.32) 0%, rgba(46,138,114,0.32) 100%)"; e.currentTarget.style.borderColor = "rgba(100,175,200,0.7)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = "linear-gradient(90deg, rgba(58,111,191,0.18) 0%, rgba(46,138,114,0.18) 100%)"; e.currentTarget.style.borderColor = "rgba(100,175,200,0.35)"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
@@ -538,7 +550,7 @@ export default function HomeClient() {
                     >
                       <div style={{ width: "44px", height: "44px", borderRadius: "12px", background: "linear-gradient(135deg, #EDF2E8, #D4DECC)", display: "flex", alignItems: "center", justifyContent: "center", color: "#3D6B5E", flexShrink: 0, marginTop: "2px" }}>{item.icon}</div>
                       <div>
-                        <p style={{ margin: "0 0 4px", fontWeight: "700", color: "#1E2D2A", fontSize: "1rem", fontFamily: "Roboto, sans-serif" }}>{item.title}</p>
+                        <p style={{ margin: "0 0 4px", fontWeight: "700", color: "#1E2D2A", fontSize: "1rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
                         <p style={{ margin: 0, color: "#5A6B60", fontSize: "0.95rem", lineHeight: 1.65 }}>{item.desc}</p>
                       </div>
                     </motion.div>
@@ -552,7 +564,7 @@ export default function HomeClient() {
         {/* ════ 5. GOOGLE REVIEWS ════ */}
         <section aria-label="Avaliações de clientes" style={{ padding: "76px 20px", backgroundColor: "#1E2D2A", color: "#FAF7F0", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "940px", margin: "0 auto" }}>
-            <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "#8BA888", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>Clientes felizes</span>
+            <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "#8BA888", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Clientes felizes</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "#FAF7F0" }}>O que dizem quem confiou em nós</h2>
             <div ref={reviewRef} style={{ minHeight: "200px" }} />
           </motion.div>
@@ -568,7 +580,7 @@ export default function HomeClient() {
               <motion.div className="apcc-text" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(139,168,136,0.12)", border: "1px solid rgba(139,168,136,0.25)", borderRadius: "100px", padding: "7px 16px", marginBottom: "20px" }}>
                   <span style={{ color: "#8BA888", fontSize: "0.75rem" }} aria-hidden="true">♥</span>
-                  <span style={{ fontSize: "0.78rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#8BA888", fontFamily: "Roboto, sans-serif" }}>Parceria solidária</span>
+                  <span style={{ fontSize: "0.78rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#8BA888", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Parceria solidária</span>
                 </div>
                 <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>
                   Cada detalhe<br /><em style={{ fontStyle: "italic", color: "#8BA888" }}>tem um propósito</em>
@@ -584,7 +596,7 @@ export default function HomeClient() {
                       {item.icon}
                     </div>
                     <div>
-                      <p style={{ margin: "0 0 2px", fontWeight: "700", color: "#FAF7F0", fontSize: "0.9rem", fontFamily: "Roboto, sans-serif" }}>{item.title}</p>
+                      <p style={{ margin: "0 0 2px", fontWeight: "700", color: "#FAF7F0", fontSize: "0.9rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
                       <p style={{ margin: 0, color: "rgba(250,247,240,0.55)", fontSize: "0.86rem", lineHeight: 1.6 }}>{item.desc}</p>
                     </div>
                   </motion.div>
@@ -605,15 +617,15 @@ export default function HomeClient() {
                           <img src="/apcc.webp" alt="Logótipo APCC" style={{ width: "28px", height: "28px", objectFit: "contain" }} />
                         </div>
                         <div>
-                          <p style={{ margin: 0, fontWeight: "700", color: "#FAF7F0", fontSize: "0.78rem", fontFamily: "Roboto, sans-serif", lineHeight: 1.25 }}>Associação de Paralisia Cerebral de Coimbra</p>
-                          <p style={{ margin: "2px 0 0", color: "#8BA888", fontSize: "0.7rem", fontFamily: "Roboto, sans-serif" }}>Oficina de Tecelagem de Almalaguês e Costura</p>
+                          <p style={{ margin: 0, fontWeight: "700", color: "#FAF7F0", fontSize: "0.78rem", fontFamily: "'Google Sans', Roboto, sans-serif", lineHeight: 1.25 }}>Associação de Paralisia Cerebral de Coimbra</p>
+                          <p style={{ margin: "2px 0 0", color: "#8BA888", fontSize: "0.7rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Oficina de Tecelagem de Almalaguês e Costura</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <a href="/sustentabilidade"
-                  style={{ color: "#8BA888", textDecoration: "none", fontSize: "0.82rem", fontWeight: "600", fontFamily: "Roboto, sans-serif", borderBottom: "1px solid rgba(139,168,136,0.4)", paddingBottom: "2px", transition: "color 0.2s, border-color 0.2s", maxWidth: "320px", lineHeight: 1.5 }}
+                  style={{ color: "#8BA888", textDecoration: "none", fontSize: "0.82rem", fontWeight: "600", fontFamily: "'Google Sans', Roboto, sans-serif", borderBottom: "1px solid rgba(139,168,136,0.4)", paddingBottom: "2px", transition: "color 0.2s, border-color 0.2s", maxWidth: "320px", lineHeight: 1.5 }}
                   onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#8BA888"; e.currentTarget.style.color = "#A8C8A5"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(139,168,136,0.4)"; e.currentTarget.style.color = "#8BA888"; }}
                 >
@@ -634,7 +646,7 @@ export default function HomeClient() {
             <div style={{ maxWidth: "580px" }}>
               <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(160,148,220,0.18)", border: "1px solid rgba(160,148,220,0.35)", borderRadius: "100px", padding: "6px 16px", marginBottom: "20px" }}>
-                  <span style={{ fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#C5BCEF", fontFamily: "Roboto, sans-serif" }}>O presente mais especial</span>
+                  <span style={{ fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#C5BCEF", fontFamily: "'Google Sans', Roboto, sans-serif" }}>O presente mais especial</span>
                 </div>
                 <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.5rem)", color: "#FAF7F0", margin: "0 0 20px", lineHeight: 1.1 }}>
                   Ofereça memórias<br /><em style={{ fontStyle: "italic", color: "#C5BCEF" }}>que duram para sempre</em>
@@ -643,7 +655,7 @@ export default function HomeClient() {
                   Ofereça a preservação das flores na forma do nosso cartão-oferta e deixe que os presenteados escolham a preservação ao seu gosto.
                 </p>
                 <a href="/oferecer-preservacao"
-                  style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#A094DC", color: "#FAF7F0", padding: "14px 34px", borderRadius: "100px", textDecoration: "none", fontWeight: "700", fontSize: "0.8rem", letterSpacing: "1.8px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", boxShadow: "0 6px 24px rgba(100,88,180,0.4)", minHeight: "48px" }}
+                  style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#A094DC", color: "#FAF7F0", padding: "14px 34px", borderRadius: "100px", textDecoration: "none", fontWeight: "700", fontSize: "0.8rem", letterSpacing: "1.8px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", transition: "all 0.3s ease", boxShadow: "0 6px 24px rgba(100,88,180,0.4)", minHeight: "48px" }}
                   onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#8878C8"; e.currentTarget.style.transform = "translateY(-3px)"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#A094DC"; e.currentTarget.style.transform = "translateY(0)"; }}
                 >
@@ -674,7 +686,7 @@ export default function HomeClient() {
           >
             <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.08, backgroundImage: `radial-gradient(circle at 20% 80%, rgba(100,180,220,0.5) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(60,140,180,0.3) 0%, transparent 55%)`, pointerEvents: "none" }} />
             <div style={{ maxWidth: "440px", margin: "0 auto", width: "100%", position: "relative", zIndex: 1 }}>
-              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(180,210,230,0.7)", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>
+              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(180,210,230,0.7)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
                 Apoio personalizado
               </span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,3rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>
@@ -706,7 +718,7 @@ export default function HomeClient() {
             <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/noiva.webp')", backgroundSize: "cover", backgroundPosition: "center top", filter: "brightness(0.52)" }} />
             <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.28) 0%, rgba(15,30,26,0.65) 100%)" }} />
             <div style={{ position: "relative", zIndex: 1, maxWidth: "440px", margin: "0 auto" }}>
-              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.75)", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>Para noivas</span>
+              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.75)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Para noivas</span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4vw,3.2rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>Vai casar em breve?</h2>
               <p style={{ color: "rgba(250,247,240,0.8)", fontSize: "1rem", lineHeight: 1.82, margin: "0 0 32px" }}>
                 Reserve a sua vaga com antecedência, as datas em época de casamentos esgotam rapidamente.
