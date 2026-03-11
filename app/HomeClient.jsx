@@ -141,7 +141,6 @@ const BeforeAfterSlider = () => {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function HomeClient() {
-  const reviewRef = useRef(null);
   const { scrollY } = useScroll();
   const titleOpacity = useTransform(scrollY, [0, 200], [1, 0]);
   const titleY = useTransform(scrollY, [0, 200], [0, -55]);
@@ -149,12 +148,6 @@ export default function HomeClient() {
   useEffect(() => {
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
-    if (reviewRef.current && !reviewRef.current.querySelector("script")) {
-      const s = document.createElement("script");
-      s.src = "https://cdn.trustindex.io/loader.js?6897287659a84643ca864d340dd";
-      s.async = true; s.defer = true;
-      reviewRef.current.appendChild(s);
-    }
   }, []);
 
   const steps = [
@@ -238,23 +231,20 @@ export default function HomeClient() {
             z-index: 2;
             display: flex;
             flex-direction: column;
-            /* Mobile: centrado */
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 22px 20px;
+            /* Mobile: fundo, alinhado à esquerda */
+            align-items: flex-start;
+            justify-content: flex-end;
+            text-align: left;
+            padding: 18px 20px 22px;
             background: linear-gradient(to top, rgba(5,10,20,0.9) 0%, rgba(5,10,20,0.55) 50%, rgba(5,10,20,0.15) 100%);
             transition: background 0.4s ease;
           }
           .step-card:hover .step-content {
             background: linear-gradient(to top, rgba(5,10,20,0.95) 0%, rgba(5,10,20,0.65) 55%, rgba(5,10,20,0.2) 100%);
           }
-          /* Desktop: texto em baixo à esquerda */
+          /* Desktop: igual — texto em baixo à esquerda */
           @media (min-width: 768px) {
             .step-content {
-              align-items: flex-start;
-              justify-content: flex-end;
-              text-align: left;
               padding: 28px 26px 32px;
             }
           }
@@ -297,17 +287,36 @@ export default function HomeClient() {
           }
           .step-card:hover .step-desc { transform: translateY(-2px); }
 
-          /* Botões — mobile: reservar primeiro via order */
+          /* Botões — mobile: reservar primeiro via order, compactos */
           .steps-buttons {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             flex-wrap: wrap;
+          }
+          .steps-buttons a {
+            width: 100%;
+            max-width: 320px;
+            font-size: 0.75rem !important;
+            height: 44px !important;
+            padding: 0 20px !important;
+            letter-spacing: 1.2px !important;
           }
           .steps-btn-reservar { order: -1; }
           @media (min-width: 480px) {
-            .steps-buttons { flex-direction: row; justify-content: center; }
+            .steps-buttons { flex-direction: row; justify-content: center; gap: 12px; }
+            .steps-buttons a {
+              width: auto;
+              max-width: none;
+              font-size: 0.82rem !important;
+              height: 52px !important;
+              padding: 0 28px !important;
+              letter-spacing: 1.5px !important;
+            }
+            .steps-buttons a.steps-btn-reservar {
+              padding: 0 36px !important;
+            }
             .steps-btn-reservar { order: 0; }
           }
 
@@ -579,7 +588,8 @@ export default function HomeClient() {
           <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "940px", margin: "0 auto" }}>
             <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "#8BA888", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Clientes felizes</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "#FAF7F0" }}>O que dizem quem confiou em nós</h2>
-            <div ref={reviewRef} style={{ minHeight: "200px" }} />
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div className="elfsight-app-65dc34c1-0003-4419-ab4e-11e52faa447f" data-elfsight-app-lazy></div>
           </motion.div>
         </section>
 
