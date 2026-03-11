@@ -4,15 +4,11 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Cor de destaque: magenta arroxeado
 const ACCENT = "#8B3A6B";
 const ACCENT_LIGHT = "rgba(139,58,107,0.12)";
 const ACCENT_BORDER = "rgba(139,58,107,0.25)";
 
-// ─── Dados ────────────────────────────────────────────────────────────────────
-
 const FAQ_DATA = [
-  // PROCESSO
   {
     cat: "processo",
     q: "Quando devo agendar a preservação do meu bouquet?",
@@ -102,8 +98,6 @@ const FAQ_DATA = [
       </>
     ),
   },
-
-  // FLORES
   {
     cat: "flores",
     q: "Preservam apenas bouquets de casamento?",
@@ -229,8 +223,6 @@ const FAQ_DATA = [
       </>
     ),
   },
-
-  // ENTREGA
   {
     cat: "entrega",
     q: "Consigo acompanhar o estado da minha encomenda?",
@@ -281,8 +273,6 @@ const FAQ_DATA = [
       </>
     ),
   },
-
-  // PAGAMENTOS
   {
     cat: "pagamentos",
     q: "Quanto custa a preservação?",
@@ -379,8 +369,6 @@ const SchemaScript = () => (
   />
 );
 
-// ─── FAQItem ──────────────────────────────────────────────────────────────────
-
 const FAQItem = ({ faq, isOpen, onToggle, searchTerm }) => {
   const highlight = (text) => {
     if (!searchTerm || searchTerm.length < 2) return text;
@@ -464,8 +452,6 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm }) => {
     </div>
   );
 };
-
-// ─── Page Client ──────────────────────────────────────────────────────────────
 
 export default function PerguntasFrequentesClient() {
   const [openIndex, setOpenIndex]           = useState(null);
@@ -566,6 +552,17 @@ export default function PerguntasFrequentesClient() {
           }
           .btn-primary:hover { background: #6B2250; transform: translateY(-3px); }
 
+          .btn-outline {
+            display: inline-block; background: transparent; color: ${ACCENT};
+            padding: 14px 32px; border-radius: 100px; text-decoration: none;
+            font-weight: 600; font-size: 0.8rem; letter-spacing: 1.4px;
+            text-transform: uppercase; text-align: center;
+            border: 1.5px solid ${ACCENT_BORDER};
+            transition: all 0.3s ease;
+            font-family: 'Google Sans', Roboto, sans-serif;
+          }
+          .btn-outline:hover { border-color: ${ACCENT}; background: rgba(139,58,107,0.06); transform: translateY(-3px); }
+
           .btn-wa {
             display: inline-flex; align-items: center; gap: 8px;
             background: #25D366; color: #fff; padding: 14px 28px;
@@ -592,36 +589,25 @@ export default function PerguntasFrequentesClient() {
           }
           .related-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(139,58,107,0.1); }
 
-          /* Stat badges no hero */
-          .hero-stats {
-            display: flex; gap: 12px; flex-wrap: wrap;
-            justify-content: center; margin-top: 32px;
-          }
-          .hero-stat {
-            background: rgba(255,255,255,0.12);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.22);
-            border-radius: 100px;
-            padding: 8px 18px;
-            font-family: 'Google Sans', Roboto, sans-serif;
-            font-size: 0.78rem;
-            color: rgba(250,247,240,0.92);
-            letter-spacing: 0.3px;
-          }
-          .hero-stat strong {
-            color: #fff;
-            font-weight: 700;
+          .session-card {
+            background: rgba(139,58,107,0.05);
+            border: 1px solid ${ACCENT_BORDER};
+            border-radius: 20px;
+            padding: clamp(32px,5vw,48px) clamp(24px,5vw,48px);
+            text-align: center;
           }
         `}} />
 
-        {/* ── Hero com foto ────────────────────────────────────────────────── */}
+        {/* Hero — ecrã completo */}
         <section
           aria-label="Perguntas frequentes sobre preservação de flores"
           style={{
             position: "relative",
-            minHeight: "clamp(420px, 65vh, 680px)",
+            height: "100vh",
+            minHeight: "560px",
             display: "flex",
-            alignItems: "flex-end",
+            alignItems: "center",
+            justifyContent: "center",
             overflow: "hidden",
           }}
         >
@@ -633,17 +619,17 @@ export default function PerguntasFrequentesClient() {
             backgroundPosition: "center 30%",
           }} aria-hidden="true" />
 
-          {/* Overlay escuro para legibilidade — mais denso em baixo */}
+          {/* Overlay */}
           <div style={{
             position: "absolute", inset: 0,
             background: "linear-gradient(to bottom, rgba(20,8,18,0.28) 0%, rgba(20,8,18,0.55) 55%, rgba(20,8,18,0.82) 100%)",
           }} aria-hidden="true" />
 
-          {/* Conteúdo do hero */}
+          {/* Conteúdo centrado */}
           <div style={{
             position: "relative", zIndex: 2,
             width: "100%",
-            padding: "clamp(100px,14vw,160px) clamp(20px,6vw,80px) clamp(44px,7vw,72px)",
+            padding: "0 clamp(20px,6vw,80px)",
             textAlign: "center",
           }}>
             <motion.div
@@ -655,24 +641,21 @@ export default function PerguntasFrequentesClient() {
                 display: "inline-block",
                 fontSize: "0.68rem", fontWeight: "700",
                 letterSpacing: "3.5px", textTransform: "uppercase",
-                color: "rgba(230,180,210,0.9)",
-                marginBottom: "16px",
+                color: "rgba(250,247,240,0.9)",
+                marginBottom: "20px",
                 fontFamily: "'Google Sans', Roboto, sans-serif",
-                background: "rgba(139,58,107,0.3)",
-                border: "1px solid rgba(230,180,210,0.3)",
-                borderRadius: "100px",
-                padding: "5px 16px",
               }}>
                 Tire as suas dúvidas
               </span>
 
               <h1 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
-                fontSize: "clamp(2.8rem,9vw,6rem)",
+                fontSize: "clamp(3rem,10vw,6.5rem)",
                 color: "#FAF7F0",
-                margin: "0 0 16px",
+                margin: "0 auto",
                 lineHeight: 1.02,
                 textShadow: "0 4px 32px rgba(0,0,0,0.3)",
+                maxWidth: "800px",
               }}>
                 Perguntas<br />
                 <em style={{ fontStyle: "italic", color: "rgba(230,180,210,0.95)" }}>Frequentes</em>
@@ -682,25 +665,40 @@ export default function PerguntasFrequentesClient() {
                 color: "rgba(250,247,240,0.82)",
                 fontSize: "clamp(0.9rem,2vw,1.05rem)",
                 lineHeight: 1.85,
-                maxWidth: "500px",
-                margin: "0 auto",
+                maxWidth: "480px",
+                margin: "20px auto 0",
                 fontFamily: "'Google Sans', Roboto, sans-serif",
               }}>
                 Tudo o que precisa de saber sobre preservação de flores,
                 processo artesanal, entrega e pagamentos.
               </p>
-
-              {/* Badges de contexto rápido */}
-              <div className="hero-stats">
-                <span className="hero-stat"><strong>+200</strong> bouquets preservados</span>
-                <span className="hero-stat"><strong>Até 6 meses</strong> de prazo</span>
-                <span className="hero-stat"><strong>Atelier</strong> em Coimbra</span>
-              </div>
             </motion.div>
           </div>
+
+          {/* Seta para baixo */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.6 }}
+            style={{
+              position: "absolute", bottom: "32px", left: "50%",
+              transform: "translateX(-50%)", zIndex: 2,
+            }}
+            aria-hidden="true"
+          >
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="rgba(250,247,240,0.6)" strokeWidth="1.5" strokeLinecap="round">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+              </svg>
+            </motion.div>
+          </motion.div>
         </section>
 
-        {/* ── Conteúdo principal ───────────────────────────────────────────── */}
+        {/* Conteúdo principal */}
         <div style={{ maxWidth: "820px", margin: "0 auto", padding: "44px 20px 0" }}>
 
           {/* Pesquisa */}
@@ -840,13 +838,13 @@ export default function PerguntasFrequentesClient() {
             </div>
           </motion.div>
 
-          {/* CTA final */}
+          {/* CTA — Ainda tem dúvidas */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65 }}
-            style={{ textAlign: "center", marginTop: "56px" }}
+            style={{ textAlign: "center", marginTop: "64px" }}
           >
             <div aria-hidden="true" style={{
               width: "44px", height: "1px", margin: "0 auto 28px",
@@ -877,6 +875,54 @@ export default function PerguntasFrequentesClient() {
               <a href={FORM} target="_blank" rel="noopener noreferrer" className="btn-primary">
                 Reservar Data
               </a>
+            </div>
+          </motion.div>
+
+          {/* CTA — Sessão de esclarecimento */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.65, delay: 0.1 }}
+            style={{ marginTop: "48px" }}
+          >
+            <div className="session-card">
+              <span style={{
+                display: "inline-block",
+                fontSize: "0.65rem", fontWeight: "700",
+                letterSpacing: "3px", textTransform: "uppercase",
+                color: ACCENT, marginBottom: "16px",
+                fontFamily: "'Google Sans', Roboto, sans-serif",
+              }}>
+                Apoio personalizado
+              </span>
+
+              <h3 style={{
+                fontFamily: "'TAN-MEMORIES', serif",
+                fontSize: "clamp(1.4rem,3.5vw,2rem)",
+                color: "#1E2D2A", margin: "0 0 14px", lineHeight: 1.2,
+              }}>
+                À procura de mais ajuda?
+              </h3>
+
+              <p style={{
+                color: "#5A6B60", fontSize: "clamp(0.88rem,1.8vw,0.95rem)",
+                lineHeight: 1.82, margin: "0 auto 28px", maxWidth: "480px",
+                fontFamily: "'Google Sans', Roboto, sans-serif",
+              }}>
+                Agende uma sessão de esclarecimento gratuita por videochamada antes de fazer o seu pedido.
+                Podemos ajudá-lo a entender o processo de preservação e a escolher os produtos que melhor
+                se adequam a si. Esta sessão tem a duração aproximada de 30 minutos.
+              </p>
+
+              <div className="cta-row" style={{ justifyContent: "center" }}>
+                <a href={WA} target="_blank" rel="noopener noreferrer" className="btn-outline">
+                  Agendar Sessão Gratuita
+                </a>
+                <a href={FORM} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                  Reservar Data
+                </a>
+              </div>
             </div>
           </motion.div>
 
