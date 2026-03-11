@@ -603,7 +603,7 @@ export default function PerguntasFrequentesClient() {
           aria-label="Perguntas frequentes sobre preservação de flores"
           style={{
             position: "relative",
-            height: "100vh",
+            height: "100dvh",
             minHeight: "560px",
             display: "flex",
             alignItems: "center",
@@ -675,27 +675,7 @@ export default function PerguntasFrequentesClient() {
             </motion.div>
           </div>
 
-          {/* Seta para baixo */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.6 }}
-            style={{
-              position: "absolute", bottom: "32px", left: "50%",
-              transform: "translateX(-50%)", zIndex: 2,
-            }}
-            aria-hidden="true"
-          >
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                stroke="rgba(250,247,240,0.6)" strokeWidth="1.5" strokeLinecap="round">
-                <path d="M12 5v14M5 12l7 7 7-7" />
-              </svg>
-            </motion.div>
-          </motion.div>
+
         </section>
 
         {/* Conteúdo principal */}
@@ -838,95 +818,74 @@ export default function PerguntasFrequentesClient() {
             </div>
           </motion.div>
 
-          {/* CTA — Ainda tem dúvidas */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.65 }}
-            style={{ textAlign: "center", marginTop: "64px" }}
-          >
-            <div aria-hidden="true" style={{
-              width: "44px", height: "1px", margin: "0 auto 28px",
-              background: `linear-gradient(to right, transparent, ${ACCENT}, transparent)`,
-            }} />
-            <h2 style={{
-              fontFamily: "'TAN-MEMORIES', serif",
-              fontSize: "clamp(1.7rem,4vw,2.6rem)",
-              color: "#1E2D2A", margin: "0 0 12px", lineHeight: 1.15,
-            }}>
-              Ainda tem dúvidas?
-            </h2>
-            <p style={{
-              color: "#5A6B60", fontSize: "clamp(0.9rem,2vw,0.97rem)",
-              lineHeight: 1.82, margin: "0 auto 28px", maxWidth: "460px",
-              fontFamily: "'Google Sans', Roboto, sans-serif",
-            }}>
-              Fale connosco directamente. Respondemos em poucas horas
-              e adoramos ajudar a encontrar a opção certa para si.
-            </p>
-            <div className="cta-row">
-              <a href={WA} target="_blank" rel="noopener noreferrer" className="btn-wa">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-                Perguntar pelo WhatsApp
-              </a>
-              <a href={FORM} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                Reservar Data
-              </a>
-            </div>
-          </motion.div>
 
-          {/* CTA — Sessão de esclarecimento */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.65, delay: 0.1 }}
-            style={{ marginTop: "48px" }}
-          >
-            <div className="session-card">
-              <span style={{
-                display: "inline-block",
-                fontSize: "0.65rem", fontWeight: "700",
-                letterSpacing: "3px", textTransform: "uppercase",
-                color: ACCENT, marginBottom: "16px",
-                fontFamily: "'Google Sans', Roboto, sans-serif",
-              }}>
-                Apoio personalizado
-              </span>
-
-              <h3 style={{
-                fontFamily: "'TAN-MEMORIES', serif",
-                fontSize: "clamp(1.4rem,3.5vw,2rem)",
-                color: "#1E2D2A", margin: "0 0 14px", lineHeight: 1.2,
-              }}>
-                À procura de mais ajuda?
-              </h3>
-
-              <p style={{
-                color: "#5A6B60", fontSize: "clamp(0.88rem,1.8vw,0.95rem)",
-                lineHeight: 1.82, margin: "0 auto 28px", maxWidth: "480px",
-                fontFamily: "'Google Sans', Roboto, sans-serif",
-              }}>
-                Agende uma sessão de esclarecimento gratuita por videochamada antes de fazer o seu pedido.
-                Podemos ajudá-lo a entender o processo de preservação e a escolher os produtos que melhor
-                se adequam a si. Esta sessão tem a duração aproximada de 30 minutos.
-              </p>
-
-              <div className="cta-row" style={{ justifyContent: "center" }}>
-                <a href={WA} target="_blank" rel="noopener noreferrer" className="btn-outline">
-                  Agendar Sessão Gratuita
-                </a>
-                <a href={FORM} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                  Reservar Data
-                </a>
-              </div>
-            </div>
-          </motion.div>
 
         </div>
+
+        {/* CTA — Sessão de esclarecimento — largura total */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65, delay: 0.1 }}
+          style={{
+            marginTop: "64px",
+            background: `linear-gradient(135deg, #2D1B26 0%, #4A1E3A 40%, #3D6B5E 100%)`,
+            padding: "clamp(56px,8vw,88px) clamp(20px,6vw,80px)",
+            textAlign: "center",
+          }}
+        >
+          <span style={{
+            display: "inline-block",
+            fontSize: "0.65rem", fontWeight: "700",
+            letterSpacing: "3px", textTransform: "uppercase",
+            color: "rgba(230,180,210,0.85)", marginBottom: "16px",
+            fontFamily: "'Google Sans', Roboto, sans-serif",
+          }}>
+            Apoio personalizado
+          </span>
+
+          <h3 style={{
+            fontFamily: "'TAN-MEMORIES', serif",
+            fontSize: "clamp(1.6rem,4vw,2.6rem)",
+            color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.15,
+          }}>
+            À procura de mais ajuda?
+          </h3>
+
+          <p style={{
+            color: "rgba(250,247,240,0.75)", fontSize: "clamp(0.88rem,1.8vw,0.97rem)",
+            lineHeight: 1.85, margin: "0 auto 36px", maxWidth: "520px",
+            fontFamily: "'Google Sans', Roboto, sans-serif",
+          }}>
+            Agende uma sessão de esclarecimento gratuita por videochamada antes de fazer o seu pedido.
+            Podemos ajudá-lo a entender o processo de preservação e a escolher os produtos que melhor
+            se adequam a si. Esta sessão tem a duração aproximada de 30 minutos.
+          </p>
+
+          <div className="cta-row" style={{ justifyContent: "center" }}>
+            <a href={WA} target="_blank" rel="noopener noreferrer" style={{
+              display: "inline-flex", alignItems: "center", gap: "8px",
+              background: "rgba(255,255,255,0.12)",
+              backdropFilter: "blur(8px)",
+              border: "1.5px solid rgba(255,255,255,0.25)",
+              color: "#FAF7F0", padding: "14px 32px",
+              borderRadius: "100px", textDecoration: "none", fontWeight: "600",
+              fontSize: "0.8rem", letterSpacing: "1.2px", textTransform: "uppercase",
+              transition: "all 0.3s ease",
+              fontFamily: "'Google Sans', Roboto, sans-serif",
+            }}
+              onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.2)"}
+              onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.12)"}
+            >
+              Agendar Sessão Gratuita
+            </a>
+            <a href={FORM} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              Reservar Data
+            </a>
+          </div>
+        </motion.div>
+
       </main>
     </>
   );
