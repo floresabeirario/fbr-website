@@ -791,7 +791,8 @@ export default function HomeClient() {
           aria-label="Comparação antes e depois — ramo e quadro de flores preservadas"
           style={{
             padding: "60px 0 72px",
-            background: "linear-gradient(180deg, #F4F0E8 0%, #FAF7F0 100%)",
+            background: "linear-gradient(180deg, #F4EFE2 0%, #FAF7F0 100%)",
+            position: "relative", zIndex: 1,
           }}
         >
           <BeforeAfterSlider />
@@ -802,7 +803,8 @@ export default function HomeClient() {
           aria-label="Como funciona a preservação de flores em 3 passos"
           style={{
             padding: "76px 20px 84px",
-            background: "linear-gradient(180deg, #EDF2E8 0%, #FAF7F0 100%)",
+            background: "linear-gradient(180deg, #EDF2E8 0%, #F5EFE0 60%, #FAF7F0 100%)",
+            position: "relative", zIndex: 1,
           }}
         >
           <div style={{ maxWidth: "1180px", margin: "0 auto" }}>
@@ -843,7 +845,7 @@ export default function HomeClient() {
         {/* ════ 5. TRACKING ════ */}
         <section
           aria-label="Acompanhe a sua encomenda em tempo real"
-          style={{ padding: "88px 20px", backgroundColor: "#FAF7F0" }}
+          style={{ padding: "88px 20px", background: "linear-gradient(180deg, #FAF7F0 0%, #F8F2E4 100%)", position: "relative", zIndex: 1 }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
             <motion.div
