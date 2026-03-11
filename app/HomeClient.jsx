@@ -186,128 +186,119 @@ export default function HomeClient() {
           .phone-float { animation: floatPhone 5s ease-in-out infinite; }
 
           /* ═══ TRÊS PASSOS ═══ */
-          /* Mobile: cartões empilhados full-width */
           .steps-stack { display: flex; flex-direction: column; gap: 0; }
-
-          /* Desktop: linha horizontal com fotos grandes */
           @media (min-width: 768px) {
-            .steps-stack { flex-direction: row; gap: 0; align-items: stretch; }
+            .steps-stack { flex-direction: row; align-items: stretch; }
           }
 
+          /* Mobile: foto grande em cima, texto em baixo */
           .step-card {
             position: relative;
             flex: 1;
             overflow: hidden;
-            /* mobile: cartão com foto à esquerda, conteúdo à direita */
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            min-height: 140px;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
           }
           .step-card:last-child { border-bottom: none; }
 
+          /* Desktop: foto preenche tudo, texto sobreposto */
           @media (min-width: 768px) {
             .step-card {
               display: block;
-              min-height: 420px;
+              min-height: 460px;
               border-bottom: none;
-              border-right: 1px solid rgba(255,255,255,0.1);
+              border-right: 1px solid rgba(255,255,255,0.08);
             }
             .step-card:last-child { border-right: none; }
           }
 
-          /* Foto ocupa tudo no desktop, coluna esquerda no mobile */
+          /* Contentor da foto */
           .step-photo {
             position: relative;
             overflow: hidden;
-            background: #0d1f2d;
+            background: #0B1929;
+            /* Mobile: foto com altura generosa */
+            width: 100%;
+            aspect-ratio: 4/3;
+            flex-shrink: 0;
           }
           @media (min-width: 768px) {
             .step-photo {
               position: absolute;
               inset: 0;
+              aspect-ratio: unset;
+              width: auto;
+              height: auto;
             }
           }
 
+          /* Foto muito transparente para o texto respirar */
           .step-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            filter: brightness(0.55) saturate(0.8);
+            filter: brightness(0.3) saturate(0.6);
             transition: filter 0.5s ease;
           }
           @media (min-width: 768px) {
-            .step-card:hover .step-photo img { filter: brightness(0.45) saturate(0.7); }
+            .step-card:hover .step-photo img { filter: brightness(0.25) saturate(0.5); }
           }
 
           /* Conteúdo texto */
+          /* Mobile: abaixo da foto, fundo sólido escuro */
           .step-content {
             position: relative;
             z-index: 2;
-            padding: 20px 20px 20px 18px;
+            padding: 22px 24px 28px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            background: linear-gradient(90deg, rgba(10,24,40,0.0) 0%, rgba(10,24,40,0.0) 100%);
+            background: #0B1929;
           }
+          /* Desktop: sobreposto à foto, gradiente de baixo */
           @media (min-width: 768px) {
             .step-content {
               position: absolute;
               inset: 0;
               padding: 32px 28px;
               justify-content: flex-end;
-              background: linear-gradient(to top, rgba(8,18,32,0.92) 0%, rgba(8,18,32,0.6) 50%, rgba(8,18,32,0.1) 100%);
+              background: linear-gradient(to top, rgba(5,12,22,0.95) 0%, rgba(5,12,22,0.55) 55%, rgba(5,12,22,0.0) 100%);
             }
           }
 
-          /* número azul bold */
+          /* Número — cor muda por passo para fazer transição azul→verde */
           .step-number {
             font-family: 'TAN-MEMORIES', serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(2.2rem, 6vw, 4.5rem);
             line-height: 1;
-            color: #5B9BD5;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             display: block;
           }
-          @media (min-width: 768px) {
-            .step-number {
-              font-size: clamp(3rem, 5vw, 5rem);
-              margin-bottom: 10px;
-              color: rgba(91,155,213,0.85);
-            }
-          }
+          .step-card:nth-child(1) .step-number { color: #5B8FD0; }
+          .step-card:nth-child(2) .step-number { color: #4D9E8A; }
+          .step-card:nth-child(3) .step-number { color: #3D8C6A; }
 
           .step-title {
             font-family: 'TAN-MEMORIES', serif;
-            font-size: clamp(1rem, 2vw, 1.35rem);
+            font-size: clamp(1.05rem, 2vw, 1.45rem);
             line-height: 1.2;
             color: #FAF7F0;
-            margin: 0 0 6px;
+            margin: 0 0 8px;
           }
-          @media (min-width: 768px) { .step-title { font-size: clamp(1.2rem, 2vw, 1.5rem); margin: 0 0 10px; } }
 
           .step-desc {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: rgba(250,247,240,0.7);
+            font-size: 0.88rem;
+            line-height: 1.65;
+            color: rgba(250,247,240,0.68);
             margin: 0;
           }
-          @media (min-width: 768px) { .step-desc { font-size: 0.9rem; color: rgba(250,247,240,0.75); } }
 
-          /* linha azul no topo de cada cartão no desktop */
+          /* Linha colorida no topo de cada cartão no desktop */
           @media (min-width: 768px) {
-            .step-card::after {
-              content: '';
-              position: absolute;
-              top: 0; left: 0; right: 0;
-              height: 3px;
-              background: linear-gradient(90deg, #3A7BD5, #5B9BD5);
-              z-index: 3;
-              opacity: 0;
-              transition: opacity 0.3s ease;
-            }
-            .step-card:hover::after { opacity: 1; }
+            .step-card:nth-child(1)::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #5B8FD0; z-index: 4; }
+            .step-card:nth-child(2)::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #4D9E8A; z-index: 4; }
+            .step-card:nth-child(3)::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #3D8C6A; z-index: 4; }
           }
 
           /* ═══ OUTROS ═══ */
@@ -378,29 +369,41 @@ export default function HomeClient() {
 
         {/* ════ 1. HERO ════ */}
         <section aria-label="Flores à Beira-Rio — Preservação de flores de casamento"
-          style={{ height: "100vh", minHeight: "600px", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", paddingBottom: "clamp(60px,10vh,100px)" }}
+          style={{ height: "100vh", minHeight: "600px", position: "relative", overflow: "hidden" }}
         >
           <video autoPlay loop muted playsInline aria-hidden="true"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           >
             <source src="/hero-video.webm" type="video/webm" />
           </video>
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.25) 0%, rgba(15,30,26,0.55) 60%, rgba(15,30,26,0.82) 100%)" }} />
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.2) 0%, rgba(15,30,26,0.5) 60%, rgba(15,30,26,0.82) 100%)" }} />
 
-          <motion.div style={{ zIndex: 2, textAlign: "center", color: "#FAF7F0", padding: "0 20px", opacity: titleOpacity, y: titleY, width: "100%", maxWidth: "1050px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+          {/* Título — centrado no ecrã */}
+          <motion.div style={{
+            position: "absolute", inset: 0,
+            zIndex: 2, textAlign: "center", color: "#FAF7F0",
+            padding: "0 20px",
+            display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+            opacity: titleOpacity, y: titleY,
+          }}>
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.8 }}
               style={{ fontSize: "clamp(0.7rem,1.2vw,0.85rem)", letterSpacing: "clamp(3px,1vw,5px)", textTransform: "uppercase", fontWeight: "600", marginBottom: "clamp(16px,2.5vw,24px)", color: "rgba(250,247,240,0.8)", fontFamily: "Roboto, sans-serif" }}
             >
               Especialistas em preservação de flores
             </motion.p>
             <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3.5rem, 12vw, 8rem)", lineHeight: 1.18, margin: "0 0 clamp(36px,5vw,60px)", textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
+              style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3.5rem, 12vw, 8rem)", lineHeight: 1.18, margin: 0, textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
             >
               Flores à<br /><span style={{ whiteSpace: "nowrap" }}>Beira&#8209;Rio</span>
             </motion.h1>
-            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.8 }}>
-              <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="hero-btn">Reservar Data</a>
-            </motion.div>
+          </motion.div>
+
+          {/* Botão — fixo em baixo */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.8 }}
+            style={{ position: "absolute", bottom: "clamp(48px,8vh,88px)", left: 0, right: 0, zIndex: 3, display: "flex", justifyContent: "center" }}
+          >
+            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="hero-btn">Reservar Data</a>
           </motion.div>
         </section>
 
@@ -420,14 +423,14 @@ export default function HomeClient() {
           </div>
         </section>
 
-        {/* ════ 3. TRÊS PASSOS — bold, azul, mobile-first ════ */}
+        {/* ════ 3. TRÊS PASSOS — bold, transição azul→verde, mobile-first ════ */}
         <section aria-label="Como funciona a preservação de flores em 3 passos"
-          style={{ backgroundColor: "#0B1929", position: "relative", zIndex: 1 }}
+          style={{ background: "linear-gradient(180deg, #0B1929 0%, #0D1F22 100%)", position: "relative", zIndex: 1 }}
         >
           {/* Header da secção */}
           <div style={{ padding: "56px 20px 40px", textAlign: "center", maxWidth: "800px", margin: "0 auto" }}>
             <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3.5px", textTransform: "uppercase", color: "#5B9BD5", marginBottom: "12px", fontFamily: "Roboto, sans-serif" }}>
+              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3.5px", textTransform: "uppercase", color: "#7AADCA", marginBottom: "12px", fontFamily: "Roboto, sans-serif" }}>
                 Do bouquet ao quadro
               </span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", color: "#FAF7F0", margin: "0 0 12px", lineHeight: 1.1 }}>
@@ -468,23 +471,23 @@ export default function HomeClient() {
           <div style={{ padding: "40px 20px 56px" }}>
             <div className="steps-buttons">
               <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#3A7BD5", color: "#FAF7F0", padding: "0 36px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "700", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", boxShadow: "0 6px 24px rgba(58,123,213,0.4)", whiteSpace: "nowrap" }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#2966BB"; e.currentTarget.style.transform = "translateY(-3px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#3A7BD5"; e.currentTarget.style.transform = "translateY(0)"; }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#3A7A6E", color: "#FAF7F0", padding: "0 36px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "700", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", boxShadow: "0 6px 24px rgba(58,122,110,0.4)", whiteSpace: "nowrap" }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#2D6158"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#3A7A6E"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 Reservar a Minha Data
               </a>
               <a href="/como-funciona"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", border: "1.5px solid rgba(91,155,213,0.5)", color: "rgba(250,247,240,0.85)", padding: "0 28px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", background: "rgba(91,155,213,0.08)", whiteSpace: "nowrap" }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(91,155,213,0.9)"; e.currentTarget.style.background = "rgba(91,155,213,0.15)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(91,155,213,0.5)"; e.currentTarget.style.background = "rgba(91,155,213,0.08)"; e.currentTarget.style.transform = "translateY(0)"; }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", border: "1.5px solid rgba(61,140,106,0.5)", color: "rgba(250,247,240,0.85)", padding: "0 28px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", background: "rgba(61,140,106,0.08)", whiteSpace: "nowrap" }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(61,140,106,0.9)"; e.currentTarget.style.background = "rgba(61,140,106,0.15)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(61,140,106,0.5)"; e.currentTarget.style.background = "rgba(61,140,106,0.08)"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 Como Funciona
               </a>
               <a href="/perguntas-frequentes"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", border: "1.5px solid rgba(91,155,213,0.5)", color: "rgba(250,247,240,0.85)", padding: "0 28px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", background: "rgba(91,155,213,0.08)", whiteSpace: "nowrap" }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(91,155,213,0.9)"; e.currentTarget.style.background = "rgba(91,155,213,0.15)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(91,155,213,0.5)"; e.currentTarget.style.background = "rgba(91,155,213,0.08)"; e.currentTarget.style.transform = "translateY(0)"; }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", border: "1.5px solid rgba(61,140,106,0.5)", color: "rgba(250,247,240,0.85)", padding: "0 28px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", background: "rgba(61,140,106,0.08)", whiteSpace: "nowrap" }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(61,140,106,0.9)"; e.currentTarget.style.background = "rgba(61,140,106,0.15)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(61,140,106,0.5)"; e.currentTarget.style.background = "rgba(61,140,106,0.08)"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 Perguntas Frequentes
               </a>
@@ -662,14 +665,14 @@ export default function HomeClient() {
         {/* ════ 8. CTA SPLIT ════ */}
         <div className="cta-split">
 
-          {/* Apoio personalizado — gradiente rosa/terracota */}
+          {/* Apoio personalizado — gradiente slate profundo */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             style={{
-              background: "linear-gradient(135deg, #3D1A2E 0%, #7A3048 40%, #C4685A 80%, #E8957A 100%)",
+              background: "linear-gradient(135deg, #0F1923 0%, #1C2E3A 40%, #243545 75%, #2E4255 100%)",
               padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)",
               textAlign: "center",
               display: "flex", alignItems: "center", justifyContent: "center",
@@ -677,18 +680,18 @@ export default function HomeClient() {
               minHeight: "480px",
             }}
           >
-            <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.07, backgroundImage: `radial-gradient(circle at 30% 70%, rgba(255,200,170,0.6) 0%, transparent 55%), radial-gradient(circle at 75% 25%, rgba(255,160,130,0.4) 0%, transparent 50%)`, pointerEvents: "none" }} />
+            <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.08, backgroundImage: `radial-gradient(circle at 20% 80%, rgba(100,180,220,0.5) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(60,140,180,0.3) 0%, transparent 55%)`, pointerEvents: "none" }} />
             <div style={{ maxWidth: "440px", margin: "0 auto", width: "100%", position: "relative", zIndex: 1 }}>
-              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(255,220,200,0.8)", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>
+              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(180,210,230,0.7)", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>
                 Apoio personalizado
               </span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,3rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>
-                À procura de<br /><em style={{ fontStyle: "italic", color: "#FFD4B8" }}>mais ajuda?</em>
+                À procura de<br /><em style={{ fontStyle: "italic", color: "#A8D4E8" }}>mais ajuda?</em>
               </h2>
-              <p style={{ color: "rgba(255,240,230,0.82)", fontSize: "0.97rem", lineHeight: 1.82, margin: "0 0 10px" }}>
+              <p style={{ color: "rgba(200,225,240,0.78)", fontSize: "0.97rem", lineHeight: 1.82, margin: "0 0 10px" }}>
                 Agende uma sessão de esclarecimento gratuita por videochamada antes de fazer o seu pedido.
               </p>
-              <p style={{ color: "rgba(255,240,230,0.62)", fontSize: "0.9rem", lineHeight: 1.75, margin: "0 0 32px" }}>
+              <p style={{ color: "rgba(200,225,240,0.55)", fontSize: "0.9rem", lineHeight: 1.75, margin: "0 0 32px" }}>
                 Podemos ajudá-lo a entender o processo de preservação e a escolher os produtos que melhor se adequam a si. Esta sessão tem a duração aproximada de 30 minutos.
               </p>
               <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
