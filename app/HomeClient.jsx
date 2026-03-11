@@ -191,21 +191,19 @@ export default function HomeClient() {
             .steps-stack { flex-direction: row; align-items: stretch; }
           }
 
-          /* Mobile: foto grande em cima, texto em baixo */
+          /* Mobile e desktop: foto preenche o cartão, texto sobreposto em baixo */
           .step-card {
             position: relative;
             flex: 1;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            /* Mobile: altura fixa generosa para ver bem a foto */
+            min-height: 280px;
             border-bottom: 1px solid rgba(255,255,255,0.07);
           }
           .step-card:last-child { border-bottom: none; }
 
-          /* Desktop: foto preenche tudo, texto sobreposto */
           @media (min-width: 768px) {
             .step-card {
-              display: block;
               min-height: 460px;
               border-bottom: none;
               border-right: 1px solid rgba(255,255,255,0.08);
@@ -213,92 +211,59 @@ export default function HomeClient() {
             .step-card:last-child { border-right: none; }
           }
 
-          /* Contentor da foto */
+          /* Foto sempre a preencher tudo, sempre visível, sem filtro */
           .step-photo {
-            position: relative;
+            position: absolute;
+            inset: 0;
             overflow: hidden;
-            background: #0B1929;
-            /* Mobile: foto com altura generosa */
-            width: 100%;
-            aspect-ratio: 4/3;
-            flex-shrink: 0;
-          }
-          @media (min-width: 768px) {
-            .step-photo {
-              position: absolute;
-              inset: 0;
-              aspect-ratio: unset;
-              width: auto;
-              height: auto;
-            }
           }
 
-          /* Foto muito transparente para o texto respirar */
           .step-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            filter: brightness(1);
-            transition: filter 0.5s ease;
-          }
-          @media (min-width: 768px) {
-            .step-card:hover .step-photo img { filter: brightness(0.25) saturate(0.5); }
+            /* sem filtro — foto completamente visível */
           }
 
-          /* Conteúdo texto */
-          /* Mobile: abaixo da foto, fundo sólido escuro */
+          /* Conteúdo texto: sobreposto, gradiente de baixo para cima */
           .step-content {
-            position: relative;
+            position: absolute;
+            inset: 0;
             z-index: 2;
-            padding: 22px 24px 28px;
+            padding: 20px 22px 24px;
             display: flex;
             flex-direction: column;
-            background: #0B1929;
-          }
-          /* Desktop: sobreposto à foto, gradiente de baixo */
-          @media (min-width: 768px) {
-            .step-content {
-              position: absolute;
-              inset: 0;
-              padding: 32px 28px;
-              justify-content: flex-end;
-              background: linear-gradient(to top, rgba(5,12,22,0.95) 0%, rgba(5,12,22,0.55) 55%, rgba(5,12,22,0.0) 100%);
-            }
+            justify-content: flex-end;
+            /* gradiente escuro apenas em baixo para texto legível */
+            background: linear-gradient(to top, rgba(5,12,22,0.88) 0%, rgba(5,12,22,0.55) 45%, rgba(5,12,22,0.0) 100%);
           }
 
-          /* Número — cor muda por passo para fazer transição azul→verde */
+          /* Número */
           .step-number {
             font-family: 'TAN-MEMORIES', serif;
-            font-size: clamp(2.2rem, 6vw, 4.5rem);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             line-height: 1;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             display: block;
           }
-          .step-card:nth-child(1) .step-number { color: #5B8FD0; }
-          .step-card:nth-child(2) .step-number { color: #4D9E8A; }
-          .step-card:nth-child(3) .step-number { color: #3D8C6A; }
+          .step-card:nth-child(1) .step-number { color: rgba(140,190,230,0.9); }
+          .step-card:nth-child(2) .step-number { color: rgba(100,195,170,0.9); }
+          .step-card:nth-child(3) .step-number { color: rgba(100,195,140,0.9); }
 
           .step-title {
             font-family: 'TAN-MEMORIES', serif;
             font-size: clamp(1.05rem, 2vw, 1.45rem);
             line-height: 1.2;
             color: #FAF7F0;
-            margin: 0 0 8px;
+            margin: 0 0 7px;
           }
 
           .step-desc {
-            font-size: 0.88rem;
-            line-height: 1.65;
-            color: rgba(250,247,240,0.68);
+            font-size: 0.86rem;
+            line-height: 1.62;
+            color: rgba(250,247,240,0.8);
             margin: 0;
-          }
-
-          /* Linha colorida no topo de cada cartão no desktop */
-          @media (min-width: 768px) {
-            .step-card:nth-child(1)::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #5B8FD0; z-index: 4; }
-            .step-card:nth-child(2)::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #4D9E8A; z-index: 4; }
-            .step-card:nth-child(3)::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #3D8C6A; z-index: 4; }
           }
 
           /* ═══ OUTROS ═══ */
