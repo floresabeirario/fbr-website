@@ -140,7 +140,7 @@ const opcoes = [
     n: "Opção 2", cor: C.terra,
     sub: "Cores mais vivas",
     titulo: "Recriação do bouquet",
-    desc: "Caso já não tenha as suas flores ou as flores já não estão em bom estado, recriamos o ramo com flores frescas e eternizamo-lo num quadro emoldurado. As cores são preservadas e ficam mais próximas do dia original. Feito em conjunto com florista. Composição bidimensional, moldura pouco funda.",
+    desc: "Caso já não tenha as suas flores ou se já não estão em bom estado, recriamos o ramo com flores frescas e eternizamo-lo num quadro emoldurado. As cores são preservadas e ficam mais próximas do dia original. Composição bidimensional, moldura pouco funda.",
     detalhe: "Visita a nossa página da recriação para mais detalhes.",
     time: "até 6 meses",
     link: { href: "/recriacao", label: "Saber mais sobre recriação" },
@@ -165,9 +165,9 @@ const processo = [
 ];
 
 const precos = [
-  { size: "30 × 40 cm", price: "200€", svgW: "54px" },
-  { size: "40 × 50 cm", price: "270€", svgW: "72px" },
-  { size: "50 × 70 cm", price: "360€", svgW: "90px" },
+  { size: "30 × 40 cm", price: "200€", svgW: "80px" },
+  { size: "40 × 50 cm", price: "270€", svgW: "96px" },
+  { size: "50 × 70 cm", price: "360€", svgW: "112px" },
 ];
 
 const pagamento = [
@@ -264,6 +264,8 @@ export default function EmoldurarFloresSecasClient() {
         .pag-item { background: ${C.creEsc}; padding: clamp(1rem,2vw,1.6rem) clamp(0.6rem,1.5vw,1.2rem); text-align: center; }
 
 
+        @media (min-width: 640px) { .preco-nota { display: block !important; } }
+
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
         a:focus-visible, button:focus-visible { outline: 3px solid ${C.azul}; outline-offset: 4px; border-radius: 4px; }
       ` }} />
@@ -281,7 +283,11 @@ export default function EmoldurarFloresSecasClient() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             style={{ maxWidth: "640px", margin: "0 auto" }}
           >
-            <Eyebrow light>Dê uma moldura ao capítulo mais bonito da sua história.</Eyebrow>
+            <p style={{
+              fontSize: "0.72rem", letterSpacing: "2.5px", textTransform: "uppercase",
+              color: "rgba(250,247,240,0.82)", fontFamily: "'Google Sans', sans-serif",
+              margin: "0 0 20px", fontWeight: 500,
+            }}>Dê uma moldura ao capítulo mais bonito da sua história</p>
             <h1 style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize: "clamp(2.8rem,9vw,5.5rem)",
@@ -298,7 +304,7 @@ export default function EmoldurarFloresSecasClient() {
               color: "rgba(250,247,240,0.86)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)",
               fontWeight: 300, textShadow: "0 2px 16px rgba(0,0,0,0.4)",
             }}>
-              Muitos ramos de flores foram secados naturalmente com o passar do tempo. Alguns foram criados originalmente com flores secas. Na Flores à Beira-Rio, podemos transformar esse ramo numa peça artística emoldurada.
+              Muitos ramos de flores foram secos naturalmente com o passar do tempo. Alguns foram criados originalmente com flores secas. Na Flores à Beira-Rio, podemos transformar esse ramo numa peça emoldurada.
             </p>
             <div className="cta-row" style={{ justifyContent: "center", marginBottom: "1.6rem" }}>
               <a href="/contactos" className="btn-ghost-light">Falar connosco</a>
@@ -325,7 +331,7 @@ export default function EmoldurarFloresSecasClient() {
                 <article key={i} className="opcao-item" role="listitem">
                   {item.svg === "op1" ? <SVGOpcao1 width="160px" /> : <SVGOpcao2 width="160px" />}
                   <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "1rem" }}>
-                    <span style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.6rem", letterSpacing: "2.5px", textTransform: "uppercase", color: item.cor, fontWeight: 700 }}>{item.n}</span>
+                    <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", color: item.cor, lineHeight: 1 }}>{item.n}</span>
                     <div style={{ flex: 1, height: "1px", background: `${item.cor}2A` }} aria-hidden="true" />
                   </div>
                   <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: item.cor, fontFamily: "'Google Sans', sans-serif", margin: "0 0 10px", fontWeight: 700 }}>{item.sub}</p>
@@ -364,7 +370,7 @@ export default function EmoldurarFloresSecasClient() {
                 Inclua uma fotografia
               </h2>
               <p style={{ color: "rgba(250,247,240,0.85)", lineHeight: 1.9, fontSize: "0.97rem", fontWeight: 300 }}>
-                Em qualquer das três opções, podemos integrar uma fotografia na composição — do casamento, do batizado, ou qualquer imagem com significado especial. O quadro torna-se ainda mais único.
+                Em qualquer das três opções, podemos integrar uma fotografia na composição: do casamento, do batizado, ou qualquer imagem com significado especial. O quadro torna-se ainda mais único.
               </p>
             </div>
           </Reveal>
@@ -467,11 +473,10 @@ export default function EmoldurarFloresSecasClient() {
 
       {/* ══ 6. PREÇOS ═════════════════════════════════════════════════════════ */}
       <section style={{ backgroundColor: C.escuro, padding: "clamp(80px,12vw,120px) clamp(20px,5vw,48px)", position: "relative", overflow: "hidden" }} aria-labelledby="h2-precos">
-        {/* Círculo decorativo de fundo */}
         <div aria-hidden="true" style={{ position: "absolute", bottom: "-25%", left: "-10%", width: "clamp(320px,55vw,700px)", height: "clamp(320px,55vw,700px)", borderRadius: "50%", background: `radial-gradient(circle, ${C.azul}28 0%, transparent 68%)`, pointerEvents: "none" }} />
         <div aria-hidden="true" style={{ position: "absolute", top: "-20%", right: "-8%", width: "clamp(200px,35vw,480px)", height: "clamp(200px,35vw,480px)", borderRadius: "50%", background: `radial-gradient(circle, ${C.terra}18 0%, transparent 68%)`, pointerEvents: "none" }} />
 
-        <div style={{ maxWidth: "960px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <div style={{ maxWidth: "760px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
             <div style={{ marginBottom: "clamp(2.5rem,5vw,4rem)" }}>
               <Eyebrow light>Emoldurar flores já secas</Eyebrow>
@@ -487,44 +492,58 @@ export default function EmoldurarFloresSecasClient() {
             </div>
           </Reveal>
 
-          {/* Grelha de preços — horizontal no desktop */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "1px", background: "rgba(250,247,240,0.06)", borderRadius: "20px", overflow: "hidden" }}>
+          {/* 3 caixas independentes empilhadas */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             {precos.map((row, i) => {
-              const accent = [C.azul, C.terra, C.azulClr][i];
+              const accent = [C.azulClr, C.terra, C.azul][i];
               return (
                 <Reveal key={i} delay={i * 0.1}>
                   <div style={{
-                    background: i === 1 ? `linear-gradient(160deg, ${C.azul}55, ${C.escuro} 70%)` : "rgba(250,247,240,0.03)",
-                    padding: "clamp(1.8rem,3vw,2.4rem) clamp(1.4rem,2.5vw,2rem)",
-                    display: "flex", flexDirection: "column", gap: "1.2rem",
-                    height: "100%", transition: "background 0.3s",
+                    display: "flex", alignItems: "center", gap: "clamp(1.2rem,3vw,2.4rem)",
+                    background: "rgba(250,247,240,0.04)",
+                    border: `1px solid ${accent}30`,
+                    borderRadius: "16px",
+                    padding: "clamp(1.4rem,2.5vw,2rem) clamp(1.4rem,2.5vw,2rem)",
+                    transition: "background 0.3s, border-color 0.3s",
                   }}
-                    onMouseEnter={e => { if (i !== 1) e.currentTarget.style.background = "rgba(250,247,240,0.06)"; }}
-                    onMouseLeave={e => { if (i !== 1) e.currentTarget.style.background = "rgba(250,247,240,0.03)"; }}
+                    onMouseEnter={e => { e.currentTarget.style.background = "rgba(250,247,240,0.07)"; e.currentTarget.style.borderColor = `${accent}60`; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = "rgba(250,247,240,0.04)"; e.currentTarget.style.borderColor = `${accent}30`; }}
                   >
-                    {/* Linha colorida topo */}
-                    <div style={{ width: "32px", height: "2px", background: accent, borderRadius: "2px" }} aria-hidden="true" />
-
-                    {/* SVG centrado */}
-                    <div style={{ display: "flex", justifyContent: "center" }}>
+                    {/* SVG lado esquerdo */}
+                    <div style={{ flexShrink: 0 }}>
                       <SVGOpcao1Escuro width={row.svgW} accent={accent} />
                     </div>
 
-                    {/* Tamanho + preço */}
-                    <div>
-                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.45)", fontSize: "0.72rem", letterSpacing: "2px", textTransform: "uppercase", margin: "0 0 6px", fontWeight: 500 }}>{row.size}</p>
-                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", color: C.creme, fontSize: "clamp(2rem,4vw,2.8rem)", margin: 0, lineHeight: 1 }}>{row.price}</p>
+                    {/* Divisor vertical */}
+                    <div style={{ width: "1px", alignSelf: "stretch", background: `${accent}20`, flexShrink: 0 }} aria-hidden="true" />
+
+                    {/* Texto lado direito */}
+                    <div style={{ flex: 1 }}>
+                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.38)", fontSize: "0.65rem", letterSpacing: "2.5px", textTransform: "uppercase", margin: "0 0 8px", fontWeight: 500 }}>Tamanho</p>
+                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", color: C.creme, fontSize: "clamp(1rem,2.5vw,1.2rem)", margin: "0 0 12px", lineHeight: 1.1 }}>{row.size}</p>
+                      <div style={{ width: "24px", height: "1px", background: `${accent}60`, marginBottom: "12px" }} aria-hidden="true" />
+                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.38)", fontSize: "0.65rem", letterSpacing: "2.5px", textTransform: "uppercase", margin: "0 0 6px", fontWeight: 500 }}>Preço</p>
+                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", color: accent, fontSize: "clamp(1.8rem,4vw,2.6rem)", margin: 0, lineHeight: 1 }}>{row.price}</p>
                     </div>
 
-                    {/* Nota incluído */}
-                    <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.28)", fontSize: "0.72rem", lineHeight: 1.6, margin: 0, fontWeight: 300 }}>
-                      Inclui vidro museu anti-UV, moldura feita à medida e design artístico.
-                    </p>
+                    {/* Nota canto direito — só desktop */}
+                    <div style={{ flexShrink: 0, display: "none", maxWidth: "160px" }} className="preco-nota">
+                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.22)", fontSize: "0.68rem", lineHeight: 1.6, margin: 0, fontWeight: 300, textAlign: "right" }}>
+                        Inclui vidro museu anti-UV, moldura à medida e composição artística
+                      </p>
+                    </div>
                   </div>
                 </Reveal>
               );
             })}
           </div>
+
+          {/* Nota rodapé */}
+          <Reveal delay={0.35}>
+            <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.28)", fontSize: "0.75rem", lineHeight: 1.7, margin: "1.8rem 0 0", fontWeight: 300 }}>
+              Todos os quadros incluem vidro museu anti-UV, moldura feita à medida e design artístico da composição.
+            </p>
+          </Reveal>
         </div>
       </section>
 
