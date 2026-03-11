@@ -158,9 +158,9 @@ export default function HomeClient() {
   }, []);
 
   const steps = [
-    { number: "01", title: "Reserve a sua data", desc: "Preencha o formulário de reserva com os detalhes do seu evento e garantimos a sua vaga com antecedência. As vagas são limitadas.", imageSrc: "/calendario.webp" },
-    { number: "02", title: "Entregue as flores", desc: "Entrega em mãos no atelier, envio por CTT ou recolha no local do evento. Preferencialmente até 3 dias após o grande dia.", imageSrc: "/ramojoana.webp" },
-    { number: "03", title: "Recebe a sua obra de arte", desc: "Após aprovação da composição, o quadro é emoldurado com vidro museu anti-UV e enviado para casa ou levantado no atelier.", imageSrc: "/joanaceu.webp" },
+    { number: "01", title: "Reserve a sua data", desc: "Preencha o formulário de reserva para garantir a sua vaga com antecedência. As vagas são limitadas.", imageSrc: "/calendario.webp" },
+    { number: "02", title: "Entregue as flores", desc: "Entrega em mãos em Coimbra, envio por correio ou recolha no local do evento.", imageSrc: "/ramojoana.webp" },
+    { number: "03", title: "Recebe a sua obra de arte", desc: "Após aprovação da composição, o quadro é emoldurado e entregue.", imageSrc: "/joanaceu.webp" },
   ];
 
   const apccItems = [
@@ -197,37 +197,30 @@ export default function HomeClient() {
             .steps-stack {
               flex-direction: row;
               gap: 20px;
-              padding: 0 20px;
+              padding: 0 28px;
               align-items: stretch;
             }
           }
 
-          /* Cartão individual: separado, cantos redondos */
+          /* Cartão: quadrado em mobile e desktop */
           .step-card {
             position: relative;
             flex: 1;
             overflow: hidden;
             border-radius: 20px;
-            /* Mobile: mais horizontal para não ocupar tanto espaço vertical */
-            aspect-ratio: 16/10;
-            max-width: 100%;
+            aspect-ratio: 1/1;
+            cursor: pointer;
           }
-
           @media (min-width: 768px) {
-            .step-card {
-              aspect-ratio: 3/4;
-              border-radius: 24px;
-              max-width: none;
-            }
+            .step-card { border-radius: 24px; }
           }
 
-          /* Foto sem filtro, com zoom suave no hover */
+          /* Foto sem filtro, zoom suave no hover */
           .step-photo {
             position: absolute;
             inset: 0;
             overflow: hidden;
           }
-
           .step-photo img {
             width: 100%;
             height: 100%;
@@ -236,48 +229,60 @@ export default function HomeClient() {
             transition: transform 0.6s ease;
             transform-origin: center center;
           }
+          .step-card:hover .step-photo img { transform: scale(1.06); }
 
-          /* Hover: zoom suave na foto, gradiente fica mais visível */
-          .step-card:hover .step-photo img {
-            transform: scale(1.06);
-          }
-
-          /* Conteúdo sempre sobreposto em baixo */
+          /* Gradiente overlay */
           .step-content {
             position: absolute;
             inset: 0;
             z-index: 2;
-            padding: 20px 22px 26px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            background: linear-gradient(to top, rgba(5,10,20,0.9) 0%, rgba(5,10,20,0.5) 42%, rgba(5,10,20,0.0) 100%);
+            /* Mobile: centrado */
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 22px 20px;
+            background: linear-gradient(to top, rgba(5,10,20,0.9) 0%, rgba(5,10,20,0.55) 50%, rgba(5,10,20,0.15) 100%);
             transition: background 0.4s ease;
           }
           .step-card:hover .step-content {
-            background: linear-gradient(to top, rgba(5,10,20,0.95) 0%, rgba(5,10,20,0.6) 50%, rgba(5,10,20,0.05) 100%);
+            background: linear-gradient(to top, rgba(5,10,20,0.95) 0%, rgba(5,10,20,0.65) 55%, rgba(5,10,20,0.2) 100%);
+          }
+          /* Desktop: texto em baixo à esquerda */
+          @media (min-width: 768px) {
+            .step-content {
+              align-items: flex-start;
+              justify-content: flex-end;
+              text-align: left;
+              padding: 28px 26px 32px;
+            }
           }
 
           /* Número */
           .step-number {
             font-family: 'TAN-MEMORIES', serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(3rem, 12vw, 5rem);
             line-height: 1;
-            margin-bottom: 6px;
+            margin-bottom: 10px;
             display: block;
             transition: transform 0.3s ease;
           }
-          .step-card:hover .step-number { transform: translateY(-3px); }
-          .step-card:nth-child(1) .step-number { color: rgba(140,190,230,0.9); }
-          .step-card:nth-child(2) .step-number { color: rgba(100,195,170,0.9); }
-          .step-card:nth-child(3) .step-number { color: rgba(100,195,140,0.9); }
+          .step-card:hover .step-number { transform: translateY(-4px); }
+          .step-card:nth-child(1) .step-number { color: rgba(140,190,230,0.92); }
+          .step-card:nth-child(2) .step-number { color: rgba(100,195,170,0.92); }
+          .step-card:nth-child(3) .step-number { color: rgba(100,195,140,0.92); }
+
+          @media (min-width: 768px) {
+            .step-number { font-size: clamp(3rem, 5vw, 5rem); }
+          }
 
           .step-title {
             font-family: 'TAN-MEMORIES', serif;
-            font-size: clamp(1.05rem, 2vw, 1.45rem);
+            font-size: clamp(1.05rem, 2.5vw, 1.4rem);
             line-height: 1.2;
             color: #FAF7F0;
-            margin: 0 0 7px;
+            margin: 0 0 8px;
             transition: transform 0.3s ease;
           }
           .step-card:hover .step-title { transform: translateY(-2px); }
@@ -285,11 +290,26 @@ export default function HomeClient() {
           .step-desc {
             font-size: 0.86rem;
             line-height: 1.62;
-            color: rgba(250,247,240,0.8);
+            color: rgba(250,247,240,0.82);
             margin: 0;
+            font-family: 'Google Sans', Roboto, sans-serif;
             transition: transform 0.3s ease;
           }
           .step-card:hover .step-desc { transform: translateY(-2px); }
+
+          /* Botões — mobile: reservar primeiro via order */
+          .steps-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+          }
+          .steps-btn-reservar { order: -1; }
+          @media (min-width: 480px) {
+            .steps-buttons { flex-direction: row; justify-content: center; }
+            .steps-btn-reservar { order: 0; }
+          }
 
           /* ═══ OUTROS ═══ */
           .cta-split { display: grid; grid-template-columns: 1fr; }
@@ -318,7 +338,6 @@ export default function HomeClient() {
           }
           .hero-btn:hover { background: rgba(250,247,240,0.18); border-color: rgba(250,247,240,0.9); transform: translateY(-2px); }
 
-          /* Botões CTA split — mesma altura e estilo base */
           .cta-btn-ghost {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             padding: 0 28px; height: 52px; border-radius: 100px; text-decoration: none;
@@ -336,12 +355,10 @@ export default function HomeClient() {
             font-weight: 600; font-size: 0.82rem; letter-spacing: 1.5px;
             text-transform: uppercase; font-family: 'Google Sans', Roboto, sans-serif;
             transition: all 0.3s ease; white-space: nowrap; flex: 1; min-width: 0;
-            background: #25D366; color: #fff;
-            box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+            background: #25D366; color: #fff; box-shadow: 0 4px 16px rgba(37,211,102,0.3);
           }
           .cta-btn-wa:hover { background: #1da851; transform: translateY(-3px); }
 
-          /* Botão noivas igual ao ghost mas no contexto escuro da foto */
           .btn-noiva-ghost {
             display: inline-flex; align-items: center; justify-content: center;
             padding: 0 36px; height: 52px; border-radius: 100px; text-decoration: none;
@@ -352,12 +369,7 @@ export default function HomeClient() {
             background: rgba(250,247,240,0.1); backdrop-filter: blur(8px);
           }
           .btn-noiva-ghost:hover { background: rgba(250,247,240,0.22); border-color: rgba(250,247,240,0.9); transform: translateY(-3px); }
-
-          .steps-buttons { display: flex; flex-direction: column; align-items: center; gap: 12px; flex-wrap: wrap; }
-          @media (min-width: 480px) { .steps-buttons { flex-direction: row; justify-content: center; } }
         ` }} />
-
-        {/* ════ 1. HERO ════ */}
         <section aria-label="Flores à Beira-Rio — Preservação de flores de casamento"
           style={{
             height: "100dvh",
@@ -482,6 +494,7 @@ export default function HomeClient() {
                 Como Funciona
               </a>
               <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
+                className="steps-btn-reservar"
                 style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(90deg, #3A6FBF 0%, #2E8A72 100%)", color: "#FAF7F0", padding: "0 36px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "700", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", transition: "all 0.3s ease", boxShadow: "0 6px 28px rgba(46,138,114,0.35)", whiteSpace: "nowrap" }}
                 onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.88"; e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 10px 32px rgba(46,138,114,0.5)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(46,138,114,0.35)"; }}
