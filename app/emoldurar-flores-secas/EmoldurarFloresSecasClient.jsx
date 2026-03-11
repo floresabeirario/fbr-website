@@ -244,7 +244,7 @@ export default function EmoldurarFloresSecasClient() {
         .opcao-grid { display: flex; flex-direction: column; gap: 1px; background: rgba(15,30,26,0.06); border-radius: 20px; overflow: hidden; }
         @media (min-width: 860px) { .opcao-grid { flex-direction: row; } }
         .opcao-item { flex: 1; background: ${C.branco}; padding: clamp(1.8rem,3vw,2.4rem) clamp(1.4rem,2.5vw,2rem); transition: background 0.25s; }
-        .opcao-item:hover { background: ${C.creEsc}; }
+        .opcao-item:hover { background: #E8EEF2; }
 
         .processo-steps { display: grid; grid-template-columns: 1fr; }
         @media (min-width: 768px) { .processo-steps { grid-template-columns: repeat(3, 1fr); } }
@@ -500,14 +500,14 @@ export default function EmoldurarFloresSecasClient() {
                 <Reveal key={i} delay={i * 0.1}>
                   <div style={{
                     display: "flex", alignItems: "center", gap: "clamp(1.2rem,3vw,2.4rem)",
-                    background: "rgba(250,247,240,0.04)",
-                    border: `1px solid ${accent}30`,
+                    background: C.creme,
+                    border: `1px solid ${accent}25`,
                     borderRadius: "16px",
                     padding: "clamp(1.4rem,2.5vw,2rem) clamp(1.4rem,2.5vw,2rem)",
-                    transition: "background 0.3s, border-color 0.3s",
+                    transition: "box-shadow 0.3s, transform 0.3s",
                   }}
-                    onMouseEnter={e => { e.currentTarget.style.background = "rgba(250,247,240,0.07)"; e.currentTarget.style.borderColor = `${accent}60`; }}
-                    onMouseLeave={e => { e.currentTarget.style.background = "rgba(250,247,240,0.04)"; e.currentTarget.style.borderColor = `${accent}30`; }}
+                    onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 8px 32px rgba(0,0,0,0.25)`; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                    onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = ""; }}
                   >
                     {/* SVG lado esquerdo */}
                     <div style={{ flexShrink: 0 }}>
@@ -515,20 +515,20 @@ export default function EmoldurarFloresSecasClient() {
                     </div>
 
                     {/* Divisor vertical */}
-                    <div style={{ width: "1px", alignSelf: "stretch", background: `${accent}20`, flexShrink: 0 }} aria-hidden="true" />
+                    <div style={{ width: "1px", alignSelf: "stretch", background: `${accent}30`, flexShrink: 0 }} aria-hidden="true" />
 
                     {/* Texto lado direito */}
                     <div style={{ flex: 1 }}>
-                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.38)", fontSize: "0.65rem", letterSpacing: "2.5px", textTransform: "uppercase", margin: "0 0 8px", fontWeight: 500 }}>Tamanho</p>
-                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", color: C.creme, fontSize: "clamp(1rem,2.5vw,1.2rem)", margin: "0 0 12px", lineHeight: 1.1 }}>{row.size}</p>
-                      <div style={{ width: "24px", height: "1px", background: `${accent}60`, marginBottom: "12px" }} aria-hidden="true" />
-                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.38)", fontSize: "0.65rem", letterSpacing: "2.5px", textTransform: "uppercase", margin: "0 0 6px", fontWeight: 500 }}>Preço</p>
+                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: C.sec, fontSize: "0.65rem", letterSpacing: "2.5px", textTransform: "uppercase", margin: "0 0 8px", fontWeight: 500 }}>Tamanho</p>
+                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", color: C.escuro, fontSize: "clamp(1rem,2.5vw,1.2rem)", margin: "0 0 12px", lineHeight: 1.1 }}>{row.size}</p>
+                      <div style={{ width: "24px", height: "1px", background: `${accent}80`, marginBottom: "12px" }} aria-hidden="true" />
+                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: C.sec, fontSize: "0.65rem", letterSpacing: "2.5px", textTransform: "uppercase", margin: "0 0 6px", fontWeight: 500 }}>Preço</p>
                       <p style={{ fontFamily: "'TAN-MEMORIES', serif", color: accent, fontSize: "clamp(1.8rem,4vw,2.6rem)", margin: 0, lineHeight: 1 }}>{row.price}</p>
                     </div>
 
                     {/* Nota canto direito — só desktop */}
                     <div style={{ flexShrink: 0, display: "none", maxWidth: "160px" }} className="preco-nota">
-                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.22)", fontSize: "0.68rem", lineHeight: 1.6, margin: 0, fontWeight: 300, textAlign: "right" }}>
+                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: C.sec, fontSize: "0.68rem", lineHeight: 1.6, margin: 0, fontWeight: 300, textAlign: "right" }}>
                         Inclui vidro museu anti-UV, moldura à medida e composição artística
                       </p>
                     </div>
@@ -540,7 +540,7 @@ export default function EmoldurarFloresSecasClient() {
 
           {/* Nota rodapé */}
           <Reveal delay={0.35}>
-            <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.28)", fontSize: "0.75rem", lineHeight: 1.7, margin: "1.8rem 0 0", fontWeight: 300 }}>
+            <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.35)", fontSize: "0.75rem", lineHeight: 1.7, margin: "1.8rem 0 0", fontWeight: 300 }}>
               Todos os quadros incluem vidro museu anti-UV, moldura feita à medida e design artístico da composição.
             </p>
           </Reveal>
@@ -600,7 +600,7 @@ export default function EmoldurarFloresSecasClient() {
                 <em style={{ color: "#A8C4D4" }}>memória</em>
               </h2>
               <p style={{ color: "rgba(250,247,240,0.7)", fontWeight: 300, fontSize: "clamp(0.93rem,1.8vw,1.05rem)", lineHeight: 1.88, maxWidth: "400px", margin: "0 auto 2.8rem" }}>
-                Atelier em Coimbra. Recebemos ramos de toda a Europa. Cada quadro é único e assinado.
+                Alguns momentos merecem durar mais do que um dia. Preserve as flores que contam a sua história.
               </p>
               <div className="cta-row" style={{ marginBottom: "1.4rem" }}>
                 <a href={WA_URL} target="_blank" rel="noopener noreferrer"
