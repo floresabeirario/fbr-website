@@ -186,32 +186,44 @@ export default function HomeClient() {
           .phone-float { animation: floatPhone 5s ease-in-out infinite; }
 
           /* ═══ TRÊS PASSOS ═══ */
-          .steps-stack { display: flex; flex-direction: column; gap: 0; }
+          /* Mobile: coluna única, cartões com gap */
+          .steps-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 0 16px;
+          }
           @media (min-width: 768px) {
-            .steps-stack { flex-direction: row; align-items: stretch; }
+            .steps-stack {
+              flex-direction: row;
+              gap: 20px;
+              padding: 0 20px;
+              align-items: stretch;
+            }
           }
 
-          /* Mobile e desktop: foto preenche o cartão, texto sobreposto em baixo */
+          /* Cartão individual: separado, cantos redondos */
           .step-card {
             position: relative;
             flex: 1;
             overflow: hidden;
-            /* Mobile: altura fixa generosa para ver bem a foto */
-            min-height: 280px;
-            border-bottom: 1px solid rgba(255,255,255,0.07);
+            border-radius: 20px;
+            /* Mobile: sempre vertical — aspect-ratio 3/4 */
+            aspect-ratio: 3/4;
+            /* não pode ficar mais largo que alto */
+            max-width: 100%;
           }
-          .step-card:last-child { border-bottom: none; }
 
           @media (min-width: 768px) {
             .step-card {
-              min-height: 460px;
-              border-bottom: none;
-              border-right: 1px solid rgba(255,255,255,0.08);
+              aspect-ratio: 3/4;
+              border-radius: 24px;
+              /* desktop: impede que fiquem demasiado largos */
+              max-width: none;
             }
-            .step-card:last-child { border-right: none; }
           }
 
-          /* Foto sempre a preencher tudo, sempre visível, sem filtro */
+          /* Foto sem filtro, com zoom suave no hover */
           .step-photo {
             position: absolute;
             inset: 0;
@@ -223,20 +235,29 @@ export default function HomeClient() {
             height: 100%;
             object-fit: cover;
             display: block;
-            /* sem filtro — foto completamente visível */
+            transition: transform 0.6s ease;
+            transform-origin: center center;
           }
 
-          /* Conteúdo texto: sobreposto, gradiente de baixo para cima */
+          /* Hover: zoom suave na foto, gradiente fica mais visível */
+          .step-card:hover .step-photo img {
+            transform: scale(1.06);
+          }
+
+          /* Conteúdo sempre sobreposto em baixo */
           .step-content {
             position: absolute;
             inset: 0;
             z-index: 2;
-            padding: 20px 22px 24px;
+            padding: 20px 22px 26px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            /* gradiente escuro apenas em baixo para texto legível */
-            background: linear-gradient(to top, rgba(5,12,22,0.88) 0%, rgba(5,12,22,0.55) 45%, rgba(5,12,22,0.0) 100%);
+            background: linear-gradient(to top, rgba(5,10,20,0.9) 0%, rgba(5,10,20,0.5) 42%, rgba(5,10,20,0.0) 100%);
+            transition: background 0.4s ease;
+          }
+          .step-card:hover .step-content {
+            background: linear-gradient(to top, rgba(5,10,20,0.95) 0%, rgba(5,10,20,0.6) 50%, rgba(5,10,20,0.05) 100%);
           }
 
           /* Número */
@@ -246,7 +267,9 @@ export default function HomeClient() {
             line-height: 1;
             margin-bottom: 6px;
             display: block;
+            transition: transform 0.3s ease;
           }
+          .step-card:hover .step-number { transform: translateY(-3px); }
           .step-card:nth-child(1) .step-number { color: rgba(140,190,230,0.9); }
           .step-card:nth-child(2) .step-number { color: rgba(100,195,170,0.9); }
           .step-card:nth-child(3) .step-number { color: rgba(100,195,140,0.9); }
@@ -257,14 +280,18 @@ export default function HomeClient() {
             line-height: 1.2;
             color: #FAF7F0;
             margin: 0 0 7px;
+            transition: transform 0.3s ease;
           }
+          .step-card:hover .step-title { transform: translateY(-2px); }
 
           .step-desc {
             font-size: 0.86rem;
             line-height: 1.62;
             color: rgba(250,247,240,0.8);
             margin: 0;
+            transition: transform 0.3s ease;
           }
+          .step-card:hover .step-desc { transform: translateY(-2px); }
 
           /* ═══ OUTROS ═══ */
           .cta-split { display: grid; grid-template-columns: 1fr; }
@@ -334,7 +361,7 @@ export default function HomeClient() {
 
         {/* ════ 1. HERO ════ */}
         <section aria-label="Flores à Beira-Rio — Preservação de flores de casamento"
-          style={{ height: "100vh", minHeight: "600px", position: "relative", overflow: "hidden" }}
+          style={{ height: "100dvh", minHeight: "100vh", maxHeight: "100dvh", position: "relative", overflow: "hidden" }}
         >
           <video autoPlay loop muted playsInline aria-hidden="true"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
@@ -399,7 +426,7 @@ export default function HomeClient() {
                 Do bouquet ao quadro
               </span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", color: "#FAF7F0", margin: "0 0 12px", lineHeight: 1.1 }}>
-                Três passos para a sua arte
+                O seu quadro em três passos
               </h2>
               <p style={{ color: "rgba(250,247,240,0.5)", fontSize: "0.9rem", fontFamily: "Roboto, sans-serif", margin: 0 }}>
                 Um processo simples, com acompanhamento em cada etapa.
@@ -433,26 +460,26 @@ export default function HomeClient() {
           </div>
 
           {/* Botões */}
-          <div style={{ padding: "40px 20px 56px" }}>
+          <div style={{ padding: "32px 20px 56px" }}>
             <div className="steps-buttons">
               <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#3A7A6E", color: "#FAF7F0", padding: "0 36px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "700", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", boxShadow: "0 6px 24px rgba(58,122,110,0.4)", whiteSpace: "nowrap" }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#2D6158"; e.currentTarget.style.transform = "translateY(-3px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#3A7A6E"; e.currentTarget.style.transform = "translateY(0)"; }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(90deg, #3A6FBF 0%, #2E8A72 100%)", color: "#FAF7F0", padding: "0 36px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "700", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", boxShadow: "0 6px 28px rgba(46,138,114,0.35)", whiteSpace: "nowrap" }}
+                onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.88"; e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 10px 32px rgba(46,138,114,0.5)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(46,138,114,0.35)"; }}
               >
                 Reservar a Minha Data
               </a>
               <a href="/como-funciona"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", border: "1.5px solid rgba(61,140,106,0.5)", color: "rgba(250,247,240,0.85)", padding: "0 28px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", background: "rgba(61,140,106,0.08)", whiteSpace: "nowrap" }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(61,140,106,0.9)"; e.currentTarget.style.background = "rgba(61,140,106,0.15)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(61,140,106,0.5)"; e.currentTarget.style.background = "rgba(61,140,106,0.08)"; e.currentTarget.style.transform = "translateY(0)"; }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(90deg, rgba(58,111,191,0.18) 0%, rgba(46,138,114,0.18) 100%)", border: "1.5px solid rgba(100,175,200,0.35)", color: "rgba(250,247,240,0.88)", padding: "0 28px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", whiteSpace: "nowrap" }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "linear-gradient(90deg, rgba(58,111,191,0.32) 0%, rgba(46,138,114,0.32) 100%)"; e.currentTarget.style.borderColor = "rgba(100,175,200,0.7)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "linear-gradient(90deg, rgba(58,111,191,0.18) 0%, rgba(46,138,114,0.18) 100%)"; e.currentTarget.style.borderColor = "rgba(100,175,200,0.35)"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 Como Funciona
               </a>
               <a href="/perguntas-frequentes"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", border: "1.5px solid rgba(61,140,106,0.5)", color: "rgba(250,247,240,0.85)", padding: "0 28px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", background: "rgba(61,140,106,0.08)", whiteSpace: "nowrap" }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(61,140,106,0.9)"; e.currentTarget.style.background = "rgba(61,140,106,0.15)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(61,140,106,0.5)"; e.currentTarget.style.background = "rgba(61,140,106,0.08)"; e.currentTarget.style.transform = "translateY(0)"; }}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(90deg, rgba(58,111,191,0.18) 0%, rgba(46,138,114,0.18) 100%)", border: "1.5px solid rgba(100,175,200,0.35)", color: "rgba(250,247,240,0.88)", padding: "0 28px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", transition: "all 0.3s ease", whiteSpace: "nowrap" }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = "linear-gradient(90deg, rgba(58,111,191,0.32) 0%, rgba(46,138,114,0.32) 100%)"; e.currentTarget.style.borderColor = "rgba(100,175,200,0.7)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = "linear-gradient(90deg, rgba(58,111,191,0.18) 0%, rgba(46,138,114,0.18) 100%)"; e.currentTarget.style.borderColor = "rgba(100,175,200,0.35)"; e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 Perguntas Frequentes
               </a>
