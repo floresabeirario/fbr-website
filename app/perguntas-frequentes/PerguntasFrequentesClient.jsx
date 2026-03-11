@@ -16,7 +16,7 @@ const FAQ_DATA = [
       "O ideal é agendar assim que souber a data do evento. As vagas são limitadas e em época de maior procura esgotam rapidamente. Se o evento já aconteceu, contacte-nos assim que possível. No caso de o evento ter acontecido há mais de 5 dias e as flores não estiverem em bom estado, podemos fazer uma recriação do bouquet com flores frescas semelhantes, a partir de uma fotografia.",
     a: (
       <>
-        O ideal é agendar <strong>assim que souber a data do evento</strong> — não precisa esperar pela data.
+        O ideal é agendar <strong>assim que souber a data do evento</strong>, não precisa esperar pela data.
         As vagas são limitadas e em meses de maior procura algumas datas esgotam com muita antecedência.
         <br /><br />
         Se o evento já aconteceu, <strong>contacte-nos assim que possível</strong>.
@@ -136,8 +136,8 @@ const FAQ_DATA = [
       "Há sempre alguma mudança de cor, é inevitável quando retiramos toda a humidade da flor. Algumas flores mantêm cores muito vibrantes; outras desbotam ligeiramente. Esta transformação faz parte da beleza natural do processo.",
     a: (
       <>
-        Há sempre <strong>alguma mudança de cor</strong> — é inevitável quando retiramos toda a humidade da flor.
-        Algumas flores mantêm cores muito vibrantes; outras desbotam ligeiramente
+        Há sempre <strong>alguma mudança de cor</strong>, é inevitável quando retiramos toda a humidade da flor.
+        Algumas flores mantêm cores muito vibrantes, outras desbotam ligeiramente
         (rosas vermelhas tornam-se bordô, por exemplo).
         <br /><br />
         Esta transformação faz parte da <strong>beleza natural do processo</strong>.
@@ -153,11 +153,11 @@ const FAQ_DATA = [
       <>
         Tem duas opções:
         <br /><br />
-        <strong>Recriação de bouquet</strong> — reproduzimos o ramo com flores frescas e iguais às originais,
+        <strong>Recriação de bouquet</strong>, onde reproduzimos o ramo com flores frescas e iguais às originais,
         usando as fotografias do dia como referência.{" "}
         <a href="/recriacao" className="faq-link">Saber mais sobre a recriação de bouquet →</a>
         <br /><br />
-        <strong>Emolduração das flores originais</strong> — podemos emoldurar numa moldura mais funda
+        <strong>Emolduração das flores originais</strong>, onde podemos emoldurar numa moldura mais funda
         as flores originais e fazer uma composição com elas tal como estão.{" "}
         <a href="https://fbr-website.vercel.app/emoldurar-flores-secas" className="faq-link">Saber mais sobre emoldurar flores já secas →</a>
       </>
@@ -170,7 +170,7 @@ const FAQ_DATA = [
       "Cada caso é avaliado individualmente. Se o prazo de 5 dias já tiver passado, não conseguimos garantir a viabilidade da preservação e recomendamos o nosso serviço de recriação de bouquet.",
     a: (
       <>
-        Cada situação é avaliada <strong>caso a caso</strong> — contacte-nos assim que possível.
+        Cada situação é avaliada <strong>caso a caso</strong>, por isso contacte-nos assim que possível.
         <br /><br />
         Se o prazo de 5 dias já tiver passado, não conseguimos garantir a viabilidade da preservação.
         Nesse caso, recomendamos o nosso{" "}
@@ -200,7 +200,7 @@ const FAQ_DATA = [
       "A preservação em 3D utiliza gel de sílica em grandes quantidades, com elevado consumo energético. A prensagem artesanal é a forma mais sustentável e duradoura.",
     a: (
       <>
-        A preservação em 3D habitualmente utiliza <strong>gel de sílica em grandes quantidades</strong>:
+        A preservação em 3D habitualmente utiliza <strong>gel de sílica em grandes quantidades</strong>,
         um material produzido industrialmente, com elevado consumo energético e impacto ambiental considerável.
         <br /><br />
         A <strong>prensagem artesanal</strong> que praticamos é a forma mais sustentável, duradoura
@@ -248,11 +248,11 @@ const FAQ_DATA = [
       <>
         Tem três opções:
         <br /><br />
-        <strong>Entrega em mãos</strong> — gratuita, no nosso atelier em Ceira, Coimbra, mediante agendamento prévio.
+        <strong>Entrega em mãos</strong>, gratuita, no nosso atelier em Ceira, Coimbra, mediante agendamento prévio.
         <br /><br />
-        <strong>Envio por CTT</strong> — correio frágil e urgente, custos a cargo do cliente.
+        <strong>Envio por CTT</strong>, correio frágil e urgente, custos a cargo do cliente.
         <br /><br />
-        <strong>Recolha no evento</strong> — deslocamo-nos ao local, sujeito a orçamento e disponibilidade.
+        <strong>Recolha no evento</strong>, deslocamo-nos ao local, sujeito a orçamento e disponibilidade.
       </>
     ),
   },
@@ -335,7 +335,7 @@ const FAQ_DATA = [
     a: (
       <>
         Não aceitamos devoluções em pedidos personalizados.
-        Cada quadro é criado exclusivamente para si — é uma obra <strong>única e irrepetível</strong>.
+        Cada quadro é criado exclusivamente para si, é uma obra <strong>única e irrepetível</strong>.
         <br /><br />
         Por isso enviamos sempre uma fotografia da composição para aprovação
         <strong> antes de selar a moldura</strong>.
@@ -481,7 +481,7 @@ export default function PerguntasFrequentesClient() {
     <>
       <SchemaScript />
 
-      <main style={{ backgroundColor: "#FAF7F0", paddingBottom: "clamp(64px,10vw,100px)" }}>
+      <main style={{ backgroundColor: "#FAF7F0" }}>
         <style dangerouslySetInnerHTML={{ __html: `
           * { box-sizing: border-box; }
 
@@ -542,36 +542,19 @@ export default function PerguntasFrequentesClient() {
           }
 
           .btn-primary {
-            display: inline-block; background: ${ACCENT}; color: #FAF7F0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: ${ACCENT}; color: #FAF7F0;
             padding: 14px 32px; border-radius: 100px; text-decoration: none;
             font-weight: 600; font-size: 0.8rem; letter-spacing: 1.4px;
-            text-transform: uppercase; text-align: center;
+            text-transform: uppercase;
             box-shadow: 0 6px 22px rgba(139,58,107,0.26);
             transition: all 0.3s ease;
             font-family: 'Google Sans', Roboto, sans-serif;
+            white-space: nowrap;
           }
           .btn-primary:hover { background: #6B2250; transform: translateY(-3px); }
-
-          .btn-outline {
-            display: inline-block; background: transparent; color: ${ACCENT};
-            padding: 14px 32px; border-radius: 100px; text-decoration: none;
-            font-weight: 600; font-size: 0.8rem; letter-spacing: 1.4px;
-            text-transform: uppercase; text-align: center;
-            border: 1.5px solid ${ACCENT_BORDER};
-            transition: all 0.3s ease;
-            font-family: 'Google Sans', Roboto, sans-serif;
-          }
-          .btn-outline:hover { border-color: ${ACCENT}; background: rgba(139,58,107,0.06); transform: translateY(-3px); }
-
-          .btn-wa {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: #25D366; color: #fff; padding: 14px 28px;
-            border-radius: 100px; text-decoration: none; font-weight: 600;
-            font-size: 0.8rem; letter-spacing: 1px;
-            transition: all 0.3s ease;
-            font-family: 'Google Sans', Roboto, sans-serif;
-          }
-          .btn-wa:hover { background: #1da851; transform: translateY(-3px); }
 
           .cta-row { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
           @media (min-width: 460px) {
@@ -588,17 +571,9 @@ export default function PerguntasFrequentesClient() {
             transition: transform 0.25s ease, box-shadow 0.25s ease;
           }
           .related-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(139,58,107,0.1); }
-
-          .session-card {
-            background: rgba(139,58,107,0.05);
-            border: 1px solid ${ACCENT_BORDER};
-            border-radius: 20px;
-            padding: clamp(32px,5vw,48px) clamp(24px,5vw,48px);
-            text-align: center;
-          }
         `}} />
 
-        {/* Hero — ecrã completo */}
+        {/* Hero */}
         <section
           aria-label="Perguntas frequentes sobre preservação de flores"
           style={{
@@ -611,7 +586,6 @@ export default function PerguntasFrequentesClient() {
             overflow: "hidden",
           }}
         >
-          {/* Foto de fundo */}
           <div style={{
             position: "absolute", inset: 0,
             backgroundImage: "url('/sandraclose.webp')",
@@ -619,13 +593,11 @@ export default function PerguntasFrequentesClient() {
             backgroundPosition: "center 30%",
           }} aria-hidden="true" />
 
-          {/* Overlay */}
           <div style={{
             position: "absolute", inset: 0,
             background: "linear-gradient(to bottom, rgba(20,8,18,0.28) 0%, rgba(20,8,18,0.55) 55%, rgba(20,8,18,0.82) 100%)",
           }} aria-hidden="true" />
 
-          {/* Conteúdo centrado */}
           <div style={{
             position: "relative", zIndex: 2,
             width: "100%",
@@ -674,14 +646,11 @@ export default function PerguntasFrequentesClient() {
               </p>
             </motion.div>
           </div>
-
-
         </section>
 
         {/* Conteúdo principal */}
-        <div style={{ maxWidth: "820px", margin: "0 auto", padding: "44px 20px 0" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto", padding: "44px 20px clamp(56px,8vw,88px)" }}>
 
-          {/* Pesquisa */}
           <div className="search-wrap">
             <span className="search-icon" aria-hidden="true">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
@@ -708,7 +677,6 @@ export default function PerguntasFrequentesClient() {
             )}
           </div>
 
-          {/* Filtros */}
           <div className="pills-row" role="tablist" aria-label="Filtrar por categoria" style={{ marginBottom: "28px" }}>
             {CATEGORIES.map(c => (
               <button
@@ -724,7 +692,6 @@ export default function PerguntasFrequentesClient() {
             ))}
           </div>
 
-          {/* Contador de resultados */}
           <AnimatePresence mode="wait">
             <motion.span
               key={`${activeCategory}-${search}`}
@@ -738,7 +705,6 @@ export default function PerguntasFrequentesClient() {
             </motion.span>
           </AnimatePresence>
 
-          {/* Lista de FAQs */}
           <div role="list" aria-label="Perguntas e respostas">
             <AnimatePresence mode="wait">
               {filtered.length === 0 ? (
@@ -790,7 +756,6 @@ export default function PerguntasFrequentesClient() {
             </AnimatePresence>
           </div>
 
-          {/* Links relacionados */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -818,19 +783,16 @@ export default function PerguntasFrequentesClient() {
             </div>
           </motion.div>
 
-
-
         </div>
 
-        {/* CTA — Sessão de esclarecimento — largura total */}
+        {/* CTA final — largura total */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.65, delay: 0.1 }}
+          transition={{ duration: 0.65 }}
           style={{
-            marginTop: "64px",
-            background: `linear-gradient(135deg, #2D1B26 0%, #4A1E3A 40%, #3D6B5E 100%)`,
+            background: "linear-gradient(135deg, #2D1B26 0%, #4A1E3A 40%, #3D6B5E 100%)",
             padding: "clamp(56px,8vw,88px) clamp(20px,6vw,80px)",
             textAlign: "center",
           }}
@@ -854,27 +816,34 @@ export default function PerguntasFrequentesClient() {
           </h3>
 
           <p style={{
-            color: "rgba(250,247,240,0.75)", fontSize: "clamp(0.88rem,1.8vw,0.97rem)",
+            color: "rgba(250,247,240,0.8)", fontSize: "clamp(0.88rem,1.8vw,0.97rem)",
             lineHeight: 1.85, margin: "0 auto 36px", maxWidth: "520px",
             fontFamily: "'Google Sans', Roboto, sans-serif",
           }}>
-            Agende uma sessão de esclarecimento gratuita por videochamada antes de fazer o seu pedido.
-            Podemos ajudá-lo a entender o processo de preservação e a escolher os produtos que melhor
-            se adequam a si. Esta sessão tem a duração aproximada de 30 minutos.
+            Agende uma <strong style={{ color: "#FAF7F0" }}>sessão de esclarecimento gratuita</strong> por{" "}
+            <strong style={{ color: "#FAF7F0" }}>videochamada</strong> antes de fazer o seu pedido.
+            Podemos ajudá-lo a <strong style={{ color: "#FAF7F0" }}>entender o processo de preservação</strong> e a{" "}
+            <strong style={{ color: "#FAF7F0" }}>escolher os produtos</strong> que melhor se adequam a si.
+            Esta sessão tem a duração aproximada de <strong style={{ color: "#FAF7F0" }}>30 minutos</strong>.
           </p>
 
           <div className="cta-row" style={{ justifyContent: "center" }}>
-            <a href={WA} target="_blank" rel="noopener noreferrer" style={{
-              display: "inline-flex", alignItems: "center", gap: "8px",
-              background: "rgba(255,255,255,0.12)",
-              backdropFilter: "blur(8px)",
-              border: "1.5px solid rgba(255,255,255,0.25)",
-              color: "#FAF7F0", padding: "14px 32px",
-              borderRadius: "100px", textDecoration: "none", fontWeight: "600",
-              fontSize: "0.8rem", letterSpacing: "1.2px", textTransform: "uppercase",
-              transition: "all 0.3s ease",
-              fontFamily: "'Google Sans', Roboto, sans-serif",
-            }}
+            <a
+              href={WA}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px",
+                background: "rgba(255,255,255,0.12)",
+                backdropFilter: "blur(8px)",
+                border: "1.5px solid rgba(255,255,255,0.25)",
+                color: "#FAF7F0", padding: "14px 32px",
+                borderRadius: "100px", textDecoration: "none", fontWeight: "600",
+                fontSize: "0.8rem", letterSpacing: "1.2px", textTransform: "uppercase",
+                transition: "all 0.3s ease",
+                fontFamily: "'Google Sans', Roboto, sans-serif",
+                whiteSpace: "nowrap",
+              }}
               onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.2)"}
               onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.12)"}
             >
