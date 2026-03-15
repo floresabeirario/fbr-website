@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 
 import { FORM_URL, TRACKING_URL } from "../_lib/constants";
 
@@ -212,11 +213,13 @@ export default function OpcoesClient() {
       <section style={{ position: "relative", minHeight: "100svh", overflow: "hidden", display: "flex", alignItems: "flex-end" }}>
         {/* Foto de fundo */}
         <div style={{ position: "absolute", inset: 0 }}>
-          <img
+          <Image fill
             src="/fotoquadro1.webp"
             alt=""
             aria-hidden="true"
-            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+            priority
+            sizes="100vw"
+            style={{ objectFit: "cover" }}
           />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,20,16,0.92) 0%, rgba(10,20,16,0.55) 45%, rgba(10,20,16,0.15) 100%)" }} />
         </div>
@@ -263,8 +266,8 @@ export default function OpcoesClient() {
             ].map((item, i) => (
               <div key={i} className="fundo-card-new">
                 <div style={{ aspectRatio: "4/3", overflow: "hidden", borderRadius: "6px", backgroundColor: "#e0dbd3", position: "relative" }}>
-                  <img src={item.img} alt={item.alt} loading="lazy"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.9s ease" }} className="fundo-img-new" />
+                  <Image fill src={item.img} alt={item.alt}
+                    sizes="(max-width: 768px) 100vw, 25vw" className="fundo-img-new" style={{ objectFit: "cover", transition: "transform 0.9s ease" }} />
                   {item.tag && (
                     <span style={{ position: "absolute", top: "12px", left: "12px", backgroundColor: item.tagSolid ? "#3D6B5E" : "rgba(15,30,26,0.55)", color: "#FAF7F0", fontSize: "0.52rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: GS, fontWeight: 600, padding: "5px 11px", borderRadius: "100px", backdropFilter: "blur(4px)" }}>
                       {item.tag}
@@ -304,9 +307,9 @@ export default function OpcoesClient() {
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.08}>
                 <div style={{ borderRadius: "10px", overflow: "hidden", boxShadow: "0 6px 24px rgba(26,26,26,0.08)", backgroundColor: "#FAF7F0" }}>
-                  <div style={{ overflow: "hidden" }}>
-                    <img src={item.img} alt={item.alt} loading="lazy"
-                      style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block", transition: "transform 0.7s ease" }} className="presente-img" />
+                  <div style={{ overflow: "hidden", position: "relative", aspectRatio: "4/3" }}>
+                    <Image fill src={item.img} alt={item.alt}
+                      sizes="(max-width: 768px) 100vw, 33vw" className="presente-img" style={{ objectFit: "cover", transition: "transform 0.7s ease" }} />
                   </div>
                   <div style={{ padding: "18px 18px 20px" }}>
                     <span style={{ display: "inline-block", backgroundColor: item.badgeBg, color: item.badgeColor, fontSize: "0.5rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: GS, fontWeight: 600, padding: "4px 10px", borderRadius: "100px", marginBottom: "10px" }}>{item.badge}</span>
@@ -458,7 +461,7 @@ export default function OpcoesClient() {
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.07}>
                 <div style={{ position: "relative", overflow: "hidden", minHeight: "260px" }}>
-                  <img src={item.img} alt={item.title} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", position: "absolute", inset: 0 }} />
+                  <Image fill src={item.img} alt={item.title} sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover" }} />
                   <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.72) 0%, rgba(15,30,26,0.05) 45%, transparent 100%)" }} />
                   <div style={{ position: "relative", padding: "22px 22px 0", minHeight: "260px" }}>
                     <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.05rem", fontWeight: 400, margin: 0, lineHeight: 1.2, color: "#FAF7F0", textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}>{item.title}</h3>
@@ -503,7 +506,7 @@ export default function OpcoesClient() {
             </Reveal>
             <Reveal delay={0.1}>
               <div style={{ width: "clamp(200px, 28vw, 340px)", borderRadius: "10px", overflow: "hidden", boxShadow: "0 12px 40px rgba(26,26,26,0.12)", flexShrink: 0 }}>
-                <img src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" loading="lazy" style={{ width: "100%", display: "block" }} />
+                <Image src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" width={0} height={0} sizes="100vw" style={{ width: "100%", height: "auto", display: "block" }} />
                 <div style={{ backgroundColor: "#F2EDE4", padding: "12px 16px", display: "flex", justifyContent: "space-between" }}>
                   <span style={{ fontFamily: GS, fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", fontWeight: 500 }}>Normal</span>
                   <span style={{ fontFamily: GS, fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: VERDE_CLARO, fontWeight: 700 }}>UltraVue®</span>

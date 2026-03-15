@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FORM_URL, WA_URL, PHONE, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "./_lib/constants";
 import HomeHero from "./HomeHero";
 import HomeSteps from "./HomeSteps";
@@ -221,12 +222,12 @@ export default function HomeClient() {
                 <div style={{ position: "relative", maxWidth: "340px", width: "100%" }}>
                   <div aria-hidden="true" style={{ position: "absolute", inset: 0, transform: "translate(12px, 12px) rotate(2deg)", borderRadius: "18px", background: "rgba(139,168,136,0.1)", border: "1px solid rgba(139,168,136,0.15)" }} />
                   <div style={{ position: "relative", transform: "rotate(-1.5deg)", borderRadius: "18px", overflow: "hidden", border: "1px solid rgba(139,168,136,0.2)", aspectRatio: "3/4", boxShadow: "0 28px 56px rgba(0,0,0,0.4)" }}>
-                    <img src="/oficinaapcc.webp" alt="Utentes da Oficina de Tecelagem de Almalaguês e Costura da APCC Coimbra a produzir as embalagens para a Flores à Beira-Rio" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
+                    <Image fill src="/oficinaapcc.webp" alt="Utentes da Oficina de Tecelagem de Almalaguês e Costura da APCC Coimbra a produzir as embalagens para a Flores à Beira-Rio" sizes="(max-width: 768px) 100vw, 340px" style={{ objectFit: "cover" }} />
                     <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "45%", background: "linear-gradient(to top, rgba(15,28,22,0.9) 0%, transparent 100%)" }} aria-hidden="true" />
                     <div style={{ position: "absolute", bottom: "18px", left: "18px", right: "18px" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                         <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "#FAF7F0", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-                          <img src="/apcc.webp" alt="Logótipo APCC" style={{ width: "28px", height: "28px", objectFit: "contain" }} />
+                          <Image src="/apcc.webp" alt="Logótipo APCC" width={28} height={28} style={{ objectFit: "contain" }} />
                         </div>
                         <div>
                           <p style={{ margin: 0, fontWeight: "700", color: "#FAF7F0", fontSize: "0.78rem", fontFamily: "'Google Sans', Roboto, sans-serif", lineHeight: 1.25 }}>Associação de Paralisia Cerebral de Coimbra</p>

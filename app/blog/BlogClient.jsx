@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { formatDate } from "@/app/_lib/utils";
 import "./BlogClient.css";
 
@@ -22,12 +23,12 @@ function PostCard({ post, categoryLabels, index }) {
       >
         {/* Imagem */}
         <div style={{ borderRadius: "16px 16px 0 0", overflow: "hidden", backgroundColor: "#D4DECC", aspectRatio: "16/10", flexShrink: 0, position: "relative" }}>
-          <img
+          <Image fill
             src={post.image}
             alt={post.imageAlt}
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.65s ease" }}
-            loading="lazy"
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="post-card-img"
+            style={{ objectFit: "cover", transition: "transform 0.65s ease" }}
           />
           {post.featured && (
             <div style={{ position: "absolute", top: "14px", left: "14px", backgroundColor: "#B8954A", color: "#FAF7F0", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", padding: "5px 12px", borderRadius: "50px" }}>
@@ -124,8 +125,8 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
               aria-label={`Ler artigo em destaque: ${featured.title}`}
             >
               <div className="featured-grid">
-                <div style={{ aspectRatio: "16/10", overflow: "hidden", backgroundColor: "#D4DECC", minHeight: "260px" }}>
-                  <img src={featured.image} alt={featured.imageAlt} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.65s ease" }} loading="eager" />
+                <div style={{ aspectRatio: "16/10", overflow: "hidden", backgroundColor: "#D4DECC", minHeight: "260px", position: "relative" }}>
+                  <Image fill src={featured.image} alt={featured.imageAlt} priority sizes="(max-width: 1024px) 100vw, 50vw" style={{ objectFit: "cover", transition: "transform 0.65s ease" }} />
                 </div>
                 <div style={{ padding: "clamp(24px,4vw,48px) clamp(22px,4vw,48px) clamp(24px,4vw,48px) clamp(24px,3vw,32px)" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px", flexWrap: "wrap" }}>

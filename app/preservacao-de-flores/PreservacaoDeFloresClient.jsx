@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FORM_URL, WA_URL } from "../_lib/constants";
 import PageHero from "@/components/PageHero";
 import SubCard, { SUBPAGES } from "./SubCard";
@@ -241,7 +242,7 @@ export default function PreservacaoDeFloresClient() {
         {/* ══ CTA FINAL com foto graduation ══════════════════════════════════════ */}
         <section className="cta-graduation" aria-label="Preserve as flores dos momentos mais importantes da sua vida">
           <div className="cta-graduation-bg">
-            <img src="/graduation.webp" alt="Rapariga com ramo de flores na cerimónia de licenciatura" />
+            <Image fill src="/graduation.webp" alt="Rapariga com ramo de flores na cerimónia de licenciatura" sizes="100vw" style={{ objectFit: "cover", objectPosition: "center top" }} />
           </div>
           <motion.div
             className="cta-graduation-inner"

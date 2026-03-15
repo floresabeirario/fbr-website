@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FORM_URL } from "../_lib/constants";
 import PageHero from "@/components/PageHero";
 import "./SustentabilidadeClient.css";
@@ -339,11 +340,11 @@ export default function Sustentabilidade() {
                     overflow: "hidden", border: "1px solid rgba(61,107,94,0.3)",
                     aspectRatio: "3/4", boxShadow: "0 24px 52px rgba(0,0,0,0.4)",
                   }}>
-                    <img
+                    <Image fill
                       src="/oficinaapcc.webp"
                       alt="Utentes da Oficina de Tecelagem de Almalaques e Costura da Associacao de Paralisia Cerebral de Coimbra a produzir as embalagens artesanais para a Flores a Beira-Rio"
-                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 340px"
+                      style={{ objectFit: "cover" }}
                     />
                     <div style={{
                       position: "absolute", bottom: 0, left: 0, right: 0, height: "55%",
@@ -355,7 +356,7 @@ export default function Sustentabilidade() {
                           width: "32px", height: "32px", borderRadius: "8px", backgroundColor: "#FAF7F0",
                           flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
                         }}>
-                          <img src="/apcc.webp" alt="Logotipo Associacao de Paralisia Cerebral de Coimbra" style={{ width: "24px", height: "24px", objectFit: "contain" }} />
+                          <Image src="/apcc.webp" alt="Logotipo Associacao de Paralisia Cerebral de Coimbra" width={24} height={24} style={{ objectFit: "contain" }} />
                         </div>
                         <div>
                           <p style={{ margin: 0, fontWeight: 700, color: "#FAF7F0", fontSize: "0.68rem", fontFamily: "Roboto, sans-serif", lineHeight: 1.3 }}>

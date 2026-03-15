@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FORM_URL } from "./_lib/constants";
 
 const steps = [
@@ -42,7 +43,7 @@ export default function HomeSteps() {
             transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="step-photo">
-              <img src={step.imageSrc} alt={`Passo ${step.number}: ${step.title}`} loading="lazy" />
+              <Image fill src={step.imageSrc} alt={`Passo ${step.number}: ${step.title}`} sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: "cover" }} />
             </div>
             <div className="step-content">
               <span className="step-number" aria-hidden="true">{step.number}</span>

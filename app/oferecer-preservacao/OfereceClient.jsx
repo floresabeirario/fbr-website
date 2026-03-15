@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { FORM_URL_VALE, WA_URL, WA_URL_VALE } from "../_lib/constants";
 import PageHero from "@/components/PageHero";
 import "./OfereceClient.css";
@@ -111,7 +112,7 @@ export default function OfereceClient() {
           <div className="cartao-grid">
             <div className="cartao-foto-wrap">
               <div className="cartao-foto">
-                <img src="/vale2.webp" alt="Cartão presente da Flores à Beira-Rio versão colorida com ilustrações de flores" />
+                <Image fill src="/vale2.webp" alt="Cartão presente da Flores à Beira-Rio versão colorida com ilustrações de flores" sizes="(max-width: 768px) 100vw, 42vw" style={{ objectFit: "cover", transition: "transform 0.7s ease" }} />
               </div>
             </div>
             <div style={{ flex: 1 }}>

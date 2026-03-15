@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 import { WA_NUMBER } from "../_lib/constants";
 import "./EmoldurarFloresSecasClient.css";
@@ -225,7 +226,7 @@ export default function EmoldurarFloresSecasClient() {
       {/* ══ 1. HERO — sem paralaxe para evitar lag ═══════════════════════════ */}
       <section className="hero-wrap" aria-label="Emoldurar flores já secas">
         <div className="hero-bg">
-          <img src="/quadrovidrosobrevidro.webp" alt="Quadro de flores secas emoldurado com vidro museu anti-UV" />
+          <Image fill src="/quadrovidrosobrevidro.webp" alt="Quadro de flores secas emoldurado com vidro museu anti-UV" priority sizes="100vw" style={{ objectFit: "cover" }} />
         </div>
         <div className="hero-overlay" />
         <div className="hero-content">
@@ -309,8 +310,7 @@ export default function EmoldurarFloresSecasClient() {
       {/* ══ 3. FOTOGRAFIA — fundo com imagem ═════════════════════════════════ */}
       <section style={{ position: "relative", overflow: "hidden", minHeight: "380px", display: "flex", alignItems: "center" }}>
         <div style={{ position: "absolute", inset: 0 }}>
-          <img src="/photowedding.webp" alt="Casamento"
-            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
+          <Image fill src="/photowedding.webp" alt="Casamento" sizes="100vw" style={{ objectFit: "cover" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,22,40,0.80) 0%, rgba(10,22,40,0.50) 55%, rgba(10,22,40,0.25) 100%)" }} />
         </div>
         <div style={{ position: "relative", zIndex: 1, padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", maxWidth: "600px", margin: "0 auto", textAlign: "center", width: "100%" }}>
@@ -412,7 +412,7 @@ export default function EmoldurarFloresSecasClient() {
                 </ul>
               </div>
               <div className="ultravue-img">
-                <img src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" loading="lazy" style={{ width: "100%", display: "block", borderRadius: "10px 10px 0 0" }} />
+                <Image src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" width={0} height={0} sizes="100vw" style={{ width: "100%", height: "auto", display: "block", borderRadius: "10px 10px 0 0" }} />
                 <div style={{ backgroundColor: C.creEsc, padding: "10px 14px", display: "flex", justifyContent: "space-between", borderRadius: "0 0 10px 10px" }}>
                   <span style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.6rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(15,30,26,0.35)", fontWeight: 500 }}>Normal</span>
                   <span style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.6rem", letterSpacing: "1.5px", textTransform: "uppercase", color: C.azulClr, fontWeight: 700 }}>UltraVue®</span>

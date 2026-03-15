@@ -3,6 +3,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { WA_URL_RECRIACAO } from "../_lib/constants";
 import PageHero from "@/components/PageHero";
 import "./RecriacaoClient.css";
@@ -67,11 +68,11 @@ const StepCard = ({ imageSrc, number, title, desc, delay }) => (
       position: "relative",
     }}>
       <div style={{ height: "360px", overflow: "hidden", position: "relative", backgroundColor: "#D4C8B0" }}>
-        <img
+        <Image fill
           src={imageSrc}
           alt={`Passo ${number} da recriacao de bouquet: ${title}`}
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.6s ease" }}
-          loading="lazy"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          style={{ objectFit: "cover", transition: "transform 0.6s ease" }}
         />
         {/* gradiente fundo forte para texto */}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(20,12,4,0.94) 100%)" }} />
@@ -118,7 +119,7 @@ const UseCaseCard = ({ imageSrc, tag, title, desc, delay }) => (
     style={{ borderRadius: "20px", overflow: "hidden", boxShadow: "0 14px 44px rgba(30,20,10,0.1)", backgroundColor: "#fff", border: "1px solid rgba(139,105,20,0.08)" }}
   >
     <div style={{ height: "250px", overflow: "hidden", position: "relative", backgroundColor: "#C8B890" }}>
-      <img src={imageSrc} alt={title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
+      <Image fill src={imageSrc} alt={title} sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover" }} />
       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(20,12,4,0.04) 0%, rgba(20,12,4,0.62) 100%)" }} />
       <div style={{ position: "absolute", bottom: "20px", left: "20px", right: "20px" }}>
         {tag && (

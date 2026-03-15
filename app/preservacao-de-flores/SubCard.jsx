@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export const SUBPAGES = [
   {
@@ -69,12 +70,12 @@ export default function SubCard({ item, index }) {
         aria-label={`${item.title} — ${item.desc}`}
       >
         <div style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden" }}>
-          <img
+          <Image fill
             src={item.img}
             alt={item.imgAlt}
-            loading="lazy"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.7s ease" }}
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="subcard-img"
+            style={{ objectFit: "cover", transition: "transform 0.7s ease" }}
           />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,18,14,0.85) 0%, rgba(10,18,14,0.3) 55%, transparent 100%)" }} aria-hidden="true" />
 

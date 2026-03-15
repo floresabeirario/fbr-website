@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FORM_URL, WA_URL } from "../_lib/constants";
 import PageHero from "@/components/PageHero";
 import "./ComoFuncionaClient.css";
@@ -144,7 +145,7 @@ const Step = ({ step, index }) => {
   const isEven = index % 2 === 0;
 
   const photoInner = (
-    <div style={{ position: "relative", borderRadius: "clamp(14px,2.5vw,22px)", overflow: "hidden", backgroundColor: "#F2D6E4", boxShadow: "0 16px 48px rgba(160,60,20,0.12)" }}>
+    <div style={{ position: "relative", aspectRatio: "4/3", borderRadius: "clamp(14px,2.5vw,22px)", overflow: "hidden", backgroundColor: "#F2D6E4", boxShadow: "0 16px 48px rgba(160,60,20,0.12)" }}>
       <div style={{ position: "absolute", top: "16px", left: "16px", zIndex: 2, backgroundColor: "#C8522A", color: "#FAF7F0", padding: "5px 14px", borderRadius: "50px", display: "flex", alignItems: "center", gap: "7px" }}>
         <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.7rem", lineHeight: 1 }}>{step.n}</span>
         <span style={{ fontSize: "0.55rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", opacity: 0.8 }}>{step.tag}</span>
@@ -154,7 +155,7 @@ const Step = ({ step, index }) => {
           Reservar
         </div>
       )}
-      <img src={step.img} alt={step.imgAlt} style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover", display: "block", transition: "transform 0.6s ease" }} loading="lazy" className="step-img" />
+      <Image fill src={step.img} alt={step.imgAlt} sizes="(max-width: 768px) 100vw, 50vw" className="step-img" style={{ objectFit: "cover", transition: "transform 0.6s ease" }} />
     </div>
   );
 

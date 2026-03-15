@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { formatDate } from "@/app/_lib/utils";
 import "./ArticleClient.css";
 
@@ -11,8 +12,8 @@ function RelatedCard({ post }) {
       href={`/blog/${post.slug}`}
       className="related-card-link"
     >
-      <div style={{ aspectRatio: "16/9", overflow: "hidden", backgroundColor: "#D4DECC" }}>
-        <img src={post.image} alt={post.imageAlt} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
+      <div style={{ aspectRatio: "16/9", overflow: "hidden", backgroundColor: "#D4DECC", position: "relative" }}>
+        <Image fill src={post.image} alt={post.imageAlt} sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover" }} />
       </div>
       <div style={{ padding: "16px 18px 20px" }}>
         <span style={{ display: "inline-block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#3D6B5E", fontFamily: "Roboto, sans-serif", marginBottom: "8px" }}>
@@ -74,9 +75,9 @@ export default function ArticleClient({ post, related, children }) {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          style={{ borderRadius: "20px", overflow: "hidden", boxShadow: "0 16px 56px rgba(30,45,42,0.12)", aspectRatio: "16/7", backgroundColor: "#D4DECC" }}
+          style={{ position: "relative", borderRadius: "20px", overflow: "hidden", boxShadow: "0 16px 56px rgba(30,45,42,0.12)", aspectRatio: "16/7", backgroundColor: "#D4DECC" }}
         >
-          <img src={post.image} alt={post.imageAlt} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="eager" />
+          <Image fill src={post.image} alt={post.imageAlt} priority sizes="(max-width: 1024px) 100vw, 960px" style={{ objectFit: "cover" }} />
         </motion.div>
       </div>
 
