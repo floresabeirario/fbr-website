@@ -1,12 +1,8 @@
 .page-hero {
   position: relative;
-  min-height: 100svh;
+  height: 100svh;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
-}
-
-.page-hero--centered {
   align-items: center;
   justify-content: center;
 }
@@ -15,7 +11,6 @@
   position: absolute;
   inset: 0;
 }
-
 
 .page-hero-overlay {
   position: absolute;
@@ -26,5 +21,8 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: clamp(110px, 14vw, 160px) clamp(24px, 5vw, 72px) clamp(60px, 8vw, 90px);
+  padding: 0 clamp(24px, 5vw, 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

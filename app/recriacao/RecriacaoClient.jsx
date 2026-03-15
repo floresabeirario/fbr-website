@@ -1,8 +1,7 @@
 // app/recriacao/RecriacaoClient.jsx
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { WA_URL_RECRIACAO } from "../_lib/constants";
 import PageHero from "@/components/PageHero";
@@ -144,10 +143,6 @@ const UseCaseCard = ({ imageSrc, tag, title, desc, delay }) => (
 // Page Client
 
 export default function RecriacaoClient() {
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const textOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
-
   const whatsappUrl = WA_URL_RECRIACAO;
   const whatsappUrlRecriacao = WA_URL_RECRIACAO;
 
@@ -212,11 +207,7 @@ export default function RecriacaoClient() {
       <PageHero
         src="/sandra2.webp"
         gradient="linear-gradient(to top, rgba(20,12,4,0.85) 0%, rgba(20,12,4,0.45) 50%, rgba(20,12,4,0.2) 100%)"
-        centered
         ariaLabel="Recriacao de Bouquet de Casamento"
-        textPadding="clamp(24px,5vw,72px)"
-        textStyle={{ opacity: textOpacity }}
-        sectionRef={heroRef}
       >
           <div style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
 

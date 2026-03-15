@@ -58,9 +58,7 @@ export default function PreservacaoDeFloresClient() {
           imgAlt="Quadro de flores preservadas — Flores à Beira-Rio, Coimbra"
           imgFetchPriority="high"
           gradient="linear-gradient(to top, rgba(35,15,5,0.82) 0%, rgba(35,15,5,0.55) 50%, rgba(35,15,5,0.18) 100%)"
-          centered
           ariaLabel="Preservação de flores, arte botânica artesanal"
-          textPadding="clamp(110px,14vw,160px) clamp(24px,5vw,72px)"
         >
           <motion.div
             initial={{ opacity: 0, y: 28 }}
