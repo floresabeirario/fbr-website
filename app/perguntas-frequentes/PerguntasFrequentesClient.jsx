@@ -4,6 +4,7 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FORM_URL, WA_NUMBER } from "../_lib/constants";
+import "./PerguntasFrequentesClient.css";
 
 const ACCENT = "#8B3A6B";
 const ACCENT_LIGHT = "rgba(139,58,107,0.12)";
@@ -483,96 +484,6 @@ export default function PerguntasFrequentesClient() {
       <SchemaScript />
 
       <main style={{ backgroundColor: "#FAF7F0" }}>
-        <style dangerouslySetInnerHTML={{ __html: `
-          * { box-sizing: border-box; }
-
-          .faq-link {
-            color: ${ACCENT};
-            font-weight: 600;
-            text-decoration: none;
-            border-bottom: 1px solid ${ACCENT_BORDER};
-            padding-bottom: 1px;
-            transition: border-color 0.2s ease;
-          }
-          .faq-link:hover { border-color: ${ACCENT}; }
-
-          .pills-row { display: flex; gap: 8px; flex-wrap: wrap; padding-bottom: 2px; }
-          .pill {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 9px 18px; border-radius: 100px;
-            font-size: 0.72rem; font-weight: 600;
-            letter-spacing: 0.8px; text-transform: uppercase;
-            font-family: 'Google Sans', Roboto, sans-serif;
-            border: 1.5px solid ${ACCENT_BORDER};
-            color: #5A6B60; background: transparent;
-            cursor: pointer; transition: all 0.2s ease; white-space: nowrap;
-          }
-          .pill:hover  { border-color: ${ACCENT}; color: ${ACCENT}; }
-          .pill.active { background: ${ACCENT}; border-color: ${ACCENT}; color: #FAF7F0; }
-          .pill-count  { display: inline-block; font-size: 0.6rem; opacity: 0.6; }
-          .pill.active .pill-count { opacity: 0.75; }
-
-          .search-wrap { position: relative; margin-bottom: 24px; }
-          .search-input {
-            width: 100%; padding: 14px 20px 14px 46px;
-            border-radius: 100px; border: 1.5px solid ${ACCENT_BORDER};
-            background: #fff; font-size: 0.92rem; color: #1E2D2A;
-            font-family: 'Google Sans', Roboto, sans-serif; outline: none;
-            transition: border-color 0.22s ease, box-shadow 0.22s ease;
-            -webkit-appearance: none;
-          }
-          .search-input::placeholder { color: #9BA89F; }
-          .search-input:focus { border-color: ${ACCENT}; box-shadow: 0 0 0 3px rgba(139,58,107,0.1); }
-          .search-icon {
-            position: absolute; left: 16px; top: 50%;
-            transform: translateY(-50%); color: #9BA89F;
-            pointer-events: none; display: flex; align-items: center;
-          }
-          .search-clear {
-            position: absolute; right: 16px; top: 50%;
-            transform: translateY(-50%); background: none; border: none;
-            cursor: pointer; color: #9BA89F; padding: 4px;
-            display: flex; align-items: center; transition: color 0.2s ease;
-          }
-          .search-clear:hover { color: #1E2D2A; }
-
-          .result-count {
-            font-size: 0.72rem; color: #9BA89F;
-            font-family: 'Google Sans', Roboto, sans-serif;
-            letter-spacing: 0.5px; margin-bottom: 8px; display: block;
-          }
-
-          .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: ${ACCENT}; color: #FAF7F0;
-            padding: 14px 32px; border-radius: 100px; text-decoration: none;
-            font-weight: 600; font-size: 0.8rem; letter-spacing: 1.4px;
-            text-transform: uppercase;
-            box-shadow: 0 6px 22px rgba(139,58,107,0.26);
-            transition: all 0.3s ease;
-            font-family: 'Google Sans', Roboto, sans-serif;
-            white-space: nowrap;
-          }
-          .btn-primary:hover { background: #6B2250; transform: translateY(-3px); }
-
-          .cta-row { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
-          @media (min-width: 460px) {
-            .cta-row { flex-direction: row; justify-content: center; align-items: center; }
-          }
-
-          .related-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
-          @media (min-width: 560px) { .related-grid { grid-template-columns: repeat(3, 1fr); } }
-          .related-card {
-            display: block; text-decoration: none;
-            background: rgba(139,58,107,0.05);
-            border-radius: 16px; padding: 22px 20px;
-            border: 1px solid ${ACCENT_BORDER};
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-          }
-          .related-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(139,58,107,0.1); }
-        `}} />
 
         {/* Hero */}
         <section

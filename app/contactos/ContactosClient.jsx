@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { IconInstagram, IconFacebook, IconTikTok, IconWhatsApp, IconEmail, IconCasamentos } from "../_components/Icons";
 import { FORM_URL, WA_URL, EMAIL, PHONE_DISPLAY, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK, SOCIAL_TIKTOK, SOCIAL_CASAMENTOS } from "../_lib/constants";
+import "./ContactosClient.css";
 
 const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
 
@@ -77,128 +78,6 @@ const SOCIALS = [
 export default function ContactosClient() {
   return (
     <main style={{ overflowX: "hidden" }}>
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        * { box-sizing: border-box; }
-
-        .contact-card { width: 100%; min-width: 0; overflow: hidden; }
-
-        .socials-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        @media (min-width: 400px) { .socials-row { grid-template-columns: repeat(4, 1fr); } }
-
-        .contact-split { display: grid; grid-template-columns: 1fr; }
-        @media (min-width: 768px) { .contact-split { grid-template-columns: 1fr 1fr; } }
-
-        /* ── Cards da equipa ── */
-        .team-list {
-          display: flex;
-          flex-direction: column;
-          gap: clamp(14px, 2.5vw, 22px);
-        }
-        @media (min-width: 640px) {
-          .team-list {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: clamp(10px, 2vw, 20px);
-          }
-        }
-
-        /* mobile: layout horizontal (foto ao lado da bio) */
-        .team-card {
-          display: flex;
-          align-items: stretch;
-          border-radius: 20px;
-          overflow: hidden;
-          background: rgba(250,247,240,0.04);
-          border: 1px solid rgba(196,132,107,0.15);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .team-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.4); }
-
-        .team-photo-wrap {
-          position: relative;
-          flex-shrink: 0;
-          width: clamp(120px, 38vw, 200px);
-          overflow: hidden;
-        }
-
-        /* bio lateral visivel no mobile */
-        .team-bio-mobile {
-          flex: 1;
-          min-width: 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding: clamp(16px, 3vw, 24px);
-        }
-
-        /* desktop: layout vertical */
-        @media (min-width: 640px) {
-          .team-bio-mobile  { display: none; }
-          .team-card        { flex-direction: column; }
-          .team-photo-wrap  { width: 100%; aspect-ratio: 3/4; }
-          .team-bio-desktop { display: block !important; }
-        }
-
-        /* bio abaixo da foto — escondida no mobile, visivel no desktop */
-        .team-bio-desktop {
-          display: none;
-          padding: 20px 20px 24px;
-        }
-
-        .team-photo-wrap img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-          transition: filter 0.4s ease;
-        }
-        .team-card:hover .team-photo-wrap img { filter: brightness(1.06); }
-
-        .team-photo-overlay {
-          position: absolute;
-          bottom: 0; left: 0; right: 0;
-          padding: 14px 12px;
-          background: linear-gradient(to top, rgba(15,38,34,0.97) 0%, rgba(15,38,34,0.55) 55%, transparent 100%);
-        }
-
-        .cta-row { display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
-        @media (min-width: 460px) { .cta-row { flex-direction: row; justify-content: center; align-items: center; } }
-
-        .btn-primary-light {
-          display: inline-flex; align-items: center; justify-content: center;
-          background: ${C.cream}; color: ${C.teal};
-          padding: 16px 38px; border-radius: 100px; text-decoration: none;
-          font-weight: 700; font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase;
-          text-align: center; transition: all 0.3s ease;
-          font-family: var(--font-google-sans), 'Google Sans', sans-serif; min-height: 56px;
-        }
-        .btn-primary-light:hover { background: #EDE5D4; transform: translateY(-3px); }
-
-        .btn-wa-big {
-          display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-          background: #25D366; color: #fff;
-          padding: 16px 36px; border-radius: 100px; text-decoration: none;
-          font-weight: 600; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
-          box-shadow: 0 6px 24px rgba(37,211,102,0.3); transition: all 0.3s ease;
-          font-family: var(--font-google-sans), 'Google Sans', sans-serif; min-height: 56px;
-        }
-        .btn-wa-big:hover { background: #1da851; transform: translateY(-3px); }
-
-        /* no mobile mostra a parte inferior da imagem do hero */
-        @media (max-width: 767px) {
-          .hero-bg { background-position: center 80% !important; }
-          .hero-text-col { text-align: center; }
-          .hero-text-col p { margin-left: auto; margin-right: auto; }
-        }
-
-        a:focus-visible, button:focus-visible { outline: 3px solid ${C.salmon}; outline-offset: 4px; border-radius: 4px; }
-
-        @media (prefers-reduced-motion: reduce) {
-          *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-        }
-      `,
-      }} />
 
       {/* ════ 1. HERO ════ */}
       <section

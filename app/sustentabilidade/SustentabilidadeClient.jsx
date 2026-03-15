@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FORM_URL } from "../_lib/constants";
+import "./SustentabilidadeClient.css";
 
 const Schema = () => (
   <script
@@ -214,127 +215,6 @@ export default function Sustentabilidade() {
       <Schema />
       <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
 
-        <style dangerouslySetInnerHTML={{ __html: `
-          * { box-sizing: border-box; }
-          :root {
-            --green:   #3D6B5E;
-            --green-d: #1E2D2A;
-            --terra:   #C4846B;
-            --gold:    #B8954A;
-            --cream:   #FAF7F0;
-          }
-          .eyebrow {
-            display: block; font-size: 0.58rem; font-weight: 700;
-            letter-spacing: 3.5px; text-transform: uppercase;
-            color: var(--terra); margin-bottom: 12px; font-family: Roboto, sans-serif;
-          }
-          .eyebrow-green { color: var(--green) !important; }
-          .eyebrow-gold  { color: var(--gold)  !important; }
-          .text-link {
-            color: var(--green); font-weight: 600; text-decoration: none;
-            border-bottom: 1px solid rgba(61,107,94,0.3); padding-bottom: 1px;
-            transition: border-color 0.2s ease;
-          }
-          .text-link:hover { border-color: var(--green); }
-          .compare-grid {
-            display: grid; grid-template-columns: 1fr; gap: 14px;
-          }
-          @media (min-width: 768px) {
-            .compare-grid { grid-template-columns: repeat(3, 1fr); }
-          }
-          .apcc-inner {
-            display: grid; grid-template-columns: 1fr; gap: clamp(28px,4vw,44px);
-          }
-          .apcc-photo  { order: 2; display: flex; justify-content: center; }
-          .apcc-copy   { order: 1; }
-          .apcc-topics { order: 3; }
-          @media (min-width: 768px) {
-            .apcc-inner {
-              grid-template-columns: 1fr 1fr;
-              grid-template-rows: auto auto;
-              column-gap: clamp(48px,6vw,72px);
-              row-gap: clamp(20px,3vw,32px);
-            }
-            .apcc-photo  { order: 1; grid-column: 1; grid-row: 1 / 3; align-self: start; }
-            .apcc-copy   { order: 2; grid-column: 2; grid-row: 1; align-self: end; }
-            .apcc-topics { order: 3; grid-column: 2; grid-row: 2; align-self: start; }
-          }
-          .cta-row {
-            display: flex; flex-direction: column; align-items: stretch; gap: 12px;
-          }
-          @media (min-width: 460px) {
-            .cta-row { flex-direction: row; justify-content: center; align-items: center; }
-          }
-          .btn-primary {
-            display: inline-flex; align-items: center; justify-content: center;
-            background: var(--green); color: var(--cream);
-            padding: 15px 34px; border-radius: 100px; text-decoration: none;
-            font-weight: 600; font-size: 0.82rem; letter-spacing: 1.4px;
-            text-transform: uppercase; text-align: center;
-            box-shadow: 0 6px 22px rgba(61,107,94,0.32);
-            transition: all 0.3s ease; font-family: Roboto, sans-serif;
-          }
-          .btn-primary:hover { background: var(--green-d); transform: translateY(-3px); }
-          .btn-outline {
-            display: inline-flex; align-items: center; justify-content: center;
-            border: 2px solid rgba(139,168,136,0.5); color: #8BA888;
-            padding: 13px 32px; border-radius: 100px; text-decoration: none;
-            font-weight: 600; font-size: 0.82rem; letter-spacing: 1.4px;
-            text-transform: uppercase; text-align: center;
-            transition: all 0.3s ease; font-family: Roboto, sans-serif; background: transparent;
-          }
-          .btn-outline:hover { background: var(--green); color: var(--cream); border-color: var(--green); transform: translateY(-3px); }
-          .card-hover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
-          .card-hover:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(30,45,42,0.10); }
-
-          /* VALUES GRID */
-          .values-grid-wrap {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1px;
-            background: rgba(61,107,94,0.15);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(61,107,94,0.15);
-          }
-          @media (min-width: 600px) {
-            .values-grid-wrap { grid-template-columns: repeat(2, 1fr); }
-          }
-          @media (min-width: 900px) {
-            .values-grid-wrap { grid-template-columns: repeat(3, 1fr); }
-            /* 7 items = 2 rows of 3 + 1 last. Make last item span all 3 cols */
-            .values-grid-wrap > *:last-child { grid-column: 1 / -1; max-width: 380px; margin: 0 auto; width: 100%; }
-          }
-
-          /* HERO */
-          .hero-sustentabilidade {
-            position: relative;
-            min-height: 100svh;
-            overflow: hidden;
-            display: flex;
-            align-items: flex-end;
-          }
-          .hero-foto-bg {
-            position: absolute; inset: 0;
-          }
-          .hero-foto-bg img {
-            width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
-          }
-          .hero-foto-bg::after {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(10,22,18,0.90) 0%, rgba(10,22,18,0.55) 45%, rgba(10,22,18,0.18) 100%);
-          }
-          .hero-text-col {
-            position: relative; z-index: 2; width: 100%;
-            padding: clamp(110px,14vw,160px) clamp(24px,5vw,72px) clamp(60px,8vw,90px);
-          }
-
-
-
-          @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-          }
-        `}} />
 
         {/* HERO — foto a ecra todo, texto na base */}
         <section

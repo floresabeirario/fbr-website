@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import "./ArticleClient.css";
 
 // ─── Formatar data ─────────────────────────────────────────────────────────────
 function formatDate(dateStr) {
@@ -41,17 +42,6 @@ function RelatedCard({ post }) {
 export default function ArticleClient({ post, related, children }) {
   return (
     <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        * { box-sizing: border-box; }
-        .related-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-        @media (min-width: 560px) { .related-grid { grid-template-columns: repeat(3, 1fr); } }
-        a:focus-visible { outline: 3px solid #3D6B5E; outline-offset: 4px; border-radius: 4px; }
-        @media (prefers-reduced-motion: reduce) {
-          *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-        }
-      `,
-      }} />
 
       {/* HERO */}
       <section

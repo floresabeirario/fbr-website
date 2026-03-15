@@ -1,7 +1,7 @@
 // app/opcoes-e-precos/page.jsx
 // Server Component — NÃO tem "use client"
 
-import OpcoesClient from "./client";
+import OpcoesClient from "./OpcoesClient";
 
 export const metadata = {
   title: "Opções e Preços | Flores à Beira-Rio — Quadros de Flores Prensadas",

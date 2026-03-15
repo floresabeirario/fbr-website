@@ -28,4 +28,4 @@ export const metadata = {
   },
 };
 
-export { default } from "./client.jsx";
+export { default } from "./SustentabilidadeClient";

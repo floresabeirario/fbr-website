@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 
 import { WA_NUMBER } from "../_lib/constants";
+import "./EmoldurarFloresSecasClient.css";
 const WA_URL = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Olá! Gostaria de saber mais sobre emoldurar flores secas.")}`;
 
 const C = {
@@ -220,56 +221,6 @@ function FAQItem({ faq, i }) {
 export default function EmoldurarFloresSecasClient() {
   return (
     <main style={{ backgroundColor: C.creme, fontFamily: "'Google Sans', sans-serif", color: C.escuro, overflowX: "hidden" }}>
-      <style dangerouslySetInnerHTML={{ __html: `
-        @import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@1&display=swap');
-        * { box-sizing: border-box; }
-
-        .btn-ghost-light {
-          display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-          background: transparent; color: ${C.creme}; padding: 15px 32px; border-radius: 100px;
-          text-decoration: none; font-weight: 500; font-size: 0.76rem; letter-spacing: 1.4px;
-          text-transform: uppercase; font-family: 'Google Sans', sans-serif;
-          border: 1.5px solid rgba(250,247,240,0.38); transition: all 0.3s ease;
-        }
-        .btn-ghost-light:hover { border-color: rgba(250,247,240,0.75); transform: translateY(-3px); }
-
-        .cta-row { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
-        @media (min-width: 480px) { .cta-row { flex-direction: row; justify-content: center; align-items: center; } }
-
-        .hero-wrap { position: relative; width: 100%; height: 100svh; min-height: 620px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .hero-bg { position: absolute; inset: 0; }
-        .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(170deg, rgba(10,22,40,0.20) 0%, rgba(10,22,40,0.55) 50%, rgba(10,22,40,0.82) 100%); }
-        .hero-content { position: relative; z-index: 2; text-align: center; padding: clamp(100px,14vw,160px) clamp(20px,5vw,48px) clamp(60px,8vw,80px); width: 100%; }
-
-        .opcao-grid { display: flex; flex-direction: column; gap: 1px; background: rgba(15,30,26,0.06); border-radius: 20px; overflow: hidden; }
-        @media (min-width: 860px) { .opcao-grid { flex-direction: row; } }
-        .opcao-item { flex: 1; background: ${C.branco}; padding: clamp(1.8rem,3vw,2.4rem) clamp(1.4rem,2.5vw,2rem); transition: background 0.25s; }
-        .opcao-item:hover { background: #E8EEF2; }
-
-        .processo-steps { display: grid; grid-template-columns: 1fr; }
-        @media (min-width: 768px) { .processo-steps { grid-template-columns: repeat(3, 1fr); } }
-        .processo-step { padding: clamp(1.4rem,2.5vw,2rem) clamp(1.2rem,2vw,1.6rem); position: relative; }
-        .processo-connector { display: none; }
-        @media (min-width: 768px) {
-          .processo-connector { display: block; position: absolute; top: calc(clamp(1.4rem,2.5vw,2rem) + 23px); left: calc(50% + 28px); right: -50%; height: 1px; background: linear-gradient(to right, rgba(250,247,240,0.25), transparent); }
-          .processo-step:last-child .processo-connector { display: none; }
-        }
-
-        .ultravue-box { display: flex; flex-direction: column; gap: clamp(1.8rem,4vw,3rem); align-items: flex-start; padding: clamp(1.8rem,3vw,2.4rem); background: ${C.branco}; border-radius: 16px; border: 1px solid rgba(15,30,26,0.07); margin-top: 1.5rem; }
-        @media (min-width: 768px) { .ultravue-box { flex-direction: row; align-items: center; } }
-        .ultravue-img { width: 100%; max-width: 260px; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
-        @media (max-width: 767px) { .ultravue-img { max-width: 100%; } }
-
-        .pag-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(27,75,107,0.1); border-radius: 20px; overflow: hidden; }
-        .pag-item { background: ${C.creEsc}; padding: clamp(1rem,2vw,1.6rem) clamp(0.6rem,1.5vw,1.2rem); text-align: center; }
-
-
-        @media (min-width: 640px) { .preco-nota { display: block !important; } }
-
-        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
-        a:focus-visible, button:focus-visible { outline: 3px solid ${C.azul}; outline-offset: 4px; border-radius: 4px; }
-      ` }} />
 
       {/* ══ 1. HERO — sem paralaxe para evitar lag ═══════════════════════════ */}
       <section className="hero-wrap" aria-label="Emoldurar flores já secas">

@@ -1,0 +1,2 @@
+.related-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 560px) { .related-grid { grid-template-columns: repeat(3, 1fr); } }
