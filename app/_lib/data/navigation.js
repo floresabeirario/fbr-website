@@ -1,4 +1,5 @@
 // app/_lib/data/navigation.js
+import { TRACKING_URL } from "../constants";
 
 export const NAV_PRESERVACAO = {
   label: "Preservação de Flores",
@@ -49,7 +50,7 @@ export const FOOTER_LINKS = {
   ajuda: [
     { href: "/perguntas-frequentes",             label: "Perguntas Frequentes" },
     { href: "/contactos",                        label: "Contactos e Equipa" },
-    { href: "https://status.floresabeirario.pt", label: "Acompanhar Encomenda", external: true },
+    { href: TRACKING_URL, label: "Acompanhar Encomenda", external: true },
     { href: "/blog",                             label: "Blog" },
   ],
   legal: [

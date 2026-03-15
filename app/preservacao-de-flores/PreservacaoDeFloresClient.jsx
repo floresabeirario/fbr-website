@@ -1,10 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  FORM_URL,
-  WA_URL,
-} from "../_lib/constants";
+import { FORM_URL, WA_URL, PHONE, EMAIL } from "../_lib/constants";
 
 // ─── Schema SEO ───────────────────────────────────────────────────────────────
 const Schema = () => (
@@ -22,8 +19,8 @@ const Schema = () => (
           name: "Flores à Beira-Rio",
           url: "https://floresabeirario.pt",
           image: "https://floresabeirario.pt/logo.webp",
-          telephone: "+351934680300",
-          email: "info@floresabeirario.pt",
+          telephone: PHONE,
+          email: EMAIL,
           address: {
             "@type": "PostalAddress",
             addressLocality: "Coimbra",

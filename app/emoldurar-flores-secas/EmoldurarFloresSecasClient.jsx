@@ -3,7 +3,8 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 
-const WA_URL = "https://wa.me/351934680300?text=" + encodeURIComponent("Olá! Gostaria de saber mais sobre emoldurar flores secas.");
+import { WA_NUMBER } from "../_lib/constants";
+const WA_URL = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Olá! Gostaria de saber mais sobre emoldurar flores secas.")}`;
 
 const C = {
   creme:   "#FAF7F0",

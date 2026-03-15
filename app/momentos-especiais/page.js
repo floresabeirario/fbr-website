@@ -2,11 +2,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { FORM_URL, WA_NUMBER } from "../_lib/constants";
 
 export default function MomentosEspeciais() {
-  const FORM = "https://wkf.ms/3RfoNAc";
-  const WA = "https://wa.me/351934680300?text=" +
-    encodeURIComponent("Olá! Gostaria de preservar flores de um momento especial.");
+  const FORM = FORM_URL;
+  const WA = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Olá! Gostaria de preservar flores de um momento especial.")}`;
 
   return (
     <main style={{ backgroundColor: "#FAF7F0", minHeight: "100vh" }}>

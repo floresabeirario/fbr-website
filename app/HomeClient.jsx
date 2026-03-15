@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { FORM_URL, WA_URL } from "./_lib/constants";
+import { FORM_URL, WA_URL, PHONE, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "./_lib/constants";
 
 // ─── JSON-LD ──────────────────────────────────────────────────────────────────
 const StructuredData = () => (
@@ -14,9 +14,9 @@ const StructuredData = () => (
       image: "https://floresabeirario.pt/fotoquadro1.webp",
       address: { "@type": "PostalAddress", addressLocality: "Coimbra", addressRegion: "Coimbra", addressCountry: "PT" },
       geo: { "@type": "GeoCoordinates", latitude: "40.2033", longitude: "-8.4103" },
-      telephone: "+351934680300", email: "info@floresabeirario.pt",
+      telephone: PHONE, email: EMAIL,
       priceRange: "€€€", openingHours: "Mo-Fr 10:00-18:00",
-      sameAs: ["https://instagram.com/floresabeirario", "https://facebook.com/floresabeirario"],
+      sameAs: [SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK],
       offers: {
         "@type": "AggregateOffer", priceCurrency: "EUR", lowPrice: "300",
         offers: [

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { FORM_URL } from "../_lib/constants";
 
 const Schema = () => (
   <script
@@ -206,7 +207,7 @@ const Dot = ({ good, color }) => (
 );
 
 export default function Sustentabilidade() {
-  const FORM = "https://wkf.ms/3RfoNAc";
+  const FORM = FORM_URL;
 
   return (
     <>

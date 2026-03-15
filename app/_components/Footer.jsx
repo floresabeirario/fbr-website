@@ -5,7 +5,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IconInstagram, IconFacebook, IconWhatsApp, IconEmail, FlagPT, FlagEN } from "./Icons";
 import { FOOTER_LINKS } from "../_lib/data/navigation";
-import { FORM_URL } from "../_lib/constants";
+import { FORM_URL, WA_URL, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "../_lib/constants";
 
 const FONT = "var(--font-google-sans), 'Google Sans', sans-serif";
 
@@ -74,8 +74,7 @@ const renderLinks = (list) =>
     <a key={i} href={l.href}
       {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       style={linkStyle}
-      onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-      onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
+      className="footer-nav-link"
     >
       {l.label}
     </a>
@@ -101,24 +100,24 @@ export default function FooterClient() {
         </p>
         <div style={{ display: "flex", justifyContent: "center", gap: "24px", marginBottom: "40px" }}>
           {[
-            { href: "https://instagram.com/floresabeirario", icon: <IconInstagram size={20} />, label: "Instagram" },
-            { href: "https://facebook.com/floresabeirario",  icon: <IconFacebook size={20} />,  label: "Facebook" },
-            { href: "https://wa.me/351934680300",            icon: <IconWhatsApp size={20} />,  label: "WhatsApp" },
-            { href: "mailto:info@floresabeirario.pt",        icon: <IconEmail size={20} />,     label: "Email" },
+            { href: SOCIAL_INSTAGRAM,   icon: <IconInstagram size={20} />, label: "Instagram" },
+            { href: SOCIAL_FACEBOOK,    icon: <IconFacebook size={20} />,  label: "Facebook" },
+            { href: WA_URL,             icon: <IconWhatsApp size={20} />,  label: "WhatsApp" },
+            { href: `mailto:${EMAIL}`,  icon: <IconEmail size={20} />,     label: "Email" },
           ].map((s, i) => (
             <a key={i} href={s.href}
               target={s.href.startsWith("mailto") ? undefined : "_blank"}
               rel="noopener noreferrer"
               aria-label={s.label}
+              className="footer-social-icon"
               style={{ color: "rgba(250,247,240,0.45)", transition: "color 0.25s ease", display: "flex", alignItems: "center" }}
-              onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-              onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.45)"}
             >
               {s.icon}
             </a>
           ))}
         </div>
-        <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer"
+        <a href={WA_URL} target="_blank" rel="noopener noreferrer"
+          className="footer-wa-btn"
           style={{
             display: "inline-flex", alignItems: "center", gap: "10px",
             backgroundColor: "#25D366", color: "#fff",
@@ -128,8 +127,6 @@ export default function FooterClient() {
             fontFamily: FONT, transition: "all 0.3s ease",
             boxShadow: "0 4px 20px rgba(37,211,102,0.2)",
           }}
-          onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#1db954"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-          onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#25D366"; e.currentTarget.style.transform = "translateY(0)"; }}
         >
           <IconWhatsApp size={20} /> +351 934 680 300
         </a>
@@ -160,8 +157,7 @@ export default function FooterClient() {
                 PT <FlagPT />
               </a>
               <a href="/en" style={{ ...linkStyle, fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}
-                onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}
+                className="footer-nav-link"
               >
                 EN <FlagEN />
               </a>
@@ -170,8 +166,8 @@ export default function FooterClient() {
           <div>
             <span style={labelStyle}>Contacto</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              <a href="mailto:info@floresabeirario.pt" style={linkStyle} onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"} onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}>info@floresabeirario.pt</a>
-              <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer" style={linkStyle} onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"} onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}>+351 934 680 300</a>
+              <a href={`mailto:${EMAIL}`} style={linkStyle} className="footer-nav-link">{EMAIL}</a>
+              <a href={WA_URL} target="_blank" rel="noopener noreferrer" style={linkStyle} className="footer-nav-link">+351 934 680 300</a>
               <span style={{ ...linkStyle, color: "rgba(250,247,240,0.28)", cursor: "default" }}>Coimbra, Portugal</span>
             </div>
           </div>
@@ -193,11 +189,11 @@ export default function FooterClient() {
           <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(FOOTER_LINKS.legal)}</div>
         </FooterAccordion>
         <div style={{ paddingTop: "20px", display: "flex", flexDirection: "column", gap: "8px" }}>
-          <a href="mailto:info@floresabeirario.pt" style={{ ...linkStyle, fontSize: "0.8rem" }} onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"} onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}>info@floresabeirario.pt</a>
-          <a href="https://wa.me/351934680300" target="_blank" rel="noopener noreferrer" style={{ ...linkStyle, fontSize: "0.8rem" }} onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"} onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}>+351 934 680 300</a>
+          <a href={`mailto:${EMAIL}`} style={{ ...linkStyle, fontSize: "0.8rem" }} className="footer-nav-link">{EMAIL}</a>
+          <a href={WA_URL} target="_blank" rel="noopener noreferrer" style={{ ...linkStyle, fontSize: "0.8rem" }} className="footer-nav-link">+351 934 680 300</a>
           <div style={{ display: "flex", gap: "16px", paddingTop: "4px" }}>
             <a href="/" style={{ ...linkStyle, color: "#FAF7F0", fontWeight: "600", fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}>PT <FlagPT /></a>
-            <a href="/en" style={{ ...linkStyle, fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"} onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.5)"}>EN <FlagEN /></a>
+            <a href="/en" style={{ ...linkStyle, fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }} className="footer-nav-link">EN <FlagEN /></a>
           </div>
         </div>
       </div>

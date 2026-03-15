@@ -3,6 +3,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FORM_URL, WA_NUMBER } from "../_lib/constants";
 
 const ACCENT = "#8B3A6B";
 const ACCENT_LIGHT = "rgba(139,58,107,0.12)";
@@ -474,8 +475,8 @@ export default function PerguntasFrequentesClient() {
     return list;
   }, [activeCategory, search]);
 
-  const WA   = "https://wa.me/351934680300?text=" + encodeURIComponent("Olá! Tenho uma dúvida sobre a preservação das minhas flores.");
-  const FORM = "https://wkf.ms/3RfoNAc";
+  const WA   = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Olá! Tenho uma dúvida sobre a preservação das minhas flores.")}`;
+  const FORM = FORM_URL;
 
   return (
     <>

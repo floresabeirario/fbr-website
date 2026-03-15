@@ -30,6 +30,7 @@ export const TRACKING_URL = "https://status.floresabeirario.pt";
 // Contacto
 export const EMAIL = "info@floresabeirario.pt";
 export const PHONE_DISPLAY = "+351 934 680 300";
+export const PHONE = `+${WA_NUMBER}`; // Formato E.164 para JSON-LD
 
 // Redes sociais
 export const SOCIAL_INSTAGRAM = "https://www.instagram.com/floresabeirario/";

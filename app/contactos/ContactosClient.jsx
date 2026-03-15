@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { IconInstagram, IconFacebook, IconTikTok, IconWhatsApp, IconEmail, IconCasamentos } from "../_components/Icons";
-import { FORM_URL, WA_URL } from "../_lib/constants";
+import { FORM_URL, WA_URL, EMAIL, PHONE_DISPLAY, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK, SOCIAL_TIKTOK, SOCIAL_CASAMENTOS } from "../_lib/constants";
 
 const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
 
@@ -67,10 +67,10 @@ const TEAM = [
 ];
 
 const SOCIALS = [
-  { icon: <IconInstagram  size={22} />, label: "Instagram",     href: "https://www.instagram.com/floresabeirario/",  bg: "linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%)" },
-  { icon: <IconFacebook   size={22} />, label: "Facebook",      href: "https://www.facebook.com/floresabeirario/",   bg: "linear-gradient(135deg, #1877F2, #0C5DC7)" },
-  { icon: <IconTikTok     size={22} />, label: "TikTok",        href: "https://www.tiktok.com/@floresabeirario",     bg: "linear-gradient(135deg, #010101, #2b2b2b)" },
-  { icon: <IconCasamentos size={22} />, label: "Casamentos.pt", href: "https://www.casamentos.pt/ideias-criativas-para-casamentos/flores-a-beira-rio-preservacao-de-flores--e171385", bg: `linear-gradient(135deg, ${C.salmon}, #C06050)` },
+  { icon: <IconInstagram  size={22} />, label: "Instagram",     href: SOCIAL_INSTAGRAM,  bg: "linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%)" },
+  { icon: <IconFacebook   size={22} />, label: "Facebook",      href: SOCIAL_FACEBOOK,   bg: "linear-gradient(135deg, #1877F2, #0C5DC7)" },
+  { icon: <IconTikTok     size={22} />, label: "TikTok",        href: SOCIAL_TIKTOK,     bg: "linear-gradient(135deg, #010101, #2b2b2b)" },
+  { icon: <IconCasamentos size={22} />, label: "Casamentos.pt", href: SOCIAL_CASAMENTOS, bg: `linear-gradient(135deg, ${C.salmon}, #C06050)` },
 ];
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
@@ -257,8 +257,8 @@ export default function ContactosClient() {
               <p style={{ fontFamily: GS, fontWeight: 700, fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase", color: C.salmon, marginBottom: 24 }}>Contacto direto</p>
 
               {[
-                { icon: <IconWhatsApp size={22} />, label: "+351 934 680 300",        sub: "Respondemos em 24 horas", href: "https://wa.me/351934680300",     color: "#25D366" },
-                { icon: <IconEmail    size={22} />, label: "info@floresabeirario.pt", sub: "Resposta em 72 horas",   href: "mailto:info@floresabeirario.pt", color: C.salmonLight },
+                { icon: <IconWhatsApp size={22} />, label: PHONE_DISPLAY,  sub: "Respondemos em 24 horas", href: WA_URL,                  color: "#25D366" },
+                { icon: <IconEmail    size={22} />, label: EMAIL,          sub: "Resposta em 72 horas",   href: `mailto:${EMAIL}`,       color: C.salmonLight },
               ].map((item, i) => (
                 <a
                   key={i}

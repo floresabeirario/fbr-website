@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { FlagPT, FlagEN, IconWhatsApp } from "./Icons";
 import { NAV_PRESERVACAO, NAV_MOMENTOS, NAV_RIGHT } from "../_lib/data/navigation";
-import { FORM_URL } from "../_lib/constants";
+import { FORM_URL, WA_URL } from "../_lib/constants";
 
 // ── Cores do botão CTA por página ───────────────────────
 const PAGE_COLORS = {
@@ -229,14 +229,13 @@ const MobileAccordion = ({ menu, onClose, delay, icon }) => {
             <a
               href={menu.href}
               onClick={onClose}
+              className="nav-mobile-accordion-all"
               style={{
                 display: "block", color: "rgba(139,168,136,0.7)", textDecoration: "none",
                 fontSize: "0.72rem", fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
                 fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase",
                 padding: "2px 28px 14px 62px", transition: "color 0.18s",
               }}
-              onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
-              onMouseLeave={e => e.currentTarget.style.color = "rgba(139,168,136,0.7)"}
             >
               Ver tudo
             </a>
@@ -245,6 +244,7 @@ const MobileAccordion = ({ menu, onClose, delay, icon }) => {
                 key={i}
                 href={item.href}
                 onClick={onClose}
+                className="nav-mobile-accordion-item"
                 style={{
                   display: "block", color: "rgba(250,247,240,0.5)", textDecoration: "none",
                   fontSize: "0.93rem", fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
@@ -252,8 +252,6 @@ const MobileAccordion = ({ menu, onClose, delay, icon }) => {
                   borderTop: "1px solid rgba(250,247,240,0.04)",
                   transition: "color 0.15s, background 0.15s",
                 }}
-                onMouseEnter={e => { e.currentTarget.style.color = "#FAF7F0"; e.currentTarget.style.background = "rgba(250,247,240,0.03)"; }}
-                onMouseLeave={e => { e.currentTarget.style.color = "rgba(250,247,240,0.5)"; e.currentTarget.style.background = "none"; }}
               >
                 {item.name}
               </a>
@@ -527,6 +525,7 @@ export default function NavClient() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: item.delay, duration: 0.24 }}
+                    className="nav-mobile-link"
                     style={{
                       display: "flex", alignItems: "center", gap: "14px",
                       color: "#FAF7F0", textDecoration: "none",
@@ -534,8 +533,6 @@ export default function NavClient() {
                       borderBottom: "1px solid rgba(250,247,240,0.07)",
                       transition: "color 0.18s",
                     }}
-                    onMouseEnter={e => e.currentTarget.style.color = "#8BA888"}
-                    onMouseLeave={e => e.currentTarget.style.color = "#FAF7F0"}
                   >
                     <span style={{ color: "rgba(250,247,240,0.35)", flexShrink: 0, display: "flex" }}>
                       {item.icon}
@@ -580,7 +577,7 @@ export default function NavClient() {
                   Reservar Data
                 </a>
                 <a
-                  href="https://wa.me/351934680300"
+                  href={WA_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsOpen(false)}
@@ -610,8 +607,7 @@ export default function NavClient() {
                     fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase",
                     display: "flex", alignItems: "center", textDecoration: "none",
                   }}
-                    onMouseEnter={e => e.currentTarget.style.color = "#FAF7F0"}
-                    onMouseLeave={e => e.currentTarget.style.color = "rgba(250,247,240,0.28)"}
+                    className="nav-mobile-lang"
                   >
                     EN <FlagEN />
                   </a>

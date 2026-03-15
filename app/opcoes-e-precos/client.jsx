@@ -3,6 +3,8 @@
 import { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 
+import { FORM_URL, TRACKING_URL } from "../_lib/constants";
+
 const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
 const VERDE_CLARO = "#8BA888";
 
@@ -423,7 +425,7 @@ export default function OpcoesClient() {
                 </svg>
                 <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.82rem", color: "rgba(250,247,240,0.45)", margin: 0 }}>Já encomendou? Acompanhe o estado da sua peça em tempo real.</p>
               </div>
-              <a href="https://status.floresabeirario.pt" target="_blank" rel="noopener noreferrer"
+              <a href={TRACKING_URL} target="_blank" rel="noopener noreferrer"
                 style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#8BA888", fontFamily: GS, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = "0.65"; }} onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}>
                 Ver estado
@@ -521,7 +523,7 @@ export default function OpcoesClient() {
               <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(250,247,240,0.65)", margin: "0 0 32px" }}>
                 Materiais premium que preservam as suas flores durante décadas.
               </p>
-              <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
+              <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
                 style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "16px 48px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "54px" }}
                 onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }} onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
                 Reservar a Minha Data
@@ -543,7 +545,7 @@ export default function OpcoesClient() {
               Reserve a sua data o mais cedo possível. As vagas são limitadas e os bouquets devem ser enviados dentro de poucos dias após o evento.
             </p>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-              <a href="https://wkf.ms/3RfoNAc" target="_blank" rel="noopener noreferrer"
+              <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
                 style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "56px" }}
                 onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }} onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
                 Reservar Data

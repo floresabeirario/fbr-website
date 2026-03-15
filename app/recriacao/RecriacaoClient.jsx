@@ -3,6 +3,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { WA_URL_RECRIACAO } from "../_lib/constants";
 
 // SVG Decorativos
 
@@ -144,8 +145,8 @@ export default function RecriacaoClient() {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const textOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
 
-  const whatsappUrl = `https://wa.me/351934680300?text=${encodeURIComponent("Olá! Gostaria que recriassem num quadro o seguinte bouquet. Envio fotografias em anexo.")}`;
-  const whatsappUrlRecriacao = `https://wa.me/351934680300?text=${encodeURIComponent("Olá! Gostaria que recriassem num quadro o seguinte bouquet. Envio fotografias em anexo.")}`;
+  const whatsappUrl = WA_URL_RECRIACAO;
+  const whatsappUrlRecriacao = WA_URL_RECRIACAO;
 
   const steps = [
     {

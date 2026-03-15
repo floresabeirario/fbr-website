@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { FORM_URL_VALE, WA_URL } from "../_lib/constants";
+import { FORM_URL_VALE, WA_URL, WA_URL_VALE } from "../_lib/constants";
 
 // ─── Reveal ───────────────────────────────────────────────────────────────────
 function Reveal({ children, delay = 0, style, className }) {
@@ -73,7 +73,7 @@ const condicoesCartao = [
 ];
 
 // ─── WA URL específico para vale ─────────────────────────────────────────────
-const WA_VALE = "https://wa.me/351934680300?text=" + encodeURIComponent("Olá! Gostaria de saber mais sobre o vale oferta de preservação de flores.");
+const WA_VALE = WA_URL_VALE;
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function OfereceClient() {

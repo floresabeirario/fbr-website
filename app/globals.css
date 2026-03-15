@@ -371,6 +371,35 @@ button:focus-visible {
 }
 .text-link:hover { border-color: var(--green); }
 
+/* ── Footer: hover states (substitui onMouseEnter/Leave) ──── */
+.footer-nav-link:hover,
+.footer-nav-link:focus-visible { color: var(--cream) !important; }
+
+.footer-social-icon:hover,
+.footer-social-icon:focus-visible { color: var(--cream) !important; }
+
+.footer-wa-btn:hover,
+.footer-wa-btn:focus-visible {
+  background-color: #1da851 !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ── Nav mobile: hover states (substitui onMouseEnter/Leave) ── */
+.nav-mobile-link:hover,
+.nav-mobile-link:focus-visible { color: var(--green-l) !important; }
+
+.nav-mobile-accordion-all:hover,
+.nav-mobile-accordion-all:focus-visible { color: var(--green-l) !important; }
+
+.nav-mobile-accordion-item:hover,
+.nav-mobile-accordion-item:focus-visible {
+  color: var(--cream) !important;
+  background: rgba(250,247,240,0.03) !important;
+}
+
+.nav-mobile-lang:hover,
+.nav-mobile-lang:focus-visible { color: var(--cream) !important; }
+
 /* ── Font face ─────────────────────────────────────────── */
 @font-face {
   font-family: 'TAN-MEMORIES';

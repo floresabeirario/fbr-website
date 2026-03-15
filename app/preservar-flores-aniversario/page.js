@@ -1,7 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
-const F = "https://wkf.ms/3RfoNAc";
-const W = "https://wa.me/351934680300";
+import { FORM_URL, WA_URL } from "../_lib/constants";
+const F = FORM_URL;
+const W = WA_URL;
 export default function Page() {
   return (
     <main style={{ backgroundColor: "#FAF7F0", minHeight: "100vh" }}>
