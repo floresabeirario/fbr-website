@@ -1,134 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FORM_URL, WA_URL, PHONE, EMAIL } from "../_lib/constants";
+import { FORM_URL, WA_URL } from "../_lib/constants";
+import PageHero from "../_components/PageHero";
+import SubCard, { SUBPAGES } from "./SubCard";
 import "./PreservacaoDeFloresClient.css";
-
-// ─── Schema SEO ───────────────────────────────────────────────────────────────
-const Schema = () => (
-  <script
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{
-      __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Service",
-        name: "Preservação de Flores — Flores à Beira-Rio",
-        description:
-          "Preservação botânica artesanal de flores com valor emocional. Bouquets de casamento, flores de batizado e homenagem transformados em quadros de arte com vidro museu anti-UV. Atelier em Coimbra, enviamos para toda a Europa.",
-        provider: {
-          "@type": "LocalBusiness",
-          name: "Flores à Beira-Rio",
-          url: "https://floresabeirario.pt",
-          image: "https://floresabeirario.pt/logo.webp",
-          telephone: PHONE,
-          email: EMAIL,
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Coimbra",
-            addressCountry: "PT",
-          },
-        },
-        areaServed: "PT",
-        serviceType: "Preservação de Flores",
-        offers: {
-          "@type": "AggregateOffer",
-          priceCurrency: "EUR",
-          lowPrice: "300",
-          highPrice: "500",
-          offerCount: "3",
-        },
-        hasOfferCatalog: {
-          "@type": "OfferCatalog",
-          name: "Quadros de Flores Preservadas",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "Quadro 30×40 cm",
-                description: "Preservação botânica com vidro museu UltraVue® anti-UV, moldura à medida.",
-              },
-              price: "300",
-              priceCurrency: "EUR",
-            },
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "Quadro 40×50 cm",
-                description: "Preservação botânica com vidro museu UltraVue® anti-UV, moldura à medida.",
-              },
-              price: "400",
-              priceCurrency: "EUR",
-            },
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "Quadro 50×70 cm",
-                description: "Preservação botânica com vidro museu UltraVue® anti-UV, moldura à medida.",
-              },
-              price: "500",
-              priceCurrency: "EUR",
-            },
-          ],
-        },
-        mainEntityOfPage: {
-          "@type": "WebPage",
-          "@id": "https://floresabeirario.pt/preservacao-de-flores",
-        },
-      }),
-    }}
-  />
-);
-
-// ─── Dados das 4 subpáginas ───────────────────────────────────────────────────
-const SUBPAGES = [
-  {
-    href: "/opcoes-e-precos",
-    tag: "Tamanhos e valores",
-    title: "Opções e Preços",
-    desc: "Quadros a partir de 300€. Três tamanhos, quatro tipos de fundo e extras personalizados. Vidro museu UltraVue® anti-UV incluído em todas as peças.",
-    img: "/fotoquadro1.webp",
-    imgAlt: "Quadro de flores prensadas com vidro museu — Opções e Preços",
-    cta: "Ver tamanhos e preços",
-    accent: "#8BA888",
-    n: "01",
-  },
-  {
-    href: "/como-funciona",
-    tag: "O processo completo",
-    title: "Como Funciona",
-    desc: "Cinco passos desde a reserva até ao quadro emoldurado em casa. Pagamento em três prestações e composição aprovada por si antes de selar.",
-    img: "/prensa.webp",
-    imgAlt: "Processo de prensagem botânica artesanal — Como Funciona",
-    cta: "Ver o processo",
-    accent: "#C8522A",
-    n: "02",
-  },
-  {
-    href: "/sustentabilidade",
-    tag: "Os nossos valores",
-    title: "Sustentabilidade",
-    desc: "Prensagem 100% natural, sem resinas petroquímicas nem sílica industrial. Embalagem artesanal feita pela APCC Coimbra. Materiais de conservação museu.",
-    img: "/ines1.webp",
-    imgAlt: "Preservação botânica sustentável — Flores à Beira-Rio Coimbra",
-    cta: "Conhecer os valores",
-    accent: "#3D6B5E",
-    n: "03",
-  },
-  {
-    href: "/emoldurar-flores-secas",
-    tag: "Ramo já seco",
-    title: "Emoldurar Flores Já Secas",
-    desc: "O seu bouquet já secou? Emolduramos ramos secos, combinamos originais com réplicas ou recriamos o ramo com flores frescas para que nada se perca.",
-    img: "/quadrovidrosobrevidro.webp",
-    imgAlt: "Emoldurar ramo de flores secas — bouquet de noiva já seco",
-    cta: "Saber mais",
-    accent: "#1B4B6B",
-    n: "04",
-  },
-];
 
 // ─── Trust signals ────────────────────────────────────────────────────────────
 const MOTIVOS = [
@@ -168,106 +44,52 @@ const OCASIOES = [
   { label: "Oferta especial", desc: "Vale presente para quem vai casar ou celebrar.", href: "/opcoes-e-precos" },
 ];
 
-// ─── Arrow SVG ────────────────────────────────────────────────────────────────
-const Arrow = ({ color = "#FAF7F0" }) => (
-  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path d="M3 8h10M9 4l4 4-4 4" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-// ─── Card subpágina ───────────────────────────────────────────────────────────
-const SubCard = ({ item, index }) => (
-  <motion.article
-    initial={{ opacity: 0, y: 24 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-6%" }}
-    transition={{ duration: 0.7, delay: (index % 2) * 0.1, ease: [0.16, 1, 0.3, 1] }}
-  >
-    <a
-      href={item.href}
-      style={{ display: "block", textDecoration: "none", borderRadius: "20px", overflow: "hidden", boxShadow: "0 8px 40px rgba(0,0,0,0.12)" }}
-      aria-label={`${item.title} — ${item.desc}`}
-    >
-      <div style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden" }}>
-        <img
-          src={item.img}
-          alt={item.imgAlt}
-          loading="lazy"
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.7s ease" }}
-          className="subcard-img"
-        />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,18,14,0.85) 0%, rgba(10,18,14,0.3) 55%, transparent 100%)" }} aria-hidden="true" />
-
-        <div style={{ position: "absolute", top: "16px", left: "16px", backgroundColor: item.accent, color: "#FAF7F0", borderRadius: "50px", padding: "4px 13px", display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.68rem", lineHeight: 1 }}>{item.n}</span>
-          <span style={{ fontSize: "0.52rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", opacity: 0.85 }}>{item.tag}</span>
-        </div>
-
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "clamp(20px,3vw,28px)" }}>
-          <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem,3.5vw,2rem)", color: "#FAF7F0", margin: "0 0 8px", lineHeight: 1.1, textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}>
-            {item.title}
-          </h2>
-          <p style={{ color: "rgba(250,247,240,0.82)", fontSize: "clamp(0.82rem,1.5vw,0.92rem)", lineHeight: 1.65, margin: "0 0 14px", fontFamily: "Roboto, sans-serif", maxWidth: "420px" }}>
-            {item.desc}
-          </p>
-          <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", backgroundColor: item.accent, color: "#FAF7F0", padding: "9px 18px", borderRadius: "100px", fontSize: "0.68rem", fontWeight: 600, letterSpacing: "1.2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif" }}>
-            {item.cta}
-            <Arrow />
-          </span>
-        </div>
-      </div>
-    </a>
-  </motion.article>
-);
-
 // ─── Componente principal ─────────────────────────────────────────────────────
 export default function PreservacaoDeFloresClient() {
   return (
     <>
-      <Schema />
 
       <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
 
         {/* ══ HERO ══════════════════════════════════════════════════════════════ */}
-        <section className="hero-pf" aria-label="Preservação de flores, arte botânica artesanal">
-          <div className="hero-pf-bg">
-            <img
-              src="/joanaceu.webp"
-              alt="Quadro de flores preservadas — Flores à Beira-Rio, Coimbra"
-              fetchPriority="high"
-            />
-          </div>
-          <div className="hero-pf-text">
-            <motion.div
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-              style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}
-            >
-              <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.5)", fontFamily: "Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700 }}>
-                Arte Botânica Artesanal · Coimbra
-              </p>
-              <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.6rem,7vw,5.2rem)", lineHeight: 1.03, color: "#FAF7F0", margin: "0 0 clamp(1rem,2.5vw,1.6rem)", textShadow: "0 2px 20px rgba(0,0,0,0.6)" }}>
-                Preservação de<br />
-                <em style={{ fontStyle: "italic", color: "#D4956A" }}>Flores</em>
-              </h1>
-              <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.88, maxWidth: "480px", color: "rgba(250,247,240,0.86)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)", textShadow: "0 1px 12px rgba(0,0,0,0.5)", fontFamily: "Roboto, sans-serif" }}>
-                Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Bouquets de casamento, flores de batizado, homenagens, cada peça é única, feita à mão e emoldurada profissionalmente com vidro museu.
-              </p>
-              <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px", fontSize: "0.8rem" }}>
-                {[
-                  { href: "/opcoes-e-precos", label: "Preços", color: "#8BA888" },
-                  { href: "/como-funciona", label: "Como funciona", color: "#C8522A" },
-                  { href: "/emoldurar-flores-secas", label: "Flores já secas", color: "#5A8FA8" },
-                ].map((l, i) => (
-                  <a key={i} href={l.href} style={{ color: l.color, fontWeight: 600, textDecoration: "none", borderBottom: `1px solid ${l.color}55`, paddingBottom: "1px", fontFamily: "Roboto, sans-serif", transition: "border-color 0.2s" }}>
-                    {l.label}
-                  </a>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
+        <PageHero
+          src="/joanaceu.webp"
+          imgAlt="Quadro de flores preservadas — Flores à Beira-Rio, Coimbra"
+          imgFetchPriority="high"
+          gradient="linear-gradient(to top, rgba(35,15,5,0.82) 0%, rgba(35,15,5,0.55) 50%, rgba(35,15,5,0.18) 100%)"
+          centered
+          ariaLabel="Preservação de flores, arte botânica artesanal"
+          textPadding="clamp(110px,14vw,160px) clamp(24px,5vw,72px)"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}
+          >
+            <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.5)", fontFamily: "Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700 }}>
+              Arte Botânica Artesanal · Coimbra
+            </p>
+            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.6rem,7vw,5.2rem)", lineHeight: 1.03, color: "#FAF7F0", margin: "0 0 clamp(1rem,2.5vw,1.6rem)", textShadow: "0 2px 20px rgba(0,0,0,0.6)" }}>
+              Preservação de<br />
+              <em style={{ fontStyle: "italic", color: "#D4956A" }}>Flores</em>
+            </h1>
+            <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.88, maxWidth: "480px", color: "rgba(250,247,240,0.86)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)", textShadow: "0 1px 12px rgba(0,0,0,0.5)", fontFamily: "Roboto, sans-serif" }}>
+              Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Bouquets de casamento, flores de batizado, homenagens, cada peça é única, feita à mão e emoldurada profissionalmente com vidro museu.
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px", fontSize: "0.8rem" }}>
+              {[
+                { href: "/opcoes-e-precos", label: "Preços", color: "#8BA888" },
+                { href: "/como-funciona", label: "Como funciona", color: "#C8522A" },
+                { href: "/emoldurar-flores-secas", label: "Flores já secas", color: "#5A8FA8" },
+              ].map((l, i) => (
+                <a key={i} href={l.href} style={{ color: l.color, fontWeight: 600, textDecoration: "none", borderBottom: `1px solid ${l.color}55`, paddingBottom: "1px", fontFamily: "Roboto, sans-serif", transition: "border-color 0.2s" }}>
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        </PageHero>
 
         {/* ══ INTRO TEXTO SEO ════════════════════════════════════════════════════ */}
         <section

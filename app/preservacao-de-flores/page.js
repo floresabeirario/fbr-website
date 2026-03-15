@@ -2,6 +2,65 @@
 // Server Component — NÃO tem "use client"
 
 import PreservacaoDeFloresClient from "./PreservacaoDeFloresClient";
+import { PHONE, EMAIL } from "../_lib/constants";
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Preservação de Flores — Flores à Beira-Rio",
+  description:
+    "Preservação botânica artesanal de flores com valor emocional. Bouquets de casamento, flores de batizado e homenagem transformados em quadros de arte com vidro museu anti-UV. Atelier em Coimbra, enviamos para toda a Europa.",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Flores à Beira-Rio",
+    url: "https://floresabeirario.pt",
+    image: "https://floresabeirario.pt/logo.webp",
+    telephone: PHONE,
+    email: EMAIL,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Coimbra",
+      addressCountry: "PT",
+    },
+  },
+  areaServed: "PT",
+  serviceType: "Preservação de Flores",
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "EUR",
+    lowPrice: "300",
+    highPrice: "500",
+    offerCount: "3",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Quadros de Flores Preservadas",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Quadro 30×40 cm", description: "Preservação botânica com vidro museu UltraVue® anti-UV, moldura à medida." },
+        price: "300",
+        priceCurrency: "EUR",
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Quadro 40×50 cm", description: "Preservação botânica com vidro museu UltraVue® anti-UV, moldura à medida." },
+        price: "400",
+        priceCurrency: "EUR",
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Quadro 50×70 cm", description: "Preservação botânica com vidro museu UltraVue® anti-UV, moldura à medida." },
+        price: "500",
+        priceCurrency: "EUR",
+      },
+    ],
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": "https://floresabeirario.pt/preservacao-de-flores",
+  },
+};
 
 export const metadata = {
   title: "Preservação de Flores | Flores à Beira-Rio — Arte Botânica em Coimbra",
@@ -52,5 +111,13 @@ export const metadata = {
 };
 
 export default function PreservacaoDeFloresPage() {
-  return <PreservacaoDeFloresClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+      <PreservacaoDeFloresClient />
+    </>
+  );
 }

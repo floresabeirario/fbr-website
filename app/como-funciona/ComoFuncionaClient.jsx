@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FORM_URL, WA_URL } from "../_lib/constants";
+import PageHero from "../_components/PageHero";
 import "./ComoFuncionaClient.css";
 
 // ─── HowTo Schema ─────────────────────────────────────────────────────────────
@@ -214,27 +215,25 @@ export default function ComoFuncionaClient() {
       <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
 
         {/* HERO com fotoquadrocloseup2.webp */}
-        <section className="hero-layout" aria-label="Como funciona a preservação de flores">
-          <div className="hero-foto-bg">
-            <img src="/fotoquadrocloseup2.webp" alt="" aria-hidden="true" />
-          </div>
-
-          <div className="hero-text-col">
-            <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
-              <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(255,190,130,0.7)", fontFamily: "Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700, display: "block", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>O nosso processo</p>
-              <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.05, color: "#FAF7F0", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)", textShadow: "0 2px 16px rgba(0,0,0,0.6)" }}>
-                Da flor fresca<br />
-                <em style={{ fontStyle: "italic", color: "#FF8A50" }}>ao quadro para sempre</em>
-              </h1>
-              <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)", textShadow: "0 1px 10px rgba(0,0,0,0.55)" }}>
-                Cinco passos para transformar as suas flores numa obra de arte botânica que dura décadas, explicados com toda a transparência.
-              </p>
-              <div className="cta-row-hero">
-                <a href="/perguntas-frequentes" className="btn-outline-hero">Ver Perguntas Frequentes</a>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+        <PageHero
+          src="/fotoquadrocloseup2.webp"
+          gradient="linear-gradient(to top, rgba(35,15,5,0.88) 0%, rgba(35,15,5,0.55) 45%, rgba(35,15,5,0.15) 100%)"
+          ariaLabel="Como funciona a preservação de flores"
+        >
+          <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
+            <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(255,190,130,0.7)", fontFamily: "Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700, display: "block", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>O nosso processo</p>
+            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.05, color: "#FAF7F0", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)", textShadow: "0 2px 16px rgba(0,0,0,0.6)" }}>
+              Da flor fresca<br />
+              <em style={{ fontStyle: "italic", color: "#FF8A50" }}>ao quadro para sempre</em>
+            </h1>
+            <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)", textShadow: "0 1px 10px rgba(0,0,0,0.55)" }}>
+              Cinco passos para transformar as suas flores numa obra de arte botânica que dura décadas, explicados com toda a transparência.
+            </p>
+            <div className="cta-row-hero">
+              <a href="/perguntas-frequentes" className="btn-outline-hero">Ver Perguntas Frequentes</a>
+            </div>
+          </motion.div>
+        </PageHero>
 
         {/* STEPS */}
         <section aria-label="Os cinco passos da preservação" style={{ padding: "clamp(60px,10vw,110px) clamp(20px,5vw,64px)" }}>

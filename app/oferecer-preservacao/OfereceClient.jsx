@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FORM_URL_VALE, WA_URL, WA_URL_VALE } from "../_lib/constants";
+import PageHero from "../_components/PageHero";
 import "./OfereceClient.css";
 
 // ─── Reveal ───────────────────────────────────────────────────────────────────
@@ -82,28 +83,27 @@ export default function OfereceClient() {
     <main style={{ backgroundColor: CREME, fontFamily: "'Google Sans', sans-serif", color: ESCURO, overflowX: "hidden" }}>
 
       {/* HERO com foto vale1.webp de fundo */}
-      <section className="hero-layout">
-        <div className="hero-foto-bg">
-          <img src="/vale1.webp" alt="" aria-hidden="true" />
-        </div>
-
-        <div className="hero-text-col">
-          <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
-            <Eyebrow light>Um presente com alma</Eyebrow>
-            <h1 className="hero-titulo" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: CREME, margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)" }}>
-              Ofereça uma memória<br />
-              <em style={{ fontStyle: "italic", color: AZUL_CLR }}>que dura para sempre</em>
-            </h1>
-            <p className="hero-texto" style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto clamp(1.8rem, 3.5vw, 2.8rem)" }}>
-              O vale oferta da Flores à Beira-Rio permite oferecer a preservação de flores num quadro emoldurado, tornando-se na prenda perfeita para qualquer ocasião.
-            </p>
-            <div className="cta-row-vale" style={{ marginBottom: "1.4rem", justifyContent: "center" }}>
-              <a href={FORM_URL_VALE} target="_blank" rel="noopener noreferrer" className="btn-primary-vale">Encomendar Vale Oferta</a>
-            </div>
-            <p style={{ fontSize: "0.78rem", color: "rgba(250,247,240,0.5)", letterSpacing: "0.05em" }}>A partir de 300€ · Sem data de validade · Entrega digital gratuita</p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        src="/vale1.webp"
+        imgPosition="center bottom"
+        gradient="linear-gradient(to top, rgba(10,20,16,0.88) 0%, rgba(10,20,16,0.55) 45%, rgba(10,20,16,0.15) 100%)"
+        ariaLabel="Oferecer preservação de flores — Vale Oferta"
+      >
+        <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
+          <Eyebrow light>Um presente com alma</Eyebrow>
+          <h1 className="hero-titulo" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: CREME, margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)" }}>
+            Ofereça uma memória<br />
+            <em style={{ fontStyle: "italic", color: AZUL_CLR }}>que dura para sempre</em>
+          </h1>
+          <p className="hero-texto" style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto clamp(1.8rem, 3.5vw, 2.8rem)" }}>
+            O vale oferta da Flores à Beira-Rio permite oferecer a preservação de flores num quadro emoldurado, tornando-se na prenda perfeita para qualquer ocasião.
+          </p>
+          <div className="cta-row-vale" style={{ marginBottom: "1.4rem", justifyContent: "center" }}>
+            <a href={FORM_URL_VALE} target="_blank" rel="noopener noreferrer" className="btn-primary-vale">Encomendar Vale Oferta</a>
+          </div>
+          <p style={{ fontSize: "0.78rem", color: "rgba(250,247,240,0.5)", letterSpacing: "0.05em" }}>A partir de 300€ · Sem data de validade · Entrega digital gratuita</p>
+        </motion.div>
+      </PageHero>
 
       {/* CARTÃO com vale2.webp */}
       <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", maxWidth: "1100px", margin: "0 auto" }}>

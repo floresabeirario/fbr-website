@@ -1,8 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect } from "react";
+import { motion } from "framer-motion";
 import { FORM_URL, WA_URL, PHONE, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "./_lib/constants";
+import HomeHero from "./HomeHero";
+import HomeSteps from "./HomeSteps";
+import BeforeAfterSlider from "./BeforeAfterSlider";
 import "./HomeClient.css";
 
 // ─── JSON-LD ──────────────────────────────────────────────────────────────────
@@ -30,7 +33,7 @@ const StructuredData = () => (
   }} />
 );
 
-// ─── Icons ────────────────────────────────────────────────────────────────────
+// ─── Icons (usados nas secções 4 e 6) ─────────────────────────────────────────
 const IconFlower = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <ellipse cx="12" cy="6.5" rx="2.5" ry="4" /><ellipse cx="12" cy="17.5" rx="2.5" ry="4" />
@@ -45,13 +48,10 @@ const IconFrame = () => (
     <circle cx="12" cy="12" r="2" fill="currentColor" opacity="0.9" />
   </svg>
 );
-// Ícone reutilização — duas setas circulares
 const IconReuse = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M17 2l4 4-4 4" />
-    <path d="M3 11V9a4 4 0 0 1 4-4h14" />
-    <path d="M7 22l-4-4 4-4" />
-    <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+    <path d="M17 2l4 4-4 4" /><path d="M3 11V9a4 4 0 0 1 4-4h14" />
+    <path d="M7 22l-4-4 4-4" /><path d="M21 13v2a4 4 0 0 1-4 4H3" />
   </svg>
 );
 const IconHeart = () => (
@@ -72,161 +72,25 @@ const IconWA = () => (
   </svg>
 );
 
-// ─── Before/After Slider ──────────────────────────────────────────────────────
-const BeforeAfterSlider = () => {
-  const [position, setPosition] = useState(50);
-  const containerRef = useRef(null);
-  const isDragging = useRef(false);
-  const rafRef = useRef(null);
-
-  const applyPosition = useCallback((clientX) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    setPosition((Math.max(0, Math.min(clientX - rect.left, rect.width)) / rect.width) * 100);
-  }, []);
-
-  const onMouseDown = useCallback((e) => { isDragging.current = true; e.preventDefault(); }, []);
-  const onMouseMove = useCallback((e) => {
-    if (!isDragging.current) return;
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    rafRef.current = requestAnimationFrame(() => applyPosition(e.clientX));
-  }, [applyPosition]);
-  const onMouseUp = useCallback(() => { isDragging.current = false; }, []);
-  const onTouchStart = useCallback(() => { isDragging.current = true; }, []);
-  const onTouchMove = useCallback((e) => {
-    if (!isDragging.current) return;
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    rafRef.current = requestAnimationFrame(() => applyPosition(e.touches[0].clientX));
-  }, [applyPosition]);
-  const onTouchEnd = useCallback(() => { isDragging.current = false; }, []);
-
-  useEffect(() => {
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseup", onMouseUp);
-    window.addEventListener("touchmove", onTouchMove, { passive: true });
-    window.addEventListener("touchend", onTouchEnd);
-    return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onMouseUp);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchend", onTouchEnd);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, [onMouseMove, onMouseUp, onTouchMove, onTouchEnd]);
-
-  return (
-    <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-      <div ref={containerRef}
-        style={{ position: "relative", width: "100%", maxWidth: "760px", margin: "0 auto", aspectRatio: "4/3", borderRadius: "20px", overflow: "hidden", cursor: "ew-resize", userSelect: "none", WebkitUserSelect: "none", touchAction: "none", boxShadow: "0 24px 64px rgba(30,45,42,0.16)" }}
-        onMouseDown={onMouseDown} onTouchStart={onTouchStart}
-      >
-        <img src="/quadro.webp" alt="Quadro de flores preservadas — depois" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} draggable={false} />
-        <div style={{ position: "absolute", inset: 0, clipPath: `inset(0 ${100 - position}% 0 0)`, willChange: "clip-path" }}>
-          <img src="/ramo.webp" alt="Ramo de flores — antes" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} draggable={false} />
-        </div>
-        <div style={{ position: "absolute", top: "16px", left: "16px", backgroundColor: "rgba(30,45,42,0.72)", color: "#FAF7F0", padding: "5px 14px", borderRadius: "50px", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", backdropFilter: "blur(6px)", opacity: position > 12 ? 1 : 0, transition: "opacity 0.2s", pointerEvents: "none" }}>Antes</div>
-        <div style={{ position: "absolute", top: "16px", right: "16px", backgroundColor: "rgba(61,107,94,0.8)", color: "#FAF7F0", padding: "5px 14px", borderRadius: "50px", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", backdropFilter: "blur(6px)", opacity: position < 88 ? 1 : 0, transition: "opacity 0.2s", pointerEvents: "none" }}>Depois</div>
-        <div style={{ position: "absolute", top: 0, bottom: 0, left: `${position}%`, transform: "translateX(-50%)", width: "2px", background: "rgba(250,247,240,0.9)", pointerEvents: "none", willChange: "left" }} />
-        <div style={{ position: "absolute", top: "50%", left: `${position}%`, transform: "translate(-50%, -50%)", width: "46px", height: "46px", borderRadius: "50%", backgroundColor: "#FAF7F0", boxShadow: "0 4px 20px rgba(0,0,0,0.28)", display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none", willChange: "left" }}>
-          <svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="#3D6B5E" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <line x1="0" y1="7" x2="22" y2="7" /><polyline points="5,1 0,7 5,13" /><polyline points="17,1 22,7 17,13" />
-          </svg>
-        </div>
-        <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", backgroundColor: "rgba(0,0,0,0.42)", color: "#FAF7F0", padding: "4px 14px", borderRadius: "50px", fontSize: "0.68rem", fontWeight: "600", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", backdropFilter: "blur(4px)", pointerEvents: "none", whiteSpace: "nowrap" }}>
-          Arraste para comparar
-        </div>
-      </div>
-    </motion.div>
-  );
-};
+const apccItems = [
+  { icon: <IconReuse />, title: "Pensado para reutilizar", desc: "O saco protege o quadro e pode depois ser usado para guardar roupa, coisas de praia, o que couber." },
+  { icon: <IconHeart />, title: "Trabalho com valor social", desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da APCC." },
+  { icon: <IconLeaf />, title: "Arte consciente e local", desc: "Artesanato português, embalagem sem desperdício, flores preservadas para durar décadas." },
+];
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function HomeClient() {
-  const { scrollY } = useScroll();
-  const titleOpacity = useTransform(scrollY, [0, 200], [1, 0]);
-  const titleY = useTransform(scrollY, [0, 200], [0, -55]);
-
   useEffect(() => {
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
   }, []);
 
-  const steps = [
-    { number: "01", title: "Reserve a sua data", desc: "Preencha o formulário de reserva para garantir a sua vaga com antecedência. As vagas são limitadas.", imageSrc: "/calendario.webp" },
-    { number: "02", title: "Entregue as flores", desc: "Entrega em mãos em Coimbra, envio por correio ou recolha no local do evento.", imageSrc: "/ramojoana.webp" },
-    { number: "03", title: "Recebe a sua obra de arte", desc: "Após aprovação da composição, o quadro é emoldurado e entregue.", imageSrc: "/joanaceu.webp" },
-  ];
-
-  const apccItems = [
-    { icon: <IconReuse />, title: "Pensado para reutilizar", desc: "O saco protege o quadro e pode depois ser usado para guardar roupa, coisas de praia, o que couber." },
-    { icon: <IconHeart />, title: "Trabalho com valor social", desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da APCC." },
-    { icon: <IconLeaf />, title: "Arte consciente e local", desc: "Artesanato português, embalagem sem desperdício, flores preservadas para durar décadas." },
-  ];
-
   return (
     <>
       <StructuredData />
       <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
-        <section aria-label="Flores à Beira-Rio — Preservação de flores de casamento"
-          style={{
-            height: "100dvh",
-            maxHeight: "100dvh",
-            minHeight: "100dvh",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          <video autoPlay loop muted playsInline aria-hidden="true"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-          >
-            <source src="/hero-video.webm" type="video/webm" />
-          </video>
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.2) 0%, rgba(15,30,26,0.5) 60%, rgba(15,30,26,0.82) 100%)" }} />
 
-          {/* Título + subtítulo centrados juntos */}
-          <div style={{
-            position: "absolute",
-            top: 0, left: 0, right: 0, bottom: 0,
-            zIndex: 2,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            textAlign: "center",
-            color: "#FAF7F0",
-            padding: "0 20px",
-          }}>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.8 }}
-              style={{
-                fontSize: "clamp(0.65rem,1.2vw,0.82rem)",
-                letterSpacing: "clamp(3px,1vw,5px)",
-                textTransform: "uppercase",
-                fontWeight: "700",
-                marginBottom: "clamp(10px,2vw,18px)",
-                color: "rgba(250,247,240,0.78)",
-                fontFamily: "'Google Sans', Roboto, sans-serif",
-                margin: "0 0 clamp(10px,2vw,18px)",
-              }}
-            >
-              Especialistas em preservação de flores
-            </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3.2rem, 11vw, 8rem)", lineHeight: 1.15, margin: 0, textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
-            >
-              Flores à<br /><span style={{ whiteSpace: "nowrap" }}>Beira&#8209;Rio</span>
-            </motion.h1>
-          </div>
-
-          {/* Botão — fixo em baixo, independente do título */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.8 }}
-            style={{ position: "absolute", bottom: "clamp(44px,7vh,80px)", left: 0, right: 0, zIndex: 3, display: "flex", justifyContent: "center" }}
-          >
-            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="hero-btn">Reservar Data</a>
-          </motion.div>
-        </section>
+        <HomeHero />
 
         {/* ════ 2. O QUE FAZEMOS + SLIDER ════ */}
         <section aria-label="Serviços de preservação botânica"
@@ -244,78 +108,7 @@ export default function HomeClient() {
           </div>
         </section>
 
-        {/* ════ 3. TRÊS PASSOS — bold, transição azul→verde, mobile-first ════ */}
-        <section aria-label="Como funciona a preservação de flores em 3 passos"
-          style={{ background: "linear-gradient(180deg, #0B1929 0%, #0D1F22 100%)", position: "relative", zIndex: 1 }}
-        >
-          {/* Header da secção */}
-          <div style={{ padding: "56px 20px 40px", textAlign: "center", maxWidth: "800px", margin: "0 auto" }}>
-            <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3.5px", textTransform: "uppercase", color: "#7AADCA", marginBottom: "12px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
-                Do bouquet ao quadro
-              </span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", color: "#FAF7F0", margin: "0 0 12px", lineHeight: 1.1 }}>
-                O seu quadro em três passos
-              </h2>
-              <p style={{ color: "rgba(250,247,240,0.5)", fontSize: "0.9rem", fontFamily: "'Google Sans', Roboto, sans-serif", margin: 0 }}>
-                Um processo simples, com acompanhamento em cada etapa.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Cartões */}
-          <div className="steps-stack">
-            {steps.map((step, i) => (
-              <motion.div
-                key={i}
-                className="step-card"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {/* Foto */}
-                <div className="step-photo">
-                  <img src={step.imageSrc} alt={`Passo ${step.number}: ${step.title}`} loading="lazy" />
-                </div>
-                {/* Conteúdo */}
-                <div className="step-content">
-                  <span className="step-number" aria-hidden="true">{step.number}</span>
-                  <h3 className="step-title">{step.title}</h3>
-                  <p className="step-desc">{step.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Botões — Como Funciona | Reservar | Perguntas */}
-          <div style={{ padding: "32px 20px 56px" }}>
-            <div className="steps-buttons">
-              <a href="/como-funciona"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(90deg, rgba(58,111,191,0.18) 0%, rgba(46,138,114,0.18) 100%)", border: "1.5px solid rgba(100,175,200,0.35)", color: "rgba(250,247,240,0.88)", padding: "0 28px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", transition: "all 0.3s ease", whiteSpace: "nowrap" }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "linear-gradient(90deg, rgba(58,111,191,0.32) 0%, rgba(46,138,114,0.32) 100%)"; e.currentTarget.style.borderColor = "rgba(100,175,200,0.7)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = "linear-gradient(90deg, rgba(58,111,191,0.18) 0%, rgba(46,138,114,0.18) 100%)"; e.currentTarget.style.borderColor = "rgba(100,175,200,0.35)"; e.currentTarget.style.transform = "translateY(0)"; }}
-              >
-                Como Funciona
-              </a>
-              <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
-                className="steps-btn-reservar"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(90deg, #3A6FBF 0%, #2E8A72 100%)", color: "#FAF7F0", padding: "0 36px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "700", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", transition: "all 0.3s ease", boxShadow: "0 6px 28px rgba(46,138,114,0.35)", whiteSpace: "nowrap" }}
-                onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.88"; e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 10px 32px rgba(46,138,114,0.5)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 6px 28px rgba(46,138,114,0.35)"; }}
-              >
-                Reservar a Minha Data
-              </a>
-              <a href="/perguntas-frequentes"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(90deg, rgba(58,111,191,0.18) 0%, rgba(46,138,114,0.18) 100%)", border: "1.5px solid rgba(100,175,200,0.35)", color: "rgba(250,247,240,0.88)", padding: "0 28px", height: "52px", borderRadius: "100px", textDecoration: "none", fontWeight: "600", fontSize: "0.82rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", transition: "all 0.3s ease", whiteSpace: "nowrap" }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "linear-gradient(90deg, rgba(58,111,191,0.32) 0%, rgba(46,138,114,0.32) 100%)"; e.currentTarget.style.borderColor = "rgba(100,175,200,0.7)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = "linear-gradient(90deg, rgba(58,111,191,0.18) 0%, rgba(46,138,114,0.18) 100%)"; e.currentTarget.style.borderColor = "rgba(100,175,200,0.35)"; e.currentTarget.style.transform = "translateY(0)"; }}
-              >
-                Perguntas Frequentes
-              </a>
-            </div>
-          </div>
-        </section>
+        <HomeSteps />
 
         {/* ════ 4. TRACKING ════ */}
         <section aria-label="Acompanhe a sua encomenda em tempo real"
@@ -488,20 +281,10 @@ export default function HomeClient() {
         {/* ════ 8. CTA SPLIT ════ */}
         <div className="cta-split">
 
-          {/* Apoio personalizado — gradiente slate profundo */}
+          {/* Apoio personalizado */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            style={{
-              background: "linear-gradient(135deg, #0F1923 0%, #1C2E3A 40%, #243545 75%, #2E4255 100%)",
-              padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)",
-              textAlign: "center",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              position: "relative", overflow: "hidden",
-              minHeight: "480px",
-            }}
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
+            style={{ background: "linear-gradient(135deg, #0F1923 0%, #1C2E3A 40%, #243545 75%, #2E4255 100%)", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
           >
             <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.08, backgroundImage: `radial-gradient(circle at 20% 80%, rgba(100,180,220,0.5) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(60,140,180,0.3) 0%, transparent 55%)`, pointerEvents: "none" }} />
             <div style={{ maxWidth: "440px", margin: "0 auto", width: "100%", position: "relative", zIndex: 1 }}>
@@ -526,12 +309,9 @@ export default function HomeClient() {
             </div>
           </motion.div>
 
-          {/* Vai casar em breve — foto noiva, botão com mesmo estilo ghost */}
+          {/* Vai casar em breve */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.1 }}
             style={{ position: "relative", overflow: "hidden", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", minHeight: "480px", display: "flex", alignItems: "center", justifyContent: "center" }}
           >
             <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/noiva.webp')", backgroundSize: "cover", backgroundPosition: "center top", filter: "brightness(0.52)" }} />

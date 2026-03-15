@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FORM_URL } from "../_lib/constants";
+import PageHero from "../_components/PageHero";
 import "./SustentabilidadeClient.css";
 
 const Schema = () => (
@@ -217,21 +218,17 @@ export default function Sustentabilidade() {
 
 
         {/* HERO — foto a ecra todo, texto na base */}
-        <section
-          className="hero-sustentabilidade"
-          aria-label="Sustentabilidade e filosofia da Flores a Beira-Rio"
+        <PageHero
+          src="/ines1.webp"
+          gradient="linear-gradient(to top, rgba(10,22,18,0.90) 0%, rgba(10,22,18,0.55) 45%, rgba(10,22,18,0.18) 100%)"
+          ariaLabel="Sustentabilidade e filosofia da Flores a Beira-Rio"
         >
-          <div className="hero-foto-bg">
-            <img src="/ines1.webp" alt="" aria-hidden="true" />
-          </div>
-
-          <div className="hero-text-col">
-            <motion.div
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-              style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}
-            >
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}
+          >
               <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.5)", fontFamily: "Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700 }}>
                 Os nossos valores
               </p>
@@ -253,10 +250,7 @@ export default function Sustentabilidade() {
               </p>
 
             </motion.div>
-          </div>
-
-
-        </section>
+        </PageHero>
 
         {/* FILOSOFIA */}
         <section

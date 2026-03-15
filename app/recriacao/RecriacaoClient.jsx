@@ -4,6 +4,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { WA_URL_RECRIACAO } from "../_lib/constants";
+import PageHero from "../_components/PageHero";
 import "./RecriacaoClient.css";
 
 // SVG Decorativos
@@ -207,16 +208,15 @@ export default function RecriacaoClient() {
 
 
       {/* 1. HERO */}
-      <section
-        ref={heroRef}
-        aria-label="Recriacao de Bouquet de Casamento"
-        className="hero-recriacao"
+      <PageHero
+        src="/sandra2.webp"
+        gradient="linear-gradient(to top, rgba(20,12,4,0.85) 0%, rgba(20,12,4,0.45) 50%, rgba(20,12,4,0.2) 100%)"
+        centered
+        ariaLabel="Recriacao de Bouquet de Casamento"
+        textPadding="clamp(24px,5vw,72px)"
+        textStyle={{ opacity: textOpacity }}
+        sectionRef={heroRef}
       >
-        <div className="hero-recriacao-bg">
-          <img src="/sandra2.webp" alt="" aria-hidden="true" />
-        </div>
-
-        <motion.div className="hero-recriacao-text" style={{ opacity: textOpacity }}>
           <div style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
 
             <motion.p
@@ -253,8 +253,7 @@ export default function RecriacaoClient() {
               </a>
             </motion.div>
           </div>
-        </motion.div>
-      </section>
+      </PageHero>
 
       {/* 2. PASSOS */}
       <section
