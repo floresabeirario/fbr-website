@@ -13,11 +13,47 @@ export function getAllPosts() {
 
   const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".mdx"));
 
-  const posts = files.map((filename) => {
+  const posts = files.reduce((acc, filename) => {
     const slug = filename.replace(/\.mdx$/, "");
     const fullPath = path.join(BLOG_DIR, filename);
+
+    try {
+      const fileContents = fs.readFileSync(fullPath, "utf8");
+      const { data } = matter(fileContents);
+
+      acc.push({
+        slug,
+        title:       data.title       || "Sem título",
+        description: data.description || "",
+        date:        data.date        || "",
+        category:    data.category    || "geral",
+        tags:        data.tags        || [],
+        image:       data.image       || "/fotoquadro1.webp",
+        imageAlt:    data.imageAlt    || data.title || "",
+        author:      data.author      || "Flores à Beira-Rio",
+        readTime:    data.readTime    || "5 min",
+        featured:    data.featured    || false,
+      });
+    } catch (err) {
+      console.error(`[blog] Erro ao ler o ficheiro "${filename}":`, err.message);
+    }
+
+    return acc;
+  }, []);
+
+  // Ordenar do mais recente para o mais antigo
+  return posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
+// ─── Ler um artigo pelo slug (para página individual) ─────────────────────────
+export function getPostBySlug(slug) {
+  const fullPath = path.join(BLOG_DIR, `${slug}.mdx`);
+
+  if (!fs.existsSync(fullPath)) return null;
+
+  try {
     const fileContents = fs.readFileSync(fullPath, "utf8");
-    const { data } = matter(fileContents);
+    const { data, content } = matter(fileContents);
 
     return {
       slug,
@@ -31,36 +67,12 @@ export function getAllPosts() {
       author:      data.author      || "Flores à Beira-Rio",
       readTime:    data.readTime    || "5 min",
       featured:    data.featured    || false,
+      content,
     };
-  });
-
-  // Ordenar do mais recente para o mais antigo
-  return posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-}
-
-// ─── Ler um artigo pelo slug (para página individual) ─────────────────────────
-export function getPostBySlug(slug) {
-  const fullPath = path.join(BLOG_DIR, `${slug}.mdx`);
-
-  if (!fs.existsSync(fullPath)) return null;
-
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
-
-  return {
-    slug,
-    title:       data.title       || "Sem título",
-    description: data.description || "",
-    date:        data.date        || "",
-    category:    data.category    || "geral",
-    tags:        data.tags        || [],
-    image:       data.image       || "/fotoquadro1.webp",
-    imageAlt:    data.imageAlt    || data.title || "",
-    author:      data.author      || "Flores à Beira-Rio",
-    readTime:    data.readTime    || "5 min",
-    featured:    data.featured    || false,
-    content,
-  };
+  } catch (err) {
+    console.error(`[blog] Erro ao ler o artigo "${slug}":`, err.message);
+    return null;
+  }
 }
 
 // ─── Artigos relacionados (mesma categoria ou tags em comum) ──────────────────
