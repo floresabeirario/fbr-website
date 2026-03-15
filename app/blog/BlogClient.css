@@ -24,3 +24,7 @@
 
 .featured-grid { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; }
 @media (min-width: 768px) { .featured-grid { grid-template-columns: 1fr 1fr; } }
+
+.featured-card { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+.featured-card:hover { transform: translateY(-5px); box-shadow: 0 20px 56px rgba(30,45,42,0.12); }
+.featured-card:focus-visible { outline: 2px solid #3D6B5E; outline-offset: 4px; }

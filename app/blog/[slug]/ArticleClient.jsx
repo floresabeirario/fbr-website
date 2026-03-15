@@ -1,23 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { formatDate } from "@/app/_lib/utils";
 import "./ArticleClient.css";
-
-// ─── Formatar data ─────────────────────────────────────────────────────────────
-function formatDate(dateStr) {
-  if (!dateStr) return "";
-  const d = new Date(dateStr);
-  return d.toLocaleDateString("pt-PT", { day: "numeric", month: "long", year: "numeric" });
-}
 
 // ─── Card artigo relacionado ──────────────────────────────────────────────────
 function RelatedCard({ post }) {
   return (
     <a
       href={`/blog/${post.slug}`}
-      style={{ display: "block", textDecoration: "none", color: "inherit", borderRadius: "16px", overflow: "hidden", backgroundColor: "#fff", border: "1px solid rgba(61,107,94,0.08)", transition: "transform 0.3s ease, box-shadow 0.3s ease" }}
-      onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 14px 40px rgba(30,45,42,0.1)"; }}
-      onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+      className="related-card-link"
     >
       <div style={{ aspectRatio: "16/9", overflow: "hidden", backgroundColor: "#D4DECC" }}>
         <img src={post.image} alt={post.imageAlt} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
@@ -51,9 +43,7 @@ export default function ArticleClient({ post, related, children }) {
         <div style={{ maxWidth: "760px", margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
             <nav aria-label="Caminho" style={{ marginBottom: "20px", display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
-              <a href="/blog" style={{ fontSize: "0.78rem", color: "#9BA89F", fontFamily: "Roboto, sans-serif", textDecoration: "none", transition: "color 0.2s" }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = "#3D6B5E"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = "#9BA89F"; }}>
+              <a href="/blog" className="breadcrumb-link">
                 Blog
               </a>
               <span style={{ color: "#C8D4C0", fontSize: "0.72rem" }} aria-hidden="true">›</span>

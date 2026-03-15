@@ -1,2 +1,19 @@
 .related-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
 @media (min-width: 560px) { .related-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.related-card-link {
+  display: block; text-decoration: none; color: inherit;
+  border-radius: 16px; overflow: hidden;
+  background-color: #fff; border: 1px solid rgba(61,107,94,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.related-card-link:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(30,45,42,0.1); }
+.related-card-link:focus-visible { outline: 2px solid #3D6B5E; outline-offset: 4px; }
+
+.breadcrumb-link {
+  font-size: 0.78rem; color: #9BA89F;
+  font-family: Roboto, sans-serif; text-decoration: none;
+  transition: color 0.2s;
+}
+.breadcrumb-link:hover { color: #3D6B5E; }
+.breadcrumb-link:focus-visible { outline: 2px solid #3D6B5E; outline-offset: 2px; border-radius: 2px; }

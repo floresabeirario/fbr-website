@@ -25,7 +25,13 @@
       "Bash(mv public/hero-video.webm public/videos/)",
       "Bash(mv public/hero-video.mp4 public/videos/)",
       "Bash(mv public/quadroconvite.webm public/videos/)",
-      "Bash(mv public/tracking.webm public/videos/)"
+      "Bash(mv public/tracking.webm public/videos/)",
+      "Bash(wc -l /c/Users/maria/Documents/fbr-website/fbr-website/app/blog/*.jsx /c/Users/maria/Documents/fbr-website/fbr-website/app/blog/page.js /c/Users/maria/Documents/fbr-website/fbr-website/app/blog/[slug]/*.jsx /c/Users/maria/Documents/fbr-website/fbr-website/app/blog/[slug]/page.js)",
+      "Bash(wc -l /c/Users/maria/Documents/fbr-website/fbr-website/app/blog/[slug]/ArticleClient.jsx)",
+      "Bash(wc -l /c/Users/maria/Documents/fbr-website/fbr-website/app/_lib/blog.js /c/Users/maria/Documents/fbr-website/fbr-website/app/perguntas-frequentes/*.jsx /c/Users/maria/Documents/fbr-website/fbr-website/app/perguntas-frequentes/page.js)",
+      "Bash(wc -l /c/Users/maria/Documents/fbr-website/fbr-website/app/blog/*.css /c/Users/maria/Documents/fbr-website/fbr-website/app/perguntas-frequentes/*.css)",
+      "Bash(wc -l /c/Users/maria/Documents/fbr-website/fbr-website/app/blog/[slug]/ArticleClient.css)",
+      "Bash(wc -l /c/Users/maria/Documents/fbr-website/fbr-website/content/blog/*.mdx)"
     ]
   }
 }

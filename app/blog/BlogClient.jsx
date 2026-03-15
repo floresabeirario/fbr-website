@@ -2,14 +2,8 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { formatDate } from "@/app/_lib/utils";
 import "./BlogClient.css";
-
-// ─── Formatar data em português ───────────────────────────────────────────────
-function formatDate(dateStr) {
-  if (!dateStr) return "";
-  const d = new Date(dateStr);
-  return d.toLocaleDateString("pt-PT", { day: "numeric", month: "long", year: "numeric" });
-}
 
 // ─── Card de artigo ───────────────────────────────────────────────────────────
 function PostCard({ post, categoryLabels, index }) {
@@ -125,9 +119,8 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-              style={{ display: "block", textDecoration: "none", color: "inherit", backgroundColor: "#fff", borderRadius: "24px", overflow: "hidden", border: "1px solid rgba(61,107,94,0.08)", boxShadow: "0 8px 40px rgba(30,45,42,0.07)", transition: "transform 0.35s ease, box-shadow 0.35s ease" }}
-              onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-5px)"; e.currentTarget.style.boxShadow = "0 20px 56px rgba(30,45,42,0.12)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 8px 40px rgba(30,45,42,0.07)"; }}
+              className="featured-card"
+              style={{ display: "block", textDecoration: "none", color: "inherit", backgroundColor: "#fff", borderRadius: "24px", overflow: "hidden", border: "1px solid rgba(61,107,94,0.08)", boxShadow: "0 8px 40px rgba(30,45,42,0.07)" }}
               aria-label={`Ler artigo em destaque: ${featured.title}`}
             >
               <div className="featured-grid">
