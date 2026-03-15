@@ -5,7 +5,8 @@
       "Bash(grep -r \"934680300\\\\|info@flores\\\\|https://wa.me\\\\|FORM_URL\" /c/Users/maria/Documents/fbr-website/fbr-website/app --include=*.jsx --include=*.js)",
       "Bash(grep -r \"onMouseEnter\\\\|onMouseLeave\" /c/Users/maria/Documents/fbr-website/fbr-website/app --include=*.jsx)",
       "Bash(npm install:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(git config:*)"
     ]
   }
 }
