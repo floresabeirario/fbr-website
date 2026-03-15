@@ -5,8 +5,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { FlagPT, FlagEN, IconWhatsApp } from "./Icons";
-import { NAV_PRESERVACAO, NAV_MOMENTOS, NAV_RIGHT } from "../_lib/data/navigation";
-import { FORM_URL, WA_URL } from "../_lib/constants";
+import { NAV_PRESERVACAO, NAV_MOMENTOS, NAV_RIGHT } from "@/app/_lib/data/navigation";
+import { FORM_URL, WA_URL } from "@/app/_lib/constants";
 
 // ── Cores do botão CTA por página ───────────────────────
 const PAGE_COLORS = {

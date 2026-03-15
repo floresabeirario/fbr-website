@@ -12,7 +12,7 @@ export default function HomeHero() {
       <video autoPlay loop muted playsInline aria-hidden="true"
         style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
       >
-        <source src="/hero-video.webm" type="video/webm" />
+        <source src="/videos/hero-video.webm" type="video/webm" />
       </video>
       <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.2) 0%, rgba(15,30,26,0.5) 60%, rgba(15,30,26,0.82) 100%)" }} />
 

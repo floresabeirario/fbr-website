@@ -403,14 +403,14 @@ button:focus-visible {
 /* ── Font face ─────────────────────────────────────────── */
 @font-face {
   font-family: 'TAN-MEMORIES';
-  src: url('/TAN-MEMORIES.otf') format('opentype');
+  src: url('/fonts/TAN-MEMORIES.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'TAN-MEMORIES';
-  src: url('/TAN-MEMORIES-Italic.otf') format('opentype');
+  src: url('/fonts/TAN-MEMORIES-Italic.otf') format('opentype');
   font-weight: normal;
   font-style: italic;
   font-display: swap;

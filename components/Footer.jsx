@@ -4,8 +4,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IconInstagram, IconFacebook, IconWhatsApp, IconEmail, FlagPT, FlagEN } from "./Icons";
-import { FOOTER_LINKS } from "../_lib/data/navigation";
-import { FORM_URL, WA_URL, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "../_lib/constants";
+import { FOOTER_LINKS } from "@/app/_lib/data/navigation";
+import { FORM_URL, WA_URL, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "@/app/_lib/constants";
 
 const FONT = "var(--font-google-sans), 'Google Sans', sans-serif";
 

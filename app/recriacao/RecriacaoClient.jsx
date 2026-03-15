@@ -4,7 +4,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { WA_URL_RECRIACAO } from "../_lib/constants";
-import PageHero from "../_components/PageHero";
+import PageHero from "@/components/PageHero";
 import "./RecriacaoClient.css";
 
 // SVG Decorativos

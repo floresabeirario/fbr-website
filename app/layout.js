@@ -2,8 +2,8 @@
 // Server Component — NÃO tem "use client"
 import { Google_Sans } from "next/font/google";
 import "./globals.css";
-import NavClient from "./_components/Nav";
-import FooterClient from "./_components/Footer";
+import NavClient from "@/components/Nav";
+import FooterClient from "@/components/Footer";
 import { SITE_URL } from "./_lib/constants";
 
 const googleSans = Google_Sans({

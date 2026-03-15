@@ -6,7 +6,26 @@
       "Bash(grep -r \"onMouseEnter\\\\|onMouseLeave\" /c/Users/maria/Documents/fbr-website/fbr-website/app --include=*.jsx)",
       "Bash(npm install:*)",
       "Bash(npm run:*)",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "Bash(wc -l \"c:\\\\Users\\\\maria\\\\Documents\\\\fbr-website\\\\fbr-website\\\\app\\\\_components\"/*.jsx)",
+      "Bash(grep -r _components c:UsersmariaDocumentsfbr-websitefbr-websiteapp --include=*.jsx --include=*.js)",
+      "Bash(mkdir -p components)",
+      "Bash(mv app/_components/Icons.jsx components/)",
+      "Bash(mv app/_components/Footer.jsx components/)",
+      "Bash(mv app/_components/Nav.jsx components/)",
+      "Bash(mv app/_components/PageHero.jsx components/)",
+      "Bash(mv app/_components/PageHero.css components/)",
+      "Bash(rmdir app/_components)",
+      "Bash(sed -i 's|import PageHero from \"\"\\\\.\\\\./\\\\_components/PageHero\"\"|import PageHero from \"\"@/components/PageHero\"\"|g' app/como-funciona/ComoFuncionaClient.jsx app/oferecer-preservacao/OfereceClient.jsx app/recriacao/RecriacaoClient.jsx app/sustentabilidade/SustentabilidadeClient.jsx)",
+      "Bash(sed -i 's|from \"\"\\\\.\\\\./\\\\_components/Icons\"\"|from \"\"@/components/Icons\"\"|g' app/contactos/ContactosClient.jsx)",
+      "Bash(mkdir -p public/fonts)",
+      "Bash(mv public/TAN-MEMORIES.otf public/fonts/)",
+      "Bash(mv public/TAN-MEMORIES-Italic.otf public/fonts/)",
+      "Bash(mkdir -p public/videos)",
+      "Bash(mv public/hero-video.webm public/videos/)",
+      "Bash(mv public/hero-video.mp4 public/videos/)",
+      "Bash(mv public/quadroconvite.webm public/videos/)",
+      "Bash(mv public/tracking.webm public/videos/)"
     ]
   }
 }

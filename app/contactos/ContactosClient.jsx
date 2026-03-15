@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { IconInstagram, IconFacebook, IconTikTok, IconWhatsApp, IconEmail, IconCasamentos } from "../_components/Icons";
+import { IconInstagram, IconFacebook, IconTikTok, IconWhatsApp, IconEmail, IconCasamentos } from "@/components/Icons";
 import { FORM_URL, WA_URL, EMAIL, PHONE_DISPLAY, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK, SOCIAL_TIKTOK, SOCIAL_CASAMENTOS } from "../_lib/constants";
 import "./ContactosClient.css";
 

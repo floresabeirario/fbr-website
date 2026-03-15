@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FORM_URL, WA_URL } from "../_lib/constants";
-import PageHero from "../_components/PageHero";
+import PageHero from "@/components/PageHero";
 import SubCard, { SUBPAGES } from "./SubCard";
 import "./PreservacaoDeFloresClient.css";
 

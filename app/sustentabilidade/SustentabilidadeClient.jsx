@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FORM_URL } from "../_lib/constants";
-import PageHero from "../_components/PageHero";
+import PageHero from "@/components/PageHero";
 import "./SustentabilidadeClient.css";
 
 const Schema = () => (

@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FORM_URL_VALE, WA_URL, WA_URL_VALE } from "../_lib/constants";
-import PageHero from "../_components/PageHero";
+import PageHero from "@/components/PageHero";
 import "./OfereceClient.css";
 
 // ─── Reveal ───────────────────────────────────────────────────────────────────

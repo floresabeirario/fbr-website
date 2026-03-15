@@ -133,7 +133,7 @@ export default function HomeClient() {
                     </div>
                     <div style={{ borderRadius: "28px", overflow: "hidden", backgroundColor: "#0f1f1a", aspectRatio: "9/19.5" }}>
                       <video autoPlay loop muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} aria-label="Vídeo de tracking da encomenda">
-                        <source src="/tracking.webm" type="video/webm" />
+                        <source src="/videos/tracking.webm" type="video/webm" />
                       </video>
                     </div>
                     <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }} aria-hidden="true">
