@@ -2,6 +2,7 @@
 // Server Component — NÃO tem "use client"
 
 import OfereceClient from "./OfereceClient";
+import { buildOpenGraph, buildTwitterCard } from "../_lib/metadata";
 
 export const metadata = {
   title: "Vale Oferta de Preservação de Flores | Flores à Beira-Rio — Presente Único para Casamento, Batizado e Mais",
@@ -19,30 +20,18 @@ export const metadata = {
     "arte floral presente",
     "quadro flores presente casamento",
   ],
-  openGraph: {
+  openGraph: buildOpenGraph({
     title: "Vale Oferta de Preservação de Flores | Flores à Beira-Rio",
-    description:
-      "Transforme um momento efémero numa obra de arte feita à mão. O vale oferta perfeito para casamento, batizado, aniversário e muito mais.",
+    description: "Transforme um momento efémero numa obra de arte feita à mão. O vale oferta perfeito para casamento, batizado, aniversário e muito mais.",
     url: "https://floresabeirario.pt/oferecer-preservacao",
-    siteName: "Flores à Beira-Rio",
-    images: [
-      {
-        url: "https://floresabeirario.pt/images/vale1.webp",
-        width: 1200,
-        height: 630,
-        alt: "Vale oferta de preservação de flores da Flores à Beira-Rio",
-      },
-    ],
-    locale: "pt_PT",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
+    imagePath: "https://floresabeirario.pt/images/vale1.webp",
+    imageAlt: "Vale oferta de preservação de flores da Flores à Beira-Rio",
+  }),
+  twitter: buildTwitterCard({
     title: "Vale Oferta de Preservação de Flores | Flores à Beira-Rio",
-    description:
-      "O presente perfeito para casamento, batizado ou homenagem. Flores preservadas e emolduradas à mão.",
-    images: ["https://floresabeirario.pt/images/vale1.webp"],
-  },
+    description: "O presente perfeito para casamento, batizado ou homenagem. Flores preservadas e emolduradas à mão.",
+    imagePath: "https://floresabeirario.pt/images/vale1.webp",
+  }),
   alternates: {
     canonical: "https://floresabeirario.pt/oferecer-preservacao",
   },

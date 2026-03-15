@@ -3,6 +3,7 @@
 
 import PreservacaoDeFloresClient from "./PreservacaoDeFloresClient";
 import { PHONE, EMAIL } from "../_lib/constants";
+import { buildOpenGraph, buildTwitterCard } from "../_lib/metadata";
 
 const schemaData = {
   "@context": "https://schema.org",
@@ -78,30 +79,18 @@ export const metadata = {
     "preservar bouquet noiva",
     "flores emolduradas Portugal",
   ],
-  openGraph: {
+  openGraph: buildOpenGraph({
     title: "Preservação de Flores | Flores à Beira-Rio",
-    description:
-      "Arte botânica artesanal. Bouquets de casamento e flores especiais transformados em quadros únicos com vidro museu anti-UV. Atelier em Coimbra, enviamos para toda a Europa.",
+    description: "Arte botânica artesanal. Bouquets de casamento e flores especiais transformados em quadros únicos com vidro museu anti-UV. Atelier em Coimbra, enviamos para toda a Europa.",
     url: "https://floresabeirario.pt/preservacao-de-flores",
-    siteName: "Flores à Beira-Rio",
-    images: [
-      {
-        url: "https://floresabeirario.pt/joanaceu.webp",
-        width: 1200,
-        height: 630,
-        alt: "Quadro de flores preservadas — Flores à Beira-Rio, Coimbra",
-      },
-    ],
-    locale: "pt_PT",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
+    imagePath: "https://floresabeirario.pt/joanaceu.webp",
+    imageAlt: "Quadro de flores preservadas — Flores à Beira-Rio, Coimbra",
+  }),
+  twitter: buildTwitterCard({
     title: "Preservação de Flores | Flores à Beira-Rio",
-    description:
-      "Arte botânica artesanal. Bouquets de casamento transformados em quadros únicos. A partir de 300€.",
-    images: ["https://floresabeirario.pt/joanaceu.webp"],
-  },
+    description: "Arte botânica artesanal. Bouquets de casamento transformados em quadros únicos. A partir de 300€.",
+    imagePath: "https://floresabeirario.pt/joanaceu.webp",
+  }),
   alternates: {
     canonical: "https://floresabeirario.pt/preservacao-de-flores",
     languages: {

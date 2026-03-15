@@ -2,6 +2,7 @@
 // Server Component — NÃO tem "use client"
 
 import ComoFuncionaClient from "./ComoFuncionaClient";
+import { buildOpenGraph, buildTwitterCard } from "../_lib/metadata";
 
 export const metadata = {
   title: "Como Funciona | Flores à Beira-Rio — Preservação de Flores",
@@ -14,34 +15,21 @@ export const metadata = {
     "bouquet preservado quadro",
     "flores secas emolduradas",
   ],
-  openGraph: {
-    title: "Como Funciona | Flores à Beira-Rio",
-    description:
-      "Cinco passos para transformar as suas flores numa obra de arte que dura décadas.",
-    url: "https://floresabeirario.pt/como-funciona",
-    siteName: "Flores à Beira-Rio",
-    images: [
-      {
-        url: "https://floresabeirario.pt/prensa.webp",
-        width: 1200,
-        height: 630,
-        alt: "Processo de prensagem botânica artesanal — Flores à Beira-Rio",
-      },
-    ],
-    locale: "pt_PT",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
+  openGraph: buildOpenGraph({
     title: "Como Funciona | Flores à Beira-Rio",
     description: "Cinco passos para transformar as suas flores numa obra de arte que dura décadas.",
-    images: ["https://floresabeirario.pt/prensa.webp"],
-  },
+    url: "https://floresabeirario.pt/como-funciona",
+    imagePath: "https://floresabeirario.pt/prensa.webp",
+    imageAlt: "Processo de prensagem botânica artesanal — Flores à Beira-Rio",
+  }),
+  twitter: buildTwitterCard({
+    title: "Como Funciona | Flores à Beira-Rio",
+    description: "Cinco passos para transformar as suas flores numa obra de arte que dura décadas.",
+    imagePath: "https://floresabeirario.pt/prensa.webp",
+  }),
   alternates: {
     canonical: "https://floresabeirario.pt/como-funciona",
-    languages: {
-      "pt-PT": "https://floresabeirario.pt/como-funciona",
-    },
+    languages: { "pt-PT": "https://floresabeirario.pt/como-funciona" },
   },
 };
 

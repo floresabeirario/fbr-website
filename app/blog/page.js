@@ -4,6 +4,7 @@
 import { getAllPosts, getCategories, CATEGORY_LABELS } from "../_lib/blog";
 import BlogClient from "./BlogClient";
 import { SITE_URL } from "../_lib/constants";
+import { buildOpenGraph, buildTwitterCard } from "../_lib/metadata";
 
 export const metadata = {
   title: "Blog | Flores à Beira-Rio — Preservação de Flores",
@@ -16,29 +17,18 @@ export const metadata = {
     "guia flores prensadas",
     "flores à beira-rio blog",
   ],
-  openGraph: {
-    title: "Blog | Flores à Beira-Rio",
-    description:
-      "Dicas, guias e histórias sobre preservação botânica de flores.",
-    url: `${SITE_URL}/blog`,
-    siteName: "Flores à Beira-Rio",
-    images: [
-      {
-        url: `${SITE_URL}/fotoquadro1.webp`,
-        width: 1200,
-        height: 630,
-        alt: "Blog Flores à Beira-Rio — Preservação de Flores",
-      },
-    ],
-    locale: "pt_PT",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
+  openGraph: buildOpenGraph({
     title: "Blog | Flores à Beira-Rio",
     description: "Dicas, guias e histórias sobre preservação botânica de flores.",
-    images: [`${SITE_URL}/fotoquadro1.webp`],
-  },
+    url: `${SITE_URL}/blog`,
+    imagePath: `${SITE_URL}/fotoquadro1.webp`,
+    imageAlt: "Blog Flores à Beira-Rio — Preservação de Flores",
+  }),
+  twitter: buildTwitterCard({
+    title: "Blog | Flores à Beira-Rio",
+    description: "Dicas, guias e histórias sobre preservação botânica de flores.",
+    imagePath: `${SITE_URL}/fotoquadro1.webp`,
+  }),
   alternates: {
     canonical: `${SITE_URL}/blog`,
   },

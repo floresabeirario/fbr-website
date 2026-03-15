@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import "./PageHero.css";
 
@@ -39,12 +40,13 @@ export default function PageHero({
       aria-label={ariaLabel}
     >
       <div aria-hidden="true" className="page-hero-bg">
-        <img
+        <Image
           src={src}
           alt={imgAlt}
-          aria-hidden={imgAlt ? undefined : "true"}
-          fetchPriority={imgFetchPriority}
-          style={{ objectPosition: imgPosition }}
+          fill
+          priority={imgFetchPriority === "high"}
+          sizes="100vw"
+          style={{ objectFit: "cover", objectPosition: imgPosition }}
         />
         <div className="page-hero-overlay" style={{ background: gradient }} />
       </div>

@@ -4,6 +4,7 @@ import { Google_Sans } from "next/font/google";
 import "./globals.css";
 import NavClient from "@/components/Nav";
 import FooterClient from "@/components/Footer";
+import MotionProvider from "./MotionProvider";
 import { SITE_URL } from "./_lib/constants";
 
 const googleSans = Google_Sans({
@@ -72,9 +73,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt" className={googleSans.variable}>
       <body style={{ fontFamily: "var(--font-google-sans), sans-serif" }}>
-        <NavClient />
-        <main>{children}</main>
-        <FooterClient />
+        <MotionProvider>
+          <NavClient />
+          <main>{children}</main>
+          <FooterClient />
+        </MotionProvider>
       </body>
     </html>
   );

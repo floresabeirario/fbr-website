@@ -2,6 +2,7 @@
 // Server Component — NÃO tem "use client"
 
 import OpcoesClient from "./OpcoesClient";
+import { buildOpenGraph, buildTwitterCard } from "../_lib/metadata";
 
 export const metadata = {
   title: "Opções e Preços | Flores à Beira-Rio — Quadros de Flores Prensadas",
@@ -14,29 +15,18 @@ export const metadata = {
     "bouquet preservado preço Portugal",
     "flores emolduradas Coimbra preço",
   ],
-  openGraph: {
+  openGraph: buildOpenGraph({
     title: "Opções e Preços | Flores à Beira-Rio",
-    description:
-      "Quadros de flores prensadas feitos à mão em Coimbra. 30×40cm a partir de 300€. Vidro museu UltraVue® anti-UV incluído.",
+    description: "Quadros de flores prensadas feitos à mão em Coimbra. 30×40cm a partir de 300€. Vidro museu UltraVue® anti-UV incluído.",
     url: "https://floresabeirario.pt/opcoes-e-precos",
-    siteName: "Flores à Beira-Rio",
-    images: [
-      {
-        url: "https://floresabeirario.pt/fotoquadro1.webp",
-        width: 1200,
-        height: 630,
-        alt: "Quadros de flores prensadas — Opções e Preços — Flores à Beira-Rio",
-      },
-    ],
-    locale: "pt_PT",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
+    imagePath: "https://floresabeirario.pt/fotoquadro1.webp",
+    imageAlt: "Quadros de flores prensadas — Opções e Preços — Flores à Beira-Rio",
+  }),
+  twitter: buildTwitterCard({
     title: "Opções e Preços | Flores à Beira-Rio",
     description: "Quadros de flores prensadas a partir de 300€, feitos à mão em Coimbra.",
-    images: ["https://floresabeirario.pt/fotoquadro1.webp"],
-  },
+    imagePath: "https://floresabeirario.pt/fotoquadro1.webp",
+  }),
   alternates: {
     canonical: "https://floresabeirario.pt/opcoes-e-precos",
   },

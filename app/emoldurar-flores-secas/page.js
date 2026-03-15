@@ -2,6 +2,7 @@
 // Server Component — NÃO tem "use client"
 
 import EmoldurarFloresSecasClient from "./EmoldurarFloresSecasClient";
+import { buildOpenGraph } from "../_lib/metadata";
 
 export const metadata = {
   title: "Emoldurar Ramo Seco ou Bouquet de Noiva Seco | Flores à Beira-Rio",
@@ -15,15 +16,11 @@ export const metadata = {
     "quadro flores secas Coimbra",
     "emoldurar bouquet casamento",
   ],
-  openGraph: {
+  openGraph: buildOpenGraph({
     title: "Emoldurar Ramo Seco ou Bouquet de Noiva Seco | Flores à Beira-Rio",
-    description:
-      "Transforme o seu ramo seco num quadro único. Vidro museu anti-UV. Atelier em Coimbra.",
+    description: "Transforme o seu ramo seco num quadro único. Vidro museu anti-UV. Atelier em Coimbra.",
     url: "https://floresabeirario.pt/emoldurar-flores-secas",
-    siteName: "Flores à Beira-Rio",
-    locale: "pt_PT",
-    type: "website",
-  },
+  }),
   alternates: {
     canonical: "https://floresabeirario.pt/emoldurar-flores-secas",
   },

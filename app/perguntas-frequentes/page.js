@@ -2,6 +2,7 @@
 // SERVER COMPONENT — exporta metadata estática para SEO perfeito
 
 import PerguntasFrequentesClient from "./PerguntasFrequentesClient";
+import { buildOpenGraph } from "../_lib/metadata";
 
 export const metadata = {
   title: "Perguntas Frequentes sobre Preservação de Flores",
@@ -15,13 +16,13 @@ export const metadata = {
     "preço preservação flores",
     "flores à beira-rio faq",
   ],
-  openGraph: {
+  openGraph: buildOpenGraph({
     title: "Perguntas Frequentes | Flores à Beira-Rio",
-    description:
-      "Todas as respostas sobre preservação botânica de bouquets: processo, prazos, flores, entrega e pagamentos.",
+    description: "Todas as respostas sobre preservação botânica de bouquets: processo, prazos, flores, entrega e pagamentos.",
     url: "https://floresabeirario.pt/perguntas-frequentes",
-    images: [{ url: "/og-faq.webp", width: 1200, height: 630, alt: "Perguntas Frequentes — Flores à Beira-Rio" }],
-  },
+    imagePath: "/og-faq.webp",
+    imageAlt: "Perguntas Frequentes — Flores à Beira-Rio",
+  }),
   alternates: {
     canonical: "https://floresabeirario.pt/perguntas-frequentes",
     languages: { "pt-PT": "https://floresabeirario.pt/perguntas-frequentes" },
