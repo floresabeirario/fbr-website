@@ -328,7 +328,14 @@ export default function Sustentabilidade() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div style={{ position: "relative", maxWidth: "340px", width: "100%" }}>
+                <a
+                  href="https://apc-coimbra.org.pt/capacitacao"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Saber mais sobre a APCC — Associação de Paralisia Cerebral de Coimbra"
+                  style={{ display: "block", position: "relative", maxWidth: "340px", width: "100%", textDecoration: "none" }}
+                  className="apcc-photo-link"
+                >
                   <div aria-hidden="true" style={{
                     position: "absolute", inset: 0,
                     transform: "translate(10px, 10px) rotate(1.5deg)",
@@ -367,7 +374,7 @@ export default function Sustentabilidade() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </motion.div>
 
               <motion.div
@@ -580,14 +587,11 @@ export default function Sustentabilidade() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05, duration: 0.55 }}
+                  className="value-card"
                   style={{
-                    background: "rgba(26,45,38,0.95)",
                     padding: "clamp(22px,3vw,32px)",
                     position: "relative", overflow: "hidden",
-                    transition: "background 0.2s",
                   }}
-                  onMouseEnter={e => e.currentTarget.style.background = "rgba(36,61,51,0.98)"}
-                  onMouseLeave={e => e.currentTarget.style.background = "rgba(26,45,38,0.95)"}
                 >
                   <div aria-hidden="true" style={{
                     position: "absolute", top: 0, right: 0, width: "60px", height: "60px",

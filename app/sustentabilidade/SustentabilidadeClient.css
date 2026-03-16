@@ -66,6 +66,15 @@
   overflow: hidden;
   border: 1px solid rgba(61,107,94,0.15);
 }
+
+.value-card {
+  background: rgba(26,45,38,0.95);
+  transition: background 0.25s ease;
+}
+.value-card:hover { background: rgba(36,61,51,0.98); }
+
+.apcc-photo-link { transition: opacity 0.25s ease; }
+.apcc-photo-link:hover { opacity: 0.88; }
 @media (min-width: 600px) {
   .values-grid-wrap { grid-template-columns: repeat(2, 1fr); }
 }

@@ -99,7 +99,7 @@ export default function ContactosClient() {
             backgroundImage: "url('/juliaquadro2.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center center",
-            filter: "brightness(0.55) saturate(0.8)",
+            filter: "brightness(0.75) saturate(0.85)",
           }}
         />
 
@@ -108,7 +108,7 @@ export default function ContactosClient() {
           aria-hidden="true"
           style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(to bottom, rgba(15,38,34,0.4) 0%, rgba(15,38,34,0.6) 50%, rgba(15,38,34,0.85) 100%)",
+            background: "linear-gradient(to bottom, rgba(15,38,34,0.25) 0%, rgba(15,38,34,0.45) 50%, rgba(30,61,56,0.9) 100%)",
           }}
         />
 
@@ -149,9 +149,8 @@ export default function ContactosClient() {
                   key={i}
                   href={item.href}
                   {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 0", borderBottom: `1px solid rgba(196,132,107,0.12)`, textDecoration: "none", color: "inherit", transition: "opacity 0.2s", minWidth: 0 }}
-                  onMouseEnter={e => { e.currentTarget.style.opacity = "0.75"; }}
-                  onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
+                  className="contact-direct-link"
+                  style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 0", borderBottom: `1px solid rgba(196,132,107,0.12)`, textDecoration: "none", color: "inherit", minWidth: 0 }}
                 >
                   <div style={{ width: 40, height: 40, borderRadius: 10, flexShrink: 0, background: `${item.color}22`, display: "flex", alignItems: "center", justifyContent: "center", color: item.color }}>{item.icon}</div>
                   <div style={{ minWidth: 0 }}>
@@ -170,9 +169,8 @@ export default function ContactosClient() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 6, padding: "12px 8px", borderRadius: 12, background: s.bg, textDecoration: "none", color: "#fff", transition: "transform 0.3s ease, box-shadow 0.3s ease", minWidth: 0 }}
-                    onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.3)"; }}
-                    onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+                    className="social-icon-btn"
+                    style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 6, padding: "12px 8px", borderRadius: 12, background: s.bg, textDecoration: "none", color: "#fff", minWidth: 0 }}
                   >
                     <span style={{ display: "flex", alignItems: "center" }}>{s.icon}</span>
                   <span style={{ fontFamily: GS, fontWeight: 600, fontSize: "0.58rem", letterSpacing: "0px", textAlign: "center", lineHeight: 1.2, whiteSpace: "nowrap" }}>{s.label}</span>  

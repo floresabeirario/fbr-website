@@ -86,7 +86,7 @@ export default function OfereceClient() {
       {/* HERO com foto vale1.webp de fundo */}
       <PageHero
         src="/vale1.webp"
-        imgPosition="center bottom"
+        imgPosition="center"
         gradient="linear-gradient(to top, rgba(10,20,16,0.88) 0%, rgba(10,20,16,0.55) 45%, rgba(10,20,16,0.15) 100%)"
         ariaLabel="Oferecer preservação de flores — Vale Oferta"
       >

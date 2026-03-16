@@ -12,6 +12,13 @@
   --gold:    #B8954A;
   --cream:   #FAF7F0;
   --mid:     #5A6B60;
+
+  /* Homepage blue palette */
+  --navy-d:  #0C1929;
+  --navy:    #122338;
+  --navy-l:  #1C3A5C;
+  --blue-l:  #6B9EC4;
+  --blue-xl: #A8C8E0;
 }
 
 html {

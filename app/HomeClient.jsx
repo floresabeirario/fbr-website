@@ -174,9 +174,9 @@ export default function HomeClient() {
         </section>
 
         {/* ════ 5. GOOGLE REVIEWS ════ */}
-        <section aria-label="Avaliações de clientes" style={{ padding: "76px 20px", backgroundColor: "#1E2D2A", color: "#FAF7F0", textAlign: "center" }}>
+        <section aria-label="Avaliações de clientes" style={{ padding: "76px 20px", backgroundColor: "var(--navy-d)", color: "#FAF7F0", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "940px", margin: "0 auto" }}>
-            <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "#8BA888", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Clientes felizes</span>
+            <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--blue-l)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Clientes felizes</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "#FAF7F0" }}>O que diz quem confiou em nós</h2>
             <script src="https://elfsightcdn.com/platform.js" async></script>
             <div className="elfsight-app-65dc34c1-0003-4419-ab4e-11e52faa447f" data-elfsight-app-lazy></div>
@@ -185,9 +185,9 @@ export default function HomeClient() {
 
         {/* ════ 6. APCC ════ */}
         <section aria-label="Parceria solidária com a APCC Coimbra"
-          style={{ padding: "96px 20px", background: "linear-gradient(160deg, #1E2D2A 0%, #2D4A3E 50%, #1E2D2A 100%)", position: "relative", overflow: "hidden" }}
+          style={{ padding: "96px 20px", background: "linear-gradient(160deg, var(--navy-d) 0%, var(--navy-l) 50%, var(--navy-d) 100%)", position: "relative", overflow: "hidden" }}
         >
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: `repeating-linear-gradient(45deg, #8BA888 0px, #8BA888 1px, transparent 1px, transparent 40px)`, pointerEvents: "none" }} />
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.03, backgroundImage: `repeating-linear-gradient(45deg, #6B9EC4 0px, #6B9EC4 1px, transparent 1px, transparent 40px)`, pointerEvents: "none" }} />
           <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
             <div className="apcc-grid">
               <motion.div className="apcc-text" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
@@ -219,11 +219,18 @@ export default function HomeClient() {
               <motion.div className="apcc-visual" initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "20px" }}
               >
-                <div style={{ position: "relative", maxWidth: "340px", width: "100%" }}>
-                  <div aria-hidden="true" style={{ position: "absolute", inset: 0, transform: "translate(12px, 12px) rotate(2deg)", borderRadius: "18px", background: "rgba(139,168,136,0.1)", border: "1px solid rgba(139,168,136,0.15)" }} />
-                  <div style={{ position: "relative", transform: "rotate(-1.5deg)", borderRadius: "18px", overflow: "hidden", border: "1px solid rgba(139,168,136,0.2)", aspectRatio: "3/4", boxShadow: "0 28px 56px rgba(0,0,0,0.4)" }}>
+                <a
+                  href="https://apc-coimbra.org.pt/capacitacao"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Saber mais sobre a APCC — Associação de Paralisia Cerebral de Coimbra"
+                  className="apcc-photo-link"
+                  style={{ display: "block", position: "relative", maxWidth: "340px", width: "100%", textDecoration: "none" }}
+                >
+                  <div aria-hidden="true" style={{ position: "absolute", inset: 0, transform: "translate(12px, 12px) rotate(2deg)", borderRadius: "18px", background: "rgba(107,158,196,0.12)", border: "1px solid rgba(107,158,196,0.18)" }} />
+                  <div style={{ position: "relative", transform: "rotate(-1.5deg)", borderRadius: "18px", overflow: "hidden", border: "1px solid rgba(107,158,196,0.22)", aspectRatio: "3/4", boxShadow: "0 28px 56px rgba(0,0,0,0.4)" }}>
                     <Image fill src="/oficinaapcc.webp" alt="Utentes da Oficina de Tecelagem de Almalaguês e Costura da APCC Coimbra a produzir as embalagens para a Flores à Beira-Rio" sizes="(max-width: 768px) 100vw, 340px" style={{ objectFit: "cover" }} />
-                    <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "45%", background: "linear-gradient(to top, rgba(15,28,22,0.9) 0%, transparent 100%)" }} aria-hidden="true" />
+                    <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "45%", background: "linear-gradient(to top, rgba(12,25,41,0.9) 0%, transparent 100%)" }} aria-hidden="true" />
                     <div style={{ position: "absolute", bottom: "18px", left: "18px", right: "18px" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                         <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "#FAF7F0", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
@@ -231,12 +238,12 @@ export default function HomeClient() {
                         </div>
                         <div>
                           <p style={{ margin: 0, fontWeight: "700", color: "#FAF7F0", fontSize: "0.78rem", fontFamily: "'Google Sans', Roboto, sans-serif", lineHeight: 1.25 }}>Associação de Paralisia Cerebral de Coimbra</p>
-                          <p style={{ margin: "2px 0 0", color: "#8BA888", fontSize: "0.7rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Oficina de Tecelagem de Almalaguês e Costura</p>
+                          <p style={{ margin: "2px 0 0", color: "var(--blue-l)", fontSize: "0.7rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Oficina de Tecelagem de Almalaguês e Costura</p>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
                 <a href="/sustentabilidade" className="apcc-link">
                   Saiba mais sobre a origem dos nossos materiais e a nossa política de sustentabilidade →
                 </a>
@@ -277,15 +284,15 @@ export default function HomeClient() {
           {/* Apoio personalizado */}
           <motion.div
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-            style={{ background: "linear-gradient(135deg, var(--green-d) 0%, #243830 50%, #1A3028 100%)", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
+            style={{ background: "linear-gradient(135deg, var(--navy-d) 0%, var(--navy) 50%, var(--navy-l) 100%)", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
           >
-            <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.07, backgroundImage: `radial-gradient(circle at 20% 80%, rgba(139,168,136,0.6) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(61,107,94,0.4) 0%, transparent 55%)`, pointerEvents: "none" }} />
+            <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.08, backgroundImage: `radial-gradient(circle at 20% 80%, rgba(107,158,196,0.6) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(28,58,92,0.8) 0%, transparent 55%)`, pointerEvents: "none" }} />
             <div style={{ maxWidth: "440px", margin: "0 auto", width: "100%", position: "relative", zIndex: 1 }}>
-              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(139,168,136,0.8)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
+              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--blue-l)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
                 Apoio personalizado
               </span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,3rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>
-                À procura de<br /><em style={{ fontStyle: "italic", color: "var(--green-l)" }}>mais ajuda?</em>
+                À procura de<br /><em style={{ fontStyle: "italic", color: "var(--blue-xl)" }}>mais ajuda?</em>
               </h2>
               <p style={{ color: "rgba(250,247,240,0.78)", fontSize: "0.97rem", lineHeight: 1.82, margin: "0 0 10px" }}>
                 Agende uma sessão de esclarecimento gratuita por videochamada antes de fazer o seu pedido.

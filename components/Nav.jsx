@@ -1,7 +1,7 @@
 // app/_components/Nav.jsx
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { FlagPT, FlagEN, IconWhatsApp } from "./Icons";
@@ -264,6 +264,60 @@ const MobileAccordion = ({ menu, onClose, delay, icon }) => {
   );
 };
 
+// ── EN "Coming Soon" button ──────────────────────────────
+const ENButton = ({ style, className }) => {
+  const [visible, setVisible] = useState(false);
+  const timerRef = useRef(null);
+
+  const show = useCallback(() => {
+    clearTimeout(timerRef.current);
+    setVisible(true);
+    timerRef.current = setTimeout(() => setVisible(false), 2200);
+  }, []);
+
+  useEffect(() => () => clearTimeout(timerRef.current), []);
+
+  return (
+    <span style={{ position: "relative", display: "inline-flex", alignItems: "center" }}>
+      <button
+        type="button"
+        onClick={show}
+        className={className}
+        aria-label="Versão em inglês — em breve"
+        style={{
+          background: "none", border: "none", cursor: "pointer", padding: 0,
+          font: "inherit", ...style,
+          display: "flex", alignItems: "center",
+        }}
+      >
+        EN <FlagEN />
+      </button>
+      <AnimatePresence>
+        {visible && (
+          <motion.span
+            key="tooltip"
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 4 }}
+            transition={{ duration: 0.18 }}
+            style={{
+              position: "absolute", bottom: "calc(100% + 8px)", right: 0,
+              background: "#1E2D2A", color: "#FAF7F0",
+              fontSize: "0.68rem", fontWeight: 600, letterSpacing: "1px",
+              whiteSpace: "nowrap", padding: "6px 12px", borderRadius: "8px",
+              fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
+              pointerEvents: "none",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
+            }}
+          >
+            Em breve
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </span>
+  );
+};
+
 // ── Divisória vertical ───────────────────────────────────
 const NavDivider = ({ scrolled }) => (
   <span
@@ -419,17 +473,15 @@ export default function NavClient() {
                     PT <FlagPT />
                   </a>
                   <div className="lang-dropdown" style={{ right: 0, left: "auto" }}>
-                    <a href="/en" style={{
-                      fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
-                      letterSpacing: "1.3px", display: "flex", alignItems: "center",
-                      color: show ? "#1a1a1a" : "#fff",
-                      background: show ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
-                      backdropFilter: "blur(12px)", padding: "9px 14px", borderRadius: "6px",
-                      border: show ? "1px solid rgba(26,26,26,0.08)" : "1px solid rgba(255,255,255,0.12)",
-                      textDecoration: "none", transition: "background 0.3s ease",
-                    }}>
-                      EN <FlagEN />
-                    </a>
+                    <ENButton
+                      style={{
+                        fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
+                        letterSpacing: "1.3px", color: show ? "#1a1a1a" : "#fff",
+                        background: show ? "rgba(250,247,240,0.95)" : "rgba(0,0,0,0.2)",
+                        backdropFilter: "blur(12px)", padding: "9px 14px", borderRadius: "6px",
+                        border: show ? "1px solid rgba(26,26,26,0.08)" : "1px solid rgba(255,255,255,0.12)",
+                      }}
+                    />
                   </div>
                 </div>
               </div>
@@ -601,16 +653,14 @@ export default function NavClient() {
                   }}>
                     PT <FlagPT />
                   </a>
-                  <a href="/en" style={{
-                    color: "rgba(250,247,240,0.28)", fontSize: "0.66rem",
-                    fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
-                    fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase",
-                    display: "flex", alignItems: "center", textDecoration: "none",
-                  }}
+                  <ENButton
+                    style={{
+                      color: "rgba(250,247,240,0.28)", fontSize: "0.66rem",
+                      fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
+                      fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase",
+                    }}
                     className="nav-mobile-lang"
-                  >
-                    EN <FlagEN />
-                  </a>
+                  />
                 </div>
               </motion.div>
             </motion.div>

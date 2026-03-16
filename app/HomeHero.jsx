@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { FORM_URL } from "./_lib/constants";
 
 export default function HomeHero() {
@@ -21,15 +22,29 @@ export default function HomeHero() {
       aria-label="Flores à Beira-Rio — Preservação de flores de casamento"
       style={{ height: "100dvh", maxHeight: "100dvh", minHeight: "100dvh", position: "relative", overflow: "hidden" }}
     >
-      <video autoPlay loop muted playsInline aria-hidden="true"
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+      {/* Mobile: vídeo */}
+      <video
+        className="hero-bg-video"
+        autoPlay loop muted playsInline
+        aria-hidden="true"
       >
         <source src="/videos/ritavideo.webm" type="video/webm" />
       </video>
 
+      {/* Desktop: imagem estática */}
+      <div className="hero-bg-photo" aria-hidden="true">
+        <Image
+          fill
+          src="/ritaherophoto.webp"
+          alt=""
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover", objectPosition: "center" }}
+        />
+      </div>
+
       <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.15) 0%, rgba(15,30,26,0.48) 60%, rgba(15,30,26,0.82) 100%)" }} />
 
-      {/* Todo o conteúdo do hero fadeia com o scroll */}
       <motion.div
         style={{
           opacity,
@@ -64,7 +79,6 @@ export default function HomeHero() {
           Flores à<br /><span style={{ whiteSpace: "nowrap" }}>Beira&#8209;Rio</span>
         </motion.h1>
 
-        {/* Botão — posicionado no fundo, dentro do container com fade */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

@@ -104,3 +104,9 @@
 }
 
 a:focus-visible, button:focus-visible { outline: 3px solid #C4846B; outline-offset: 4px; border-radius: 4px; }
+
+.contact-direct-link { transition: opacity 0.2s ease; }
+.contact-direct-link:hover { opacity: 0.72; }
+
+.social-icon-btn { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.social-icon-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
