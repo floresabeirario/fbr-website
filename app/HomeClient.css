@@ -7,18 +7,15 @@
 /* ── HomeHero: imagem em todos os dispositivos ──────────────────────────────── */
 /* (vídeo removido — apenas ritaherophoto.webp) */
 
-/* ── Steps Section ─────────────────────────────────────────────────────────── */
-/* card-rise: dark green card emerges over the cream section above */
+/* ── Steps Section — transparent, sits on the animated page background ──────── */
 .steps-section {
-  background: linear-gradient(160deg, #0F1F1A 0%, #1A3028 50%, #0F1F1A 100%);
+  background: transparent;
   position: relative;
   overflow: hidden;
-  z-index: 2;
-  border-radius: 44px 44px 0 0;
-  margin-top: -44px;
+  z-index: 1;
 }
 
-/* Decorative blobs */
+/* Decorative blobs — very subtle on light backgrounds */
 .steps-blob {
   position: absolute;
   border-radius: 50%;
@@ -27,12 +24,12 @@
 .steps-blob--1 {
   width: 600px; height: 600px;
   top: -150px; left: -150px;
-  background: radial-gradient(circle, rgba(61,107,94,0.18) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(61,107,94,0.07) 0%, transparent 65%);
 }
 .steps-blob--2 {
   width: 500px; height: 500px;
   bottom: -100px; right: -100px;
-  background: radial-gradient(circle, rgba(5,20,15,0.7) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(184,149,74,0.05) 0%, transparent 65%);
 }
 
 .steps-header {
@@ -58,18 +55,18 @@
 .steps-heading {
   font-family: 'TAN-MEMORIES', serif;
   font-size: clamp(2.6rem, 6vw, 4.5rem);
-  color: var(--cream);
+  color: #1E2D2A;
   margin: 0 0 16px;
   line-height: 1.02;
 }
 
 .steps-heading-em {
   font-style: italic;
-  color: #C8E8D0;
+  color: var(--green);
 }
 
 .steps-subheading {
-  color: rgba(250,247,240,0.42);
+  color: rgba(30,45,42,0.55);
   font-size: 0.93rem;
   font-family: 'Google Sans', Roboto, sans-serif;
   margin: 0;
@@ -95,22 +92,23 @@
   }
 }
 
-/* Step card */
+/* Step card — white card on pastel background */
 .step-card {
   display: flex;
   flex-direction: column;
   border-radius: 20px;
   overflow: hidden;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(139,168,136,0.14);
-  backdrop-filter: blur(4px);
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(61,107,94,0.09);
+  box-shadow: 0 2px 16px rgba(30,45,42,0.06), 0 8px 32px rgba(30,45,42,0.04);
+  backdrop-filter: blur(8px);
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
 .step-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 56px rgba(0,0,0,0.45), 0 0 0 1px rgba(139,168,136,0.22);
-  border-color: rgba(139,168,136,0.24);
+  box-shadow: 0 8px 36px rgba(30,45,42,0.1), 0 24px 56px rgba(30,45,42,0.06);
+  border-color: rgba(61,107,94,0.16);
 }
 
 /* Photo wrapper */
@@ -125,7 +123,7 @@
 .step-photo-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 40%, rgba(12,25,41,0.55) 100%);
+  background: linear-gradient(to bottom, transparent 50%, rgba(20,38,32,0.28) 100%);
 }
 
 /* Content */
@@ -142,8 +140,8 @@
   font-family: 'TAN-MEMORIES', serif;
   font-size: clamp(2.8rem, 5vw, 4rem);
   line-height: 1;
-  color: var(--green-l);
-  opacity: 0.55;
+  color: var(--green);
+  opacity: 0.28;
   margin-bottom: 4px;
 }
 
@@ -151,14 +149,14 @@
   font-family: 'TAN-MEMORIES', serif;
   font-size: clamp(1.1rem, 1.8vw, 1.3rem);
   line-height: 1.2;
-  color: var(--cream);
+  color: #1E2D2A;
   margin: 0 0 6px;
 }
 
 .step-desc {
   font-size: 0.87rem;
   line-height: 1.75;
-  color: rgba(250,247,240,0.52);
+  color: #5A6B60;
   margin: 0 0 16px;
   font-family: 'Google Sans', Roboto, sans-serif;
 }
@@ -171,19 +169,19 @@
   font-weight: 700;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: rgba(250,247,240,0.55);
+  color: var(--green);
   text-decoration: none;
   font-family: 'Google Sans', Roboto, sans-serif;
-  border-bottom: 1px solid rgba(250,247,240,0.18);
+  border-bottom: 1px solid rgba(61,107,94,0.25);
   padding-bottom: 2px;
   transition: color 0.22s ease, border-color 0.22s ease;
 }
 .step-inline-link:hover {
-  color: rgba(250,247,240,0.92);
-  border-color: rgba(250,247,240,0.5);
+  color: var(--green-d);
+  border-color: var(--green);
 }
 .step-inline-link:focus-visible {
-  outline: 2px solid rgba(250,247,240,0.6);
+  outline: 2px solid var(--green-l);
   outline-offset: 4px;
   border-radius: 2px;
 }
@@ -298,10 +296,10 @@
   font-weight: 600; font-size: 0.82rem; letter-spacing: 1.5px;
   text-transform: uppercase; font-family: 'Google Sans', Roboto, sans-serif;
   transition: all 0.3s ease; white-space: nowrap; flex: 1; min-width: 0;
-  border: 1.5px solid rgba(255,255,255,0.35); color: #FAF7F0;
-  background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(30,45,42,0.22); color: #1E2D2A;
+  background: rgba(255,255,255,0.7); backdrop-filter: blur(8px);
 }
-.cta-btn-ghost:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.65); transform: translateY(-3px); }
+.cta-btn-ghost:hover { background: rgba(255,255,255,0.95); border-color: rgba(30,45,42,0.45); transform: translateY(-3px); }
 
 .cta-btn-wa {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -355,12 +353,12 @@
 
 /* ── APCC sustainability link ──────────────────────────────────────────────── */
 .apcc-link {
-  color: var(--green-l);
+  color: var(--green);
   text-decoration: none;
   font-size: 0.82rem;
   font-weight: 600;
   font-family: 'Google Sans', Roboto, sans-serif;
-  border-bottom: 1px solid rgba(139,168,136,0.35);
+  border-bottom: 1px solid rgba(61,107,94,0.3);
   padding-bottom: 2px;
   transition: color 0.2s ease, border-color 0.2s ease;
   max-width: 320px;
@@ -368,6 +366,6 @@
   display: inline-block;
 }
 .apcc-link:hover {
-  color: #A8C8A5;
-  border-color: var(--green-l);
+  color: var(--green-d);
+  border-color: var(--green);
 }

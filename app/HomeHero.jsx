@@ -20,6 +20,7 @@ export default function HomeHero() {
     <section
       ref={heroRef}
       aria-label="Flores à Beira-Rio — Preservação de flores de casamento"
+      data-bg="#FAF7F0"
       style={{ height: "100dvh", maxHeight: "100dvh", minHeight: "100dvh", position: "relative", overflow: "hidden" }}
     >
       {/* Hero: imagem em todos os dispositivos */}

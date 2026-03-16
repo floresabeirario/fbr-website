@@ -42,6 +42,7 @@ export default function HomeSteps() {
     <section
       aria-label="Como funciona a preservação de flores em 3 passos"
       className="steps-section"
+      data-bg="#F5F8F5"
     >
       {/* Decorative gradient blobs */}
       <div className="steps-blob steps-blob--1" aria-hidden="true" />

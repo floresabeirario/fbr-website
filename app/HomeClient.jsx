@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { FORM_URL, WA_URL, PHONE, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "./_lib/constants";
 import HomeHero from "./HomeHero";
@@ -88,30 +88,41 @@ export default function HomeClient() {
     window.scrollTo(0, 0);
   }, []);
 
-  const { scrollYProgress } = useScroll({ target: mainRef, offset: ["start start", "end end"] });
+  // IntersectionObserver: smooth pastel background as sections enter view
+  useEffect(() => {
+    const main = mainRef.current;
+    if (!main) return;
+    main.style.transition = "background-color 0.9s ease";
+    main.style.backgroundColor = "#FAF7F0";
 
-  // Ambient canvas — visible in the corner "pockets" of card-rise transitions
-  const bgColor = useTransform(
-    scrollYProgress,
-    [0, 0.14, 0.30, 0.46, 0.62, 1],
-    ["#FAF7F0", "#EDF5EA", "#F8F4EE", "#F0E8DA", "#FAF7F0", "#FAF7F0"]
-  );
+    const sections = main.querySelectorAll("[data-bg]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            main.style.backgroundColor = entry.target.dataset.bg;
+          }
+        });
+      },
+      // fires when a section crosses the middle band of the viewport
+      { rootMargin: "-35% 0px -35% 0px", threshold: 0 }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
       <StructuredData />
-      <motion.main ref={mainRef} style={{ backgroundColor: bgColor, overflowX: "hidden" }}>
+      <main ref={mainRef} style={{ overflowX: "hidden", backgroundColor: "#FAF7F0" }}>
 
         <HomeHero />
 
         {/* ════ 2. O QUE FAZEMOS + SLIDER ════ */}
-        <motion.section
+        <section
           aria-label="Serviços de preservação botânica"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.08 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          style={{ padding: "clamp(72px,10vw,96px) 20px clamp(88px,12vw,120px)", background: "linear-gradient(180deg, rgba(29,52,44,0.04) 0%, #FAF7F0 100%)", position: "relative", zIndex: 1 }}
+          data-bg="#FAFCF8"
+          style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative" }}
         >
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "48px" }}>
@@ -123,25 +134,15 @@ export default function HomeClient() {
               <BeforeAfterSlider />
             </motion.div>
           </div>
-        </motion.section>
+        </section>
 
         <HomeSteps />
 
         {/* ════ 4. TRACKING ════ */}
-        <motion.section
+        <section
           aria-label="Acompanhe a sua encomenda em tempo real"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.04 }}
-          transition={{ duration: 0.7 }}
-          style={{
-            padding: "clamp(72px,10vw,96px) 20px clamp(88px,12vw,120px)",
-            background: "linear-gradient(180deg, #F8F4EE 0%, #F0E8DA 100%)",
-            position: "relative", zIndex: 3,
-            borderRadius: "44px 44px 0 0",
-            marginTop: "-44px",
-            overflow: "hidden",
-          }}
+          data-bg="#FDFAF6"
+          style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative" }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
             <motion.div className="tracking-title" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} style={{ marginBottom: "32px" }}>
@@ -199,13 +200,13 @@ export default function HomeClient() {
               </motion.div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* ════ 5. GOOGLE REVIEWS ════ */}
-        <section aria-label="Avaliações de clientes" style={{ padding: "clamp(64px,10vw,88px) 20px clamp(72px,10vw,96px)", backgroundColor: "#0F1F1A", color: "#FAF7F0", textAlign: "center", position: "relative", zIndex: 4, borderRadius: "44px 44px 0 0", marginTop: "-44px", overflow: "hidden" }}>
+        <section aria-label="Avaliações de clientes" data-bg="#F4F7FB" style={{ padding: "clamp(64px,10vw,88px) 20px", background: "transparent", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "940px", margin: "0 auto" }}>
-            <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--green-l)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Clientes felizes</span>
-            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "#FAF7F0" }}>O que diz quem confiou em nós</h2>
+            <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--green)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Clientes felizes</span>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "#1E2D2A" }}>O que diz quem confiou em nós</h2>
             <script src="https://elfsightcdn.com/platform.js" async></script>
             <div className="elfsight-app-65dc34c1-0003-4419-ab4e-11e52faa447f" data-elfsight-app-lazy></div>
           </motion.div>
@@ -213,9 +214,9 @@ export default function HomeClient() {
 
         {/* ════ 6. APCC ════ */}
         <section aria-label="Parceria solidária com a APCC Coimbra"
-          style={{ padding: "clamp(72px,10vw,96px) 20px clamp(88px,12vw,112px)", background: "linear-gradient(160deg, #0F1F1A 0%, #1A3028 55%, #0F1F1A 100%)", position: "relative", overflow: "hidden", zIndex: 5 }}
+          data-bg="#FBF9F6"
+          style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative", overflow: "hidden" }}
         >
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: `repeating-linear-gradient(45deg, #6B9E7E 0px, #6B9E7E 1px, transparent 1px, transparent 40px)`, pointerEvents: "none" }} />
           <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
             <div className="apcc-grid">
               <motion.div className="apcc-text" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
@@ -223,10 +224,10 @@ export default function HomeClient() {
                   <span style={{ color: "#8BA888", fontSize: "0.75rem" }} aria-hidden="true">♥</span>
                   <span style={{ fontSize: "0.78rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#8BA888", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Parceria solidária</span>
                 </div>
-                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>
-                  Cada detalhe<br /><em style={{ fontStyle: "italic", color: "#8BA888" }}>tem um propósito</em>
+                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1 }}>
+                  Cada detalhe<br /><em style={{ fontStyle: "italic", color: "var(--green)" }}>tem um propósito</em>
                 </h2>
-                <p style={{ color: "rgba(250,247,240,0.7)", lineHeight: 1.82, fontSize: "0.97rem", margin: "0 0 28px" }}>
+                <p style={{ color: "rgba(30,45,42,0.68)", lineHeight: 1.82, fontSize: "0.97rem", margin: "0 0 28px" }}>
                   Parte da embalagem do seu quadro é feita à mão pelos utentes da APCC Coimbra. Cada peça é única, criada com cuidado especialmente para a Flores à Beira-Rio.
                 </p>
                 {apccItems.map((item, i) => (
@@ -237,8 +238,8 @@ export default function HomeClient() {
                       {item.icon}
                     </div>
                     <div>
-                      <p style={{ margin: "0 0 2px", fontWeight: "700", color: "#FAF7F0", fontSize: "0.9rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
-                      <p style={{ margin: 0, color: "rgba(250,247,240,0.55)", fontSize: "0.86rem", lineHeight: 1.6 }}>{item.desc}</p>
+                      <p style={{ margin: "0 0 2px", fontWeight: "700", color: "#1E2D2A", fontSize: "0.9rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
+                      <p style={{ margin: 0, color: "rgba(30,45,42,0.58)", fontSize: "0.86rem", lineHeight: 1.6 }}>{item.desc}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -265,7 +266,7 @@ export default function HomeClient() {
                           <Image src="/apcc.webp" alt="Logótipo APCC" width={28} height={28} style={{ objectFit: "contain" }} />
                         </div>
                         <div>
-                          <p style={{ margin: 0, fontWeight: "700", color: "#FAF7F0", fontSize: "0.78rem", fontFamily: "'Google Sans', Roboto, sans-serif", lineHeight: 1.25 }}>Associação de Paralisia Cerebral de Coimbra</p>
+                          <p style={{ margin: 0, fontWeight: "700", color: "#FAF7F0", fontSize: "0.78rem", fontFamily: "'Google Sans', Roboto, sans-serif", lineHeight: 1.25, textShadow: "0 1px 4px rgba(0,0,0,0.4)" }}>Associação de Paralisia Cerebral de Coimbra</p>
                           <p style={{ margin: "2px 0 0", color: "var(--green-l)", fontSize: "0.7rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Oficina de Tecelagem de Almalaguês e Costura</p>
                         </div>
                       </div>
@@ -282,7 +283,8 @@ export default function HomeClient() {
 
         {/* ════ 7. CARTÃO-OFERTA ════ */}
         <section aria-label="Cartão-Oferta — ofereça a preservação de flores"
-          style={{ position: "relative", overflow: "hidden", minHeight: "580px", display: "flex", alignItems: "center", borderRadius: "44px 44px 0 0", marginTop: "-44px", zIndex: 6 }}
+          data-bg="#FAF7F0"
+          style={{ position: "relative", overflow: "hidden", minHeight: "560px", display: "flex", alignItems: "center" }}
         >
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/vale1.webp')", backgroundSize: "cover", backgroundPosition: "center" }} />
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(100deg, rgba(15,25,20,0.82) 0%, rgba(15,25,20,0.58) 55%, rgba(15,25,20,0.15) 100%)" }} />
@@ -307,25 +309,24 @@ export default function HomeClient() {
         </section>
 
         {/* ════ 8. CTA SPLIT ════ */}
-        <div className="cta-split">
+        <div className="cta-split" data-bg="#F6FAF7">
 
           {/* Apoio personalizado */}
           <motion.div
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-            style={{ background: "linear-gradient(135deg, #0F1F1A 0%, #1A3028 55%, #2D4A40 100%)", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
+            style={{ background: "transparent", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
           >
-            <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.1, backgroundImage: `radial-gradient(circle at 20% 80%, rgba(61,107,94,0.6) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(5,20,15,0.9) 0%, transparent 55%)`, pointerEvents: "none" }} />
             <div style={{ maxWidth: "440px", margin: "0 auto", width: "100%", position: "relative", zIndex: 1 }}>
-              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--green-l)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
+              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--green)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
                 Apoio personalizado
               </span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,3rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>
-                À procura de<br /><em style={{ fontStyle: "italic", color: "#C8E8D0" }}>mais ajuda?</em>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,3rem)", color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1 }}>
+                À procura de<br /><em style={{ fontStyle: "italic", color: "var(--green)" }}>mais ajuda?</em>
               </h2>
-              <p style={{ color: "rgba(250,247,240,0.78)", fontSize: "0.97rem", lineHeight: 1.82, margin: "0 0 10px" }}>
+              <p style={{ color: "rgba(30,45,42,0.72)", fontSize: "0.97rem", lineHeight: 1.82, margin: "0 0 10px" }}>
                 Agende uma sessão de esclarecimento gratuita por videochamada antes de fazer o seu pedido.
               </p>
-              <p style={{ color: "rgba(250,247,240,0.52)", fontSize: "0.9rem", lineHeight: 1.75, margin: "0 0 32px" }}>
+              <p style={{ color: "rgba(30,45,42,0.50)", fontSize: "0.9rem", lineHeight: 1.75, margin: "0 0 32px" }}>
                 Podemos ajudá-lo a entender o processo de preservação e a escolher os produtos que melhor se adequam a si. Esta sessão tem a duração aproximada de 30 minutos.
               </p>
               <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
@@ -357,7 +358,7 @@ export default function HomeClient() {
           </motion.div>
 
         </div>
-      </motion.main>
+      </main>
     </>
   );
 }
