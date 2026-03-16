@@ -230,20 +230,20 @@ export default function Sustentabilidade() {
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
             style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}
           >
-              <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.5)", fontFamily: "Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700 }}>
+              <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700 }}>
                 Os nossos valores
               </p>
               <h1 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(2.4rem,6vw,5rem)",
-                color: "#FAF7F0", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)", lineHeight: 1.05, textShadow: "0 2px 24px rgba(0,0,0,0.55), 0 4px 48px rgba(0,0,0,0.35)",
+                color: "#FAF7F0", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)", lineHeight: 1.05,
               }}>
                 Sustentabilidade<br/>
-                <em style={{ fontStyle: "italic", color: "#5C8A6A" }}>sem compromissos</em>
+                <em style={{ fontStyle: "italic", color: "#FAF7F0" }}>sem compromissos</em>
               </h1>
               <p style={{
                 fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.85,
-                maxWidth: "460px", color: "rgba(250,247,240,0.82)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)", textShadow: "0 1px 14px rgba(0,0,0,0.6)",
+                maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)",
               }}>
                 Na Flores &#224; Beira-Rio, preservar flores significa preservar tamb&#233;m
                 o planeta. Sem resinas petroqu&#237;micas, sem s&#237;lica industrial,

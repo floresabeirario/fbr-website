@@ -57,7 +57,7 @@ export default function HomeHero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.8 }}
-          style={{ fontSize: "clamp(0.65rem,1.2vw,0.82rem)", letterSpacing: "clamp(3px,1vw,5px)", textTransform: "uppercase", fontWeight: "700", color: "rgba(250,247,240,0.78)", fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 clamp(10px,2vw,18px)" }}
+          style={{ fontSize: "clamp(0.65rem,1.2vw,0.82rem)", letterSpacing: "clamp(3px,1vw,5px)", textTransform: "uppercase", fontWeight: "700", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 clamp(10px,2vw,18px)" }}
         >
           Especialistas em preservação de flores
         </motion.p>
@@ -66,7 +66,7 @@ export default function HomeHero() {
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3.2rem, 11vw, 8rem)", lineHeight: 1.15, margin: 0, textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
+          style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3.2rem, 11vw, 8rem)", lineHeight: 1.15, margin: 0 }}
         >
           Flores à<br /><span style={{ whiteSpace: "nowrap" }}>Beira&#8209;Rio</span>
         </motion.h1>

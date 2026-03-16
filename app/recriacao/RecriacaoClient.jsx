@@ -213,22 +213,22 @@ export default function RecriacaoClient() {
 
             <motion.p
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.7 }}
-              style={{ fontSize: "clamp(0.52rem,1.3vw,0.62rem)", letterSpacing: "4px", textTransform: "uppercase", fontWeight: "700", marginBottom: "16px", color: "rgba(250,245,236,0.55)", fontFamily: "Roboto, sans-serif", textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}
+              style={{ fontSize: "clamp(0.52rem,1.3vw,0.62rem)", letterSpacing: "4px", textTransform: "uppercase", fontWeight: "700", marginBottom: "16px", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif" }}
             >
               A beleza do passado, a florescer no presente
             </motion.p>
 
             <motion.h1
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,8vw,5.5rem)", lineHeight: 1.05, margin: "0 0 clamp(1rem,2.5vw,1.6rem)", color: "#FAF5EC", textShadow: "0 4px 32px rgba(0,0,0,0.55)" }}
+              style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,8vw,5.5rem)", lineHeight: 1.05, margin: "0 0 clamp(1rem,2.5vw,1.6rem)", color: "#FAF7F0" }}
             >
               Recria&ccedil;&atilde;o de<br />
-              <em style={{ fontStyle: "italic", color: "#F0CC70" }}>Bouquet</em>
+              <em style={{ fontStyle: "italic", color: "#FAF7F0" }}>Bouquet</em>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }}
-              style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.85, maxWidth: "460px", margin: "0 auto clamp(1.8rem,3.5vw,2.6rem)", color: "rgba(250,245,236,0.88)", fontWeight: "300", textShadow: "0 2px 16px rgba(0,0,0,0.45)" }}
+              style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.85, maxWidth: "460px", margin: "0 auto clamp(1.8rem,3.5vw,2.6rem)", color: "rgba(250,247,240,0.88)", fontWeight: "300" }}
             >
               O seu bouquet de noiva n&atilde;o foi preservado a tempo?
               Com apenas uma fotografia, recriamos o ramo com flores frescas

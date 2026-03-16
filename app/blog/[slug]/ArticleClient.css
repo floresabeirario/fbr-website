@@ -12,7 +12,7 @@
 
 .breadcrumb-link {
   font-size: 0.78rem; color: #9BA89F;
-  font-family: Roboto, sans-serif; text-decoration: none;
+  font-family: 'Google Sans', Roboto, sans-serif; text-decoration: none;
   transition: color 0.2s;
 }
 .breadcrumb-link:hover { color: #3D6B5E; }

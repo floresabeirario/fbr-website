@@ -28,7 +28,7 @@ function Reveal({ children, delay = 0, style, className }) {
 // ─── Eyebrow ──────────────────────────────────────────────────────────────────
 function Eyebrow({ children, light, color }) {
   return (
-    <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: color || (light ? "rgba(250,247,240,0.5)" : "#7B8FC7"), fontFamily: "'Google Sans', sans-serif", margin: "0 0 14px", fontWeight: 700, display: "block" }}>
+    <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: color || (light ? "rgba(250,247,240,0.88)" : "#7B8FC7"), fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700, display: "block" }}>
       {children}
     </p>
   );
@@ -102,7 +102,7 @@ export default function OfereceClient() {
           <div className="cta-row-vale" style={{ marginBottom: "1.4rem", justifyContent: "center" }}>
             <a href={FORM_URL_VALE} target="_blank" rel="noopener noreferrer" className="btn-primary-vale">Encomendar Vale Oferta</a>
           </div>
-          <p style={{ fontSize: "0.78rem", color: "rgba(250,247,240,0.5)", letterSpacing: "0.05em" }}>A partir de 300€ · Sem data de validade · Entrega digital gratuita</p>
+          <p style={{ fontSize: "0.78rem", color: "rgba(250,247,240,0.72)", letterSpacing: "0.05em", fontFamily: "'Google Sans', Roboto, sans-serif" }}>A partir de 300€ · Sem data de validade · Entrega digital gratuita</p>
         </motion.div>
       </PageHero>
 

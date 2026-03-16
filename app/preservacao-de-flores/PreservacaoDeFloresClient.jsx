@@ -66,14 +66,14 @@ export default function PreservacaoDeFloresClient() {
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
             style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}
           >
-            <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.5)", fontFamily: "Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700 }}>
+            <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700 }}>
               Arte Botânica Artesanal · Coimbra
             </p>
-            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.6rem,7vw,5.2rem)", lineHeight: 1.03, color: "#FAF7F0", margin: "0 0 clamp(1rem,2.5vw,1.6rem)", textShadow: "0 2px 20px rgba(0,0,0,0.6)" }}>
+            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.6rem,7vw,5.2rem)", lineHeight: 1.03, color: "#FAF7F0", margin: "0 0 clamp(1rem,2.5vw,1.6rem)" }}>
               Preservação de<br />
               <em style={{ fontStyle: "italic", color: "#D4956A" }}>Flores</em>
             </h1>
-            <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.88, maxWidth: "480px", color: "rgba(250,247,240,0.86)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)", textShadow: "0 1px 12px rgba(0,0,0,0.5)", fontFamily: "Roboto, sans-serif" }}>
+            <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.88, maxWidth: "480px", color: "rgba(250,247,240,0.88)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
               Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Bouquets de casamento, flores de batizado, homenagens, cada peça é única, feita à mão e emoldurada profissionalmente com vidro museu.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px", fontSize: "0.8rem" }}>
@@ -82,7 +82,7 @@ export default function PreservacaoDeFloresClient() {
                 { href: "/como-funciona", label: "Como funciona", color: "#C8522A" },
                 { href: "/emoldurar-flores-secas", label: "Flores já secas", color: "#5A8FA8" },
               ].map((l, i) => (
-                <a key={i} href={l.href} style={{ color: l.color, fontWeight: 600, textDecoration: "none", borderBottom: `1px solid ${l.color}55`, paddingBottom: "1px", fontFamily: "Roboto, sans-serif", transition: "border-color 0.2s" }}>
+                <a key={i} href={l.href} style={{ color: l.color, fontWeight: 600, textDecoration: "none", borderBottom: `1px solid ${l.color}55`, paddingBottom: "1px", fontFamily: "'Google Sans', Roboto, sans-serif", transition: "border-color 0.2s" }}>
                   {l.label}
                 </a>
               ))}

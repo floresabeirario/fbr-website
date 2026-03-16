@@ -282,7 +282,7 @@ button:focus-visible {
   text-transform: uppercase;
   text-align: center;
   transition: all 0.3s ease;
-  font-family: var(--font-google-sans), 'Google Sales', sans-serif;
+  font-family: var(--font-google-sans), 'Google Sans', sans-serif;
   backdrop-filter: blur(8px);
   background: rgba(250,247,240,0.08);
   min-height: 56px;

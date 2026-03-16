@@ -4,37 +4,34 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 // ─── Gradient themes (semantic keys used in data-bg) ─────────────────────────
-// Golden rule: light tone dominates 85-90%, deeper accent is a whisper at one edge only.
+// Golden rule: light cream dominates 85-90%, deeper accent is a single whisper at the far edge.
 const THEMES = {
   neutral: {
-    gradient: "linear-gradient(145deg, #FFF9F2 0%, #FFF5EC 70%, #F0E2C4 92%, #FFF9F2 100%)",
+    gradient: "linear-gradient(145deg, #FFF9F2 0%, #FFF5EC 70%, #F0E2C4 100%)",
     accent: "#2D4A40",
   },
   blush: {
-    // soft warm peach — never red
-    gradient: "linear-gradient(150deg, #FEF3EF 0%, #FAE8E2 70%, #ECCCC0 92%, #FEF3EF 100%)",
+    gradient: "linear-gradient(150deg, #FEF3EF 0%, #FAE8E2 70%, #ECCCC0 100%)",
     accent: "#6B1A28",
   },
   sky: {
-    gradient: "linear-gradient(150deg, #EEF5FC 0%, #E2EEFA 70%, #BBCFF0 92%, #EEF5FC 100%)",
+    gradient: "linear-gradient(150deg, #EEF5FC 0%, #E2EEFA 70%, #BBCFF0 100%)",
     accent: "#1A3870",
   },
   lavender: {
-    // reverted: uses #C8B4EC as the subtle accent touch
-    gradient: "linear-gradient(150deg, #F5F0FC 0%, #EDE6FA 70%, #C8B4EC 92%, #F5F0FC 100%)",
+    gradient: "linear-gradient(150deg, #F5F0FC 0%, #EDE6FA 70%, #C8B4EC 100%)",
     accent: "#3A1A6B",
   },
   butter: {
-    gradient: "linear-gradient(150deg, #FEFAE8 0%, #F8F0CC 70%, #E4C870 92%, #FEFAE8 100%)",
+    gradient: "linear-gradient(150deg, #FEFAE8 0%, #F8F0CC 70%, #E4C870 100%)",
     accent: "#5A4A10",
   },
   leaf: {
-    // botanical sage: CFE0BC as the whisper, cream dominates
-    gradient: "linear-gradient(150deg, #F7FBF2 0%, #EBF5E2 70%, #CFE0BC 92%, #F7FBF2 100%)",
+    gradient: "linear-gradient(150deg, #F7FBF2 0%, #EBF5E2 70%, #CFE0BC 100%)",
     accent: "#4A6228",
   },
   mint: {
-    gradient: "linear-gradient(150deg, #EDFAF4 0%, #D8F0E4 70%, #A0D8BC 92%, #EDFAF4 100%)",
+    gradient: "linear-gradient(150deg, #EDFAF4 0%, #D8F0E4 70%, #A0D8BC 100%)",
     accent: "#0F4828",
   },
 };
@@ -126,21 +123,23 @@ export default function HomeClient() {
     window.scrollTo(0, 0);
   }, []);
 
-  // IntersectionObserver: cross-fade gradient background + dynamic accent color
+  // Scroll-driven background: always picks section closest to viewport centre.
+  // Bulletproof against fast scroll in any direction — no IntersectionObserver drift.
   useEffect(() => {
     const main = mainRef.current;
     const oA = overlayARef.current;
     const oB = overlayBRef.current;
     if (!main || !oA || !oB) return;
 
-    // seed overlay A with the neutral theme
     const init = THEMES.neutral;
     oA.style.background = init.gradient;
     main.style.setProperty("--section-accent", init.accent);
 
     let useA = true;
+    let currentKey = "neutral";
 
     const applyTheme = (key) => {
+      if (key === currentKey) return;
       const theme = THEMES[key] || THEMES.neutral;
       const next = useA ? oB : oA;
       const prev = useA ? oA : oB;
@@ -149,27 +148,45 @@ export default function HomeClient() {
       prev.style.opacity = "0";
       main.style.setProperty("--section-accent", theme.accent);
       useA = !useA;
+      currentKey = key;
     };
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) applyTheme(e.target.dataset.bg); });
-      },
-      { rootMargin: "-35% 0px -35% 0px", threshold: 0 }
-    );
+    const findActive = () => {
+      const mid = window.innerHeight / 2;
+      let best = null;
+      let bestDist = Infinity;
+      main.querySelectorAll("[data-bg]").forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom <= 0 || r.top >= window.innerHeight) return;
+        const dist = Math.abs(r.top + r.height / 2 - mid);
+        if (dist < bestDist) { bestDist = dist; best = el.dataset.bg; }
+      });
+      if (best) applyTheme(best);
+    };
 
-    main.querySelectorAll("[data-bg]").forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    findActive();
+
+    let rafId = null;
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => { findActive(); rafId = null; });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
     <>
       <StructuredData />
-      {/* Cross-fade gradient overlays — position:fixed, below all content */}
+      {/* Cross-fade gradient overlays — inset: -1px prevents hairline edge artifacts */}
       <div ref={overlayARef} aria-hidden="true"
-        style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none", transition: "opacity 0.85s ease", opacity: 1 }} />
+        style={{ position: "fixed", inset: "-1px", zIndex: 0, pointerEvents: "none", transition: "opacity 0.85s ease", opacity: 1 }} />
       <div ref={overlayBRef} aria-hidden="true"
-        style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none", transition: "opacity 0.85s ease", opacity: 0 }} />
+        style={{ position: "fixed", inset: "-1px", zIndex: 0, pointerEvents: "none", transition: "opacity 0.85s ease", opacity: 0 }} />
       <main ref={mainRef} style={{ overflowX: "hidden", position: "relative", zIndex: 1, background: "transparent" }}>
 
         <HomeHero />
@@ -339,7 +356,7 @@ export default function HomeClient() {
 
         {/* ════ 7. CARTÃO-OFERTA ════ */}
         <section aria-label="Cartão-Oferta — ofereça a preservação de flores"
-          data-bg="neutral"
+          data-bg="lavender"
           style={{ position: "relative", overflow: "hidden", minHeight: "560px", display: "flex", alignItems: "center" }}
         >
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/vale1.webp')", backgroundSize: "cover", backgroundPosition: "center" }} />
@@ -347,11 +364,11 @@ export default function HomeClient() {
           <div style={{ position: "relative", zIndex: 1, maxWidth: "1100px", margin: "0 auto", padding: "88px 20px", width: "100%" }}>
             <div style={{ maxWidth: "580px" }}>
               <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}>
-                <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(184,149,74,0.15)", border: "1px solid rgba(184,149,74,0.35)", borderRadius: "100px", padding: "6px 16px", marginBottom: "20px" }}>
-                  <span style={{ fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "var(--gold)", fontFamily: "'Google Sans', Roboto, sans-serif" }}>O presente mais especial</span>
+                <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(180,160,240,0.15)", border: "1px solid rgba(180,160,240,0.35)", borderRadius: "100px", padding: "6px 16px", marginBottom: "20px" }}>
+                  <span style={{ fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#D4C4F0", fontFamily: "'Google Sans', Roboto, sans-serif" }}>O presente mais especial</span>
                 </div>
                 <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.5rem)", color: "#FAF7F0", margin: "0 0 20px", lineHeight: 1.1 }}>
-                  Ofereça memórias<br /><em style={{ fontStyle: "italic", color: "var(--gold)" }}>que duram para sempre</em>
+                  Ofereça memórias<br /><em style={{ fontStyle: "italic", color: "#D4C4F0" }}>que duram para sempre</em>
                 </h2>
                 <p style={{ color: "rgba(250,247,240,0.78)", lineHeight: 1.85, fontSize: "clamp(1rem,2vw,1.08rem)", margin: "0 0 34px" }}>
                   Ofereça a preservação das flores na forma do nosso cartão-oferta e deixe que os presenteados escolham a preservação ao seu gosto.
@@ -370,23 +387,25 @@ export default function HomeClient() {
           {/* Apoio personalizado */}
           <motion.div
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-            style={{ background: "transparent", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
+            style={{ padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
           >
+            <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/videochamda.webp')", backgroundSize: "cover", backgroundPosition: "center" }} />
+            <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,25,20,0.45) 0%, rgba(15,25,20,0.72) 100%)" }} />
             <div style={{ maxWidth: "440px", margin: "0 auto", width: "100%", position: "relative", zIndex: 1 }}>
-              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--section-accent)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
+              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.82)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
                 Apoio personalizado
               </span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,3rem)", color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1 }}>
-                À procura de<br /><em style={{ fontStyle: "italic", color: "var(--section-accent)" }}>mais ajuda?</em>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,3rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>
+                À procura de<br /><em style={{ fontStyle: "italic", color: "rgba(250,247,240,0.92)" }}>mais ajuda?</em>
               </h2>
-              <p style={{ color: "rgba(30,45,42,0.72)", fontSize: "0.97rem", lineHeight: 1.82, margin: "0 0 10px" }}>
+              <p style={{ color: "rgba(250,247,240,0.82)", fontSize: "0.97rem", lineHeight: 1.82, margin: "0 0 10px" }}>
                 Agende uma sessão de esclarecimento gratuita por videochamada antes de fazer o seu pedido.
               </p>
-              <p style={{ color: "rgba(30,45,42,0.50)", fontSize: "0.9rem", lineHeight: 1.75, margin: "0 0 32px" }}>
+              <p style={{ color: "rgba(250,247,240,0.62)", fontSize: "0.9rem", lineHeight: 1.75, margin: "0 0 32px" }}>
                 Podemos ajudá-lo a entender o processo de preservação e a escolher os produtos que melhor se adequam a si. Esta sessão tem a duração aproximada de 30 minutos.
               </p>
               <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-                <a href="/contactos" className="cta-btn-ghost">Contactos</a>
+                <a href="/contactos" className="btn-ghost">Contactos</a>
                 <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="cta-btn-wa">
                   <IconWA /> WhatsApp
                 </a>
