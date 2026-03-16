@@ -1,3 +1,7 @@
+/* ── Section accent CSS variable — overridden per section via JS ──────────── */
+main { --section-accent: #2D4A40; }
+main .eyebrow { color: var(--section-accent, var(--green)); }
+
 @keyframes floatPhone {
   0%,100% { transform: translateY(0px) rotate(-2deg); }
   50%      { transform: translateY(-12px) rotate(-2deg); }
@@ -47,7 +51,7 @@
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--green-l);
+  color: var(--section-accent, var(--green-l));
   margin-bottom: 18px;
   font-family: 'Google Sans', Roboto, sans-serif;
 }
@@ -62,7 +66,7 @@
 
 .steps-heading-em {
   font-style: italic;
-  color: var(--green);
+  color: var(--section-accent, var(--green));
 }
 
 .steps-subheading {
@@ -169,7 +173,7 @@
   font-weight: 700;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--section-accent, var(--green));
   text-decoration: none;
   font-family: 'Google Sans', Roboto, sans-serif;
   border-bottom: 1px solid rgba(61,107,94,0.25);
@@ -177,8 +181,9 @@
   transition: color 0.22s ease, border-color 0.22s ease;
 }
 .step-inline-link:hover {
-  color: var(--green-d);
-  border-color: var(--green);
+  color: var(--section-accent, var(--green-d));
+  border-color: var(--section-accent, var(--green));
+  opacity: 0.8;
 }
 .step-inline-link:focus-visible {
   outline: 2px solid var(--green-l);

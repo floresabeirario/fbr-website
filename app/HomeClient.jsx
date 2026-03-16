@@ -2,6 +2,34 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+
+// ─── Gradient themes (semantic keys used in data-bg) ─────────────────────────
+const THEMES = {
+  neutral: {
+    gradient: "linear-gradient(145deg, #FAF7F0 0%, #F2EAE2 50%, #FAF7F0 100%)",
+    accent: "#2D4A40",
+  },
+  blush: {
+    gradient: "linear-gradient(150deg, #F5E0D8 0%, #EAC8BE 30%, #EDD8D0 58%, #F8EAE2 82%, #FEF4EE 100%)",
+    accent: "#6B1A28",
+  },
+  sky: {
+    gradient: "linear-gradient(150deg, #D0E4F5 0%, #B8D2EE 30%, #C8DCEF 58%, #E0EAF8 82%, #EEF4FC 100%)",
+    accent: "#1A3870",
+  },
+  lavender: {
+    gradient: "linear-gradient(150deg, #DED0F2 0%, #C8B4EC 30%, #D6C8EE 58%, #EAE4F8 82%, #F5F0FC 100%)",
+    accent: "#3A1A6B",
+  },
+  butter: {
+    gradient: "linear-gradient(150deg, #EEDCAA 0%, #E0C888 30%, #E8D49C 58%, #F5ECCA 82%, #FEF8E8 100%)",
+    accent: "#5A4A10",
+  },
+  mint: {
+    gradient: "linear-gradient(150deg, #C8E8D8 0%, #B0DCC8 30%, #BCDECE 58%, #D8EEE5 82%, #EEFAF4 100%)",
+    accent: "#0F4828",
+  },
+};
 import Image from "next/image";
 import { FORM_URL, WA_URL, PHONE, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "./_lib/constants";
 import HomeHero from "./HomeHero";
@@ -82,46 +110,66 @@ const apccItems = [
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function HomeClient() {
   const mainRef = useRef(null);
+  const overlayARef = useRef(null);
+  const overlayBRef = useRef(null);
 
   useEffect(() => {
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
   }, []);
 
-  // IntersectionObserver: smooth pastel background as sections enter view
+  // IntersectionObserver: cross-fade gradient background + dynamic accent color
   useEffect(() => {
     const main = mainRef.current;
-    if (!main) return;
-    main.style.transition = "background-color 0.9s ease";
-    main.style.backgroundColor = "#EDF5F0";
+    const oA = overlayARef.current;
+    const oB = overlayBRef.current;
+    if (!main || !oA || !oB) return;
 
-    const sections = main.querySelectorAll("[data-bg]");
-    const observer = new IntersectionObserver(
+    // seed overlay A with the neutral theme
+    const init = THEMES.neutral;
+    oA.style.background = init.gradient;
+    main.style.setProperty("--section-accent", init.accent);
+
+    let useA = true;
+
+    const applyTheme = (key) => {
+      const theme = THEMES[key] || THEMES.neutral;
+      const next = useA ? oB : oA;
+      const prev = useA ? oA : oB;
+      next.style.background = theme.gradient;
+      next.style.opacity = "1";
+      prev.style.opacity = "0";
+      main.style.setProperty("--section-accent", theme.accent);
+      useA = !useA;
+    };
+
+    const io = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            main.style.backgroundColor = entry.target.dataset.bg;
-          }
-        });
+        entries.forEach((e) => { if (e.isIntersecting) applyTheme(e.target.dataset.bg); });
       },
-      // fires when a section crosses the middle band of the viewport
       { rootMargin: "-35% 0px -35% 0px", threshold: 0 }
     );
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
+
+    main.querySelectorAll("[data-bg]").forEach((el) => io.observe(el));
+    return () => io.disconnect();
   }, []);
 
   return (
     <>
       <StructuredData />
-      <main ref={mainRef} style={{ overflowX: "hidden", backgroundColor: "#FAF7F0", transition: "background-color 0.9s ease" }}>
+      {/* Cross-fade gradient overlays — position:fixed, below all content */}
+      <div ref={overlayARef} aria-hidden="true"
+        style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none", transition: "opacity 0.85s ease", opacity: 1 }} />
+      <div ref={overlayBRef} aria-hidden="true"
+        style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none", transition: "opacity 0.85s ease", opacity: 0 }} />
+      <main ref={mainRef} style={{ overflowX: "hidden", position: "relative", zIndex: 1, background: "transparent" }}>
 
         <HomeHero />
 
         {/* ════ 2. O QUE FAZEMOS + SLIDER ════ */}
         <section
           aria-label="Serviços de preservação botânica"
-          data-bg="#E8F4EB"
+          data-bg="neutral"
           style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative" }}
         >
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
@@ -141,14 +189,14 @@ export default function HomeClient() {
         {/* ════ 4. TRACKING ════ */}
         <section
           aria-label="Acompanhe a sua encomenda em tempo real"
-          data-bg="#E5EEF8"
+          data-bg="sky"
           style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative" }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
             <motion.div className="tracking-title" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} style={{ marginBottom: "32px" }}>
               <span className="eyebrow">Transparência total</span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "#1E2D2A", margin: "0 0 4px", lineHeight: 1.1 }}>
-                Acompanhe a sua<br /><em style={{ fontStyle: "italic", color: "#3D6B5E" }}>encomenda ao vivo</em>
+                Acompanhe a sua<br /><em style={{ fontStyle: "italic", color: "var(--section-accent)" }}>encomenda ao vivo</em>
               </h2>
             </motion.div>
 
@@ -176,7 +224,7 @@ export default function HomeClient() {
               <motion.div initial={{ opacity: 0, x: 28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}>
                 <span className="eyebrow tracking-desktop-title">Transparência total</span>
                 <h2 className="tracking-desktop-title" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "#1E2D2A", margin: "0 0 20px", lineHeight: 1.1 }}>
-                  Acompanhe a sua<br /><em style={{ fontStyle: "italic", color: "#3D6B5E" }}>encomenda ao vivo</em>
+                  Acompanhe a sua<br /><em style={{ fontStyle: "italic", color: "var(--section-accent)" }}>encomenda ao vivo</em>
                 </h2>
                 <p style={{ color: "#5A6B60", lineHeight: 1.85, fontSize: "clamp(1rem,2vw,1.1rem)", margin: "0 0 36px" }}>
                   Após a reserva estar confirmada, partilhamos consigo cada etapa do processo, da receção das flores à composição final. Pode acompanhar tudo em tempo real, sem ter de perguntar.
@@ -203,9 +251,9 @@ export default function HomeClient() {
         </section>
 
         {/* ════ 5. GOOGLE REVIEWS ════ */}
-        <section aria-label="Avaliações de clientes" data-bg="#EDE6F5" style={{ padding: "clamp(64px,10vw,88px) 20px", background: "transparent", textAlign: "center" }}>
+        <section aria-label="Avaliações de clientes" data-bg="lavender" style={{ padding: "clamp(64px,10vw,88px) 20px", background: "transparent", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "940px", margin: "0 auto" }}>
-            <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--green)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Clientes felizes</span>
+            <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--section-accent)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Clientes felizes</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "#1E2D2A" }}>O que diz quem confiou em nós</h2>
             <script src="https://elfsightcdn.com/platform.js" async></script>
             <div className="elfsight-app-65dc34c1-0003-4419-ab4e-11e52faa447f" data-elfsight-app-lazy></div>
@@ -214,7 +262,7 @@ export default function HomeClient() {
 
         {/* ════ 6. APCC ════ */}
         <section aria-label="Parceria solidária com a APCC Coimbra"
-          data-bg="#F5F0DC"
+          data-bg="butter"
           style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative", overflow: "hidden" }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
@@ -225,7 +273,7 @@ export default function HomeClient() {
                   <span style={{ fontSize: "0.78rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#8BA888", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Parceria solidária</span>
                 </div>
                 <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1 }}>
-                  Cada detalhe<br /><em style={{ fontStyle: "italic", color: "var(--green)" }}>tem um propósito</em>
+                  Cada detalhe<br /><em style={{ fontStyle: "italic", color: "var(--section-accent)" }}>tem um propósito</em>
                 </h2>
                 <p style={{ color: "rgba(30,45,42,0.68)", lineHeight: 1.82, fontSize: "0.97rem", margin: "0 0 28px" }}>
                   Parte da embalagem do seu quadro é feita à mão pelos utentes da APCC Coimbra. Cada peça é única, criada com cuidado especialmente para a Flores à Beira-Rio.
@@ -283,7 +331,7 @@ export default function HomeClient() {
 
         {/* ════ 7. CARTÃO-OFERTA ════ */}
         <section aria-label="Cartão-Oferta — ofereça a preservação de flores"
-          data-bg="#FAF7F0"
+          data-bg="neutral"
           style={{ position: "relative", overflow: "hidden", minHeight: "560px", display: "flex", alignItems: "center" }}
         >
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/vale1.webp')", backgroundSize: "cover", backgroundPosition: "center" }} />
@@ -309,7 +357,7 @@ export default function HomeClient() {
         </section>
 
         {/* ════ 8. CTA SPLIT ════ */}
-        <div className="cta-split" data-bg="#E5F5ED">
+        <div className="cta-split" data-bg="mint">
 
           {/* Apoio personalizado */}
           <motion.div
@@ -317,11 +365,11 @@ export default function HomeClient() {
             style={{ background: "transparent", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
           >
             <div style={{ maxWidth: "440px", margin: "0 auto", width: "100%", position: "relative", zIndex: 1 }}>
-              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--green)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
+              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--section-accent)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
                 Apoio personalizado
               </span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,3rem)", color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1 }}>
-                À procura de<br /><em style={{ fontStyle: "italic", color: "var(--green)" }}>mais ajuda?</em>
+                À procura de<br /><em style={{ fontStyle: "italic", color: "var(--section-accent)" }}>mais ajuda?</em>
               </h2>
               <p style={{ color: "rgba(30,45,42,0.72)", fontSize: "0.97rem", lineHeight: 1.82, margin: "0 0 10px" }}>
                 Agende uma sessão de esclarecimento gratuita por videochamada antes de fazer o seu pedido.
