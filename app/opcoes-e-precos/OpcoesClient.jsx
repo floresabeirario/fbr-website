@@ -373,7 +373,7 @@ export default function OpcoesClient() {
             {/* Linha-separador: quadros principais */}
             <Reveal style={{ gridColumn: "1 / -1" }}>
               <div style={{ padding: "18px 24px", border: "1px solid rgba(250,247,240,0.1)", borderRadius: "4px", backgroundColor: "rgba(250,247,240,0.04)" }}>
-                <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)", lineHeight: 1.6, color: "rgba(250,247,240,0.55)", margin: 0 }}>
+                <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontWeight: 400, fontSize: "clamp(1rem, 1.6vw, 1.2rem)", lineHeight: 1.5, color: "rgba(250,247,240,0.75)", margin: 0 }}>
                   Escolha o tamanho do quadro onde vão ficar as suas flores preservadas:
                 </p>
               </div>
@@ -402,7 +402,7 @@ export default function OpcoesClient() {
             {/* Linha-separador: formatos complementares */}
             <Reveal style={{ gridColumn: "1 / -1" }}>
               <div style={{ padding: "18px 24px", border: "1px solid rgba(250,247,240,0.1)", borderRadius: "4px", backgroundColor: "rgba(250,247,240,0.04)" }}>
-                <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)", lineHeight: 1.6, color: "rgba(250,247,240,0.55)", margin: 0 }}>
+                <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontWeight: 400, fontSize: "clamp(1rem, 1.6vw, 1.2rem)", lineHeight: 1.5, color: "rgba(250,247,240,0.75)", margin: 0 }}>
                   Complemente a sua encomenda com outros formatos, para si ou para oferecer, com as suas flores preservadas:
                 </p>
               </div>
