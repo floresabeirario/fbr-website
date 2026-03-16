@@ -4,28 +4,18 @@
 }
 .phone-float { animation: floatPhone 5s ease-in-out infinite; }
 
-/* ── HomeHero: mobile=video, desktop=photo ──────────────────────────────────── */
-.hero-bg-video {
-  display: block;
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-}
-.hero-bg-photo {
-  display: none;
-  position: absolute; inset: 0;
-}
-@media (min-width: 1024px) {
-  .hero-bg-video { display: none; }
-  .hero-bg-photo { display: block; }
-}
+/* ── HomeHero: imagem em todos os dispositivos ──────────────────────────────── */
+/* (vídeo removido — apenas ritaherophoto.webp) */
 
 /* ── Steps Section ─────────────────────────────────────────────────────────── */
+/* card-rise: dark green card emerges over the cream section above */
 .steps-section {
-  background: linear-gradient(160deg, var(--navy-d) 0%, var(--navy) 50%, var(--navy-d) 100%);
+  background: linear-gradient(160deg, #0F1F1A 0%, #1A3028 50%, #0F1F1A 100%);
   position: relative;
   overflow: hidden;
-  z-index: 1;
+  z-index: 2;
+  border-radius: 44px 44px 0 0;
+  margin-top: -44px;
 }
 
 /* Decorative blobs */
@@ -37,12 +27,12 @@
 .steps-blob--1 {
   width: 600px; height: 600px;
   top: -150px; left: -150px;
-  background: radial-gradient(circle, rgba(107,158,196,0.08) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(61,107,94,0.18) 0%, transparent 65%);
 }
 .steps-blob--2 {
   width: 500px; height: 500px;
   bottom: -100px; right: -100px;
-  background: radial-gradient(circle, rgba(28,58,92,0.5) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(5,20,15,0.7) 0%, transparent 65%);
 }
 
 .steps-header {
@@ -60,7 +50,7 @@
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--blue-l);
+  color: var(--green-l);
   margin-bottom: 18px;
   font-family: 'Google Sans', Roboto, sans-serif;
 }
@@ -75,7 +65,7 @@
 
 .steps-heading-em {
   font-style: italic;
-  color: var(--blue-xl);
+  color: #C8E8D0;
 }
 
 .steps-subheading {
@@ -111,16 +101,16 @@
   flex-direction: column;
   border-radius: 20px;
   overflow: hidden;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(107,158,196,0.12);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(139,168,136,0.14);
   backdrop-filter: blur(4px);
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
 .step-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 56px rgba(0,0,0,0.45), 0 0 0 1px rgba(107,158,196,0.18);
-  border-color: rgba(107,158,196,0.2);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.45), 0 0 0 1px rgba(139,168,136,0.22);
+  border-color: rgba(139,168,136,0.24);
 }
 
 /* Photo wrapper */
@@ -152,7 +142,7 @@
   font-family: 'TAN-MEMORIES', serif;
   font-size: clamp(2.8rem, 5vw, 4rem);
   line-height: 1;
-  color: var(--blue-l);
+  color: var(--green-l);
   opacity: 0.55;
   margin-bottom: 4px;
 }
@@ -227,9 +217,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(107,158,196,0.28);
+  border: 1px solid rgba(139,168,136,0.28);
   color: rgba(250,247,240,0.72);
-  background: rgba(107,158,196,0.06);
+  background: rgba(139,168,136,0.06);
   padding: 0 22px;
   height: 44px;
   border-radius: 100px;
@@ -243,8 +233,8 @@
   white-space: nowrap;
 }
 .steps-btn-ghost:hover {
-  border-color: rgba(107,158,196,0.6);
-  background: rgba(107,158,196,0.12);
+  border-color: rgba(139,168,136,0.6);
+  background: rgba(139,168,136,0.12);
   color: var(--cream);
   transform: translateY(-2px);
 }
@@ -253,8 +243,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--blue-l);
-  color: var(--navy-d);
+  background: var(--green-l);
+  color: var(--green-d);
   padding: 0 30px;
   height: 44px;
   border-radius: 100px;
@@ -265,13 +255,13 @@
   text-transform: uppercase;
   font-family: 'Google Sans', Roboto, sans-serif;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 24px rgba(107,158,196,0.3);
+  box-shadow: 0 6px 24px rgba(139,168,136,0.3);
   white-space: nowrap;
 }
 .steps-btn-primary:hover {
-  background: var(--blue-xl);
+  background: #C8E8D0;
   transform: translateY(-3px);
-  box-shadow: 0 10px 32px rgba(107,158,196,0.42);
+  box-shadow: 0 10px 32px rgba(139,168,136,0.42);
 }
 
 /* ── Layout helpers ─────────────────────────────────────────────────────────── */

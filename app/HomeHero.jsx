@@ -22,17 +22,8 @@ export default function HomeHero() {
       aria-label="Flores à Beira-Rio — Preservação de flores de casamento"
       style={{ height: "100dvh", maxHeight: "100dvh", minHeight: "100dvh", position: "relative", overflow: "hidden" }}
     >
-      {/* Mobile: vídeo */}
-      <video
-        className="hero-bg-video"
-        autoPlay loop muted playsInline
-        aria-hidden="true"
-      >
-        <source src="/videos/ritavideo.webm" type="video/webm" />
-      </video>
-
-      {/* Desktop: imagem estática */}
-      <div className="hero-bg-photo" aria-hidden="true">
+      {/* Hero: imagem em todos os dispositivos */}
+      <div style={{ position: "absolute", inset: 0 }} aria-hidden="true">
         <Image
           fill
           src="/ritaherophoto.webp"

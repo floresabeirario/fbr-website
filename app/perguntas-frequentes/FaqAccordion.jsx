@@ -4,12 +4,12 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FAQ_DATA, CATEGORIES } from "./faq-data";
 
-// ─── Accent colours per category ─────────────────────────────────────────────
+// ─── Accent colours per category — paleta da página: plum + terracotta + gold ─
 const CAT_META = {
-  processo:   { num: "01", color: "#3D6B5E", bg: "rgba(61,107,94,0.07)",   border: "rgba(61,107,94,0.18)"   },
-  flores:     { num: "02", color: "#8B3A6B", bg: "rgba(139,58,107,0.07)",  border: "rgba(139,58,107,0.18)"  },
-  entrega:    { num: "03", color: "#B85F3A", bg: "rgba(184,95,58,0.07)",   border: "rgba(184,95,58,0.18)"   },
-  pagamentos: { num: "04", color: "#8A6B1E", bg: "rgba(138,107,30,0.07)",  border: "rgba(138,107,30,0.18)"  },
+  processo:   { num: "01", color: "#8B3A6B", bg: "rgba(139,58,107,0.07)",  border: "rgba(139,58,107,0.18)"  },
+  flores:     { num: "02", color: "#C4846B", bg: "rgba(196,132,107,0.07)", border: "rgba(196,132,107,0.18)" },
+  entrega:    { num: "03", color: "#9B4060", bg: "rgba(155,64,96,0.07)",   border: "rgba(155,64,96,0.18)"   },
+  pagamentos: { num: "04", color: "#B8954A", bg: "rgba(184,149,74,0.07)",  border: "rgba(184,149,74,0.18)"  },
 };
 
 const ACCENT        = "#8B3A6B";

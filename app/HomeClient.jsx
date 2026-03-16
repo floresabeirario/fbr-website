@@ -90,11 +90,11 @@ export default function HomeClient() {
 
   const { scrollYProgress } = useScroll({ target: mainRef, offset: ["start start", "end end"] });
 
-  // Subtle warm/cool ambient shift as user scrolls through the light sections
+  // Ambient canvas — visible in the corner "pockets" of card-rise transitions
   const bgColor = useTransform(
     scrollYProgress,
-    [0, 0.12, 0.26, 0.42, 0.58, 1],
-    ["#FAF7F0", "#EEF4EB", "#FAF7F0", "#F5EDE0", "#FAF7F0", "#FAF7F0"]
+    [0, 0.14, 0.30, 0.46, 0.62, 1],
+    ["#FAF7F0", "#EDF5EA", "#F8F4EE", "#F0E8DA", "#FAF7F0", "#FAF7F0"]
   );
 
   return (
@@ -111,7 +111,7 @@ export default function HomeClient() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.08 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          style={{ padding: "80px 20px 40px", background: "linear-gradient(180deg, rgba(29,52,44,0.05) 0%, #FAF7F0 100%)", position: "relative", zIndex: 1 }}
+          style={{ padding: "clamp(72px,10vw,96px) 20px clamp(88px,12vw,120px)", background: "linear-gradient(180deg, rgba(29,52,44,0.04) 0%, #FAF7F0 100%)", position: "relative", zIndex: 1 }}
         >
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "48px" }}>
@@ -130,11 +130,18 @@ export default function HomeClient() {
         {/* ════ 4. TRACKING ════ */}
         <motion.section
           aria-label="Acompanhe a sua encomenda em tempo real"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.06 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          style={{ padding: "88px 20px", background: "linear-gradient(180deg, #FAF7F0 0%, #F8F2E4 100%)", position: "relative", zIndex: 1 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.04 }}
+          transition={{ duration: 0.7 }}
+          style={{
+            padding: "clamp(72px,10vw,96px) 20px clamp(88px,12vw,120px)",
+            background: "linear-gradient(180deg, #F8F4EE 0%, #F0E8DA 100%)",
+            position: "relative", zIndex: 3,
+            borderRadius: "44px 44px 0 0",
+            marginTop: "-44px",
+            overflow: "hidden",
+          }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
             <motion.div className="tracking-title" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} style={{ marginBottom: "32px" }}>
@@ -195,9 +202,9 @@ export default function HomeClient() {
         </motion.section>
 
         {/* ════ 5. GOOGLE REVIEWS ════ */}
-        <section aria-label="Avaliações de clientes" style={{ padding: "76px 20px", backgroundColor: "var(--navy-d)", color: "#FAF7F0", textAlign: "center" }}>
+        <section aria-label="Avaliações de clientes" style={{ padding: "clamp(64px,10vw,88px) 20px clamp(72px,10vw,96px)", backgroundColor: "#0F1F1A", color: "#FAF7F0", textAlign: "center", position: "relative", zIndex: 4, borderRadius: "44px 44px 0 0", marginTop: "-44px", overflow: "hidden" }}>
           <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "940px", margin: "0 auto" }}>
-            <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--blue-l)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Clientes felizes</span>
+            <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--green-l)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Clientes felizes</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "#FAF7F0" }}>O que diz quem confiou em nós</h2>
             <script src="https://elfsightcdn.com/platform.js" async></script>
             <div className="elfsight-app-65dc34c1-0003-4419-ab4e-11e52faa447f" data-elfsight-app-lazy></div>
@@ -206,9 +213,9 @@ export default function HomeClient() {
 
         {/* ════ 6. APCC ════ */}
         <section aria-label="Parceria solidária com a APCC Coimbra"
-          style={{ padding: "96px 20px", background: "linear-gradient(160deg, var(--navy-d) 0%, var(--navy-l) 50%, var(--navy-d) 100%)", position: "relative", overflow: "hidden" }}
+          style={{ padding: "clamp(72px,10vw,96px) 20px clamp(88px,12vw,112px)", background: "linear-gradient(160deg, #0F1F1A 0%, #1A3028 55%, #0F1F1A 100%)", position: "relative", overflow: "hidden", zIndex: 5 }}
         >
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.03, backgroundImage: `repeating-linear-gradient(45deg, #6B9EC4 0px, #6B9EC4 1px, transparent 1px, transparent 40px)`, pointerEvents: "none" }} />
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: `repeating-linear-gradient(45deg, #6B9E7E 0px, #6B9E7E 1px, transparent 1px, transparent 40px)`, pointerEvents: "none" }} />
           <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
             <div className="apcc-grid">
               <motion.div className="apcc-text" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
@@ -248,8 +255,8 @@ export default function HomeClient() {
                   className="apcc-photo-link"
                   style={{ display: "block", position: "relative", maxWidth: "340px", width: "100%", textDecoration: "none" }}
                 >
-                  <div aria-hidden="true" style={{ position: "absolute", inset: 0, transform: "translate(12px, 12px) rotate(2deg)", borderRadius: "18px", background: "rgba(107,158,196,0.12)", border: "1px solid rgba(107,158,196,0.18)" }} />
-                  <div style={{ position: "relative", transform: "rotate(-1.5deg)", borderRadius: "18px", overflow: "hidden", border: "1px solid rgba(107,158,196,0.22)", aspectRatio: "3/4", boxShadow: "0 28px 56px rgba(0,0,0,0.4)" }}>
+                  <div aria-hidden="true" style={{ position: "absolute", inset: 0, transform: "translate(12px, 12px) rotate(2deg)", borderRadius: "18px", background: "rgba(61,107,94,0.15)", border: "1px solid rgba(61,107,94,0.2)" }} />
+                  <div style={{ position: "relative", transform: "rotate(-1.5deg)", borderRadius: "18px", overflow: "hidden", border: "1px solid rgba(139,168,136,0.2)", aspectRatio: "3/4", boxShadow: "0 28px 56px rgba(0,0,0,0.4)" }}>
                     <Image fill src="/oficinaapcc.webp" alt="Utentes da Oficina de Tecelagem de Almalaguês e Costura da APCC Coimbra a produzir as embalagens para a Flores à Beira-Rio" sizes="(max-width: 768px) 100vw, 340px" style={{ objectFit: "cover" }} />
                     <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "45%", background: "linear-gradient(to top, rgba(12,25,41,0.9) 0%, transparent 100%)" }} aria-hidden="true" />
                     <div style={{ position: "absolute", bottom: "18px", left: "18px", right: "18px" }}>
@@ -259,7 +266,7 @@ export default function HomeClient() {
                         </div>
                         <div>
                           <p style={{ margin: 0, fontWeight: "700", color: "#FAF7F0", fontSize: "0.78rem", fontFamily: "'Google Sans', Roboto, sans-serif", lineHeight: 1.25 }}>Associação de Paralisia Cerebral de Coimbra</p>
-                          <p style={{ margin: "2px 0 0", color: "var(--blue-l)", fontSize: "0.7rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Oficina de Tecelagem de Almalaguês e Costura</p>
+                          <p style={{ margin: "2px 0 0", color: "var(--green-l)", fontSize: "0.7rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Oficina de Tecelagem de Almalaguês e Costura</p>
                         </div>
                       </div>
                     </div>
@@ -275,7 +282,7 @@ export default function HomeClient() {
 
         {/* ════ 7. CARTÃO-OFERTA ════ */}
         <section aria-label="Cartão-Oferta — ofereça a preservação de flores"
-          style={{ position: "relative", overflow: "hidden", minHeight: "560px", display: "flex", alignItems: "center" }}
+          style={{ position: "relative", overflow: "hidden", minHeight: "580px", display: "flex", alignItems: "center", borderRadius: "44px 44px 0 0", marginTop: "-44px", zIndex: 6 }}
         >
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/vale1.webp')", backgroundSize: "cover", backgroundPosition: "center" }} />
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(100deg, rgba(15,25,20,0.82) 0%, rgba(15,25,20,0.58) 55%, rgba(15,25,20,0.15) 100%)" }} />
@@ -305,15 +312,15 @@ export default function HomeClient() {
           {/* Apoio personalizado */}
           <motion.div
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-            style={{ background: "linear-gradient(135deg, var(--navy-d) 0%, var(--navy) 50%, var(--navy-l) 100%)", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
+            style={{ background: "linear-gradient(135deg, #0F1F1A 0%, #1A3028 55%, #2D4A40 100%)", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
           >
-            <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.08, backgroundImage: `radial-gradient(circle at 20% 80%, rgba(107,158,196,0.6) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(28,58,92,0.8) 0%, transparent 55%)`, pointerEvents: "none" }} />
+            <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.1, backgroundImage: `radial-gradient(circle at 20% 80%, rgba(61,107,94,0.6) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(5,20,15,0.9) 0%, transparent 55%)`, pointerEvents: "none" }} />
             <div style={{ maxWidth: "440px", margin: "0 auto", width: "100%", position: "relative", zIndex: 1 }}>
-              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--blue-l)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
+              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--green-l)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
                 Apoio personalizado
               </span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,3rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>
-                À procura de<br /><em style={{ fontStyle: "italic", color: "var(--blue-xl)" }}>mais ajuda?</em>
+                À procura de<br /><em style={{ fontStyle: "italic", color: "#C8E8D0" }}>mais ajuda?</em>
               </h2>
               <p style={{ color: "rgba(250,247,240,0.78)", fontSize: "0.97rem", lineHeight: 1.82, margin: "0 0 10px" }}>
                 Agende uma sessão de esclarecimento gratuita por videochamada antes de fazer o seu pedido.
