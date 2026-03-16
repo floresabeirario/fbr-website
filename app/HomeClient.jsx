@@ -6,27 +6,31 @@ import { motion } from "framer-motion";
 // ─── Gradient themes (semantic keys used in data-bg) ─────────────────────────
 const THEMES = {
   neutral: {
-    gradient: "linear-gradient(145deg, #FAF7F0 0%, #F2EAE2 50%, #FAF7F0 100%)",
+    gradient: "linear-gradient(145deg, #FFF9F0 0%, #EDD8C4 40%, #F5EAE0 70%, #FFF9F2 100%)",
     accent: "#2D4A40",
   },
   blush: {
-    gradient: "linear-gradient(150deg, #F5E0D8 0%, #EAC8BE 30%, #EDD8D0 58%, #F8EAE2 82%, #FEF4EE 100%)",
+    gradient: "linear-gradient(150deg, #EFBCB0 0%, #E49484 28%, #ECBCAC 55%, #F5D8D0 80%, #FEF0EC 100%)",
     accent: "#6B1A28",
   },
   sky: {
-    gradient: "linear-gradient(150deg, #D0E4F5 0%, #B8D2EE 30%, #C8DCEF 58%, #E0EAF8 82%, #EEF4FC 100%)",
+    gradient: "linear-gradient(150deg, #B4D4F2 0%, #80AEDD 28%, #9EC4EC 55%, #C8DEFA 80%, #EAF4FC 100%)",
     accent: "#1A3870",
   },
   lavender: {
-    gradient: "linear-gradient(150deg, #DED0F2 0%, #C8B4EC 30%, #D6C8EE 58%, #EAE4F8 82%, #F5F0FC 100%)",
+    gradient: "linear-gradient(150deg, #C8A4F0 0%, #A07CE4 28%, #B898EC 55%, #D8C4F8 80%, #F0ECFC 100%)",
     accent: "#3A1A6B",
   },
   butter: {
-    gradient: "linear-gradient(150deg, #EEDCAA 0%, #E0C888 30%, #E8D49C 58%, #F5ECCA 82%, #FEF8E8 100%)",
+    gradient: "linear-gradient(150deg, #E8C870 0%, #D09A30 28%, #DEB460 55%, #EEDDAA 80%, #FEF6DC 100%)",
     accent: "#5A4A10",
   },
+  leaf: {
+    gradient: "linear-gradient(150deg, #AACF8C 0%, #6EAA54 28%, #8EC074 55%, #B8D89C 80%, #E0F0CC 100%)",
+    accent: "#1E5010",
+  },
   mint: {
-    gradient: "linear-gradient(150deg, #C8E8D8 0%, #B0DCC8 30%, #BCDECE 58%, #D8EEE5 82%, #EEFAF4 100%)",
+    gradient: "linear-gradient(150deg, #A8DEC4 0%, #70C4A4 28%, #8CD4B4 55%, #BEE4D0 80%, #E4F8EE 100%)",
     accent: "#0F4828",
   },
 };
@@ -237,7 +241,7 @@ export default function HomeClient() {
                     <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
                       style={{ display: "flex", alignItems: "flex-start", gap: "16px", padding: "18px 0", borderBottom: i === 0 ? "1px solid rgba(61,107,94,0.12)" : "none" }}
                     >
-                      <div style={{ width: "44px", height: "44px", borderRadius: "12px", background: "linear-gradient(135deg, #EDF2E8, #D4DECC)", display: "flex", alignItems: "center", justifyContent: "center", color: "#3D6B5E", flexShrink: 0, marginTop: "2px" }}>{item.icon}</div>
+                      <div style={{ width: "44px", height: "44px", borderRadius: "12px", background: "rgba(255,255,255,0.45)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--section-accent)", flexShrink: 0, marginTop: "2px", border: "1px solid rgba(255,255,255,0.7)" }}>{item.icon}</div>
                       <div>
                         <p style={{ margin: "0 0 4px", fontWeight: "700", color: "#1E2D2A", fontSize: "1rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
                         <p style={{ margin: 0, color: "#5A6B60", fontSize: "0.95rem", lineHeight: 1.65 }}>{item.desc}</p>
@@ -262,7 +266,7 @@ export default function HomeClient() {
 
         {/* ════ 6. APCC ════ */}
         <section aria-label="Parceria solidária com a APCC Coimbra"
-          data-bg="butter"
+          data-bg="leaf"
           style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative", overflow: "hidden" }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
@@ -357,7 +361,7 @@ export default function HomeClient() {
         </section>
 
         {/* ════ 8. CTA SPLIT ════ */}
-        <div className="cta-split" data-bg="mint">
+        <div className="cta-split" data-bg="butter">
 
           {/* Apoio personalizado */}
           <motion.div
