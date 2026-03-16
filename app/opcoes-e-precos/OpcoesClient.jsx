@@ -237,10 +237,10 @@ export default function OpcoesClient() {
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
             style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}
           >
-            <p style={{ fontSize: "0.62rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.9)", fontFamily: GS, margin: "0 0 14px", fontWeight: 700, textShadow: "0 1px 8px rgba(0,0,0,0.6)" }}>
+            <p style={{ fontSize: "0.62rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.9)", fontFamily: GS, margin: "0 0 14px", fontWeight: 700 }}>
               Opções e Preços
             </p>
-            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: "#FAF7F0", margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)", textShadow: "0 2px 20px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.5)" }}>
+            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: "#FAF7F0", margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)" }}>
               Preserve as flores<br />
               <em style={{ fontStyle: "italic", color: VERDE_CLARO }}>que contam a sua história</em>
             </h1>
@@ -368,28 +368,60 @@ export default function OpcoesClient() {
               </p>
             </div>
           </Reveal>
+          {/* Grupo principal — quadros */}
+          <Reveal>
+            <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "clamp(0.88rem, 1.5vw, 1rem)", lineHeight: 1.65, color: "rgba(250,247,240,0.65)", marginBottom: "24px" }}>
+              Escolha o tamanho do quadro onde vão ficar as suas flores preservadas.
+            </p>
+          </Reveal>
           <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px", marginBottom: "48px" }}>
-            {frames.map((item, i) => (
-              <Reveal key={i} delay={(i % 3) * 0.1}>
-                <div style={{ backgroundColor: item.addonColor ? item.addonColor : item.addon ? "#3D6B5E" : i === 0 ? "#FAF7F0" : i === 1 ? "#F2EDE4" : "#EAE3D8", padding: "28px 24px", display: "flex", flexDirection: "column", height: "100%", boxSizing: "border-box", borderRadius: "4px", position: "relative" }}>
-                  {item.addon && (
-                    <span style={{ position: "absolute", top: "16px", right: "16px", backgroundColor: "rgba(250,247,240,0.15)", color: "#FAF7F0", fontSize: "0.5rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: GS, fontWeight: 600, padding: "4px 10px", borderRadius: "100px" }}>
-                      {item.badge || "Para oferecer"}
-                    </span>
-                  )}
+            {frames.slice(0, 3).map((item, i) => (
+              <Reveal key={i} delay={i * 0.1}>
+                <div style={{ backgroundColor: i === 0 ? "#FAF7F0" : i === 1 ? "#F2EDE4" : "#EAE3D8", padding: "28px 24px", display: "flex", flexDirection: "column", height: "100%", boxSizing: "border-box", borderRadius: "4px", position: "relative" }}>
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "20px" }}>
+                    <div style={{ flexShrink: 0 }}>
+                      <FrameSVG vw={item.vw} vh={item.vh} flowers={item.flowers} svgWidth={item.svgWidth} label={item.size} dark={true} />
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", paddingTop: "8px" }}>
+                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.7rem, 2.6vw, 2.4rem)", color: "#0F1E1A", margin: "0", lineHeight: 1 }}>
+                        {item.size}
+                        <span style={{ fontSize: "0.8rem", fontFamily: GS, fontWeight: 400, marginLeft: "4px", color: "rgba(15,30,26,0.4)" }}>{item.unit}</span>
+                      </p>
+                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.2rem, 2vw, 1.6rem)", color: "#3D6B5E", margin: "8px 0 10px" }}>{item.price}€</p>
+                      <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.75rem", lineHeight: 1.6, color: "rgba(15,30,26,0.5)", margin: 0 }}>{item.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Grupo complementar — formatos adicionais */}
+          <Reveal>
+            <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "clamp(0.88rem, 1.5vw, 1rem)", lineHeight: 1.65, color: "rgba(250,247,240,0.65)", marginBottom: "24px" }}>
+              Complemente a sua encomenda com outros formatos, para si ou para oferecer, com as suas flores preservadas.
+            </p>
+          </Reveal>
+          <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px", marginBottom: "48px" }}>
+            {frames.slice(3).map((item, i) => (
+              <Reveal key={i} delay={i * 0.1}>
+                <div style={{ backgroundColor: item.addonColor ? item.addonColor : "#3D6B5E", padding: "28px 24px", display: "flex", flexDirection: "column", height: "100%", boxSizing: "border-box", borderRadius: "4px", position: "relative" }}>
+                  <span style={{ position: "absolute", top: "16px", right: "16px", backgroundColor: "rgba(250,247,240,0.15)", color: "#FAF7F0", fontSize: "0.5rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: GS, fontWeight: 600, padding: "4px 10px", borderRadius: "100px" }}>
+                    {item.badge || "Para oferecer"}
+                  </span>
                   <div style={{ display: "flex", alignItems: "flex-start", gap: "20px" }}>
                     <div style={{ flexShrink: 0 }}>
                       {item.customSvg === "ornament" ? <OrnamentSVG svgWidth={item.svgWidth} light={true} />
                         : item.customSvg === "pendant" ? <PendantSVG svgWidth={item.svgWidth} light={true} />
-                        : <FrameSVG vw={item.vw} vh={item.vh} flowers={item.flowers} svgWidth={item.svgWidth} label={item.size} dark={item.addon ? false : true} />}
+                        : <FrameSVG vw={item.vw} vh={item.vh} flowers={item.flowers} svgWidth={item.svgWidth} label={item.size} dark={false} />}
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", paddingTop: "8px" }}>
-                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: item.addon ? "clamp(1.2rem, 2vw, 1.7rem)" : "clamp(1.7rem, 2.6vw, 2.4rem)", color: item.addon ? "#FAF7F0" : "#0F1E1A", margin: "0", lineHeight: 1 }}>
+                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.2rem, 2vw, 1.7rem)", color: "#FAF7F0", margin: "0", lineHeight: 1 }}>
                         {item.size}
-                        <span style={{ fontSize: "0.8rem", fontFamily: GS, fontWeight: 400, marginLeft: "4px", color: item.addon ? "rgba(250,247,240,0.45)" : "rgba(15,30,26,0.4)" }}>{item.unit}</span>
+                        <span style={{ fontSize: "0.8rem", fontFamily: GS, fontWeight: 400, marginLeft: "4px", color: "rgba(250,247,240,0.45)" }}>{item.unit}</span>
                       </p>
-                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: item.addon ? "clamp(1rem, 1.8vw, 1.3rem)" : "clamp(1.2rem, 2vw, 1.6rem)", color: item.addon ? "#8BA888" : "#3D6B5E", margin: "8px 0 10px" }}>{item.price}€</p>
-                      <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.75rem", lineHeight: 1.6, color: item.addon ? "rgba(250,247,240,0.5)" : "rgba(15,30,26,0.5)", margin: 0, fontStyle: item.addon ? "italic" : "normal" }}>{item.desc}</p>
+                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem, 1.8vw, 1.3rem)", color: "#8BA888", margin: "8px 0 10px" }}>{item.price}€</p>
+                      <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.75rem", lineHeight: 1.6, color: "rgba(250,247,240,0.5)", margin: 0, fontStyle: "italic" }}>{item.desc}</p>
                     </div>
                   </div>
                 </div>
@@ -541,22 +573,24 @@ export default function OpcoesClient() {
         </div>
       </section>
 
-      {/* ── CTA RESERVAR DATA ── */}
-      <section style={{ background: `linear-gradient(160deg, #3D6B5E 0%, ${VERDE_CLARO} 100%)`, padding: "clamp(60px,10vw,100px) 24px", textAlign: "center" }}>
-        <div style={{ maxWidth: "640px", margin: "0 auto" }}>
+      {/* ── CTA RECRIAÇÃO DO BOUQUET ── */}
+      <section style={{ position: "relative", overflow: "hidden", padding: "clamp(60px,10vw,100px) 24px", textAlign: "center" }}>
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/ctaidosos.webp')", backgroundSize: "cover", backgroundPosition: "center" }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, rgba(10,20,16,0.78) 0%, rgba(10,20,16,0.60) 100%)" }} />
+        <div style={{ position: "relative", zIndex: 1, maxWidth: "640px", margin: "0 auto" }}>
           <Reveal>
             <Label light>Próximo passo</Label>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 6vw, 4rem)", fontWeight: 400, margin: "0 0 24px", lineHeight: 1.05, color: "#FAF7F0" }}>
-              Pronta para preservar<br/><em style={{ color: "rgba(250,247,240,0.72)" }}>o seu bouquet?</em>
+              Descubra a<br/><em style={{ color: VERDE_CLARO }}>Recriação do Bouquet</em>
             </h2>
             <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.8, color: "rgba(250,247,240,0.7)", margin: "0 0 44px" }}>
-              Reserve a sua data o mais cedo possível. As vagas são limitadas e os bouquets devem ser enviados dentro de poucos dias após o evento.
+              Além da preservação, recriamos o seu bouquet original com flores frescas ou secas, para reviver o momento como se fosse hoje.
             </p>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-              <a href={FORM_URL} target="_blank" rel="noopener noreferrer"
+              <a href="/recriacao"
                 style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "56px" }}
                 onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }} onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
-                Reservar Data
+                Ver Recriação do Bouquet
               </a>
               <a href="/perguntas-frequentes"
                 style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "transparent", color: "rgba(250,247,240,0.85)", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, border: "1.5px solid rgba(250,247,240,0.4)", transition: "all 0.3s ease", minHeight: "56px" }}
