@@ -283,7 +283,7 @@ const ENButton = ({ style, className }) => {
         type="button"
         onClick={show}
         className={className}
-        aria-label="Versão em inglês — em breve"
+        aria-label="Versão em inglês — coming soon"
         style={{
           background: "none", border: "none", cursor: "pointer", padding: 0,
           font: "inherit", ...style,
@@ -310,7 +310,7 @@ const ENButton = ({ style, className }) => {
               boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
             }}
           >
-            Em breve
+            Coming soon
           </motion.span>
         )}
       </AnimatePresence>

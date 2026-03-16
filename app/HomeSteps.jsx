@@ -11,6 +11,9 @@ const steps = [
     desc: "Preencha o formulário de reserva para garantir a sua vaga. As datas esgotam rapidamente.",
     imageSrc: "/calendario.webp",
     imgAlt: "Calendário de marcação de reserva de preservação de flores",
+    link: FORM_URL,
+    linkLabel: "Reservar a minha data",
+    external: true,
   },
   {
     number: "02",
@@ -18,6 +21,9 @@ const steps = [
     desc: "Entrega em mãos em Coimbra, envio por correio ou recolha no local do evento.",
     imageSrc: "/ramojoana.webp",
     imgAlt: "Ramo de flores frescas para preservação botânica",
+    link: "/como-funciona",
+    linkLabel: "Como funciona",
+    external: false,
   },
   {
     number: "03",
@@ -25,6 +31,9 @@ const steps = [
     desc: "Após aprovação da composição, o quadro é emoldurado e entregue à sua porta.",
     imageSrc: "/joanaceu.webp",
     imgAlt: "Quadro de flores preservadas emoldurado, pronto a entregar",
+    link: "/perguntas-frequentes",
+    linkLabel: "Perguntas frequentes",
+    external: false,
   },
 ];
 
@@ -86,30 +95,17 @@ export default function HomeSteps() {
               <span className="step-num" aria-hidden="true">{step.number}</span>
               <h3 className="step-title">{step.title}</h3>
               <p className="step-desc">{step.desc}</p>
+              <a
+                href={step.link}
+                className="step-inline-link"
+                {...(step.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
+                {step.linkLabel} <span aria-hidden="true">→</span>
+              </a>
             </div>
           </motion.article>
         ))}
       </div>
-
-      {/* CTAs */}
-      <motion.div
-        className="steps-cta"
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-      >
-        <a href="/como-funciona" className="steps-btn-ghost">Como Funciona</a>
-        <a
-          href={FORM_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="steps-btn-primary"
-        >
-          Reservar a Minha Data
-        </a>
-        <a href="/perguntas-frequentes" className="steps-btn-ghost">Perguntas Frequentes</a>
-      </motion.div>
     </section>
   );
 }

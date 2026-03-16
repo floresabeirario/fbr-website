@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { FORM_URL, WA_URL, PHONE, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "./_lib/constants";
 import HomeHero from "./HomeHero";
@@ -81,20 +81,36 @@ const apccItems = [
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function HomeClient() {
+  const mainRef = useRef(null);
+
   useEffect(() => {
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
   }, []);
 
+  const { scrollYProgress } = useScroll({ target: mainRef, offset: ["start start", "end end"] });
+
+  // Subtle warm/cool ambient shift as user scrolls through the light sections
+  const bgColor = useTransform(
+    scrollYProgress,
+    [0, 0.12, 0.26, 0.42, 0.58, 1],
+    ["#FAF7F0", "#EEF4EB", "#FAF7F0", "#F5EDE0", "#FAF7F0", "#FAF7F0"]
+  );
+
   return (
     <>
       <StructuredData />
-      <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
+      <motion.main ref={mainRef} style={{ backgroundColor: bgColor, overflowX: "hidden" }}>
 
         <HomeHero />
 
         {/* ════ 2. O QUE FAZEMOS + SLIDER ════ */}
-        <section aria-label="Serviços de preservação botânica"
+        <motion.section
+          aria-label="Serviços de preservação botânica"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.08 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           style={{ padding: "80px 20px 40px", background: "linear-gradient(180deg, rgba(29,52,44,0.05) 0%, #FAF7F0 100%)", position: "relative", zIndex: 1 }}
         >
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
@@ -107,12 +123,17 @@ export default function HomeClient() {
               <BeforeAfterSlider />
             </motion.div>
           </div>
-        </section>
+        </motion.section>
 
         <HomeSteps />
 
         {/* ════ 4. TRACKING ════ */}
-        <section aria-label="Acompanhe a sua encomenda em tempo real"
+        <motion.section
+          aria-label="Acompanhe a sua encomenda em tempo real"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.06 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           style={{ padding: "88px 20px", background: "linear-gradient(180deg, #FAF7F0 0%, #F8F2E4 100%)", position: "relative", zIndex: 1 }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
@@ -171,7 +192,7 @@ export default function HomeClient() {
               </motion.div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* ════ 5. GOOGLE REVIEWS ════ */}
         <section aria-label="Avaliações de clientes" style={{ padding: "76px 20px", backgroundColor: "var(--navy-d)", color: "#FAF7F0", textAlign: "center" }}>
@@ -329,7 +350,7 @@ export default function HomeClient() {
           </motion.div>
 
         </div>
-      </main>
+      </motion.main>
     </>
   );
 }

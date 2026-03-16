@@ -4,153 +4,249 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FAQ_DATA, CATEGORIES } from "./faq-data";
 
-const ACCENT = "#8B3A6B";
-const ACCENT_LIGHT = "rgba(139,58,107,0.12)";
+// ─── Accent colours per category ─────────────────────────────────────────────
+const CAT_META = {
+  processo:   { num: "01", color: "#3D6B5E", bg: "rgba(61,107,94,0.07)",   border: "rgba(61,107,94,0.18)"   },
+  flores:     { num: "02", color: "#8B3A6B", bg: "rgba(139,58,107,0.07)",  border: "rgba(139,58,107,0.18)"  },
+  entrega:    { num: "03", color: "#B85F3A", bg: "rgba(184,95,58,0.07)",   border: "rgba(184,95,58,0.18)"   },
+  pagamentos: { num: "04", color: "#8A6B1E", bg: "rgba(138,107,30,0.07)",  border: "rgba(138,107,30,0.18)"  },
+};
+
+const ACCENT        = "#8B3A6B";
 const ACCENT_BORDER = "rgba(139,58,107,0.25)";
 
-const FAQItem = ({ faq, isOpen, onToggle, searchTerm }) => {
-  const highlight = (text) => {
-    if (!searchTerm || searchTerm.length < 2) return text;
-    const regex = new RegExp(
-      `(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
-      "gi"
-    );
-    return text.split(regex).map((part, i) =>
-      regex.test(part) ? (
-        <mark key={i} style={{ backgroundColor: "rgba(139,58,107,0.18)", borderRadius: "3px", padding: "0 2px" }}>
-          {part}
-        </mark>
-      ) : part
-    );
-  };
+// ─── Highlight helper ─────────────────────────────────────────────────────────
+function highlight(text, searchTerm) {
+  if (!searchTerm || searchTerm.length < 2) return text;
+  const regex = new RegExp(
+    `(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
+    "gi"
+  );
+  return text.split(regex).map((part, i) =>
+    regex.test(part) ? (
+      <mark key={i} style={{ backgroundColor: "rgba(139,58,107,0.18)", borderRadius: "3px", padding: "0 2px" }}>
+        {part}
+      </mark>
+    ) : part
+  );
+}
+
+// ─── Individual FAQ item ──────────────────────────────────────────────────────
+const FAQItem = ({ faq, isOpen, onToggle, searchTerm, accentColor, itemIndex }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.3, delay: itemIndex * 0.045, ease: [0.16, 1, 0.3, 1] }}
+    style={{ borderBottom: "1px solid rgba(30,45,42,0.07)" }}
+  >
+    <button
+      onClick={onToggle}
+      aria-expanded={isOpen}
+      style={{
+        width: "100%", display: "flex",
+        justifyContent: "space-between", alignItems: "center",
+        padding: "clamp(14px,2.2vw,20px) 0",
+        background: "none", border: "none", cursor: "pointer",
+        textAlign: "left", gap: "16px",
+      }}
+    >
+      <span style={{
+        fontFamily: "'TAN-MEMORIES', serif",
+        fontSize: "clamp(0.9rem,1.9vw,1.05rem)",
+        color: isOpen ? accentColor : "#1E2D2A",
+        lineHeight: 1.35, flex: 1,
+        transition: "color 0.22s ease",
+      }}>
+        {highlight(faq.q, searchTerm)}
+      </span>
+
+      <motion.div
+        animate={{ rotate: isOpen ? 45 : 0 }}
+        transition={{ type: "spring", stiffness: 300, damping: 24 }}
+        style={{
+          flexShrink: 0,
+          width: "clamp(26px,3.2vw,32px)", height: "clamp(26px,3.2vw,32px)",
+          borderRadius: "50%",
+          backgroundColor: isOpen ? accentColor : `rgba(30,45,42,0.07)`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          transition: "background-color 0.22s ease",
+        }}
+        aria-hidden="true"
+      >
+        <svg width="11" height="11" viewBox="0 0 20 20" fill="none"
+          stroke={isOpen ? "#FAF7F0" : "#5A6B60"}
+          strokeWidth="2.4" strokeLinecap="round">
+          <path d="M10 4V16M4 10H16" />
+        </svg>
+      </motion.div>
+    </button>
+
+    <AnimatePresence initial={false}>
+      {isOpen && (
+        <motion.div
+          key="body"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.28, ease: "easeInOut" }}
+          style={{ overflow: "hidden" }}
+        >
+          <div style={{
+            paddingBottom: "clamp(14px,2.2vw,20px)",
+            color: "#5A6B60", lineHeight: 1.88,
+            fontSize: "clamp(0.85rem,1.6vw,0.92rem)",
+          }}>
+            {faq.a}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </motion.div>
+);
+
+// ─── Category accordion block ─────────────────────────────────────────────────
+const CategoryBlock = ({ cat, faqs, isOpen, onToggle, openFaqIndex, setOpenFaqIndex, sectionIndex }) => {
+  const meta = CAT_META[cat.id] || { num: "0" + (sectionIndex + 1), color: ACCENT, bg: "rgba(139,58,107,0.07)", border: ACCENT_BORDER };
 
   return (
-    <div style={{ borderBottom: "1px solid rgba(139,58,107,0.08)" }}>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.65, delay: sectionIndex * 0.07, ease: [0.16, 1, 0.3, 1] }}
+      style={{
+        marginBottom: "4px",
+        borderRadius: "16px",
+        overflow: "hidden",
+        border: `1px solid ${isOpen ? meta.border : "rgba(30,45,42,0.06)"}`,
+        transition: "border-color 0.3s ease",
+      }}
+    >
+      {/* Category header — the accordion trigger */}
       <button
         onClick={onToggle}
         aria-expanded={isOpen}
+        aria-controls={`cat-panel-${cat.id}`}
+        className="cat-block-btn"
         style={{
-          width: "100%", display: "flex",
-          justifyContent: "space-between", alignItems: "center",
-          padding: "clamp(16px,2.5vw,22px) 0",
-          background: "none", border: "none", cursor: "pointer",
-          textAlign: "left", gap: "16px",
+          width: "100%",
+          display: "flex", alignItems: "center", gap: "clamp(14px,2.5vw,24px)",
+          padding: "clamp(20px,3vw,28px) clamp(20px,3vw,28px)",
+          background: isOpen ? meta.bg : "rgba(250,247,240,0.6)",
+          border: "none", cursor: "pointer", textAlign: "left",
+          transition: "background 0.3s ease",
+          backdropFilter: "blur(4px)",
         }}
       >
+        {/* Large number */}
         <span style={{
           fontFamily: "'TAN-MEMORIES', serif",
-          fontSize: "clamp(0.95rem,2vw,1.12rem)",
-          color: isOpen ? ACCENT : "#1E2D2A",
-          lineHeight: 1.3, flex: 1,
-          transition: "color 0.22s ease",
-        }}>
-          {highlight(faq.q)}
+          fontSize: "clamp(1.6rem,4vw,2.6rem)",
+          color: isOpen ? meta.color : "rgba(30,45,42,0.18)",
+          lineHeight: 1,
+          flexShrink: 0,
+          transition: "color 0.3s ease",
+          letterSpacing: "-1px",
+        }} aria-hidden="true">
+          {meta.num}
         </span>
 
-        <motion.div
-          animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ type: "spring", stiffness: 280, damping: 22 }}
-          style={{
-            flexShrink: 0,
-            width: "clamp(28px,3.5vw,34px)", height: "clamp(28px,3.5vw,34px)",
-            borderRadius: "50%",
-            backgroundColor: isOpen ? ACCENT : ACCENT_LIGHT,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            transition: "background-color 0.22s ease",
-          }}
-          aria-hidden="true"
-        >
-          <svg width="12" height="12" viewBox="0 0 20 20" fill="none"
-            stroke={isOpen ? "#FAF7F0" : ACCENT}
-            strokeWidth="2.2" strokeLinecap="round">
-            <path d="M10 4V16M4 10H16" />
-          </svg>
-        </motion.div>
+        {/* Category name */}
+        <span style={{
+          fontFamily: "'TAN-MEMORIES', serif",
+          fontSize: "clamp(1.15rem,2.8vw,1.7rem)",
+          color: isOpen ? "#1E2D2A" : "#3A4F4A",
+          lineHeight: 1.1,
+          flex: 1,
+          transition: "color 0.3s ease",
+        }}>
+          {cat.label}
+        </span>
+
+        {/* Count + chevron */}
+        <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
+          <span style={{
+            fontSize: "0.65rem", fontWeight: 700, letterSpacing: "1.5px",
+            color: isOpen ? meta.color : "#9BA89F",
+            fontFamily: "'Google Sans', Roboto, sans-serif",
+            background: isOpen ? `rgba(0,0,0,0.06)` : "rgba(30,45,42,0.05)",
+            padding: "4px 10px", borderRadius: "100px",
+            transition: "all 0.3s ease",
+          }} aria-hidden="true">
+            {faqs.length} perguntas
+          </span>
+
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 26 }}
+            style={{
+              width: "clamp(30px,4vw,38px)", height: "clamp(30px,4vw,38px)",
+              borderRadius: "50%",
+              background: isOpen ? meta.color : "rgba(30,45,42,0.07)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              transition: "background 0.3s ease",
+            }}
+            aria-hidden="true"
+          >
+            <svg width="12" height="12" viewBox="0 0 20 20" fill="none"
+              stroke={isOpen ? "#FAF7F0" : "#5A6B60"}
+              strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 7.5L10 12.5L15 7.5" />
+            </svg>
+          </motion.div>
+        </div>
       </button>
 
+      {/* FAQ items panel */}
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
-            key="body"
+            id={`cat-panel-${cat.id}`}
+            key="panel"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.26, ease: "easeInOut" }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             style={{ overflow: "hidden" }}
           >
             <div style={{
-              paddingBottom: "clamp(16px,2.5vw,22px)",
-              color: "#5A6B60", lineHeight: 1.85,
-              fontSize: "clamp(0.87rem,1.7vw,0.94rem)",
+              padding: "0 clamp(20px,3vw,28px) clamp(12px,2vw,20px)",
+              borderTop: `1px solid ${meta.border}`,
             }}>
-              {faq.a}
+              {/* Coloured left-border accent stripe */}
+              <div style={{
+                borderLeft: `3px solid ${meta.color}`,
+                paddingLeft: "clamp(16px,2.5vw,24px)",
+                marginTop: "clamp(14px,2vw,20px)",
+              }}>
+                {faqs.map((faq, idx) => {
+                  const globalIndex = FAQ_DATA.indexOf(faq);
+                  return (
+                    <FAQItem
+                      key={globalIndex}
+                      faq={faq}
+                      isOpen={openFaqIndex === globalIndex}
+                      onToggle={() => setOpenFaqIndex(openFaqIndex === globalIndex ? null : globalIndex)}
+                      searchTerm=""
+                      accentColor={meta.color}
+                      itemIndex={idx}
+                    />
+                  );
+                })}
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 
-const CategorySection = ({ cat, faqs, openIndex, setOpenIndex, searchTerm, sectionIndex }) => {
-  if (faqs.length === 0) return null;
-
-  return (
-    <motion.section
-      aria-label={`Perguntas sobre ${cat.label}`}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: sectionIndex * 0.06 }}
-      style={{ marginBottom: "clamp(40px,6vw,60px)" }}
-    >
-      {/* Category header */}
-      <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "4px" }}>
-        <h2 style={{
-          fontFamily: "'TAN-MEMORIES', serif",
-          fontSize: "clamp(1.1rem,2.5vw,1.4rem)",
-          color: "#1E2D2A",
-          margin: 0, lineHeight: 1.1,
-          whiteSpace: "nowrap",
-        }}>
-          {cat.label}
-        </h2>
-        <div style={{
-          flex: 1, height: "1px",
-          background: `linear-gradient(to right, ${ACCENT_BORDER}, transparent)`,
-        }} aria-hidden="true" />
-        <span style={{
-          fontSize: "0.68rem", fontWeight: 700, letterSpacing: "1.5px",
-          color: ACCENT, fontFamily: "'Google Sans', Roboto, sans-serif",
-          opacity: 0.7,
-        }} aria-hidden="true">
-          {faqs.length}
-        </span>
-      </div>
-
-      {/* FAQ items */}
-      <div role="list" aria-label={`${cat.label} — perguntas`}>
-        {faqs.map((faq) => {
-          const globalIndex = FAQ_DATA.indexOf(faq);
-          return (
-            <div key={globalIndex} role="listitem">
-              <FAQItem
-                faq={faq}
-                isOpen={openIndex === globalIndex}
-                onToggle={() => setOpenIndex(openIndex === globalIndex ? null : globalIndex)}
-                searchTerm={searchTerm}
-              />
-            </div>
-          );
-        })}
-      </div>
-    </motion.section>
-  );
-};
-
+// ─── Main component ───────────────────────────────────────────────────────────
 export default function FaqAccordion() {
-  const [openIndex, setOpenIndex] = useState(null);
-  const [search, setSearch]       = useState("");
+  const [openFaqIndex, setOpenFaqIndex]   = useState(null);
+  const [openCatId, setOpenCatId]         = useState("processo"); // first open by default
+  const [search, setSearch]               = useState("");
 
   const isSearching = search.trim().length >= 2;
 
@@ -167,8 +263,13 @@ export default function FaqAccordion() {
     faqs: FAQ_DATA.filter(f => f.cat === cat.id),
   }));
 
+  const toggleCat = (catId) => {
+    setOpenCatId(prev => prev === catId ? null : catId);
+    setOpenFaqIndex(null);
+  };
+
   return (
-    <div style={{ maxWidth: "820px", margin: "0 auto", padding: "44px 20px clamp(56px,8vw,88px)" }}>
+    <div style={{ maxWidth: "840px", margin: "0 auto", padding: "clamp(32px,5vw,56px) 20px clamp(56px,8vw,88px)" }}>
 
       {/* Search */}
       <div className="search-wrap">
@@ -183,7 +284,7 @@ export default function FaqAccordion() {
           className="search-input"
           placeholder="Pesquisar uma dúvida..."
           value={search}
-          onChange={e => { setSearch(e.target.value); setOpenIndex(null); }}
+          onChange={e => { setSearch(e.target.value); setOpenFaqIndex(null); }}
           aria-label="Pesquisar nas perguntas frequentes"
           autoComplete="off"
         />
@@ -197,7 +298,7 @@ export default function FaqAccordion() {
         )}
       </div>
 
-      {/* Search results */}
+      {/* ── Search results ── */}
       {isSearching && (
         <AnimatePresence mode="wait">
           <motion.div
@@ -231,15 +332,18 @@ export default function FaqAccordion() {
               </div>
             ) : (
               <div role="list">
-                {searchResults.map((faq) => {
+                {searchResults.map((faq, idx) => {
                   const globalIndex = FAQ_DATA.indexOf(faq);
+                  const meta = CAT_META[faq.cat] || { color: ACCENT };
                   return (
                     <div key={globalIndex} role="listitem">
                       <FAQItem
                         faq={faq}
-                        isOpen={openIndex === globalIndex}
-                        onToggle={() => setOpenIndex(openIndex === globalIndex ? null : globalIndex)}
+                        isOpen={openFaqIndex === globalIndex}
+                        onToggle={() => setOpenFaqIndex(openFaqIndex === globalIndex ? null : globalIndex)}
                         searchTerm={search.trim()}
+                        accentColor={meta.color}
+                        itemIndex={idx}
                       />
                     </div>
                   );
@@ -250,20 +354,25 @@ export default function FaqAccordion() {
         </AnimatePresence>
       )}
 
-      {/* Category sections (default view) */}
-      {!isSearching && categoriesWithFaqs.map(({ cat, faqs }, i) => (
-        <CategorySection
-          key={cat.id}
-          cat={cat}
-          faqs={faqs}
-          openIndex={openIndex}
-          setOpenIndex={setOpenIndex}
-          searchTerm=""
-          sectionIndex={i}
-        />
-      ))}
+      {/* ── Category accordion blocks ── */}
+      {!isSearching && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          {categoriesWithFaqs.map(({ cat, faqs }, i) => (
+            <CategoryBlock
+              key={cat.id}
+              cat={cat}
+              faqs={faqs}
+              isOpen={openCatId === cat.id}
+              onToggle={() => toggleCat(cat.id)}
+              openFaqIndex={openFaqIndex}
+              setOpenFaqIndex={setOpenFaqIndex}
+              sectionIndex={i}
+            />
+          ))}
+        </div>
+      )}
 
-      {/* Related links */}
+      {/* ── Related links ── */}
       {!isSearching && (
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -274,7 +383,7 @@ export default function FaqAccordion() {
           <p style={{
             fontSize: "0.62rem", letterSpacing: "3px", textTransform: "uppercase",
             color: "#B8A898", fontFamily: "'Google Sans', Roboto, sans-serif",
-            margin: "52px 0 0", textAlign: "center",
+            margin: "clamp(44px,6vw,64px) 0 0", textAlign: "center",
           }}>
             Explorar
           </p>

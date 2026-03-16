@@ -84,3 +84,10 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .related-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(139,58,107,0.1); }
+
+/* Category accordion block buttons */
+.cat-block-btn:focus-visible {
+  outline: 2px solid rgba(61,107,94,0.6);
+  outline-offset: -2px;
+  border-radius: 14px;
+}
