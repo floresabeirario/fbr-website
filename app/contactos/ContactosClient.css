@@ -105,6 +105,52 @@
 
 a:focus-visible, button:focus-visible { outline: 3px solid #C4846B; outline-offset: 4px; border-radius: 4px; }
 
+/* ── Secção 4 quadrados ──────────────────────────────────── */
+.nav-squares-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 640px) {
+  .nav-squares-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.nav-square {
+  position: relative;
+  aspect-ratio: 1;
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.nav-square-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s ease;
+}
+.nav-square:hover .nav-square-img { transform: scale(1.07); }
+
+.nav-square-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15,38,34,0.78) 0%, rgba(15,38,34,0.12) 55%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(12px, 2.5vw, 22px);
+  transition: background 0.35s ease;
+}
+.nav-square:hover .nav-square-overlay {
+  background: linear-gradient(to top, rgba(15,38,34,0.88) 0%, rgba(15,38,34,0.25) 60%, transparent 100%);
+}
+
+.nav-square-label {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(0.72rem, 2vw, 1rem);
+  color: var(--cream);
+  line-height: 1.2;
+}
+
 .contact-direct-link { transition: opacity 0.2s ease; }
 .contact-direct-link:hover { opacity: 0.72; }
 

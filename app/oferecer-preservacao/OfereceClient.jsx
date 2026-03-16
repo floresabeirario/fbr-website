@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { FORM_URL_VALE, WA_URL, WA_URL_VALE } from "../_lib/constants";
@@ -44,12 +44,12 @@ const CREME    = "#FAF7F0";
 const ESCURO   = "#0F1E1A";
 
 const ocasioes = [
-  { emoji: "💍", titulo: "Casamento",               descricao: "O bouquet de noiva passou meses a ser pensado ao pormenor. Transforme-o numa obra de arte que vai durar para sempre." },
-  { emoji: "🕊️", titulo: "Batizado",                descricao: "As flores do altar ou da decoração podem tornar-se numa recordação permanente deste dia especial." },
-  { emoji: "🌿", titulo: "Aniversário de Casamento", descricao: "Preserve as flores do aniversário e crie uma nova memória para celebrar os anos juntos." },
-  { emoji: "🎓", titulo: "Formatura",               descricao: "As flores da cerimónia preservadas num quadro são um símbolo de conquista e dedicação." },
-  { emoji: "🕯️", titulo: "Homenagem e Luto",        descricao: "Em momentos de perda, preservar as flores é uma forma de manter viva a memória de alguém amado." },
-  { emoji: "🌸", titulo: "Simplesmente Porque Sim", descricao: "Não é preciso uma ocasião especial para dar um presente especial. Um vale oferta é um gesto de amor puro." },
+  { img: "/casamento.webp",           titulo: "Casamento",               descricao: "O bouquet de noiva passou meses a ser pensado ao pormenor. Transforme-o numa obra de arte que vai durar para sempre." },
+  { img: "/batizado.webp",            titulo: "Batizado",                descricao: "As flores do altar ou da decoração podem tornar-se numa recordação permanente deste dia especial." },
+  { img: "/aniversariocasamento.webp",titulo: "Aniversário de Casamento", descricao: "Preserve as flores do aniversário e crie uma nova memória para celebrar os anos juntos." },
+  { img: "/formatura.webp",           titulo: "Formatura",               descricao: "As flores da cerimónia preservadas num quadro são um símbolo de conquista e dedicação." },
+  { img: "/luto.webp",                titulo: "Homenagem e Luto",        descricao: "Em momentos de perda, preservar as flores é uma forma de manter viva a memória de alguém amado." },
+  { img: "/porquesim.webp",           titulo: "Simplesmente Porque Sim", descricao: "Não é preciso uma ocasião especial para dar um presente especial. Um vale oferta é um gesto de amor puro." },
 ];
 
 const passos = [
@@ -77,6 +77,40 @@ const condicoesCartao = [
 
 // ─── WA URL específico para vale ─────────────────────────────────────────────
 const WA_VALE = WA_URL_VALE;
+
+// ─── Vale Slider (mobile) ─────────────────────────────────────────────────────
+const VALE_SLIDES = ["/vale2.webp", "/vale1.webp"];
+
+function ValeSlider() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCurrent(prev => (prev + 1) % VALE_SLIDES.length);
+    }, 3200);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div className="vale-slider">
+      {VALE_SLIDES.map((src, i) => (
+        <div
+          key={src}
+          className="vale-slide"
+          style={{ opacity: i === current ? 1 : 0 }}
+          aria-hidden={i !== current}
+        >
+          <Image fill src={src} alt="Cartão presente da Flores à Beira-Rio" sizes="100vw" style={{ objectFit: "cover" }} />
+        </div>
+      ))}
+      <div className="vale-slider-dots" aria-hidden="true">
+        {VALE_SLIDES.map((_, i) => (
+          <span key={i} className={`vale-dot${i === current ? " vale-dot-active" : ""}`} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function OfereceClient() {
@@ -111,8 +145,13 @@ export default function OfereceClient() {
         <Reveal>
           <div className="cartao-grid">
             <div className="cartao-foto-wrap">
-              <div className="cartao-foto">
-                <Image fill src="/vale2.webp" alt="Cartão presente da Flores à Beira-Rio versão colorida com ilustrações de flores" sizes="(max-width: 768px) 100vw, 42vw" style={{ objectFit: "cover", transition: "transform 0.7s ease" }} />
+              {/* Mobile: slider automático */}
+              <div className="cartao-foto cartao-foto-mobile">
+                <ValeSlider />
+              </div>
+              {/* Desktop: vale2.webp estático, mais alto */}
+              <div className="cartao-foto cartao-foto-desktop">
+                <Image fill src="/vale2.webp" alt="Cartão presente da Flores à Beira-Rio versão colorida com ilustrações de flores" sizes="42vw" style={{ objectFit: "cover", transition: "transform 0.7s ease" }} />
               </div>
             </div>
             <div style={{ flex: 1 }}>
@@ -178,9 +217,13 @@ export default function OfereceClient() {
             {ocasioes.map((item, i) => (
               <Reveal key={i} delay={i * 0.06}>
                 <article className="ocasiao-card">
-                  <div className="ocasiao-num" aria-hidden="true">{item.emoji}</div>
-                  <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.9rem, 1.8vw, 1.1rem)", marginBottom: "0.35rem", color: CREME, lineHeight: 1.2 }}>{item.titulo}</h3>
-                  <p style={{ fontSize: "0.82rem", lineHeight: 1.65, color: "rgba(250,247,240,0.78)", margin: 0 }}>{item.descricao}</p>
+                  <div className="ocasiao-img">
+                    <Image fill src={item.img} alt={item.titulo} sizes="(max-width: 900px) 50vw, 33vw" style={{ objectFit: "cover" }} />
+                  </div>
+                  <div className="ocasiao-content">
+                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.9rem, 1.8vw, 1.1rem)", marginBottom: "0.35rem", color: CREME, lineHeight: 1.2 }}>{item.titulo}</h3>
+                    <p style={{ fontSize: "0.82rem", lineHeight: 1.65, color: "rgba(250,247,240,0.78)", margin: 0 }}>{item.descricao}</p>
+                  </div>
                 </article>
               </Reveal>
             ))}
@@ -242,8 +285,10 @@ export default function OfereceClient() {
       </section>
 
       {/* CTA FINAL */}
-      <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", textAlign: "center", background: `linear-gradient(145deg, ${AZUL_FND} 0%, ${CREME} 60%)` }}>
-        <Reveal>
+      <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", textAlign: "center", position: "relative", overflow: "hidden" }}>
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/sunset.webp')", backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.72) saturate(0.9)" }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "rgba(250,247,240,0.52)" }} />
+        <Reveal style={{ position: "relative", zIndex: 1 }}>
           <div aria-hidden="true" style={{ width: "44px", height: "1px", margin: "0 auto 2rem", background: `linear-gradient(to right, transparent, ${AZUL}, transparent)` }} />
           <Eyebrow color={AZUL}>Pronto para oferecer?</Eyebrow>
           <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5.5vw, 3.8rem)", lineHeight: 1.1, maxWidth: "660px", margin: "0 auto 1.2rem", color: ESCURO }}>Um dia especial merece uma recordação especial</h2>

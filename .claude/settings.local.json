@@ -32,7 +32,9 @@
       "Bash(wc -l /c/Users/maria/Documents/fbr-website/fbr-website/app/blog/*.css /c/Users/maria/Documents/fbr-website/fbr-website/app/perguntas-frequentes/*.css)",
       "Bash(wc -l /c/Users/maria/Documents/fbr-website/fbr-website/app/blog/[slug]/ArticleClient.css)",
       "Bash(wc -l /c/Users/maria/Documents/fbr-website/fbr-website/content/blog/*.mdx)",
-      "Bash(xargs grep:*)"
+      "Bash(xargs grep:*)",
+      "Bash(wc -l /c/Users/maria/Documents/fbr-website/fbr-website/public/*.webp /c/Users/maria/Documents/fbr-website/fbr-website/public/*.jpg)",
+      "Bash(ls c:/Users/maria/Documents/fbr-website/fbr-website/public/*.webp c:/Users/maria/Documents/fbr-website/fbr-website/public/*.jpg)"
     ]
   }
 }
