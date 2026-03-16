@@ -389,7 +389,7 @@ export default function HomeClient() {
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
             style={{ padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
           >
-            <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/videochamda.webp')", backgroundSize: "cover", backgroundPosition: "center" }} />
+            <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/videochamada.webp')", backgroundSize: "cover", backgroundPosition: "center" }} />
             <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,25,20,0.45) 0%, rgba(15,25,20,0.72) 100%)" }} />
             <div style={{ maxWidth: "440px", margin: "0 auto", width: "100%", position: "relative", zIndex: 1 }}>
               <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.82)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
