@@ -368,13 +368,17 @@ export default function OpcoesClient() {
               </p>
             </div>
           </Reveal>
-          {/* Grupo principal — quadros */}
-          <Reveal>
-            <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "clamp(0.88rem, 1.5vw, 1rem)", lineHeight: 1.65, color: "rgba(250,247,240,0.65)", marginBottom: "24px" }}>
-              Escolha o tamanho do quadro onde vão ficar as suas flores preservadas.
-            </p>
-          </Reveal>
           <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px", marginBottom: "48px" }}>
+
+            {/* Linha-separador: quadros principais */}
+            <Reveal style={{ gridColumn: "1 / -1" }}>
+              <div style={{ padding: "18px 24px", border: "1px solid rgba(250,247,240,0.1)", borderRadius: "4px", backgroundColor: "rgba(250,247,240,0.04)" }}>
+                <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)", lineHeight: 1.6, color: "rgba(250,247,240,0.55)", margin: 0 }}>
+                  Escolha o tamanho do quadro onde vão ficar as suas flores preservadas:
+                </p>
+              </div>
+            </Reveal>
+
             {frames.slice(0, 3).map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div style={{ backgroundColor: i === 0 ? "#FAF7F0" : i === 1 ? "#F2EDE4" : "#EAE3D8", padding: "28px 24px", display: "flex", flexDirection: "column", height: "100%", boxSizing: "border-box", borderRadius: "4px", position: "relative" }}>
@@ -394,15 +398,16 @@ export default function OpcoesClient() {
                 </div>
               </Reveal>
             ))}
-          </div>
 
-          {/* Grupo complementar — formatos adicionais */}
-          <Reveal>
-            <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "clamp(0.88rem, 1.5vw, 1rem)", lineHeight: 1.65, color: "rgba(250,247,240,0.65)", marginBottom: "24px" }}>
-              Complemente a sua encomenda com outros formatos, para si ou para oferecer, com as suas flores preservadas.
-            </p>
-          </Reveal>
-          <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px", marginBottom: "48px" }}>
+            {/* Linha-separador: formatos complementares */}
+            <Reveal style={{ gridColumn: "1 / -1" }}>
+              <div style={{ padding: "18px 24px", border: "1px solid rgba(250,247,240,0.1)", borderRadius: "4px", backgroundColor: "rgba(250,247,240,0.04)" }}>
+                <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "clamp(0.85rem, 1.4vw, 0.95rem)", lineHeight: 1.6, color: "rgba(250,247,240,0.55)", margin: 0 }}>
+                  Complemente a sua encomenda com outros formatos, para si ou para oferecer, com as suas flores preservadas:
+                </p>
+              </div>
+            </Reveal>
+
             {frames.slice(3).map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div style={{ backgroundColor: item.addonColor ? item.addonColor : "#3D6B5E", padding: "28px 24px", display: "flex", flexDirection: "column", height: "100%", boxSizing: "border-box", borderRadius: "4px", position: "relative" }}>
@@ -427,6 +432,7 @@ export default function OpcoesClient() {
                 </div>
               </Reveal>
             ))}
+
           </div>
           <Reveal>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "18px", margin: "0 0 48px", padding: "22px 32px", backgroundColor: "rgba(184,149,74,0.1)", border: "1px solid rgba(184,149,74,0.3)", borderRadius: "4px" }}>
