@@ -4,33 +4,37 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 // ─── Gradient themes (semantic keys used in data-bg) ─────────────────────────
+// Golden rule: light tone dominates 85-90%, deeper accent is a whisper at one edge only.
 const THEMES = {
   neutral: {
-    gradient: "linear-gradient(145deg, #FFF9F0 0%, #EDD8C4 40%, #F5EAE0 70%, #FFF9F2 100%)",
+    gradient: "linear-gradient(145deg, #FFF9F2 0%, #FFF5EC 70%, #F0E2C4 92%, #FFF9F2 100%)",
     accent: "#2D4A40",
   },
   blush: {
-    gradient: "linear-gradient(150deg, #EFBCB0 0%, #E49484 28%, #ECBCAC 55%, #F5D8D0 80%, #FEF0EC 100%)",
+    // soft warm peach — never red
+    gradient: "linear-gradient(150deg, #FEF3EF 0%, #FAE8E2 70%, #ECCCC0 92%, #FEF3EF 100%)",
     accent: "#6B1A28",
   },
   sky: {
-    gradient: "linear-gradient(150deg, #B4D4F2 0%, #80AEDD 28%, #9EC4EC 55%, #C8DEFA 80%, #EAF4FC 100%)",
+    gradient: "linear-gradient(150deg, #EEF5FC 0%, #E2EEFA 70%, #BBCFF0 92%, #EEF5FC 100%)",
     accent: "#1A3870",
   },
   lavender: {
-    gradient: "linear-gradient(150deg, #C8A4F0 0%, #A07CE4 28%, #B898EC 55%, #D8C4F8 80%, #F0ECFC 100%)",
+    // reverted: uses #C8B4EC as the subtle accent touch
+    gradient: "linear-gradient(150deg, #F5F0FC 0%, #EDE6FA 70%, #C8B4EC 92%, #F5F0FC 100%)",
     accent: "#3A1A6B",
   },
   butter: {
-    gradient: "linear-gradient(150deg, #E8C870 0%, #D09A30 28%, #DEB460 55%, #EEDDAA 80%, #FEF6DC 100%)",
+    gradient: "linear-gradient(150deg, #FEFAE8 0%, #F8F0CC 70%, #E4C870 92%, #FEFAE8 100%)",
     accent: "#5A4A10",
   },
   leaf: {
-    gradient: "linear-gradient(150deg, #AACF8C 0%, #6EAA54 28%, #8EC074 55%, #B8D89C 80%, #E0F0CC 100%)",
-    accent: "#1E5010",
+    // botanical sage: CFE0BC as the whisper, cream dominates
+    gradient: "linear-gradient(150deg, #F7FBF2 0%, #EBF5E2 70%, #CFE0BC 92%, #F7FBF2 100%)",
+    accent: "#4A6228",
   },
   mint: {
-    gradient: "linear-gradient(150deg, #A8DEC4 0%, #70C4A4 28%, #8CD4B4 55%, #BEE4D0 80%, #E4F8EE 100%)",
+    gradient: "linear-gradient(150deg, #EDFAF4 0%, #D8F0E4 70%, #A0D8BC 92%, #EDFAF4 100%)",
     accent: "#0F4828",
   },
 };
