@@ -1,7 +1,8 @@
 // app/perguntas-frequentes/PerguntasFrequentesClient.jsx
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { FORM_URL, WA_NUMBER } from "../_lib/constants";
 import { FAQ_DATA } from "./faq-data";
 import FaqAccordion from "./FaqAccordion";
@@ -28,6 +29,11 @@ export default function PerguntasFrequentesClient() {
   const WA   = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Olá! Tenho uma dúvida sobre a preservação das minhas flores.")}`;
   const FORM = FORM_URL;
 
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.38], [1, 0]);
+  const heroY       = useTransform(scrollYProgress, [0, 0.38], [0, 28]);
+
   return (
     <>
       <SchemaScript />
@@ -36,6 +42,7 @@ export default function PerguntasFrequentesClient() {
 
         {/* Hero */}
         <section
+          ref={heroRef}
           aria-label="Perguntas frequentes sobre preservação de flores"
           style={{
             position: "relative",
@@ -59,12 +66,17 @@ export default function PerguntasFrequentesClient() {
             background: "linear-gradient(to bottom, rgba(20,8,18,0.28) 0%, rgba(20,8,18,0.55) 55%, rgba(20,8,18,0.82) 100%)",
           }} aria-hidden="true" />
 
-          <div style={{
-            position: "relative", zIndex: 2,
-            width: "100%",
-            padding: "0 clamp(20px,6vw,80px)",
-            textAlign: "center",
-          }}>
+          <motion.div
+            style={{
+              opacity: heroOpacity,
+              y: heroY,
+              position: "relative",
+              zIndex: 2,
+              width: "100%",
+              padding: "0 clamp(20px,6vw,80px)",
+              textAlign: "center",
+            }}
+          >
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -106,7 +118,7 @@ export default function PerguntasFrequentesClient() {
                 processo artesanal, entrega e pagamentos.
               </p>
             </motion.div>
-          </div>
+          </motion.div>
         </section>
 
         <FaqAccordion />

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 
 import { WA_NUMBER } from "../_lib/constants";
@@ -220,16 +220,21 @@ function FAQItem({ faq, i }) {
 }
 
 export default function EmoldurarFloresSecasClient() {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.38], [1, 0]);
+  const heroY       = useTransform(scrollYProgress, [0, 0.38], [0, 28]);
+
   return (
     <main style={{ backgroundColor: C.creme, fontFamily: "'Google Sans', sans-serif", color: C.escuro, overflowX: "hidden" }}>
 
-      {/* ══ 1. HERO — sem paralaxe para evitar lag ═══════════════════════════ */}
-      <section className="hero-wrap" aria-label="Emoldurar flores já secas">
+      {/* ══ 1. HERO ═══════════════════════════════════════════════════════════ */}
+      <section ref={heroRef} className="hero-wrap" aria-label="Emoldurar flores já secas">
         <div className="hero-bg">
           <Image fill src="/quadrovidrosobrevidro.webp" alt="Quadro de flores secas emoldurado com vidro museu anti-UV" priority sizes="100vw" style={{ objectFit: "cover" }} />
         </div>
         <div className="hero-overlay" />
-        <div className="hero-content">
+        <motion.div className="hero-content" style={{ opacity: heroOpacity, y: heroY }}>
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
@@ -264,7 +269,7 @@ export default function EmoldurarFloresSecasClient() {
             </div>
 
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
       {/* ══ 2. TRÊS OPÇÕES ════════════════════════════════════════════════════ */}

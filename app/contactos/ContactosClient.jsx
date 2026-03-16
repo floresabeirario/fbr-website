@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { IconInstagram, IconFacebook, IconTikTok, IconWhatsApp, IconEmail, IconCasamentos } from "@/components/Icons";
 import { FORM_URL, WA_URL, EMAIL, PHONE_DISPLAY, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK, SOCIAL_TIKTOK, SOCIAL_CASAMENTOS } from "../_lib/constants";
 import "./ContactosClient.css";
@@ -76,11 +76,17 @@ const SOCIALS = [
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function ContactosClient() {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.38], [1, 0]);
+  const heroY       = useTransform(scrollYProgress, [0, 0.38], [0, 28]);
+
   return (
     <main style={{ overflowX: "hidden" }}>
 
       {/* ════ 1. HERO ════ */}
       <section
+        ref={heroRef}
         aria-label="Contactos e Equipa — Flores à Beira-Rio"
         style={{ position: "relative", overflow: "hidden", minHeight: "85vh", display: "flex", alignItems: "center" }}
       >
@@ -106,7 +112,7 @@ export default function ContactosClient() {
           }}
         />
 
-        <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1100px", margin: "0 auto", padding: "clamp(140px,18vw,200px) 24px clamp(80px,12vw,120px)" }}>
+        <motion.div style={{ opacity: heroOpacity, y: heroY, position: "relative", zIndex: 2, width: "100%", maxWidth: "1100px", margin: "0 auto", padding: "clamp(140px,18vw,200px) 24px clamp(80px,12vw,120px)" }}>
           <div className="contact-split" style={{ gap: "clamp(40px,6vw,80px)", alignItems: "center" }}>
 
             <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="hero-text-col">
@@ -175,7 +181,7 @@ export default function ContactosClient() {
               </div>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* ════ 2. EQUIPA ════ */}

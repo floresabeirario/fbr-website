@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 
 import { FORM_URL, TRACKING_URL } from "../_lib/constants";
@@ -206,11 +206,16 @@ const frames = [
 export default function OpcoesClient() {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.38], [1, 0]);
+  const heroY       = useTransform(scrollYProgress, [0, 0.38], [0, 28]);
+
   return (
     <div style={{ backgroundColor: "#FAF7F0", color: "#1a1a1a", overflowX: "hidden" }}>
 
-      {/* ── HERO: estrutura igual ao de oferecer-preservacao ── */}
-      <section style={{ position: "relative", minHeight: "100svh", overflow: "hidden", display: "flex", alignItems: "flex-end" }}>
+      {/* ── HERO ── */}
+      <section ref={heroRef} style={{ position: "relative", minHeight: "100svh", overflow: "hidden", display: "flex", alignItems: "flex-end" }}>
         {/* Foto de fundo */}
         <div style={{ position: "absolute", inset: 0 }}>
           <Image fill
@@ -225,7 +230,7 @@ export default function OpcoesClient() {
         </div>
 
         {/* Texto alinhado ao fundo, centrado */}
-        <div style={{ position: "relative", zIndex: 2, width: "100%", padding: "clamp(110px,14vw,160px) clamp(24px,5vw,72px) clamp(60px,8vw,90px)" }}>
+        <motion.div style={{ opacity: heroOpacity, y: heroY, position: "relative", zIndex: 2, width: "100%", padding: "clamp(110px,14vw,160px) clamp(24px,5vw,72px) clamp(60px,8vw,90px)" }}>
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
@@ -243,7 +248,7 @@ export default function OpcoesClient() {
               Cada quadro é uma peça única, feita à mão em Coimbra. Escolha o fundo, o tamanho e os detalhes que tornam a sua composição verdadeiramente sua.
             </p>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
       {/* ── TIPOS DE FUNDO ── */}

@@ -237,11 +237,7 @@ export default function HomeClient() {
                     </div>
                   </div>
                 </div>
-                <a href="/sustentabilidade"
-                  style={{ color: "#8BA888", textDecoration: "none", fontSize: "0.82rem", fontWeight: "600", fontFamily: "'Google Sans', Roboto, sans-serif", borderBottom: "1px solid rgba(139,168,136,0.4)", paddingBottom: "2px", transition: "color 0.2s, border-color 0.2s", maxWidth: "320px", lineHeight: 1.5 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#8BA888"; e.currentTarget.style.color = "#A8C8A5"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(139,168,136,0.4)"; e.currentTarget.style.color = "#8BA888"; }}
-                >
+                <a href="/sustentabilidade" className="apcc-link">
                   Saiba mais sobre a origem dos nossos materiais e a nossa política de sustentabilidade →
                 </a>
               </motion.div>
@@ -254,24 +250,20 @@ export default function HomeClient() {
           style={{ position: "relative", overflow: "hidden", minHeight: "560px", display: "flex", alignItems: "center" }}
         >
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/vale1.webp')", backgroundSize: "cover", backgroundPosition: "center" }} />
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(100deg, rgba(15,12,30,0.78) 0%, rgba(15,12,30,0.55) 55%, rgba(15,12,30,0.15) 100%)" }} />
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(100deg, rgba(15,25,20,0.82) 0%, rgba(15,25,20,0.58) 55%, rgba(15,25,20,0.15) 100%)" }} />
           <div style={{ position: "relative", zIndex: 1, maxWidth: "1100px", margin: "0 auto", padding: "88px 20px", width: "100%" }}>
             <div style={{ maxWidth: "580px" }}>
               <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}>
-                <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(160,148,220,0.18)", border: "1px solid rgba(160,148,220,0.35)", borderRadius: "100px", padding: "6px 16px", marginBottom: "20px" }}>
-                  <span style={{ fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#C5BCEF", fontFamily: "'Google Sans', Roboto, sans-serif" }}>O presente mais especial</span>
+                <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(184,149,74,0.15)", border: "1px solid rgba(184,149,74,0.35)", borderRadius: "100px", padding: "6px 16px", marginBottom: "20px" }}>
+                  <span style={{ fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "var(--gold)", fontFamily: "'Google Sans', Roboto, sans-serif" }}>O presente mais especial</span>
                 </div>
                 <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.5rem)", color: "#FAF7F0", margin: "0 0 20px", lineHeight: 1.1 }}>
-                  Ofereça memórias<br /><em style={{ fontStyle: "italic", color: "#C5BCEF" }}>que duram para sempre</em>
+                  Ofereça memórias<br /><em style={{ fontStyle: "italic", color: "var(--gold)" }}>que duram para sempre</em>
                 </h2>
                 <p style={{ color: "rgba(250,247,240,0.78)", lineHeight: 1.85, fontSize: "clamp(1rem,2vw,1.08rem)", margin: "0 0 34px" }}>
                   Ofereça a preservação das flores na forma do nosso cartão-oferta e deixe que os presenteados escolham a preservação ao seu gosto.
                 </p>
-                <a href="/oferecer-preservacao"
-                  style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#A094DC", color: "#FAF7F0", padding: "14px 34px", borderRadius: "100px", textDecoration: "none", fontWeight: "700", fontSize: "0.8rem", letterSpacing: "1.8px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", transition: "all 0.3s ease", boxShadow: "0 6px 24px rgba(100,88,180,0.4)", minHeight: "48px" }}
-                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#8878C8"; e.currentTarget.style.transform = "translateY(-3px)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#A094DC"; e.currentTarget.style.transform = "translateY(0)"; }}
-                >
+                <a href="/oferecer-preservacao" className="gift-card-btn">
                   Descobrir o Cartão-Oferta
                 </a>
               </motion.div>
@@ -285,20 +277,20 @@ export default function HomeClient() {
           {/* Apoio personalizado */}
           <motion.div
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-            style={{ background: "linear-gradient(135deg, #0F1923 0%, #1C2E3A 40%, #243545 75%, #2E4255 100%)", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
+            style={{ background: "linear-gradient(135deg, var(--green-d) 0%, #243830 50%, #1A3028 100%)", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
           >
-            <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.08, backgroundImage: `radial-gradient(circle at 20% 80%, rgba(100,180,220,0.5) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(60,140,180,0.3) 0%, transparent 55%)`, pointerEvents: "none" }} />
+            <div aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.07, backgroundImage: `radial-gradient(circle at 20% 80%, rgba(139,168,136,0.6) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(61,107,94,0.4) 0%, transparent 55%)`, pointerEvents: "none" }} />
             <div style={{ maxWidth: "440px", margin: "0 auto", width: "100%", position: "relative", zIndex: 1 }}>
-              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(180,210,230,0.7)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
+              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(139,168,136,0.8)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
                 Apoio personalizado
               </span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,3rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>
-                À procura de<br /><em style={{ fontStyle: "italic", color: "#A8D4E8" }}>mais ajuda?</em>
+                À procura de<br /><em style={{ fontStyle: "italic", color: "var(--green-l)" }}>mais ajuda?</em>
               </h2>
-              <p style={{ color: "rgba(200,225,240,0.78)", fontSize: "0.97rem", lineHeight: 1.82, margin: "0 0 10px" }}>
+              <p style={{ color: "rgba(250,247,240,0.78)", fontSize: "0.97rem", lineHeight: 1.82, margin: "0 0 10px" }}>
                 Agende uma sessão de esclarecimento gratuita por videochamada antes de fazer o seu pedido.
               </p>
-              <p style={{ color: "rgba(200,225,240,0.55)", fontSize: "0.9rem", lineHeight: 1.75, margin: "0 0 32px" }}>
+              <p style={{ color: "rgba(250,247,240,0.52)", fontSize: "0.9rem", lineHeight: 1.75, margin: "0 0 32px" }}>
                 Podemos ajudá-lo a entender o processo de preservação e a escolher os produtos que melhor se adequam a si. Esta sessão tem a duração aproximada de 30 minutos.
               </p>
               <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
