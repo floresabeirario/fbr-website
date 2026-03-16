@@ -93,7 +93,7 @@ export default function HomeClient() {
     const main = mainRef.current;
     if (!main) return;
     main.style.transition = "background-color 0.9s ease";
-    main.style.backgroundColor = "#FAF7F0";
+    main.style.backgroundColor = "#EDF5F0";
 
     const sections = main.querySelectorAll("[data-bg]");
     const observer = new IntersectionObserver(
@@ -114,14 +114,14 @@ export default function HomeClient() {
   return (
     <>
       <StructuredData />
-      <main ref={mainRef} style={{ overflowX: "hidden", backgroundColor: "#FAF7F0" }}>
+      <main ref={mainRef} style={{ overflowX: "hidden", backgroundColor: "#FAF7F0", transition: "background-color 0.9s ease" }}>
 
         <HomeHero />
 
         {/* ════ 2. O QUE FAZEMOS + SLIDER ════ */}
         <section
           aria-label="Serviços de preservação botânica"
-          data-bg="#FAFCF8"
+          data-bg="#E8F4EB"
           style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative" }}
         >
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
@@ -141,7 +141,7 @@ export default function HomeClient() {
         {/* ════ 4. TRACKING ════ */}
         <section
           aria-label="Acompanhe a sua encomenda em tempo real"
-          data-bg="#FDFAF6"
+          data-bg="#E5EEF8"
           style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative" }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
@@ -203,7 +203,7 @@ export default function HomeClient() {
         </section>
 
         {/* ════ 5. GOOGLE REVIEWS ════ */}
-        <section aria-label="Avaliações de clientes" data-bg="#F4F7FB" style={{ padding: "clamp(64px,10vw,88px) 20px", background: "transparent", textAlign: "center" }}>
+        <section aria-label="Avaliações de clientes" data-bg="#EDE6F5" style={{ padding: "clamp(64px,10vw,88px) 20px", background: "transparent", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "940px", margin: "0 auto" }}>
             <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--green)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Clientes felizes</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "#1E2D2A" }}>O que diz quem confiou em nós</h2>
@@ -214,7 +214,7 @@ export default function HomeClient() {
 
         {/* ════ 6. APCC ════ */}
         <section aria-label="Parceria solidária com a APCC Coimbra"
-          data-bg="#FBF9F6"
+          data-bg="#F5F0DC"
           style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative", overflow: "hidden" }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
@@ -309,7 +309,7 @@ export default function HomeClient() {
         </section>
 
         {/* ════ 8. CTA SPLIT ════ */}
-        <div className="cta-split" data-bg="#F6FAF7">
+        <div className="cta-split" data-bg="#E5F5ED">
 
           {/* Apoio personalizado */}
           <motion.div
