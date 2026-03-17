@@ -26,7 +26,6 @@ export const NAV_MOMENTOS = {
 
 export const NAV_RIGHT = [
   { name: "Recriação de Bouquet", href: "/recriacao" },
-  { name: "Oferecer Preservação", href: "/oferecer-preservacao" },
   { name: "FAQ",                  href: "/perguntas-frequentes" },
   { name: "Contactos",            href: "/contactos" },
 ];
@@ -41,6 +40,7 @@ export const FOOTER_LINKS = {
     { href: "/oferecer-preservacao",   label: "Oferecer preservação" },
   ],
   momentos: [
+    { href: "/momentos-especiais",                   label: "Momentos Especiais" },
     { href: "/preservar-bouquet-noiva",              label: "Bouquet de Noiva" },
     { href: "/preservar-flores-luto-homenagem",      label: "Homenagem e Luto" },
     { href: "/preservar-flores-batizado-nascimento", label: "Batizado e Nascimento" },

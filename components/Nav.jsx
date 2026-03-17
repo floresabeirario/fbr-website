@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { FlagPT, FlagEN, IconWhatsApp } from "./Icons";
-import { NAV_PRESERVACAO, NAV_MOMENTOS, NAV_RIGHT } from "@/app/_lib/data/navigation";
+import { NAV_PRESERVACAO, NAV_RIGHT } from "@/app/_lib/data/navigation";
 import { FORM_URL, WA_URL } from "@/app/_lib/constants";
 
 // ── Cores do botão CTA por página ───────────────────────
@@ -375,7 +375,7 @@ export default function NavClient() {
 
   const show = scrolled || !isHome;
 
-  const rightLinks = NAV_RIGHT.filter(item => item.name !== "Blog" && item.name !== "FAQ");
+  const rightLinks = NAV_RIGHT.filter(item => item.name !== "Blog");
 
   return (
     <>
@@ -394,20 +394,18 @@ export default function NavClient() {
       >
         <div className="nav-bar">
 
-          {/* ── ESQUERDA (desktop): Reservar Data | FAQ | Preservação | Momentos ── */}
+          {/* ── ESQUERDA (desktop): Reservar Data | Preservação | Oferecer Preservação ── */}
           <div className="nav-left desktop-only">
             <NavCTA shouldShowScrolled={show} pathname={pathname} />
             <NavDivider scrolled={show} />
-            <a href="/perguntas-frequentes" className="nav-link" style={{
-              fontWeight: "500", textTransform: "uppercase",
-              color: show ? "#1a1a1a" : "#fff",
-            }}>
-              FAQ
-            </a>
-            <NavDivider scrolled={show} />
             <DesktopDropdown menu={NAV_PRESERVACAO} scrolled={show} />
             <NavDivider scrolled={show} />
-            <DesktopDropdown menu={NAV_MOMENTOS} scrolled={show} />
+            <a href="/oferecer-preservacao" className="nav-link" style={{
+              fontSize: "0.68rem", fontWeight: 500, textTransform: "uppercase",
+              letterSpacing: "1.3px", color: show ? "#1a1a1a" : "#fff", whiteSpace: "nowrap",
+            }}>
+              Oferecer Preservação
+            </a>
           </div>
 
           {/* ── CENTRO: Logo ── */}
@@ -561,14 +559,13 @@ export default function NavClient() {
               {/* Links do menu mobile */}
               <nav aria-label="Menu móvel" style={{ flex: 1, overflowY: "auto", padding: "6px 0" }}>
                 <MobileAccordion menu={NAV_PRESERVACAO} onClose={() => setIsOpen(false)} delay={0.06} icon={<IconFlor6 />} />
-                <MobileAccordion menu={NAV_MOMENTOS}    onClose={() => setIsOpen(false)} delay={0.10} icon={<IconCoracao />} />
 
                 {[
-                  { name: "Recriação de Bouquet", href: "/recriacao",            delay: 0.15, icon: <IconRecriacao /> },
-                  { name: "Oferecer Preservação", href: "/oferecer-preservacao", delay: 0.18, icon: <IconPresente /> },
-                  { name: "Perguntas Frequentes", href: "/perguntas-frequentes", delay: 0.21, icon: <IconFAQ /> },
+                  { name: "Oferecer Preservação", href: "/oferecer-preservacao", delay: 0.12, icon: <IconPresente /> },
+                  { name: "Recriação de Bouquet", href: "/recriacao",            delay: 0.16, icon: <IconRecriacao /> },
+                  { name: "Perguntas Frequentes", href: "/perguntas-frequentes", delay: 0.20, icon: <IconFAQ /> },
                   { name: "Contactos e Equipa",   href: "/contactos",            delay: 0.24, icon: <IconContactos /> },
-                  { name: "Blog",                 href: "/blog",                 delay: 0.27, icon: <IconBlog /> },
+                  { name: "Blog",                 href: "/blog",                 delay: 0.28, icon: <IconBlog /> },
                 ].map((item) => (
                   <motion.a
                     key={item.name}

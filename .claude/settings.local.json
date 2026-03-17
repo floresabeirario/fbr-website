@@ -34,7 +34,8 @@
       "Bash(wc -l /c/Users/maria/Documents/fbr-website/fbr-website/content/blog/*.mdx)",
       "Bash(xargs grep:*)",
       "Bash(wc -l /c/Users/maria/Documents/fbr-website/fbr-website/public/*.webp /c/Users/maria/Documents/fbr-website/fbr-website/public/*.jpg)",
-      "Bash(ls c:/Users/maria/Documents/fbr-website/fbr-website/public/*.webp c:/Users/maria/Documents/fbr-website/fbr-website/public/*.jpg)"
+      "Bash(ls c:/Users/maria/Documents/fbr-website/fbr-website/public/*.webp c:/Users/maria/Documents/fbr-website/fbr-website/public/*.jpg)",
+      "Bash(find c:/Users/maria/Documents/fbr-website/fbr-website/app -name Nav* -o -name Footer*)"
     ]
   }
 }

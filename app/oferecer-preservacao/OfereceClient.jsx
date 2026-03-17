@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { FORM_URL_VALE, WA_URL, WA_URL_VALE } from "../_lib/constants";
+import { FORM_URL, FORM_URL_VALE } from "../_lib/constants";
 import PageHero from "@/components/PageHero";
 import "./OfereceClient.css";
 
@@ -39,7 +39,6 @@ const AZUL     = "#7B8FC7";
 const AZUL_ESC = "#5A6BA6";
 const AZUL_CLR = "#B8C4E8";
 const AZUL_FND = "#E8ECF8";
-const VERDE    = "#3D6B5E";
 const CREME    = "#FAF7F0";
 const ESCURO   = "#0F1E1A";
 
@@ -58,16 +57,6 @@ const passos = [
   { n: "03", titulo: "A pessoa usa quando quiser", texto: "O vale não tem data de validade. O presenteado deve contactar-nos quando quiser, pelo site ou pelo WhatsApp, e tratamos de tudo juntos. Recomendamos fazer a reserva com o máximo de antecedência para garantir vaga na data desejada.", link: { href: "/como-funciona", label: "Ver processo completo" } },
 ];
 
-const condicoes = [
-  "Valor mínimo de 300€, correspondente à nossa moldura mais pequena",
-  "Sem data de validade, pode ser usado quando quiser",
-  "Não é reembolsável",
-  "Válido exclusivamente para os serviços da Flores à Beira-Rio",
-  "Entrega digital gratuita por email",
-  "Entrega física por 9€ mais portes de envio",
-  "Recolha gratuita em Coimbra",
-];
-
 const condicoesCartao = [
   "Valor mínimo de 300€, correspondente à nossa moldura mais pequena",
   "Sem data de validade, pode ser usado quando quiser",
@@ -75,20 +64,28 @@ const condicoesCartao = [
   "Válido exclusivamente para os serviços da Flores à Beira-Rio",
 ];
 
-// ─── WA URL específico para vale ─────────────────────────────────────────────
-const WA_VALE = WA_URL_VALE;
-
-// ─── Vale Slider (mobile) ─────────────────────────────────────────────────────
+// ─── Vale Slider ──────────────────────────────────────────────────────────────
 const VALE_SLIDES = ["/vale2.webp", "/vale1.webp"];
 
 function ValeSlider() {
   const [current, setCurrent] = useState(0);
+  const timerRef = useRef(null);
 
-  useEffect(() => {
-    const id = setInterval(() => {
+  function startTimer() {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
       setCurrent(prev => (prev + 1) % VALE_SLIDES.length);
     }, 3200);
-    return () => clearInterval(id);
+  }
+
+  function goTo(i) {
+    setCurrent(i);
+    startTimer();
+  }
+
+  useEffect(() => {
+    startTimer();
+    return () => clearInterval(timerRef.current);
   }, []);
 
   return (
@@ -100,12 +97,18 @@ function ValeSlider() {
           style={{ opacity: i === current ? 1 : 0 }}
           aria-hidden={i !== current}
         >
-          <Image fill src={src} alt="Cartão presente da Flores à Beira-Rio" sizes="100vw" style={{ objectFit: "cover" }} />
+          <Image fill src={src} alt="Cartão presente da Flores à Beira-Rio" sizes="(max-width: 768px) 100vw, 42vw" style={{ objectFit: "cover" }} />
         </div>
       ))}
-      <div className="vale-slider-dots" aria-hidden="true">
+      <div className="vale-slider-dots" role="group" aria-label="Selecionar imagem">
         {VALE_SLIDES.map((_, i) => (
-          <span key={i} className={`vale-dot${i === current ? " vale-dot-active" : ""}`} />
+          <button
+            key={i}
+            className={`vale-dot${i === current ? " vale-dot-active" : ""}`}
+            onClick={() => goTo(i)}
+            aria-label={`Imagem ${i + 1}`}
+            aria-current={i === current ? "true" : undefined}
+          />
         ))}
       </div>
     </div>
@@ -124,13 +127,18 @@ export default function OfereceClient() {
         gradient="linear-gradient(to top, rgba(10,20,16,0.88) 0%, rgba(10,20,16,0.55) 45%, rgba(10,20,16,0.15) 100%)"
         ariaLabel="Oferecer preservação de flores — Vale Oferta"
       >
-        <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          style={{ maxWidth: "640px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}
+        >
           <Eyebrow light>Um presente com alma</Eyebrow>
           <h1 className="hero-titulo" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: CREME, margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)" }}>
             Ofereça uma memória<br />
             <em style={{ fontStyle: "italic", color: AZUL_CLR }}>que dura para sempre</em>
           </h1>
-          <p className="hero-texto" style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto clamp(1.8rem, 3.5vw, 2.8rem)" }}>
+          <p className="hero-texto" style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 0 clamp(1.8rem, 3.5vw, 2.8rem)" }}>
             O vale oferta da Flores à Beira-Rio permite oferecer a preservação de flores num quadro emoldurado, tornando-se na prenda perfeita para qualquer ocasião.
           </p>
           <div className="cta-row-vale" style={{ marginBottom: "1.4rem", justifyContent: "center" }}>
@@ -140,27 +148,22 @@ export default function OfereceClient() {
         </motion.div>
       </PageHero>
 
-      {/* CARTÃO com vale2.webp */}
+      {/* CARTÃO com slider vale */}
       <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", maxWidth: "1100px", margin: "0 auto" }}>
         <Reveal>
           <div className="cartao-grid">
             <div className="cartao-foto-wrap">
-              {/* Mobile: slider automático */}
-              <div className="cartao-foto cartao-foto-mobile">
+              <div className="cartao-foto">
                 <ValeSlider />
-              </div>
-              {/* Desktop: vale2.webp estático, mais alto */}
-              <div className="cartao-foto cartao-foto-desktop">
-                <Image fill src="/vale2.webp" alt="Cartão presente da Flores à Beira-Rio versão colorida com ilustrações de flores" sizes="42vw" style={{ objectFit: "cover", transition: "transform 0.7s ease" }} />
               </div>
             </div>
             <div style={{ flex: 1 }}>
               <Eyebrow color={AZUL}>O cartão</Eyebrow>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem, 3vw, 2rem)", lineHeight: 1.15, margin: "0 0 0.3rem", color: ESCURO }}>Vale oferta de preservação</h2>
               <p style={{ fontSize: "0.78rem", color: AZUL, letterSpacing: "0.05em", marginBottom: "1.4rem", fontFamily: "'Google Sans', sans-serif" }}>
-                Ilustrado por a artista{" "}
+                Ilustrado pela artista{" "}
                 <a href="https://www.instagram.com/damais_cenas" target="_blank" rel="noopener noreferrer" style={{ color: AZUL, fontWeight: 600, textDecoration: "none", borderBottom: `1px solid ${AZUL}66`, paddingBottom: "1px" }}>@damais_cenas</a>
-                {" "}de Coimbra
+                {", de Coimbra"}
               </p>
 
               <div style={{ marginBottom: "1.6rem" }}>
@@ -296,10 +299,7 @@ export default function OfereceClient() {
           </p>
           <div className="cta-row-vale" style={{ marginBottom: "1.2rem" }}>
             <a href={FORM_URL_VALE} target="_blank" rel="noopener noreferrer" className="btn-azul-vale">Encomendar Vale Oferta</a>
-            <a href={WA_VALE} target="_blank" rel="noopener noreferrer" className="btn-wa-vale">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Falar pelo WhatsApp
-            </a>
+            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary-vale">Reservar Data</a>
           </div>
           <p style={{ fontSize: "0.8rem", color: "rgba(250,247,240,0.55)" }}>A partir de 300€ · Sem data de validade</p>
         </Reveal>

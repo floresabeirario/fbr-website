@@ -142,14 +142,8 @@
 
 .cartao-foto { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 12px 48px rgba(15,30,26,0.14); background: #E8ECF8; }
 
-/* Mobile: slider visível, desktop estático oculto */
-.cartao-foto-mobile  { display: block; aspect-ratio: 4/3; }
-.cartao-foto-desktop { display: none; }
-
-@media (min-width: 768px) {
-  .cartao-foto-mobile  { display: none; }
-  .cartao-foto-desktop { display: block; aspect-ratio: 2/3; }
-}
+.cartao-foto { aspect-ratio: 4/3; }
+@media (min-width: 768px) { .cartao-foto { aspect-ratio: 2/3; } }
 
 .cartao-foto img { transition: transform 0.7s ease; }
 .cartao-foto:hover img { transform: scale(1.04); }
@@ -174,13 +168,17 @@
 }
 
 .vale-dot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.5);
-  transition: background 0.3s ease;
+  background: rgba(255,255,255,0.45);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
-.vale-dot-active { background: #fff; }
+.vale-dot:hover { background: rgba(255,255,255,0.8); transform: scale(1.2); }
+.vale-dot-active { background: #fff; transform: scale(1.15); }
 
 .entrega-lista { display: flex; flex-direction: column; gap: 0; }
 .entrega-item { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.9rem 0; border-bottom: 1px solid rgba(123,143,199,0.12); }
