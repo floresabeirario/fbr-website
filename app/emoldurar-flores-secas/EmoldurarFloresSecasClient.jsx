@@ -185,7 +185,7 @@ const faqs = [
   { q: "Recebem ramos de outras cidades ou países?",
     a: "Sim. Trabalhamos com clientes de toda a Europa. O ramo pode ser enviado por transportadora ou CTT correio frágil. Os portes de envio ficam a cargo do cliente." },
   { q: "O ramo tem de estar perfeito?",
-    a: "Não. Trabalhamos com o que chega. Se algumas flores já não estiverem em bom estado, podemos substituir esses elementos por flores semelhantes preservadas por prensagem. O resultado final é sempre harmonioso. Nestes casos aplicam-se os preços da preservação (ver página opções e preços)." },
+    a: <>Não. Trabalhamos com o que chega. Se algumas flores já não estiverem em bom estado, podemos substituir esses elementos por flores semelhantes preservadas por prensagem. O resultado final é sempre harmonioso. Nestes casos aplicam-se os preços da preservação{" "}<a href="/opcoes-e-precos" style={{ color: C.azul, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: "2px" }}>(ver página opções e preços)</a>.</> },
   { q: "Como sei em que fase está o meu quadro?",
     a: "Pode acompanhar o estado da sua encomenda em qualquer momento em status.floresabeirario.pt, uma página dedicada ao acompanhamento de cada trabalho em curso." },
   { q: "Posso incluir uma fotografia no quadro?",
@@ -544,37 +544,25 @@ export default function EmoldurarFloresSecasClient() {
         </div>
       </section>
 
-      {/* ══ 9. CTA FINAL ══════════════════════════════════════════════════════ */}
-      <section style={{ background: `linear-gradient(145deg, ${C.escuro} 0%, ${C.azul} 100%)`, padding: "clamp(90px,16vw,150px) clamp(20px,5vw,48px)", textAlign: "center", position: "relative", overflow: "hidden" }}>
-        <div aria-hidden="true" style={{ position: "absolute", bottom: "-20%", left: "50%", transform: "translateX(-50%)", width: "clamp(400px,70vw,900px)", height: "clamp(400px,70vw,900px)", borderRadius: "50%", background: "radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 65%)", pointerEvents: "none" }} />
-        <Reveal>
-          <div style={{ position: "relative", zIndex: 1, maxWidth: "580px", margin: "0 auto" }}>
-            <Divider light />
-            <div style={{ marginTop: "clamp(2rem,4vw,3rem)" }}>
-              <Eyebrow light>O momento é agora</Eyebrow>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,7vw,4.5rem)", color: C.creme, margin: "0 0 1.2rem", lineHeight: 1.05 }}>
-                Preserve a sua<br />
-                <em style={{ color: "#A8C4D4" }}>memória</em>
-              </h2>
-              <p style={{ color: "rgba(250,247,240,0.7)", fontWeight: 300, fontSize: "clamp(0.93rem,1.8vw,1.05rem)", lineHeight: 1.88, maxWidth: "400px", margin: "0 auto 2.8rem" }}>
-                Alguns momentos merecem durar mais do que um dia. Preserve as flores que contam a sua história.
-              </p>
-              <div className="cta-row" style={{ marginBottom: "1.4rem" }}>
-                <a href={WA_URL} target="_blank" rel="noopener noreferrer"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#25D366", color: "#fff", padding: "15px 28px", borderRadius: "100px", textDecoration: "none", fontWeight: 600, fontSize: "0.76rem", fontFamily: "'Google Sans', sans-serif", transition: "all 0.3s ease" }}
-                  onMouseEnter={e => { e.currentTarget.style.background = "#1da851"; e.currentTarget.style.transform = "translateY(-3px)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = "#25D366"; e.currentTarget.style.transform = ""; }}
-                >
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                  Falar pelo WhatsApp
-                </a>
-                <a href="/contactos" className="btn-ghost-light">Falar connosco</a>
-              </div>
-              <p style={{ fontSize: "0.72rem", color: "rgba(250,247,240,0.35)", letterSpacing: "0.06em", fontFamily: "'Google Sans', sans-serif" }}>
-                A partir de 200€ · Vidro museu anti-UV incluído
-              </p>            </div>
-          </div>
-        </Reveal>
+      {/* ══ 9. NAVEGAÇÃO — 4 QUADRADOS ════════════════════════════════════════ */}
+      <section aria-label="Explorar serviços">
+        <div className="nav-squares-grid">
+          {[
+            { href: "/opcoes-e-precos",      label: "Opções e Preços",      img: "/molduranogueira.webp" },
+            { href: "/como-funciona",        label: "Como Funciona",        img: "/ramo.webp" },
+            { href: "/oferecer-preservacao", label: "Oferecer Preservação", img: "/vale1.webp" },
+            { href: "/perguntas-frequentes", label: "Perguntas Frequentes", img: "/fotoquadrocloseup2.webp" },
+          ].map((item, i) => (
+            <Reveal key={i} delay={i * 0.08}>
+              <a href={item.href} className="nav-square">
+                <img src={item.img} alt="" aria-hidden="true" className="nav-square-img" />
+                <div className="nav-square-overlay">
+                  <span className="nav-square-label">{item.label}</span>
+                </div>
+              </a>
+            </Reveal>
+          ))}
+        </div>
       </section>
     </main>
   );

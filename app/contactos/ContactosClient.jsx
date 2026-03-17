@@ -82,7 +82,7 @@ export default function ContactosClient() {
   const heroY       = useTransform(scrollYProgress, [0, 0.38], [0, 28]);
 
   return (
-    <main style={{ overflowX: "hidden" }}>
+    <main style={{ overflow: "clip" }}>
 
       {/* ════ 1. HERO ════ */}
       <section
@@ -99,9 +99,10 @@ export default function ContactosClient() {
             backgroundImage: "url('/juliaquadro2.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center center",
-            filter: "brightness(0.88) saturate(0.95)",
+            filter: "brightness(0.78) saturate(0.95)",
           }}
         />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, rgba(10,22,20,0.45) 0%, rgba(10,22,20,0.30) 45%, rgba(10,22,20,0.60) 100%)" }} />
 
         <motion.div style={{ opacity: heroOpacity, y: heroY, position: "relative", zIndex: 2, width: "100%", maxWidth: "1100px", margin: "0 auto", padding: "clamp(140px,18vw,200px) 24px clamp(80px,12vw,120px)" }}>
           <div className="contact-split" style={{ gap: "clamp(40px,6vw,80px)", alignItems: "center" }}>
@@ -112,7 +113,7 @@ export default function ContactosClient() {
                 Contactos<br />
                 <em style={{ fontStyle: "italic", color: C.salmon }}>e Equipa</em>
               </h1>
-              <p style={{ color: "rgba(250,247,240,0.85)", fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.08rem)", lineHeight: 1.88, maxWidth: 480, margin: "0 0 32px" }}>
+              <p style={{ color: "rgba(250,247,240,0.95)", fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.08rem)", lineHeight: 1.88, maxWidth: 480, margin: "0 0 32px", textShadow: "0 1px 12px rgba(0,0,0,0.5)" }}>
                 Estamos disponíveis para responder a todas as suas dúvidas. Adoramos conhecer a história por detrás das flores que nos chegam.
               </p>
             </motion.div>
