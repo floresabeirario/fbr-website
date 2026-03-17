@@ -82,7 +82,7 @@ export default function ContactosClient() {
   const heroY       = useTransform(scrollYProgress, [0, 0.38], [0, 28]);
 
   return (
-    <main style={{ overflowX: "hidden" }}>
+    <div style={{ overflowX: "clip" }}>
 
       {/* ════ 1. HERO ════ */}
       <section
@@ -261,6 +261,6 @@ export default function ContactosClient() {
           ))}
         </div>
       </section>
-    </main>
+    </div>
   );
 }
