@@ -215,14 +215,14 @@ export default function OfereceClient() {
           </Reveal>
           <div className="ocasioes-grid">
             {ocasioes.map((item, i) => (
-              <Reveal key={i} delay={i * 0.06}>
+              <Reveal key={i} delay={i * 0.06} className="ocasiao-reveal">
                 <article className="ocasiao-card">
                   <div className="ocasiao-img">
-                    <Image fill src={item.img} alt={item.titulo} sizes="(max-width: 900px) 50vw, 33vw" style={{ objectFit: "cover" }} />
+                    <img src={item.img} alt={item.titulo} loading="lazy" />
                   </div>
                   <div className="ocasiao-content">
-                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.9rem, 1.8vw, 1.1rem)", marginBottom: "0.35rem", color: CREME, lineHeight: 1.2 }}>{item.titulo}</h3>
-                    <p style={{ fontSize: "0.82rem", lineHeight: 1.65, color: "rgba(250,247,240,0.78)", margin: 0 }}>{item.descricao}</p>
+                    <h3 className="ocasiao-titulo">{item.titulo}</h3>
+                    <p className="ocasiao-desc">{item.descricao}</p>
                   </div>
                 </article>
               </Reveal>
