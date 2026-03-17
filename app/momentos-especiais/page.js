@@ -136,7 +136,7 @@ export default function MomentosEspeciais() {
             fontSize: "clamp(0.9rem,2vw,1rem)",
             margin: "0 0 32px"
           }}>
-            As vagas são limitadas — garanta a preservação das suas flores
+            As vagas são limitadas, garanta a preservação das suas flores
             com a antecedência necessária.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", justifyContent: "center" }}>

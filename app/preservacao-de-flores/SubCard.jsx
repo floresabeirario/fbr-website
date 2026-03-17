@@ -10,7 +10,7 @@ export const SUBPAGES = [
     title: "Opções e Preços",
     desc: "Quadros a partir de 300€. Três tamanhos, quatro tipos de fundo e extras personalizados. Vidro museu UltraVue® anti-UV incluído em todas as peças.",
     img: "/fotoquadro1.webp",
-    imgAlt: "Quadro de flores prensadas com vidro museu — Opções e Preços",
+    imgAlt: "Quadro de flores prensadas com vidro museu, Opções e Preços",
     cta: "Ver tamanhos e preços",
     accent: "#8BA888",
     n: "01",
@@ -21,7 +21,7 @@ export const SUBPAGES = [
     title: "Como Funciona",
     desc: "Cinco passos desde a reserva até ao quadro emoldurado em casa. Pagamento em três prestações e composição aprovada por si antes de selar.",
     img: "/prensa.webp",
-    imgAlt: "Processo de prensagem botânica artesanal — Como Funciona",
+    imgAlt: "Processo de prensagem botânica artesanal, Como Funciona",
     cta: "Ver o processo",
     accent: "#C8522A",
     n: "02",
@@ -32,7 +32,7 @@ export const SUBPAGES = [
     title: "Sustentabilidade",
     desc: "Prensagem 100% natural, sem resinas petroquímicas nem sílica industrial. Embalagem artesanal feita pela APCC Coimbra. Materiais de conservação museu.",
     img: "/ines1.webp",
-    imgAlt: "Preservação botânica sustentável — Flores à Beira-Rio Coimbra",
+    imgAlt: "Preservação botânica sustentável, Flores à Beira-Rio Coimbra",
     cta: "Conhecer os valores",
     accent: "#3D6B5E",
     n: "03",
@@ -43,7 +43,7 @@ export const SUBPAGES = [
     title: "Emoldurar Flores Já Secas",
     desc: "O seu bouquet já secou? Emolduramos ramos secos, combinamos originais com réplicas ou recriamos o ramo com flores frescas para que nada se perca.",
     img: "/quadrovidrosobrevidro.webp",
-    imgAlt: "Emoldurar ramo de flores secas — bouquet de noiva já seco",
+    imgAlt: "Emoldurar ramo de flores secas, bouquet de noiva já seco",
     cta: "Saber mais",
     accent: "#1B4B6B",
     n: "04",
@@ -67,7 +67,7 @@ export default function SubCard({ item, index }) {
       <a
         href={item.href}
         style={{ display: "block", textDecoration: "none", borderRadius: "20px", overflow: "hidden", boxShadow: "0 8px 40px rgba(0,0,0,0.12)" }}
-        aria-label={`${item.title} — ${item.desc}`}
+        aria-label={`${item.title}, ${item.desc}`}
       >
         <div style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden" }}>
           <Image fill

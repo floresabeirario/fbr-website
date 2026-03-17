@@ -281,7 +281,7 @@ export default function Sustentabilidade() {
                 fontSize: "clamp(1.9rem,4.5vw,3.2rem)",
                 color: "#1E2D2A", margin: "0 0 clamp(18px,3vw,28px)", lineHeight: 1.1,
               }}>
-                Artesanal. Natural. Local.<br/>
+                Artesanal, natural, local.<br/>
                 <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>Para durar d&#233;cadas.</em>
               </h2>
               <div style={{ color: "#5A6B60", fontSize: "clamp(0.95rem,1.8vw,1.05rem)", lineHeight: 1.88 }}>
@@ -332,7 +332,7 @@ export default function Sustentabilidade() {
                   href="https://apc-coimbra.org.pt/capacitacao"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Saber mais sobre a APCC — Associação de Paralisia Cerebral de Coimbra"
+                  aria-label="Saber mais sobre a APCC, Associação de Paralisia Cerebral de Coimbra"
                   style={{ display: "block", position: "relative", maxWidth: "340px", width: "100%", textDecoration: "none" }}
                   className="apcc-photo-link"
                 >
@@ -366,10 +366,10 @@ export default function Sustentabilidade() {
                           <Image src="/apcc.webp" alt="Logotipo Associacao de Paralisia Cerebral de Coimbra" width={24} height={24} style={{ objectFit: "contain" }} />
                         </div>
                         <div>
-                          <p style={{ margin: 0, fontWeight: 700, color: "#FAF7F0", fontSize: "0.68rem", fontFamily: "Roboto, sans-serif", lineHeight: 1.3 }}>
+                          <p style={{ margin: 0, fontWeight: 700, color: "#FAF7F0", fontSize: "clamp(0.78rem,2.5vw,0.88rem)", fontFamily: "Roboto, sans-serif", lineHeight: 1.3 }}>
                             Associa&#231;&#227;o de Paralisia Cerebral de Coimbra
                           </p>
-                          <p style={{ margin: "2px 0 0", color: "#8BA888", fontSize: "0.6rem", fontFamily: "Roboto, sans-serif" }}>Marca M&#227;o Doida</p>
+                          <p style={{ margin: "2px 0 0", color: "#8BA888", fontSize: "clamp(0.7rem,2vw,0.78rem)", fontFamily: "Roboto, sans-serif" }}>Marca M&#227;o Doida</p>
                         </div>
                       </div>
                     </div>

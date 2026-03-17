@@ -7,7 +7,7 @@ import { SITE_URL } from "../_lib/constants";
 import { buildOpenGraph, buildTwitterCard } from "../_lib/metadata";
 
 export const metadata = {
-  title: "Blog | Flores à Beira-Rio — Preservação de Flores",
+  title: "Blog | Flores à Beira-Rio, Preservação de Flores",
   description:
     "Dicas, guias e histórias sobre preservação botânica de flores. Aprende como funciona o processo, como cuidar do teu quadro e muito mais.",
   keywords: [
@@ -22,7 +22,7 @@ export const metadata = {
     description: "Dicas, guias e histórias sobre preservação botânica de flores.",
     url: `${SITE_URL}/blog`,
     imagePath: `${SITE_URL}/fotoquadro1.webp`,
-    imageAlt: "Blog Flores à Beira-Rio — Preservação de Flores",
+    imageAlt: "Blog Flores à Beira-Rio, Preservação de Flores",
   }),
   twitter: buildTwitterCard({
     title: "Blog | Flores à Beira-Rio",

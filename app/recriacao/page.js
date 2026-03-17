@@ -21,7 +21,7 @@ export const metadata = {
     description: "Recriamos o seu bouquet de noiva com flores frescas a partir de uma fotografia e eternizamo-lo numa obra de arte.",
     url: "https://floresabeirario.pt/recriacao",
     imagePath: "/recriacao-hero.webp",
-    imageAlt: "Recriação de Bouquet de Casamento — Flores à Beira-Rio",
+    imageAlt: "Recriação de Bouquet de Casamento, Flores à Beira-Rio",
   }),
   alternates: {
     canonical: "https://floresabeirario.pt/recriacao",

@@ -5,7 +5,7 @@ import ContactosClient from "./ContactosClient";
 import { buildOpenGraph, buildTwitterCard } from "../_lib/metadata";
 
 export const metadata = {
-  title: "Contactos e Equipa | Flores à Beira-Rio — Coimbra",
+  title: "Contactos e Equipa | Flores à Beira-Rio, Coimbra",
   description:
     "Fale connosco sobre a preservação das suas flores. Equipa da Flores à Beira-Rio disponível por WhatsApp e email. Atelier em Coimbra.",
   keywords: [
@@ -19,7 +19,7 @@ export const metadata = {
     description: "Fale connosco sobre a preservação das suas flores. Estamos disponíveis por WhatsApp e email.",
     url: "https://floresabeirario.pt/contactos",
     imagePath: "https://floresabeirario.pt/fotoquadro1.webp",
-    imageAlt: "Equipa da Flores à Beira-Rio — Atelier de preservação botânica em Coimbra",
+    imageAlt: "Equipa da Flores à Beira-Rio, Atelier de preservação botânica em Coimbra",
   }),
   twitter: buildTwitterCard({
     title: "Contactos e Equipa | Flores à Beira-Rio",

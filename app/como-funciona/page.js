@@ -5,7 +5,7 @@ import ComoFuncionaClient from "./ComoFuncionaClient";
 import { buildOpenGraph, buildTwitterCard } from "../_lib/metadata";
 
 export const metadata = {
-  title: "Como Funciona | Flores à Beira-Rio — Preservação de Flores",
+  title: "Como Funciona | Flores à Beira-Rio, Preservação de Flores",
   description:
     "Cinco passos para transformar as suas flores numa obra de arte botânica que dura décadas. Desde a reserva até ao quadro emoldurado em casa, explicados com total transparência.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata = {
     description: "Cinco passos para transformar as suas flores numa obra de arte que dura décadas.",
     url: "https://floresabeirario.pt/como-funciona",
     imagePath: "https://floresabeirario.pt/prensa.webp",
-    imageAlt: "Processo de prensagem botânica artesanal — Flores à Beira-Rio",
+    imageAlt: "Processo de prensagem botânica artesanal, Flores à Beira-Rio",
   }),
   twitter: buildTwitterCard({
     title: "Como Funciona | Flores à Beira-Rio",

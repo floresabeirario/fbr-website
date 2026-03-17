@@ -215,7 +215,7 @@ export default function OpcoesClient() {
     <div style={{ backgroundColor: "#FAF7F0", color: "#1a1a1a", overflowX: "hidden" }}>
 
       {/* ── HERO ── */}
-      <section ref={heroRef} style={{ position: "relative", minHeight: "100svh", overflow: "hidden", display: "flex", alignItems: "flex-end" }}>
+      <section ref={heroRef} style={{ position: "relative", minHeight: "100svh", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
         {/* Foto de fundo */}
         <div style={{ position: "absolute", inset: 0 }}>
           <Image fill
@@ -230,7 +230,7 @@ export default function OpcoesClient() {
         </div>
 
         {/* Texto alinhado ao fundo, centrado */}
-        <motion.div style={{ opacity: heroOpacity, y: heroY, position: "relative", zIndex: 2, width: "100%", padding: "clamp(110px,14vw,160px) clamp(24px,5vw,72px) clamp(60px,8vw,90px)" }}>
+        <motion.div style={{ opacity: heroOpacity, y: heroY, position: "relative", zIndex: 2, width: "100%", padding: "clamp(80px,10vw,140px) clamp(24px,5vw,72px)" }}>
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}

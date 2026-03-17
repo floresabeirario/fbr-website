@@ -220,7 +220,7 @@ export default function RecriacaoClient() {
 
             <motion.h1
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,8vw,5.5rem)", lineHeight: 1.05, margin: "0 0 clamp(1rem,2.5vw,1.6rem)", color: "#FAF7F0" }}
+              style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.05, margin: "0 0 clamp(1rem,2.5vw,1.6rem)", color: "#FAF7F0" }}
             >
               Recria&ccedil;&atilde;o de<br />
               <em style={{ fontStyle: "italic", color: "#FAF7F0" }}>Bouquet</em>

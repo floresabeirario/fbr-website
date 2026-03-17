@@ -8,7 +8,7 @@ import { buildOpenGraph, buildTwitterCard } from "../_lib/metadata";
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Preservação de Flores — Flores à Beira-Rio",
+  name: "Preservação de Flores, Flores à Beira-Rio",
   description:
     "Preservação botânica artesanal de flores com valor emocional. Bouquets de casamento, flores de batizado e homenagem transformados em quadros de arte com vidro museu anti-UV. Atelier em Coimbra, enviamos para toda a Europa.",
   provider: {
@@ -64,7 +64,7 @@ const schemaData = {
 };
 
 export const metadata = {
-  title: "Preservação de Flores | Flores à Beira-Rio — Arte Botânica em Coimbra",
+  title: "Preservação de Flores | Flores à Beira-Rio, Arte Botânica em Coimbra",
   description:
     "Preservação botânica artesanal de flores com valor emocional. Bouquets de casamento, batizado e homenagem transformados em quadros com vidro museu anti-UV. Atelier em Coimbra. A partir de 300€.",
   keywords: [
@@ -84,7 +84,7 @@ export const metadata = {
     description: "Arte botânica artesanal. Bouquets de casamento e flores especiais transformados em quadros únicos com vidro museu anti-UV. Atelier em Coimbra, enviamos para toda a Europa.",
     url: "https://floresabeirario.pt/preservacao-de-flores",
     imagePath: "https://floresabeirario.pt/joanaceu.webp",
-    imageAlt: "Quadro de flores preservadas — Flores à Beira-Rio, Coimbra",
+    imageAlt: "Quadro de flores preservadas, Flores à Beira-Rio, Coimbra",
   }),
   twitter: buildTwitterCard({
     title: "Preservação de Flores | Flores à Beira-Rio",

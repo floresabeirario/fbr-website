@@ -95,7 +95,7 @@ export default function PerguntasFrequentesClient() {
 
               <h1 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
-                fontSize: "clamp(3rem,10vw,6.5rem)",
+                fontSize: "clamp(2.4rem,6vw,5rem)",
                 color: "#FAF7F0",
                 margin: "0 auto",
                 lineHeight: 1.02,
@@ -103,7 +103,7 @@ export default function PerguntasFrequentesClient() {
                 maxWidth: "800px",
               }}>
                 Perguntas<br />
-                <em style={{ fontStyle: "italic", color: "rgba(230,180,210,0.95)" }}>Frequentes</em>
+                <em style={{ fontStyle: "italic", color: "#FAF7F0" }}>Frequentes</em>
               </h1>
 
               <p style={{

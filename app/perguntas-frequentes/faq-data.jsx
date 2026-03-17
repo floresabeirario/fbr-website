@@ -156,7 +156,7 @@ export const FAQ_DATA = [
         usando as fotografias do dia como referência.{" "}
         <a href="/recriacao" className="faq-link">Saber mais sobre a recriação de bouquet →</a>
         <br /><br />
-        <strong>Combinação mista</strong> — se ainda tem flores originais do dia especial, mas algumas não
+        <strong>Combinação mista</strong>, se ainda tem flores originais do dia especial, mas algumas não
         ficaram bem depois de secas, aproveitamos as flores originais que ainda estão bem e substituímos
         as restantes. O quadro combina elementos do ramo original com réplicas de flores prensadas
         numa composição equilibrada.{" "}

@@ -21,7 +21,7 @@ export const metadata = {
     description: "Todas as respostas sobre preservação botânica de bouquets: processo, prazos, flores, entrega e pagamentos.",
     url: "https://floresabeirario.pt/perguntas-frequentes",
     imagePath: "/og-faq.webp",
-    imageAlt: "Perguntas Frequentes — Flores à Beira-Rio",
+    imageAlt: "Perguntas Frequentes, Flores à Beira-Rio",
   }),
   alternates: {
     canonical: "https://floresabeirario.pt/perguntas-frequentes",

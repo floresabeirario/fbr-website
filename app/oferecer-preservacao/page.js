@@ -5,7 +5,7 @@ import OfereceClient from "./OfereceClient";
 import { buildOpenGraph, buildTwitterCard } from "../_lib/metadata";
 
 export const metadata = {
-  title: "Vale Oferta de Preservação de Flores | Flores à Beira-Rio — Presente Único para Casamento, Batizado e Mais",
+  title: "Vale Oferta de Preservação de Flores | Flores à Beira-Rio, Presente Único para Casamento, Batizado e Mais",
   description:
     "Ofereça uma memória que dura para sempre. O vale oferta da Flores à Beira-Rio é o presente perfeito para casamento, batizado, aniversário ou homenagem. As flores são preservadas e emolduradas à mão, em Coimbra. A partir de 300€, sem data de validade.",
   keywords: [

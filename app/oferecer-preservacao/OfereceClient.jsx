@@ -125,7 +125,7 @@ export default function OfereceClient() {
         src="/vale1.webp"
         imgPosition="center"
         gradient="linear-gradient(to top, rgba(10,20,16,0.88) 0%, rgba(10,20,16,0.55) 45%, rgba(10,20,16,0.15) 100%)"
-        ariaLabel="Oferecer preservação de flores — Vale Oferta"
+        ariaLabel="Oferecer preservação de flores, Vale Oferta"
       >
         <motion.div
           initial={{ opacity: 0, y: 28 }}
@@ -144,7 +144,6 @@ export default function OfereceClient() {
           <div className="cta-row-vale" style={{ marginBottom: "1.4rem", justifyContent: "center" }}>
             <a href={FORM_URL_VALE} target="_blank" rel="noopener noreferrer" className="btn-primary-vale">Encomendar Vale Oferta</a>
           </div>
-          <p style={{ fontSize: "0.78rem", color: "rgba(250,247,240,0.72)", letterSpacing: "0.05em", fontFamily: "'Google Sans', Roboto, sans-serif" }}>A partir de 300€ · Sem data de validade · Entrega digital gratuita</p>
         </motion.div>
       </PageHero>
 

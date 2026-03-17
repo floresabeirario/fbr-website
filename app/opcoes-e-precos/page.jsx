@@ -5,7 +5,7 @@ import OpcoesClient from "./OpcoesClient";
 import { buildOpenGraph, buildTwitterCard } from "../_lib/metadata";
 
 export const metadata = {
-  title: "Opções e Preços | Flores à Beira-Rio — Quadros de Flores Prensadas",
+  title: "Opções e Preços | Flores à Beira-Rio, Quadros de Flores Prensadas",
   description:
     "Descubra os tipos de fundo, tamanhos e preços dos quadros de flores preservadas da Flores à Beira-Rio. 30×40cm a partir de 300€. Feitos à mão em Coimbra, com vidro museu UltraVue® anti-UV.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata = {
     description: "Quadros de flores prensadas feitos à mão em Coimbra. 30×40cm a partir de 300€. Vidro museu UltraVue® anti-UV incluído.",
     url: "https://floresabeirario.pt/opcoes-e-precos",
     imagePath: "https://floresabeirario.pt/fotoquadro1.webp",
-    imageAlt: "Quadros de flores prensadas — Opções e Preços — Flores à Beira-Rio",
+    imageAlt: "Quadros de flores prensadas, Opções e Preços, Flores à Beira-Rio",
   }),
   twitter: buildTwitterCard({
     title: "Opções e Preços | Flores à Beira-Rio",

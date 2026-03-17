@@ -82,12 +82,12 @@ export default function ContactosClient() {
   const heroY       = useTransform(scrollYProgress, [0, 0.38], [0, 28]);
 
   return (
-    <main style={{ overflow: "clip" }}>
+    <main style={{ overflowX: "hidden" }}>
 
       {/* ════ 1. HERO ════ */}
       <section
         ref={heroRef}
-        aria-label="Contactos e Equipa — Flores à Beira-Rio"
+        aria-label="Contactos e Equipa, Flores à Beira-Rio"
         style={{ position: "relative", overflow: "hidden", minHeight: "100svh", display: "flex", alignItems: "center" }}
       >
         {/* Foto de fundo */}
@@ -109,11 +109,11 @@ export default function ContactosClient() {
 
             <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="hero-text-col">
               <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmonLight, marginBottom: 16, fontFamily: GS }}>Fale connosco</span>
-              <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.8rem,8vw,5.2rem)", color: C.cream, margin: "0 0 20px", lineHeight: 1.02 }}>
+              <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", color: C.cream, margin: "0 0 20px", lineHeight: 1.02 }}>
                 Contactos<br />
                 <em style={{ fontStyle: "italic", color: C.salmon }}>e Equipa</em>
               </h1>
-              <p style={{ color: "rgba(250,247,240,0.95)", fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.08rem)", lineHeight: 1.88, maxWidth: 480, margin: "0 0 32px", textShadow: "0 1px 12px rgba(0,0,0,0.5)" }}>
+              <p style={{ color: "rgba(250,247,240,0.95)", fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.08rem)", lineHeight: 1.88, maxWidth: 480, margin: "0 auto 32px", textShadow: "0 1px 12px rgba(0,0,0,0.5)" }}>
                 Estamos disponíveis para responder a todas as suas dúvidas. Adoramos conhecer a história por detrás das flores que nos chegam.
               </p>
             </motion.div>
@@ -210,7 +210,7 @@ export default function ContactosClient() {
                   <div className="team-photo-wrap">
                     <img
                       src={member.img}
-                      alt={`${member.name} — ${member.role} na Flores à Beira-Rio`}
+                      alt={`${member.name}, ${member.role} na Flores à Beira-Rio`}
                       loading="lazy"
                       style={{
                         width: "100%", height: "100%",

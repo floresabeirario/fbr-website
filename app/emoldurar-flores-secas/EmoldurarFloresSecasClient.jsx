@@ -248,7 +248,7 @@ export default function EmoldurarFloresSecasClient() {
             }}>Dê uma moldura ao capítulo mais bonito da sua história</p>
             <h1 style={{
               fontFamily: "'TAN-MEMORIES', serif",
-              fontSize: "clamp(2.8rem,9vw,5.5rem)",
+              fontSize: "clamp(2.4rem,6vw,5rem)",
               color: C.creme,
               margin: "0 0 clamp(1rem,2.5vw,1.6rem)",
               lineHeight: 1.05,

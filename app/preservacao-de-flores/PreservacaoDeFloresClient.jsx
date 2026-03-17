@@ -55,7 +55,7 @@ export default function PreservacaoDeFloresClient() {
         {/* ══ HERO ══════════════════════════════════════════════════════════════ */}
         <PageHero
           src="/joanaceu.webp"
-          imgAlt="Quadro de flores preservadas — Flores à Beira-Rio, Coimbra"
+          imgAlt="Quadro de flores preservadas, Flores à Beira-Rio, Coimbra"
           imgFetchPriority="high"
           gradient="linear-gradient(to top, rgba(35,15,5,0.82) 0%, rgba(35,15,5,0.55) 50%, rgba(35,15,5,0.18) 100%)"
           ariaLabel="Preservação de flores, arte botânica artesanal"
@@ -69,7 +69,7 @@ export default function PreservacaoDeFloresClient() {
             <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700 }}>
               Arte Botânica Artesanal · Coimbra
             </p>
-            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.6rem,7vw,5.2rem)", lineHeight: 1.03, color: "#FAF7F0", margin: "0 0 clamp(1rem,2.5vw,1.6rem)" }}>
+            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.03, color: "#FAF7F0", margin: "0 0 clamp(1rem,2.5vw,1.6rem)" }}>
               Preservação de<br />
               <em style={{ fontStyle: "italic", color: "#D4956A" }}>Flores</em>
             </h1>

@@ -325,7 +325,7 @@ export default function HomeClient() {
                   href="https://apc-coimbra.org.pt/capacitacao"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Saber mais sobre a APCC — Associação de Paralisia Cerebral de Coimbra"
+                  aria-label="Saber mais sobre a APCC, Associação de Paralisia Cerebral de Coimbra"
                   className="apcc-photo-link"
                   style={{ display: "block", position: "relative", maxWidth: "340px", width: "100%", textDecoration: "none" }}
                 >
@@ -355,7 +355,7 @@ export default function HomeClient() {
         </section>
 
         {/* ════ 7. CARTÃO-OFERTA ════ */}
-        <section aria-label="Cartão-Oferta — ofereça a preservação de flores"
+        <section aria-label="Cartão-Oferta, ofereça a preservação de flores"
           data-bg="lavender"
           style={{ position: "relative", overflow: "hidden", minHeight: "560px", display: "flex", alignItems: "center" }}
         >

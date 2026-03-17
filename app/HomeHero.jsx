@@ -19,7 +19,7 @@ export default function HomeHero() {
   return (
     <section
       ref={heroRef}
-      aria-label="Flores à Beira-Rio — Preservação de flores de casamento"
+      aria-label="Flores à Beira-Rio, Preservação de flores de casamento"
       data-bg="neutral"
       style={{ height: "100dvh", maxHeight: "100dvh", minHeight: "100dvh", position: "relative", overflow: "hidden" }}
     >
