@@ -187,7 +187,7 @@ export default function HomeClient() {
         style={{ position: "fixed", inset: "-1px", zIndex: 0, pointerEvents: "none", transition: "opacity 0.85s ease", opacity: 1 }} />
       <div ref={overlayBRef} aria-hidden="true"
         style={{ position: "fixed", inset: "-1px", zIndex: 0, pointerEvents: "none", transition: "opacity 0.85s ease", opacity: 0 }} />
-      <main ref={mainRef} style={{ overflowX: "hidden", position: "relative", zIndex: 1, background: "transparent" }}>
+      <div ref={mainRef} style={{ overflowX: "clip", position: "relative", zIndex: 1, background: "transparent" }}>
 
         <HomeHero />
 
@@ -433,7 +433,7 @@ export default function HomeClient() {
           </motion.div>
 
         </div>
-      </main>
+      </div>
     </>
   );
 }

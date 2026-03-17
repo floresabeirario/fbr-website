@@ -50,7 +50,7 @@ export default function PreservacaoDeFloresClient() {
   return (
     <>
 
-      <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
+      <div style={{ backgroundColor: "#FAF7F0", overflowX: "clip" }}>
 
         {/* ══ HERO ══════════════════════════════════════════════════════════════ */}
         <PageHero
@@ -280,7 +280,7 @@ export default function PreservacaoDeFloresClient() {
             </div>
           </motion.div>
         </section>
-      </main>
+      </div>
     </>
   );
 }

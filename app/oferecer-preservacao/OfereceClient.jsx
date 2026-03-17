@@ -118,7 +118,7 @@ function ValeSlider() {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function OfereceClient() {
   return (
-    <main style={{ backgroundColor: CREME, fontFamily: "'Google Sans', sans-serif", color: ESCURO, overflowX: "hidden" }}>
+    <div style={{ backgroundColor: CREME, fontFamily: "'Google Sans', sans-serif", color: ESCURO, overflowX: "clip" }}>
 
       {/* HERO com foto vale1.webp de fundo */}
       <PageHero
@@ -303,6 +303,6 @@ export default function OfereceClient() {
           <p style={{ fontSize: "0.8rem", color: "rgba(250,247,240,0.55)" }}>A partir de 300€ · Sem data de validade</p>
         </Reveal>
       </section>
-    </main>
+    </div>
   );
 }

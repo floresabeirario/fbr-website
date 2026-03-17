@@ -38,7 +38,7 @@ export default function PerguntasFrequentesClient() {
     <>
       <SchemaScript />
 
-      <main style={{ backgroundColor: "#FAF7F0" }}>
+      <div style={{ backgroundColor: "#FAF7F0" }}>
 
         {/* Hero */}
         <section
@@ -193,7 +193,7 @@ export default function PerguntasFrequentesClient() {
           </div>
         </motion.div>
 
-      </main>
+      </div>
     </>
   );
 }

@@ -215,7 +215,7 @@ export default function Sustentabilidade() {
   return (
     <>
       <Schema />
-      <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
+      <div style={{ backgroundColor: "#FAF7F0", overflowX: "clip" }}>
 
 
         {/* HERO — foto a ecra todo, texto na base */}
@@ -686,7 +686,7 @@ export default function Sustentabilidade() {
           </motion.div>
         </section>
 
-      </main>
+      </div>
     </>
   );
 }

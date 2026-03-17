@@ -82,7 +82,7 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
   const featured = posts.find((p) => p.featured);
 
   return (
-    <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
+    <div style={{ backgroundColor: "#FAF7F0", overflowX: "clip" }}>
 
       {/* HERO */}
       <section
@@ -229,6 +229,6 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
           </AnimatePresence>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

@@ -213,7 +213,7 @@ export default function ComoFuncionaClient() {
     <>
       <HowToSchema />
 
-      <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
+      <div style={{ backgroundColor: "#FAF7F0", overflowX: "clip" }}>
 
         {/* HERO com fotoquadrocloseup2.webp */}
         <PageHero
@@ -328,7 +328,7 @@ export default function ComoFuncionaClient() {
             </div>
           </motion.div>
         </section>
-      </main>
+      </div>
     </>
   );
 }

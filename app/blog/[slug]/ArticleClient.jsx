@@ -34,7 +34,7 @@ function RelatedCard({ post }) {
 // Recebe o MDX já renderizado como `children` (Server Component passado ao Client)
 export default function ArticleClient({ post, related, children }) {
   return (
-    <main style={{ backgroundColor: "#FAF7F0", overflowX: "hidden" }}>
+    <div style={{ backgroundColor: "#FAF7F0", overflowX: "clip" }}>
 
       {/* HERO */}
       <section
@@ -146,6 +146,6 @@ export default function ArticleClient({ post, related, children }) {
           </div>
         </section>
       )}
-    </main>
+    </div>
   );
 }

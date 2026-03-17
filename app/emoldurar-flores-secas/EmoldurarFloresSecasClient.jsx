@@ -226,7 +226,7 @@ export default function EmoldurarFloresSecasClient() {
   const heroY       = useTransform(scrollYProgress, [0, 0.38], [0, 28]);
 
   return (
-    <main style={{ backgroundColor: C.creme, fontFamily: "'Google Sans', sans-serif", color: C.escuro, overflowX: "hidden" }}>
+    <div style={{ backgroundColor: C.creme, fontFamily: "'Google Sans', sans-serif", color: C.escuro, overflowX: "clip" }}>
 
       {/* ══ 1. HERO ═══════════════════════════════════════════════════════════ */}
       <section ref={heroRef} className="hero-wrap" aria-label="Emoldurar flores já secas">
@@ -564,6 +564,6 @@ export default function EmoldurarFloresSecasClient() {
           ))}
         </div>
       </section>
-    </main>
+    </div>
   );
 }
