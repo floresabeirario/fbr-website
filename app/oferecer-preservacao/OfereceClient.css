@@ -69,12 +69,15 @@
 }
 
 .ocasiao-img {
+  position: relative;
   width: 100%;
   aspect-ratio: 4/3;
   overflow: hidden;
   flex-shrink: 0;
 }
 .ocasiao-img img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;

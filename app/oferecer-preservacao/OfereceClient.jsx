@@ -286,13 +286,12 @@ export default function OfereceClient() {
 
       {/* CTA FINAL */}
       <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", textAlign: "center", position: "relative", overflow: "hidden" }}>
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/sunset.webp')", backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.72) saturate(0.9)" }} />
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "rgba(250,247,240,0.52)" }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/sunset.webp')", backgroundSize: "cover", backgroundPosition: "center" }} />
         <Reveal style={{ position: "relative", zIndex: 1 }}>
-          <div aria-hidden="true" style={{ width: "44px", height: "1px", margin: "0 auto 2rem", background: `linear-gradient(to right, transparent, ${AZUL}, transparent)` }} />
-          <Eyebrow color={AZUL}>Pronto para oferecer?</Eyebrow>
-          <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5.5vw, 3.8rem)", lineHeight: 1.1, maxWidth: "660px", margin: "0 auto 1.2rem", color: ESCURO }}>Um dia especial merece uma recordação especial</h2>
-          <p style={{ fontSize: "clamp(0.9rem, 2vw, 1rem)", lineHeight: 1.85, color: "#5A6B60", maxWidth: "480px", margin: "0 auto 2.5rem" }}>
+          <div aria-hidden="true" style={{ width: "44px", height: "1px", margin: "0 auto 2rem", background: `linear-gradient(to right, transparent, ${AZUL_CLR}, transparent)` }} />
+          <Eyebrow light>Pronto para oferecer?</Eyebrow>
+          <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5.5vw, 3.8rem)", lineHeight: 1.1, maxWidth: "660px", margin: "0 auto 1.2rem", color: CREME }}>Um dia especial merece uma recordação especial</h2>
+          <p style={{ fontSize: "clamp(0.9rem, 2vw, 1rem)", lineHeight: 1.85, color: "rgba(250,247,240,0.82)", maxWidth: "480px", margin: "0 auto 2.5rem" }}>
             Transforme um momento efémero numa obra de arte feita à mão, para durar uma vida inteira.
           </p>
           <div className="cta-row-vale" style={{ marginBottom: "1.2rem" }}>
@@ -302,7 +301,7 @@ export default function OfereceClient() {
               Falar pelo WhatsApp
             </a>
           </div>
-          <p style={{ fontSize: "0.8rem", color: "#9BA89F" }}>A partir de 300€ · Sem data de validade</p>
+          <p style={{ fontSize: "0.8rem", color: "rgba(250,247,240,0.55)" }}>A partir de 300€ · Sem data de validade</p>
         </Reveal>
       </section>
     </main>
