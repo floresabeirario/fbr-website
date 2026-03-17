@@ -5,16 +5,19 @@ export const FAQ_DATA = [
     cat: "processo",
     q: "Quando devo agendar a preservação do meu bouquet?",
     plain:
-      "O ideal é agendar assim que souber a data do evento. As vagas são limitadas e em época de maior procura esgotam rapidamente. Se o evento já aconteceu, contacte-nos assim que possível. No caso de o evento ter acontecido há mais de 5 dias e as flores não estiverem em bom estado, podemos fazer uma recriação do bouquet com flores frescas semelhantes, a partir de uma fotografia.",
+      "O ideal é agendar assim que souber a data do evento, não precisa de esperar que o dia se aproxime. Com antecedência, conseguimos planear consigo todos os detalhes da entrega das flores, garantindo que o processo decorre com tranquilidade e cuidado. As vagas são limitadas e, em meses de maior procura, algumas datas esgotam com bastante antecedência. Se o evento já aconteceu, contacte-nos assim que possível. Caso tenham passado mais de 5 dias e as flores já não estejam em bom estado, podemos sempre recriar o bouquet com flores frescas semelhantes, a partir de uma fotografia.",
     a: (
       <>
-        O ideal é agendar <strong>assim que souber a data do evento</strong>, não precisa esperar pela data.
-        As vagas são limitadas e em meses de maior procura algumas datas esgotam com muita antecedência.
+        O ideal é agendar <strong>assim que souber a data do evento</strong>, não precisa de esperar
+        que o dia se aproxime. Com antecedência, conseguimos planear consigo todos os detalhes da
+        entrega das flores, garantindo que o processo decorre com tranquilidade e cuidado.
+        <br /><br />
+        As vagas são limitadas e, em meses de maior procura, algumas datas esgotam com bastante antecedência.
         <br /><br />
         Se o evento já aconteceu, <strong>contacte-nos assim que possível</strong>.
-        No caso de o evento ter acontecido há mais de 5 dias e as flores não estiverem em bom estado,
-        podemos fazer uma{" "}
-        <a href="/recriacao" className="faq-link">recriação do bouquet</a>{" "}
+        Caso tenham passado mais de 5 dias e as flores já não estejam em bom estado,
+        podemos sempre{" "}
+        <a href="/recriacao" className="faq-link">recriar o bouquet</a>{" "}
         com flores frescas semelhantes, a partir de uma fotografia.
       </>
     ),
@@ -140,18 +143,24 @@ export const FAQ_DATA = [
     cat: "flores",
     q: "Tenho flores secas de há vários anos. O que posso fazer?",
     plain:
-      "Tem duas opções: a recriação de bouquet, onde reproduzimos o ramo com flores frescas usando fotografias; ou a emolduração das flores originais numa moldura mais funda.",
+      "Tem três opções: emolduramento das flores originais, onde emolduramos numa moldura mais funda as flores originais tal como estão; recriação de bouquet, onde reproduzimos o ramo com flores frescas usando fotografias; ou combinação mista, aproveitando as flores originais que ainda estão bem e substituindo as restantes.",
     a: (
       <>
-        Tem duas opções:
+        Tem três opções:
+        <br /><br />
+        <strong>Emolduramento das flores originais</strong>, onde podemos emoldurar numa moldura mais funda
+        as flores originais e fazer uma composição com elas tal como estão.{" "}
+        <a href="/emoldurar-flores-secas" className="faq-link">Saber mais sobre emoldurar flores já secas →</a>
         <br /><br />
         <strong>Recriação de bouquet</strong>, onde reproduzimos o ramo com flores frescas e iguais às originais,
         usando as fotografias do dia como referência.{" "}
         <a href="/recriacao" className="faq-link">Saber mais sobre a recriação de bouquet →</a>
         <br /><br />
-        <strong>Emolduração das flores originais</strong>, onde podemos emoldurar numa moldura mais funda
-        as flores originais e fazer uma composição com elas tal como estão.{" "}
-        <a href="https://fbr-website.vercel.app/emoldurar-flores-secas" className="faq-link">Saber mais sobre emoldurar flores já secas →</a>
+        <strong>Combinação mista</strong> — se ainda tem flores originais do dia especial, mas algumas não
+        ficaram bem depois de secas, aproveitamos as flores originais que ainda estão bem e substituímos
+        as restantes. O quadro combina elementos do ramo original com réplicas de flores prensadas
+        numa composição equilibrada.{" "}
+        <a href="/emoldurar-flores-secas" className="faq-link">Saber mais →</a>
       </>
     ),
   },
@@ -159,13 +168,13 @@ export const FAQ_DATA = [
     cat: "flores",
     q: "E se não conseguir entregar as flores dentro de 5 dias?",
     plain:
-      "Cada caso é avaliado individualmente. Se o prazo de 5 dias já tiver passado, não conseguimos garantir a viabilidade da preservação e recomendamos o nosso serviço de recriação de bouquet.",
+      "Cada situação é avaliada caso a caso, por isso contacte-nos assim que possível. Se o prazo de 5 dias já tiver passado, é possível que não consigamos garantir a viabilidade da preservação. Nesse caso, recomendamos o nosso serviço de recriação de bouquet.",
     a: (
       <>
         Cada situação é avaliada <strong>caso a caso</strong>, por isso contacte-nos assim que possível.
         <br /><br />
-        Se o prazo de 5 dias já tiver passado, não conseguimos garantir a viabilidade da preservação.
-        Nesse caso, recomendamos o nosso{" "}
+        Se o prazo de 5 dias já tiver passado, é possível que não consigamos garantir a viabilidade
+        da preservação. Nesse caso, recomendamos o nosso{" "}
         <a href="/recriacao" className="faq-link">serviço de recriação de bouquet</a>.
       </>
     ),
@@ -233,7 +242,7 @@ export const FAQ_DATA = [
   },
   {
     cat: "entrega",
-    q: "Como faço chegar as flores ao atelier?",
+    q: "Como faço chegar as flores até vocês?",
     plain:
       "Três opções: entrega em mãos no atelier em Ceira (Coimbra); envio por CTT em correio frágil e urgente; ou recolha no local do evento sujeita a orçamento.",
     a: (
@@ -252,14 +261,15 @@ export const FAQ_DATA = [
     cat: "entrega",
     q: "Como é entregue o quadro final?",
     plain:
-      "O quadro pode ser enviado para casa via transportadora com rastreio, ou levantado no atelier em Ceira, Coimbra. O envio só acontece após o pagamento total.",
+      "O quadro pode ser enviado para casa via transportadora com rastreio e embalagem especial, custos a cargo do cliente; ou levantado no atelier em Coimbra, gratuitamente, num horário a agendar. O envio ou levantamento só acontece após o pagamento total da encomenda.",
     a: (
       <>
         O quadro pode ser:
         <br /><br />
         <strong>Enviado para casa</strong> via transportadora com rastreio e embalagem especial para peças frágeis.
+        Custos a cargo do cliente.
         <br /><br />
-        <strong>Levantado no atelier</strong> em Ceira, Coimbra, num horário a agendar.
+        <strong>Levantado no atelier</strong> em Coimbra, num horário a agendar, gratuitamente.
         <br /><br />
         O envio ou levantamento só acontece após <strong>o pagamento total da encomenda</strong>.
       </>
@@ -269,13 +279,16 @@ export const FAQ_DATA = [
     cat: "pagamentos",
     q: "Quanto custa a preservação?",
     plain:
-      "Os preços começam nos 300€ e incluem sempre o emolduramento com vidro museu anti-reflexo e proteção UV.",
+      "Os preços começam nos 300€ e incluem sempre o emolduramento com vidro museu anti-reflexo e proteção UV. Todos os componentes do quadro têm qualidade museu.",
     a: (
       <>
-        Os preços <strong>começam nos 300€</strong> e incluem sempre o emolduramento artesanal
-        com vidro museu anti-reflexo e proteção UV.
+        Os preços <strong>começam nos 300€</strong> e incluem sempre o emolduramento com vidro museu
+        anti-reflexo e proteção UV. Todos os componentes do quadro têm qualidade museu.
         <br /><br />
-        <a href="/opcoes-e-precos" className="faq-link">Ver todos os preços e tamanhos →</a>
+        Conheça mais sobre os nossos materiais na{" "}
+        <a href="/opcoes-e-precos" className="faq-link">página opções e preços</a>{" "}
+        e na{" "}
+        <a href="/sustentabilidade" className="faq-link">página sustentabilidade</a>.
       </>
     ),
   },
@@ -323,14 +336,14 @@ export const FAQ_DATA = [
     cat: "pagamentos",
     q: "Aceitam devoluções?",
     plain:
-      "Não aceitamos devoluções em encomendas personalizadas. Cada quadro é único e feito à mão.",
+      "Não aceitamos devoluções em pedidos personalizados. Cada quadro é criado exclusivamente para si, é uma obra única e irrepetível. Por isso enviamos sempre uma fotografia da composição para aprovação antes de emoldurar o quadro.",
     a: (
       <>
         Não aceitamos devoluções em pedidos personalizados.
         Cada quadro é criado exclusivamente para si, é uma obra <strong>única e irrepetível</strong>.
         <br /><br />
         Por isso enviamos sempre uma fotografia da composição para aprovação
-        <strong> antes de selar a moldura</strong>.
+        <strong> antes de emoldurar o quadro</strong>.
       </>
     ),
   },
