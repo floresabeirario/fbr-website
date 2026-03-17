@@ -36,7 +36,11 @@
       "Bash(wc -l /c/Users/maria/Documents/fbr-website/fbr-website/public/*.webp /c/Users/maria/Documents/fbr-website/fbr-website/public/*.jpg)",
       "Bash(ls c:/Users/maria/Documents/fbr-website/fbr-website/public/*.webp c:/Users/maria/Documents/fbr-website/fbr-website/public/*.jpg)",
       "Bash(find c:/Users/maria/Documents/fbr-website/fbr-website/app -name Nav* -o -name Footer*)",
-      "Bash(find /c/Users/maria/Documents/fbr-website/fbr-website -type d -name *contact* -o -type d -name *team*)"
+      "Bash(find /c/Users/maria/Documents/fbr-website/fbr-website -type d -name *contact* -o -type d -name *team*)",
+      "Bash(grep -r \"useEffect\\\\|useCallback\\\\|useLayoutEffect\" /c/Users/maria/Documents/fbr-website/fbr-website/components --include=*.jsx)",
+      "Bash(find /c/Users/maria/Documents/fbr-website/fbr-website/app -maxdepth 1 -name *.jsx -o -name *.js)",
+      "Bash(grep -r position:.*fixed /c/Users/maria/Documents/fbr-website/fbr-website/app --include=*.jsx)",
+      "Bash(grep -r \"backdrop-filter\\\\|backdropFilter\" /c/Users/maria/Documents/fbr-website/fbr-website/app --include=*.jsx)"
     ]
   }
 }
