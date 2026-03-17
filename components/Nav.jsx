@@ -36,11 +36,6 @@ const IconFlor6 = () => (
   </svg>
 );
 
-const IconCoracao = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-  </svg>
-);
 
 const IconRecriacao = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -366,7 +361,10 @@ export default function NavClient() {
   }, [pathname]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
+    const onScroll = () => {
+      const next = window.scrollY > 80;
+      setScrolled(prev => prev === next ? prev : next);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -388,7 +386,7 @@ export default function NavClient() {
           position: "fixed", top: 0, width: "100%", zIndex: 100,
           backgroundColor: show ? "rgba(250,247,240,0.95)" : "transparent",
           backdropFilter: show ? "blur(10px)" : "none",
-          transition: "all 0.4s ease",
+          transition: "background-color 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease",
           padding: show ? "14px 0" : "24px 0",
         }}
       >
