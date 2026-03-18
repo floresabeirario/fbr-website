@@ -40,7 +40,11 @@
       "Bash(grep -r \"useEffect\\\\|useCallback\\\\|useLayoutEffect\" /c/Users/maria/Documents/fbr-website/fbr-website/components --include=*.jsx)",
       "Bash(find /c/Users/maria/Documents/fbr-website/fbr-website/app -maxdepth 1 -name *.jsx -o -name *.js)",
       "Bash(grep -r position:.*fixed /c/Users/maria/Documents/fbr-website/fbr-website/app --include=*.jsx)",
-      "Bash(grep -r \"backdrop-filter\\\\|backdropFilter\" /c/Users/maria/Documents/fbr-website/fbr-website/app --include=*.jsx)"
+      "Bash(grep -r \"backdrop-filter\\\\|backdropFilter\" /c/Users/maria/Documents/fbr-website/fbr-website/app --include=*.jsx)",
+      "Bash(git checkout:*)",
+      "Bash(git push:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }

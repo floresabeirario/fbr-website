@@ -3,8 +3,21 @@
 ## Sobre o Projeto
 Site institucional e de vendas da Flores à Beira Rio (floresabeirario.pt).
 Stack: Next.js 16 (App Router), React 19, Framer Motion 12, CSS puro.
-Deploy: Vercel, automático a partir do branch `main`.
+Deploy: Vercel, automático a partir do branch `main`. **O site está live em produção.**
 Idioma do código: inglês. Idioma do conteúdo: português europeu.
+
+## Fluxo de Trabalho (Git)
+
+O site está live. **Todo o trabalho novo começa no branch `develop`.**
+
+```
+develop  →  (PR revisto)  →  main  →  deploy automático Vercel
+```
+
+- Todo o trabalho novo: criar branch a partir de `develop` (ex: `feature/nome`)
+- Nunca editar directamente em `main` nem em `develop` para alterações grandes
+- Para correcções urgentes em produção (hotfix): branch a partir de `main`, merge para `main` E `develop`
+- Merge para `main` só após confirmação da fundadora
 
 ---
 
