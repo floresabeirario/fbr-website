@@ -20,13 +20,13 @@ export const metadata = {
     title: "Flores à Beira-Rio | Preservação de Flores em Coimbra",
     description: "Transformamos o seu bouquet numa obra de arte botânica que dura décadas. Feito à mão em Coimbra.",
     url: SITE_URL,
-    imagePath: "/fotoquadro1.webp",
+    imagePath: "/og-homepage.jpg",
     imageAlt: "Quadro de flores prensadas, Flores à Beira-Rio",
   }),
   twitter: buildTwitterCard({
     title: "Flores à Beira-Rio | Preservação de Flores em Coimbra",
     description: "Transformamos o seu bouquet numa obra de arte botânica que dura décadas.",
-    imagePath: "/fotoquadro1.webp",
+    imagePath: "/og-homepage.jpg",
   }),
   alternates: {
     canonical: SITE_URL,
