@@ -65,8 +65,8 @@ export default function ValeApresenteForm() {
   });
 
   const showTelefone = form.meioContacto === "WhatsApp";
-  const showMorada = form.entrega === "Diretamente ao destinatário" && form.tipoVale === "Físico cartão com envelope";
-  const showContactoDestinatario = form.entrega === "Diretamente ao destinatário" && form.tipoVale === "Por email/WhatsApp";
+  const showMorada = form.entrega === "Diretamente ao destinatário" && form.tipoVale === "Físico - cartão com envelope";
+  const showContactoDestinatario = form.entrega === "Diretamente ao destinatário" && form.tipoVale === "Por email / WhatsApp";
   const showDataEnvio = showMorada || showContactoDestinatario;
   const showComoConheceuOutro = form.comoConheceu === "Outro (especificar abaixo)";
   const showNomeFlorista = form.comoConheceu === "Recomendação de florista";
@@ -144,7 +144,7 @@ export default function ValeApresenteForm() {
         <Field label="Como prefere que comuniquemos consigo?" required error={errors.meioContacto}>
           <select {...inp("meioContacto")}>
             <option value="">Escolha...</option>
-            <option value="Email">E-mail</option>
+            <option value="E-mail">E-mail</option>
             <option value="WhatsApp">WhatsApp</option>
           </select>
         </Field>
@@ -167,7 +167,9 @@ export default function ValeApresenteForm() {
           hint={
             form.meioContacto === "WhatsApp"
               ? "Mesmo preferindo WhatsApp, pedimos um e-mail como contacto alternativo."
-              : "Todas as comunicações serão feitas para este e-mail. Certifique-se de que o introduz correctamente."
+              : form.meioContacto === "E-mail"
+              ? "Todas as comunicações serão feitas para este e-mail. Certifique-se de que o introduz correctamente."
+              : undefined
           }
         >
           <input type="email" {...inp("email")} placeholder="email@exemplo.pt" autoComplete="email" />
@@ -228,8 +230,8 @@ export default function ValeApresenteForm() {
         >
           <select {...inp("tipoVale")}>
             <option value="">Escolha...</option>
-            <option value="Por email/WhatsApp">Digital — por e-mail ou WhatsApp (gratuito)</option>
-            <option value="Físico cartão com envelope">Físico — cartão com envelope (9€ + portes)</option>
+            <option value="Por email / WhatsApp">Digital — por e-mail ou WhatsApp (gratuito)</option>
+            <option value="Físico - cartão com envelope">Físico — cartão com envelope (9€ + portes)</option>
           </select>
         </Field>
 
