@@ -19,10 +19,10 @@
   min-height: 100svh;
   background: linear-gradient(
     170deg,
-    #F0E6D4 0%,
-    #E8E2F2 40%,
-    #C8D0E8 75%,
-    #B8C4E0 100%
+    #E6E8F4 0%,
+    #D8DCF0 38%,
+    #C4CCE4 70%,
+    #B8C2DE 100%
   );
 }
 
@@ -43,7 +43,7 @@
   inset: 0;
   background-size: cover;
   background-position: center 30%;
-  filter: brightness(0.38) saturate(0.85);
+  filter: brightness(0.62) saturate(0.9);
 }
 
 .vp-hero-overlay {
@@ -51,22 +51,9 @@
   inset: 0;
   background: linear-gradient(
     175deg,
-    rgba(40, 30, 20, 0.2) 0%,
-    rgba(30, 20, 15, 0.72) 100%
+    rgba(20, 15, 10, 0.08) 0%,
+    rgba(20, 15, 10, 0.52) 100%
   );
-}
-
-/* fade suave para o fundo da página */
-.vp-hero::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(to bottom, transparent, #F0E6D4);
-  z-index: 2;
-  pointer-events: none;
 }
 
 .vp-hero-content {
@@ -103,7 +90,7 @@
 
 .vp-em {
   font-style: italic;
-  color: #EDBA90;
+  color: var(--terra);
 }
 
 .vp-sub {
@@ -474,10 +461,6 @@ input[type="date"].vf-input {
     height: clamp(360px, 58svh, 560px);
   }
 
-  .vp-hero::after {
-    height: 80px;
-  }
-
   .vp-title {
     font-size: clamp(2rem, 7vw, 3.2rem);
   }
@@ -492,7 +475,7 @@ input[type="date"].vf-input {
 ═══════════════════════════════════════════════ */
 @media (max-width: 540px) {
   .vp-page {
-    background: linear-gradient(180deg, #F0E6D4 0%, #C8D0E8 100%);
+    background: linear-gradient(180deg, #E0E4F4 0%, #B8C2DE 100%);
   }
 
   .vp-hero {
