@@ -3,7 +3,8 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { FORM_URL, FORM_URL_VALE } from "../_lib/constants";
+import Link from "next/link";
+import { FORM_URL } from "../_lib/constants";
 import PageHero from "@/components/PageHero";
 import "./OfereceClient.css";
 
@@ -142,7 +143,7 @@ export default function OfereceClient() {
             O vale oferta da Flores à Beira-Rio permite oferecer a preservação de flores num quadro emoldurado, tornando-se na prenda perfeita para qualquer ocasião.
           </p>
           <div className="cta-row-vale" style={{ marginBottom: "1.4rem", justifyContent: "center" }}>
-            <a href={FORM_URL_VALE} target="_blank" rel="noopener noreferrer" className="btn-primary-vale">Encomendar Vale Oferta</a>
+            <Link href="/vale-presente" className="btn-primary-vale">Encomendar Vale Oferta</Link>
           </div>
         </motion.div>
       </PageHero>
@@ -232,13 +233,13 @@ export default function OfereceClient() {
           </div>
           <Reveal>
             <div style={{ textAlign: "center", marginTop: "clamp(2.5rem, 5vw, 4rem)" }}>
-              <a href={FORM_URL_VALE} target="_blank" rel="noopener noreferrer"
+              <Link href="/vale-presente"
                 style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: CREME, color: AZUL_ESC, padding: "15px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "'Google Sans', sans-serif", transition: "all 0.3s ease", boxShadow: "0 6px 24px rgba(15,30,26,0.2)" }}
                 onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 12px 36px rgba(15,30,26,0.28)"; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 6px 24px rgba(15,30,26,0.2)"; }}
               >
                 Encomendar Vale Oferta
-              </a>
+              </Link>
             </div>
           </Reveal>
         </div>
@@ -297,7 +298,7 @@ export default function OfereceClient() {
             Transforme um momento efémero numa obra de arte feita à mão, para durar uma vida inteira.
           </p>
           <div className="cta-row-vale" style={{ marginBottom: "1.2rem" }}>
-            <a href={FORM_URL_VALE} target="_blank" rel="noopener noreferrer" className="btn-azul-vale">Encomendar Vale Oferta</a>
+            <Link href="/vale-presente" className="btn-azul-vale">Encomendar Vale Oferta</Link>
             <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary-vale">Reservar Data</a>
           </div>
           <p style={{ fontSize: "0.8rem", color: "rgba(250,247,240,0.55)" }}>A partir de 300€ · Sem data de validade</p>
