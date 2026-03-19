@@ -68,8 +68,10 @@ function buildColumnValues(data) {
   if (data.quantosOrnamentos)
     cols.text_mm1kx2jh = data.quantosOrnamentos;
 
-  if (data.pendentes)
-    cols.color_mm1kz8vz = { label: data.pendentes };
+  if (data.pendentes) {
+    const idx = extrasIndex(data.pendentes);
+    cols.color_mm1kz8vz = idx !== undefined ? { index: idx } : { label: data.pendentes };
+  }
 
   if (data.quantosPendentes)
     cols.text_mm1k610f = data.quantosPendentes;
