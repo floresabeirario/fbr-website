@@ -7,108 +7,84 @@ import "./ValeApresenteClient.css";
 const STEPS = [
   {
     n: "01",
-    text: "Preencha o formulário abaixo com os seus dados e as preferências de entrega do vale.",
+    title: "Preenchimento",
+    text: "Preencha o formulário com os seus dados e as preferências de entrega.",
   },
   {
     n: "02",
-    text: "Receberá um e-mail nosso com a confirmação dos dados e as instruções para pagamento.",
+    title: "Confirmação e pagamento",
+    text: "Recebe as instruções de pagamento. Só avançamos depois de pago.",
   },
   {
     n: "03",
-    text: "Após o pagamento, enviamos uma pré-visualização do vale para a sua aprovação.",
+    title: "Pré-visualização",
+    text: "Envia-lhe uma pré-visualização do vale para aprovação.",
   },
   {
     n: "04",
-    text: "Só depois da sua aprovação o vale é enviado ao destinatário, na data que escolher.",
+    title: "Entrega",
+    text: "O vale é enviado na data que escolher, só após a sua aprovação.",
   },
 ];
 
 export default function ValeApresenteClient() {
   return (
-    <div style={{ overflowX: "clip" }}>
+    <main className="vale-layout">
 
-      {/* ════ 1. HERO ════ */}
-      <section
-        aria-label="Vale Presente Flores à Beira-Rio"
-        className="vale-hero"
-      >
+      {/* ── PAINEL ESQUERDO ── */}
+      <aside className="vale-panel" aria-label="Vale presente — informações">
         <div
+          className="vale-panel-bg"
           aria-hidden="true"
-          className="vale-hero-bg"
           style={{ backgroundImage: "url('/vale1.webp')" }}
         />
-        <div aria-hidden="true" className="vale-hero-overlay" />
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="vale-hero-content"
-        >
-          <span className="vale-eyebrow">Vale Presente</span>
-          <h1 className="vale-hero-title">
-            Oferecer uma memória<br />
-            <em className="vale-hero-em">que dura para sempre</em>
-          </h1>
-          <p className="vale-hero-sub">
-            Preencha o formulário abaixo. Após o envio, receberá por e-mail a
-            confirmação e as instruções de pagamento.
-          </p>
-        </motion.div>
-      </section>
+        <div className="vale-panel-overlay" aria-hidden="true" />
 
-      {/* ════ 2. COMO FUNCIONA ════ */}
-      <section
-        aria-label="Como funciona o vale presente"
-        className="vale-steps-section"
-      >
-        <div className="vale-steps-wrap">
+        <div className="vale-panel-inner">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="vale-steps-header"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="vale-eyebrow vale-eyebrow--light">Processo</span>
-            <h2 className="vale-steps-title">
-              O que acontece<br />
-              <em className="vale-hero-em">após o envio</em>
-            </h2>
+            <span className="vale-eyebrow">Vale Presente</span>
+            <h1 className="vale-panel-title">
+              Oferecer uma memória<br />
+              <em className="vale-panel-em">que dura para sempre</em>
+            </h1>
+            <p className="vale-panel-sub">
+              Flores preservadas e emolduradas à mão, em Coimbra.
+              A partir de 300€, sem data de validade.
+            </p>
           </motion.div>
 
-          <div className="vale-steps-grid">
+          <motion.ol
+            className="vale-steps"
+            aria-label="Como funciona"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.35, duration: 0.8 }}
+          >
             {STEPS.map((s, i) => (
-              <motion.div
-                key={i}
-                className="vale-step"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-              >
-                <span className="vale-step-n">{s.n}</span>
-                <p className="vale-step-text">{s.text}</p>
-              </motion.div>
+              <li key={i} className="vale-step">
+                <span className="vale-step-n" aria-hidden="true">{s.n}</span>
+                <div>
+                  <p className="vale-step-title">{s.title}</p>
+                  <p className="vale-step-text">{s.text}</p>
+                </div>
+              </li>
             ))}
-          </div>
+          </motion.ol>
         </div>
-      </section>
+      </aside>
 
-      {/* ════ 3. FORMULÁRIO ════ */}
-      <section aria-label="Formulário do vale presente" className="vale-form-section">
-        <div className="vale-form-header">
-          <span className="vale-eyebrow vale-eyebrow--green">Formulário</span>
-          <h2 className="vale-form-title">
-            Reserve o seu<br />
-            <em className="vale-hero-em">vale presente</em>
-          </h2>
-          <p className="vale-form-intro">
-            Campos assinalados com <span aria-hidden="true" style={{ color: "var(--terra)" }}>*</span> são obrigatórios.
-          </p>
-        </div>
+      {/* ── PAINEL DIREITO: FORMULÁRIO ── */}
+      <section
+        className="vale-form-panel"
+        aria-label="Formulário do vale presente"
+      >
         <ValeApresenteForm />
       </section>
 
-    </div>
+    </main>
   );
 }

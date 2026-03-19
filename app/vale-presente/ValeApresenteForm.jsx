@@ -12,6 +12,7 @@ const INIT = {
   valorVale: "",
   entrega: "",
   tipoVale: "",
+  entregaRemetenteComo: "",
   morada: "",
   contactoDestinatario: "",
   dataEnvio: "",
@@ -45,10 +46,12 @@ export default function ValeApresenteForm() {
       const next = { ...f, [key]: val };
       if (key === "meioContacto" && val !== "WhatsApp") next.telefone = "";
       if (key === "entrega" || key === "tipoVale") {
+        next.entregaRemetenteComo = "";
         next.morada = "";
         next.contactoDestinatario = "";
         next.dataEnvio = "";
       }
+      if (key === "entregaRemetenteComo" && val !== "Por correio") next.morada = "";
       if (key === "comoConheceu") {
         next.comoConheceuOutro = "";
         next.nomeFlorista = "";
@@ -64,13 +67,16 @@ export default function ValeApresenteForm() {
     className: `vf-input${errors[key] ? " vf-input-err" : ""}`,
   });
 
+  const isFisico = form.tipoVale === "Físico - cartão com envelope";
   const showTelefone = form.meioContacto === "WhatsApp";
-  const showMorada = form.entrega === "Diretamente ao destinatário" && form.tipoVale === "Físico - cartão com envelope";
+  const showEntregaRemetenteComo = form.entrega === "Ao remetente" && isFisico;
+  const showMoradaRemetente = showEntregaRemetenteComo && form.entregaRemetenteComo === "Por correio";
+  const showMoradaDestinatario = form.entrega === "Diretamente ao destinatário" && isFisico;
+  const showMorada = showMoradaRemetente || showMoradaDestinatario;
   const showContactoDestinatario = form.entrega === "Diretamente ao destinatário" && form.tipoVale === "Por email / WhatsApp";
   const showDataEnvio = showMorada || showContactoDestinatario;
   const showComoConheceuOutro = form.comoConheceu === "Outro (especificar abaixo)";
   const showNomeFlorista = form.comoConheceu === "Recomendação de florista";
-
   const today = new Date().toISOString().split("T")[0];
 
   function validate() {
@@ -85,8 +91,10 @@ export default function ValeApresenteForm() {
     else if (Number(form.valorVale) < 300) e.valorVale = "O valor mínimo é 300€.";
     if (!form.entrega) e.entrega = "Campo obrigatório.";
     if (!form.tipoVale) e.tipoVale = "Campo obrigatório.";
+    if (showEntregaRemetenteComo && !form.entregaRemetenteComo) e.entregaRemetenteComo = "Campo obrigatório.";
     if (showMorada && !form.morada.trim()) e.morada = "Campo obrigatório.";
     if (showContactoDestinatario && !form.contactoDestinatario.trim()) e.contactoDestinatario = "Campo obrigatório.";
+    if (!form.comoConheceu) e.comoConheceu = "Campo obrigatório.";
     return e;
   }
 
@@ -95,8 +103,9 @@ export default function ValeApresenteForm() {
     const errs = validate();
     setErrors(errs);
     if (Object.keys(errs).length) {
-      const first = document.querySelector(".vf-input-err, [role='alert']");
-      first?.scrollIntoView({ behavior: "smooth", block: "center" });
+      document.querySelector(".vf-input-err, [role='alert']")
+        ?.closest(".vf-group")
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
     setStatus("loading");
@@ -107,7 +116,6 @@ export default function ValeApresenteForm() {
         body: JSON.stringify(form),
       });
       const json = await res.json();
-      console.log("[vale-presente] API response:", res.status, json);
       if (!res.ok) throw new Error(JSON.stringify(json));
       setStatus("success");
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -117,14 +125,17 @@ export default function ValeApresenteForm() {
     }
   }
 
+  const contactoLabel = form.meioContacto === "WhatsApp" ? "WhatsApp" : "e-mail";
+
   if (status === "success") {
     return (
       <div className="vf-success" role="status">
         <div className="vf-success-icon" aria-hidden="true">✓</div>
-        <h2 className="vf-success-title">Formulário enviado!</h2>
+        <h2 className="vf-success-title">Pedido enviado!</h2>
         <p className="vf-success-text">
-          Receberá em breve um e-mail com a confirmação dos dados e as instruções
-          de pagamento. Obrigada por escolher a Flores à Beira-Rio.
+          Será contactada por {contactoLabel} em breve com a confirmação dos dados
+          e as instruções de pagamento.{" "}
+          Obrigada por escolher a Flores à Beira-Rio.
         </p>
       </div>
     );
@@ -132,16 +143,19 @@ export default function ValeApresenteForm() {
 
   return (
     <form className="vale-form" onSubmit={handleSubmit} noValidate>
+      <p className="vf-intro">
+        Campos assinalados com <span aria-hidden="true" className="vf-req">*</span> são obrigatórios.
+      </p>
 
       {/* ── REMETENTE ── */}
-      <div className="vf-section">
-        <h3 className="vf-section-title">Dados do remetente</h3>
+      <fieldset className="vf-section">
+        <legend className="vf-section-title">Dados do remetente</legend>
 
         <Field label="Nome" required error={errors.nome}>
           <input type="text" {...inp("nome")} placeholder="O seu nome completo" autoComplete="name" />
         </Field>
 
-        <Field label="Como prefere que comuniquemos consigo?" required error={errors.meioContacto}>
+        <Field label="Como prefere ser contactada?" required error={errors.meioContacto}>
           <select {...inp("meioContacto")}>
             <option value="">Escolha...</option>
             <option value="E-mail">E-mail</option>
@@ -150,84 +164,52 @@ export default function ValeApresenteForm() {
         </Field>
 
         {showTelefone && (
-          <Field
-            label="Número de telemóvel"
-            required
-            error={errors.telefone}
-            hint="Todas as comunicações serão feitas para este número. Certifique-se de que o introduz correctamente."
-          >
+          <Field label="Número de telemóvel" required error={errors.telefone}
+            hint="Todas as comunicações serão feitas para este número.">
             <input type="tel" {...inp("telefone")} placeholder="+351 912 345 678" autoComplete="tel" />
           </Field>
         )}
 
-        <Field
-          label="E-mail de contacto"
-          required
-          error={errors.email}
-          hint={
-            form.meioContacto === "WhatsApp"
-              ? "Mesmo preferindo WhatsApp, pedimos um e-mail como contacto alternativo."
-              : form.meioContacto === "E-mail"
-              ? "Todas as comunicações serão feitas para este e-mail. Certifique-se de que o introduz correctamente."
-              : undefined
-          }
-        >
+        <Field label="E-mail de contacto" required error={errors.email}
+          hint={form.meioContacto === "WhatsApp" ? "Pedimos um e-mail como contacto alternativo." : undefined}>
           <input type="email" {...inp("email")} placeholder="email@exemplo.pt" autoComplete="email" />
         </Field>
-      </div>
+      </fieldset>
 
       {/* ── O VALE ── */}
-      <div className="vf-section">
-        <h3 className="vf-section-title">O vale</h3>
+      <fieldset className="vf-section">
+        <legend className="vf-section-title">O vale</legend>
 
-        <Field
-          label="Nome da(s) pessoa(s) a quem se destina o vale"
-          required
-          error={errors.nomeDestinatario}
-          hint="Este nome será utilizado para personalizar o vale."
-        >
+        <Field label="Nome da(s) pessoa(s) a quem se destina" required error={errors.nomeDestinatario}
+          hint="Este nome será utilizado para personalizar o vale.">
           <input type="text" {...inp("nomeDestinatario")} placeholder="Nome do destinatário" />
         </Field>
 
-        <Field
-          label="Mensagem personalizada (opcional)"
-          hint="Esta mensagem será incluída no vale, se desejado."
-        >
-          <textarea
-            {...inp("mensagem")}
-            rows={4}
-            placeholder="Ex: Para a Inês: Que as tuas flores durem tanto quanto a memória deste dia especial."
-          />
+        <Field label="Mensagem personalizada (opcional)" hint="Será incluída no vale, se desejado.">
+          <textarea {...inp("mensagem")} rows={4}
+            placeholder="Ex: Para a Inês: Que as tuas flores durem tanto quanto a memória deste dia especial." />
         </Field>
 
-        <Field
-          label="Valor do vale (€)"
-          required
-          error={errors.valorVale}
-          hint="Valor mínimo: 300€. Consulte as opções e preços no nosso site."
-        >
+        <Field label="Valor do vale (€)" required error={errors.valorVale}
+          hint="Valor mínimo: 300€.">
           <input type="number" {...inp("valorVale")} min={300} step={1} placeholder="300" />
         </Field>
-      </div>
+      </fieldset>
 
       {/* ── ENTREGA ── */}
-      <div className="vf-section">
-        <h3 className="vf-section-title">Entrega</h3>
+      <fieldset className="vf-section">
+        <legend className="vf-section-title">Entrega</legend>
 
-        <Field label="Quero que o vale seja entregue" required error={errors.entrega}>
+        <Field label="Quero que o vale seja entregue a" required error={errors.entrega}>
           <select {...inp("entrega")}>
             <option value="">Escolha...</option>
-            <option value="Ao remetente">Ao remetente</option>
+            <option value="Ao remetente">Mim (remetente)</option>
             <option value="Diretamente ao destinatário">Diretamente ao destinatário</option>
           </select>
         </Field>
 
-        <Field
-          label="Tipo de vale"
-          required
-          error={errors.tipoVale}
-          hint="Enviamos o vale por e-mail/WhatsApp gratuitamente, ou fisicamente por 9€ + portes (envelope incluído). Levantamento em Coimbra: 9€ sem portes."
-        >
+        <Field label="Tipo de vale" required error={errors.tipoVale}
+          hint="Digital: gratuito. Físico (cartão com envelope): 9€ + portes ou levantamento em Coimbra (9€).">
           <select {...inp("tipoVale")}>
             <option value="">Escolha...</option>
             <option value="Por email / WhatsApp">Digital — por e-mail ou WhatsApp (gratuito)</option>
@@ -235,58 +217,54 @@ export default function ValeApresenteForm() {
           </select>
         </Field>
 
+        {showEntregaRemetenteComo && (
+          <Field label="Como prefere receber o vale físico?" required error={errors.entregaRemetenteComo}>
+            <select {...inp("entregaRemetenteComo")}>
+              <option value="">Escolha...</option>
+              <option value="Em mãos em Coimbra">Levantamento em mãos em Coimbra (gratuito)</option>
+              <option value="Por correio">Por correio (portes a cargo do remetente)</option>
+            </select>
+          </Field>
+        )}
+
         {showMorada && (
-          <Field label="Morada de envio do destinatário" required error={errors.morada}>
-            <textarea
-              {...inp("morada")}
-              rows={3}
-              placeholder="Rua, número, andar, código postal, localidade"
-            />
+          <Field
+            label={showMoradaDestinatario ? "Morada de envio do destinatário" : "A sua morada para envio"}
+            required error={errors.morada}>
+            <textarea {...inp("morada")} rows={3}
+              placeholder="Rua, número, andar, código postal, localidade" />
           </Field>
         )}
 
         {showContactoDestinatario && (
-          <Field
-            label="E-mail ou WhatsApp do destinatário"
-            required
-            error={errors.contactoDestinatario}
-            hint="Este contacto será utilizado apenas para enviar o vale."
-          >
-            <input
-              type="text"
-              {...inp("contactoDestinatario")}
-              placeholder="email@exemplo.pt ou +351 912 345 678"
-            />
+          <Field label="E-mail ou WhatsApp do destinatário" required error={errors.contactoDestinatario}
+            hint="Utilizado apenas para enviar o vale.">
+            <input type="text" {...inp("contactoDestinatario")}
+              placeholder="email@exemplo.pt ou +351 912 345 678" />
           </Field>
         )}
 
         {showDataEnvio && (
           <Field
-            label={
-              showMorada
-                ? "Data ideal para envio do vale físico por correio"
-                : "Data ideal para envio do vale digital"
-            }
-            hint="Caso seja indiferente, deixe em branco."
-          >
+            label={showMoradaDestinatario || showMoradaRemetente
+              ? "Data ideal para envio por correio"
+              : "Data ideal para envio do vale digital"}
+            hint="Deixe em branco se for indiferente.">
             <input type="date" {...inp("dataEnvio")} min={today} />
           </Field>
         )}
-      </div>
+      </fieldset>
 
       {/* ── OUTROS ── */}
-      <div className="vf-section">
-        <h3 className="vf-section-title">Outros</h3>
+      <fieldset className="vf-section">
+        <legend className="vf-section-title">Outros</legend>
 
         <Field label="Comentários ou pedidos especiais (opcional)">
-          <textarea
-            {...inp("comentarios")}
-            rows={4}
-            placeholder="Se tiver algum comentário ou pedido especial, escreva aqui."
-          />
+          <textarea {...inp("comentarios")} rows={3}
+            placeholder="Se tiver algum comentário ou pedido especial, escreva aqui." />
         </Field>
 
-        <Field label="Como conheceu a Flores à Beira-Rio?">
+        <Field label="Como conheceu a Flores à Beira-Rio?" required error={errors.comoConheceu}>
           <select {...inp("comoConheceu")}>
             <option value="">Escolha...</option>
             <option value="Recomendação de alguém que já contratou o serviço anteriormente">Recomendação de alguém que já contratou o serviço</option>
@@ -310,12 +288,11 @@ export default function ValeApresenteForm() {
             <textarea {...inp("comoConheceuOutro")} rows={3} />
           </Field>
         )}
-      </div>
+      </fieldset>
 
       {status === "error" && (
         <p className="vf-submit-error" role="alert">
-          Ocorreu um erro ao enviar o formulário. Por favor, tente novamente ou
-          contacte-nos directamente.
+          Ocorreu um erro ao enviar. Por favor, tente novamente ou contacte-nos directamente.
         </p>
       )}
 

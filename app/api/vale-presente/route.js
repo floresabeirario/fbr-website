@@ -33,6 +33,9 @@ function buildColumnValues(data) {
   if (data.tipoVale)
     cols.single_selectflb64wv = { label: data.tipoVale };
 
+  if (data.entregaRemetenteComo)
+    cols.color_mm1kya1x = { label: data.entregaRemetenteComo };
+
   if (data.morada)
     cols.long_texthqr0263u = { text: data.morada };
 
