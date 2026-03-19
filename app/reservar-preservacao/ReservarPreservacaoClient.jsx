@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { EMAIL } from "../_lib/constants";
 import ReservarPreservacaoForm from "./ReservarPreservacaoForm";
 import "./ReservarPreservacaoClient.css";
 
@@ -9,17 +10,17 @@ const STEPS = [
   {
     n: "01",
     title: "Preenchimento",
-    text: "Preencha o formulário com os seus dados e preferências. O processo demora apenas alguns minutos.",
+    text: "Preencha o formulário com os dados do evento e as suas preferências. O processo demora apenas alguns minutos.",
   },
   {
     n: "02",
     title: "Confirmação e orçamento",
-    text: "Nos próximos 3 dias úteis, recebe um e-mail com o valor total e os dados para pagamento do sinal.",
+    text: "Nos próximos 3 dias úteis, receberá o valor total do serviço e os dados para pagamento do sinal.",
   },
   {
     n: "03",
     title: "Pagamento do sinal",
-    text: "O sinal de 30% deve ser pago em 24 horas para garantir a sua vaga. Só após o pagamento a reserva fica confirmada.",
+    text: "O sinal de 30% deve ser pago em 24 horas. Só após o pagamento a reserva fica confirmada.",
   },
 ];
 
@@ -32,7 +33,7 @@ export default function ReservarPreservacaoClient() {
         <div
           className="rp-hero-bg"
           aria-hidden="true"
-          style={{ backgroundImage: "url('/reserva.webp')" }}
+          style={{ backgroundImage: "url('/quadrovidrosobrevidro.webp')" }}
         />
         <div className="rp-hero-overlay" aria-hidden="true" />
         <motion.div
@@ -43,15 +44,15 @@ export default function ReservarPreservacaoClient() {
         >
           <span className="rp-eyebrow">Reserva de Preservação</span>
           <h1 className="rp-title">
-            Garanta a sua vaga<br />
-            <em className="rp-em">e preserve a memória</em>
+            Preserve a memória<br />
+            <em className="rp-em">do seu dia especial</em>
           </h1>
           <p className="rp-sub">
-            Preencha o formulário abaixo para iniciar a reserva do seu serviço de preservação de flores.
-            Entramos em contacto nos próximos 3 dias úteis com o orçamento e os dados para pagamento do sinal.
+            Preencha o formulário para garantir a sua vaga no nosso serviço de preservação de flores,
+            feito com dedicação e cuidado, à mão, em Coimbra.
           </p>
           <Link href="/como-funciona" className="rp-info-link">
-            Saber mais sobre como funciona <span aria-hidden="true">→</span>
+            Como funciona o processo <span aria-hidden="true">→</span>
           </Link>
         </motion.div>
       </div>
@@ -80,17 +81,12 @@ export default function ReservarPreservacaoClient() {
         <div className="rp-form-lead">
           <h2 className="rp-form-lead-title">Formulário de pré-reserva</h2>
           <p className="rp-form-lead-sub">
-            Olá e obrigado por escolher a Flores à Beira-Rio!
-            Este formulário serve para garantir a sua vaga no nosso serviço de preservação de flores.
-            O preenchimento leva apenas alguns minutos e ajuda-nos a oferecer um serviço mais personalizado e cuidadoso.
+            Para garantir a sua vaga, preencha o formulário com os dados do evento e as suas preferências.
+            Nos próximos 3 dias úteis, receberá a confirmação do orçamento e as instruções para o pagamento do sinal.
           </p>
           <p className="rp-form-lead-sub">
-            Após a submissão, receberá um e-mail com os próximos passos, incluindo a confirmação do orçamento
-            e os dados para o pagamento do sinal.
-            Em caso de dúvidas, estamos sempre disponíveis através de{" "}
-            <a href="mailto:info@floresabeirario.pt" className="rp-form-link">
-              info@floresabeirario.pt
-            </a>.
+            Para dúvidas, estamos disponíveis em{" "}
+            <a href={`mailto:${EMAIL}`} className="rp-form-link">{EMAIL}</a>.
           </p>
         </div>
         <ReservarPreservacaoForm />

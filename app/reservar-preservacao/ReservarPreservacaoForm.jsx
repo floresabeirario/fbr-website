@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { SOCIAL_INSTAGRAM } from "../_lib/constants";
 
 const ELEMENTOS_OPTIONS = [
   "Não pretendo incluir extras",
@@ -129,9 +130,13 @@ export default function ReservarPreservacaoForm() {
     if (!form.tipoFundo) e.tipoFundo = "Campo obrigatório.";
     if (!form.elementosExtra.length) e.elementosExtra = "Seleccione pelo menos uma opção.";
     if (!form.quadrosExtra) e.quadrosExtra = "Campo obrigatório.";
+    if (showQuantosOrnamentos && !form.quantosOrnamentos.trim()) e.quantosOrnamentos = "Campo obrigatório.";
     if (!form.ornamentosNatal) e.ornamentosNatal = "Campo obrigatório.";
     if (!form.pendentes) e.pendentes = "Campo obrigatório.";
+    if (showQuantosPendentes && !form.quantosPendentes.trim()) e.quantosPendentes = "Campo obrigatório.";
     if (!form.comoConheceu) e.comoConheceu = "Campo obrigatório.";
+    if (showNomeFlorista && !form.nomeFlorista.trim()) e.nomeFlorista = "Campo obrigatório.";
+    if (showComoConheceuOutro && !form.comoConheceuOutro.trim()) e.comoConheceuOutro = "Campo obrigatório.";
     if (!form.termosCondicoes) e.termosCondicoes = "Deve aceitar os Termos e Condições para continuar.";
     return e;
   }
@@ -169,12 +174,12 @@ export default function ReservarPreservacaoForm() {
         <div className="pf-success-icon" aria-hidden="true">✓</div>
         <h2 className="pf-success-title">Pré-reserva registada com sucesso!</h2>
         <p className="pf-success-text">
-          Nos próximos 3 dias úteis, irá receber uma mensagem/e-mail com o valor total do serviço
-          de preservação e os dados para o pagamento do sinal de 30%.
+          Nos próximos 3 dias úteis, receberá uma mensagem com o valor total do serviço de preservação
+          e os dados para o pagamento do sinal de 30%.
           Este valor deve ser pago no prazo de 24 horas após o envio do e-mail para garantir a sua vaga.
         </p>
         <p className="pf-success-text">
-          Importante: a sua reserva só fica confirmada após o pagamento do sinal.
+          A sua reserva só fica confirmada após o pagamento do sinal.
           Caso não receba o e-mail dentro do prazo, verifique a pasta de spam ou entre em contacto connosco.
         </p>
         <p className="pf-success-closing">
@@ -202,7 +207,7 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         <Field label="Como prefere que comuniquemos consigo?" required error={errors.meioContacto}
-          hint="Escolha o meio de contacto que lhe for mais conveniente. Poderá mudar esta preferência mais tarde, se necessário.">
+          hint="Escolha o meio de contacto que lhe for mais conveniente. Pode alterar esta preferência mais tarde.">
           <select {...inp("meioContacto")}>
             <option value="">Escolha...</option>
             <option value="E-mail">E-mail</option>
@@ -216,7 +221,7 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         <Field label="Número de telemóvel" required error={errors.telefone}
-          hint="Utilizaremos apenas se precisarmos de entrar em contacto rapidamente ou se optar por ser contactado/a por WhatsApp.">
+          hint="Utilizado para contacto rápido em caso de necessidade, ou como canal principal se optar por WhatsApp.">
           <input type="tel" {...inp("telefone")} placeholder="+351 912 345 678" autoComplete="tel" />
         </Field>
       </div>
@@ -226,13 +231,14 @@ export default function ReservarPreservacaoForm() {
         <h2 className="pf-section-title" id="sec-evento">O evento</h2>
 
         <Field label="Data do evento" required error={errors.dataEvento}
-          hint="Por favor, indique a data do casamento, batizado ou outro evento. As flores devem ser enviadas idealmente até 2 a 3 dias após o evento.">
+          hint="Indique a data do casamento, batizado ou outro evento. As flores devem ser enviadas idealmente até 2 a 3 dias após o evento.">
           <input type="date" {...inp("dataEvento")} min={today} />
         </Field>
 
-        <Field label="Tipo de flores no arranjo">
+        <Field label="Tipo de flores no arranjo"
+          hint="Indique o tipo de flores e o tipo de arranjo (ex.: bouquet de noiva, coroa, flores soltas). Se ainda não tiver esta informação, deixe em branco.">
           <textarea {...inp("tipoFlores")} rows={4}
-            placeholder="Ex.: orquídeas, girassóis, malmequeres. Pode indicar também o tipo de arranjo: bouquet de noiva, dama de honor, flores soltas, coroa, flor de lapela, etc. Se ainda não tiver esta informação, deixe em branco." />
+            placeholder="Ex.: orquídeas, girassóis, malmequeres — bouquet de noiva." />
         </Field>
       </div>
 
@@ -241,7 +247,9 @@ export default function ReservarPreservacaoForm() {
         <h2 className="pf-section-title" id="sec-logistica">Envio e recepção</h2>
 
         <Field label="Como pretende enviar as flores para nós?" required error={errors.comoEnviarFlores}
-          hint="Em caso de dúvida sobre qual a melhor opção, consulte a nossa página Como Funciona. Após a confirmação da reserva, receberá instruções específicas conforme a opção escolhida.">
+          hint={<>Em caso de dúvida, consulte a nossa página{" "}
+            <Link href="/como-funciona" className="pf-link" target="_blank" rel="noopener noreferrer">Como Funciona</Link>.
+            Após a confirmação da reserva, receberá instruções específicas conforme a opção escolhida.</>}>
           <select {...inp("comoEnviarFlores")}>
             <option value="">Escolha...</option>
             <option value="Entrega em mãos em Coimbra">Entrega em mãos em Coimbra</option>
@@ -252,7 +260,9 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         <Field label="Como prefere receber o quadro finalizado?" required error={errors.comoReceberQuadro}
-          hint="Quando o seu quadro estiver pronto, entraremos em contacto para confirmar os detalhes. O envio pelos CTT é feito com toda a segurança, devidamente embalado. A recolha em mãos é feita mediante agendamento.">
+          hint={<>Saiba mais sobre esta etapa na nossa página{" "}
+            <Link href="/como-funciona" className="pf-link" target="_blank" rel="noopener noreferrer">Como Funciona</Link>.
+            O envio pelos CTT é feito com toda a segurança, devidamente embalado. A recolha em mãos é feita mediante agendamento.</>}>
           <select {...inp("comoReceberQuadro")}>
             <option value="">Escolha...</option>
             <option value="Recolha em mãos em Coimbra">Recolha em mãos em Coimbra</option>
@@ -267,7 +277,8 @@ export default function ReservarPreservacaoForm() {
         <h2 className="pf-section-title" id="sec-quadro">O quadro</h2>
 
         <Field label="Tamanho de moldura pretendido" required error={errors.tamanhoMoldura}
-          hint="Consulte exemplos e valores na nossa página Opções e Preços.">
+          hint={<>Consulte exemplos e valores na nossa página{" "}
+            <Link href="/opcoes-e-precos" className="pf-link" target="_blank" rel="noopener noreferrer">Opções e Preços</Link>.</>}>
           <select {...inp("tamanhoMoldura")}>
             <option value="">Escolha...</option>
             <option value="30x40cm">30×40 cm</option>
@@ -278,7 +289,11 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         <Field label="Que tipo de fundo gostaria para o seu quadro?" required error={errors.tipoFundo}
-          hint="Consulte a nossa página Opções e Preços para conhecer cada opção. Se não tiver a certeza, não precisa de decidir já.">
+          hint={<>Consulte a nossa página{" "}
+            <Link href="/opcoes-e-precos" className="pf-link" target="_blank" rel="noopener noreferrer">Opções e Preços</Link>{" "}
+            para conhecer cada opção e visite o nosso{" "}
+            <a href={SOCIAL_INSTAGRAM} className="pf-link" target="_blank" rel="noopener noreferrer">Instagram</a>.
+            Se não tiver a certeza, não precisa de decidir já.</>}>
           <select {...inp("tipoFundo")}>
             <option value="">Escolha...</option>
             <option value="Transparente (vidro sobre vidro)">Transparente (vidro sobre vidro)</option>
@@ -356,7 +371,7 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         {showQuantosOrnamentos && (
-          <Field label="Quantos ornamentos de Natal gostaria de ter?">
+          <Field label="Quantos ornamentos de Natal gostaria de ter?" required error={errors.quantosOrnamentos}>
             <input type="number" min={1}
               value={form.quantosOrnamentos}
               onChange={(e) => set("quantosOrnamentos", e.target.value)}
@@ -376,7 +391,7 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         {showQuantosPendentes && (
-          <Field label="Quantos pendentes gostaria de ter?">
+          <Field label="Quantos pendentes gostaria de ter?" required error={errors.quantosPendentes}>
             <input type="number" min={1}
               value={form.quantosPendentes}
               onChange={(e) => set("quantosPendentes", e.target.value)}
@@ -405,13 +420,13 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         {showNomeFlorista && (
-          <Field label="Qual a florista que lhe falou de nós?">
+          <Field label="Qual a florista que lhe falou de nós?" required error={errors.nomeFlorista}>
             <textarea {...inp("nomeFlorista")} rows={2} placeholder="Nome da florista." />
           </Field>
         )}
 
         {showComoConheceuOutro && (
-          <Field label="Conte-nos como conheceu a Flores à Beira-Rio">
+          <Field label="Conte-nos como conheceu a Flores à Beira-Rio" required error={errors.comoConheceuOutro}>
             <textarea {...inp("comoConheceuOutro")} rows={3} />
           </Field>
         )}
@@ -448,7 +463,7 @@ export default function ReservarPreservacaoForm() {
 
       {status === "error" && (
         <p className="pf-submit-error" role="alert">
-          Ocorreu um erro ao enviar. Por favor, tente novamente ou contacte-nos directamente em{" "}
+          Ocorreu um erro ao enviar. Por favor, tente novamente ou contacte-nos em{" "}
           <a href="mailto:info@floresabeirario.pt">info@floresabeirario.pt</a>.
         </p>
       )}

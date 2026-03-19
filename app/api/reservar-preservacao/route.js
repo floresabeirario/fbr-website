@@ -82,6 +82,11 @@ function buildColumnValues(data) {
 
 export async function POST(request) {
   try {
+    if (!process.env.MONDAY_BOARD_ID_PRESERVACAO) {
+      console.error("[reservar-preservacao] MONDAY_BOARD_ID_PRESERVACAO not set");
+      return NextResponse.json({ error: "Configuração em falta no servidor." }, { status: 500 });
+    }
+
     const data = await request.json();
     console.log("[reservar-preservacao] received data:", JSON.stringify(data));
 
