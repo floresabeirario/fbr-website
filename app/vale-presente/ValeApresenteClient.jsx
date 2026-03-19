@@ -66,7 +66,10 @@ export default function ValeApresenteClient() {
           >
             {STEPS.map((s, i) => (
               <li key={i} className="vale-step">
-                <span className="vale-step-n" aria-hidden="true">{s.n}</span>
+                <div className="vale-step-left" aria-hidden="true">
+                  <span className="vale-step-n">{s.n}</span>
+                  <span className="vale-step-line" />
+                </div>
                 <div>
                   <p className="vale-step-title">{s.title}</p>
                   <p className="vale-step-text">{s.text}</p>
