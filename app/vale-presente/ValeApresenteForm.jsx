@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const INIT = {
   nome: "",
@@ -40,6 +40,7 @@ export default function ValeApresenteForm() {
   const [form, setForm] = useState(INIT);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
+  const successRef = useRef(null);
 
   const set = (key, val) => {
     setForm((f) => {
@@ -122,7 +123,7 @@ export default function ValeApresenteForm() {
       const json = await res.json();
       if (!res.ok) throw new Error(JSON.stringify(json));
       setStatus("success");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(() => successRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
     } catch (err) {
       console.error("[vale-presente] submit error:", err);
       setStatus("error");
@@ -133,7 +134,7 @@ export default function ValeApresenteForm() {
 
   if (status === "success") {
     return (
-      <div className="vf-success" role="status">
+      <div className="vf-success" role="status" ref={successRef}>
         <div className="vf-success-icon" aria-hidden="true">✓</div>
         <h2 className="vf-success-title">Pedido enviado!</h2>
         <p className="vf-success-text">

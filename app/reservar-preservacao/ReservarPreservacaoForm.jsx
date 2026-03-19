@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import { SOCIAL_INSTAGRAM } from "../_lib/constants";
 
@@ -60,6 +60,7 @@ export default function ReservarPreservacaoForm() {
   const [form, setForm] = useState(INIT);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
+  const successRef = useRef(null);
 
   const set = (key, val) => {
     setForm((f) => {
@@ -165,7 +166,7 @@ export default function ReservarPreservacaoForm() {
       const json = await res.json();
       if (!res.ok) throw new Error(JSON.stringify(json));
       setStatus("success");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(() => successRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
     } catch (err) {
       console.error("[reservar-preservacao] submit error:", err);
       setStatus("error");
@@ -174,7 +175,7 @@ export default function ReservarPreservacaoForm() {
 
   if (status === "success") {
     return (
-      <div className="pf-success" role="status">
+      <div className="pf-success" role="status" ref={successRef}>
         <div className="pf-success-icon" aria-hidden="true">✓</div>
         <h2 className="pf-success-title">Pré-reserva registada com sucesso!</h2>
         <p className="pf-success-text">

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { EMAIL } from "../_lib/constants";
 import ReservarPreservacaoForm from "./ReservarPreservacaoForm";
 import "./ReservarPreservacaoClient.css";
 
@@ -83,10 +82,6 @@ export default function ReservarPreservacaoClient() {
           <p className="rp-form-lead-sub">
             Para garantir a sua vaga, preencha o formulário com os dados do evento e as suas preferências.
             Nos próximos 3 dias úteis, receberá a confirmação do orçamento e as instruções para o pagamento do sinal.
-          </p>
-          <p className="rp-form-lead-sub">
-            Para dúvidas, estamos disponíveis em{" "}
-            <a href={`mailto:${EMAIL}`} className="rp-form-link">{EMAIL}</a>.
           </p>
         </div>
         <ReservarPreservacaoForm />
