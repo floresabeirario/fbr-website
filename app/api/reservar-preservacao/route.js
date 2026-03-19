@@ -103,16 +103,13 @@ function buildColumnValues(data) {
   if (data.nomeFlorista)
     cols.long_textyoq9dh7s = { text: data.nomeFlorista };
 
-  // Notas adicionais — inclui especificação de elemento extra "Outro", se preenchida
-  const partes = [
-    data.elementosExtraOutro
-      ? `Elemento extra - Outro: ${data.elementosExtraOutro}`
-      : "",
-    data.notasAdicionais || "",
-  ].filter(Boolean);
+  // "Que outros elementos gostaria de adicionar?" — campo livre quando "Outro" é seleccionado
+  if (data.elementosExtraOutro)
+    cols.long_text_mkq090y7 = { text: data.elementosExtraOutro };
 
-  if (partes.length)
-    cols.long_text_mkq0z9d = { text: partes.join("\n\n") };
+  // Notas adicionais finais
+  if (data.notasAdicionais)
+    cols.long_text_mkq0z9d = { text: data.notasAdicionais };
 
   return cols;
 }
