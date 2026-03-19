@@ -1,0 +1,490 @@
+/* app/reservar-preservacao/ReservarPreservacaoClient.css */
+
+/* ── PAGE ─────────────────────────────────────────────────────────── */
+.rp-page {
+  min-height: 100vh;
+  background: var(--cream);
+}
+
+/* ── HERO ─────────────────────────────────────────────────────────── */
+.rp-hero {
+  position: relative;
+  min-height: clamp(380px, 55vh, 580px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.rp-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 30%;
+  transform: scale(1.04);
+  transition: transform 12s ease;
+}
+
+.rp-hero:hover .rp-hero-bg {
+  transform: scale(1);
+}
+
+.rp-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 45, 42, 0.75) 0%,
+    rgba(61, 107, 94, 0.55) 60%,
+    rgba(196, 132, 107, 0.25) 100%
+  );
+}
+
+.rp-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  padding: clamp(48px, 8vw, 96px) clamp(24px, 6vw, 80px);
+}
+
+.rp-eyebrow {
+  display: inline-block;
+  font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+
+.rp-title {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  color: #fff;
+  margin: 0 0 16px;
+  line-height: 1.05;
+}
+
+.rp-em {
+  font-style: italic;
+  color: #e8d5b0;
+}
+
+.rp-sub {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.65;
+  margin: 0 0 24px;
+  max-width: 520px;
+}
+
+.rp-info-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #e8d5b0;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232, 213, 176, 0.45);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.rp-info-link:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.rp-info-link:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ── STEPS BAR ────────────────────────────────────────────────────── */
+.rp-steps-bar {
+  background: var(--green-d);
+  padding: clamp(32px, 5vw, 48px) clamp(24px, 6vw, 60px);
+}
+
+.rp-steps {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 4vw, 48px);
+}
+
+.rp-step {
+  text-align: center;
+}
+
+.rp-step-n {
+  display: block;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-family: 'TAN-MEMORIES', serif;
+  color: var(--gold);
+  opacity: 0.75;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.rp-step-title {
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.rp-step-text {
+  font-size: clamp(0.8rem, 1.1vw, 0.88rem);
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── FORM WRAP ────────────────────────────────────────────────────── */
+.rp-form-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 80px) clamp(20px, 5vw, 40px);
+}
+
+.rp-form-lead {
+  margin-bottom: 40px;
+}
+
+.rp-form-lead-title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--green-d);
+  margin: 0 0 16px;
+}
+
+.rp-form-lead-sub {
+  font-size: clamp(0.9rem, 1.3vw, 1rem);
+  color: #4a5a52;
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+
+.rp-form-link {
+  color: var(--green);
+  text-underline-offset: 3px;
+}
+
+.rp-form-link:hover {
+  color: var(--green-d);
+}
+
+/* ── FORM ─────────────────────────────────────────────────────────── */
+.preservacao-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pf-intro {
+  font-size: 0.88rem;
+  color: #666;
+  margin: 0 0 24px;
+}
+
+.pf-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: clamp(24px, 4vw, 36px);
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(61, 107, 94, 0.07);
+  border: 1px solid rgba(61, 107, 94, 0.1);
+}
+
+.pf-section-title {
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  color: var(--green);
+  margin: 0 0 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(61, 107, 94, 0.15);
+}
+
+/* ── FIELD ─────────────────────────────────────────────────────────── */
+.pf-group {
+  margin-bottom: 20px;
+}
+
+.pf-group:last-child {
+  margin-bottom: 0;
+}
+
+.pf-label {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--green-d);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.pf-req {
+  color: var(--terra);
+  font-weight: 700;
+}
+
+.pf-hint {
+  font-size: 0.82rem;
+  color: #6b7b72;
+  margin: 0 0 8px;
+  line-height: 1.55;
+}
+
+.pf-input {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #cdd8d2;
+  border-radius: 7px;
+  font-size: 0.95rem;
+  color: var(--green-d);
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  font-family: inherit;
+}
+
+.pf-input:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(61, 107, 94, 0.12);
+}
+
+.pf-input:focus-visible {
+  outline: 3px solid var(--green-l);
+  outline-offset: 2px;
+}
+
+.pf-input-err {
+  border-color: var(--terra);
+}
+
+.pf-input-err:focus {
+  box-shadow: 0 0 0 3px rgba(196, 132, 107, 0.15);
+}
+
+select.pf-input {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%233D6B5E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+textarea.pf-input {
+  resize: vertical;
+  min-height: 80px;
+}
+
+input[type="date"].pf-input {
+  cursor: pointer;
+}
+
+.pf-error {
+  font-size: 0.8rem;
+  color: var(--terra);
+  margin: 5px 0 0;
+  font-weight: 500;
+}
+
+/* ── CHECKBOXES ───────────────────────────────────────────────────── */
+.pf-checkgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.pf-check-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: var(--green-d);
+  cursor: pointer;
+  line-height: 1.45;
+}
+
+.pf-check-label:hover {
+  color: var(--green);
+}
+
+.pf-checkbox {
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+
+/* ── TERMOS ───────────────────────────────────────────────────────── */
+.pf-termos-label {
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.pf-link {
+  color: var(--green);
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+
+.pf-link:hover {
+  color: var(--green-d);
+}
+
+.pf-link:focus-visible {
+  outline: 2px solid var(--green-l);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── SUBMIT ───────────────────────────────────────────────────────── */
+.pf-submit-error {
+  font-size: 0.88rem;
+  color: var(--terra);
+  background: rgba(196, 132, 107, 0.08);
+  border: 1px solid rgba(196, 132, 107, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  line-height: 1.55;
+}
+
+.pf-submit-error a {
+  color: var(--terra);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
+.pf-btn {
+  display: block;
+  width: 100%;
+  padding: 15px 24px;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  margin-top: 8px;
+}
+
+.pf-btn:hover {
+  background: var(--green-d);
+  box-shadow: 0 4px 16px rgba(30, 45, 42, 0.2);
+}
+
+.pf-btn:active {
+  transform: scale(0.99);
+}
+
+.pf-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pf-btn:focus-visible {
+  outline: 3px solid var(--green-l);
+  outline-offset: 3px;
+}
+
+/* ── SUCCESS ──────────────────────────────────────────────────────── */
+.pf-success {
+  background: #fff;
+  border-radius: 14px;
+  padding: clamp(32px, 6vw, 56px) clamp(24px, 5vw, 48px);
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(61, 107, 94, 0.1);
+  border: 1px solid rgba(61, 107, 94, 0.12);
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.pf-success-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.pf-success-title {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  color: var(--green-d);
+  margin: 0 0 20px;
+}
+
+.pf-success-text {
+  font-size: clamp(0.88rem, 1.2vw, 0.98rem);
+  color: #4a5a52;
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+
+.pf-success-closing {
+  font-size: 0.95rem;
+  color: var(--green-d);
+  margin: 24px 0 0;
+  line-height: 1.7;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .rp-steps {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .rp-step {
+    text-align: left;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    grid-template-rows: auto auto;
+    gap: 0 12px;
+    align-items: start;
+  }
+
+  .rp-step-n {
+    grid-row: 1 / 3;
+    font-size: 1.8rem;
+    margin-bottom: 0;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 2px;
+  }
+
+  .rp-step-title {
+    grid-column: 2;
+    grid-row: 1;
+    margin-bottom: 4px;
+  }
+
+  .rp-step-text {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .pf-section {
+    border-radius: 8px;
+  }
+}
