@@ -148,8 +148,8 @@ export default function ValeApresenteForm() {
       </p>
 
       {/* ── REMETENTE ── */}
-      <fieldset className="vf-section">
-        <legend className="vf-section-title">Dados do remetente</legend>
+      <div className="vf-section" role="group" aria-labelledby="sec-remetente">
+        <h2 className="vf-section-title" id="sec-remetente">Dados do remetente</h2>
 
         <Field label="Nome" required error={errors.nome}>
           <input type="text" {...inp("nome")} placeholder="O seu nome completo" autoComplete="name" />
@@ -174,11 +174,11 @@ export default function ValeApresenteForm() {
           hint={form.meioContacto === "WhatsApp" ? "Pedimos um e-mail como contacto alternativo." : undefined}>
           <input type="email" {...inp("email")} placeholder="email@exemplo.pt" autoComplete="email" />
         </Field>
-      </fieldset>
+      </div>
 
       {/* ── O VALE ── */}
-      <fieldset className="vf-section">
-        <legend className="vf-section-title">O vale</legend>
+      <div className="vf-section" role="group" aria-labelledby="sec-vale">
+        <h2 className="vf-section-title" id="sec-vale">O vale</h2>
 
         <Field label="Nome da(s) pessoa(s) a quem se destina" required error={errors.nomeDestinatario}
           hint="Este nome será utilizado para personalizar o vale.">
@@ -194,11 +194,11 @@ export default function ValeApresenteForm() {
           hint="Valor mínimo: 300€.">
           <input type="number" {...inp("valorVale")} min={300} step={1} placeholder="300" />
         </Field>
-      </fieldset>
+      </div>
 
       {/* ── ENTREGA ── */}
-      <fieldset className="vf-section">
-        <legend className="vf-section-title">Entrega</legend>
+      <div className="vf-section" role="group" aria-labelledby="sec-entrega">
+        <h2 className="vf-section-title" id="sec-entrega">Entrega</h2>
 
         <Field label="Quero que o vale seja entregue a" required error={errors.entrega}>
           <select {...inp("entrega")}>
@@ -253,11 +253,11 @@ export default function ValeApresenteForm() {
             <input type="date" {...inp("dataEnvio")} min={today} />
           </Field>
         )}
-      </fieldset>
+      </div>
 
       {/* ── OUTROS ── */}
-      <fieldset className="vf-section">
-        <legend className="vf-section-title">Outros</legend>
+      <div className="vf-section" role="group" aria-labelledby="sec-outros">
+        <h2 className="vf-section-title" id="sec-outros">Outros</h2>
 
         <Field label="Comentários ou pedidos especiais (opcional)">
           <textarea {...inp("comentarios")} rows={3}
@@ -288,7 +288,7 @@ export default function ValeApresenteForm() {
             <textarea {...inp("comoConheceuOutro")} rows={3} />
           </Field>
         )}
-      </fieldset>
+      </div>
 
       {status === "error" && (
         <p className="vf-submit-error" role="alert">

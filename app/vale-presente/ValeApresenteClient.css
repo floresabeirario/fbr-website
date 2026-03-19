@@ -1,22 +1,23 @@
 /* app/vale-presente/ValeApresenteClient.css */
 
 /* ═══════════════════════════════════════════════
-   PAGE WRAPPER
+   PAGE
 ═══════════════════════════════════════════════ */
 .vp-page {
-  background: var(--cream);
+  background: #F4F0EA;
   min-height: 100svh;
 }
 
 /* ═══════════════════════════════════════════════
-   HERO — full width, imersivo
+   HERO
 ═══════════════════════════════════════════════ */
 .vp-hero {
   position: relative;
-  height: clamp(420px, 65svh, 700px);
+  height: clamp(480px, 68svh, 740px);
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 .vp-hero-bg {
@@ -24,26 +25,28 @@
   inset: 0;
   background-size: cover;
   background-position: center 30%;
-  filter: brightness(0.42) saturate(0.85);
+  filter: brightness(0.38) saturate(0.8);
 }
 
 .vp-hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    168deg,
-    rgba(10, 28, 24, 0.25) 0%,
-    rgba(10, 28, 24, 0.88) 100%
+    180deg,
+    rgba(10, 28, 24, 0.2) 0%,
+    rgba(10, 28, 24, 0.72) 100%
   );
 }
 
 .vp-hero-content {
   position: relative;
   z-index: 1;
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: clamp(32px, 5vw, 56px) clamp(24px, 5vw, 64px) clamp(52px, 7vw, 88px);
+  text-align: center;
+  max-width: 760px;
+  padding: 0 clamp(24px, 5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .vp-eyebrow {
@@ -56,26 +59,27 @@
   letter-spacing: 3.5px;
   text-transform: uppercase;
   color: var(--terra);
-  margin-bottom: 22px;
+  margin-bottom: 24px;
   opacity: 0.9;
 }
 
-.vp-eyebrow::before {
+.vp-eyebrow::before,
+.vp-eyebrow::after {
   content: '';
   display: block;
-  width: 22px;
+  width: 20px;
   height: 1.5px;
   background: var(--terra);
-  opacity: 0.75;
+  opacity: 0.65;
   flex-shrink: 0;
 }
 
 .vp-title {
   font-family: "TAN-MEMORIES", serif;
-  font-size: clamp(2.2rem, 5.5vw, 4rem);
-  color: var(--cream);
-  margin: 0 0 22px;
-  line-height: 1.05;
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  color: #fff;
+  margin: 0 0 24px;
+  line-height: 1.04;
   font-weight: 400;
 }
 
@@ -87,19 +91,36 @@
 .vp-sub {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-weight: 300;
-  font-size: 0.95rem;
-  color: rgba(250, 247, 240, 0.68);
-  line-height: 1.85;
-  margin: 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.8;
+  margin: 0 0 28px;
   max-width: 520px;
+}
+
+.vp-info-link {
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.vp-info-link:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.65);
 }
 
 /* ═══════════════════════════════════════════════
    BARRA DE PASSOS
 ═══════════════════════════════════════════════ */
 .vp-steps-bar {
-  background: var(--green-d);
-  padding: clamp(28px, 4vw, 44px) clamp(24px, 5vw, 64px);
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: clamp(28px, 3.5vw, 40px) clamp(24px, 5vw, 64px);
 }
 
 .vp-steps {
@@ -109,15 +130,14 @@
   max-width: 960px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
 }
 
 .vp-step {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 0 clamp(16px, 2.5vw, 32px);
-  border-right: 1px solid rgba(250, 247, 240, 0.08);
+  padding: 0 clamp(16px, 2.5vw, 28px);
+  border-right: 1px solid rgba(0, 0, 0, 0.07);
 }
 
 .vp-step:first-child {
@@ -130,26 +150,25 @@
 
 .vp-step-n {
   font-family: "TAN-MEMORIES", serif;
-  font-size: 1.5rem;
-  color: rgba(196, 132, 107, 0.45);
+  font-size: 1.4rem;
+  color: rgba(196, 132, 107, 0.4);
   line-height: 1;
   margin-bottom: 6px;
 }
 
 .vp-step-title {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--cream);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green-d);
   margin: 0;
-  letter-spacing: 0.2px;
 }
 
 .vp-step-text {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.74rem;
   font-weight: 300;
-  color: rgba(250, 247, 240, 0.5);
+  color: var(--mid);
   line-height: 1.65;
   margin: 0;
 }
@@ -158,10 +177,33 @@
    FORMULÁRIO — secção centrada
 ═══════════════════════════════════════════════ */
 .vp-form-wrap {
-  padding: clamp(48px, 7vw, 80px) clamp(20px, 5vw, 60px) clamp(72px, 10vw, 112px);
+  padding: clamp(48px, 7vw, 80px) clamp(20px, 5vw, 60px) clamp(80px, 10vw, 120px);
 }
 
-/* ── Formulário (elemento raiz do ValeApresenteForm) ── */
+.vp-form-lead {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto clamp(32px, 5vw, 48px);
+}
+
+.vp-form-lead-title {
+  font-family: "TAN-MEMORIES", serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--green-d);
+  font-weight: 400;
+  margin: 0 0 12px;
+}
+
+.vp-form-lead-sub {
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ── Formulário container ── */
 .vale-form {
   max-width: 640px;
   margin: 0 auto;
@@ -169,22 +211,21 @@
 
 .vf-intro {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 300;
   color: var(--mid);
-  margin: 0 0 24px;
+  text-align: center;
+  margin: 0 0 20px;
 }
 
-/* ── Secções — cards ── */
+/* ── Secções — cards Apple-style ── */
 .vf-section {
-  border: none;
   padding: clamp(24px, 4vw, 36px);
-  margin: 0 0 16px;
+  margin: 0 0 12px;
   background: #fff;
   border-radius: 20px;
-  box-shadow:
-    0 1px 2px rgba(61, 107, 94, 0.04),
-    0 4px 20px rgba(61, 107, 94, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .vf-section:last-of-type {
@@ -193,18 +234,18 @@
 
 .vf-section-title {
   font-family: "TAN-MEMORIES", serif;
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
   color: var(--green-d);
   margin: 0 0 clamp(18px, 3vw, 24px);
   font-weight: 400;
   display: block;
-  padding-left: 14px;
-  border-left: 3px solid var(--terra);
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 }
 
 /* ── Campos ── */
 .vf-group {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .vf-group:last-child {
@@ -214,10 +255,11 @@
 .vf-label {
   display: block;
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--green-d);
-  margin-bottom: 7px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #1d1d1f;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
 }
 
 .vf-req {
@@ -226,9 +268,9 @@
 
 .vf-hint {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 300;
-  color: var(--mid);
+  color: #6e6e73;
   margin: 0 0 8px;
   line-height: 1.65;
 }
@@ -236,97 +278,93 @@
 .vf-input {
   display: block;
   width: 100%;
-  padding: 13px 18px;
+  padding: 12px 14px;
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.92rem;
-  color: #1a1a1a;
-  background: #FAFAF8;
-  border: 1.5px solid #D5CEBE;
-  border-radius: 12px;
-  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  font-size: 0.95rem;
+  color: #1d1d1f;
+  background: #fff;
+  border: 1px solid #D2D2D7;
+  border-radius: 10px;
+  transition: border-color 0.18s, box-shadow 0.18s;
   appearance: none;
   -webkit-appearance: none;
 }
 
+.vf-input::placeholder {
+  color: #AEAEB2;
+}
+
 .vf-input:hover {
-  border-color: var(--green-l);
+  border-color: #AEAEB2;
 }
 
 .vf-input:focus-visible {
   outline: none;
   border-color: var(--green);
-  background: #fff;
-  box-shadow: 0 0 0 4px rgba(61, 107, 94, 0.1);
+  box-shadow: 0 0 0 3px rgba(61, 107, 94, 0.14);
 }
 
 .vf-input-err {
   border-color: var(--terra);
-  background: rgba(196, 132, 107, 0.04);
 }
 
 .vf-input-err:focus-visible {
   border-color: var(--terra);
-  box-shadow: 0 0 0 4px rgba(196, 132, 107, 0.1);
+  box-shadow: 0 0 0 3px rgba(196, 132, 107, 0.14);
 }
 
 .vf-error {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   color: var(--terra);
   margin: 5px 0 0;
 }
 
 select.vf-input {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%233D6B5E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23AEAEB2' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 18px center;
-  padding-right: 46px;
+  background-position: right 14px center;
+  padding-right: 40px;
   cursor: pointer;
 }
 
 textarea.vf-input {
   resize: vertical;
-  min-height: 90px;
+  min-height: 88px;
+  line-height: 1.6;
 }
 
 input[type="date"].vf-input {
   cursor: pointer;
 }
 
-/* ── Botão CTA ── */
+/* ── Botão CTA — Apple style ── */
 .vf-btn {
   display: block;
   width: 100%;
-  padding: 18px 32px;
-  margin-top: 24px;
+  padding: 16px 32px;
+  margin-top: 20px;
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--cream);
-  background: linear-gradient(135deg, var(--green) 0%, var(--green-d) 100%);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--green);
   border: none;
-  border-radius: 14px;
+  border-radius: 980px;
   cursor: pointer;
-  box-shadow:
-    0 4px 16px rgba(61, 107, 94, 0.28),
-    0 1px 4px rgba(61, 107, 94, 0.16);
-  transition: box-shadow 0.25s, transform 0.2s;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
 }
 
 .vf-btn:hover {
-  box-shadow:
-    0 8px 28px rgba(61, 107, 94, 0.36),
-    0 2px 8px rgba(61, 107, 94, 0.2);
+  background: var(--green-d);
+  box-shadow: 0 4px 20px rgba(61, 107, 94, 0.3);
   transform: translateY(-1px);
 }
 
 .vf-btn:active {
-  transform: translateY(0) scale(0.99);
-  box-shadow:
-    0 2px 10px rgba(61, 107, 94, 0.2),
-    0 1px 3px rgba(61, 107, 94, 0.12);
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 .vf-btn:focus-visible {
@@ -335,10 +373,10 @@ input[type="date"].vf-input {
 }
 
 .vf-btn:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
   transform: none;
-  box-shadow: 0 2px 8px rgba(61, 107, 94, 0.14);
+  box-shadow: none;
 }
 
 /* ── Erro submit ── */
@@ -346,11 +384,11 @@ input[type="date"].vf-input {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.84rem;
   color: #a85438;
-  background: rgba(196, 132, 107, 0.08);
-  border: 1px solid rgba(196, 132, 107, 0.28);
+  background: rgba(196, 132, 107, 0.07);
+  border: 1px solid rgba(196, 132, 107, 0.22);
   border-radius: 12px;
-  padding: 16px 18px;
-  margin-bottom: 16px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
   line-height: 1.55;
 }
 
@@ -358,29 +396,27 @@ input[type="date"].vf-input {
 .vf-success {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
-  padding: clamp(40px, 6vw, 64px) clamp(28px, 5vw, 48px);
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  padding: clamp(48px, 7vw, 72px) clamp(28px, 5vw, 56px);
   max-width: 640px;
   margin: 0 auto;
   background: #fff;
   border-radius: 24px;
-  box-shadow:
-    0 1px 3px rgba(61, 107, 94, 0.06),
-    0 8px 32px rgba(61, 107, 94, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.07);
 }
 
 .vf-success-icon {
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--green) 0%, var(--green-d) 100%);
+  background: var(--green);
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(61, 107, 94, 0.28);
 }
 
 .vf-success-title {
@@ -398,6 +434,7 @@ input[type="date"].vf-input {
   color: var(--mid);
   line-height: 1.85;
   margin: 0;
+  max-width: 440px;
 }
 
 /* ═══════════════════════════════════════════════
@@ -405,11 +442,11 @@ input[type="date"].vf-input {
 ═══════════════════════════════════════════════ */
 @media (max-width: 860px) {
   .vp-hero {
-    height: clamp(320px, 56svh, 520px);
+    height: clamp(360px, 58svh, 560px);
   }
 
   .vp-title {
-    font-size: clamp(1.9rem, 6.5vw, 3rem);
+    font-size: clamp(2rem, 7vw, 3.2rem);
   }
 
   .vp-steps {
@@ -417,27 +454,28 @@ input[type="date"].vf-input {
     gap: 24px 0;
   }
 
-  .vp-step:nth-child(2) {
+  .vp-step:nth-child(even) {
     border-right: none;
-  }
-
-  .vp-step:nth-child(odd) {
-    padding-left: 0;
   }
 
   .vp-step:nth-child(1),
   .vp-step:nth-child(2) {
     padding-bottom: 24px;
-    border-bottom: 1px solid rgba(250, 247, 240, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  }
+
+  .vp-step:nth-child(3) {
+    border-right: 1px solid rgba(0, 0, 0, 0.07);
   }
 
   .vp-step:nth-child(3),
   .vp-step:nth-child(4) {
-    padding-top: 0;
+    padding-top: 24px;
   }
 
+  .vp-step:first-child,
   .vp-step:nth-child(3) {
-    border-right: 1px solid rgba(250, 247, 240, 0.08);
+    padding-left: 0;
   }
 }
 
@@ -446,11 +484,22 @@ input[type="date"].vf-input {
 ═══════════════════════════════════════════════ */
 @media (max-width: 540px) {
   .vp-hero {
-    height: clamp(280px, 50svh, 420px);
+    height: clamp(300px, 52svh, 460px);
+    align-items: flex-end;
   }
 
   .vp-hero-content {
-    padding-bottom: clamp(36px, 6vw, 56px);
+    padding-bottom: clamp(36px, 6vw, 52px);
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .vp-eyebrow::after {
+    display: none;
+  }
+
+  .vp-sub {
+    font-size: 0.9rem;
   }
 
   .vp-steps-bar {
@@ -458,7 +507,7 @@ input[type="date"].vf-input {
   }
 
   .vp-form-wrap {
-    padding: 32px 16px 64px;
+    padding: 32px 16px 72px;
   }
 
   .vf-section {
@@ -467,6 +516,6 @@ input[type="date"].vf-input {
   }
 
   .vf-btn {
-    padding: 16px 24px;
+    padding: 15px 24px;
   }
 }
