@@ -4,7 +4,7 @@
    PAGE
 ═══════════════════════════════════════════════ */
 .vp-page {
-  background: #F4F0EA;
+  background: #111916;
   min-height: 100svh;
 }
 
@@ -63,16 +63,6 @@
   opacity: 0.9;
 }
 
-.vp-eyebrow::before,
-.vp-eyebrow::after {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 1.5px;
-  background: var(--terra);
-  opacity: 0.65;
-  flex-shrink: 0;
-}
 
 .vp-title {
   font-family: "TAN-MEMORIES", serif;
@@ -118,8 +108,8 @@
    BARRA DE PASSOS
 ═══════════════════════════════════════════════ */
 .vp-steps-bar {
-  background: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: #161F1B;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   padding: clamp(28px, 3.5vw, 40px) clamp(24px, 5vw, 64px);
 }
 
@@ -137,7 +127,7 @@
   flex-direction: column;
   gap: 5px;
   padding: 0 clamp(16px, 2.5vw, 28px);
-  border-right: 1px solid rgba(0, 0, 0, 0.07);
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .vp-step:first-child {
@@ -160,7 +150,7 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--green-d);
+  color: rgba(250, 247, 240, 0.9);
   margin: 0;
 }
 
@@ -168,7 +158,7 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.74rem;
   font-weight: 300;
-  color: var(--mid);
+  color: rgba(250, 247, 240, 0.42);
   line-height: 1.65;
   margin: 0;
 }
@@ -189,7 +179,7 @@
 .vp-form-lead-title {
   font-family: "TAN-MEMORIES", serif;
   font-size: clamp(1.5rem, 3vw, 2.2rem);
-  color: var(--green-d);
+  color: var(--cream);
   font-weight: 400;
   margin: 0 0 12px;
 }
@@ -198,7 +188,7 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.9rem;
   font-weight: 300;
-  color: var(--mid);
+  color: rgba(250, 247, 240, 0.55);
   line-height: 1.75;
   margin: 0;
 }
@@ -213,19 +203,18 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.8rem;
   font-weight: 300;
-  color: var(--mid);
+  color: rgba(250, 247, 240, 0.45);
   text-align: center;
   margin: 0 0 20px;
 }
 
-/* ── Secções — cards Apple-style ── */
+/* ── Secções — cards dark ── */
 .vf-section {
   padding: clamp(24px, 4vw, 36px);
   margin: 0 0 12px;
-  background: #fff;
+  background: #1A231F;
   border-radius: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.07);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .vf-section:last-of-type {
@@ -235,12 +224,12 @@
 .vf-section-title {
   font-family: "TAN-MEMORIES", serif;
   font-size: clamp(1rem, 1.8vw, 1.2rem);
-  color: var(--green-d);
+  color: var(--cream);
   margin: 0 0 clamp(18px, 3vw, 24px);
   font-weight: 400;
   display: block;
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 /* ── Campos ── */
@@ -257,7 +246,7 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
-  color: #1d1d1f;
+  color: rgba(250, 247, 240, 0.85);
   margin-bottom: 6px;
   letter-spacing: -0.01em;
 }
@@ -270,7 +259,7 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.74rem;
   font-weight: 300;
-  color: #6e6e73;
+  color: rgba(250, 247, 240, 0.38);
   margin: 0 0 8px;
   line-height: 1.65;
 }
@@ -281,36 +270,38 @@
   padding: 12px 14px;
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.95rem;
-  color: #1d1d1f;
-  background: #fff;
-  border: 1px solid #D2D2D7;
+  color: var(--cream);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  transition: border-color 0.18s, box-shadow 0.18s;
+  transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
   appearance: none;
   -webkit-appearance: none;
 }
 
 .vf-input::placeholder {
-  color: #AEAEB2;
+  color: rgba(250, 247, 240, 0.25);
 }
 
 .vf-input:hover {
-  border-color: #AEAEB2;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .vf-input:focus-visible {
   outline: none;
-  border-color: var(--green);
-  box-shadow: 0 0 0 3px rgba(61, 107, 94, 0.14);
+  border-color: var(--green-l);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(139, 168, 136, 0.18);
 }
 
 .vf-input-err {
-  border-color: var(--terra);
+  border-color: rgba(196, 132, 107, 0.6);
 }
 
 .vf-input-err:focus-visible {
   border-color: var(--terra);
-  box-shadow: 0 0 0 3px rgba(196, 132, 107, 0.14);
+  box-shadow: 0 0 0 3px rgba(196, 132, 107, 0.16);
 }
 
 .vf-error {
@@ -321,11 +312,16 @@
 }
 
 select.vf-input {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23AEAEB2' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(250,247,240,0.3)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 40px;
   cursor: pointer;
+}
+
+select.vf-input option {
+  background: #1A231F;
+  color: var(--cream);
 }
 
 textarea.vf-input {
@@ -336,9 +332,10 @@ textarea.vf-input {
 
 input[type="date"].vf-input {
   cursor: pointer;
+  color-scheme: dark;
 }
 
-/* ── Botão CTA — Apple style ── */
+/* ── Botão CTA ── */
 .vf-btn {
   display: block;
   width: 100%;
@@ -358,7 +355,7 @@ input[type="date"].vf-input {
 
 .vf-btn:hover {
   background: var(--green-d);
-  box-shadow: 0 4px 20px rgba(61, 107, 94, 0.3);
+  box-shadow: 0 4px 24px rgba(61, 107, 94, 0.45);
   transform: translateY(-1px);
 }
 
@@ -373,7 +370,7 @@ input[type="date"].vf-input {
 }
 
 .vf-btn:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
@@ -383,9 +380,9 @@ input[type="date"].vf-input {
 .vf-submit-error {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.84rem;
-  color: #a85438;
-  background: rgba(196, 132, 107, 0.07);
-  border: 1px solid rgba(196, 132, 107, 0.22);
+  color: #e8907a;
+  background: rgba(196, 132, 107, 0.1);
+  border: 1px solid rgba(196, 132, 107, 0.25);
   border-radius: 12px;
   padding: 14px 16px;
   margin-bottom: 14px;
@@ -402,9 +399,9 @@ input[type="date"].vf-input {
   padding: clamp(48px, 7vw, 72px) clamp(28px, 5vw, 56px);
   max-width: 640px;
   margin: 0 auto;
-  background: #fff;
+  background: #1A231F;
   border-radius: 24px;
-  border: 1px solid rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .vf-success-icon {
@@ -422,7 +419,7 @@ input[type="date"].vf-input {
 .vf-success-title {
   font-family: "TAN-MEMORIES", serif;
   font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-  color: var(--green-d);
+  color: var(--cream);
   margin: 0;
   font-weight: 400;
 }
@@ -431,7 +428,7 @@ input[type="date"].vf-input {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-weight: 300;
   font-size: 0.96rem;
-  color: var(--mid);
+  color: rgba(250, 247, 240, 0.6);
   line-height: 1.85;
   margin: 0;
   max-width: 440px;
@@ -461,11 +458,11 @@ input[type="date"].vf-input {
   .vp-step:nth-child(1),
   .vp-step:nth-child(2) {
     padding-bottom: 24px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   }
 
   .vp-step:nth-child(3) {
-    border-right: 1px solid rgba(0, 0, 0, 0.07);
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
   }
 
   .vp-step:nth-child(3),

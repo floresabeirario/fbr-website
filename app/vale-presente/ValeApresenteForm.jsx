@@ -212,8 +212,8 @@ export default function ValeApresenteForm() {
           hint="Digital: gratuito. Físico (cartão com envelope): 9€ + portes ou levantamento em Coimbra (9€).">
           <select {...inp("tipoVale")}>
             <option value="">Escolha...</option>
-            <option value="Por email / WhatsApp">Digital — por e-mail ou WhatsApp (gratuito)</option>
-            <option value="Físico - cartão com envelope">Físico — cartão com envelope (9€ + portes)</option>
+            <option value="Por email / WhatsApp">Digital - por e-mail ou WhatsApp (gratuito)</option>
+            <option value="Físico - cartão com envelope">Físico - cartão com envelope (9€ + portes)</option>
           </select>
         </Field>
 

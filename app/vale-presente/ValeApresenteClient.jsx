@@ -18,11 +18,6 @@ const STEPS = [
   },
   {
     n: "03",
-    title: "Pré-visualização",
-    text: "Envia-lhe uma pré-visualização do vale para aprovação.",
-  },
-  {
-    n: "04",
     title: "Entrega",
     text: "O vale é enviado na data que escolher, só após a sua aprovação.",
   },
@@ -48,8 +43,8 @@ export default function ValeApresenteClient() {
         >
           <span className="vp-eyebrow">Vale Presente</span>
           <h1 className="vp-title">
-            Ofereça flores que duram<br />
-            <em className="vp-em">para sempre</em>
+            Ofereça a preservação<br />
+            <em className="vp-em">de flores</em>
           </h1>
           <p className="vp-sub">
             Preencha o formulário abaixo para encomendar o seu vale.
