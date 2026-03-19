@@ -6,6 +6,19 @@ import { NextResponse } from "next/server";
 
 const MONDAY_API = "https://api.monday.com/v2";
 
+// Os single_select* neste board são colunas Status (color) e rejeitam { label }
+// com missingLabel apesar dos labels parecerem idênticos.
+// Índices confirmados pelo erro Monday para single_select634naka:
+// {0: "Sim, ...", 2: "Gostava de receber mais informações", 3: "Não, apenas o quadro principal"}
+function extrasIndex(val) {
+  if (!val) return undefined;
+  const v = val.trim();
+  if (v.startsWith("Sim,")) return 0;
+  if (v.startsWith("Gostava")) return 2;
+  if (v.startsWith("Não,")) return 3;
+  return undefined;
+}
+
 function buildColumnValues(data) {
   const cols = {};
 
@@ -39,14 +52,18 @@ function buildColumnValues(data) {
   if (data.elementosExtra?.length)
     cols.dropdown_mkq0vepg = { labels: data.elementosExtra };
 
-  if (data.quadrosExtra)
-    cols.single_selectif561xw = { label: data.quadrosExtra };
+  if (data.quadrosExtra) {
+    const idx = extrasIndex(data.quadrosExtra);
+    cols.single_selectif561xw = idx !== undefined ? { index: idx } : { label: data.quadrosExtra };
+  }
 
   if (data.quantosQuadros)
     cols.long_textnvi49n07 = { text: data.quantosQuadros };
 
-  if (data.ornamentosNatal)
-    cols.single_select634naka = { label: data.ornamentosNatal };
+  if (data.ornamentosNatal) {
+    const idx = extrasIndex(data.ornamentosNatal);
+    cols.single_select634naka = idx !== undefined ? { index: idx } : { label: data.ornamentosNatal };
+  }
 
   if (data.quantosOrnamentos)
     cols.text_mm1kx2jh = data.quantosOrnamentos;
