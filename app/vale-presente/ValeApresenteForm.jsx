@@ -133,9 +133,9 @@ export default function ValeApresenteForm() {
         <div className="vf-success-icon" aria-hidden="true">✓</div>
         <h2 className="vf-success-title">Pedido enviado!</h2>
         <p className="vf-success-text">
-          Será contactada por {contactoLabel} em breve com a confirmação dos dados
+          Entraremos em contacto por {contactoLabel} em breve com a confirmação dos dados
           e as instruções de pagamento.{" "}
-          Obrigada por escolher a Flores à Beira-Rio.
+          Obrigado por escolher a Flores à Beira-Rio.
         </p>
       </div>
     );
@@ -155,7 +155,7 @@ export default function ValeApresenteForm() {
           <input type="text" {...inp("nome")} placeholder="O seu nome completo" autoComplete="name" />
         </Field>
 
-        <Field label="Como prefere ser contactada?" required error={errors.meioContacto}>
+        <Field label="Como prefere ser contactado/a?" required error={errors.meioContacto}>
           <select {...inp("meioContacto")}>
             <option value="">Escolha...</option>
             <option value="E-mail">E-mail</option>
