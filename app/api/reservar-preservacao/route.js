@@ -6,9 +6,10 @@ import { NextResponse } from "next/server";
 
 const MONDAY_API = "https://api.monday.com/v2";
 
-// Os single_select* neste board são colunas Status (color) e rejeitam { label }
-// com missingLabel apesar dos labels parecerem idênticos.
-// Índices confirmados pelo erro Monday para single_select634naka:
+// Colunas Status (color) neste board rejeitam { label } com missingLabel.
+// Usamos { index } com os valores confirmados pelos erros da API Monday.
+
+// single_select634naka / single_selectif561xw / color_mm1kz8vz
 // {0: "Sim, ...", 2: "Gostava de receber mais informações", 3: "Não, apenas o quadro principal"}
 function extrasIndex(val) {
   if (!val) return undefined;
@@ -16,6 +17,21 @@ function extrasIndex(val) {
   if (v.startsWith("Sim,")) return 0;
   if (v.startsWith("Gostava")) return 2;
   if (v.startsWith("Não,")) return 3;
+  return undefined;
+}
+
+// color_mkq0xxf4 (tipo de fundo)
+// {0:Preto, 1:Transparente(vidro sobre vidro), 2:Branco, 3:Fotografia(...), 4:Ainda não sei, 6:Cor, 7:Gostaria que fossem vocês a escolher}
+function tipoFundoIndex(val) {
+  if (!val) return undefined;
+  const v = val.trim();
+  if (v === "Preto") return 0;
+  if (v.startsWith("Transparente")) return 1;
+  if (v === "Branco") return 2;
+  if (v.startsWith("Fotografia")) return 3;
+  if (v.startsWith("Ainda não sei")) return 4;
+  if (v === "Cor") return 6;
+  if (v.startsWith("Gostaria que fossem")) return 7;
   return undefined;
 }
 
@@ -46,8 +62,10 @@ function buildColumnValues(data) {
   if (data.tamanhoMoldura)
     cols.color_mkq09fxw = { label: data.tamanhoMoldura };
 
-  if (data.tipoFundo)
-    cols.color_mkq0xxf4 = { label: data.tipoFundo };
+  if (data.tipoFundo) {
+    const idx = tipoFundoIndex(data.tipoFundo);
+    cols.color_mkq0xxf4 = idx !== undefined ? { index: idx } : { label: data.tipoFundo };
+  }
 
   if (data.elementosExtra?.length)
     cols.dropdown_mkq0vepg = { labels: data.elementosExtra };
