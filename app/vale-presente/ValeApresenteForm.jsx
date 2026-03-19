@@ -106,10 +106,13 @@ export default function ValeApresenteForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (!res.ok) throw new Error();
+      const json = await res.json();
+      console.log("[vale-presente] API response:", res.status, json);
+      if (!res.ok) throw new Error(JSON.stringify(json));
       setStatus("success");
       window.scrollTo({ top: 0, behavior: "smooth" });
-    } catch {
+    } catch (err) {
+      console.error("[vale-presente] submit error:", err);
       setStatus("error");
     }
   }

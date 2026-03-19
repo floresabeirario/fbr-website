@@ -65,6 +65,7 @@ function buildColumnValues(data) {
 export async function POST(request) {
   try {
     const data = await request.json();
+    console.log("[vale-presente route] received data:", JSON.stringify(data));
 
     if (!data.nome?.trim() || !data.email?.trim()) {
       return NextResponse.json(
