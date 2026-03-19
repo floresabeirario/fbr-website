@@ -392,6 +392,20 @@ input[type="date"].vf-input {
   box-shadow: none;
 }
 
+/* ── Resumo de erros de validação ── */
+.vf-errors-summary {
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.84rem;
+  color: #9A4A30;
+  background: rgba(196, 132, 107, 0.08);
+  border: 1px solid rgba(196, 132, 107, 0.25);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 0;
+  line-height: 1.55;
+  text-align: center;
+}
+
 /* ── Erro submit ── */
 .vf-submit-error {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;

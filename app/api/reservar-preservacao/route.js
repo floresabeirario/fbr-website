@@ -97,6 +97,14 @@ export async function POST(request) {
       );
     }
 
+    // Rejeita datas com ano inválido (ex: 6 dígitos) antes de enviar ao Monday
+    if (data.dataEvento) {
+      const year = parseInt(data.dataEvento.split("-")[0], 10);
+      if (isNaN(year) || year > 9999 || year < 1900) {
+        return NextResponse.json({ error: "Data do evento inválida." }, { status: 400 });
+      }
+    }
+
     const columnValues = buildColumnValues(data);
 
     const query = `

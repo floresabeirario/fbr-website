@@ -94,6 +94,10 @@ export default function ValeApresenteForm() {
     if (showEntregaRemetenteComo && !form.entregaRemetenteComo) e.entregaRemetenteComo = "Campo obrigatório.";
     if (showMorada && !form.morada.trim()) e.morada = "Campo obrigatório.";
     if (showContactoDestinatario && !form.contactoDestinatario.trim()) e.contactoDestinatario = "Campo obrigatório.";
+    if (form.dataEnvio) {
+      const year = parseInt(form.dataEnvio.split("-")[0], 10);
+      if (isNaN(year) || year < 2020 || year > 2099) e.dataEnvio = "Data inválida. Verifique o ano introduzido.";
+    }
     if (!form.comoConheceu) e.comoConheceu = "Campo obrigatório.";
     return e;
   }
@@ -250,7 +254,7 @@ export default function ValeApresenteForm() {
               ? "Data ideal para envio por correio"
               : "Data ideal para envio do vale digital"}
             hint="Deixe em branco se for indiferente.">
-            <input type="date" {...inp("dataEnvio")} min={today} />
+            <input type="date" {...inp("dataEnvio")} min={today} max="2099-12-31" />
           </Field>
         )}
       </div>
@@ -289,6 +293,12 @@ export default function ValeApresenteForm() {
           </Field>
         )}
       </div>
+
+      {Object.keys(errors).length > 0 && (
+        <p className="vf-errors-summary" role="alert">
+          Existem campos por preencher ou com erros. Por favor, verifique o formulário acima antes de submeter.
+        </p>
+      )}
 
       {status === "error" && (
         <p className="vf-submit-error" role="alert">

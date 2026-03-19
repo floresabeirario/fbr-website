@@ -124,6 +124,10 @@ export default function ReservarPreservacaoForm() {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "E-mail inválido.";
     if (!form.telefone.trim()) e.telefone = "Campo obrigatório.";
     if (!form.dataEvento) e.dataEvento = "Campo obrigatório.";
+    else {
+      const year = parseInt(form.dataEvento.split("-")[0], 10);
+      if (isNaN(year) || year < 2020 || year > 2099) e.dataEvento = "Data inválida. Verifique o ano introduzido.";
+    }
     if (!form.comoEnviarFlores) e.comoEnviarFlores = "Campo obrigatório.";
     if (!form.comoReceberQuadro) e.comoReceberQuadro = "Campo obrigatório.";
     if (!form.tamanhoMoldura) e.tamanhoMoldura = "Campo obrigatório.";
@@ -232,7 +236,7 @@ export default function ReservarPreservacaoForm() {
 
         <Field label="Data do evento" required error={errors.dataEvento}
           hint="Indique a data do casamento, batizado ou outro evento. As flores devem ser enviadas idealmente até 2 a 3 dias após o evento.">
-          <input type="date" {...inp("dataEvento")} min={today} />
+          <input type="date" {...inp("dataEvento")} min={today} max="2099-12-31" />
         </Field>
 
         <Field label="Tipo de flores no arranjo"
@@ -460,6 +464,12 @@ export default function ReservarPreservacaoForm() {
           )}
         </div>
       </div>
+
+      {Object.keys(errors).length > 0 && (
+        <p className="pf-errors-summary" role="alert">
+          Existem campos por preencher ou com erros. Por favor, verifique o formulário acima antes de submeter.
+        </p>
+      )}
 
       {status === "error" && (
         <p className="pf-submit-error" role="alert">
