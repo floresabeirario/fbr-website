@@ -75,23 +75,19 @@ export async function POST(request) {
 
     const columnValues = buildColumnValues(data);
 
+    // column_values must be a JSON string literal inline in the query.
+    // Using GraphQL variables with JSON! type is unreliable across Monday API versions.
     const query = `
-      mutation CreateItem($board: ID!, $name: String!, $columns: JSON!) {
+      mutation {
         create_item(
-          board_id: $board
-          item_name: $name
-          column_values: $columns
+          board_id: ${process.env.MONDAY_BOARD_ID_VALE}
+          item_name: ${JSON.stringify(data.nome)}
+          column_values: ${JSON.stringify(JSON.stringify(columnValues))}
         ) {
           id
         }
       }
     `;
-
-    const variables = {
-      board: process.env.MONDAY_BOARD_ID_VALE,
-      name: data.nome,
-      columns: JSON.stringify(columnValues),
-    };
 
     const res = await fetch(MONDAY_API, {
       method: "POST",
@@ -100,15 +96,23 @@ export async function POST(request) {
         "Content-Type": "application/json",
         "API-Version": "2024-10",
       },
-      body: JSON.stringify({ query, variables }),
+      body: JSON.stringify({ query }),
     });
 
     const json = await res.json();
 
     if (json.errors?.length) {
-      console.error("Monday API errors:", JSON.stringify(json.errors));
+      console.error("Monday API errors:", JSON.stringify(json.errors, null, 2));
       return NextResponse.json(
-        { error: "Erro ao registar no sistema." },
+        { error: "Erro ao registar no sistema.", detail: json.errors },
+        { status: 500 }
+      );
+    }
+
+    if (!json.data?.create_item?.id) {
+      console.error("Monday unexpected response:", JSON.stringify(json, null, 2));
+      return NextResponse.json(
+        { error: "Resposta inesperada do sistema." },
         { status: 500 }
       );
     }

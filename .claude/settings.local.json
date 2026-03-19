@@ -44,7 +44,9 @@
       "Bash(git checkout:*)",
       "Bash(git push:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(curl -s -X POST https://api.monday.com/v2 -H \"Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjYzNDY2NjA2MiwiYWFpIjoxMSwidWlkIjo3NDgzOTMwMCwiaWFkIjoiMjAyNi0wMy0xOFQxMjozNjoxMy43NDlaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MjkwNTg1MDcsInJnbiI6ImV1YzEifQ.IEqSyIHe8IP6Pd2GdYmcxV4uSJBDjA_VKeW6sSay1-U\" -H \"Content-Type: application/json\" -H \"API-Version: 2024-10\" -d \"{\"\"query\"\":\"\"{ me { name } }\"\"}\")",
+      "Bash(curl -s -X POST https://api.monday.com/v2 -H \"Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjYzNDY2NjA2MiwiYWFpIjoxMSwidWlkIjo3NDgzOTMwMCwiaWFkIjoiMjAyNi0wMy0xOFQxMjozNjoxMy43NDlaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MjkwNTg1MDcsInJnbiI6ImV1YzEifQ.IEqSyIHe8IP6Pd2GdYmcxV4uSJBDjA_VKeW6sSay1-U\" -H \"Content-Type: application/json\" -H \"API-Version: 2024-10\" -d \"{\"\"query\"\":\"\"mutation { delete_item\\(item_id: 2789500496\\) { id } }\"\"}\")"
     ]
   }
 }
