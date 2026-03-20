@@ -387,6 +387,31 @@ input[type="date"].pf-input {
   border-radius: 0 10px 10px 0;
 }
 
+/* ── Fieldset reset (grupos de checkboxes — WCAG fieldset/legend) ── */
+.pf-fieldset-group {
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.pf-fieldset-group > .pf-legend {
+  display: block;
+  width: 100%;
+  margin-bottom: 6px;
+  /* Herda os estilos visuais de .pf-label */
+}
+
+/* ── Honeypot anti-spam ── */
+.pf-hp-field {
+  display: none !important;
+  visibility: hidden;
+  position: absolute;
+  left: -9999px;
+  height: 0;
+  overflow: hidden;
+}
+
 /* ── Checkboxes ── */
 .pf-checkgroup {
   display: flex;

@@ -96,6 +96,7 @@ export default function PhonePrefix({ value, onChange, btnClassName = "" }) {
   const [search, setSearch] = useState("");
   const wrapRef = useRef(null);
   const searchRef = useRef(null);
+  const listRef = useRef(null);
 
   const selected = COUNTRIES.find((c) => c.code === value && c.name === (COUNTRIES.find(x => x.code === value)?.name))
     ?? COUNTRIES.find((c) => c.code === value)
@@ -109,6 +110,7 @@ export default function PhonePrefix({ value, onChange, btnClassName = "" }) {
       )
     : COUNTRIES;
 
+  // Fecha ao clicar fora
   useEffect(() => {
     function onOutside(e) {
       if (wrapRef.current && !wrapRef.current.contains(e.target)) {
@@ -133,16 +135,68 @@ export default function PhonePrefix({ value, onChange, btnClassName = "" }) {
     setSearch("");
   }
 
-  function handleKeyDown(e) {
-    if (e.key === "Escape") { setOpen(false); setSearch(""); }
+  // Navegação por teclado no botão trigger
+  function handleTriggerKeyDown(e) {
+    if (e.key === "Escape") {
+      setOpen(false);
+      setSearch("");
+      return;
+    }
+    if (!open && (e.key === "Enter" || e.key === " " || e.key === "ArrowDown")) {
+      e.preventDefault();
+      setOpen(true);
+      setSearch("");
+      setTimeout(() => searchRef.current?.focus(), 40);
+    }
+  }
+
+  // Navegação por teclado na lista de opções
+  function handleListKeyDown(e) {
+    if (e.key === "Escape") {
+      setOpen(false);
+      setSearch("");
+      return;
+    }
+    if (e.key === "Tab") {
+      setOpen(false);
+      setSearch("");
+      return;
+    }
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault();
+      const items = listRef.current?.querySelectorAll('[role="option"]');
+      if (!items?.length) return;
+      const arr = Array.from(items);
+      const focused = document.activeElement;
+      const idx = arr.indexOf(focused);
+      if (e.key === "ArrowDown") {
+        (arr[idx + 1] ?? arr[0])?.focus();
+      } else {
+        (arr[idx - 1] ?? arr[arr.length - 1])?.focus();
+      }
+    }
+  }
+
+  // ArrowDown na pesquisa move foco para a primeira opção
+  function handleSearchKeyDown(e) {
+    if (e.key === "Escape") {
+      setOpen(false);
+      setSearch("");
+      return;
+    }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      listRef.current?.querySelector('[role="option"]')?.focus();
+    }
   }
 
   return (
-    <div className="pp-wrap" ref={wrapRef} onKeyDown={handleKeyDown}>
+    <div className="pp-wrap" ref={wrapRef}>
       <button
         type="button"
         className={`pp-trigger ${btnClassName}`}
         onClick={handleToggle}
+        onKeyDown={handleTriggerKeyDown}
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label={`Indicativo: ${selected.name} ${selected.code}`}
@@ -153,7 +207,12 @@ export default function PhonePrefix({ value, onChange, btnClassName = "" }) {
       </button>
 
       {open && (
-        <div className="pp-dropdown" role="listbox" aria-label="Seleccionar indicativo">
+        <div
+          className="pp-dropdown"
+          role="listbox"
+          aria-label="Seleccionar indicativo"
+          onKeyDown={handleListKeyDown}
+        >
           <div className="pp-search-wrap">
             <input
               ref={searchRef}
@@ -162,10 +221,12 @@ export default function PhonePrefix({ value, onChange, btnClassName = "" }) {
               placeholder="Pesquisar país ou indicativo…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={handleSearchKeyDown}
               aria-label="Pesquisar país"
+              aria-autocomplete="list"
             />
           </div>
-          <ul className="pp-list">
+          <ul className="pp-list" ref={listRef}>
             {filtered.length === 0 && (
               <li className="pp-empty">Nenhum resultado.</li>
             )}
@@ -173,9 +234,16 @@ export default function PhonePrefix({ value, onChange, btnClassName = "" }) {
               <li
                 key={`${c.name}-${c.code}`}
                 role="option"
+                tabIndex={0}
                 aria-selected={c.code === value && c.name === selected.name}
                 className={`pp-option${c.code === value && c.name === selected.name ? " pp-option-active" : ""}`}
                 onClick={() => handleSelect(c)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleSelect(c);
+                  }
+                }}
               >
                 <span className="pp-flag" aria-hidden="true">{c.flag}</span>
                 <span className="pp-option-name">{c.name}</span>

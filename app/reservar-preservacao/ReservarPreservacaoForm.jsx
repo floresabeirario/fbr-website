@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useId, isValidElement, cloneElement } from "react";
 import Link from "next/link";
 import { SOCIAL_INSTAGRAM } from "../_lib/constants";
 import PhonePrefix from "../_components/PhonePrefix";
@@ -42,17 +42,47 @@ const INIT = {
   nomeFlorista: "",
   notasAdicionais: "",
   termosCondicoes: false,
+  // Honeypot — invisível para humanos, bots costumam preencher
+  website: "",
 };
 
-function Field({ label, required, hint, error, children }) {
+// ─── Field component ────────────────────────────────────────────────────────
+// Suporta dois modos:
+//   - padrão: <div> com <label htmlFor> associado ao controlo filho
+//   - as="fieldset": <fieldset> + <legend> para grupos de checkboxes (WCAG)
+function Field({ label, required, hint, error, children, as: Tag }) {
+  const autoId = useId();
+
+  if (Tag === "fieldset") {
+    return (
+      <fieldset className="pf-group pf-fieldset-group">
+        <legend className="pf-label pf-legend">
+          {label}
+          {required && <span className="pf-req" aria-hidden="true"> *</span>}
+        </legend>
+        {hint && <p className="pf-hint">{hint}</p>}
+        {children}
+        {error && <p className="pf-error" role="alert">{error}</p>}
+      </fieldset>
+    );
+  }
+
+  // Para controlos simples (input/select/textarea), injeta id e usa htmlFor
+  const childType = isValidElement(children) ? children.type : null;
+  const isFormControl = childType === "input" || childType === "select" || childType === "textarea";
+  const enhanced = isFormControl ? cloneElement(children, { id: autoId }) : children;
+
   return (
     <div className="pf-group">
-      <label className="pf-label">
+      <label
+        className="pf-label"
+        {...(isFormControl ? { htmlFor: autoId } : {})}
+      >
         {label}
         {required && <span className="pf-req" aria-hidden="true"> *</span>}
       </label>
       {hint && <p className="pf-hint">{hint}</p>}
-      {children}
+      {enhanced}
       {error && <p className="pf-error" role="alert">{error}</p>}
     </div>
   );
@@ -126,6 +156,7 @@ export default function ReservarPreservacaoForm() {
     if (!form.email.trim()) e.email = "Campo obrigatório.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "E-mail inválido.";
     if (!form.telefone.trim()) e.telefone = "Campo obrigatório.";
+    else if (!/^\+?[\d\s\-]{7,20}$/.test(form.telefone)) e.telefone = "Número de telefone inválido.";
     if (!form.dataEvento) e.dataEvento = "Campo obrigatório.";
     else {
       const year = parseInt(form.dataEvento.split("-")[0], 10);
@@ -155,7 +186,7 @@ export default function ReservarPreservacaoForm() {
     setErrors(errs);
     if (Object.keys(errs).length) {
       document.querySelector(".pf-input-err, [role='alert']")
-        ?.closest(".pf-group")
+        ?.closest(".pf-group, fieldset")
         ?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
@@ -326,9 +357,15 @@ export default function ReservarPreservacaoForm() {
           </select>
         </Field>
 
-        <Field label="Gostaria de incluir algum elemento extra no seu quadro?" required error={errors.elementosExtra}
-          hint="Pode adicionar itens com valor simbólico ou emocional. Se seleccionar alguma opção, deve entregar os elementos juntamente com as flores.">
-          <div className="pf-checkgroup" role="group" aria-label="Elementos extra">
+        {/* Checkbox group — usa fieldset + legend (WCAG) */}
+        <Field
+          label="Gostaria de incluir algum elemento extra no seu quadro?"
+          required
+          error={errors.elementosExtra}
+          hint="Pode adicionar itens com valor simbólico ou emocional. Se seleccionar alguma opção, deve entregar os elementos juntamente com as flores."
+          as="fieldset"
+        >
+          <div className="pf-checkgroup">
             {ELEMENTOS_OPTIONS.map((opcao) => (
               <label key={opcao} className="pf-check-label">
                 <input
@@ -479,6 +516,18 @@ export default function ReservarPreservacaoForm() {
             <p className="pf-error" role="alert">{errors.termosCondicoes}</p>
           )}
         </div>
+      </div>
+
+      {/* Honeypot anti-spam — oculto para utilizadores, visível para bots */}
+      <div className="pf-hp-field" aria-hidden="true">
+        <input
+          type="text"
+          name="website"
+          value={form.website}
+          onChange={(e) => set("website", e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+        />
       </div>
 
       {Object.keys(errors).length > 0 && (

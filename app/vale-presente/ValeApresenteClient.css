@@ -371,6 +371,16 @@ input[type="date"].vf-input {
   border-radius: 0 10px 10px 0;
 }
 
+/* ── Honeypot anti-spam ── */
+.vf-hp-field {
+  display: none !important;
+  visibility: hidden;
+  position: absolute;
+  left: -9999px;
+  height: 0;
+  overflow: hidden;
+}
+
 /* ── Botão CTA — gradient azul do envelope ── */
 .vf-btn {
   display: block;

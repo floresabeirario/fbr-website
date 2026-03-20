@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useId, isValidElement, cloneElement } from "react";
 import PhonePrefix from "../_components/PhonePrefix";
 
 const INIT = {
@@ -22,17 +22,46 @@ const INIT = {
   comoConheceu: "",
   comoConheceuOutro: "",
   nomeFlorista: "",
+  // Honeypot — invisível para humanos, bots costumam preencher
+  website: "",
 };
 
-function Field({ label, required, hint, error, children }) {
+// ─── Field component ────────────────────────────────────────────────────────
+// Suporta dois modos:
+//   - padrão: <div> com <label htmlFor> associado ao controlo filho
+//   - as="fieldset": <fieldset> + <legend> para grupos de checkboxes (WCAG)
+function Field({ label, required, hint, error, children, as: Tag }) {
+  const autoId = useId();
+
+  if (Tag === "fieldset") {
+    return (
+      <fieldset className="vf-group vf-fieldset-group">
+        <legend className="vf-label vf-legend">
+          {label}
+          {required && <span className="vf-req" aria-hidden="true"> *</span>}
+        </legend>
+        {hint && <p className="vf-hint">{hint}</p>}
+        {children}
+        {error && <p className="vf-error" role="alert">{error}</p>}
+      </fieldset>
+    );
+  }
+
+  const childType = isValidElement(children) ? children.type : null;
+  const isFormControl = childType === "input" || childType === "select" || childType === "textarea";
+  const enhanced = isFormControl ? cloneElement(children, { id: autoId }) : children;
+
   return (
     <div className="vf-group">
-      <label className="vf-label">
+      <label
+        className="vf-label"
+        {...(isFormControl ? { htmlFor: autoId } : {})}
+      >
         {label}
         {required && <span className="vf-req" aria-hidden="true"> *</span>}
       </label>
       {hint && <p className="vf-hint">{hint}</p>}
-      {children}
+      {enhanced}
       {error && <p className="vf-error" role="alert">{error}</p>}
     </div>
   );
@@ -87,11 +116,14 @@ export default function ValeApresenteForm() {
     if (!form.nome.trim()) e.nome = "Campo obrigatório.";
     if (!form.meioContacto) e.meioContacto = "Escolha um meio de contacto.";
     if (showTelefone && !form.telefone.trim()) e.telefone = "Campo obrigatório.";
+    else if (showTelefone && form.telefone.trim() && !/^\+?[\d\s\-]{7,20}$/.test(form.telefone))
+      e.telefone = "Número de telefone inválido.";
     if (!form.email.trim()) e.email = "Campo obrigatório.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "E-mail inválido.";
     if (!form.nomeDestinatario.trim()) e.nomeDestinatario = "Campo obrigatório.";
     if (!form.valorVale) e.valorVale = "Campo obrigatório.";
     else if (Number(form.valorVale) < 300) e.valorVale = "O valor mínimo é 300€.";
+    else if (Number(form.valorVale) > 100_000) e.valorVale = "O valor introduzido não é válido.";
     if (!form.entrega) e.entrega = "Campo obrigatório.";
     if (!form.tipoVale) e.tipoVale = "Campo obrigatório.";
     if (showEntregaRemetenteComo && !form.entregaRemetenteComo) e.entregaRemetenteComo = "Campo obrigatório.";
@@ -111,7 +143,7 @@ export default function ValeApresenteForm() {
     setErrors(errs);
     if (Object.keys(errs).length) {
       document.querySelector(".vf-input-err, [role='alert']")
-        ?.closest(".vf-group")
+        ?.closest(".vf-group, fieldset")
         ?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
@@ -212,7 +244,7 @@ export default function ValeApresenteForm() {
 
         <Field label="Valor do vale (€)" required error={errors.valorVale}
           hint="Valor mínimo: 300€.">
-          <input type="number" {...inp("valorVale")} min={300} step={1} placeholder="300" />
+          <input type="number" {...inp("valorVale")} min={300} max={100000} step={1} placeholder="300" />
         </Field>
       </div>
 
@@ -308,6 +340,18 @@ export default function ValeApresenteForm() {
             <textarea {...inp("comoConheceuOutro")} rows={3} />
           </Field>
         )}
+      </div>
+
+      {/* Honeypot anti-spam — oculto para utilizadores, visível para bots */}
+      <div className="vf-hp-field" aria-hidden="true">
+        <input
+          type="text"
+          name="website"
+          value={form.website}
+          onChange={(e) => set("website", e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+        />
       </div>
 
       {Object.keys(errors).length > 0 && (
