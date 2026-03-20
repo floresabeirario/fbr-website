@@ -360,6 +360,30 @@ input[type="date"].pf-input {
   cursor: pointer;
 }
 
+/* ── Telefone com indicativo ── */
+.pf-phone-wrap {
+  display: flex;
+}
+
+.pf-phone-prefix {
+  width: 96px;
+  flex-shrink: 0;
+  border-radius: 10px 0 0 10px;
+  border-right: none;
+  padding-right: 28px;
+  background-position: right 6px center;
+}
+
+.pf-phone-prefix:focus-visible {
+  position: relative;
+  z-index: 1;
+}
+
+.pf-phone-number {
+  flex: 1;
+  border-radius: 0 10px 10px 0;
+}
+
 /* ── Checkboxes ── */
 .pf-checkgroup {
   display: flex;

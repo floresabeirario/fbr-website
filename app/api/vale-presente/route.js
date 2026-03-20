@@ -6,6 +6,22 @@ import { NextResponse } from "next/server";
 
 const MONDAY_API = "https://api.monday.com/v2";
 
+function detectCountryShortName(phone) {
+  const n = (phone || "").replace(/[\s\-\(\)]/g, "");
+  if (n.startsWith("+351")) return "PT";
+  if (n.startsWith("+44")) return "GB";
+  if (n.startsWith("+33")) return "FR";
+  if (n.startsWith("+34")) return "ES";
+  if (n.startsWith("+49")) return "DE";
+  if (n.startsWith("+39")) return "IT";
+  if (n.startsWith("+31")) return "NL";
+  if (n.startsWith("+32")) return "BE";
+  if (n.startsWith("+41")) return "CH";
+  if (n.startsWith("+55")) return "BR";
+  if (n.startsWith("+1")) return "US";
+  return "PT";
+}
+
 function buildColumnValues(data) {
   const cols = {};
 
@@ -13,7 +29,7 @@ function buildColumnValues(data) {
     cols.single_select29teo39 = { label: data.meioContacto };
 
   if (data.telefone)
-    cols.phoneofkl3pv1 = { phone: data.telefone, countryShortName: "PT" };
+    cols.phoneofkl3pv1 = { phone: data.telefone, countryShortName: detectCountryShortName(data.telefone) };
 
   if (data.email)
     cols.emailq6ytvvvi = { email: data.email, text: data.email };

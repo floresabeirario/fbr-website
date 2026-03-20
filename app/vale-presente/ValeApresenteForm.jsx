@@ -2,9 +2,24 @@
 
 import { useState, useRef } from "react";
 
+const INDICATIVOS = [
+  { code: "+351", label: "🇵🇹 +351" },
+  { code: "+34",  label: "🇪🇸 +34"  },
+  { code: "+44",  label: "🇬🇧 +44"  },
+  { code: "+33",  label: "🇫🇷 +33"  },
+  { code: "+49",  label: "🇩🇪 +49"  },
+  { code: "+39",  label: "🇮🇹 +39"  },
+  { code: "+31",  label: "🇳🇱 +31"  },
+  { code: "+32",  label: "🇧🇪 +32"  },
+  { code: "+41",  label: "🇨🇭 +41"  },
+  { code: "+55",  label: "🇧🇷 +55"  },
+  { code: "+1",   label: "🇺🇸 +1"   },
+];
+
 const INIT = {
   nome: "",
   meioContacto: "",
+  telefoneIndicativo: "+351",
   telefone: "",
   email: "",
   nomeDestinatario: "",
@@ -118,7 +133,7 @@ export default function ValeApresenteForm() {
       const res = await fetch("/api/vale-presente", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, telefone: `${form.telefoneIndicativo} ${form.telefone}`.trim() }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(JSON.stringify(json));
@@ -170,9 +185,26 @@ export default function ValeApresenteForm() {
         </Field>
 
         {showTelefone && (
-          <Field label="Número de telemóvel" required error={errors.telefone}
-            hint="Todas as comunicações serão feitas para este número.">
-            <input type="tel" {...inp("telefone")} placeholder="+351 912 345 678" autoComplete="tel" />
+          <Field label="Número de telemóvel" required error={errors.telefone}>
+            <div className="vf-phone-wrap">
+              <select
+                className="vf-input vf-phone-prefix"
+                value={form.telefoneIndicativo}
+                onChange={(e) => set("telefoneIndicativo", e.target.value)}
+                aria-label="Indicativo do país"
+              >
+                {INDICATIVOS.map(({ code, label }) => (
+                  <option key={code} value={code}>{label}</option>
+                ))}
+              </select>
+              <input
+                type="tel"
+                {...inp("telefone")}
+                className={`vf-input vf-phone-number${errors.telefone ? " vf-input-err" : ""}`}
+                placeholder="912 345 678"
+                autoComplete="tel-national"
+              />
+            </div>
           </Field>
         )}
 

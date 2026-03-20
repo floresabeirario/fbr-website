@@ -344,6 +344,30 @@ input[type="date"].vf-input {
   cursor: pointer;
 }
 
+/* ── Telefone com indicativo ── */
+.vf-phone-wrap {
+  display: flex;
+}
+
+.vf-phone-prefix {
+  width: 96px;
+  flex-shrink: 0;
+  border-radius: 10px 0 0 10px;
+  border-right: none;
+  padding-right: 28px;
+  background-position: right 6px center;
+}
+
+.vf-phone-prefix:focus-visible {
+  position: relative;
+  z-index: 1;
+}
+
+.vf-phone-number {
+  flex: 1;
+  border-radius: 0 10px 10px 0;
+}
+
 /* ── Botão CTA — gradient azul do envelope ── */
 .vf-btn {
   display: block;
