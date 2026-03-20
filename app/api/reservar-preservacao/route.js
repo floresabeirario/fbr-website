@@ -60,6 +60,18 @@ function detectCountryShortName(phone) {
   return "PT";
 }
 
+// color_mkq04a2f (comoEnviarFlores)
+// {0: Envio por CTT/..., 1: Entrega em mãos em Coimbra, 2: Recolha no evento..., 3: Ainda não sei}
+function comoEnviarFloresIndex(val) {
+  if (!val) return undefined;
+  const v = val.trim();
+  if (v.startsWith("Envio por CTT")) return 0;
+  if (v.startsWith("Entrega em mãos")) return 1;
+  if (v.startsWith("Recolha no evento")) return 2;
+  if (v.startsWith("Ainda não sei")) return 3;
+  return undefined;
+}
+
 // color_mkq0xxf4 (tipo de fundo)
 // {0:Preto, 1:Transparente(vidro sobre vidro), 2:Branco, 3:Fotografia(...), 4:Ainda não sei, 6:Cor, 7:Gostaria que fossem vocês a escolher}
 function tipoFundoIndex(val) {
@@ -93,8 +105,10 @@ function buildColumnValues(data) {
   if (data.tipoFlores)
     cols.long_text_mkq0e33x = { text: data.tipoFlores };
 
-  if (data.comoEnviarFlores)
-    cols.color_mkq04a2f = { label: data.comoEnviarFlores };
+  if (data.comoEnviarFlores) {
+    const idx = comoEnviarFloresIndex(data.comoEnviarFlores);
+    cols.color_mkq04a2f = idx !== undefined ? { index: idx } : { label: data.comoEnviarFlores };
+  }
 
   if (data.comoReceberQuadro)
     cols.color_mkq066bs = { label: data.comoReceberQuadro };
