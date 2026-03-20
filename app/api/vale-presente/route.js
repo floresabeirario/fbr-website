@@ -144,22 +144,26 @@ export async function POST(request) {
         data.comoConheceuOutro ? `<tr><td><strong>Como conheceu (detalhe)</strong></td><td>${data.comoConheceuOutro}</td></tr>` : "",
       ].filter(Boolean).join("\n");
 
-      fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        },
-        body: JSON.stringify({
-          from: "Flores à Beira-Rio <noreply@floresabeirario.pt>",
-          to: ["info@floresabeirario.pt"],
-          subject: `Novo pedido de vale presente — ${data.nome}`,
-          html: `<h2 style="font-family:sans-serif;color:#3A4A78;">Novo pedido de vale presente</h2>
+      try {
+        await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          },
+          body: JSON.stringify({
+            from: "Flores à Beira-Rio <noreply@floresabeirario.pt>",
+            to: ["info@floresabeirario.pt"],
+            subject: `Novo pedido de vale presente — ${data.nome}`,
+            html: `<h2 style="font-family:sans-serif;color:#3A4A78;">Novo pedido de vale presente</h2>
 <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse;width:100%;max-width:600px;">
   <tbody style="line-height:1.7;">${linhas}</tbody>
 </table>`,
-        }),
-      }).catch((emailErr) => console.error("[vale-presente] email error:", emailErr));
+          }),
+        });
+      } catch (emailErr) {
+        console.error("[vale-presente] email error:", emailErr);
+      }
     }
 
     return NextResponse.json({ success: true });

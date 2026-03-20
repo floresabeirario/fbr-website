@@ -265,22 +265,26 @@ export async function POST(request) {
         data.notasAdicionais ? `<tr><td><strong>Notas adicionais</strong></td><td>${data.notasAdicionais}</td></tr>` : "",
       ].filter(Boolean).join("\n");
 
-      fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        },
-        body: JSON.stringify({
-          from: "Flores à Beira-Rio <noreply@floresabeirario.pt>",
-          to: ["info@floresabeirario.pt"],
-          subject: `Nova pré-reserva de preservação — ${data.nome}`,
-          html: `<h2 style="font-family:sans-serif;color:#5A1E38;">Nova pré-reserva de preservação</h2>
+      try {
+        await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          },
+          body: JSON.stringify({
+            from: "Flores à Beira-Rio <noreply@floresabeirario.pt>",
+            to: ["info@floresabeirario.pt"],
+            subject: `Nova pré-reserva de preservação — ${data.nome}`,
+            html: `<h2 style="font-family:sans-serif;color:#5A1E38;">Nova pré-reserva de preservação</h2>
 <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse;width:100%;max-width:600px;">
   <tbody style="line-height:1.7;">${linhas}</tbody>
 </table>`,
-        }),
-      }).catch((emailErr) => console.error("[reservar-preservacao] email error:", emailErr));
+          }),
+        });
+      } catch (emailErr) {
+        console.error("[reservar-preservacao] email error:", emailErr);
+      }
     }
 
     return NextResponse.json({ success: true });
