@@ -32,7 +32,7 @@ export default function ReservarPreservacaoClient() {
         <div
           className="rp-hero-bg"
           aria-hidden="true"
-          style={{ backgroundImage: "url('/quadrovidrosobrevidro.webp')" }}
+          style={{ backgroundImage: "url('/moldurapreta.webp')" }}
         />
         <div className="rp-hero-overlay" aria-hidden="true" />
         <motion.div
@@ -43,8 +43,8 @@ export default function ReservarPreservacaoClient() {
         >
           <span className="rp-eyebrow">Reserva de Preservação</span>
           <h1 className="rp-title">
-            Preserve a memória<br />
-            <em className="rp-em">do seu dia especial</em>
+            Reserve a preservação<br />
+            <em className="rp-em">das suas flores</em>
           </h1>
           <p className="rp-sub">
             Preencha o formulário para garantir a sua vaga no nosso serviço de preservação de flores,

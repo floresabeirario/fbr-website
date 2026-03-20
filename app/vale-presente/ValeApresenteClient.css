@@ -143,7 +143,7 @@
   text-align: center;
   gap: 6px;
   padding: 0 clamp(20px, 3vw, 36px);
-  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .vp-step:last-child {
@@ -162,7 +162,7 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.92);
+  color: #fff;
   margin: 0;
 }
 
@@ -170,7 +170,7 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.73rem;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.52);
+  color: rgba(255, 255, 255, 0.80);
   line-height: 1.65;
   margin: 0;
 }

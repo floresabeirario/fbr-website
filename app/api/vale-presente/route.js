@@ -121,6 +121,47 @@ export async function POST(request) {
       );
     }
 
+    // Notificação por e-mail (Resend). Falha silenciosamente se a chave não estiver configurada.
+    if (process.env.RESEND_API_KEY) {
+      const co = (v) => (!v ? "—" : v);
+      const linhas = [
+        `<tr><td><strong>Nome</strong></td><td>${data.nome}</td></tr>`,
+        `<tr><td><strong>Meio de contacto</strong></td><td>${co(data.meioContacto)}</td></tr>`,
+        `<tr><td><strong>E-mail</strong></td><td>${data.email}</td></tr>`,
+        data.telefone ? `<tr><td><strong>Telefone</strong></td><td>${data.telefone}</td></tr>` : "",
+        `<tr><td><strong>Destinatário</strong></td><td>${co(data.nomeDestinatario)}</td></tr>`,
+        data.mensagem ? `<tr><td><strong>Mensagem personalizada</strong></td><td>${data.mensagem}</td></tr>` : "",
+        `<tr><td><strong>Valor do vale</strong></td><td>${co(data.valorVale)}€</td></tr>`,
+        `<tr><td><strong>Entrega</strong></td><td>${co(data.entrega)}</td></tr>`,
+        `<tr><td><strong>Tipo de vale</strong></td><td>${co(data.tipoVale)}</td></tr>`,
+        data.entregaRemetenteComo ? `<tr><td><strong>Como receber (remetente)</strong></td><td>${data.entregaRemetenteComo}</td></tr>` : "",
+        data.morada ? `<tr><td><strong>Morada</strong></td><td>${data.morada}</td></tr>` : "",
+        data.contactoDestinatario ? `<tr><td><strong>Contacto destinatário</strong></td><td>${data.contactoDestinatario}</td></tr>` : "",
+        data.dataEnvio ? `<tr><td><strong>Data de envio</strong></td><td>${data.dataEnvio}</td></tr>` : "",
+        data.comentarios ? `<tr><td><strong>Comentários</strong></td><td>${data.comentarios}</td></tr>` : "",
+        `<tr><td><strong>Como conheceu</strong></td><td>${co(data.comoConheceu)}</td></tr>`,
+        data.nomeFlorista ? `<tr><td><strong>Nome da florista</strong></td><td>${data.nomeFlorista}</td></tr>` : "",
+        data.comoConheceuOutro ? `<tr><td><strong>Como conheceu (detalhe)</strong></td><td>${data.comoConheceuOutro}</td></tr>` : "",
+      ].filter(Boolean).join("\n");
+
+      fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: "Flores à Beira-Rio <noreply@floresabeirario.pt>",
+          to: ["info@floresabeirario.pt"],
+          subject: `Novo pedido de vale presente — ${data.nome}`,
+          html: `<h2 style="font-family:sans-serif;color:#3A4A78;">Novo pedido de vale presente</h2>
+<table style="font-family:sans-serif;font-size:14px;border-collapse:collapse;width:100%;max-width:600px;">
+  <tbody style="line-height:1.7;">${linhas}</tbody>
+</table>`,
+        }),
+      }).catch((emailErr) => console.error("[vale-presente] email error:", emailErr));
+    }
+
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Vale presente route error:", err);

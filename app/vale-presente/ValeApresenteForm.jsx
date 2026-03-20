@@ -139,7 +139,8 @@ export default function ValeApresenteForm() {
         <h2 className="vf-success-title">Pedido enviado!</h2>
         <p className="vf-success-text">
           Entraremos em contacto por {contactoLabel} em breve com a confirmação dos dados
-          e as instruções de pagamento.{" "}
+          e as <strong>instruções de pagamento</strong>.
+          Só avançamos com a produção do vale <strong>após o pagamento</strong>.{" "}
           Obrigado por escolher a Flores à Beira-Rio.
         </p>
       </div>

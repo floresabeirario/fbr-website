@@ -179,12 +179,12 @@ export default function ReservarPreservacaoForm() {
         <div className="pf-success-icon" aria-hidden="true">✓</div>
         <h2 className="pf-success-title">Pré-reserva registada com sucesso!</h2>
         <p className="pf-success-text">
-          Nos próximos 3 dias úteis, receberá uma mensagem com o valor total do serviço de preservação
-          e os dados para o pagamento do sinal de 30%.
-          Este valor deve ser pago no prazo de 24 horas após o envio do e-mail para garantir a sua vaga.
+          Nos próximos <strong>3 dias úteis</strong>, receberá uma mensagem com o valor total do serviço
+          de preservação e os dados para o pagamento do <strong>sinal de 30%</strong>.
+          Este valor deve ser pago no prazo de <strong>24 horas</strong> após o envio do e-mail para garantir a sua vaga.
         </p>
         <p className="pf-success-text">
-          A sua reserva só fica confirmada após o pagamento do sinal.
+          A sua reserva só fica confirmada <strong>após o pagamento do sinal</strong>.
           Caso não receba o e-mail dentro do prazo, verifique a pasta de spam ou entre em contacto connosco.
         </p>
         <p className="pf-success-closing">

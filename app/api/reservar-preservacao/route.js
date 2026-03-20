@@ -181,6 +181,52 @@ export async function POST(request) {
       );
     }
 
+    // Notificação por e-mail (Resend). Falha silenciosamente se a chave não estiver configurada.
+    if (process.env.RESEND_API_KEY) {
+      const camposOmitidos = (v) => (!v || (Array.isArray(v) && !v.length)) ? "—" : v;
+      const linhas = [
+        `<tr><td><strong>Nome</strong></td><td>${data.nome}</td></tr>`,
+        `<tr><td><strong>Meio de contacto</strong></td><td>${camposOmitidos(data.meioContacto)}</td></tr>`,
+        `<tr><td><strong>E-mail</strong></td><td>${data.email}</td></tr>`,
+        `<tr><td><strong>Telefone</strong></td><td>${camposOmitidos(data.telefone)}</td></tr>`,
+        `<tr><td><strong>Data do evento</strong></td><td>${camposOmitidos(data.dataEvento)}</td></tr>`,
+        `<tr><td><strong>Tipo de flores</strong></td><td>${camposOmitidos(data.tipoFlores)}</td></tr>`,
+        `<tr><td><strong>Como enviar flores</strong></td><td>${camposOmitidos(data.comoEnviarFlores)}</td></tr>`,
+        `<tr><td><strong>Como receber quadro</strong></td><td>${camposOmitidos(data.comoReceberQuadro)}</td></tr>`,
+        `<tr><td><strong>Tamanho da moldura</strong></td><td>${camposOmitidos(data.tamanhoMoldura)}</td></tr>`,
+        `<tr><td><strong>Tipo de fundo</strong></td><td>${camposOmitidos(data.tipoFundo)}</td></tr>`,
+        `<tr><td><strong>Elementos extra</strong></td><td>${camposOmitidos(data.elementosExtra?.join(", "))}</td></tr>`,
+        data.elementosExtraOutro ? `<tr><td><strong>Detalhe elemento extra</strong></td><td>${data.elementosExtraOutro}</td></tr>` : "",
+        `<tr><td><strong>Quadros extra</strong></td><td>${camposOmitidos(data.quadrosExtra)}</td></tr>`,
+        data.quantosQuadros ? `<tr><td><strong>Quantos quadros extra</strong></td><td>${data.quantosQuadros}</td></tr>` : "",
+        `<tr><td><strong>Ornamentos de Natal</strong></td><td>${camposOmitidos(data.ornamentosNatal)}</td></tr>`,
+        data.quantosOrnamentos ? `<tr><td><strong>Quantos ornamentos</strong></td><td>${data.quantosOrnamentos}</td></tr>` : "",
+        `<tr><td><strong>Pendentes</strong></td><td>${camposOmitidos(data.pendentes)}</td></tr>`,
+        data.quantosPendentes ? `<tr><td><strong>Quantos pendentes</strong></td><td>${data.quantosPendentes}</td></tr>` : "",
+        `<tr><td><strong>Como conheceu</strong></td><td>${camposOmitidos(data.comoConheceu)}</td></tr>`,
+        data.nomeFlorista ? `<tr><td><strong>Nome da florista</strong></td><td>${data.nomeFlorista}</td></tr>` : "",
+        data.comoConheceuOutro ? `<tr><td><strong>Como conheceu (detalhe)</strong></td><td>${data.comoConheceuOutro}</td></tr>` : "",
+        data.notasAdicionais ? `<tr><td><strong>Notas adicionais</strong></td><td>${data.notasAdicionais}</td></tr>` : "",
+      ].filter(Boolean).join("\n");
+
+      fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: "Flores à Beira-Rio <noreply@floresabeirario.pt>",
+          to: ["info@floresabeirario.pt"],
+          subject: `Nova pré-reserva de preservação — ${data.nome}`,
+          html: `<h2 style="font-family:sans-serif;color:#5A1E38;">Nova pré-reserva de preservação</h2>
+<table style="font-family:sans-serif;font-size:14px;border-collapse:collapse;width:100%;max-width:600px;">
+  <tbody style="line-height:1.7;">${linhas}</tbody>
+</table>`,
+        }),
+      }).catch((emailErr) => console.error("[reservar-preservacao] email error:", emailErr));
+    }
+
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Reservar preservacao route error:", err);
