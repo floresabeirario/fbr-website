@@ -166,7 +166,7 @@ export default function ReservarPreservacaoForm() {
       const json = await res.json();
       if (!res.ok) throw new Error(JSON.stringify(json));
       setStatus("success");
-      setTimeout(() => successRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+      setTimeout(() => successRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
     } catch (err) {
       console.error("[reservar-preservacao] submit error:", err);
       setStatus("error");
