@@ -72,8 +72,13 @@ function buildColumnValues(data) {
   if (data.meioContacto)
     cols.single_select29teo39 = { label: data.meioContacto };
 
-  if (data.telefone)
-    cols.phoneofkl3pv1 = { phone: data.telefone, countryShortName: detectCountryShortName(data.telefone) };
+  if (data.telefone) {
+    // Remove espaços — Monday rejeita números com espaços em alguns países.
+    // Guarda mínimo de 7 chars para não enviar só o indicativo.
+    const phoneClean = data.telefone.replace(/\s+/g, "");
+    if (phoneClean.length >= 7)
+      cols.phoneofkl3pv1 = { phone: phoneClean, countryShortName: detectCountryShortName(data.telefone) };
+  }
 
   if (data.email)
     cols.emailq6ytvvvi = { email: data.email, text: data.email };

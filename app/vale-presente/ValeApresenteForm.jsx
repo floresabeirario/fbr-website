@@ -134,6 +134,7 @@ export default function ValeApresenteForm() {
       if (isNaN(year) || year < 2020 || year > 2099) e.dataEnvio = "Data inválida. Verifique o ano introduzido.";
     }
     if (!form.comoConheceu) e.comoConheceu = "Campo obrigatório.";
+    if (showNomeFlorista && !form.nomeFlorista.trim()) e.nomeFlorista = "Campo obrigatório.";
     return e;
   }
 
@@ -152,7 +153,14 @@ export default function ValeApresenteForm() {
       const res = await fetch("/api/vale-presente", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, telefone: `${form.telefoneIndicativo} ${form.telefone}`.trim() }),
+        // Só combina indicativo + número se o número local estiver preenchido.
+        // Evita enviar apenas o indicativo (ex: "+351") quando o campo está vazio.
+        body: JSON.stringify({
+          ...form,
+          telefone: form.telefone.trim()
+            ? `${form.telefoneIndicativo}${form.telefone.trim()}`
+            : "",
+        }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(JSON.stringify(json));
@@ -330,7 +338,7 @@ export default function ValeApresenteForm() {
         </Field>
 
         {showNomeFlorista && (
-          <Field label="Qual o nome da florista que lhe falou de nós?">
+          <Field label="Qual o nome da florista que lhe falou de nós?" required error={errors.nomeFlorista}>
             <textarea {...inp("nomeFlorista")} rows={2} />
           </Field>
         )}

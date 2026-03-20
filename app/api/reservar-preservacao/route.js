@@ -140,8 +140,11 @@ function buildColumnValues(data) {
   if (data.email)
     cols.email_mkq0dm3f = { email: data.email, text: data.email };
 
-  if (data.telefone)
-    cols.phone_mkq0xfnm = { phone: data.telefone, countryShortName: detectCountryShortName(data.telefone) };
+  if (data.telefone) {
+    const phoneClean = data.telefone.replace(/\s+/g, "");
+    if (phoneClean.length >= 7)
+      cols.phone_mkq0xfnm = { phone: phoneClean, countryShortName: detectCountryShortName(data.telefone) };
+  }
 
   if (data.dataEvento)
     cols.date_mkpzn3z3 = { date: data.dataEvento };

@@ -195,7 +195,12 @@ export default function ReservarPreservacaoForm() {
       const res = await fetch("/api/reservar-preservacao", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, telefone: `${form.telefoneIndicativo} ${form.telefone}`.trim() }),
+        body: JSON.stringify({
+          ...form,
+          telefone: form.telefone.trim()
+            ? `${form.telefoneIndicativo}${form.telefone.trim()}`
+            : "",
+        }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(JSON.stringify(json));
