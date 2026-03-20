@@ -20,13 +20,14 @@ function extrasIndex(val) {
   return undefined;
 }
 
-// single_selectif561xw (quadrosExtra) — índices diferentes: confirmado por utilizador que 0=Não, 3=Sim
+// single_selectif561xw (quadrosExtra)
+// 0=Não (confirmado utilizador), índice 3 não existe (erro missingLabel), logo Sim=1, Gostava=2
 function quadrosExtraIndex(val) {
   if (!val) return undefined;
   const v = val.trim();
   if (v.startsWith("Não,")) return 0;
+  if (v.startsWith("Sim,")) return 1;
   if (v.startsWith("Gostava")) return 2;
-  if (v.startsWith("Sim,")) return 3;
   return undefined;
 }
 
