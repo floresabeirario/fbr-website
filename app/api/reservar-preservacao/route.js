@@ -30,6 +30,35 @@ function quadrosExtraIndex(val) {
   return undefined;
 }
 
+// color_mkq09fxw (tamanho de moldura)
+// {0: 40x50cm, 1: 30x40cm, 2: 50x70xm (typo Monday), 3: Ainda não sei}
+function tamanhoMolduraIndex(val) {
+  if (!val) return undefined;
+  const v = val.trim();
+  if (v === "30x40cm") return 1;
+  if (v === "40x50cm") return 0;
+  if (v === "50x70cm") return 2;
+  if (v.startsWith("Ainda não sei")) return 3;
+  return undefined;
+}
+
+// Detecção do indicativo do país a partir do número de telefone
+function detectCountryShortName(phone) {
+  const n = (phone || "").replace(/[\s\-\(\)]/g, "");
+  if (n.startsWith("+351")) return "PT";
+  if (n.startsWith("+44")) return "GB";
+  if (n.startsWith("+33")) return "FR";
+  if (n.startsWith("+34")) return "ES";
+  if (n.startsWith("+49")) return "DE";
+  if (n.startsWith("+39")) return "IT";
+  if (n.startsWith("+31")) return "NL";
+  if (n.startsWith("+32")) return "BE";
+  if (n.startsWith("+41")) return "CH";
+  if (n.startsWith("+55")) return "BR";
+  if (n.startsWith("+1")) return "US";
+  return "PT";
+}
+
 // color_mkq0xxf4 (tipo de fundo)
 // {0:Preto, 1:Transparente(vidro sobre vidro), 2:Branco, 3:Fotografia(...), 4:Ainda não sei, 6:Cor, 7:Gostaria que fossem vocês a escolher}
 function tipoFundoIndex(val) {
@@ -55,7 +84,7 @@ function buildColumnValues(data) {
     cols.email_mkq0dm3f = { email: data.email, text: data.email };
 
   if (data.telefone)
-    cols.phone_mkq0xfnm = { phone: data.telefone, countryShortName: "PT" };
+    cols.phone_mkq0xfnm = { phone: data.telefone, countryShortName: detectCountryShortName(data.telefone) };
 
   if (data.dataEvento)
     cols.date_mkpzn3z3 = { date: data.dataEvento };
@@ -69,8 +98,10 @@ function buildColumnValues(data) {
   if (data.comoReceberQuadro)
     cols.color_mkq066bs = { label: data.comoReceberQuadro };
 
-  if (data.tamanhoMoldura)
-    cols.color_mkq09fxw = { label: data.tamanhoMoldura };
+  if (data.tamanhoMoldura) {
+    const idx = tamanhoMolduraIndex(data.tamanhoMoldura);
+    cols.color_mkq09fxw = idx !== undefined ? { index: idx } : { label: data.tamanhoMoldura };
+  }
 
   if (data.tipoFundo) {
     const idx = tipoFundoIndex(data.tipoFundo);

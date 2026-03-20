@@ -180,8 +180,8 @@ export default function ReservarPreservacaoForm() {
         <div className="pf-success-icon" aria-hidden="true">✓</div>
         <h2 className="pf-success-title">Pré-reserva registada com sucesso!</h2>
         <p className="pf-success-text">
-          Nos próximos <strong>3 dias úteis</strong>, receberá uma mensagem com o valor total do serviço
-          de preservação e os dados para o pagamento do <strong>sinal de 30%</strong>.
+          Nos próximos <strong>3 dias úteis</strong>, será contactado com a confirmação do valor total
+          do serviço de preservação e os dados para o pagamento do <strong>sinal de 30%</strong>.
           Este valor deve ser pago no prazo de <strong>24 horas</strong> após o envio do e-mail para garantir a sua vaga.
         </p>
         <p className="pf-success-text">
@@ -227,7 +227,7 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         <Field label="Número de telemóvel" required error={errors.telefone}
-          hint="Utilizado para contacto rápido em caso de necessidade, ou como canal principal se optar por WhatsApp.">
+          hint="Inclua sempre o indicativo do país. Ex.: +351 (Portugal), +44 (Reino Unido), +33 (França).">
           <input type="tel" {...inp("telefone")} placeholder="+351 912 345 678" autoComplete="tel" />
         </Field>
       </div>
@@ -244,7 +244,7 @@ export default function ReservarPreservacaoForm() {
         <Field label="Tipo de flores no arranjo"
           hint="Indique o tipo de flores e o tipo de arranjo (ex.: bouquet de noiva, coroa, flores soltas). Se ainda não tiver esta informação, deixe em branco.">
           <textarea {...inp("tipoFlores")} rows={4}
-            placeholder="Ex.: orquídeas, girassóis, malmequeres — bouquet de noiva." />
+            placeholder="Ex.: orquídeas, girassóis, malmequeres. Bouquet de noiva." />
         </Field>
       </div>
 

@@ -1,26 +1,26 @@
 /* app/reservar-preservacao/ReservarPreservacaoClient.css */
 
 /*
-  PALETA — parchment & amber & russet, extraída do quadro preto c/ flores:
-  ─────────────────────────────────────────────────────────────────────────
-  parchment claro  #FBF5E9  (fundo muito suave, papel antigo)
-  âmbar-mel        #E8C278  (luz quente, dourado)
-  terracota-médio  #C47848  (acento, botão)
-  russet-profundo  #7A3E20  (sombra, títulos)
-  marrom-escuro    #2E1408  (texto principal)
+  PALETA — extraída da foto hero (moldurapreta.webp):
+  ────────────────────────────────────────────────────
+  linho quente    #FDFAF5  (passpartout / papel de fundo)
+  creme-âmbar     #F0E4CC  (fundo suave)
+  taupe           #D8C4A8  (sombra suave)
+  charcoal-frame  #2A2018  (a própria moldura preta)
+  dourado-floral  #D4B060  (flores secas douradas / acento)
 */
 
 /* ═══════════════════════════════════════════════
-   PAGE — gradiente parchment quente
+   PAGE — gradiente linho quente (passpartout do quadro)
 ═══════════════════════════════════════════════ */
 .rp-page {
   min-height: 100svh;
   background: linear-gradient(
     170deg,
-    #FBF5E9 0%,
-    #F5E3CC 38%,
-    #ECDAB0 70%,
-    #E4C892 100%
+    #FDFAF5 0%,
+    #F5EDE0 38%,
+    #EDE0CC 70%,
+    #E5D4B8 100%
   );
 }
 
@@ -41,7 +41,7 @@
   inset: 0;
   background-size: cover;
   background-position: center center;
-  filter: brightness(0.65) saturate(1.05);
+  filter: brightness(0.62) saturate(1.0);
 }
 
 .rp-hero-overlay {
@@ -49,8 +49,8 @@
   inset: 0;
   background: linear-gradient(
     175deg,
-    rgba(8, 4, 2, 0.06) 0%,
-    rgba(8, 4, 2, 0.52) 100%
+    rgba(8, 5, 2, 0.06) 0%,
+    rgba(8, 5, 2, 0.55) 100%
   );
 }
 
@@ -65,6 +65,7 @@
   align-items: center;
 }
 
+/* ── todo o texto do hero a branco ── */
 .rp-eyebrow {
   display: inline-block;
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
@@ -72,9 +73,8 @@
   font-weight: 700;
   letter-spacing: 3.5px;
   text-transform: uppercase;
-  color: var(--terra);
+  color: rgba(255, 255, 255, 0.80);
   margin-bottom: 24px;
-  opacity: 0.9;
 }
 
 .rp-title {
@@ -88,7 +88,7 @@
 
 .rp-em {
   font-style: italic;
-  color: var(--terra);
+  color: #fff;
 }
 
 .rp-sub {
@@ -118,16 +118,16 @@
 }
 
 .rp-info-link:focus-visible {
-  outline: 3px solid rgba(232, 194, 120, 0.8);
+  outline: 3px solid rgba(212, 176, 96, 0.8);
   outline-offset: 4px;
   border-radius: 2px;
 }
 
 /* ═══════════════════════════════════════════════
-   BARRA DE PASSOS — terracota/russet, largura total
+   BARRA DE PASSOS — charcoal da moldura (dramático, elegante)
 ═══════════════════════════════════════════════ */
 .rp-steps-bar {
-  background: linear-gradient(135deg, #C47848 0%, #7A3E20 100%);
+  background: linear-gradient(135deg, #3A2E22 0%, #1A140C 100%);
   padding: clamp(36px, 5vw, 56px) clamp(32px, 6vw, 80px);
 }
 
@@ -147,7 +147,7 @@
   text-align: center;
   gap: 8px;
   padding: 0 clamp(24px, 4vw, 56px);
-  border-right: 1px solid rgba(255, 255, 255, 0.22);
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .rp-step:last-child {
@@ -157,7 +157,7 @@
 .rp-step-n {
   font-family: "TAN-MEMORIES", serif;
   font-size: 1.8rem;
-  color: rgba(255, 220, 160, 0.72);
+  color: rgba(212, 176, 96, 0.78);
   line-height: 1;
   margin-bottom: 6px;
 }
@@ -174,13 +174,13 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.82rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.78);
   line-height: 1.65;
   margin: 0;
 }
 
 /* ═══════════════════════════════════════════════
-   FORMULÁRIO — flutua no gradiente parchment
+   FORMULÁRIO — flutua no gradiente linho
 ═══════════════════════════════════════════════ */
 .rp-form-wrap {
   padding: clamp(52px, 7vw, 88px) clamp(20px, 5vw, 60px) clamp(88px, 10vw, 128px);
@@ -195,7 +195,7 @@
 .rp-form-lead-title {
   font-family: "TAN-MEMORIES", serif;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
-  color: #4A2010;
+  color: #2A1E10;
   font-weight: 400;
   margin: 0 0 12px;
 }
@@ -204,18 +204,18 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.9rem;
   font-weight: 300;
-  color: #6A3818;
+  color: #5A4028;
   line-height: 1.75;
   margin: 0 0 8px;
 }
 
 .rp-form-link {
-  color: #8A3A18;
+  color: #6A3A18;
   text-underline-offset: 3px;
 }
 
 .rp-form-link:hover {
-  color: #4A2010;
+  color: #2A1E10;
 }
 
 /* ── Formulário container ── */
@@ -231,21 +231,21 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.8rem;
   font-weight: 300;
-  color: #8A5030;
+  color: #7A5838;
   text-align: center;
   margin: 0 0 20px;
 }
 
-/* ── Cards — brancos sobre o gradiente parchment ── */
+/* ── Cards — brancos sobre o gradiente linho ── */
 .pf-section {
   padding: clamp(24px, 4vw, 36px);
   margin: 0 0 12px;
   background: #FFFFFF;
   border-radius: 20px;
-  border: 1px solid rgba(196, 120, 72, 0.14);
+  border: 1px solid rgba(90, 64, 40, 0.10);
   box-shadow:
-    0 2px 8px rgba(122, 62, 32, 0.07),
-    0 12px 40px rgba(122, 62, 32, 0.09);
+    0 2px 8px rgba(42, 28, 16, 0.06),
+    0 12px 40px rgba(42, 28, 16, 0.08);
 }
 
 .pf-section:last-of-type {
@@ -255,12 +255,12 @@
 .pf-section-title {
   font-family: "TAN-MEMORIES", serif;
   font-size: clamp(1rem, 1.8vw, 1.2rem);
-  color: #4A2010;
+  color: #2A1E10;
   margin: 0 0 clamp(18px, 3vw, 24px);
   font-weight: 400;
   display: block;
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(196, 120, 72, 0.12);
+  border-bottom: 1px solid rgba(90, 64, 40, 0.10);
 }
 
 /* ── Campos ── */
@@ -277,7 +277,7 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #2E1408;
+  color: #1C1008;
   margin-bottom: 6px;
 }
 
@@ -289,7 +289,7 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.74rem;
   font-weight: 300;
-  color: #8A5030;
+  color: #7A5838;
   margin: 0 0 8px;
   line-height: 1.65;
 }
@@ -300,9 +300,9 @@
   padding: 12px 14px;
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.95rem;
-  color: #2E1408;
-  background: #FAF2E4;
-  border: 1.5px solid #DEC090;
+  color: #1C1008;
+  background: #FAF6EE;
+  border: 1.5px solid #DEC8A0;
   border-radius: 10px;
   transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
   appearance: none;
@@ -310,19 +310,19 @@
 }
 
 .pf-input::placeholder {
-  color: #C09860;
+  color: #B89A70;
 }
 
 .pf-input:hover {
-  border-color: #C8A060;
+  border-color: #C4A878;
   background: #fff;
 }
 
 .pf-input:focus-visible {
   outline: none;
-  border-color: #B87248;
+  border-color: #5A4030;
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(184, 114, 72, 0.14);
+  box-shadow: 0 0 0 3px rgba(90, 64, 48, 0.12);
 }
 
 .pf-input-err {
@@ -343,7 +343,7 @@
 }
 
 select.pf-input {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23B87248' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235A4030' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 40px;
@@ -374,13 +374,13 @@ input[type="date"].pf-input {
   gap: 10px;
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.88rem;
-  color: #2E1408;
+  color: #1C1008;
   cursor: pointer;
   line-height: 1.45;
 }
 
 .pf-check-label:hover {
-  color: #8A3A18;
+  color: #5A3820;
 }
 
 .pf-checkbox {
@@ -388,7 +388,7 @@ input[type="date"].pf-input {
   width: 17px;
   height: 17px;
   margin-top: 2px;
-  accent-color: #B87248;
+  accent-color: #5A4030;
   cursor: pointer;
 }
 
@@ -399,17 +399,17 @@ input[type="date"].pf-input {
 }
 
 .pf-link {
-  color: #8A3A18;
+  color: #6A3A18;
   text-underline-offset: 3px;
   font-weight: 500;
 }
 
 .pf-link:hover {
-  color: #4A2010;
+  color: #2A1E10;
 }
 
 .pf-link:focus-visible {
-  outline: 2px solid #DEC090;
+  outline: 2px solid #DEC8A0;
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -428,7 +428,7 @@ input[type="date"].pf-input {
   text-align: center;
 }
 
-/* ── Botão CTA — gradient terracota/russet ── */
+/* ── Botão CTA — charcoal/frame ── */
 .pf-btn {
   display: block;
   width: 100%;
@@ -437,34 +437,34 @@ input[type="date"].pf-input {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   color: #fff;
-  background: linear-gradient(135deg, #C47848 0%, #7A3E20 100%);
+  background: linear-gradient(135deg, #4A3828 0%, #221810 100%);
   border: none;
   border-radius: 980px;
   cursor: pointer;
   box-shadow:
-    0 4px 16px rgba(122, 62, 32, 0.38),
-    0 1px 4px rgba(122, 62, 32, 0.22);
+    0 4px 16px rgba(34, 24, 16, 0.42),
+    0 1px 4px rgba(34, 24, 16, 0.24);
   transition: box-shadow 0.22s, transform 0.18s, filter 0.18s;
 }
 
 .pf-btn:hover {
-  filter: brightness(1.08);
+  filter: brightness(1.15);
   box-shadow:
-    0 8px 28px rgba(122, 62, 32, 0.44),
-    0 2px 8px rgba(122, 62, 32, 0.26);
+    0 8px 28px rgba(34, 24, 16, 0.48),
+    0 2px 8px rgba(34, 24, 16, 0.28);
   transform: translateY(-1px);
 }
 
 .pf-btn:active {
   transform: translateY(0);
   filter: brightness(1);
-  box-shadow: 0 2px 10px rgba(122, 62, 32, 0.28);
+  box-shadow: 0 2px 10px rgba(34, 24, 16, 0.3);
 }
 
 .pf-btn:focus-visible {
-  outline: 3px solid #DEB870;
+  outline: 3px solid #D4B060;
   outline-offset: 3px;
 }
 
@@ -507,17 +507,17 @@ input[type="date"].pf-input {
   margin: 0 auto;
   background: #fff;
   border-radius: 24px;
-  border: 1px solid rgba(196, 120, 72, 0.14);
+  border: 1px solid rgba(90, 64, 40, 0.10);
   box-shadow:
-    0 2px 8px rgba(122, 62, 32, 0.07),
-    0 12px 40px rgba(122, 62, 32, 0.09);
+    0 2px 8px rgba(42, 28, 16, 0.06),
+    0 12px 40px rgba(42, 28, 16, 0.08);
 }
 
 .pf-success-icon {
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #C47848 0%, #7A3E20 100%);
+  background: linear-gradient(135deg, #4A3828 0%, #221810 100%);
   color: #fff;
   font-size: 1.6rem;
   display: flex;
@@ -529,7 +529,7 @@ input[type="date"].pf-input {
 .pf-success-title {
   font-family: "TAN-MEMORIES", serif;
   font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-  color: #4A2010;
+  color: #2A1E10;
   margin: 0;
   font-weight: 400;
 }
@@ -538,7 +538,7 @@ input[type="date"].pf-input {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-weight: 300;
   font-size: 0.96rem;
-  color: #6A3818;
+  color: #5A4028;
   line-height: 1.85;
   margin: 0;
   max-width: 460px;
@@ -547,7 +547,7 @@ input[type="date"].pf-input {
 .pf-success-closing {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.95rem;
-  color: #4A2010;
+  color: #2A1E10;
   line-height: 1.7;
   margin: 8px 0 0;
 }
@@ -574,7 +574,7 @@ input[type="date"].pf-input {
 ═══════════════════════════════════════════════ */
 @media (max-width: 540px) {
   .rp-page {
-    background: linear-gradient(180deg, #FBF5E9 0%, #E4C892 100%);
+    background: linear-gradient(180deg, #FDFAF5 0%, #E5D4B8 100%);
   }
 
   .rp-hero {
