@@ -135,6 +135,7 @@ export default function ReservarPreservacaoForm() {
     if (!form.tipoFundo) e.tipoFundo = "Campo obrigatório.";
     if (!form.elementosExtra.length) e.elementosExtra = "Seleccione pelo menos uma opção.";
     if (!form.quadrosExtra) e.quadrosExtra = "Campo obrigatório.";
+    if (showQuantosQuadros && !form.quantosQuadros.toString().trim()) e.quantosQuadros = "Campo obrigatório.";
     if (showQuantosOrnamentos && !form.quantosOrnamentos.trim()) e.quantosOrnamentos = "Campo obrigatório.";
     if (!form.ornamentosNatal) e.ornamentosNatal = "Campo obrigatório.";
     if (!form.pendentes) e.pendentes = "Campo obrigatório.";
@@ -356,7 +357,7 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         {showQuantosQuadros && (
-          <Field label="Quantos quadros extra em formato pequeno gostaria de adicionar?">
+          <Field label="Quantos quadros extra em formato pequeno gostaria de adicionar?" required error={errors.quantosQuadros}>
             <input type="number" min={1}
               value={form.quantosQuadros}
               onChange={(e) => set("quantosQuadros", e.target.value)}

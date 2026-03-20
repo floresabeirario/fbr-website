@@ -1,27 +1,26 @@
 /* app/reservar-preservacao/ReservarPreservacaoClient.css */
 
 /*
-  PALETA — blush & rose, elegante e romântico:
-  ─────────────────────────────────────────────
-  blush pálido     #FDF0F3  (fundo muito suave)
-  rosa-médio       #C46882  (acento, botão, focus)
-  rosa-profundo    #8E3054  (sombra botão, títulos)
-  bordô-suave      #5A1E38  (texto escuro)
-  blush-input      #FCF4F7  (fundo dos inputs)
-  borda-input      #E8BED0  (bordas dos inputs)
+  PALETA — parchment & amber & russet, extraída do quadro preto c/ flores:
+  ─────────────────────────────────────────────────────────────────────────
+  parchment claro  #FBF5E9  (fundo muito suave, papel antigo)
+  âmbar-mel        #E8C278  (luz quente, dourado)
+  terracota-médio  #C47848  (acento, botão)
+  russet-profundo  #7A3E20  (sombra, títulos)
+  marrom-escuro    #2E1408  (texto principal)
 */
 
 /* ═══════════════════════════════════════════════
-   PAGE — gradiente blush suave
+   PAGE — gradiente parchment quente
 ═══════════════════════════════════════════════ */
 .rp-page {
   min-height: 100svh;
   background: linear-gradient(
     170deg,
-    #FDF0F3 0%,
-    #F7E0EA 38%,
-    #EECEDC 70%,
-    #E5BCCC 100%
+    #FBF5E9 0%,
+    #F5E3CC 38%,
+    #ECDAB0 70%,
+    #E4C892 100%
   );
 }
 
@@ -42,7 +41,7 @@
   inset: 0;
   background-size: cover;
   background-position: center center;
-  filter: brightness(0.68) saturate(1.0);
+  filter: brightness(0.65) saturate(1.05);
 }
 
 .rp-hero-overlay {
@@ -50,8 +49,8 @@
   inset: 0;
   background: linear-gradient(
     175deg,
-    rgba(10, 5, 8, 0.06) 0%,
-    rgba(10, 5, 8, 0.52) 100%
+    rgba(8, 4, 2, 0.06) 0%,
+    rgba(8, 4, 2, 0.52) 100%
   );
 }
 
@@ -119,24 +118,24 @@
 }
 
 .rp-info-link:focus-visible {
-  outline: 3px solid rgba(228, 160, 188, 0.8);
+  outline: 3px solid rgba(232, 194, 120, 0.8);
   outline-offset: 4px;
   border-radius: 2px;
 }
 
 /* ═══════════════════════════════════════════════
-   BARRA DE PASSOS — rose profundo
+   BARRA DE PASSOS — terracota/russet, largura total
 ═══════════════════════════════════════════════ */
 .rp-steps-bar {
-  background: linear-gradient(135deg, #C46882 0%, #8E3054 100%);
-  padding: clamp(32px, 4vw, 48px) clamp(24px, 5vw, 64px);
+  background: linear-gradient(135deg, #C47848 0%, #7A3E20 100%);
+  padding: clamp(36px, 5vw, 56px) clamp(32px, 6vw, 80px);
 }
 
 .rp-steps {
   list-style: none;
   margin: 0 auto;
   padding: 0;
-  max-width: 720px;
+  max-width: 1100px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
@@ -146,9 +145,9 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 6px;
-  padding: 0 clamp(20px, 3vw, 36px);
-  border-right: 1px solid rgba(255, 255, 255, 0.25);
+  gap: 8px;
+  padding: 0 clamp(24px, 4vw, 56px);
+  border-right: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .rp-step:last-child {
@@ -157,15 +156,15 @@
 
 .rp-step-n {
   font-family: "TAN-MEMORIES", serif;
-  font-size: 1.6rem;
-  color: rgba(255, 220, 220, 0.75);
+  font-size: 1.8rem;
+  color: rgba(255, 220, 160, 0.72);
   line-height: 1;
   margin-bottom: 6px;
 }
 
 .rp-step-title {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.92rem;
   font-weight: 600;
   color: #fff;
   margin: 0;
@@ -173,15 +172,15 @@
 
 .rp-step-text {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.73rem;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.80);
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.82);
   line-height: 1.65;
   margin: 0;
 }
 
 /* ═══════════════════════════════════════════════
-   FORMULÁRIO — flutua no gradiente blush da página
+   FORMULÁRIO — flutua no gradiente parchment
 ═══════════════════════════════════════════════ */
 .rp-form-wrap {
   padding: clamp(52px, 7vw, 88px) clamp(20px, 5vw, 60px) clamp(88px, 10vw, 128px);
@@ -196,7 +195,7 @@
 .rp-form-lead-title {
   font-family: "TAN-MEMORIES", serif;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
-  color: #5A1E38;
+  color: #4A2010;
   font-weight: 400;
   margin: 0 0 12px;
 }
@@ -205,18 +204,18 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.9rem;
   font-weight: 300;
-  color: #7A3A54;
+  color: #6A3818;
   line-height: 1.75;
   margin: 0 0 8px;
 }
 
 .rp-form-link {
-  color: #9E3A5A;
+  color: #8A3A18;
   text-underline-offset: 3px;
 }
 
 .rp-form-link:hover {
-  color: #5A1E38;
+  color: #4A2010;
 }
 
 /* ── Formulário container ── */
@@ -232,21 +231,21 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.8rem;
   font-weight: 300;
-  color: #8A4060;
+  color: #8A5030;
   text-align: center;
   margin: 0 0 20px;
 }
 
-/* ── Cards — brancos sobre o gradiente blush ── */
+/* ── Cards — brancos sobre o gradiente parchment ── */
 .pf-section {
   padding: clamp(24px, 4vw, 36px);
   margin: 0 0 12px;
   background: #FFFFFF;
   border-radius: 20px;
-  border: 1px solid rgba(196, 104, 130, 0.14);
+  border: 1px solid rgba(196, 120, 72, 0.14);
   box-shadow:
-    0 2px 8px rgba(158, 58, 90, 0.07),
-    0 12px 40px rgba(158, 58, 90, 0.09);
+    0 2px 8px rgba(122, 62, 32, 0.07),
+    0 12px 40px rgba(122, 62, 32, 0.09);
 }
 
 .pf-section:last-of-type {
@@ -256,12 +255,12 @@
 .pf-section-title {
   font-family: "TAN-MEMORIES", serif;
   font-size: clamp(1rem, 1.8vw, 1.2rem);
-  color: #5A1E38;
+  color: #4A2010;
   margin: 0 0 clamp(18px, 3vw, 24px);
   font-weight: 400;
   display: block;
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(196, 104, 130, 0.12);
+  border-bottom: 1px solid rgba(196, 120, 72, 0.12);
 }
 
 /* ── Campos ── */
@@ -278,7 +277,7 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #3A1028;
+  color: #2E1408;
   margin-bottom: 6px;
 }
 
@@ -290,7 +289,7 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.74rem;
   font-weight: 300;
-  color: #8A4060;
+  color: #8A5030;
   margin: 0 0 8px;
   line-height: 1.65;
 }
@@ -301,9 +300,9 @@
   padding: 12px 14px;
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.95rem;
-  color: #3A1028;
-  background: #FCF4F7;
-  border: 1.5px solid #E8BED0;
+  color: #2E1408;
+  background: #FAF2E4;
+  border: 1.5px solid #DEC090;
   border-radius: 10px;
   transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
   appearance: none;
@@ -311,19 +310,19 @@
 }
 
 .pf-input::placeholder {
-  color: #C898B0;
+  color: #C09860;
 }
 
 .pf-input:hover {
-  border-color: #D494AC;
+  border-color: #C8A060;
   background: #fff;
 }
 
 .pf-input:focus-visible {
   outline: none;
-  border-color: #C46882;
+  border-color: #B87248;
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(196, 104, 130, 0.14);
+  box-shadow: 0 0 0 3px rgba(184, 114, 72, 0.14);
 }
 
 .pf-input-err {
@@ -344,7 +343,7 @@
 }
 
 select.pf-input {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23C46882' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23B87248' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 40px;
@@ -375,13 +374,13 @@ input[type="date"].pf-input {
   gap: 10px;
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.88rem;
-  color: #3A1028;
+  color: #2E1408;
   cursor: pointer;
   line-height: 1.45;
 }
 
 .pf-check-label:hover {
-  color: #9E3A5A;
+  color: #8A3A18;
 }
 
 .pf-checkbox {
@@ -389,7 +388,7 @@ input[type="date"].pf-input {
   width: 17px;
   height: 17px;
   margin-top: 2px;
-  accent-color: #C46882;
+  accent-color: #B87248;
   cursor: pointer;
 }
 
@@ -400,17 +399,17 @@ input[type="date"].pf-input {
 }
 
 .pf-link {
-  color: #9E3A5A;
+  color: #8A3A18;
   text-underline-offset: 3px;
   font-weight: 500;
 }
 
 .pf-link:hover {
-  color: #5A1E38;
+  color: #4A2010;
 }
 
 .pf-link:focus-visible {
-  outline: 2px solid #E8A0BC;
+  outline: 2px solid #DEC090;
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -429,7 +428,7 @@ input[type="date"].pf-input {
   text-align: center;
 }
 
-/* ── Botão CTA — gradient rose ── */
+/* ── Botão CTA — gradient terracota/russet ── */
 .pf-btn {
   display: block;
   width: 100%;
@@ -440,32 +439,32 @@ input[type="date"].pf-input {
   font-weight: 600;
   letter-spacing: 0.02em;
   color: #fff;
-  background: linear-gradient(135deg, #D07890 0%, #9E3A5A 100%);
+  background: linear-gradient(135deg, #C47848 0%, #7A3E20 100%);
   border: none;
   border-radius: 980px;
   cursor: pointer;
   box-shadow:
-    0 4px 16px rgba(158, 58, 90, 0.35),
-    0 1px 4px rgba(158, 58, 90, 0.2);
+    0 4px 16px rgba(122, 62, 32, 0.38),
+    0 1px 4px rgba(122, 62, 32, 0.22);
   transition: box-shadow 0.22s, transform 0.18s, filter 0.18s;
 }
 
 .pf-btn:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.08);
   box-shadow:
-    0 8px 28px rgba(158, 58, 90, 0.42),
-    0 2px 8px rgba(158, 58, 90, 0.24);
+    0 8px 28px rgba(122, 62, 32, 0.44),
+    0 2px 8px rgba(122, 62, 32, 0.26);
   transform: translateY(-1px);
 }
 
 .pf-btn:active {
   transform: translateY(0);
   filter: brightness(1);
-  box-shadow: 0 2px 10px rgba(158, 58, 90, 0.25);
+  box-shadow: 0 2px 10px rgba(122, 62, 32, 0.28);
 }
 
 .pf-btn:focus-visible {
-  outline: 3px solid #E8A0BC;
+  outline: 3px solid #DEB870;
   outline-offset: 3px;
 }
 
@@ -508,17 +507,17 @@ input[type="date"].pf-input {
   margin: 0 auto;
   background: #fff;
   border-radius: 24px;
-  border: 1px solid rgba(196, 104, 130, 0.14);
+  border: 1px solid rgba(196, 120, 72, 0.14);
   box-shadow:
-    0 2px 8px rgba(158, 58, 90, 0.07),
-    0 12px 40px rgba(158, 58, 90, 0.09);
+    0 2px 8px rgba(122, 62, 32, 0.07),
+    0 12px 40px rgba(122, 62, 32, 0.09);
 }
 
 .pf-success-icon {
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #D07890 0%, #9E3A5A 100%);
+  background: linear-gradient(135deg, #C47848 0%, #7A3E20 100%);
   color: #fff;
   font-size: 1.6rem;
   display: flex;
@@ -530,7 +529,7 @@ input[type="date"].pf-input {
 .pf-success-title {
   font-family: "TAN-MEMORIES", serif;
   font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-  color: #5A1E38;
+  color: #4A2010;
   margin: 0;
   font-weight: 400;
 }
@@ -539,7 +538,7 @@ input[type="date"].pf-input {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-weight: 300;
   font-size: 0.96rem;
-  color: #7A3A54;
+  color: #6A3818;
   line-height: 1.85;
   margin: 0;
   max-width: 460px;
@@ -548,7 +547,7 @@ input[type="date"].pf-input {
 .pf-success-closing {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.95rem;
-  color: #5A1E38;
+  color: #4A2010;
   line-height: 1.7;
   margin: 8px 0 0;
 }
@@ -566,7 +565,7 @@ input[type="date"].pf-input {
   }
 
   .rp-steps {
-    max-width: 540px;
+    max-width: 720px;
   }
 }
 
@@ -575,7 +574,7 @@ input[type="date"].pf-input {
 ═══════════════════════════════════════════════ */
 @media (max-width: 540px) {
   .rp-page {
-    background: linear-gradient(180deg, #FDF0F3 0%, #E5BCCC 100%);
+    background: linear-gradient(180deg, #FBF5E9 0%, #E4C892 100%);
   }
 
   .rp-hero {

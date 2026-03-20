@@ -9,14 +9,24 @@ const MONDAY_API = "https://api.monday.com/v2";
 // Colunas Status (color) neste board rejeitam { label } com missingLabel.
 // Usamos { index } com os valores confirmados pelos erros da API Monday.
 
-// single_select634naka / single_selectif561xw / color_mm1kz8vz
-// {0: "Sim, ...", 2: "Gostava de receber mais informações", 3: "Não, apenas o quadro principal"}
+// single_select634naka / color_mm1kz8vz
+// {0: "Sim,...", 2: "Gostava...", 3: "Não,..."}
 function extrasIndex(val) {
   if (!val) return undefined;
   const v = val.trim();
   if (v.startsWith("Sim,")) return 0;
   if (v.startsWith("Gostava")) return 2;
   if (v.startsWith("Não,")) return 3;
+  return undefined;
+}
+
+// single_selectif561xw (quadrosExtra) — índices diferentes: confirmado por utilizador que 0=Não, 3=Sim
+function quadrosExtraIndex(val) {
+  if (!val) return undefined;
+  const v = val.trim();
+  if (v.startsWith("Não,")) return 0;
+  if (v.startsWith("Gostava")) return 2;
+  if (v.startsWith("Sim,")) return 3;
   return undefined;
 }
 
@@ -71,7 +81,7 @@ function buildColumnValues(data) {
     cols.dropdown_mkq0vepg = { labels: data.elementosExtra };
 
   if (data.quadrosExtra) {
-    const idx = extrasIndex(data.quadrosExtra);
+    const idx = quadrosExtraIndex(data.quadrosExtra);
     cols.single_selectif561xw = idx !== undefined ? { index: idx } : { label: data.quadrosExtra };
   }
 
