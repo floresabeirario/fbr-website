@@ -3,20 +3,7 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import { SOCIAL_INSTAGRAM } from "../_lib/constants";
-
-const INDICATIVOS = [
-  { code: "+351", label: "🇵🇹 +351" },
-  { code: "+34",  label: "🇪🇸 +34"  },
-  { code: "+44",  label: "🇬🇧 +44"  },
-  { code: "+33",  label: "🇫🇷 +33"  },
-  { code: "+49",  label: "🇩🇪 +49"  },
-  { code: "+39",  label: "🇮🇹 +39"  },
-  { code: "+31",  label: "🇳🇱 +31"  },
-  { code: "+32",  label: "🇧🇪 +32"  },
-  { code: "+41",  label: "🇨🇭 +41"  },
-  { code: "+55",  label: "🇧🇷 +55"  },
-  { code: "+1",   label: "🇺🇸 +1"   },
-];
+import PhonePrefix from "../_components/PhonePrefix";
 
 const ELEMENTOS_OPTIONS = [
   "Não pretendo incluir extras",
@@ -243,16 +230,11 @@ export default function ReservarPreservacaoForm() {
 
         <Field label="Número de telemóvel" required error={errors.telefone}>
           <div className="pf-phone-wrap">
-            <select
-              className="pf-input pf-phone-prefix"
+            <PhonePrefix
               value={form.telefoneIndicativo}
-              onChange={(e) => set("telefoneIndicativo", e.target.value)}
-              aria-label="Indicativo do país"
-            >
-              {INDICATIVOS.map(({ code, label }) => (
-                <option key={code} value={code}>{label}</option>
-              ))}
-            </select>
+              onChange={(code) => set("telefoneIndicativo", code)}
+              btnClassName="pf-input pf-phone-prefix"
+            />
             <input
               type="tel"
               {...inp("telefone")}
