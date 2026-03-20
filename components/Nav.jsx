@@ -326,8 +326,17 @@ const NavDivider = ({ scrolled }) => (
 );
 
 // ── Botão CTA ────────────────────────────────────────────
-function NavCTA({ shouldShowScrolled, pathname }) {
+function NavCTA({ shouldShowScrolled, pathname, isHome }) {
   const c = PAGE_COLORS[pathname] || DEFAULT_CTA;
+  const bg = shouldShowScrolled
+    ? (isHome ? "var(--nav-cta-color, #2D4A40)" : c.bg)
+    : "rgba(250,247,240,0.12)";
+  const border = shouldShowScrolled
+    ? (isHome ? "1.5px solid var(--nav-cta-color, #2D4A40)" : `1.5px solid ${c.bg}`)
+    : "1.5px solid rgba(250,247,240,0.35)";
+  const shadow = shouldShowScrolled
+    ? (isHome ? "0 3px 14px rgba(0,0,0,0.18)" : `0 3px 14px ${c.shadow}`)
+    : "none";
   return (
     <a
       href={FORM_URL}
@@ -335,12 +344,12 @@ function NavCTA({ shouldShowScrolled, pathname }) {
       rel="noopener noreferrer"
       className="nav-cta"
       style={{
-        backgroundColor: shouldShowScrolled ? c.bg : "rgba(250,247,240,0.12)",
+        backgroundColor: bg,
         color: "#FAF7F0",
-        border: shouldShowScrolled ? `1.5px solid ${c.bg}` : "1.5px solid rgba(250,247,240,0.35)",
+        border,
         backdropFilter: shouldShowScrolled ? "none" : "blur(8px)",
-        boxShadow: shouldShowScrolled ? `0 3px 14px ${c.shadow}` : "none",
-        transition: "all 0.4s ease",
+        boxShadow: shadow,
+        transition: "background-color 0.85s ease, border-color 0.85s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease",
       }}
     >
       Reservar Data
@@ -394,7 +403,7 @@ export default function NavClient() {
 
           {/* ── ESQUERDA (desktop): Reservar Data | Preservação | Oferecer Preservação ── */}
           <div className="nav-left desktop-only">
-            <NavCTA shouldShowScrolled={show} pathname={pathname} />
+            <NavCTA shouldShowScrolled={show} pathname={pathname} isHome={isHome} />
             <NavDivider scrolled={show} />
             <DesktopDropdown menu={NAV_PRESERVACAO} scrolled={show} />
             <NavDivider scrolled={show} />
