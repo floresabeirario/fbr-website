@@ -1,5 +1,5 @@
-// app/api/vale-presente/route.js
-// Recebe os dados do formulário e cria um item no Monday.com via GraphQL.
+// app/api/reservar-preservacao/route.js
+// Recebe os dados do formulário de reserva de preservação e cria um item no Monday.com via GraphQL.
 // O token fica apenas no servidor — nunca exposto ao browser.
 
 import { NextResponse } from "next/server";
@@ -24,6 +24,7 @@ const _rl = new Map(); // ip → { count, resetAt }
 function isRateLimited(ip) {
   const now = Date.now();
   const entry = _rl.get(ip);
+  // Limpeza periódica para evitar crescimento ilimitado do Map
   if (_rl.size > 500) {
     for (const [k, v] of _rl) { if (now > v.resetAt) _rl.delete(k); }
   }
@@ -34,6 +35,43 @@ function isRateLimited(ip) {
   if (entry.count >= 5) return true;
   entry.count++;
   return false;
+}
+
+// ─── Colunas Status (color) neste board rejeitam { label } com missingLabel ──
+// Usamos { index } com os valores confirmados pelos erros da API Monday.
+
+// single_select634naka / color_mm1kz8vz
+// {0: "Sim,...", 2: "Gostava...", 3: "Não,..."}
+function extrasIndex(val) {
+  if (!val) return undefined;
+  const v = val.trim();
+  if (v.startsWith("Sim,")) return 0;
+  if (v.startsWith("Gostava")) return 2;
+  if (v.startsWith("Não,")) return 3;
+  return undefined;
+}
+
+// single_selectif561xw (quadrosExtra)
+// 0=Não, 1=Sim, 2=Gostava
+function quadrosExtraIndex(val) {
+  if (!val) return undefined;
+  const v = val.trim();
+  if (v.startsWith("Não,")) return 0;
+  if (v.startsWith("Sim,")) return 1;
+  if (v.startsWith("Gostava")) return 2;
+  return undefined;
+}
+
+// color_mkq09fxw (tamanho de moldura)
+// {0: 40x50cm, 1: 30x40cm, 2: 50x70cm, 3: Ainda não sei}
+function tamanhoMolduraIndex(val) {
+  if (!val) return undefined;
+  const v = val.trim();
+  if (v === "30x40cm") return 1;
+  if (v === "40x50cm") return 0;
+  if (v === "50x70cm") return 2;
+  if (v.startsWith("Ainda não sei")) return 3;
+  return undefined;
 }
 
 // Maps dialling prefix → ISO 3166-1 alpha-2 code expected by Monday phone column.
@@ -66,66 +104,113 @@ function detectCountryShortName(phone) {
   return "PT";
 }
 
+// color_mkq04a2f (comoEnviarFlores)
+// {0: Envio por CTT/..., 1: Entrega em mãos, 2: Recolha no evento, 3: Ainda não sei}
+function comoEnviarFloresIndex(val) {
+  if (!val) return undefined;
+  const v = val.trim();
+  if (v.startsWith("Envio por CTT")) return 0;
+  if (v.startsWith("Entrega em mãos")) return 1;
+  if (v.startsWith("Recolha no evento")) return 2;
+  if (v.startsWith("Ainda não sei")) return 3;
+  return undefined;
+}
+
+// color_mkq0xxf4 (tipo de fundo)
+// {0:Preto, 1:Transparente, 2:Branco, 3:Fotografia, 4:Ainda não sei, 6:Cor, 7:Gostaria}
+function tipoFundoIndex(val) {
+  if (!val) return undefined;
+  const v = val.trim();
+  if (v === "Preto") return 0;
+  if (v.startsWith("Transparente")) return 1;
+  if (v === "Branco") return 2;
+  if (v.startsWith("Fotografia")) return 3;
+  if (v.startsWith("Ainda não sei")) return 4;
+  if (v === "Cor") return 6;
+  if (v.startsWith("Gostaria que fossem")) return 7;
+  return undefined;
+}
+
 function buildColumnValues(data) {
   const cols = {};
 
   if (data.meioContacto)
-    cols.single_select29teo39 = { label: data.meioContacto };
-
-  if (data.telefone) {
-    // Remove espaços — Monday rejeita números com espaços em alguns países.
-    // Guarda mínimo de 7 chars para não enviar só o indicativo.
-    const phoneClean = data.telefone.replace(/\s+/g, "");
-    if (phoneClean.length >= 7)
-      cols.phoneofkl3pv1 = { phone: phoneClean, countryShortName: detectCountryShortName(data.telefone) };
-  }
+    cols.color_mks92sp9 = { label: data.meioContacto };
 
   if (data.email)
-    cols.emailq6ytvvvi = { email: data.email, text: data.email };
+    cols.email_mkq0dm3f = { email: data.email, text: data.email };
 
-  if (data.nomeDestinatario)
-    cols.short_textf7mgmmup = data.nomeDestinatario;
-
-  if (data.mensagem)
-    cols.long_textz9slq9om = { text: data.mensagem };
-
-  if (data.valorVale)
-    cols.numberuey1dh9l = Number(data.valorVale);
-
-  if (data.entrega)
-    cols.single_selectpkp4rxv = { label: data.entrega };
-
-  if (data.tipoVale)
-    cols.single_selectflb64wv = { label: data.tipoVale };
-
-  if (data.entregaRemetenteComo)
-    cols.color_mm1kya1x = { label: data.entregaRemetenteComo };
-
-  if (data.morada)
-    cols.long_texthqr0263u = { text: data.morada };
-
-  if (data.contactoDestinatario) {
-    const isEmail = data.contactoDestinatario.includes("@");
-    cols.email_mkqvp1h6 = {
-      email: isEmail ? data.contactoDestinatario : "",
-      text: data.contactoDestinatario,
-    };
+  if (data.telefone) {
+    const phoneClean = data.telefone.replace(/\s+/g, "");
+    if (phoneClean.length >= 7)
+      cols.phone_mkq0xfnm = { phone: phoneClean, countryShortName: detectCountryShortName(data.telefone) };
   }
 
-  if (data.dataEnvio)
-    cols.datefa6cvbc4 = { date: data.dataEnvio };
+  if (data.dataEvento)
+    cols.date_mkpzn3z3 = { date: data.dataEvento };
 
-  if (data.comentarios)
-    cols.long_textcxluujwf = { text: data.comentarios };
+  if (data.tipoFlores)
+    cols.long_text_mkq0e33x = { text: data.tipoFlores };
+
+  if (data.comoEnviarFlores) {
+    const idx = comoEnviarFloresIndex(data.comoEnviarFlores);
+    cols.color_mkq04a2f = idx !== undefined ? { index: idx } : { label: data.comoEnviarFlores };
+  }
+
+  if (data.comoReceberQuadro)
+    cols.color_mkq066bs = { label: data.comoReceberQuadro };
+
+  if (data.tamanhoMoldura) {
+    const idx = tamanhoMolduraIndex(data.tamanhoMoldura);
+    cols.color_mkq09fxw = idx !== undefined ? { index: idx } : { label: data.tamanhoMoldura };
+  }
+
+  if (data.tipoFundo) {
+    const idx = tipoFundoIndex(data.tipoFundo);
+    cols.color_mkq0xxf4 = idx !== undefined ? { index: idx } : { label: data.tipoFundo };
+  }
+
+  if (data.elementosExtra?.length)
+    cols.dropdown_mkq0vepg = { labels: data.elementosExtra };
+
+  if (data.quadrosExtra) {
+    const idx = quadrosExtraIndex(data.quadrosExtra);
+    cols.single_selectif561xw = idx !== undefined ? { index: idx } : { label: data.quadrosExtra };
+  }
+
+  if (data.quantosQuadros)
+    cols.long_textnvi49n07 = { text: String(data.quantosQuadros) };
+
+  if (data.ornamentosNatal) {
+    const idx = extrasIndex(data.ornamentosNatal);
+    cols.single_select634naka = idx !== undefined ? { index: idx } : { label: data.ornamentosNatal };
+  }
+
+  if (data.quantosOrnamentos)
+    cols.text_mm1kx2jh = String(data.quantosOrnamentos);
+
+  if (data.pendentes) {
+    const idx = extrasIndex(data.pendentes);
+    cols.color_mm1kz8vz = idx !== undefined ? { index: idx } : { label: data.pendentes };
+  }
+
+  if (data.quantosPendentes)
+    cols.text_mm1k610f = String(data.quantosPendentes);
 
   if (data.comoConheceu)
-    cols.color_mkqwk84z = { label: data.comoConheceu };
+    cols.color_mkq0n7rp = { label: data.comoConheceu };
 
   if (data.comoConheceuOutro)
-    cols.long_text_mkqwhb3 = { text: data.comoConheceuOutro };
+    cols.long_text_mkq0qwqs = { text: data.comoConheceuOutro };
 
   if (data.nomeFlorista)
-    cols.long_textk6rqfhxk = { text: data.nomeFlorista };
+    cols.long_textyoq9dh7s = { text: data.nomeFlorista };
+
+  if (data.elementosExtraOutro)
+    cols.long_text_mkq090y7 = { text: data.elementosExtraOutro };
+
+  if (data.notasAdicionais)
+    cols.long_text_mkq0z9d = { text: data.notasAdicionais };
 
   return cols;
 }
@@ -135,10 +220,9 @@ const MAX_LENGTHS = {
   nome: 200,
   email: 200,
   telefone: 30,
-  nomeDestinatario: 200,
-  mensagem: 1000,
-  morada: 500,
-  comentarios: 2000,
+  tipoFlores: 1000,
+  elementosExtraOutro: 500,
+  notasAdicionais: 2000,
   comoConheceuOutro: 1000,
   nomeFlorista: 300,
 };
@@ -153,8 +237,8 @@ function exceedsLength(data) {
 export async function POST(request) {
   try {
     // ── Variáveis de ambiente obrigatórias ──────────────────────────────────
-    if (!process.env.MONDAY_BOARD_ID_VALE) {
-      console.error("[vale-presente] MONDAY_BOARD_ID_VALE not set");
+    if (!process.env.MONDAY_BOARD_ID_PRESERVACAO) {
+      console.error("[reservar-preservacao] MONDAY_BOARD_ID_PRESERVACAO not set");
       return NextResponse.json({ error: "Configuração em falta no servidor." }, { status: 500 });
     }
 
@@ -171,6 +255,8 @@ export async function POST(request) {
     const data = await request.json();
 
     // ── Honeypot anti-spam ──────────────────────────────────────────────────
+    // O campo "website" é invisível para humanos; bots costumam preenchê-lo.
+    // Retorna sucesso silencioso para não alertar o bot.
     if (data.website) {
       return NextResponse.json({ success: true });
     }
@@ -188,13 +274,6 @@ export async function POST(request) {
       return NextResponse.json({ error: "Número de telefone inválido." }, { status: 400 });
     }
 
-    if (data.valorVale !== undefined && data.valorVale !== "") {
-      const val = Number(data.valorVale);
-      if (isNaN(val) || val < 300 || val > 100_000) {
-        return NextResponse.json({ error: "Valor do vale inválido." }, { status: 400 });
-      }
-    }
-
     const overLimit = exceedsLength(data);
     if (overLimit) {
       return NextResponse.json(
@@ -203,23 +282,22 @@ export async function POST(request) {
       );
     }
 
-    if (data.dataEnvio) {
-      const year = parseInt(data.dataEnvio.split("-")[0], 10);
-      if (isNaN(year) || year < 2020 || year > 2099) {
-        return NextResponse.json({ error: "Data de envio inválida." }, { status: 400 });
+    // Rejeita datas com ano inválido antes de enviar ao Monday
+    if (data.dataEvento) {
+      const year = parseInt(data.dataEvento.split("-")[0], 10);
+      if (isNaN(year) || year > 9999 || year < 1900) {
+        return NextResponse.json({ error: "Data do evento inválida." }, { status: 400 });
       }
     }
 
-    console.log("[vale-presente] new submission from:", ip);
+    console.log("[reservar-preservacao] new submission from:", ip);
 
     const columnValues = buildColumnValues(data);
 
-    // column_values must be a JSON string literal inline in the query.
-    // Using GraphQL variables with JSON! type is unreliable across Monday API versions.
     const query = `
       mutation {
         create_item(
-          board_id: ${process.env.MONDAY_BOARD_ID_VALE}
+          board_id: ${process.env.MONDAY_BOARD_ID_PRESERVACAO}
           item_name: ${JSON.stringify(data.nome)}
           column_values: ${JSON.stringify(JSON.stringify(columnValues))}
         ) {
@@ -254,28 +332,35 @@ export async function POST(request) {
     }
 
     // ── Notificação por e-mail (Resend) ─────────────────────────────────────
+    // Falha silenciosamente se a chave não estiver configurada.
     // escapeHtml() previne XSS no cliente de e-mail da destinatária.
     if (process.env.RESEND_API_KEY) {
-      const e = (v) => escapeHtml(!v ? "—" : v);
+      const e = (v) =>
+        escapeHtml(!v || (Array.isArray(v) && !v.length) ? "—" : Array.isArray(v) ? v.join(", ") : v);
 
       const linhas = [
         `<tr><td><strong>Nome</strong></td><td>${e(data.nome)}</td></tr>`,
         `<tr><td><strong>Meio de contacto</strong></td><td>${e(data.meioContacto)}</td></tr>`,
         `<tr><td><strong>E-mail</strong></td><td>${e(data.email)}</td></tr>`,
-        data.telefone ? `<tr><td><strong>Telefone</strong></td><td>${e(data.telefone)}</td></tr>` : "",
-        `<tr><td><strong>Destinatário</strong></td><td>${e(data.nomeDestinatario)}</td></tr>`,
-        data.mensagem ? `<tr><td><strong>Mensagem personalizada</strong></td><td>${e(data.mensagem)}</td></tr>` : "",
-        `<tr><td><strong>Valor do vale</strong></td><td>${e(data.valorVale)}€</td></tr>`,
-        `<tr><td><strong>Entrega</strong></td><td>${e(data.entrega)}</td></tr>`,
-        `<tr><td><strong>Tipo de vale</strong></td><td>${e(data.tipoVale)}</td></tr>`,
-        data.entregaRemetenteComo ? `<tr><td><strong>Como receber (remetente)</strong></td><td>${e(data.entregaRemetenteComo)}</td></tr>` : "",
-        data.morada ? `<tr><td><strong>Morada</strong></td><td>${e(data.morada)}</td></tr>` : "",
-        data.contactoDestinatario ? `<tr><td><strong>Contacto destinatário</strong></td><td>${e(data.contactoDestinatario)}</td></tr>` : "",
-        data.dataEnvio ? `<tr><td><strong>Data de envio</strong></td><td>${e(data.dataEnvio)}</td></tr>` : "",
-        data.comentarios ? `<tr><td><strong>Comentários</strong></td><td>${e(data.comentarios)}</td></tr>` : "",
+        `<tr><td><strong>Telefone</strong></td><td>${e(data.telefone)}</td></tr>`,
+        `<tr><td><strong>Data do evento</strong></td><td>${e(data.dataEvento)}</td></tr>`,
+        `<tr><td><strong>Tipo de flores</strong></td><td>${e(data.tipoFlores)}</td></tr>`,
+        `<tr><td><strong>Como enviar flores</strong></td><td>${e(data.comoEnviarFlores)}</td></tr>`,
+        `<tr><td><strong>Como receber quadro</strong></td><td>${e(data.comoReceberQuadro)}</td></tr>`,
+        `<tr><td><strong>Tamanho da moldura</strong></td><td>${e(data.tamanhoMoldura)}</td></tr>`,
+        `<tr><td><strong>Tipo de fundo</strong></td><td>${e(data.tipoFundo)}</td></tr>`,
+        `<tr><td><strong>Elementos extra</strong></td><td>${e(data.elementosExtra)}</td></tr>`,
+        data.elementosExtraOutro ? `<tr><td><strong>Detalhe elemento extra</strong></td><td>${e(data.elementosExtraOutro)}</td></tr>` : "",
+        `<tr><td><strong>Quadros extra</strong></td><td>${e(data.quadrosExtra)}</td></tr>`,
+        data.quantosQuadros ? `<tr><td><strong>Quantos quadros extra</strong></td><td>${e(data.quantosQuadros)}</td></tr>` : "",
+        `<tr><td><strong>Ornamentos de Natal</strong></td><td>${e(data.ornamentosNatal)}</td></tr>`,
+        data.quantosOrnamentos ? `<tr><td><strong>Quantos ornamentos</strong></td><td>${e(data.quantosOrnamentos)}</td></tr>` : "",
+        `<tr><td><strong>Pendentes</strong></td><td>${e(data.pendentes)}</td></tr>`,
+        data.quantosPendentes ? `<tr><td><strong>Quantos pendentes</strong></td><td>${e(data.quantosPendentes)}</td></tr>` : "",
         `<tr><td><strong>Como conheceu</strong></td><td>${e(data.comoConheceu)}</td></tr>`,
         data.nomeFlorista ? `<tr><td><strong>Nome da florista</strong></td><td>${e(data.nomeFlorista)}</td></tr>` : "",
         data.comoConheceuOutro ? `<tr><td><strong>Como conheceu (detalhe)</strong></td><td>${e(data.comoConheceuOutro)}</td></tr>` : "",
+        data.notasAdicionais ? `<tr><td><strong>Notas adicionais</strong></td><td>${e(data.notasAdicionais)}</td></tr>` : "",
       ].filter(Boolean).join("\n");
 
       try {
@@ -288,21 +373,21 @@ export async function POST(request) {
           body: JSON.stringify({
             from: "Flores à Beira-Rio <noreply@floresabeirario.pt>",
             to: ["info@floresabeirario.pt"],
-            subject: `Novo pedido de vale presente — ${data.nome}`,
-            html: `<h2 style="font-family:sans-serif;color:#3A4A78;">Novo pedido de vale presente</h2>
+            subject: `Nova pré-reserva de preservação — ${data.nome}`,
+            html: `<h2 style="font-family:sans-serif;color:#5A1E38;">Nova pré-reserva de preservação</h2>
 <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse;width:100%;max-width:600px;">
   <tbody style="line-height:1.7;">${linhas}</tbody>
 </table>`,
           }),
         });
       } catch (emailErr) {
-        console.error("[vale-presente] email error:", emailErr);
+        console.error("[reservar-preservacao] email error:", emailErr);
       }
     }
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("Vale presente route error:", err);
+    console.error("Reservar preservacao route error:", err);
     return NextResponse.json({ error: "Erro interno." }, { status: 500 });
   }
 }

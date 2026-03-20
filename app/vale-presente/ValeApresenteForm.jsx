@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useId, isValidElement, cloneElement } from "react";
+import PhonePrefix from "../_components/PhonePrefix";
 
 const INIT = {
   nome: "",
   meioContacto: "",
+  telefoneIndicativo: "+351",
   telefone: "",
   email: "",
   nomeDestinatario: "",
@@ -20,17 +22,46 @@ const INIT = {
   comoConheceu: "",
   comoConheceuOutro: "",
   nomeFlorista: "",
+  // Honeypot — invisível para humanos, bots costumam preencher
+  website: "",
 };
 
-function Field({ label, required, hint, error, children }) {
+// ─── Field component ────────────────────────────────────────────────────────
+// Suporta dois modos:
+//   - padrão: <div> com <label htmlFor> associado ao controlo filho
+//   - as="fieldset": <fieldset> + <legend> para grupos de checkboxes (WCAG)
+function Field({ label, required, hint, error, children, as: Tag }) {
+  const autoId = useId();
+
+  if (Tag === "fieldset") {
+    return (
+      <fieldset className="vf-group vf-fieldset-group">
+        <legend className="vf-label vf-legend">
+          {label}
+          {required && <span className="vf-req" aria-hidden="true"> *</span>}
+        </legend>
+        {hint && <p className="vf-hint">{hint}</p>}
+        {children}
+        {error && <p className="vf-error" role="alert">{error}</p>}
+      </fieldset>
+    );
+  }
+
+  const childType = isValidElement(children) ? children.type : null;
+  const isFormControl = childType === "input" || childType === "select" || childType === "textarea";
+  const enhanced = isFormControl ? cloneElement(children, { id: autoId }) : children;
+
   return (
     <div className="vf-group">
-      <label className="vf-label">
+      <label
+        className="vf-label"
+        {...(isFormControl ? { htmlFor: autoId } : {})}
+      >
         {label}
         {required && <span className="vf-req" aria-hidden="true"> *</span>}
       </label>
       {hint && <p className="vf-hint">{hint}</p>}
-      {children}
+      {enhanced}
       {error && <p className="vf-error" role="alert">{error}</p>}
     </div>
   );
@@ -40,6 +71,7 @@ export default function ValeApresenteForm() {
   const [form, setForm] = useState(INIT);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
+  const successRef = useRef(null);
 
   const set = (key, val) => {
     setForm((f) => {
@@ -84,17 +116,25 @@ export default function ValeApresenteForm() {
     if (!form.nome.trim()) e.nome = "Campo obrigatório.";
     if (!form.meioContacto) e.meioContacto = "Escolha um meio de contacto.";
     if (showTelefone && !form.telefone.trim()) e.telefone = "Campo obrigatório.";
+    else if (showTelefone && form.telefone.trim() && !/^\+?[\d\s\-]{7,20}$/.test(form.telefone))
+      e.telefone = "Número de telefone inválido.";
     if (!form.email.trim()) e.email = "Campo obrigatório.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "E-mail inválido.";
     if (!form.nomeDestinatario.trim()) e.nomeDestinatario = "Campo obrigatório.";
     if (!form.valorVale) e.valorVale = "Campo obrigatório.";
     else if (Number(form.valorVale) < 300) e.valorVale = "O valor mínimo é 300€.";
+    else if (Number(form.valorVale) > 100_000) e.valorVale = "O valor introduzido não é válido.";
     if (!form.entrega) e.entrega = "Campo obrigatório.";
     if (!form.tipoVale) e.tipoVale = "Campo obrigatório.";
     if (showEntregaRemetenteComo && !form.entregaRemetenteComo) e.entregaRemetenteComo = "Campo obrigatório.";
     if (showMorada && !form.morada.trim()) e.morada = "Campo obrigatório.";
     if (showContactoDestinatario && !form.contactoDestinatario.trim()) e.contactoDestinatario = "Campo obrigatório.";
+    if (form.dataEnvio) {
+      const year = parseInt(form.dataEnvio.split("-")[0], 10);
+      if (isNaN(year) || year < 2020 || year > 2099) e.dataEnvio = "Data inválida. Verifique o ano introduzido.";
+    }
     if (!form.comoConheceu) e.comoConheceu = "Campo obrigatório.";
+    if (showNomeFlorista && !form.nomeFlorista.trim()) e.nomeFlorista = "Campo obrigatório.";
     return e;
   }
 
@@ -104,7 +144,7 @@ export default function ValeApresenteForm() {
     setErrors(errs);
     if (Object.keys(errs).length) {
       document.querySelector(".vf-input-err, [role='alert']")
-        ?.closest(".vf-group")
+        ?.closest(".vf-group, fieldset")
         ?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
@@ -113,12 +153,19 @@ export default function ValeApresenteForm() {
       const res = await fetch("/api/vale-presente", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        // Só combina indicativo + número se o número local estiver preenchido.
+        // Evita enviar apenas o indicativo (ex: "+351") quando o campo está vazio.
+        body: JSON.stringify({
+          ...form,
+          telefone: form.telefone.trim()
+            ? `${form.telefoneIndicativo}${form.telefone.trim()}`
+            : "",
+        }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(JSON.stringify(json));
       setStatus("success");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(() => successRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
     } catch (err) {
       console.error("[vale-presente] submit error:", err);
       setStatus("error");
@@ -129,12 +176,13 @@ export default function ValeApresenteForm() {
 
   if (status === "success") {
     return (
-      <div className="vf-success" role="status">
+      <div className="vf-success" role="status" ref={successRef}>
         <div className="vf-success-icon" aria-hidden="true">✓</div>
         <h2 className="vf-success-title">Pedido enviado!</h2>
         <p className="vf-success-text">
           Entraremos em contacto por {contactoLabel} em breve com a confirmação dos dados
-          e as instruções de pagamento.{" "}
+          e as <strong>instruções de pagamento</strong>.
+          Só avançamos com a produção do vale <strong>após o pagamento</strong>.{" "}
           Obrigado por escolher a Flores à Beira-Rio.
         </p>
       </div>
@@ -164,9 +212,21 @@ export default function ValeApresenteForm() {
         </Field>
 
         {showTelefone && (
-          <Field label="Número de telemóvel" required error={errors.telefone}
-            hint="Todas as comunicações serão feitas para este número.">
-            <input type="tel" {...inp("telefone")} placeholder="+351 912 345 678" autoComplete="tel" />
+          <Field label="Número de telemóvel" required error={errors.telefone}>
+            <div className="vf-phone-wrap">
+              <PhonePrefix
+                value={form.telefoneIndicativo}
+                onChange={(code) => set("telefoneIndicativo", code)}
+                btnClassName="vf-input vf-phone-prefix"
+              />
+              <input
+                type="tel"
+                {...inp("telefone")}
+                className={`vf-input vf-phone-number${errors.telefone ? " vf-input-err" : ""}`}
+                placeholder="912 345 678"
+                autoComplete="tel-national"
+              />
+            </div>
           </Field>
         )}
 
@@ -192,7 +252,7 @@ export default function ValeApresenteForm() {
 
         <Field label="Valor do vale (€)" required error={errors.valorVale}
           hint="Valor mínimo: 300€.">
-          <input type="number" {...inp("valorVale")} min={300} step={1} placeholder="300" />
+          <input type="number" {...inp("valorVale")} min={300} max={100000} step={1} placeholder="300" />
         </Field>
       </div>
 
@@ -250,7 +310,7 @@ export default function ValeApresenteForm() {
               ? "Data ideal para envio por correio"
               : "Data ideal para envio do vale digital"}
             hint="Deixe em branco se for indiferente.">
-            <input type="date" {...inp("dataEnvio")} min={today} />
+            <input type="date" {...inp("dataEnvio")} min={today} max="2099-12-31" />
           </Field>
         )}
       </div>
@@ -278,7 +338,7 @@ export default function ValeApresenteForm() {
         </Field>
 
         {showNomeFlorista && (
-          <Field label="Qual o nome da florista que lhe falou de nós?">
+          <Field label="Qual o nome da florista que lhe falou de nós?" required error={errors.nomeFlorista}>
             <textarea {...inp("nomeFlorista")} rows={2} />
           </Field>
         )}
@@ -289,6 +349,24 @@ export default function ValeApresenteForm() {
           </Field>
         )}
       </div>
+
+      {/* Honeypot anti-spam — oculto para utilizadores, visível para bots */}
+      <div className="vf-hp-field" aria-hidden="true">
+        <input
+          type="text"
+          name="website"
+          value={form.website}
+          onChange={(e) => set("website", e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
+      {Object.keys(errors).length > 0 && (
+        <p className="vf-errors-summary" role="alert">
+          Existem campos por preencher ou com erros. Por favor, verifique o formulário acima antes de submeter.
+        </p>
+      )}
 
       {status === "error" && (
         <p className="vf-submit-error" role="alert">

@@ -1,0 +1,142 @@
+/* app/_components/PhonePrefix.css */
+
+.pp-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* ── Trigger button ── */
+.pp-trigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.pp-trigger:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+  border-radius: 10px 0 0 10px;
+  z-index: 1;
+  position: relative;
+}
+
+.pp-flag {
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.pp-code {
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+}
+
+.pp-arrow {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  margin-left: 1px;
+}
+
+/* ── Dropdown panel ── */
+.pp-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 200;
+  min-width: 240px;
+  max-width: 300px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+}
+
+/* ── Search input ── */
+.pp-search-wrap {
+  padding: 10px 10px 6px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.pp-search {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 7px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-radius: 7px;
+  font-size: 0.85rem;
+  outline: none;
+  background: #fafafa;
+  color: #1a1a1a;
+}
+
+.pp-search:focus {
+  border-color: rgba(0, 0, 0, 0.35);
+  background: #fff;
+}
+
+/* ── List ── */
+.pp-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  max-height: 220px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.pp-list::-webkit-scrollbar {
+  width: 5px;
+}
+.pp-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.pp-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 4px;
+}
+
+/* ── Options ── */
+.pp-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #1a1a1a;
+  transition: background 0.1s;
+}
+
+.pp-option:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.pp-option-active {
+  background: rgba(0, 0, 0, 0.07);
+  font-weight: 600;
+}
+
+.pp-option-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pp-option-code {
+  font-size: 0.78rem;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.pp-empty {
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  color: #888;
+  font-style: italic;
+}
