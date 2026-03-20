@@ -13,14 +13,14 @@ export const metadata = {
     description:
       "Reserve a preservação das suas flores de casamento, batizado ou evento especial. Feito à mão em Coimbra, com carinho e dedicação.",
     url: "https://floresabeirario.pt/reservar-preservacao",
-    imagePath: "https://floresabeirario.pt/reserva.webp",
+    imagePath: "https://floresabeirario.pt/og-homepage.jpg",
     imageAlt: "Reserva de preservação de flores da Flores à Beira-Rio",
   }),
   twitter: buildTwitterCard({
     title: "Reservar Preservação de Flores | Flores à Beira-Rio",
     description:
       "Reserve a preservação das suas flores e guarde a memória do seu dia especial para sempre.",
-    imagePath: "https://floresabeirario.pt/reserva.webp",
+    imagePath: "https://floresabeirario.pt/og-homepage.jpg",
   }),
   alternates: {
     canonical: "https://floresabeirario.pt/reservar-preservacao",
