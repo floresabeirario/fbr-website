@@ -13,7 +13,7 @@ const steps = [
     imgAlt: "Calendário de marcação de reserva de preservação de flores",
     link: FORM_URL,
     linkLabel: "Reservar a minha data",
-    external: true,
+    external: false,
   },
   {
     number: "02",

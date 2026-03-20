@@ -140,7 +140,7 @@ export default function MomentosEspeciais() {
             com a antecedência necessária.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", justifyContent: "center" }}>
-            <a href={FORM} target="_blank" rel="noopener noreferrer" style={{
+            <a href={FORM} style={{
               display: "inline-block", backgroundColor: "#3D6B5E", color: "#FAF7F0",
               padding: "15px 34px", borderRadius: "100px", textDecoration: "none",
               fontWeight: 600, fontSize: "0.82rem", letterSpacing: "1.4px",

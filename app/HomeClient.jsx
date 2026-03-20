@@ -427,7 +427,7 @@ export default function HomeClient() {
                 Reserve a sua vaga com antecedência, as datas em época de casamentos esgotam rapidamente.
               </p>
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-noiva-ghost">Reservar Data</a>
+                <a href={FORM_URL} className="btn-noiva-ghost">Reservar Data</a>
               </div>
             </div>
           </motion.div>

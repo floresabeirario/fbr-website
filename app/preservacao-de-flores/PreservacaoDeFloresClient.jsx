@@ -259,7 +259,7 @@ export default function PreservacaoDeFloresClient() {
               Casamento, licenciatura, batizado, noivado. As flores que estiveram presentes nesses momentos não precisam de se perder. Preserve-as numa obra de arte botânica feita para durar décadas.
             </p>
             <div className="cta-row" style={{ marginBottom: "28px" }}>
-              <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              <a href={FORM_URL} className="btn-primary">
                 Preservar as Minhas Flores
               </a>
               <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">

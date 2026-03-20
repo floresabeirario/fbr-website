@@ -11,16 +11,17 @@
 */
 
 /* ═══════════════════════════════════════════════
-   PAGE — gradiente linho quente com blobs de profundidade
+   PAGE — gradiente linho quente (passpartout do quadro)
 ═══════════════════════════════════════════════ */
 .rp-page {
   min-height: 100svh;
-  background:
-    radial-gradient(ellipse 820px 620px at 12% 18%, rgba(212, 176, 96, 0.24) 0%, transparent 65%),
-    radial-gradient(ellipse 640px 760px at 88% 78%, rgba(196, 132, 107, 0.20) 0%, transparent 62%),
-    radial-gradient(ellipse 520px 420px at 58% 42%, rgba(224, 196, 148, 0.16) 0%, transparent 56%),
-    radial-gradient(ellipse 400px 300px at 75% 15%, rgba(240, 220, 170, 0.14) 0%, transparent 50%),
-    linear-gradient(170deg, #FDFAF5 0%, #F5EDE0 38%, #EDE0CC 70%, #E5D4B8 100%);
+  background: linear-gradient(
+    170deg,
+    #FDFAF5 0%,
+    #F5EDE0 38%,
+    #EDE0CC 70%,
+    #E5D4B8 100%
+  );
 }
 
 /* ═══════════════════════════════════════════════
@@ -235,20 +236,16 @@
   margin: 0 0 20px;
 }
 
-/* ── Cards — vidro fosco sobre o gradiente linho ── */
+/* ── Cards — brancos sobre o gradiente linho ── */
 .pf-section {
   padding: clamp(24px, 4vw, 36px);
   margin: 0 0 12px;
-  background: rgba(255, 252, 248, 0.50);
-  backdrop-filter: blur(32px) saturate(160%);
-  -webkit-backdrop-filter: blur(32px) saturate(160%);
+  background: #FFFFFF;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(90, 64, 40, 0.10);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.90),
-    inset 0 -1px 0 rgba(212, 176, 96, 0.08),
-    0 4px 16px rgba(42, 28, 16, 0.07),
-    0 20px 60px rgba(42, 28, 16, 0.11);
+    0 2px 8px rgba(42, 28, 16, 0.06),
+    0 12px 40px rgba(42, 28, 16, 0.08);
 }
 
 .pf-section:last-of-type {
@@ -304,13 +301,12 @@
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.95rem;
   color: #1C1008;
-  background: rgba(250, 246, 238, 0.68);
-  border: 1.5px solid rgba(212, 185, 148, 0.55);
+  background: #FAF6EE;
+  border: 1.5px solid #DEC8A0;
   border-radius: 10px;
   transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
   appearance: none;
   -webkit-appearance: none;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.80);
 }
 
 .pf-input::placeholder {
@@ -318,17 +314,15 @@
 }
 
 .pf-input:hover {
-  border-color: rgba(180, 148, 100, 0.75);
-  background: rgba(255, 255, 255, 0.82);
+  border-color: #C4A878;
+  background: #fff;
 }
 
 .pf-input:focus-visible {
   outline: none;
   border-color: #5A4030;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.90),
-    0 0 0 3px rgba(90, 64, 48, 0.12);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(90, 64, 48, 0.12);
 }
 
 .pf-input-err {
@@ -563,15 +557,12 @@ input[type="date"].pf-input {
   padding: clamp(48px, 7vw, 72px) clamp(28px, 5vw, 56px);
   max-width: 640px;
   margin: 0 auto;
-  background: rgba(255, 252, 248, 0.55);
-  backdrop-filter: blur(32px) saturate(160%);
-  -webkit-backdrop-filter: blur(32px) saturate(160%);
+  background: #fff;
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(90, 64, 40, 0.10);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.90),
-    0 4px 16px rgba(42, 28, 16, 0.07),
-    0 20px 60px rgba(42, 28, 16, 0.11);
+    0 2px 8px rgba(42, 28, 16, 0.06),
+    0 12px 40px rgba(42, 28, 16, 0.08);
 }
 
 .pf-success-icon {
@@ -635,10 +626,7 @@ input[type="date"].pf-input {
 ═══════════════════════════════════════════════ */
 @media (max-width: 540px) {
   .rp-page {
-    background:
-      radial-gradient(ellipse 500px 400px at 5% 20%, rgba(212, 176, 96, 0.20) 0%, transparent 65%),
-      radial-gradient(ellipse 400px 500px at 90% 80%, rgba(196, 132, 107, 0.16) 0%, transparent 60%),
-      linear-gradient(180deg, #FDFAF5 0%, #E5D4B8 100%);
+    background: linear-gradient(180deg, #FDFAF5 0%, #E5D4B8 100%);
   }
 
   .rp-hero {

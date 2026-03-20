@@ -187,7 +187,7 @@ export default function PerguntasFrequentesClient() {
             >
               Agendar Sessão Gratuita
             </a>
-            <a href={FORM} target="_blank" rel="noopener noreferrer" className="btn-primary">
+            <a href={FORM} className="btn-primary">
               Reservar Data
             </a>
           </div>
