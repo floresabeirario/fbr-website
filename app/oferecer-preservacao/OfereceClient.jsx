@@ -299,7 +299,7 @@ export default function OfereceClient() {
           </p>
           <div className="cta-row-vale" style={{ marginBottom: "1.2rem" }}>
             <Link href="/vale-presente" className="btn-azul-vale">Encomendar Vale Oferta</Link>
-            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-primary-vale">Reservar Data</a>
+            <a href={FORM_URL} className="btn-primary-vale">Reservar Data</a>
           </div>
           <p style={{ fontSize: "0.8rem", color: "rgba(250,247,240,0.55)" }}>A partir de 300€ · Sem data de validade</p>
         </Reveal>

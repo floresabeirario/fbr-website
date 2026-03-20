@@ -664,7 +664,7 @@ export default function Sustentabilidade() {
               Tempo de entrega estimado: 4 a 6 semanas ap&#243;s recebermos as flores.
             </p>
             <div className="cta-row" style={{ marginBottom: "28px" }}>
-              <a href={FORM} target="_blank" rel="noopener noreferrer" className="btn-primary">Reservar a Minha Data</a>
+              <a href={FORM} className="btn-primary">Reservar a Minha Data</a>
               <a href="/como-funciona" className="btn-outline">Ver Como Funciona</a>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px", fontSize: "0.82rem" }}>

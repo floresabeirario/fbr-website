@@ -77,7 +77,7 @@ export default function HomeHero() {
           transition={{ delay: 0.7, duration: 0.8 }}
           style={{ position: "absolute", bottom: "clamp(44px,7vh,80px)", left: 0, right: 0, display: "flex", justifyContent: "center" }}
         >
-          <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="hero-btn">Reservar Data</a>
+          <a href={FORM_URL} className="hero-btn">Reservar Data</a>
         </motion.div>
       </motion.div>
     </section>

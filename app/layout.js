@@ -41,7 +41,7 @@ export const metadata = {
       "Transformamos o seu bouquet numa obra de arte botânica que dura décadas. Feito à mão em Coimbra.",
     images: [
       {
-        url: "/fotoquadro1.webp",
+        url: "/og-homepage.jpg",
         width: 1200,
         height: 630,
         alt: "Quadro de flores prensadas, Flores à Beira-Rio",
@@ -53,7 +53,7 @@ export const metadata = {
     title: "Flores à Beira-Rio | Preservação de Flores em Coimbra",
     description:
       "Transformamos o seu bouquet numa obra de arte botânica que dura décadas.",
-    images: ["/fotoquadro1.webp"],
+    images: ["/og-homepage.jpg"],
   },
   robots: {
     index: true,

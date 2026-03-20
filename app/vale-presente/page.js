@@ -13,14 +13,14 @@ export const metadata = {
     description:
       "Ofereça um vale presente de preservação de flores. A partir de 300€, sem data de validade. Feito à mão em Coimbra.",
     url: "https://floresabeirario.pt/vale-presente",
-    imagePath: "https://floresabeirario.pt/images/vale1.webp",
+    imagePath: "https://floresabeirario.pt/og-homepage.jpg",
     imageAlt: "Vale presente de preservação de flores da Flores à Beira-Rio",
   }),
   twitter: buildTwitterCard({
     title: "Reservar Vale Presente | Flores à Beira-Rio",
     description:
       "Ofereça uma memória que dura para sempre. Vale presente de preservação de flores, feito à mão.",
-    imagePath: "https://floresabeirario.pt/images/vale1.webp",
+    imagePath: "https://floresabeirario.pt/og-homepage.jpg",
   }),
   alternates: {
     canonical: "https://floresabeirario.pt/vale-presente",

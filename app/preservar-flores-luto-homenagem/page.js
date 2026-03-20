@@ -47,7 +47,7 @@ export default function PreservarFloresLuto() {
             Eternize as flores de uma cerimónia fúnebre como forma de homenagem duradoura. Um gesto de carinho permanente, preservado com todo o respeito e sensibilidade.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", justifyContent: "center" }}>
-            <a href={FORM} target="_blank" rel="noopener noreferrer" style={{
+            <a href={FORM} style={{
               display: "inline-block", backgroundColor: "#3D6B5E", color: "#FAF7F0",
               padding: "15px 34px", borderRadius: "100px", textDecoration: "none",
               fontWeight: 600, fontSize: "0.82rem", letterSpacing: "1.4px",
