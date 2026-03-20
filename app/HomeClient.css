@@ -346,7 +346,7 @@ main .eyebrow { color: var(--section-accent, var(--green)); }
   min-height: 48px;
 }
 .gift-card-btn:hover {
-  background: #7B59A8;
+  background: #9B72D0;
   color: #FAF7F0;
   transform: translateY(-3px);
 }

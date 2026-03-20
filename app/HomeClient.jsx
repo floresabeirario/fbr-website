@@ -163,7 +163,11 @@ export default function HomeClient() {
         const dist = Math.abs(r.top + r.height / 2 - mid);
         if (dist < bestDist) { bestDist = dist; best = el.dataset.bg; }
       });
-      if (best) applyTheme(best);
+      if (best) {
+        applyTheme(best);
+      } else {
+        document.documentElement.style.setProperty("--nav-cta-color", "#3D6B5E");
+      }
     };
 
     findActive();
