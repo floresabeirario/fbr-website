@@ -124,14 +124,14 @@
 ═══════════════════════════════════════════════ */
 .vp-steps-bar {
   background: linear-gradient(135deg, #5B6B9E 0%, #3A4A78 100%);
-  padding: clamp(32px, 4vw, 48px) clamp(24px, 5vw, 64px);
+  padding: clamp(36px, 5vw, 56px) clamp(32px, 6vw, 80px);
 }
 
 .vp-steps {
   list-style: none;
   margin: 0 auto;
   padding: 0;
-  max-width: 720px;
+  max-width: 1100px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
@@ -141,8 +141,8 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 6px;
-  padding: 0 clamp(20px, 3vw, 36px);
+  gap: 8px;
+  padding: 0 clamp(24px, 4vw, 56px);
   border-right: 1px solid rgba(255, 255, 255, 0.25);
 }
 
@@ -152,7 +152,7 @@
 
 .vp-step-n {
   font-family: "TAN-MEMORIES", serif;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: rgba(237, 181, 144, 0.55);
   line-height: 1;
   margin-bottom: 6px;
@@ -160,7 +160,7 @@
 
 .vp-step-title {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.92rem;
   font-weight: 600;
   color: #fff;
   margin: 0;
@@ -168,8 +168,8 @@
 
 .vp-step-text {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.73rem;
-  font-weight: 300;
+  font-size: 0.82rem;
+  font-weight: 400;
   color: rgba(255, 255, 255, 0.80);
   line-height: 1.65;
   margin: 0;
@@ -517,7 +517,7 @@ input[type="date"].vf-input {
   }
 
   .vp-steps {
-    max-width: 540px;
+    max-width: 720px;
   }
 }
 
