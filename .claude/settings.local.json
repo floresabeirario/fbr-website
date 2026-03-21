@@ -52,7 +52,16 @@
       "Bash(curl -s -X POST https://api.monday.com/v2 -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjYzNDY2NjA2MiwiYWFpIjoxMSwidWlkIjo3NDgzOTMwMCwiaWFkIjoiMjAyNi0wMy0xOFQxMjozNjoxMy43NDlaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MjkwNTg1MDcsInJnbiI6ImV1YzEifQ.IEqSyIHe8IP6Pd2GdYmcxV4uSJBDjA_VKeW6sSay1-U' -H 'Content-Type: application/json' -H 'API-Version: 2024-10' -d '{query:{ boards\\(ids: [1952575566]\\) { columns { id title type settings_str } } }}')",
       "Bash(curl -s -X POST https://api.monday.com/v2 -H \"Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjYzNDY2NjA2MiwiYWFpIjoxMSwidWlkIjo3NDgzOTMwMCwiaWFkIjoiMjAyNi0wMy0xOFQxMjozNjoxMy43NDlaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MjkwNTg1MDcsInJnbiI6ImV1YzEifQ.IEqSyIHe8IP6Pd2GdYmcxV4uSJBDjA_VKeW6sSay1-U\" -H \"Content-Type: application/json\" -H \"API-Version: 2024-10\" -d \"{\"\"query\"\":\"\"{ boards\\(ids: [1952575566]\\) { columns { id title settings_str } } }\"\"}\")",
       "Bash(find /c/Users/maria/Documents/fbr-website/fbr-website -type f -name *.env*)",
-      "WebFetch(domain:fonts.google.com)"
+      "WebFetch(domain:fonts.google.com)",
+      "Bash(grep -l 'export const metadata' /c/Users/maria/Documents/fbr-website/fbr-website/app/*/page.js /c/Users/maria/Documents/fbr-website/fbr-website/app/*/page.jsx /c/Users/maria/Documents/fbr-website/fbr-website/app/*/[slug]/page.js)",
+      "Bash(for f:*)",
+      "Bash(do if:*)",
+      "Bash(then echo:*)",
+      "Bash(fi)",
+      "Bash(done)",
+      "Bash(grep -l \"RecriacaoClient\" /c/Users/maria/Documents/fbr-website/fbr-website/app/recriacao/*)",
+      "Bash(ls -d /c/Users/maria/Documents/fbr-website/fbr-website/app/*/)",
+      "Bash(xargs -I {} basename {})"
     ]
   }
 }

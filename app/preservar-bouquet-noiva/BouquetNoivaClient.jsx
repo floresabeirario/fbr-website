@@ -6,16 +6,16 @@ const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, tr
 
 const FEATURES = [
   {
-    title: "Flores recebidas no dia certo",
-    desc: "As flores chegam ao atelier no dia da cerimónia ou no seguinte para garantir cores vivas e resultado final mais rico.",
+    title: "Entregue o bouquet até 5 dias depois",
+    desc: "Após o casamento, envie-nos o bouquet o mais rápido possível. O ideal é 1 a 3 dias; aceitamos até 5 dias após a cerimónia. Enquanto espera, mantenha-o num vaso com água fresca, longe do calor e da luz solar.",
   },
   {
-    title: "Composição aprovada por si",
-    desc: "Enviamos fotografia da composição antes de selar definitivamente. Nada fica confirmado sem o seu acordo.",
+    title: "Aprove a composição antes de selar",
+    desc: "Quando a composição estiver pronta, recebe fotografias por e-mail e tem 72 horas para aprovar ou pedir alterações. Nada é definitivo sem o seu acordo.",
   },
   {
-    title: "Vidro museu anti-UV",
-    desc: "UltraVue® UV70, o mesmo usado em museus. Elimina reflexos e protege as cores durante décadas.",
+    title: "Qualidade museu que dura décadas",
+    desc: "Vidro UltraVue® anti-UV, cartão e cola de pH neutro, moldura feita à medida em Coimbra. Os mesmos materiais usados em museus e arquivos profissionais.",
   },
 ];
 
@@ -62,10 +62,10 @@ export default function BouquetNoivaClient() {
             <em>nos seus votos</em>
           </h2>
           <p className="momento-content-p">
-            O bouquet de noiva é, muitas vezes, a única peça que sobrevive do dia mais importante da vossa vida. Em vez de o ver murchar ao longo de dias, preservamo-lo numa obra de arte botânica que pode durar décadas.
+            O bouquet de noiva é, para muitos casais, a peça mais simbólica do dia do casamento. Em vez de o ver murchar ao longo dos dias seguintes, pode transformá-lo num quadro de arte botânica que dura décadas, pronto a pendurar na parede de casa.
           </p>
           <p className="momento-content-p">
-            Cada pétala é tratada individualmente através de prensagem botânica artesanal, sem resinas nem químicos sintéticos. O resultado é emoldurado com vidro museu anti-UV e enviado para a sua morada, pronto a pendurar.
+            O processo começa com a reserva da data, idealmente assim que souber quando é o casamento. Nos dias seguintes à cerimónia, entrega-nos o bouquet e nós tratamos de tudo: prensagem pétala a pétala, composição artística, aprovação por si, e emolduramento com vidro museu anti-UV. Pode também incluir na composição o convite do casamento, votos manuscritos, fitas, ou qualquer elemento com significado especial.
           </p>
         </motion.div>
       </section>
@@ -103,7 +103,7 @@ export default function BouquetNoivaClient() {
             <em>do grande dia</em>
           </h2>
           <p className="momento-final-cta-p">
-            As vagas são limitadas e preenchidas por ordem de reserva. Recomendamos reservar com pelo menos dois meses de antecedência em relação ao casamento.
+            As vagas são limitadas, especialmente entre maio e setembro. Recomendamos reservar assim que souber a data do casamento. Preços a partir de 300€, com pagamento em três prestações.
           </p>
           <div className="momento-ctas">
             <a href={FORM_URL} className="btn-primary">Reservar Data</a>
@@ -112,7 +112,7 @@ export default function BouquetNoivaClient() {
           <div className="momento-links">
             {[
               { href: "/como-funciona", label: "Como funciona" },
-              { href: "/opcoes-e-precos", label: "Ver preços" },
+              { href: "/opcoes-e-precos", label: "Opções e preços" },
               { href: "/perguntas-frequentes", label: "Perguntas frequentes" },
             ].map((l) => (
               <a key={l.href} href={l.href} className="momento-link">{l.label}</a>

@@ -7,15 +7,15 @@ const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, tr
 const FEATURES = [
   {
     title: "Para qualquer aniversário",
-    desc: "Seja o vigésimo-quinto, o quinquagésimo ou qualquer outro. Cada data tem o seu significado e merece ser guardada.",
+    desc: "De casamento, de nascimento, ou simplesmente um aniversário especial. Cada data tem o seu significado e as flores que a marcaram merecem ser preservadas.",
   },
   {
-    title: "Ramo completo ou flores escolhidas",
-    desc: "Trabalhamos com o ramo inteiro ou apenas com as flores que deseja preservar. A escolha é sua.",
+    title: "Todo o ramo ou apenas algumas flores",
+    desc: "Trabalhamos com o bouquet inteiro ou apenas com as flores que deseja preservar. Pode também incluir fotografias, bilhetes ou outros elementos com significado.",
   },
   {
-    title: "Composição personalizada",
-    desc: "Desenhamos a composição à medida do espaço e do gosto, e enviamos fotografia para aprovação antes de selar.",
+    title: "Composição aprovada por si",
+    desc: "Desenhamos a composição à medida e enviamos fotografias para aprovação. Tem 72 horas para aprovar ou pedir alterações antes de selarmos o quadro.",
   },
 ];
 
@@ -39,7 +39,7 @@ export default function AniversarioClient() {
             <em>Aniversário</em>
           </h1>
           <p className="momento-desc">
-            Guarde para sempre as flores de um aniversário especial. Uma memória transformada em arte botânica, emoldurada com vidro museu.
+            Guarde para sempre as flores de um aniversário especial. Uma memória transformada em arte botânica, emoldurada com vidro museu anti-UV e feita à mão em Coimbra.
           </p>
           <div className="momento-ctas">
             <a href={FORM_URL} className="btn-primary">Reservar Data</a>
@@ -62,10 +62,10 @@ export default function AniversarioClient() {
             <em>mais do que uma semana</em>
           </h2>
           <p className="momento-content-p">
-            Flores de aniversário duram, em média, uma semana. A emoção que representam pode durar toda uma vida. Preservamos essas flores numa obra de arte botânica feita à mão, para que a memória desse dia não se perca com elas.
+            As flores de aniversário duram, em média, uma semana. A emoção que representam pode durar toda uma vida. Através de prensagem botânica artesanal, transformamos essas flores num quadro que fica permanentemente em casa.
           </p>
           <p className="momento-content-p">
-            Seja um aniversário redondo, um momento pessoal importante ou simplesmente um ramo com significado, tratamos cada peça com o mesmo cuidado artesanal e os mesmos materiais de qualidade museu.
+            Basta entregar-nos as flores nos dias seguintes ao aniversário (até 5 dias, idealmente 1 a 3). Nós tratamos da prensagem, da composição artística, da aprovação consigo, e do emolduramento com vidro museu anti-UV e moldura feita à medida em Coimbra.
           </p>
         </motion.div>
       </section>
@@ -103,7 +103,7 @@ export default function AniversarioClient() {
             <em>numa memória</em>
           </h2>
           <p className="momento-final-cta-p">
-            As flores ficam. A data fica. Reserve a sua vaga e garanta que esse aniversário especial tem um lugar permanente em casa.
+            Reserve a sua vaga e garanta que esse aniversário fica para sempre. Preços a partir de 300€, com pagamento em três prestações.
           </p>
           <div className="momento-ctas">
             <a href={FORM_URL} className="btn-primary">Reservar Data</a>
@@ -112,7 +112,7 @@ export default function AniversarioClient() {
           <div className="momento-links">
             {[
               { href: "/como-funciona", label: "Como funciona" },
-              { href: "/opcoes-e-precos", label: "Ver preços" },
+              { href: "/opcoes-e-precos", label: "Opções e preços" },
               { href: "/perguntas-frequentes", label: "Perguntas frequentes" },
             ].map((l) => (
               <a key={l.href} href={l.href} className="momento-link">{l.label}</a>

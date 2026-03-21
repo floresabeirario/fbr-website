@@ -6,27 +6,27 @@ const MOMENTOS = [
   {
     href: "/preservar-bouquet-noiva",
     title: "Bouquet de Noiva",
-    desc: "O serviço mais procurado. Preservamos o bouquet de casamento numa obra de arte botânica que dura décadas.",
+    desc: "O serviço mais procurado. Preservamos o bouquet do casamento num quadro de arte botânica feito à mão em Coimbra.",
   },
   {
     href: "/preservar-flores-luto-homenagem",
     title: "Homenagem e Luto",
-    desc: "Eternize as flores de uma cerimónia fúnebre como forma de homenagem duradoura.",
+    desc: "As flores de uma cerimónia de despedida transformadas numa homenagem permanente, com todo o respeito que o momento exige.",
   },
   {
     href: "/preservar-flores-batizado-nascimento",
     title: "Batizado e Nascimento",
-    desc: "Guarde as flores do batizado ou da maternidade para recordar esse momento único.",
+    desc: "As flores do batizado ou da maternidade preservadas em arte botânica que acompanha o seu filho ao longo da vida.",
   },
   {
     href: "/preservar-flores-aniversario",
     title: "Aniversário",
-    desc: "Transforme flores de aniversário numa memória permanente, cheia de significado.",
+    desc: "Flores de um aniversário especial que merecem durar mais do que uma semana. Uma memória transformada em quadro.",
   },
   {
     href: "/preservar-flores-pedido-casamento",
     title: "Pedido de Casamento",
-    desc: "As flores do pedido merecem ser preservadas tanto quanto as do casamento.",
+    desc: "As flores do pedido marcam o início da história. Preserve-as antes mesmo do casamento.",
   },
 ];
 
@@ -55,6 +55,27 @@ export default function MomentosEspeciaisClient() {
             <a href={FORM_URL} className="btn-primary">Reservar Data</a>
             <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">WhatsApp</a>
           </div>
+        </motion.div>
+      </section>
+
+      <section className="momento-content momento-content--warm">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.75 }}
+          className="momento-content-inner"
+        >
+          <h2 className="momento-content-h2">
+            Flores que contam<br />
+            <em>a sua história</em>
+          </h2>
+          <p className="momento-content-p">
+            Na Flores à Beira-Rio, transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Cada pétala é prensada individualmente e emoldurada com vidro museu anti-UV, num quadro feito à mão no nosso atelier em Coimbra.
+          </p>
+          <p className="momento-content-p">
+            Preços a partir de 300€, com pagamento em três prestações. O processo demora até 6 meses e enviamos para toda a Europa.
+          </p>
         </motion.div>
       </section>
 
@@ -87,8 +108,7 @@ export default function MomentosEspeciaisClient() {
         >
           <h2 className="momentos-hub-cta-h2">Reserve a sua vaga</h2>
           <p className="momentos-hub-cta-p">
-            As vagas são limitadas, garanta a preservação das suas flores
-            com a antecedência necessária.
+            As vagas são limitadas, especialmente entre maio e setembro. Reserve assim que souber a data do evento.
           </p>
           <div className="momento-ctas">
             <a href={FORM_URL} className="btn-primary">Reservar Data</a>

@@ -6,16 +6,16 @@ const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, tr
 
 const FEATURES = [
   {
-    title: "Flores da cerimónia e do hospital",
-    desc: "Preservamos ramos do batizado, flores do hospital, arranjos do quarto do bebé. Qualquer flor desse início de vida.",
+    title: "Flores da cerimónia ou da maternidade",
+    desc: "Preservamos ramos do batizado, flores oferecidas no hospital, ou arranjos do quarto do bebé. Qualquer flor desse início de vida pode ser transformada em arte.",
   },
   {
-    title: "Arte que cresce com o seu filho",
-    desc: "A peça que hoje decora o quarto do bebé torna-se, com o tempo, numa memória de adulto cheia de significado.",
+    title: "Uma peça que cresce com o seu filho",
+    desc: "O quadro que hoje decora o quarto do bebé torna-se, com o tempo, numa recordação de adulto cheia de significado. Uma memória para toda a vida.",
   },
   {
-    title: "Materiais de arquivo profissional",
-    desc: "Vidro museu anti-UV e técnicas de conservação que garantem décadas de durabilidade sem perda de cor.",
+    title: "Inclua elementos especiais",
+    desc: "Pode adicionar ao quadro a pulseira da maternidade, uma fotografia, fitas, ou qualquer elemento com significado especial. A composição é sempre aprovada por si.",
   },
 ];
 
@@ -62,10 +62,10 @@ export default function BatizadoNascimentoClient() {
             <em>de uma vida inteira</em>
           </h2>
           <p className="momento-content-p">
-            Há momentos que marcam o início de tudo. O nascimento de um filho, o dia do batizado, a primeira vez que os pais seguraram as flores ao lado do berço. São memórias que merecem existir para além de uma fotografia.
+            O nascimento de um filho ou o dia do batizado são momentos que marcam o início de tudo. As flores que os acompanharam carregam a emoção desses primeiros dias e merecem mais do que uma semana num vaso.
           </p>
           <p className="momento-content-p">
-            Transformamos as flores desse dia numa obra de arte botânica feita à mão, emoldurada com vidro museu, pronta a ocupar o seu lugar em casa durante as próximas décadas.
+            Através de prensagem botânica artesanal, transformamos essas flores num quadro feito à mão, emoldurado com vidro museu anti-UV e moldura feita à medida em Coimbra. Basta entregar-nos as flores nos dias seguintes à cerimónia e nós tratamos de tudo, incluindo o envio do quadro finalizado para a sua morada.
           </p>
         </motion.div>
       </section>
@@ -103,7 +103,7 @@ export default function BatizadoNascimentoClient() {
             <em>da história</em>
           </h2>
           <p className="momento-final-cta-p">
-            As flores do batizado ou do nascimento não precisam de ficar apenas na memória. Reserve a sua vaga e garanta que esse dia fica para sempre em casa.
+            As flores do batizado ou do nascimento não precisam de ficar apenas nas fotografias. Preços a partir de 300€, com pagamento em três prestações.
           </p>
           <div className="momento-ctas">
             <a href={FORM_URL} className="btn-primary">Reservar Data</a>
@@ -112,7 +112,7 @@ export default function BatizadoNascimentoClient() {
           <div className="momento-links">
             {[
               { href: "/como-funciona", label: "Como funciona" },
-              { href: "/opcoes-e-precos", label: "Ver preços" },
+              { href: "/opcoes-e-precos", label: "Opções e preços" },
               { href: "/perguntas-frequentes", label: "Perguntas frequentes" },
             ].map((l) => (
               <a key={l.href} href={l.href} className="momento-link">{l.label}</a>

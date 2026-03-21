@@ -6,16 +6,16 @@ const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, tr
 
 const FEATURES = [
   {
-    title: "Com respeito e sensibilidade",
-    desc: "Cada peça é tratada com o cuidado que uma homenagem merece. Trabalhamos com discrição e atenção ao detalhe.",
+    title: "Com todo o cuidado",
+    desc: "Tratamos cada encomenda deste tipo com especial atenção. Sabemos o que representa e trabalhamos com o respeito e a discrição que a circunstância exige.",
   },
   {
-    title: "Flores frescas ou com alguns dias",
-    desc: "Recebemos flores nas primeiras horas após a cerimónia, mas também flores com alguns dias de existência.",
+    title: "Envie-nos as flores até 5 dias depois",
+    desc: "O ideal é entregar as flores nos primeiros 1 a 3 dias após a cerimónia. Se o prazo já tiver passado, contacte-nos para avaliarmos as opções, incluindo a recriação com flores frescas.",
   },
   {
-    title: "Sem pressão de prazos",
-    desc: "Sabemos que não é o momento de pensar em logística. Estamos disponíveis quando estiver pronto ou pronta.",
+    title: "Sem pressão para decidir",
+    desc: "Se ainda não é o momento de pensar nisto, não há pressa para contactar. Quando estiver preparado ou preparada, estamos cá.",
   },
 ];
 
@@ -42,17 +42,8 @@ export default function LutoHomenagemClient() {
             Eternize as flores de uma cerimónia fúnebre como forma de homenagem duradoura. Um gesto de carinho permanente, preservado com todo o respeito e sensibilidade.
           </p>
           <div className="momento-ctas">
+            <a href={WA_URL_LUTO} target="_blank" rel="noopener noreferrer" className="btn-wa">Falar connosco</a>
             <a href={FORM_URL} className="btn-primary">Reservar Data</a>
-            <a href={WA_URL_LUTO} target="_blank" rel="noopener noreferrer" className="btn-wa">WhatsApp</a>
-          </div>
-          <div className="momento-links">
-            {[
-              { href: "/como-funciona", label: "Como funciona" },
-              { href: "/opcoes-e-precos", label: "Ver preços" },
-              { href: "/perguntas-frequentes", label: "Perguntas frequentes" },
-            ].map((l) => (
-              <a key={l.href} href={l.href} className="momento-link">{l.label}</a>
-            ))}
           </div>
         </motion.div>
       </section>
@@ -67,14 +58,14 @@ export default function LutoHomenagemClient() {
         >
           <span className="momento-eyebrow">Uma memória que permanece</span>
           <h2 className="momento-content-h2">
-            Uma presença que<br />
+            Uma homenagem que<br />
             <em>fica para sempre</em>
           </h2>
           <p className="momento-content-p">
-            Preservar as flores de uma cerimónia fúnebre é uma forma de manter viva a memória de quem partiu. As flores que estiveram presentes nesse momento de despedida transformam-se numa peça de arte botânica que pode permanecer em casa, como homenagem silenciosa e permanente.
+            As flores que estiveram presentes numa cerimónia de despedida carregam um significado profundo. Preservá-las é uma forma de manter viva a memória de quem partiu, transformando-as numa peça de arte botânica que pode permanecer em casa como homenagem silenciosa e permanente.
           </p>
           <p className="momento-content-p">
-            Tratamos cada encomenda deste tipo com especial atenção. Sabemos o que representa e trabalhamos com o cuidado e a discrição que a circunstância exige.
+            Cada pétala é tratada individualmente por prensagem artesanal e emoldurada com vidro museu anti-UV e moldura feita à medida em Coimbra. Pode também incluir na composição uma fotografia, um cartão ou qualquer elemento que tenha significado para si.
           </p>
         </motion.div>
       </section>
@@ -112,11 +103,20 @@ export default function LutoHomenagemClient() {
             <em>pronto ou pronta</em>
           </h2>
           <p className="momento-final-cta-p">
-            Não há urgência. Contacte-nos quando for o momento certo para si. Estamos aqui para ajudar a transformar as flores dessa despedida numa memória que fica.
+            Não há urgência. Contacte-nos quando for o momento certo para si. Preços a partir de 300€, com pagamento em três prestações.
           </p>
           <div className="momento-ctas">
             <a href={WA_URL_LUTO} target="_blank" rel="noopener noreferrer" className="btn-wa">Falar connosco</a>
             <a href={FORM_URL} className="btn-primary">Reservar Data</a>
+          </div>
+          <div className="momento-links">
+            {[
+              { href: "/como-funciona", label: "Como funciona" },
+              { href: "/opcoes-e-precos", label: "Opções e preços" },
+              { href: "/perguntas-frequentes", label: "Perguntas frequentes" },
+            ].map((l) => (
+              <a key={l.href} href={l.href} className="momento-link">{l.label}</a>
+            ))}
           </div>
         </motion.div>
       </section>

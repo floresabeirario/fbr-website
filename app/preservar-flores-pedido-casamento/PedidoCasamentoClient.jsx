@@ -6,16 +6,16 @@ const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, tr
 
 const FEATURES = [
   {
-    title: "O início de uma história",
-    desc: "As flores do pedido de casamento marcam o dia em que disseram 'sim' pela primeira vez. Esse momento merece existir para além da memória.",
+    title: "Não precisa de esperar pelo casamento",
+    desc: "Preserve as flores do pedido assim que puder, nos dias seguintes ao momento. Mais tarde, pode também preservar o bouquet de noiva.",
   },
   {
-    title: "Preserve antes do casamento",
-    desc: "Não precisa de esperar pelo casamento. As flores do pedido merecem o mesmo cuidado e podem ser preservadas de imediato.",
+    title: "Duas peças, uma história",
+    desc: "O quadro do pedido e o do bouquet, juntos na parede, contam a história completa desde o primeiro 'sim'. Muitos casais escolhem preservar ambos.",
   },
   {
-    title: "Uma peça que conta dois capítulos",
-    desc: "O quadro do pedido e, mais tarde, o do bouquet. Juntos formam a história completa desde o primeiro 'sim'.",
+    title: "Inclua o que quiser na composição",
+    desc: "Uma fotografia do momento, o bilhete que acompanhou as flores, a fita da caixa. Qualquer elemento com significado pode fazer parte do quadro.",
   },
 ];
 
@@ -39,7 +39,7 @@ export default function PedidoCasamentoClient() {
             <em>Pedido de Casamento</em>
           </h1>
           <p className="momento-desc">
-            As flores do pedido de casamento marcam o início de uma história. Preserve esse momento numa obra de arte botânica que acompanha toda a vossa vida juntos.
+            As flores do pedido de casamento marcam o início de uma história. Preserve esse momento numa obra de arte botânica feita à mão em Coimbra, com vidro museu anti-UV.
           </p>
           <div className="momento-ctas">
             <a href={FORM_URL} className="btn-primary">Reservar Data</a>
@@ -62,10 +62,10 @@ export default function PedidoCasamentoClient() {
             <em>começou</em>
           </h2>
           <p className="momento-content-p">
-            Há uma data anterior ao casamento que muitas vezes se perde: o dia do pedido. O momento em que tudo começou. As flores que estiveram presentes nessa noite merecem ser guardadas com o mesmo cuidado que o bouquet de noiva.
+            Há uma data anterior ao casamento que muitas vezes se perde: o dia do pedido. As flores que estiveram presentes nessa noite merecem ser guardadas com o mesmo cuidado que o bouquet de noiva.
           </p>
           <p className="momento-content-p">
-            Preservamos as flores do pedido de casamento numa obra de arte botânica feita à mão, emoldurada com vidro museu anti-UV, para que esse primeiro capítulo da vossa história nunca desapareça.
+            Entregue-nos as flores nos dias seguintes ao pedido (até 5 dias, idealmente 1 a 3) e nós transformamo-las num quadro de arte botânica. Cada pétala é prensada individualmente, a composição é aprovada por si, e o resultado é emoldurado com vidro museu anti-UV e moldura feita à medida em Coimbra.
           </p>
         </motion.div>
       </section>
@@ -103,7 +103,7 @@ export default function PedidoCasamentoClient() {
             <em>vosso primeiro sim</em>
           </h2>
           <p className="momento-final-cta-p">
-            As vagas são limitadas. Garanta a preservação das flores do pedido enquanto ainda estão frescas.
+            As flores do pedido merecem ser preservadas antes que sequem. Preços a partir de 300€, com pagamento em três prestações.
           </p>
           <div className="momento-ctas">
             <a href={FORM_URL} className="btn-primary">Reservar Data</a>
@@ -112,7 +112,7 @@ export default function PedidoCasamentoClient() {
           <div className="momento-links">
             {[
               { href: "/como-funciona", label: "Como funciona" },
-              { href: "/opcoes-e-precos", label: "Ver preços" },
+              { href: "/opcoes-e-precos", label: "Opções e preços" },
               { href: "/preservar-bouquet-noiva", label: "Bouquet de noiva" },
             ].map((l) => (
               <a key={l.href} href={l.href} className="momento-link">{l.label}</a>
