@@ -24,6 +24,9 @@ export const WA_URL_RECRIACAO = `https://wa.me/${WA_NUMBER}?text=` +
 export const WA_URL_VALE = `https://wa.me/${WA_NUMBER}?text=` +
   encodeURIComponent("Olá! Gostaria de saber mais sobre o vale oferta de preservação de flores.");
 
+export const WA_URL_LUTO = `https://wa.me/${WA_NUMBER}?text=` +
+  encodeURIComponent("Olá! Gostaria de preservar flores de uma cerimónia de homenagem.");
+
 // Tracking
 export const TRACKING_URL = "https://status.floresabeirario.pt";
 

@@ -6,7 +6,7 @@ export default function sitemap() {
     { url: `${base}/como-funciona`,                           priority: 0.9,  changeFrequency: "monthly" },
     { url: `${base}/opcoes-e-precos`,                         priority: 0.9,  changeFrequency: "monthly" },
     { url: `${base}/preservacao-de-flores`,                   priority: 0.85, changeFrequency: "monthly" },
-    { url: `${base}/preservacao-bouquet-noiva`,               priority: 0.85, changeFrequency: "monthly" },
+    { url: `${base}/preservar-bouquet-noiva`,                 priority: 0.85, changeFrequency: "monthly" },
     { url: `${base}/preservar-flores-luto-homenagem`,         priority: 0.85, changeFrequency: "monthly" },
     { url: `${base}/preservar-flores-batizado-nascimento`,    priority: 0.8,  changeFrequency: "monthly" },
     { url: `${base}/preservar-flores-aniversario`,            priority: 0.8,  changeFrequency: "monthly" },

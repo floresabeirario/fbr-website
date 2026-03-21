@@ -409,6 +409,281 @@ button:focus-visible {
 .nav-mobile-lang:hover,
 .nav-mobile-lang:focus-visible { color: var(--cream) !important; }
 
+/* ── Páginas de momentos especiais ────────────────────── */
+.momento-page {
+  background-color: var(--cream);
+  min-height: 100vh;
+}
+
+.momento-hero {
+  padding-top: clamp(140px, 18vw, 200px);
+  padding-bottom: clamp(80px, 12vw, 140px);
+  padding-left: 20px;
+  padding-right: 20px;
+  background: linear-gradient(175deg, #EDF2E8 0%, var(--cream) 100%);
+  text-align: center;
+}
+
+.momento-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.momento-eyebrow {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 14px;
+}
+
+.momento-h1 {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(2.6rem, 8vw, 5rem);
+  color: var(--green-d);
+  margin: 0 0 20px;
+  line-height: 1.02;
+}
+
+.momento-h1 em {
+  font-style: italic;
+  color: var(--green);
+}
+
+.momento-desc {
+  color: var(--mid);
+  font-size: clamp(0.95rem, 2vw, 1.08rem);
+  line-height: 1.88;
+  max-width: 520px;
+  margin: 0 auto 36px;
+}
+
+.momento-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.momento-links {
+  margin-top: 48px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  font-size: 0.82rem;
+}
+
+.momento-link {
+  color: var(--green);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(61, 107, 94, 0.3);
+  padding-bottom: 1px;
+}
+
+.momento-link:hover,
+.momento-link:focus-visible {
+  border-bottom-color: var(--green);
+}
+
+/* ── Momentos hub page ─────────────────────────────────── */
+.momentos-hub-section {
+  padding: 0 20px clamp(80px, 12vw, 120px);
+  background-color: var(--cream);
+}
+
+.momentos-hub-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 16px;
+}
+
+.momentos-hub-card {
+  display: block;
+  text-decoration: none;
+  background-color: #fff;
+  border-radius: 18px;
+  padding: 28px 24px;
+  border: 1px solid rgba(61, 107, 94, 0.08);
+  box-shadow: 0 4px 18px rgba(30, 45, 42, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.momentos-hub-card:hover,
+.momentos-hub-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(30, 45, 42, 0.1);
+}
+
+.momentos-hub-card-title {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: 1.2rem;
+  color: var(--green-d);
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+
+.momentos-hub-card-desc {
+  color: var(--mid);
+  font-size: 0.88rem;
+  line-height: 1.72;
+  margin: 0 0 14px;
+}
+
+.momentos-hub-card-cta {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.momentos-hub-cta {
+  padding: clamp(60px, 10vw, 100px) 20px;
+  background: linear-gradient(140deg, #EDF2E8 0%, var(--cream) 55%, #F0EBE0 100%);
+  text-align: center;
+}
+
+.momentos-hub-cta-inner {
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.momentos-hub-cta-h2 {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  color: var(--green-d);
+  margin: 0 0 16px;
+  line-height: 1.1;
+}
+
+.momentos-hub-cta-p {
+  color: var(--mid);
+  line-height: 1.85;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  margin: 0 0 32px;
+}
+
+/* ── Momento subpage content sections ─────────────────── */
+.momento-content {
+  padding: clamp(48px, 8vw, 80px) clamp(20px, 5vw, 48px);
+}
+
+.momento-content--warm {
+  background: linear-gradient(160deg, #F5EDE4 0%, var(--cream) 60%);
+}
+
+.momento-content--cream {
+  background-color: var(--cream);
+}
+
+.momento-content-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.momento-content-h2 {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--green-d);
+  margin: 0 0 clamp(16px, 2.5vw, 24px);
+  line-height: 1.1;
+}
+
+.momento-content-h2 em {
+  font-style: italic;
+  color: var(--terra);
+}
+
+.momento-content-p {
+  color: var(--mid);
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  line-height: 1.9;
+  margin: 0 0 16px;
+}
+
+.momento-content-p:last-child {
+  margin-bottom: 0;
+}
+
+.momento-features {
+  padding: clamp(40px, 7vw, 72px) clamp(20px, 5vw, 48px);
+  background-color: var(--cream);
+}
+
+.momento-features-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(10px, 1.5vw, 16px);
+}
+
+.momento-feature-item {
+  background-color: #fff;
+  padding: clamp(18px, 2.5vw, 26px);
+  border-radius: 14px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.momento-feature-icon {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.momento-feature-title {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(0.95rem, 1.6vw, 1.08rem);
+  color: var(--green-d);
+  margin: 0 0 5px;
+  line-height: 1.25;
+}
+
+.momento-feature-desc {
+  color: var(--mid);
+  font-size: 0.84rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.momento-final-cta {
+  padding: clamp(56px, 9vw, 88px) 20px;
+  background: linear-gradient(140deg, #EDF2E8 0%, var(--cream) 55%, #F0EBE0 100%);
+  text-align: center;
+}
+
+.momento-final-cta-inner {
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.momento-final-cta-h2 {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--green-d);
+  margin: 0 0 16px;
+  line-height: 1.1;
+}
+
+.momento-final-cta-h2 em {
+  font-style: italic;
+  color: var(--terra);
+}
+
+.momento-final-cta-p {
+  color: var(--mid);
+  line-height: 1.85;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  margin: 0 0 32px;
+}
+
 /* ── Font face ─────────────────────────────────────────── */
 @font-face {
   font-family: 'TAN-MEMORIES';
