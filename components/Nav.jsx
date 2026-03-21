@@ -17,11 +17,11 @@ const PAGE_COLORS = {
   "/preservar-flores-aniversario":         { bg: "#A8886B", shadow: "rgba(168,136,107,0.32)" },
   "/preservar-flores-pedido-casamento":    { bg: "#A86B7B", shadow: "rgba(168,107,123,0.32)" },
   "/recriacao":                            { bg: "#F0CC70", shadow: "rgba(240,204,112,0.32)" },
-  "/contactos":                            { bg: "#C4846B", shadow: "rgba(196,132,107,0.32)" },
-  "/opcoes-e-precos":                      { bg: "#8BA888", shadow: "rgba(139,168,136,0.32)" },
-  "/como-funciona":                        { bg: "#C8522A", shadow: "rgba(200,82,42,0.32)" },
+  "/contactos":                            { bg: "var(--terra)", shadow: "rgba(196,132,107,0.32)" },
+  "/opcoes-e-precos":                      { bg: "var(--green-l)", shadow: "rgba(139,168,136,0.32)" },
+  "/como-funciona":                        { bg: "var(--rust)", shadow: "rgba(200,82,42,0.32)" },
 };
-const DEFAULT_CTA = { bg: "#3D6B5E", shadow: "rgba(61,107,94,0.32)" };
+const DEFAULT_CTA = { bg: "var(--green)", shadow: "rgba(61,107,94,0.32)" };
 
 // ── Ícones do menu mobile ────────────────────────────────
 const IconFlor6 = () => (
@@ -155,7 +155,7 @@ const DesktopDropdown = ({ menu, scrolled }) => {
               <div style={{ margin: "4px 6px 2px", borderTop: "1px solid rgba(61,107,94,0.1)", paddingTop: "4px" }}>
                 <a href={menu.href} className="dd-item dd-item-all">
                   <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
-                    <path d="M2 6h8M6 2l4 4-4 4" stroke="#3D6B5E" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M2 6h8M6 2l4 4-4 4" stroke="var(--green)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                   Ver tudo
                 </a>
@@ -189,13 +189,13 @@ const MobileAccordion = ({ menu, onClose, delay, icon }) => {
         }}
       >
         <span style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-          <span style={{ color: open ? "#8BA888" : "rgba(250,247,240,0.35)", flexShrink: 0, transition: "color 0.2s", display: "flex" }}>
+          <span style={{ color: open ? "var(--green-l)" : "rgba(250,247,240,0.35)", flexShrink: 0, transition: "color 0.2s", display: "flex" }}>
             {icon}
           </span>
           <span style={{
             fontFamily: "'TAN-MEMORIES', serif",
             fontSize: "clamp(1.05rem, 4vw, 1.3rem)",
-            color: open ? "#8BA888" : "#FAF7F0",
+            color: open ? "var(--green-l)" : "var(--cream)",
             lineHeight: 1.1, transition: "color 0.2s",
           }}>
             {menu.label}
@@ -205,7 +205,7 @@ const MobileAccordion = ({ menu, onClose, delay, icon }) => {
           width="16" height="16" viewBox="0 0 16 16" fill="none"
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.22 }}
-          style={{ flexShrink: 0, color: open ? "#8BA888" : "rgba(250,247,240,0.35)" }}
+          style={{ flexShrink: 0, color: open ? "var(--green-l)" : "rgba(250,247,240,0.35)" }}
           aria-hidden="true"
         >
           <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -297,7 +297,7 @@ const ENButton = ({ style, className }) => {
             transition={{ duration: 0.18 }}
             style={{
               position: "absolute", bottom: "calc(100% + 8px)", right: 0,
-              background: "#1E2D2A", color: "#FAF7F0",
+              background: "var(--green-d)", color: "var(--cream)",
               fontSize: "0.68rem", fontWeight: 600, letterSpacing: "1px",
               whiteSpace: "nowrap", padding: "6px 12px", borderRadius: "8px",
               fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
@@ -345,7 +345,7 @@ function NavCTA({ shouldShowScrolled, pathname, isHome }) {
       className="nav-cta"
       style={{
         backgroundColor: bg,
-        color: "#FAF7F0",
+        color: "var(--cream)",
         border,
         backdropFilter: shouldShowScrolled ? "none" : "blur(8px)",
         boxShadow: shadow,
@@ -437,7 +437,7 @@ export default function NavClient() {
             animate={{ opacity: show ? 1 : 0 }}
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             style={{
-              color: show ? "#1a1a1a" : "#FAF7F0",
+              color: show ? "#1a1a1a" : "var(--cream)",
               pointerEvents: show ? "auto" : "none",
               position: "fixed",
               left: "50%",
@@ -498,7 +498,7 @@ export default function NavClient() {
               onClick={() => setIsOpen(true)}
               aria-label="Abrir menu de navegação"
               aria-expanded={isOpen}
-              style={{ color: show ? "#1a1a1a" : "#FAF7F0", marginLeft: "auto" }}
+              style={{ color: show ? "#1a1a1a" : "var(--cream)", marginLeft: "auto" }}
             >
               MENU
             </button>
@@ -533,7 +533,7 @@ export default function NavClient() {
               style={{
                 position: "fixed", top: 0, right: 0, bottom: 0,
                 width: "min(400px, 100vw)",
-                backgroundColor: "#0F1E1A",
+                backgroundColor: "var(--dark)",
                 zIndex: 200, display: "flex", flexDirection: "column", overflowY: "auto",
               }}
             >
@@ -545,7 +545,7 @@ export default function NavClient() {
                 <a
                   href="/"
                   onClick={() => setIsOpen(false)}
-                  style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1rem", color: "#FAF7F0", textDecoration: "none" }}
+                  style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1rem", color: "var(--cream)", textDecoration: "none" }}
                 >
                   Flores à Beira&#8209;Rio
                 </a>
@@ -584,7 +584,7 @@ export default function NavClient() {
                     className="nav-mobile-link"
                     style={{
                       display: "flex", alignItems: "center", gap: "14px",
-                      color: "#FAF7F0", textDecoration: "none",
+                      color: "var(--cream)", textDecoration: "none",
                       padding: "16px 28px",
                       borderBottom: "1px solid rgba(250,247,240,0.07)",
                       transition: "color 0.18s",
@@ -622,7 +622,7 @@ export default function NavClient() {
                   style={{
                     display: "flex", alignItems: "center", justifyContent: "center",
                     backgroundColor: (PAGE_COLORS[pathname] || DEFAULT_CTA).bg,
-                    color: "#FAF7F0",
+                    color: "var(--cream)",
                     padding: "15px 24px", borderRadius: "100px", textDecoration: "none",
                     fontWeight: 600, fontSize: "0.76rem", letterSpacing: "1.5px",
                     textTransform: "uppercase",
@@ -650,7 +650,7 @@ export default function NavClient() {
                 </a>
                 <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>
                   <a href="/" style={{
-                    color: "#FAF7F0", fontSize: "0.66rem",
+                    color: "var(--cream)", fontSize: "0.66rem",
                     fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
                     fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase",
                     display: "flex", alignItems: "center", textDecoration: "none",

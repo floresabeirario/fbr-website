@@ -12,6 +12,10 @@
   --gold:    #B8954A;
   --cream:   #FAF7F0;
   --mid:     #5A6B60;
+  --mid-l:   #9BA89F;
+  --dark:    #0F1E1A;
+  --sage:    #D4DECC;
+  --rust:    #C8522A;
 
   /* Homepage blue palette */
   --navy-d:  #0C1929;
@@ -682,6 +686,107 @@ button:focus-visible {
   line-height: 1.85;
   font-size: clamp(0.9rem, 2vw, 1rem);
   margin: 0 0 32px;
+}
+
+/* ── Páginas legais (privacidade, termos) ─────────────── */
+.legal-page {
+  padding-top: clamp(140px, 18vw, 200px);
+  padding-bottom: clamp(80px, 12vw, 120px);
+  background-color: var(--cream);
+  min-height: 100vh;
+}
+
+.legal-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.legal-h1 {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(2.2rem, 6vw, 3rem);
+  color: var(--green-d);
+  margin: 0 0 20px;
+  line-height: 1.1;
+}
+
+.legal-intro {
+  color: var(--mid);
+  line-height: 1.6;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  margin: 0 0 60px;
+}
+
+.legal-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.legal-h2 {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: var(--green-d);
+  margin: 0 0 15px;
+  line-height: 1.2;
+}
+
+.legal-text {
+  color: var(--mid);
+  line-height: 1.8;
+  white-space: pre-line;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* ── onMouseEnter replacement classes ────────────────── */
+.hover-lift:hover,
+.hover-lift:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(15, 30, 26, 0.28);
+}
+
+.hover-opacity:hover,
+.hover-opacity:focus-visible {
+  opacity: 0.65;
+}
+
+.hover-bg-warm:hover,
+.hover-bg-warm:focus-visible {
+  background-color: #EDE5D4;
+}
+
+.hover-bg-glass:hover,
+.hover-bg-glass:focus-visible {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.hover-terra-occasion:hover,
+.hover-terra-occasion:focus-visible {
+  background-color: rgba(196, 132, 107, 0.15);
+  border-color: rgba(212, 149, 106, 0.25);
+}
+
+.hover-green-link:hover,
+.hover-green-link:focus-visible {
+  color: var(--green-l);
+  border-color: var(--green-l);
+}
+
+.hover-border-full:hover,
+.hover-border-full:focus-visible {
+  border-bottom-color: currentColor;
+}
+
+.hover-lift-shadow:hover,
+.hover-lift-shadow:focus-visible {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+.hover-border-bright:hover,
+.hover-border-bright:focus-visible {
+  border-color: rgba(250, 247, 240, 0.8);
 }
 
 /* ── Font face ─────────────────────────────────────────── */

@@ -7,9 +7,9 @@ import { FAQ_DATA, CATEGORIES } from "./faq-data";
 // ─── Accent colours per category — paleta da página: plum + terracotta + gold ─
 const CAT_META = {
   processo:   { num: "01", color: "#8B3A6B", bg: "rgba(139,58,107,0.07)",  border: "rgba(139,58,107,0.18)"  },
-  flores:     { num: "02", color: "#C4846B", bg: "rgba(196,132,107,0.07)", border: "rgba(196,132,107,0.18)" },
+  flores:     { num: "02", color: "var(--terra)", bg: "rgba(196,132,107,0.07)", border: "rgba(196,132,107,0.18)" },
   entrega:    { num: "03", color: "#9B4060", bg: "rgba(155,64,96,0.07)",   border: "rgba(155,64,96,0.18)"   },
-  pagamentos: { num: "04", color: "#B8954A", bg: "rgba(184,149,74,0.07)",  border: "rgba(184,149,74,0.18)"  },
+  pagamentos: { num: "04", color: "var(--gold)", bg: "rgba(184,149,74,0.07)",  border: "rgba(184,149,74,0.18)"  },
 };
 
 const ACCENT        = "#8B3A6B";
@@ -53,7 +53,7 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm, accentColor, itemIndex }) 
       <span style={{
         fontFamily: "'TAN-MEMORIES', serif",
         fontSize: "clamp(0.9rem,1.9vw,1.05rem)",
-        color: isOpen ? accentColor : "#1E2D2A",
+        color: isOpen ? accentColor : "var(--green-d)",
         lineHeight: 1.35, flex: 1,
         transition: "color 0.22s ease",
       }}>
@@ -74,7 +74,7 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm, accentColor, itemIndex }) 
         aria-hidden="true"
       >
         <svg width="11" height="11" viewBox="0 0 20 20" fill="none"
-          stroke={isOpen ? "#FAF7F0" : "#5A6B60"}
+          stroke={isOpen ? "var(--cream)" : "var(--mid)"}
           strokeWidth="2.4" strokeLinecap="round">
           <path d="M10 4V16M4 10H16" />
         </svg>
@@ -93,7 +93,7 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm, accentColor, itemIndex }) 
         >
           <div style={{
             paddingBottom: "clamp(14px,2.2vw,20px)",
-            color: "#5A6B60", lineHeight: 1.88,
+            color: "var(--mid)", lineHeight: 1.88,
             fontSize: "clamp(0.85rem,1.6vw,0.92rem)",
           }}>
             {faq.a}
@@ -155,7 +155,7 @@ const CategoryBlock = ({ cat, faqs, isOpen, onToggle, openFaqIndex, setOpenFaqIn
         <span style={{
           fontFamily: "'TAN-MEMORIES', serif",
           fontSize: "clamp(1.15rem,2.8vw,1.7rem)",
-          color: isOpen ? "#1E2D2A" : "#3A4F4A",
+          color: isOpen ? "var(--green-d)" : "#3A4F4A",
           lineHeight: 1.1,
           flex: 1,
           transition: "color 0.3s ease",
@@ -167,7 +167,7 @@ const CategoryBlock = ({ cat, faqs, isOpen, onToggle, openFaqIndex, setOpenFaqIn
         <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
           <span style={{
             fontSize: "0.65rem", fontWeight: 700, letterSpacing: "1.5px",
-            color: isOpen ? meta.color : "#9BA89F",
+            color: isOpen ? meta.color : "var(--mid-l)",
             fontFamily: "'Google Sans', Roboto, sans-serif",
             background: isOpen ? `rgba(0,0,0,0.06)` : "rgba(30,45,42,0.05)",
             padding: "4px 10px", borderRadius: "100px",
@@ -189,7 +189,7 @@ const CategoryBlock = ({ cat, faqs, isOpen, onToggle, openFaqIndex, setOpenFaqIn
             aria-hidden="true"
           >
             <svg width="12" height="12" viewBox="0 0 20 20" fill="none"
-              stroke={isOpen ? "#FAF7F0" : "#5A6B60"}
+              stroke={isOpen ? "var(--cream)" : "var(--mid)"}
               strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 7.5L10 12.5L15 7.5" />
             </svg>
@@ -315,7 +315,7 @@ export default function FaqAccordion() {
             {searchResults.length === 0 ? (
               <div style={{
                 textAlign: "center", padding: "48px 20px",
-                color: "#9BA89F", fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.2rem",
+                color: "var(--mid-l)", fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.2rem",
               }}>
                 Nenhuma pergunta encontrada.<br />
                 <button
@@ -394,8 +394,8 @@ export default function FaqAccordion() {
               { href: "/recriacao",       label: "Recriação de Bouquet", desc: "Quando o tempo já passou" },
             ].map((l, i) => (
               <a key={i} href={l.href} className="related-card">
-                <span style={{ display: "block", fontFamily: "'TAN-MEMORIES', serif", fontSize: "1rem", color: "#1E2D2A", marginBottom: "6px" }}>{l.label}</span>
-                <span style={{ display: "block", fontSize: "0.82rem", color: "#5A6B60", lineHeight: 1.6 }}>{l.desc} →</span>
+                <span style={{ display: "block", fontFamily: "'TAN-MEMORIES', serif", fontSize: "1rem", color: "var(--green-d)", marginBottom: "6px" }}>{l.label}</span>
+                <span style={{ display: "block", fontSize: "0.82rem", color: "var(--mid)", lineHeight: 1.6 }}>{l.desc} →</span>
               </a>
             ))}
           </div>

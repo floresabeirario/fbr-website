@@ -31,7 +31,7 @@ const METHODS = [
   {
     id:        "prensagem",
     tag:       "O que fazemos",
-    tagColor:  "#3D6B5E",
+    tagColor:  "var(--green)",
     border:    "rgba(61,107,94,0.22)",
     bg:        "#fff",
     shadow:    "0 8px 32px rgba(61,107,94,0.10)",
@@ -40,9 +40,9 @@ const METHODS = [
     icon: (
       <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <path d="M14 4 C9 4 5 8 5 13 C5 20 14 26 14 26 C14 26 23 20 23 13 C23 8 19 4 14 4Z"
-          stroke="#3D6B5E" strokeWidth="1.6" fill="rgba(61,107,94,0.12)" strokeLinejoin="round"/>
+          stroke="var(--green)" strokeWidth="1.6" fill="rgba(61,107,94,0.12)" strokeLinejoin="round"/>
         <path d="M14 26 L14 13 M14 13 C10 11 8 8 9 5 M14 13 C18 11 20 8 19 5"
-          stroke="#3D6B5E" strokeWidth="1.2" strokeLinecap="round"/>
+          stroke="var(--green)" strokeWidth="1.2" strokeLinecap="round"/>
       </svg>
     ),
     points: [
@@ -53,13 +53,13 @@ const METHODS = [
       { good: true,  text: "Materiais biodegrad\u00e1veis no fim de vida \u00fatil." },
     ],
     verdict:      "A escolha mais sustent\u00e1vel e mais cuidadosa para as flores e para o planeta.",
-    verdictColor: "#3D6B5E",
+    verdictColor: "var(--green)",
     highlight:    true,
   },
   {
     id:        "resina",
     tag:       "Alternativa comum",
-    tagColor:  "#C4846B",
+    tagColor:  "var(--terra)",
     border:    "rgba(196,132,107,0.18)",
     bg:        "rgba(196,132,107,0.03)",
     shadow:    "none",
@@ -68,8 +68,8 @@ const METHODS = [
     icon: (
       <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <path d="M8 22 L10 6 L14 10 L18 6 L20 22 Z"
-          stroke="#C4846B" strokeWidth="1.6" fill="rgba(196,132,107,0.1)" strokeLinejoin="round"/>
-        <path d="M8 22 L20 22" stroke="#C4846B" strokeWidth="1.6" strokeLinecap="round"/>
+          stroke="var(--terra)" strokeWidth="1.6" fill="rgba(196,132,107,0.1)" strokeLinejoin="round"/>
+        <path d="M8 22 L20 22" stroke="var(--terra)" strokeWidth="1.6" strokeLinecap="round"/>
       </svg>
     ),
     points: [
@@ -80,13 +80,13 @@ const METHODS = [
       { good: false, text: "Exige EPI rigoroso: m\u00e1scara com filtro de vapores qu\u00edmicos, luvas de nitrilo e \u00f3culos de prote\u00e7\u00e3o." },
     ],
     verdict:      "Nociva para a sa\u00fade e para o ambiente.",
-    verdictColor: "#C4846B",
+    verdictColor: "var(--terra)",
     highlight:    false,
   },
   {
     id:        "silica",
     tag:       "Preserva\u00e7\u00e3o 3D",
-    tagColor:  "#9BA89F",
+    tagColor:  "var(--mid-l)",
     border:    "rgba(155,168,159,0.18)",
     bg:        "rgba(155,168,159,0.03)",
     shadow:    "none",
@@ -94,8 +94,8 @@ const METHODS = [
     subtitle:  "Industrial.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-        <circle cx="14" cy="14" r="9" stroke="#9BA89F" strokeWidth="1.6" fill="rgba(155,168,159,0.08)"/>
-        <circle cx="14" cy="14" r="2" fill="#9BA89F" opacity="0.4"/>
+        <circle cx="14" cy="14" r="9" stroke="var(--mid-l)" strokeWidth="1.6" fill="rgba(155,168,159,0.08)"/>
+        <circle cx="14" cy="14" r="2" fill="var(--mid-l)" opacity="0.4"/>
       </svg>
     ),
     points: [
@@ -105,7 +105,7 @@ const METHODS = [
       { good: false, text: "A secagem ao ar livre \u00e9 uma alternativa, mas n\u00e3o preserva as cores originais, pelo que n\u00e3o a consideramos um m\u00e9todo de preserva\u00e7\u00e3o compar\u00e1vel aos m\u00e9todos profissionais." },
     ],
     verdict:      "Tecnicamente interessante, ecologicamente question\u00e1vel.",
-    verdictColor: "#9BA89F",
+    verdictColor: "var(--mid-l)",
     highlight:    false,
   },
 ];
@@ -116,9 +116,9 @@ const VALUES = [
     desc: "Os quadros s\u00e3o emoldurados numa molduraria local portuguesa, com madeira e materiais lacados de alta qualidade. Cada moldura \u00e9 produzida \u00e0 medida para a pe\u00e7a que vai receber.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <rect x="3" y="3" width="18" height="18" rx="2" stroke="#3D6B5E" strokeWidth="1.8" fill="rgba(61,107,94,0.1)"/>
-        <rect x="7" y="7" width="10" height="10" rx="1" stroke="#8BA888" strokeWidth="1.2"/>
-        <circle cx="12" cy="12" r="2" fill="#3D6B5E"/>
+        <rect x="3" y="3" width="18" height="18" rx="2" stroke="var(--green)" strokeWidth="1.8" fill="rgba(61,107,94,0.1)"/>
+        <rect x="7" y="7" width="10" height="10" rx="1" stroke="var(--green-l)" strokeWidth="1.2"/>
+        <circle cx="12" cy="12" r="2" fill="var(--green)"/>
       </svg>
     ),
   },
@@ -127,9 +127,9 @@ const VALUES = [
     desc: "Apoiamos artistas portugueses locais que criaram os elementos gr\u00e1ficos da nossa marca, incluindo o cart\u00e3o que acompanha as embalagens e o vale presente.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 2 C8 2 5 5 5 9 C5 14 12 22 12 22 C12 22 19 14 19 9 C19 5 16 2 12 2Z" stroke="#3D6B5E" strokeWidth="1.6" fill="rgba(61,107,94,0.18)"/>
-        <path d="M12 22 L12 9" stroke="#8BA888" strokeWidth="1.4" strokeLinecap="round"/>
-        <path d="M12 9 C9 7.5 7.5 5 8 3 M12 9 C15 7.5 16.5 5 16 3" stroke="#3D6B5E" strokeWidth="1" strokeLinecap="round"/>
+        <path d="M12 2 C8 2 5 5 5 9 C5 14 12 22 12 22 C12 22 19 14 19 9 C19 5 16 2 12 2Z" stroke="var(--green)" strokeWidth="1.6" fill="rgba(61,107,94,0.18)"/>
+        <path d="M12 22 L12 9" stroke="var(--green-l)" strokeWidth="1.4" strokeLinecap="round"/>
+        <path d="M12 9 C9 7.5 7.5 5 8 3 M12 9 C15 7.5 16.5 5 16 3" stroke="var(--green)" strokeWidth="1" strokeLinecap="round"/>
       </svg>
     ),
   },
@@ -138,8 +138,8 @@ const VALUES = [
     desc: "A prensagem bot\u00e2nica n\u00e3o utiliza solventes, resinas nem subst\u00e2ncias sint\u00e9ticas. O processo combina press\u00e3o, calor controlado e tempo. Nenhuma subst\u00e2ncia \u00e9 adicionada \u00e0 flor.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 3 L14.5 8.5 L20.5 9.3 L16.2 13.5 L17.3 19.5 L12 16.7 L6.7 19.5 L7.8 13.5 L3.5 9.3 L9.5 8.5 Z" stroke="#3D6B5E" strokeWidth="1.6" fill="rgba(61,107,94,0.22)" strokeLinejoin="round"/>
-        <path d="M12 7 L13.5 10.5 L17 11 L14.5 13.4 L15.2 17 L12 15.2 L8.8 17 L9.5 13.4 L7 11 L10.5 10.5 Z" fill="#3D6B5E" opacity="0.35"/>
+        <path d="M12 3 L14.5 8.5 L20.5 9.3 L16.2 13.5 L17.3 19.5 L12 16.7 L6.7 19.5 L7.8 13.5 L3.5 9.3 L9.5 8.5 Z" stroke="var(--green)" strokeWidth="1.6" fill="rgba(61,107,94,0.22)" strokeLinejoin="round"/>
+        <path d="M12 7 L13.5 10.5 L17 11 L14.5 13.4 L15.2 17 L12 15.2 L8.8 17 L9.5 13.4 L7 11 L10.5 10.5 Z" fill="var(--green)" opacity="0.35"/>
       </svg>
     ),
   },
@@ -148,10 +148,10 @@ const VALUES = [
     desc: "Tentamos que a maior parte dos elementos da embalagem tenham uma segunda vida, e que o m\u00ednimo de res\u00edduos necess\u00e1rios para o embalamento seja logo descartado.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M4 12 C4 8 7 5 11 5 L13 5" stroke="#3D6B5E" strokeWidth="1.8" strokeLinecap="round"/>
-        <path d="M11 3 L13 5 L11 7" stroke="#3D6B5E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="rgba(61,107,94,0.3)"/>
-        <path d="M20 12 C20 16 17 19 13 19 L11 19" stroke="#8BA888" strokeWidth="1.8" strokeLinecap="round"/>
-        <path d="M13 21 L11 19 L13 17" stroke="#8BA888" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="rgba(139,168,136,0.3)"/>
+        <path d="M4 12 C4 8 7 5 11 5 L13 5" stroke="var(--green)" strokeWidth="1.8" strokeLinecap="round"/>
+        <path d="M11 3 L13 5 L11 7" stroke="var(--green)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="rgba(61,107,94,0.3)"/>
+        <path d="M20 12 C20 16 17 19 13 19 L11 19" stroke="var(--green-l)" strokeWidth="1.8" strokeLinecap="round"/>
+        <path d="M13 21 L11 19 L13 17" stroke="var(--green-l)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="rgba(139,168,136,0.3)"/>
       </svg>
     ),
   },
@@ -160,12 +160,12 @@ const VALUES = [
     desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da Associa\u00e7\u00e3o de Paralisia Cerebral de Coimbra. N\u00e3o \u00e9 uma a\u00e7\u00e3o pontual, \u00e9 parte do nosso modelo de neg\u00f3cio.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M17 21 V19 C17 17.9 16.1 17 15 17 H9 C7.9 17 7 17.9 7 19 V21" stroke="#3D6B5E" strokeWidth="1.6" strokeLinecap="round"/>
-        <circle cx="12" cy="10" r="3" stroke="#3D6B5E" strokeWidth="1.6" fill="rgba(61,107,94,0.15)"/>
-        <path d="M21 21 V19 C21 17.9 20.1 17 19 17 H18" stroke="#8BA888" strokeWidth="1.4" strokeLinecap="round"/>
-        <path d="M3 21 V19 C3 17.9 3.9 17 5 17 H6" stroke="#8BA888" strokeWidth="1.4" strokeLinecap="round"/>
-        <circle cx="19" cy="10" r="2" stroke="#8BA888" strokeWidth="1.4" fill="rgba(139,168,136,0.1)"/>
-        <circle cx="5" cy="10" r="2" stroke="#8BA888" strokeWidth="1.4" fill="rgba(139,168,136,0.1)"/>
+        <path d="M17 21 V19 C17 17.9 16.1 17 15 17 H9 C7.9 17 7 17.9 7 19 V21" stroke="var(--green)" strokeWidth="1.6" strokeLinecap="round"/>
+        <circle cx="12" cy="10" r="3" stroke="var(--green)" strokeWidth="1.6" fill="rgba(61,107,94,0.15)"/>
+        <path d="M21 21 V19 C21 17.9 20.1 17 19 17 H18" stroke="var(--green-l)" strokeWidth="1.4" strokeLinecap="round"/>
+        <path d="M3 21 V19 C3 17.9 3.9 17 5 17 H6" stroke="var(--green-l)" strokeWidth="1.4" strokeLinecap="round"/>
+        <circle cx="19" cy="10" r="2" stroke="var(--green-l)" strokeWidth="1.4" fill="rgba(139,168,136,0.1)"/>
+        <circle cx="5" cy="10" r="2" stroke="var(--green-l)" strokeWidth="1.4" fill="rgba(139,168,136,0.1)"/>
       </svg>
     ),
   },
@@ -174,9 +174,9 @@ const VALUES = [
     desc: "Para garantir que o seu quadro chega em perfeitas condi\u00e7\u00f5es, ainda utilizamos enchimento insufl\u00e1vel para proteger o vidro. Estamos ativamente a testar alternativas 100% sustent\u00e1veis.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="12" cy="12" r="9" stroke="#9BA89F" strokeWidth="1.6" fill="rgba(155,168,159,0.12)"/>
-        <path d="M12 8 L12 12 L15 15" stroke="#9BA89F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="12" cy="12" r="1.5" fill="#9BA89F"/>
+        <circle cx="12" cy="12" r="9" stroke="var(--mid-l)" strokeWidth="1.6" fill="rgba(155,168,159,0.12)"/>
+        <path d="M12 8 L12 12 L15 15" stroke="var(--mid-l)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="12" cy="12" r="1.5" fill="var(--mid-l)"/>
       </svg>
     ),
   },
@@ -185,13 +185,13 @@ const VALUES = [
     desc: "O mesmo vidro utilizado em museus e galerias. Filtra 70% dos raios UV e elimina reflexos, garantindo que as cores se mant\u00eam vivas durante d\u00e9cadas.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <rect x="4" y="4" width="16" height="16" rx="1.5" stroke="#3D6B5E" strokeWidth="1.8" fill="rgba(61,107,94,0.14)"/>
-        <path d="M4 9 L20 9" stroke="#8BA888" strokeWidth="1" opacity="0.5"/>
-        <path d="M4 15 L20 15" stroke="#8BA888" strokeWidth="1" opacity="0.5"/>
-        <path d="M9 4 L9 20" stroke="#8BA888" strokeWidth="1" opacity="0.5"/>
-        <path d="M15 4 L15 20" stroke="#8BA888" strokeWidth="1" opacity="0.5"/>
-        <path d="M6 6 L10 10" stroke="#FAF7F0" strokeWidth="1.4" strokeLinecap="round" opacity="0.7"/>
-        <circle cx="7" cy="7" r="1" fill="#8BA888" opacity="0.8"/>
+        <rect x="4" y="4" width="16" height="16" rx="1.5" stroke="var(--green)" strokeWidth="1.8" fill="rgba(61,107,94,0.14)"/>
+        <path d="M4 9 L20 9" stroke="var(--green-l)" strokeWidth="1" opacity="0.5"/>
+        <path d="M4 15 L20 15" stroke="var(--green-l)" strokeWidth="1" opacity="0.5"/>
+        <path d="M9 4 L9 20" stroke="var(--green-l)" strokeWidth="1" opacity="0.5"/>
+        <path d="M15 4 L15 20" stroke="var(--green-l)" strokeWidth="1" opacity="0.5"/>
+        <path d="M6 6 L10 10" stroke="var(--cream)" strokeWidth="1.4" strokeLinecap="round" opacity="0.7"/>
+        <circle cx="7" cy="7" r="1" fill="var(--green-l)" opacity="0.8"/>
       </svg>
     ),
   },
@@ -215,7 +215,7 @@ export default function Sustentabilidade() {
   return (
     <>
       <Schema />
-      <div style={{ backgroundColor: "#FAF7F0", overflowX: "clip" }}>
+      <div style={{ backgroundColor: "var(--cream)", overflowX: "clip" }}>
 
 
         {/* HERO — foto a ecra todo, texto na base */}
@@ -236,10 +236,10 @@ export default function Sustentabilidade() {
               <h1 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(2.4rem,6vw,5rem)",
-                color: "#FAF7F0", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)", lineHeight: 1.05,
+                color: "var(--cream)", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)", lineHeight: 1.05,
               }}>
                 Sustentabilidade<br/>
-                <em style={{ fontStyle: "italic", color: "#FAF7F0" }}>sem compromissos</em>
+                <em style={{ fontStyle: "italic", color: "var(--cream)" }}>sem compromissos</em>
               </h1>
               <p style={{
                 fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.85,
@@ -279,20 +279,20 @@ export default function Sustentabilidade() {
               <h2 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(1.9rem,4.5vw,3.2rem)",
-                color: "#1E2D2A", margin: "0 0 clamp(18px,3vw,28px)", lineHeight: 1.1,
+                color: "var(--green-d)", margin: "0 0 clamp(18px,3vw,28px)", lineHeight: 1.1,
               }}>
                 Artesanal, natural, local.<br/>
-                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>Para durar d&#233;cadas.</em>
+                <em style={{ fontStyle: "italic", color: "var(--green)" }}>Para durar d&#233;cadas.</em>
               </h2>
-              <div style={{ color: "#5A6B60", fontSize: "clamp(0.95rem,1.8vw,1.05rem)", lineHeight: 1.88 }}>
+              <div style={{ color: "var(--mid)", fontSize: "clamp(0.95rem,1.8vw,1.05rem)", lineHeight: 1.88 }}>
                 <p style={{ margin: "0 0 16px" }}>
-                  Quando recebemos as flores de um momento marcante, <strong style={{ color: "#1E2D2A", fontWeight: 700 }}>a responsabilidade n&#227;o
+                  Quando recebemos as flores de um momento marcante, <strong style={{ color: "var(--green-d)", fontWeight: 700 }}>a responsabilidade n&#227;o
                   &#233; s&#243; art&#237;stica, &#233; tamb&#233;m ambiental.</strong>
                 </p>
                 <p style={{ margin: 0 }}>
-                  Por isso escolhemos, e continuaremos a escolher, <strong style={{ color: "#1E2D2A", fontWeight: 700 }}>a prensagem bot&#226;nica
+                  Por isso escolhemos, e continuaremos a escolher, <strong style={{ color: "var(--green-d)", fontWeight: 700 }}>a prensagem bot&#226;nica
                   artesanal como m&#233;todo exclusivo de trabalho.</strong> &#201; uma t&#233;cnica mais lenta e
-                  mais exigente, mas os resultados falam por si: <strong style={{ color: "#3D6B5E", fontWeight: 700 }}>beleza natural, longevidade,
+                  mais exigente, mas os resultados falam por si: <strong style={{ color: "var(--green)", fontWeight: 700 }}>beleza natural, longevidade,
                   e um processo que respeita a integridade da flor e do planeta.</strong>
                 </p>
               </div>
@@ -360,16 +360,16 @@ export default function Sustentabilidade() {
                     <div style={{ position: "absolute", bottom: "16px", left: "16px", right: "16px" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                         <div style={{
-                          width: "32px", height: "32px", borderRadius: "8px", backgroundColor: "#FAF7F0",
+                          width: "32px", height: "32px", borderRadius: "8px", backgroundColor: "var(--cream)",
                           flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
                         }}>
                           <Image src="/apcc.webp" alt="Logotipo Associacao de Paralisia Cerebral de Coimbra" width={24} height={24} style={{ objectFit: "contain" }} />
                         </div>
                         <div>
-                          <p style={{ margin: 0, fontWeight: 700, color: "#FAF7F0", fontSize: "clamp(0.78rem,2.5vw,0.88rem)", fontFamily: "Roboto, sans-serif", lineHeight: 1.3 }}>
+                          <p style={{ margin: 0, fontWeight: 700, color: "var(--cream)", fontSize: "clamp(0.78rem,2.5vw,0.88rem)", fontFamily: "Roboto, sans-serif", lineHeight: 1.3 }}>
                             Associa&#231;&#227;o de Paralisia Cerebral de Coimbra
                           </p>
-                          <p style={{ margin: "2px 0 0", color: "#8BA888", fontSize: "clamp(0.7rem,2vw,0.78rem)", fontFamily: "Roboto, sans-serif" }}>Marca M&#227;o Doida</p>
+                          <p style={{ margin: "2px 0 0", color: "var(--green-l)", fontSize: "clamp(0.7rem,2vw,0.78rem)", fontFamily: "Roboto, sans-serif" }}>Marca M&#227;o Doida</p>
                         </div>
                       </div>
                     </div>
@@ -389,16 +389,16 @@ export default function Sustentabilidade() {
                   background: "rgba(61,107,94,0.2)", border: "1px solid rgba(139,168,136,0.3)",
                   borderRadius: "100px", padding: "7px 16px", marginBottom: "20px",
                 }}>
-                  <span style={{ color: "#8BA888", fontSize: "0.9rem" }} aria-hidden="true">&#9829;</span>
-                  <span style={{ fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: "#8BA888", fontFamily: "Roboto, sans-serif" }}>Parceria solid&#225;ria</span>
+                  <span style={{ color: "var(--green-l)", fontSize: "0.9rem" }} aria-hidden="true">&#9829;</span>
+                  <span style={{ fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: "var(--green-l)", fontFamily: "Roboto, sans-serif" }}>Parceria solid&#225;ria</span>
                 </div>
                 <h2 style={{
                   fontFamily: "'TAN-MEMORIES', serif",
                   fontSize: "clamp(2rem,4.5vw,3rem)",
-                  color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1,
+                  color: "var(--cream)", margin: "0 0 16px", lineHeight: 1.1,
                 }}>
                   A embalagem que<br/>
-                  <em style={{ fontStyle: "italic", color: "#8BA888" }}>conta uma hist&#243;ria</em>
+                  <em style={{ fontStyle: "italic", color: "var(--green-l)" }}>conta uma hist&#243;ria</em>
                 </h2>
                 <p style={{ color: "rgba(250,247,240,0.7)", lineHeight: 1.85, fontSize: "clamp(0.9rem,1.8vw,0.98rem)", margin: 0 }}>
                   Parte da embalagem que protege o seu quadro &#233; feita &#224; m&#227;o pelos utentes da
@@ -416,9 +416,9 @@ export default function Sustentabilidade() {
               >
                 {[
                   { title: "Impacto direto e cont\u00ednuo", desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da Associa\u00e7\u00e3o de Paralisia Cerebral de Coimbra. N\u00e3o \u00e9 uma a\u00e7\u00e3o pontual, \u00e9 parte do nosso modelo de neg\u00f3cio.",
-                    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 21 C12 21 4 14 4 9 C4 6.2 6.2 4 9 4 C10.5 4 11.8 4.7 12 5 C12.2 4.7 13.5 4 15 4 C17.8 4 20 6.2 20 9 C20 14 12 21 12 21Z" stroke="#8BA888" strokeWidth="1.5" fill="rgba(139,168,136,0.1)" strokeLinejoin="round"/></svg> },
+                    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 21 C12 21 4 14 4 9 C4 6.2 6.2 4 9 4 C10.5 4 11.8 4.7 12 5 C12.2 4.7 13.5 4 15 4 C17.8 4 20 6.2 20 9 C20 14 12 21 12 21Z" stroke="var(--green-l)" strokeWidth="1.5" fill="rgba(139,168,136,0.1)" strokeLinejoin="round"/></svg> },
                   { title: "Pensado para reutilizar", desc: "O saco protege o quadro e pode depois ser usado para guardar roupa, coisas de praia, o que couber.",
-                    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12 C4 8 7 5 11 5 L13 5" stroke="#8BA888" strokeWidth="1.5" strokeLinecap="round"/><path d="M11 3 L13 5 L11 7" stroke="#8BA888" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M20 12 C20 16 17 19 13 19 L11 19" stroke="#8BA888" strokeWidth="1.5" strokeLinecap="round"/><path d="M13 21 L11 19 L13 17" stroke="#8BA888" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg> },
+                    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12 C4 8 7 5 11 5 L13 5" stroke="var(--green-l)" strokeWidth="1.5" strokeLinecap="round"/><path d="M11 3 L13 5 L11 7" stroke="var(--green-l)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M20 12 C20 16 17 19 13 19 L11 19" stroke="var(--green-l)" strokeWidth="1.5" strokeLinecap="round"/><path d="M13 21 L11 19 L13 17" stroke="var(--green-l)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg> },
                 ].map((item, i) => (
                   <div key={i} style={{
                     display: "flex", gap: "14px", alignItems: "flex-start", padding: "14px 0",
@@ -430,7 +430,7 @@ export default function Sustentabilidade() {
                       display: "flex", alignItems: "center", justifyContent: "center", marginTop: "1px",
                     }}>{item.icon}</div>
                     <div>
-                      <p style={{ margin: "0 0 3px", fontWeight: 700, color: "#FAF7F0", fontSize: "0.86rem", fontFamily: "Roboto, sans-serif" }}>{item.title}</p>
+                      <p style={{ margin: "0 0 3px", fontWeight: 700, color: "var(--cream)", fontSize: "0.86rem", fontFamily: "Roboto, sans-serif" }}>{item.title}</p>
                       <p style={{ margin: 0, color: "rgba(250,247,240,0.55)", fontSize: "0.82rem", lineHeight: 1.65 }}>{item.desc}</p>
                     </div>
                   </div>
@@ -467,12 +467,12 @@ export default function Sustentabilidade() {
               <h2 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(1.8rem,4.5vw,3rem)",
-                color: "#1E2D2A", margin: "0 0 10px", lineHeight: 1.1,
+                color: "var(--green-d)", margin: "0 0 10px", lineHeight: 1.1,
               }}>
                 Prensagem, resina<br/>
-                <em style={{ fontStyle: "italic", color: "#3D6B5E" }}>e s&#237;lica</em>
+                <em style={{ fontStyle: "italic", color: "var(--green)" }}>e s&#237;lica</em>
               </h2>
-              <p style={{ color: "#5A6B60", fontSize: "clamp(0.88rem,1.7vw,0.96rem)", lineHeight: 1.75, maxWidth: "460px", margin: "0 auto" }}>
+              <p style={{ color: "var(--mid)", fontSize: "clamp(0.88rem,1.7vw,0.96rem)", lineHeight: 1.75, maxWidth: "460px", margin: "0 auto" }}>
                 Os tr&#234;s m&#233;todos mais populares para eternizar flores. Eis porque escolhemos a prensagem.
               </p>
             </motion.div>
@@ -508,11 +508,11 @@ export default function Sustentabilidade() {
                     {m.icon}
                     <h3 style={{
                       fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.15rem",
-                      color: "#1E2D2A", margin: 0, lineHeight: 1.2,
+                      color: "var(--green-d)", margin: 0, lineHeight: 1.2,
                     }}>{m.title}</h3>
                   </div>
                   <p style={{
-                    color: "#9BA89F", fontSize: "0.74rem", margin: "0 0 16px",
+                    color: "var(--mid-l)", fontSize: "0.74rem", margin: "0 0 16px",
                     fontStyle: "italic", fontFamily: "Roboto, sans-serif",
                   }}>{m.subtitle}</p>
                   <div style={{ marginBottom: "16px" }}>
@@ -522,7 +522,7 @@ export default function Sustentabilidade() {
                         borderBottom: j < m.points.length - 1 ? "1px solid rgba(0,0,0,0.045)" : "none",
                       }}>
                         <Dot good={pt.good} color={m.tagColor} />
-                        <p style={{ margin: 0, fontSize: "clamp(0.8rem,1.4vw,0.86rem)", color: "#5A6B60", lineHeight: 1.6 }}>{pt.text}</p>
+                        <p style={{ margin: 0, fontSize: "clamp(0.8rem,1.4vw,0.86rem)", color: "var(--mid)", lineHeight: 1.6 }}>{pt.text}</p>
                       </div>
                     ))}
                   </div>
@@ -572,7 +572,7 @@ export default function Sustentabilidade() {
               <h2 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(1.8rem,4.5vw,3rem)",
-                color: "#FAF7F0", margin: 0, lineHeight: 1.1,
+                color: "var(--cream)", margin: 0, lineHeight: 1.1,
               }}>
                 O que torna cada pe&#231;a<br/>
                 <em style={{ fontStyle: "italic", color: "#5C8A6A" }}>verdadeiramente sustent&#225;vel</em>
@@ -609,7 +609,7 @@ export default function Sustentabilidade() {
                   </div>
                   <h3 style={{
                     fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.92rem,1.6vw,1.05rem)",
-                    color: "#FAF7F0", margin: "0 0 8px", lineHeight: 1.25,
+                    color: "var(--cream)", margin: "0 0 8px", lineHeight: 1.25,
                   }}>{v.title}</h3>
                   <p style={{ color: "rgba(250,247,240,0.55)", fontSize: "0.83rem", lineHeight: 1.72, margin: 0 }}>{v.desc}</p>
                 </motion.div>
@@ -650,11 +650,11 @@ export default function Sustentabilidade() {
               width: "44px", height: "1px", margin: "0 auto 28px",
               background: "linear-gradient(to right, transparent, #8BA888, transparent)",
             }}/>
-            <span className="eyebrow" style={{ color: "#8BA888" }}>Pronto para preservar?</span>
+            <span className="eyebrow" style={{ color: "var(--green-l)" }}>Pronto para preservar?</span>
             <h2 style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize: "clamp(2rem,5.5vw,3.5rem)",
-              color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1,
+              color: "var(--cream)", margin: "0 0 16px", lineHeight: 1.1,
             }}>
               Reserve a sua data<br/>
               <em style={{ fontStyle: "italic", color: "#5C8A6A" }}>e tratamos do resto</em>
@@ -678,8 +678,7 @@ export default function Sustentabilidade() {
                   borderBottom: "1px solid rgba(139,168,136,0.25)", paddingBottom: "1px",
                   transition: "color 0.2s, border-color 0.2s",
                 }}
-                onMouseEnter={e => { e.currentTarget.style.color = "#8BA888"; e.currentTarget.style.borderColor = "#8BA888"; }}
-                onMouseLeave={e => { e.currentTarget.style.color = "rgba(139,168,136,0.8)"; e.currentTarget.style.borderColor = "rgba(139,168,136,0.25)"; }}
+                className="hover-green-link"
                 >{l.label}</a>
               ))}
             </div>

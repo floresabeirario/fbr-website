@@ -10,14 +10,14 @@ const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
 
 // Paleta principal
 const C = {
-  tealDeep:    "#0F2622",
+  tealDeep:    "var(--dark)",
   teal:        "#1E3D38",
   tealMid:     "#2A4F49",
-  tealLight:   "#3D6B5E",
-  salmon:      "#C4846B",
+  tealLight:   "var(--green)",
+  salmon:      "var(--terra)",
   salmonLight: "#D9A090",
-  gold:        "#B8954A",
-  cream:       "#FAF7F0",
+  gold:        "var(--gold)",
+  cream:       "var(--cream)",
 };
 
 // ─── Reveal ───────────────────────────────────────────────────────────────────

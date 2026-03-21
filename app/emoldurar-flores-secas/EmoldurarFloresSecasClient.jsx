@@ -4,18 +4,18 @@ import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 
-import { WA_NUMBER } from "../_lib/constants";
+import { WA_NUMBER, TRACKING_URL } from "../_lib/constants";
 import "./EmoldurarFloresSecasClient.css";
 const WA_URL = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Olá! Gostaria de saber mais sobre emoldurar flores secas.")}`;
 
 const C = {
-  creme:   "#FAF7F0",
+  creme:   "var(--cream)",
   creEsc:  "#EFF4F7",
-  escuro:  "#0F1E1A",
-  sec:     "#5A6B60",
+  escuro:  "var(--dark)",
+  sec:     "var(--mid)",
   azul:    "#1B4B6B",
   azulClr: "#5A8FA8",
-  terra:   "#C4846B",
+  terra:   "var(--terra)",
   branco:  "#FFFFFF",
 };
 
@@ -299,9 +299,7 @@ export default function EmoldurarFloresSecasClient() {
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "8px" }}>
                     <span style={{ fontSize: "0.72rem", color: C.sec }}>Produção: <strong style={{ color: item.cor }}>{item.time}</strong></span>
                     {item.link && (
-                      <a href={item.link.href} style={{ fontSize: "0.74rem", fontWeight: 600, color: item.cor, textDecoration: "none", borderBottom: `1px solid ${item.cor}40`, paddingBottom: "1px" }}
-                        onMouseEnter={e => e.currentTarget.style.borderColor = item.cor}
-                        onMouseLeave={e => e.currentTarget.style.borderColor = `${item.cor}40`}
+                      <a href={item.link.href} className="hover-border-full" style={{ fontSize: "0.74rem", fontWeight: 600, color: item.cor, textDecoration: "none", borderBottom: `1px solid ${item.cor}40`, paddingBottom: "1px", transition: "border-color 0.2s" }}
                       >{item.link.label} →</a>
                     )}
                   </div>
@@ -370,7 +368,7 @@ export default function EmoldurarFloresSecasClient() {
               </svg>
               <p style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.85rem", color: "rgba(250,247,240,0.75)", margin: 0, lineHeight: 1.65, fontWeight: 300 }}>
                 Ao longo de todo o processo, pode sempre acompanhar a sua encomenda em{" "}
-                <a href="https://status.floresabeirario.pt" target="_blank" rel="noopener noreferrer"
+                <a href={TRACKING_URL} target="_blank" rel="noopener noreferrer"
                   style={{ color: C.azulClr, textDecoration: "none", fontWeight: 500, borderBottom: `1px solid ${C.azulClr}60`, paddingBottom: "1px" }}>
                   status.floresabeirario.pt
                 </a>
@@ -463,8 +461,7 @@ export default function EmoldurarFloresSecasClient() {
                     padding: "clamp(1.4rem,2.5vw,2rem) clamp(1.4rem,2.5vw,2rem)",
                     transition: "box-shadow 0.3s, transform 0.3s",
                   }}
-                    onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 8px 32px rgba(0,0,0,0.25)`; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                    onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = ""; }}
+                    className="hover-lift-shadow"
                   >
                     {/* SVG lado esquerdo */}
                     <div style={{ flexShrink: 0 }}>

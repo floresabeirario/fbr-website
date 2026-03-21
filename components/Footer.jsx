@@ -41,7 +41,7 @@ const FooterENButton = ({ style }) => {
             transition={{ duration: 0.18 }}
             style={{
               position: "absolute", bottom: "calc(100% + 8px)", right: 0,
-              background: "#1E2D2A", color: "#FAF7F0",
+              background: "var(--green-d)", color: "var(--cream)",
               fontSize: "0.68rem", fontWeight: 600, letterSpacing: "1px",
               whiteSpace: "nowrap", padding: "6px 12px", borderRadius: "8px",
               fontFamily: FONT, pointerEvents: "none",
@@ -129,12 +129,12 @@ const renderLinks = (list) =>
 
 export default function FooterClient() {
   return (
-    <footer style={{ backgroundColor: "#0F1E1A", color: "#FAF7F0", position: "relative" }}>
+    <footer style={{ backgroundColor: "var(--dark)", color: "var(--cream)", position: "relative" }}>
       <div style={{ textAlign: "center", padding: "72px 24px 56px" }}>
         <h2 style={{
           fontFamily: "'TAN-MEMORIES', serif",
           fontSize: "clamp(2.6rem, 7vw, 5.5rem)",
-          color: "#FAF7F0", margin: "0 0 16px",
+          color: "var(--cream)", margin: "0 0 16px",
           lineHeight: 1.0, fontWeight: 400,
         }}>
           Flores à Beira&#8209;Rio
@@ -200,7 +200,7 @@ export default function FooterClient() {
             <span style={labelStyle}>Legal</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "24px" }}>{renderLinks(FOOTER_LINKS.legal)}</div>
             <div style={{ display: "flex", gap: "14px" }}>
-              <a href="/" style={{ ...linkStyle, color: "#FAF7F0", fontWeight: "600", fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}>
+              <a href="/" style={{ ...linkStyle, color: "var(--cream)", fontWeight: "600", fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}>
                 PT <FlagPT />
               </a>
               <FooterENButton style={{ ...linkStyle, fontSize: "0.72rem", letterSpacing: "1.5px" }} />
@@ -235,7 +235,7 @@ export default function FooterClient() {
           <a href={`mailto:${EMAIL}`} style={{ ...linkStyle, fontSize: "0.8rem" }} className="footer-nav-link">{EMAIL}</a>
           <a href={WA_URL} target="_blank" rel="noopener noreferrer" style={{ ...linkStyle, fontSize: "0.8rem" }} className="footer-nav-link">+351 934 680 300</a>
           <div style={{ display: "flex", gap: "16px", paddingTop: "4px" }}>
-            <a href="/" style={{ ...linkStyle, color: "#FAF7F0", fontWeight: "600", fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}>PT <FlagPT /></a>
+            <a href="/" style={{ ...linkStyle, color: "var(--cream)", fontWeight: "600", fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}>PT <FlagPT /></a>
             <FooterENButton style={{ ...linkStyle, fontSize: "0.72rem", letterSpacing: "1.5px" }} />
           </div>
         </div>

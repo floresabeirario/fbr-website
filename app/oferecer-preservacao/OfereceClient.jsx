@@ -40,8 +40,8 @@ const AZUL     = "#7B8FC7";
 const AZUL_ESC = "#5A6BA6";
 const AZUL_CLR = "#B8C4E8";
 const AZUL_FND = "#E8ECF8";
-const CREME    = "#FAF7F0";
-const ESCURO   = "#0F1E1A";
+const CREME    = "var(--cream)";
+const ESCURO   = "var(--dark)";
 
 const ocasioes = [
   { img: "/casamento.webp",           titulo: "Casamento",               descricao: "O bouquet de noiva passou meses a ser pensado ao pormenor. Transforme-o numa obra de arte que vai durar para sempre." },
@@ -170,7 +170,7 @@ export default function OfereceClient() {
                 {condicoesCartao.map((cond, i) => (
                   <div key={i} className="cond-cartao-item">
                     <span style={{ color: AZUL, marginTop: "3px", flexShrink: 0, fontSize: "0.75rem" }} aria-hidden="true">✦</span>
-                    <p style={{ fontSize: "0.88rem", lineHeight: 1.7, color: "#5A6B60", margin: 0 }}>{cond}</p>
+                    <p style={{ fontSize: "0.88rem", lineHeight: 1.7, color: "var(--mid)", margin: 0 }}>{cond}</p>
                   </div>
                 ))}
               </div>
@@ -235,8 +235,7 @@ export default function OfereceClient() {
             <div style={{ textAlign: "center", marginTop: "clamp(2.5rem, 5vw, 4rem)" }}>
               <Link href="/vale-presente"
                 style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", background: CREME, color: AZUL_ESC, padding: "15px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "'Google Sans', sans-serif", transition: "all 0.3s ease", boxShadow: "0 6px 24px rgba(15,30,26,0.2)" }}
-                onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 12px 36px rgba(15,30,26,0.28)"; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 6px 24px rgba(15,30,26,0.2)"; }}
+                className="hover-lift"
               >
                 Encomendar Vale Oferta
               </Link>
@@ -272,11 +271,10 @@ export default function OfereceClient() {
                   <div style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 4vw, 2.8rem)", color: AZUL, lineHeight: 1, minWidth: "60px", opacity: 0.7 }} aria-hidden="true">{passo.n}</div>
                   <div>
                     <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem, 2vw, 1.2rem)", marginBottom: "0.5rem", color: ESCURO, lineHeight: 1.2 }}>{passo.titulo}</h3>
-                    <p style={{ fontSize: "0.92rem", lineHeight: 1.8, color: "#5A6B60", margin: passo.link ? "0 0 0.7rem" : "0" }}>{passo.texto}</p>
+                    <p style={{ fontSize: "0.92rem", lineHeight: 1.8, color: "var(--mid)", margin: passo.link ? "0 0 0.7rem" : "0" }}>{passo.texto}</p>
                     {passo.link && (
                       <a href={passo.link.href} style={{ fontSize: "0.78rem", fontWeight: 600, color: AZUL, textDecoration: "none", letterSpacing: "0.05em", borderBottom: `1px solid ${AZUL}44`, paddingBottom: "1px", transition: "border-color 0.2s" }}
-                        onMouseEnter={e => e.currentTarget.style.borderColor = AZUL}
-                        onMouseLeave={e => e.currentTarget.style.borderColor = `${AZUL}44`}
+                        className="hover-border-full"
                       >{passo.link.label} →</a>
                     )}
                   </div>

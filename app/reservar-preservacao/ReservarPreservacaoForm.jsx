@@ -2,7 +2,7 @@
 
 import { useState, useRef, useId, isValidElement, cloneElement } from "react";
 import Link from "next/link";
-import { SOCIAL_INSTAGRAM } from "../_lib/constants";
+import { SOCIAL_INSTAGRAM, EMAIL } from "../_lib/constants";
 import PhonePrefix from "../_components/PhonePrefix";
 
 const ELEMENTOS_OPTIONS = [
@@ -544,7 +544,7 @@ export default function ReservarPreservacaoForm() {
       {status === "error" && (
         <p className="pf-submit-error" role="alert">
           Ocorreu um erro ao enviar. Por favor, tente novamente ou contacte-nos em{" "}
-          <a href="mailto:info@floresabeirario.pt">info@floresabeirario.pt</a>.
+          <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
         </p>
       )}
 

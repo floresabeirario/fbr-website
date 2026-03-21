@@ -10,6 +10,7 @@ import {
   detectCountryShortName,
   exceedsLength,
 } from "@/app/_lib/api-helpers";
+import { EMAIL } from "@/app/_lib/constants";
 
 const MONDAY_API = "https://api.monday.com/v2";
 const isRateLimited = createRateLimiter();
@@ -312,7 +313,7 @@ export async function POST(request) {
           },
           body: JSON.stringify({
             from: "Flores à Beira-Rio <noreply@floresabeirario.pt>",
-            to: ["info@floresabeirario.pt"],
+            to: [EMAIL],
             subject: `Nova pré-reserva de preservação — ${data.nome}`,
             html: `<h2 style="font-family:sans-serif;color:#5A1E38;">Nova pré-reserva de preservação</h2>
 <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse;width:100%;max-width:600px;">

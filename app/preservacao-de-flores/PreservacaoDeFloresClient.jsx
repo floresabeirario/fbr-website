@@ -50,7 +50,7 @@ export default function PreservacaoDeFloresClient() {
   return (
     <>
 
-      <div style={{ backgroundColor: "#FAF7F0", overflowX: "clip" }}>
+      <div style={{ backgroundColor: "var(--cream)", overflowX: "clip" }}>
 
         {/* ══ HERO ══════════════════════════════════════════════════════════════ */}
         <PageHero
@@ -69,7 +69,7 @@ export default function PreservacaoDeFloresClient() {
             <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700 }}>
               Arte Botânica Artesanal · Coimbra
             </p>
-            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.03, color: "#FAF7F0", margin: "0 0 clamp(1rem,2.5vw,1.6rem)" }}>
+            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.03, color: "var(--cream)", margin: "0 0 clamp(1rem,2.5vw,1.6rem)" }}>
               Preservação de<br />
               <em style={{ fontStyle: "italic", color: "#D4956A" }}>Flores</em>
             </h1>
@@ -78,8 +78,8 @@ export default function PreservacaoDeFloresClient() {
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px", fontSize: "0.8rem" }}>
               {[
-                { href: "/opcoes-e-precos", label: "Preços", color: "#8BA888" },
-                { href: "/como-funciona", label: "Como funciona", color: "#C8522A" },
+                { href: "/opcoes-e-precos", label: "Preços", color: "var(--green-l)" },
+                { href: "/como-funciona", label: "Como funciona", color: "var(--rust)" },
                 { href: "/emoldurar-flores-secas", label: "Flores já secas", color: "#5A8FA8" },
               ].map((l, i) => (
                 <a key={i} href={l.href} style={{ color: l.color, fontWeight: 600, textDecoration: "none", borderBottom: `1px solid ${l.color}55`, paddingBottom: "1px", fontFamily: "'Google Sans', Roboto, sans-serif", transition: "border-color 0.2s" }}>
@@ -103,19 +103,19 @@ export default function PreservacaoDeFloresClient() {
               transition={{ duration: 0.75 }}
             >
               <span className="eyebrow">Arte Botânica · Coimbra · Portugal</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,4.5vw,3.2rem)", color: "#1E2D2A", margin: "0 0 clamp(16px,2.5vw,24px)", lineHeight: 1.1 }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,4.5vw,3.2rem)", color: "var(--green-d)", margin: "0 0 clamp(16px,2.5vw,24px)", lineHeight: 1.1 }}>
                 O que é a preservação<br />
-                <em style={{ fontStyle: "italic", color: "#C4846B" }}>de flores?</em>
+                <em style={{ fontStyle: "italic", color: "var(--terra)" }}>de flores?</em>
               </h2>
-              <div style={{ color: "#5A6B60", fontSize: "clamp(0.95rem,1.8vw,1.05rem)", lineHeight: 1.9, fontFamily: "Roboto, sans-serif" }}>
+              <div style={{ color: "var(--mid)", fontSize: "clamp(0.95rem,1.8vw,1.05rem)", lineHeight: 1.9, fontFamily: "Roboto, sans-serif" }}>
                 <p style={{ margin: "0 0 16px" }}>
                   A preservação de flores é o processo de transformar flores frescas com valor emocional numa obra de arte botânica que dura para sempre.
                 </p>
                 <p style={{ margin: "0 0 16px" }}>
-                  Na Flores à Beira-Rio, usamos exclusivamente <strong style={{ color: "#1E2D2A" }}>prensagem botânica artesanal</strong>, o método mais natural e mais sustentável. Cada pétala é tratada individualmente, sem resinas, sem químicos sintéticos, e com materiais de conservação museu.
+                  Na Flores à Beira-Rio, usamos exclusivamente <strong style={{ color: "var(--green-d)" }}>prensagem botânica artesanal</strong>, o método mais natural e mais sustentável. Cada pétala é tratada individualmente, sem resinas, sem químicos sintéticos, e com materiais de conservação museu.
                 </p>
                 <p style={{ margin: 0 }}>
-                  O resultado é um <strong style={{ color: "#1E2D2A" }}>quadro emoldurado com vidro museu UltraVue®</strong> pronto a pendurar na parede de casa e a durar toda uma vida.
+                  O resultado é um <strong style={{ color: "var(--green-d)" }}>quadro emoldurado com vidro museu UltraVue®</strong> pronto a pendurar na parede de casa e a durar toda uma vida.
                 </p>
               </div>
             </motion.div>
@@ -125,7 +125,7 @@ export default function PreservacaoDeFloresClient() {
         {/* ══ CARDS DAS 4 SUBPÁGINAS ════════════════════════════════════════════ */}
         <section
           aria-label="Páginas sobre preservação de flores"
-          style={{ padding: "clamp(56px,9vw,88px) clamp(20px,5vw,48px)", backgroundColor: "#FAF7F0" }}
+          style={{ padding: "clamp(56px,9vw,88px) clamp(20px,5vw,48px)", backgroundColor: "var(--cream)" }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
             <motion.div
@@ -135,9 +135,9 @@ export default function PreservacaoDeFloresClient() {
               style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}
             >
               <span className="eyebrow">Explore em detalhe</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,4.5vw,3rem)", color: "#1E2D2A", margin: 0, lineHeight: 1.1 }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,4.5vw,3rem)", color: "var(--green-d)", margin: 0, lineHeight: 1.1 }}>
                 Tudo o que precisa<br />
-                <em style={{ fontStyle: "italic", color: "#C4846B" }}>de saber</em>
+                <em style={{ fontStyle: "italic", color: "var(--terra)" }}>de saber</em>
               </h2>
             </motion.div>
 
@@ -164,7 +164,7 @@ export default function PreservacaoDeFloresClient() {
               style={{ textAlign: "center", marginBottom: "clamp(28px,4vw,44px)" }}
             >
               <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(212,149,106,0.7)", marginBottom: "12px", fontFamily: "Roboto, sans-serif" }}>Que tipo de flores preservamos</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,4.5vw,3rem)", color: "#FAF7F0", margin: 0, lineHeight: 1.1 }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,4.5vw,3rem)", color: "var(--cream)", margin: 0, lineHeight: 1.1 }}>
                 Para cada momento<br />
                 <em style={{ fontStyle: "italic", color: "#D4956A" }}>uma memória eterna</em>
               </h2>
@@ -180,10 +180,9 @@ export default function PreservacaoDeFloresClient() {
                   transition={{ delay: (i % 3) * 0.08, duration: 0.6 }}
                 >
                   <a href={item.href} style={{ display: "block", textDecoration: "none", padding: "clamp(16px,2.5vw,22px)", borderRadius: "14px", backgroundColor: "rgba(250,247,240,0.04)", border: "1px solid rgba(250,247,240,0.07)", transition: "background 0.25s, border-color 0.25s" }}
-                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = "rgba(196,132,107,0.15)"; e.currentTarget.style.borderColor = "rgba(212,149,106,0.25)"; }}
-                    onMouseLeave={e => { e.currentTarget.style.backgroundColor = "rgba(250,247,240,0.04)"; e.currentTarget.style.borderColor = "rgba(250,247,240,0.07)"; }}
+                    className="hover-terra-occasion"
                   >
-                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem,2vw,1.2rem)", color: "#FAF7F0", margin: "0 0 6px", lineHeight: 1.2 }}>{item.label}</h3>
+                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem,2vw,1.2rem)", color: "var(--cream)", margin: "0 0 6px", lineHeight: 1.2 }}>{item.label}</h3>
                     <p style={{ color: "rgba(250,247,240,0.5)", fontSize: "0.82rem", lineHeight: 1.65, margin: 0, fontFamily: "Roboto, sans-serif" }}>{item.desc}</p>
                   </a>
                 </motion.div>
@@ -205,9 +204,9 @@ export default function PreservacaoDeFloresClient() {
               style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}
             >
               <span className="eyebrow">Porquê escolher-nos</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,4.5vw,3rem)", color: "#1E2D2A", margin: 0, lineHeight: 1.1 }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,4.5vw,3rem)", color: "var(--green-d)", margin: 0, lineHeight: 1.1 }}>
                 Feito para durar<br />
-                <em style={{ fontStyle: "italic", color: "#C4846B" }}>toda uma vida</em>
+                <em style={{ fontStyle: "italic", color: "var(--terra)" }}>toda uma vida</em>
               </h2>
             </motion.div>
 
@@ -224,12 +223,12 @@ export default function PreservacaoDeFloresClient() {
                   <div style={{ flexShrink: 0, marginTop: "3px" }}>
                     <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                       <circle cx="10" cy="10" r="10" fill="rgba(196,132,107,0.1)" />
-                      <path d="M6 10l3 3 5-5" stroke="#C4846B" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M6 10l3 3 5-5" stroke="var(--terra)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                   <div>
-                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.95rem,1.6vw,1.08rem)", color: "#1E2D2A", margin: "0 0 5px", lineHeight: 1.25 }}>{item.title}</h3>
-                    <p style={{ color: "#5A6B60", fontSize: "0.84rem", lineHeight: 1.65, margin: 0, fontFamily: "Roboto, sans-serif" }}>{item.desc}</p>
+                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.95rem,1.6vw,1.08rem)", color: "var(--green-d)", margin: "0 0 5px", lineHeight: 1.25 }}>{item.title}</h3>
+                    <p style={{ color: "var(--mid)", fontSize: "0.84rem", lineHeight: 1.65, margin: 0, fontFamily: "Roboto, sans-serif" }}>{item.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -251,7 +250,7 @@ export default function PreservacaoDeFloresClient() {
           >
             <div aria-hidden="true" style={{ width: "44px", height: "1px", margin: "0 auto 28px", background: "linear-gradient(to right, transparent, #D4956A, transparent)" }} />
             <span className="eyebrow" style={{ color: "rgba(212,149,106,0.85)" }}>Preserve o que importa</span>
-            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5.5vw,3.5rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1, textShadow: "0 2px 16px rgba(0,0,0,0.5)" }}>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5.5vw,3.5rem)", color: "var(--cream)", margin: "0 0 16px", lineHeight: 1.1, textShadow: "0 2px 16px rgba(0,0,0,0.5)" }}>
               Alguns momentos merecem<br />
               <em style={{ fontStyle: "italic", color: "#D4956A" }}>durar para sempre</em>
             </h2>

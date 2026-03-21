@@ -7,7 +7,7 @@ import Image from "next/image";
 import { FORM_URL, TRACKING_URL } from "../_lib/constants";
 
 const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
-const VERDE_CLARO = "#8BA888";
+const VERDE_CLARO = "var(--green-l)";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 36 },
@@ -212,7 +212,7 @@ export default function OpcoesClient() {
   const heroY       = useTransform(scrollYProgress, [0, 0.38], [0, 28]);
 
   return (
-    <div style={{ backgroundColor: "#FAF7F0", color: "#1a1a1a", overflowX: "hidden" }}>
+    <div style={{ backgroundColor: "var(--cream)", color: "#1a1a1a", overflowX: "hidden" }}>
 
       {/* ── HERO ── */}
       <section ref={heroRef} style={{ position: "relative", minHeight: "100svh", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -240,7 +240,7 @@ export default function OpcoesClient() {
             <p style={{ fontSize: "0.62rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.9)", fontFamily: GS, margin: "0 0 14px", fontWeight: 700 }}>
               Opções e Preços
             </p>
-            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: "#FAF7F0", margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)" }}>
+            <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: "var(--cream)", margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)" }}>
               Preserve as flores<br />
               <em style={{ fontStyle: "italic", color: VERDE_CLARO }}>que contam a sua história</em>
             </h1>
@@ -252,7 +252,7 @@ export default function OpcoesClient() {
       </section>
 
       {/* ── TIPOS DE FUNDO ── */}
-      <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(40px,7vw,70px) 0 clamp(50px,8vw,80px)" }}>
+      <section style={{ backgroundColor: "var(--cream)", padding: "clamp(40px,7vw,70px) 0 clamp(50px,8vw,80px)" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px clamp(32px,5vw,48px)" }}>
           <Reveal>
             <Label>Personalização</Label>
@@ -274,7 +274,7 @@ export default function OpcoesClient() {
                   <Image fill src={item.img} alt={item.alt}
                     sizes="(max-width: 768px) 100vw, 25vw" className="fundo-img-new" style={{ objectFit: "cover", transition: "transform 0.9s ease" }} />
                   {item.tag && (
-                    <span style={{ position: "absolute", top: "12px", left: "12px", backgroundColor: item.tagSolid ? "#3D6B5E" : "rgba(15,30,26,0.55)", color: "#FAF7F0", fontSize: "0.52rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: GS, fontWeight: 600, padding: "5px 11px", borderRadius: "100px", backdropFilter: "blur(4px)" }}>
+                    <span style={{ position: "absolute", top: "12px", left: "12px", backgroundColor: item.tagSolid ? "var(--green)" : "rgba(15,30,26,0.55)", color: "var(--cream)", fontSize: "0.52rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: GS, fontWeight: 600, padding: "5px 11px", borderRadius: "100px", backdropFilter: "blur(4px)" }}>
                       {item.tag}
                     </span>
                   )}
@@ -311,7 +311,7 @@ export default function OpcoesClient() {
               { img: "/pendente1.webp", alt: "Pendente floral para colar", badge: "Joalharia", badgeBg: "rgba(58,48,80,0.1)", badgeColor: "#3A3050", title: "Pendente para Colar", desc: "Uma flor do seu bouquet para usar sempre perto do coração. Uma memória que se transforma em joia.", note: "Só com a compra de um quadro maior." },
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.08}>
-                <div style={{ borderRadius: "10px", overflow: "hidden", boxShadow: "0 6px 24px rgba(26,26,26,0.08)", backgroundColor: "#FAF7F0" }}>
+                <div style={{ borderRadius: "10px", overflow: "hidden", boxShadow: "0 6px 24px rgba(26,26,26,0.08)", backgroundColor: "var(--cream)" }}>
                   <div style={{ overflow: "hidden", position: "relative", aspectRatio: "4/3" }}>
                     <Image fill src={item.img} alt={item.alt}
                       sizes="(max-width: 768px) 100vw, 33vw" className="presente-img" style={{ objectFit: "cover", transition: "transform 0.7s ease" }} />
@@ -330,7 +330,7 @@ export default function OpcoesClient() {
       </section>
 
       {/* ── ELEMENTOS ESPECIAIS ── */}
-      <section style={{ backgroundColor: "#FAF7F0", borderTop: "1px solid rgba(26,26,26,0.06)", padding: "clamp(28px,4vw,40px) 24px" }}>
+      <section style={{ backgroundColor: "var(--cream)", borderTop: "1px solid rgba(26,26,26,0.06)", padding: "clamp(28px,4vw,40px) 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
             {/* Título */}
@@ -355,12 +355,12 @@ export default function OpcoesClient() {
       </section>
 
       {/* ── TAMANHOS E PREÇOS ── */}
-      <section style={{ backgroundColor: "#0F1E1A", padding: "clamp(50px,8vw,90px) 24px 0" }}>
+      <section style={{ backgroundColor: "var(--dark)", padding: "clamp(50px,8vw,90px) 24px 0" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(40px,6vw,64px)" }}>
               <Label light>Feito à mão, para si</Label>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 20px", lineHeight: 1.1, color: "#FAF7F0" }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, margin: "0 0 20px", lineHeight: 1.1, color: "var(--cream)" }}>
                 Tamanhos & Preços
               </h2>
               <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.75, color: "rgba(250,247,240,0.5)", maxWidth: "440px", margin: "0 auto" }}>
@@ -379,17 +379,17 @@ export default function OpcoesClient() {
 
             {frames.slice(0, 3).map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div style={{ backgroundColor: i === 0 ? "#FAF7F0" : i === 1 ? "#F2EDE4" : "#EAE3D8", padding: "28px 24px", display: "flex", flexDirection: "column", height: "100%", boxSizing: "border-box", borderRadius: "4px", position: "relative" }}>
+                <div style={{ backgroundColor: i === 0 ? "var(--cream)" : i === 1 ? "#F2EDE4" : "#EAE3D8", padding: "28px 24px", display: "flex", flexDirection: "column", height: "100%", boxSizing: "border-box", borderRadius: "4px", position: "relative" }}>
                   <div style={{ display: "flex", alignItems: "flex-start", gap: "20px" }}>
                     <div style={{ flexShrink: 0 }}>
                       <FrameSVG vw={item.vw} vh={item.vh} flowers={item.flowers} svgWidth={item.svgWidth} label={item.size} dark={true} />
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", paddingTop: "8px" }}>
-                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.7rem, 2.6vw, 2.4rem)", color: "#0F1E1A", margin: "0", lineHeight: 1 }}>
+                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.7rem, 2.6vw, 2.4rem)", color: "var(--dark)", margin: "0", lineHeight: 1 }}>
                         {item.size}
                         <span style={{ fontSize: "0.8rem", fontFamily: GS, fontWeight: 400, marginLeft: "4px", color: "rgba(15,30,26,0.4)" }}>{item.unit}</span>
                       </p>
-                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.2rem, 2vw, 1.6rem)", color: "#3D6B5E", margin: "8px 0 10px" }}>{item.price}€</p>
+                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.2rem, 2vw, 1.6rem)", color: "var(--green)", margin: "8px 0 10px" }}>{item.price}€</p>
                       <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.75rem", lineHeight: 1.6, color: "rgba(15,30,26,0.5)", margin: 0 }}>{item.desc}</p>
                     </div>
                   </div>
@@ -406,8 +406,8 @@ export default function OpcoesClient() {
 
             {frames.slice(3).map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div style={{ backgroundColor: item.addonColor ? item.addonColor : "#3D6B5E", padding: "28px 24px", display: "flex", flexDirection: "column", height: "100%", boxSizing: "border-box", borderRadius: "4px", position: "relative" }}>
-                  <span style={{ position: "absolute", top: "16px", right: "16px", backgroundColor: "rgba(250,247,240,0.15)", color: "#FAF7F0", fontSize: "0.5rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: GS, fontWeight: 600, padding: "4px 10px", borderRadius: "100px" }}>
+                <div style={{ backgroundColor: item.addonColor ? item.addonColor : "var(--green)", padding: "28px 24px", display: "flex", flexDirection: "column", height: "100%", boxSizing: "border-box", borderRadius: "4px", position: "relative" }}>
+                  <span style={{ position: "absolute", top: "16px", right: "16px", backgroundColor: "rgba(250,247,240,0.15)", color: "var(--cream)", fontSize: "0.5rem", letterSpacing: "2px", textTransform: "uppercase", fontFamily: GS, fontWeight: 600, padding: "4px 10px", borderRadius: "100px" }}>
                     {item.badge || "Para oferecer"}
                   </span>
                   <div style={{ display: "flex", alignItems: "flex-start", gap: "20px" }}>
@@ -417,11 +417,11 @@ export default function OpcoesClient() {
                         : <FrameSVG vw={item.vw} vh={item.vh} flowers={item.flowers} svgWidth={item.svgWidth} label={item.size} dark={false} />}
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", paddingTop: "8px" }}>
-                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.2rem, 2vw, 1.7rem)", color: "#FAF7F0", margin: "0", lineHeight: 1 }}>
+                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.2rem, 2vw, 1.7rem)", color: "var(--cream)", margin: "0", lineHeight: 1 }}>
                         {item.size}
                         <span style={{ fontSize: "0.8rem", fontFamily: GS, fontWeight: 400, marginLeft: "4px", color: "rgba(250,247,240,0.45)" }}>{item.unit}</span>
                       </p>
-                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem, 1.8vw, 1.3rem)", color: "#8BA888", margin: "8px 0 10px" }}>{item.price}€</p>
+                      <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem, 1.8vw, 1.3rem)", color: "var(--green-l)", margin: "8px 0 10px" }}>{item.price}€</p>
                       <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.75rem", lineHeight: 1.6, color: "rgba(250,247,240,0.5)", margin: 0, fontStyle: "italic" }}>{item.desc}</p>
                     </div>
                   </div>
@@ -433,13 +433,13 @@ export default function OpcoesClient() {
           <Reveal>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "18px", margin: "0 0 48px", padding: "22px 32px", backgroundColor: "rgba(184,149,74,0.1)", border: "1px solid rgba(184,149,74,0.3)", borderRadius: "4px" }}>
               <svg width="22" height="22" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
-                <rect x="1.5" y="1.5" width="15" height="15" rx="1" stroke="#C4A55A" strokeWidth="1.4" fill="none"/>
+                <rect x="1.5" y="1.5" width="15" height="15" rx="1" stroke="var(--gold)" strokeWidth="1.4" fill="none"/>
                 <line x1="4" y1="6" x2="8" y2="2" stroke="rgba(196,165,90,0.7)" strokeWidth="1.1" strokeLinecap="round"/>
                 <line x1="9" y1="5" x2="11" y2="3" stroke="rgba(196,165,90,0.5)" strokeWidth="1.1" strokeLinecap="round"/>
               </svg>
               <p style={{ fontFamily: GS, fontWeight: 400, fontSize: "0.88rem", color: "rgba(250,247,240,0.8)", margin: 0 }}>
                 Todos os quadros são emoldurados com{" "}
-                <strong style={{ fontWeight: 700, color: "#C4A55A" }}>vidro museu UltraVue®</strong>
+                <strong style={{ fontWeight: 700, color: "var(--gold)" }}>vidro museu UltraVue®</strong>
                 {" "}praticamente invisível, com proteção UV70
               </p>
             </div>
@@ -451,10 +451,10 @@ export default function OpcoesClient() {
                   Pretende outro formato<br/>ou uma composição diferente?
                 </p>
               </div>
-              <a href="/contactos" style={{ display: "inline-flex", alignItems: "center", gap: "10px", color: "#FAF7F0", fontFamily: GS, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
-                onMouseEnter={e => { e.currentTarget.style.opacity = "0.65"; }} onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}>
+              <a href="/contactos" style={{ display: "inline-flex", alignItems: "center", gap: "10px", color: "var(--cream)", fontFamily: GS, fontSize: "0.72rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
+                className="hover-opacity">
                 Falar connosco
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FAF7F0" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="var(--cream)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </a>
             </div>
           </Reveal>
@@ -462,16 +462,16 @@ export default function OpcoesClient() {
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px", padding: "28px 0 40px", flexWrap: "wrap" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0 }}>
-                  <circle cx="9" cy="7.5" r="2.5" stroke="#8BA888" strokeWidth="1.3" fill="none"/>
-                  <path d="M9 2C5.686 2 3 4.686 3 8c0 4.5 6 9 6 9s6-4.5 6-9c0-3.314-2.686-6-6-6z" stroke="#8BA888" strokeWidth="1.3" fill="none"/>
+                  <circle cx="9" cy="7.5" r="2.5" stroke="var(--green-l)" strokeWidth="1.3" fill="none"/>
+                  <path d="M9 2C5.686 2 3 4.686 3 8c0 4.5 6 9 6 9s6-4.5 6-9c0-3.314-2.686-6-6-6z" stroke="var(--green-l)" strokeWidth="1.3" fill="none"/>
                 </svg>
                 <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.82rem", color: "rgba(250,247,240,0.45)", margin: 0 }}>Já encomendou? Acompanhe o estado da sua peça em tempo real.</p>
               </div>
               <a href={TRACKING_URL} target="_blank" rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#8BA888", fontFamily: GS, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
-                onMouseEnter={e => { e.currentTarget.style.opacity = "0.65"; }} onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}>
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "var(--green-l)", fontFamily: GS, fontSize: "0.68rem", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", textDecoration: "none", flexShrink: 0, transition: "opacity 0.2s" }}
+                className="hover-opacity">
                 Ver estado
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#8BA888" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="var(--green-l)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </a>
             </div>
           </Reveal>
@@ -479,7 +479,7 @@ export default function OpcoesClient() {
       </section>
 
       {/* ── MATERIAIS E QUALIDADE ── */}
-      <section style={{ backgroundColor: "#FAF7F0", padding: "clamp(50px,8vw,90px) 24px 0" }}>
+      <section style={{ backgroundColor: "var(--cream)", padding: "clamp(50px,8vw,90px) 24px 0" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "48px" }}>
@@ -503,7 +503,7 @@ export default function OpcoesClient() {
                   <Image fill src={item.img} alt={item.title} sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover" }} />
                   <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.72) 0%, rgba(15,30,26,0.05) 45%, transparent 100%)" }} />
                   <div style={{ position: "relative", padding: "22px 22px 0", minHeight: "260px" }}>
-                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.05rem", fontWeight: 400, margin: 0, lineHeight: 1.2, color: "#FAF7F0", textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}>{item.title}</h3>
+                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.05rem", fontWeight: 400, margin: 0, lineHeight: 1.2, color: "var(--cream)", textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}>{item.title}</h3>
                   </div>
                 </div>
               </Reveal>
@@ -535,7 +535,7 @@ export default function OpcoesClient() {
                   {["Praticamente elimina reflexos","Filtra até 70% dos raios UV nocivos","Vidro Water White com transmissão de cores cristalinas","Ilumina cores e níveis de contraste","Superfície duradoura e de fácil limpeza"].map((feat, i) => (
                     <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "14px", padding: "14px 0", borderBottom: "1px solid rgba(26,26,26,0.07)", fontFamily: GS, fontWeight: 300, fontSize: "0.92rem", lineHeight: 1.6, color: "rgba(26,26,26,0.75)" }}>
                       <span style={{ width: "20px", height: "20px", borderRadius: "50%", backgroundColor: VERDE_CLARO, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "1px" }} aria-hidden="true">
-                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#FAF7F0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="var(--cream)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                       </span>
                       {feat}
                     </li>
@@ -558,16 +558,16 @@ export default function OpcoesClient() {
         {/* CTA Garanta a qualidade museu */}
         <div style={{ padding: "clamp(48px,8vw,80px) 24px", textAlign: "center" }}>
           <Reveal>
-            <div style={{ maxWidth: "780px", margin: "0 auto", backgroundColor: "#3D6B5E", borderRadius: "20px", padding: "clamp(40px,6vw,64px) clamp(32px,5vw,80px)" }}>
-              <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 400, margin: "0 0 16px", lineHeight: 1.1, color: "#FAF7F0" }}>
+            <div style={{ maxWidth: "780px", margin: "0 auto", backgroundColor: "var(--green)", borderRadius: "20px", padding: "clamp(40px,6vw,64px) clamp(32px,5vw,80px)" }}>
+              <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 400, margin: "0 0 16px", lineHeight: 1.1, color: "var(--cream)" }}>
                 Garanta a <em style={{ color: VERDE_CLARO }}>qualidade museu</em> para o seu quadro
               </h3>
               <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(250,247,240,0.65)", margin: "0 0 32px" }}>
                 Materiais premium que preservam as suas flores durante décadas.
               </p>
               <a href={FORM_URL}
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "16px 48px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "54px" }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }} onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "var(--cream)", color: "var(--green)", padding: "16px 48px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "54px" }}
+                className="hover-bg-warm">
                 Reservar a Minha Data
               </a>
             </div>
@@ -582,7 +582,7 @@ export default function OpcoesClient() {
         <div style={{ position: "relative", zIndex: 1, maxWidth: "640px", margin: "0 auto" }}>
           <Reveal>
             <Label light>Próximo passo</Label>
-            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 6vw, 4rem)", fontWeight: 400, margin: "0 0 24px", lineHeight: 1.05, color: "#FAF7F0" }}>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem, 6vw, 4rem)", fontWeight: 400, margin: "0 0 24px", lineHeight: 1.05, color: "var(--cream)" }}>
               Descubra a<br/><em style={{ color: VERDE_CLARO }}>Recriação do Bouquet</em>
             </h2>
             <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.95rem", lineHeight: 1.8, color: "rgba(250,247,240,0.7)", margin: "0 0 44px" }}>
@@ -590,13 +590,13 @@ export default function OpcoesClient() {
             </p>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
               <a href="/recriacao"
-                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FAF7F0", color: "#3D6B5E", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "56px" }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#EDE5D4"; }} onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#FAF7F0"; }}>
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "var(--cream)", color: "var(--green)", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "56px" }}
+                className="hover-bg-warm">
                 Ver Recriação do Bouquet
               </a>
               <a href="/perguntas-frequentes"
                 style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "transparent", color: "rgba(250,247,240,0.85)", padding: "16px 40px", borderRadius: "100px", textDecoration: "none", fontWeight: 500, fontSize: "0.78rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, border: "1.5px solid rgba(250,247,240,0.4)", transition: "all 0.3s ease", minHeight: "56px" }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.8)"; }} onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(250,247,240,0.4)"; }}>
+                className="hover-border-bright">
                 Perguntas Frequentes
               </a>
             </div>

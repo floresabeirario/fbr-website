@@ -49,7 +49,7 @@ export default function HomeHero() {
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
-          color: "#FAF7F0",
+          color: "var(--cream)",
           padding: "0 20px",
         }}
       >

@@ -61,7 +61,10 @@
       "Bash(done)",
       "Bash(grep -l \"RecriacaoClient\" /c/Users/maria/Documents/fbr-website/fbr-website/app/recriacao/*)",
       "Bash(ls -d /c/Users/maria/Documents/fbr-website/fbr-website/app/*/)",
-      "Bash(xargs -I {} basename {})"
+      "Bash(xargs -I {} basename {})",
+      "Bash(for file:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Users/maria/Documents/fbr-website/fbr-website/**)"
     ]
   }
 }

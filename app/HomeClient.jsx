@@ -166,7 +166,7 @@ export default function HomeClient() {
       if (best) {
         applyTheme(best);
       } else {
-        document.documentElement.style.setProperty("--nav-cta-color", "#3D6B5E");
+        document.documentElement.style.setProperty("--nav-cta-color", "var(--green)");
       }
     };
 
@@ -206,8 +206,8 @@ export default function HomeClient() {
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "48px" }}>
               <span className="eyebrow">O que fazemos</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,5vw,3.5rem)", color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1 }}>As suas flores, para sempre</h2>
-              <p style={{ color: "#5A6B60", fontSize: "clamp(1rem,2vw,1.1rem)", lineHeight: 1.85, maxWidth: "600px", margin: "0 auto 48px" }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,5vw,3.5rem)", color: "var(--green-d)", margin: "0 0 16px", lineHeight: 1.1 }}>As suas flores, para sempre</h2>
+              <p style={{ color: "var(--mid)", fontSize: "clamp(1rem,2vw,1.1rem)", lineHeight: 1.85, maxWidth: "600px", margin: "0 auto 48px" }}>
                 Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Recebemos flores de Portugal e de toda a Europa no nosso estúdio em Coimbra.
               </p>
               <BeforeAfterSlider />
@@ -226,7 +226,7 @@ export default function HomeClient() {
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
             <motion.div className="tracking-title" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} style={{ marginBottom: "32px" }}>
               <span className="eyebrow">Transparência total</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "#1E2D2A", margin: "0 0 4px", lineHeight: 1.1 }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "var(--green-d)", margin: "0 0 4px", lineHeight: 1.1 }}>
                 Acompanhe a sua<br /><em style={{ fontStyle: "italic", color: "var(--section-accent)" }}>encomenda ao vivo</em>
               </h2>
             </motion.div>
@@ -235,7 +235,7 @@ export default function HomeClient() {
               <motion.div initial={{ opacity: 0, x: -28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div className="phone-float" style={{ position: "relative", width: "clamp(200px, 38vw, 280px)", transform: "rotate(-2deg)" }}>
                   <div style={{ position: "absolute", bottom: "-24px", left: "50%", transform: "translateX(-50%)", width: "70%", height: "40px", background: "radial-gradient(ellipse, rgba(30,45,42,0.18) 0%, transparent 70%)", borderRadius: "50%", zIndex: 0 }} aria-hidden="true" />
-                  <div style={{ position: "relative", zIndex: 1, backgroundColor: "#1E2D2A", borderRadius: "42px", padding: "14px 10px", boxShadow: "0 32px 80px rgba(30,45,42,0.35), 0 0 0 1px rgba(255,255,255,0.06)" }}>
+                  <div style={{ position: "relative", zIndex: 1, backgroundColor: "var(--green-d)", borderRadius: "42px", padding: "14px 10px", boxShadow: "0 32px 80px rgba(30,45,42,0.35), 0 0 0 1px rgba(255,255,255,0.06)" }}>
                     <div style={{ display: "flex", justifyContent: "center", marginBottom: "10px", gap: "6px", alignItems: "center" }} aria-hidden="true">
                       <div style={{ width: "60px", height: "6px", borderRadius: "10px", backgroundColor: "#2D4A40" }} />
                       <div style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#2D4A40" }} />
@@ -254,10 +254,10 @@ export default function HomeClient() {
 
               <motion.div initial={{ opacity: 0, x: 28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}>
                 <span className="eyebrow tracking-desktop-title">Transparência total</span>
-                <h2 className="tracking-desktop-title" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "#1E2D2A", margin: "0 0 20px", lineHeight: 1.1 }}>
+                <h2 className="tracking-desktop-title" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "var(--green-d)", margin: "0 0 20px", lineHeight: 1.1 }}>
                   Acompanhe a sua<br /><em style={{ fontStyle: "italic", color: "var(--section-accent)" }}>encomenda ao vivo</em>
                 </h2>
-                <p style={{ color: "#5A6B60", lineHeight: 1.85, fontSize: "clamp(1rem,2vw,1.1rem)", margin: "0 0 36px" }}>
+                <p style={{ color: "var(--mid)", lineHeight: 1.85, fontSize: "clamp(1rem,2vw,1.1rem)", margin: "0 0 36px" }}>
                   Após a reserva estar confirmada, partilhamos consigo cada etapa do processo, da receção das flores à composição final. Pode acompanhar tudo em tempo real, sem ter de perguntar.
                 </p>
                 <div style={{ display: "flex", flexDirection: "column" }}>
@@ -270,8 +270,8 @@ export default function HomeClient() {
                     >
                       <div style={{ width: "44px", height: "44px", borderRadius: "12px", background: "rgba(255,255,255,0.45)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--section-accent)", flexShrink: 0, marginTop: "2px", border: "1px solid rgba(255,255,255,0.7)" }}>{item.icon}</div>
                       <div>
-                        <p style={{ margin: "0 0 4px", fontWeight: "700", color: "#1E2D2A", fontSize: "1rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
-                        <p style={{ margin: 0, color: "#5A6B60", fontSize: "0.95rem", lineHeight: 1.65 }}>{item.desc}</p>
+                        <p style={{ margin: "0 0 4px", fontWeight: "700", color: "var(--green-d)", fontSize: "1rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
+                        <p style={{ margin: 0, color: "var(--mid)", fontSize: "0.95rem", lineHeight: 1.65 }}>{item.desc}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -285,7 +285,7 @@ export default function HomeClient() {
         <section aria-label="Avaliações de clientes" data-bg="lavender" style={{ padding: "clamp(64px,10vw,88px) 20px", background: "transparent", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "940px", margin: "0 auto" }}>
             <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--section-accent)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Clientes felizes</span>
-            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "#1E2D2A" }}>O que diz quem confiou em nós</h2>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "var(--green-d)" }}>O que diz quem confiou em nós</h2>
             <script src="https://elfsightcdn.com/platform.js" async></script>
             <div className="elfsight-app-65dc34c1-0003-4419-ab4e-11e52faa447f" data-elfsight-app-lazy></div>
           </motion.div>
@@ -300,10 +300,10 @@ export default function HomeClient() {
             <div className="apcc-grid">
               <motion.div className="apcc-text" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(139,168,136,0.12)", border: "1px solid rgba(139,168,136,0.25)", borderRadius: "100px", padding: "7px 16px", marginBottom: "20px" }}>
-                  <span style={{ color: "#8BA888", fontSize: "0.75rem" }} aria-hidden="true">♥</span>
-                  <span style={{ fontSize: "0.78rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#8BA888", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Parceria solidária</span>
+                  <span style={{ color: "var(--green-l)", fontSize: "0.75rem" }} aria-hidden="true">♥</span>
+                  <span style={{ fontSize: "0.78rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "var(--green-l)", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Parceria solidária</span>
                 </div>
-                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1 }}>
+                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "var(--green-d)", margin: "0 0 16px", lineHeight: 1.1 }}>
                   Cada detalhe<br /><em style={{ fontStyle: "italic", color: "var(--section-accent)" }}>tem um propósito</em>
                 </h2>
                 <p style={{ color: "rgba(30,45,42,0.68)", lineHeight: 1.82, fontSize: "0.97rem", margin: "0 0 28px" }}>
@@ -313,11 +313,11 @@ export default function HomeClient() {
                   <motion.div key={i} initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.12 + i * 0.08, duration: 0.5 }}
                     style={{ display: "flex", alignItems: "flex-start", gap: "14px", padding: "13px 0", borderBottom: i < 2 ? "1px solid rgba(139,168,136,0.1)" : "none" }}
                   >
-                    <div style={{ width: "36px", height: "36px", borderRadius: "10px", background: "rgba(139,168,136,0.12)", border: "1px solid rgba(139,168,136,0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "#8BA888", flexShrink: 0, marginTop: "2px" }}>
+                    <div style={{ width: "36px", height: "36px", borderRadius: "10px", background: "rgba(139,168,136,0.12)", border: "1px solid rgba(139,168,136,0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--green-l)", flexShrink: 0, marginTop: "2px" }}>
                       {item.icon}
                     </div>
                     <div>
-                      <p style={{ margin: "0 0 2px", fontWeight: "700", color: "#1E2D2A", fontSize: "0.9rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
+                      <p style={{ margin: "0 0 2px", fontWeight: "700", color: "var(--green-d)", fontSize: "0.9rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
                       <p style={{ margin: 0, color: "rgba(30,45,42,0.58)", fontSize: "0.86rem", lineHeight: 1.6 }}>{item.desc}</p>
                     </div>
                   </motion.div>
@@ -341,11 +341,11 @@ export default function HomeClient() {
                     <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "45%", background: "linear-gradient(to top, rgba(12,25,41,0.9) 0%, transparent 100%)" }} aria-hidden="true" />
                     <div style={{ position: "absolute", bottom: "18px", left: "18px", right: "18px" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                        <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "#FAF7F0", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                        <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "var(--cream)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
                           <Image src="/apcc.webp" alt="Logótipo APCC" width={28} height={28} style={{ objectFit: "contain" }} />
                         </div>
                         <div>
-                          <p style={{ margin: 0, fontWeight: "700", color: "#FAF7F0", fontSize: "0.78rem", fontFamily: "'Google Sans', Roboto, sans-serif", lineHeight: 1.25, textShadow: "0 1px 4px rgba(0,0,0,0.4)" }}>Associação de Paralisia Cerebral de Coimbra</p>
+                          <p style={{ margin: 0, fontWeight: "700", color: "var(--cream)", fontSize: "0.78rem", fontFamily: "'Google Sans', Roboto, sans-serif", lineHeight: 1.25, textShadow: "0 1px 4px rgba(0,0,0,0.4)" }}>Associação de Paralisia Cerebral de Coimbra</p>
                           <p style={{ margin: "2px 0 0", color: "var(--green-l)", fontSize: "0.7rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Oficina de Tecelagem de Almalaguês e Costura</p>
                         </div>
                       </div>
@@ -373,7 +373,7 @@ export default function HomeClient() {
                 <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(180,160,240,0.15)", border: "1px solid rgba(180,160,240,0.35)", borderRadius: "100px", padding: "6px 16px", marginBottom: "20px" }}>
                   <span style={{ fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#D4C4F0", fontFamily: "'Google Sans', Roboto, sans-serif" }}>O presente mais especial</span>
                 </div>
-                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.5rem)", color: "#FAF7F0", margin: "0 0 20px", lineHeight: 1.1 }}>
+                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.5rem)", color: "var(--cream)", margin: "0 0 20px", lineHeight: 1.1 }}>
                   Ofereça memórias<br /><em style={{ fontStyle: "italic", color: "#D4C4F0" }}>que duram para sempre</em>
                 </h2>
                 <p style={{ color: "rgba(250,247,240,0.78)", lineHeight: 1.85, fontSize: "clamp(1rem,2vw,1.08rem)", margin: "0 0 34px" }}>
@@ -401,7 +401,7 @@ export default function HomeClient() {
               <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.82)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
                 Apoio personalizado
               </span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,3rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,3rem)", color: "var(--cream)", margin: "0 0 16px", lineHeight: 1.1 }}>
                 À procura de<br /><em style={{ fontStyle: "italic", color: "rgba(250,247,240,0.92)" }}>mais ajuda?</em>
               </h2>
               <p style={{ color: "rgba(250,247,240,0.82)", fontSize: "0.97rem", lineHeight: 1.82, margin: "0 0 10px" }}>
@@ -428,7 +428,7 @@ export default function HomeClient() {
             <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.28) 0%, rgba(15,30,26,0.65) 100%)" }} />
             <div style={{ position: "relative", zIndex: 1, maxWidth: "440px", margin: "0 auto" }}>
               <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.75)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Para noivas</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4vw,3.2rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>Vai casar em breve?</h2>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4vw,3.2rem)", color: "var(--cream)", margin: "0 0 16px", lineHeight: 1.1 }}>Vai casar em breve?</h2>
               <p style={{ color: "rgba(250,247,240,0.8)", fontSize: "1rem", lineHeight: 1.82, margin: "0 0 32px" }}>
                 Reserve a sua vaga com antecedência, as datas em época de casamentos esgotam rapidamente.
               </p>

@@ -3,7 +3,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { WA_URL_RECRIACAO } from "../_lib/constants";
+import { WA_URL_RECRIACAO, EMAIL } from "../_lib/constants";
 import PageHero from "@/components/PageHero";
 import "./RecriacaoClient.css";
 
@@ -126,7 +126,7 @@ const UseCaseCard = ({ imageSrc, tag, title, desc, delay }) => (
             {tag}
           </span>
         )}
-        <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.3rem", color: "#FAF7F0", margin: 0, lineHeight: 1.15, textShadow: "0 2px 8px rgba(0,0,0,0.2)" }}>
+        <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.3rem", color: "var(--cream)", margin: 0, lineHeight: 1.15, textShadow: "0 2px 8px rgba(0,0,0,0.2)" }}>
           {title}
         </h3>
       </div>
@@ -220,10 +220,10 @@ export default function RecriacaoClient() {
 
             <motion.h1
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.05, margin: "0 0 clamp(1rem,2.5vw,1.6rem)", color: "#FAF7F0" }}
+              style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.05, margin: "0 0 clamp(1rem,2.5vw,1.6rem)", color: "var(--cream)" }}
             >
               Recria&ccedil;&atilde;o de<br />
-              <em style={{ fontStyle: "italic", color: "#FAF7F0" }}>Bouquet</em>
+              <em style={{ fontStyle: "italic", color: "var(--cream)" }}>Bouquet</em>
             </motion.h1>
 
             <motion.p
@@ -382,7 +382,7 @@ export default function RecriacaoClient() {
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={WA_PATH} /></svg>
               Enviar Fotos via WhatsApp
             </a>
-            <a href="mailto:info@floresabeirario.pt?subject=Or%C3%A7amento%20Recria%C3%A7%C3%A3o%20de%20Bouquet" className="btn-outline-light">
+            <a href={`mailto:${EMAIL}?subject=Or%C3%A7amento%20Recria%C3%A7%C3%A3o%20de%20Bouquet`} className="btn-outline-light">
               Enviar por Email
             </a>
           </div>
