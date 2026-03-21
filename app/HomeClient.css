@@ -332,8 +332,8 @@ main .eyebrow { color: var(--section-accent, var(--green)); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--green);
-  color: var(--cream);
+  background: #D4C4F0;
+  color: #2D1B4E;
   padding: 14px 34px;
   border-radius: 100px;
   text-decoration: none;
@@ -342,14 +342,23 @@ main .eyebrow { color: var(--section-accent, var(--green)); }
   letter-spacing: 1.8px;
   text-transform: uppercase;
   font-family: 'Google Sans', Roboto, sans-serif;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 24px rgba(61,107,94,0.38);
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
   min-height: 48px;
 }
 .gift-card-btn:hover {
-  background: var(--green-d);
+  background: #9B72D0;
+  color: #FAF7F0;
   transform: translateY(-3px);
-  box-shadow: 0 10px 32px rgba(61,107,94,0.5);
+}
+
+/* ── Uniformização de botões na secção CTA Split ("À procura de mais ajuda?") ── */
+.cta-split .btn-ghost {
+  height: 52px;
+  padding: 0 28px;
+  font-size: 0.82rem;
+  min-height: unset;
+  flex: 1;
+  min-width: 0;
 }
 
 /* ── APCC photo link ────────────────────────────────────────────────────────── */

@@ -134,6 +134,7 @@ export default function HomeClient() {
     const init = THEMES.neutral;
     oA.style.background = init.gradient;
     main.style.setProperty("--section-accent", init.accent);
+    document.documentElement.style.setProperty("--nav-cta-color", init.accent);
 
     let useA = true;
     let currentKey = "neutral";
@@ -147,6 +148,7 @@ export default function HomeClient() {
       next.style.opacity = "1";
       prev.style.opacity = "0";
       main.style.setProperty("--section-accent", theme.accent);
+      document.documentElement.style.setProperty("--nav-cta-color", theme.accent);
       useA = !useA;
       currentKey = key;
     };
@@ -161,7 +163,11 @@ export default function HomeClient() {
         const dist = Math.abs(r.top + r.height / 2 - mid);
         if (dist < bestDist) { bestDist = dist; best = el.dataset.bg; }
       });
-      if (best) applyTheme(best);
+      if (best) {
+        applyTheme(best);
+      } else {
+        document.documentElement.style.setProperty("--nav-cta-color", "#3D6B5E");
+      }
     };
 
     findActive();

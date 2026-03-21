@@ -1,13 +1,60 @@
 // app/_components/Footer.jsx
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IconInstagram, IconFacebook, IconWhatsApp, IconEmail, FlagPT, FlagEN } from "./Icons";
 import { FOOTER_LINKS } from "@/app/_lib/data/navigation";
 import { FORM_URL, WA_URL, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "@/app/_lib/constants";
 
 const FONT = "var(--font-google-sans), 'Google Sans', sans-serif";
+
+const FooterENButton = ({ style }) => {
+  const [visible, setVisible] = useState(false);
+  const timerRef = useRef(null);
+
+  const show = useCallback(() => {
+    clearTimeout(timerRef.current);
+    setVisible(true);
+    timerRef.current = setTimeout(() => setVisible(false), 2200);
+  }, []);
+
+  useEffect(() => () => clearTimeout(timerRef.current), []);
+
+  return (
+    <span style={{ position: "relative", display: "inline-flex", alignItems: "center" }}>
+      <button
+        type="button"
+        onClick={show}
+        aria-label="Versão em inglês — coming soon"
+        style={{ background: "none", border: "none", cursor: "pointer", padding: 0, font: "inherit", display: "flex", alignItems: "center", ...style }}
+      >
+        EN <FlagEN />
+      </button>
+      <AnimatePresence>
+        {visible && (
+          <motion.span
+            key="tooltip"
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 4 }}
+            transition={{ duration: 0.18 }}
+            style={{
+              position: "absolute", bottom: "calc(100% + 8px)", right: 0,
+              background: "#1E2D2A", color: "#FAF7F0",
+              fontSize: "0.68rem", fontWeight: 600, letterSpacing: "1px",
+              whiteSpace: "nowrap", padding: "6px 12px", borderRadius: "8px",
+              fontFamily: FONT, pointerEvents: "none",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
+            }}
+          >
+            Coming soon
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </span>
+  );
+};
 
 const FooterAccordion = ({ label, children }) => {
   const [open, setOpen] = useState(false);
@@ -156,11 +203,7 @@ export default function FooterClient() {
               <a href="/" style={{ ...linkStyle, color: "#FAF7F0", fontWeight: "600", fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}>
                 PT <FlagPT />
               </a>
-              <a href="/en" style={{ ...linkStyle, fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}
-                className="footer-nav-link"
-              >
-                EN <FlagEN />
-              </a>
+              <FooterENButton style={{ ...linkStyle, fontSize: "0.72rem", letterSpacing: "1.5px" }} />
             </div>
           </div>
           <div>
@@ -193,7 +236,7 @@ export default function FooterClient() {
           <a href={WA_URL} target="_blank" rel="noopener noreferrer" style={{ ...linkStyle, fontSize: "0.8rem" }} className="footer-nav-link">+351 934 680 300</a>
           <div style={{ display: "flex", gap: "16px", paddingTop: "4px" }}>
             <a href="/" style={{ ...linkStyle, color: "#FAF7F0", fontWeight: "600", fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}>PT <FlagPT /></a>
-            <a href="/en" style={{ ...linkStyle, fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }} className="footer-nav-link">EN <FlagEN /></a>
+            <FooterENButton style={{ ...linkStyle, fontSize: "0.72rem", letterSpacing: "1.5px" }} />
           </div>
         </div>
       </div>
