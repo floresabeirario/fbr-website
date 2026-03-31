@@ -7,7 +7,7 @@ const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, tr
 const FEATURES = [
   {
     title: "Para qualquer aniversário",
-    desc: "De casamento, de nascimento, ou simplesmente um aniversário especial. Cada data tem o seu significado e as flores que a marcaram merecem ser preservadas.",
+    desc: "De casamento, de namoro, ou de qualquer data que queira guardar para sempre. Cada aniversário tem o seu significado e as flores que o marcaram merecem ser preservadas.",
   },
   {
     title: "Todo o ramo ou apenas algumas flores",
@@ -39,7 +39,7 @@ export default function AniversarioClient() {
             <em>Aniversário</em>
           </h1>
           <p className="momento-desc">
-            Guarde para sempre as flores de um aniversário especial. Uma memória transformada em arte botânica, emoldurada com vidro museu anti-UV e feita à mão em Coimbra.
+            Guarde para sempre as flores de um aniversário de casamento, de namoro, ou de qualquer data que queira eternizar. Arte botânica emoldurada com vidro museu anti-UV, feita à mão em Coimbra.
           </p>
           <div className="momento-ctas">
             <a href={FORM_URL} className="btn-primary">Reservar Data</a>

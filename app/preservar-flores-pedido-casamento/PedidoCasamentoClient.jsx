@@ -99,8 +99,8 @@ export default function PedidoCasamentoClient() {
           className="momento-final-cta-inner"
         >
           <h2 className="momento-final-cta-h2">
-            Reserve para o<br />
-            <em>vosso primeiro sim</em>
+            Preserve o vosso<br />
+            <em>primeiro sim</em>
           </h2>
           <p className="momento-final-cta-p">
             As flores do pedido merecem ser preservadas antes que sequem. Preços a partir de 300€, com pagamento em três prestações.

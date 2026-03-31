@@ -65,7 +65,7 @@ export default function BatizadoNascimentoClient() {
             O nascimento de um filho ou o dia do batizado são momentos que marcam o início de tudo. As flores que os acompanharam carregam a emoção desses primeiros dias e merecem mais do que uma semana num vaso.
           </p>
           <p className="momento-content-p">
-            Através de prensagem botânica artesanal, transformamos essas flores num quadro feito à mão, emoldurado com vidro museu anti-UV e moldura feita à medida em Coimbra. Basta entregar-nos as flores nos dias seguintes à cerimónia e nós tratamos de tudo, incluindo o envio do quadro finalizado para a sua morada.
+            Através de prensagem botânica artesanal, transformamos essas flores num quadro feito à mão, emoldurado com vidro museu anti-UV e moldura feita à medida em Coimbra. Basta entregar-nos as flores nos dias seguintes à cerimónia e nós tratamos de tudo, incluindo o envio do quadro finalizado para a sua morada. É também uma oferta original e duradoura para padrinhos ou familiares que queiram marcar o momento.
           </p>
         </motion.div>
       </section>

@@ -15,7 +15,7 @@ const FEATURES = [
   },
   {
     title: "Sem pressão para decidir",
-    desc: "Se ainda não é o momento de pensar nisto, não há pressa para contactar. Quando estiver preparado ou preparada, estamos cá.",
+    desc: "Se ainda não é o momento de pensar nisto, não há pressa. As flores podem ser recriadas com flores frescas semelhantes, mesmo que as originais já tenham murchado. Estamos cá quando precisar.",
   },
 ];
 
@@ -99,11 +99,11 @@ export default function LutoHomenagemClient() {
           className="momento-final-cta-inner"
         >
           <h2 className="momento-final-cta-h2">
-            Quando estiver<br />
-            <em>pronto ou pronta</em>
+            Preserve a memória<br />
+            <em>de quem amou</em>
           </h2>
           <p className="momento-final-cta-p">
-            Não há urgência. Contacte-nos quando for o momento certo para si. Preços a partir de 300€, com pagamento em três prestações.
+            Contacte-nos quando for o momento certo. Preços a partir de 300€, com pagamento em três prestações. Enviamos para toda a Europa.
           </p>
           <div className="momento-ctas">
             <a href={WA_URL_LUTO} target="_blank" rel="noopener noreferrer" className="btn-wa">Falar connosco</a>

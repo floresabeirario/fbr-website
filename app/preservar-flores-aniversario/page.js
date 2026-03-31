@@ -40,12 +40,15 @@ const schemaData = {
 export const metadata = {
   title: "Preservar Flores de Aniversário | Flores à Beira-Rio",
   description:
-    "Guarde para sempre as flores de um aniversário especial. Arte botânica artesanal, vidro museu anti-UV, feita à mão em Coimbra. A partir de 300€.",
+    "Guarde para sempre as flores de um aniversário de casamento, de namoro, ou de qualquer data com significado. Arte botânica artesanal feita à mão em Coimbra. A partir de 300€.",
   keywords: [
     "preservar flores aniversário",
+    "preservar flores aniversário de casamento",
     "quadro flores prensadas aniversário",
-    "preservação flores aniversário casamento",
     "arte botânica aniversário",
+    "preservar ramo aniversário Portugal",
+    "flores bodas prata preservadas",
+    "preservar flores aniversário namoro",
     "Coimbra",
   ],
   openGraph: buildOpenGraph({
