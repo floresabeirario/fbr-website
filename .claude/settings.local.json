@@ -84,7 +84,24 @@
       "Bash(grep -l \"useTranslations\\\\|getTranslations\" /c/Users/maria/Documents/fbr-website/fbr-website/components/*.jsx)",
       "Bash(ls -la /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/preservar-bouquet-noiva/)",
       "Bash(node -e \"const en = require\\(''./messages/en.json''\\); const pt = require\\(''./messages/pt.json''\\); console.log\\(''EN top-level keys:'', Object.keys\\(en\\).join\\('', ''\\)\\); console.log\\(''PT top-level keys:'', Object.keys\\(pt\\).join\\('', ''\\)\\);\")",
-      "Bash(node -e \":*)"
+      "Bash(node -e \":*)",
+      "Bash(jq \"keys | .[] | select\\(. == \"\"opcoes\"\" or . == \"\"sustentabilidade\"\" or . == \"\"contactos\"\" or . == \"\"oferecer\"\" or . == \"\"reservar\"\" or . == \"\"vale\"\" or . == \"\"privacidade\"\" or . == \"\"termos\"\" or . == \"\"blog\"\" or . == \"\"formReserva\"\" or . == \"\"formVale\"\"\\)\" /c/Users/maria/Documents/fbr-website/fbr-website/messages/en.json)",
+      "Bash(grep -l \"useTranslations\" /c/Users/maria/Documents/fbr-website/fbr-website/app/*/Contact*.jsx /c/Users/maria/Documents/fbr-website/fbr-website/app/opcoes*/*.jsx /c/Users/maria/Documents/fbr-website/fbr-website/app/sustent*/*.jsx /c/Users/maria/Documents/fbr-website/fbr-website/app/emoldurar*/*.jsx /c/Users/maria/Documents/fbr-website/fbr-website/app/oferecer*/*.jsx /c/Users/maria/Documents/fbr-website/fbr-website/app/reservar*/*.jsx /c/Users/maria/Documents/fbr-website/fbr-website/app/vale*/*.jsx /c/Users/maria/Documents/fbr-website/fbr-website/app/blog/*.jsx /c/Users/maria/Documents/fbr-website/fbr-website/app/politica*/*.jsx /c/Users/maria/Documents/fbr-website/fbr-website/app/termos*/*.jsx)",
+      "Bash(node -e \"const en = require\\(''./messages/en.json''\\); console.log\\(JSON.stringify\\(en.contactos, null, 2\\)\\)\")",
+      "Bash(node -e \"const en = require\\(''./messages/en.json''\\); console.log\\(JSON.stringify\\(en.reservar, null, 2\\)\\); console.log\\(''---''\\); console.log\\(JSON.stringify\\(en.vale, null, 2\\)\\)\")",
+      "Bash(node -e \"const en = require\\(''./messages/en.json''\\); console.log\\(JSON.stringify\\(en.blog, null, 2\\)\\); console.log\\(''---ARTIGO---''\\); console.log\\(JSON.stringify\\(en.artigo, null, 2\\)\\)\")",
+      "Bash(node -e \"const en = require\\(''./messages/en.json''\\); console.log\\(JSON.stringify\\(en.contactos.membros, null, 2\\)\\)\")",
+      "Bash(node -e \"const en = require\\(''''./messages/en.json''''\\); console.log\\(JSON.stringify\\(en.oferecer, null, 2\\)\\)\")",
+      "Bash(node -e \"const pt = require\\(''./messages/pt.json''\\); console.log\\(JSON.stringify\\(pt.oferecer.passos, null, 2\\)\\)\")",
+      "Bash(node -e \"const pt = require\\(''./messages/pt.json''\\); console.log\\(JSON.stringify\\(pt.oferecer.ocasioes, null, 2\\)\\)\")",
+      "Bash(node -e \"const pt = require\\(''./messages/pt.json''\\); console.log\\(pt.oferecer.cartaoCredito\\)\")",
+      "Bash(node add_sustentabilidade.js)",
+      "Bash(rm add_sustentabilidade.js)",
+      "Bash(node add_legal.js)",
+      "Bash(rm add_legal.js)",
+      "Bash(node add_content.js)",
+      "Bash(rm add_content.js)",
+      "Bash(\"c:\\\\Users\\\\maria\\\\Documents\\\\fbr-website\\\\fbr-website\\\\app\\\\opcoes-e-precos\\\\OpcoesClient.jsx\")"
     ]
   }
 }
