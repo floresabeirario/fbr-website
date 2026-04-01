@@ -64,7 +64,20 @@
       "Bash(xargs -I {} basename {})",
       "Bash(for file:*)",
       "Bash(do echo:*)",
-      "Read(//c/Users/maria/Documents/fbr-website/fbr-website/**)"
+      "Read(//c/Users/maria/Documents/fbr-website/fbr-website/**)",
+      "Bash(node -e \"console.log\\(require\\(''./node_modules/next-intl/package.json''\\).version\\)\")",
+      "Bash(rm -f app/page.js app/en/page.js app/preservacao-de-flores/page.js app/opcoes-e-precos/page.jsx app/como-funciona/page.js app/momentos-especiais/page.js app/preservar-bouquet-noiva/page.js app/preservar-flores-luto-homenagem/page.js app/preservar-flores-batizado-nascimento/page.js app/preservar-flores-aniversario/page.js app/preservar-flores-pedido-casamento/page.js app/emoldurar-flores-secas/page.js app/recriacao/page.js app/oferecer-preservacao/page.js app/sustentabilidade/page.js app/reservar-preservacao/page.js app/vale-presente/page.js app/perguntas-frequentes/page.js app/contactos/page.js app/blog/page.js \"app/blog/[slug]/page.js\" app/politica-de-privacidade/page.js app/termos-e-condicoes/page.js)",
+      "Bash(rmdir app/en)",
+      "Bash(ls app/[locale]/)",
+      "Bash(ls app/[locale]/blog/)",
+      "Bash(cat app/[locale]/layout.js)",
+      "Bash(cat app/[locale]/page.js)",
+      "Bash(ls app/[locale]/preservar-flores-aniversario/)",
+      "Bash(ls app/[locale]/preservar-flores-luto-homenagem/)",
+      "Bash(ls app/[locale]/preservar-flores-pedido-casamento/)",
+      "Bash(cat app/[locale]/preservar-flores-aniversario/page.js)",
+      "Bash(grep -l useTranslations app/**/*Client.jsx app/**/**/*Client.jsx)",
+      "Bash(find app:*)"
     ]
   }
 }

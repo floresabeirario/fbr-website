@@ -1,23 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL, WA_URL } from "../_lib/constants";
 
 const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } };
-
-const FEATURES = [
-  {
-    title: "Não precisa de esperar pelo casamento",
-    desc: "Preserve as flores do pedido assim que puder, nos dias seguintes ao momento. Mais tarde, pode também preservar o bouquet de noiva.",
-  },
-  {
-    title: "Duas peças, uma história",
-    desc: "O quadro do pedido e o do bouquet, juntos na parede, contam a história completa desde o primeiro 'sim'. Muitos casais escolhem preservar ambos.",
-  },
-  {
-    title: "Inclua o que quiser na composição",
-    desc: "Uma fotografia do momento, o bilhete que acompanhou as flores, a fita da caixa. Qualquer elemento com significado pode fazer parte do quadro.",
-  },
-];
 
 function CheckIcon() {
   return (
@@ -29,21 +15,28 @@ function CheckIcon() {
 }
 
 export default function PedidoCasamentoClient() {
+  const t = useTranslations("pedidoCasamento");
+  const locale = useLocale();
+  const features = t.raw("features");
+
+  const bookHref = locale === "en" ? "/en/book-preservation" : FORM_URL;
+  const comoHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
+  const precosHref = locale === "en" ? "/en/pricing-options" : "/opcoes-e-precos";
+  const bouquetHref = locale === "en" ? "/en/preserve-wedding-bouquet" : "/preservar-bouquet-noiva";
+
   return (
     <div className="momento-page">
       <section className="momento-hero">
         <motion.div {...anim} className="momento-inner">
-          <span className="momento-eyebrow">Pedido de Casamento</span>
+          <span className="momento-eyebrow">{t("eyebrow")}</span>
           <h1 className="momento-h1">
-            Preservar Flores do<br />
-            <em>Pedido de Casamento</em>
+            {t("h1").split(t("eyebrow"))[0]}<br />
+            <em>{t("eyebrow")}</em>
           </h1>
-          <p className="momento-desc">
-            As flores do pedido de casamento marcam o início de uma história. Preserve esse momento numa obra de arte botânica feita à mão em Coimbra, com vidro museu anti-UV.
-          </p>
+          <p className="momento-desc">{t("heroDesc")}</p>
           <div className="momento-ctas">
-            <a href={FORM_URL} className="btn-primary">Reservar Data</a>
-            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">WhatsApp</a>
+            <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
+            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
         </motion.div>
       </section>
@@ -56,23 +49,19 @@ export default function PedidoCasamentoClient() {
           transition={{ duration: 0.75 }}
           className="momento-content-inner"
         >
-          <span className="momento-eyebrow">Antes de Tudo o Resto</span>
+          <span className="momento-eyebrow">{t("eyebrow2")}</span>
           <h2 className="momento-content-h2">
-            Onde tudo<br />
-            <em>começou</em>
+            {t("contentTitle").split(t("contentEm"))[0]}<br />
+            <em>{t("contentEm")}</em>
           </h2>
-          <p className="momento-content-p">
-            Há uma data anterior ao casamento que muitas vezes se perde: o dia do pedido. As flores que estiveram presentes nessa noite merecem ser guardadas com o mesmo cuidado que o bouquet de noiva.
-          </p>
-          <p className="momento-content-p">
-            Entregue-nos as flores nos dias seguintes ao pedido (até 5 dias, idealmente 1 a 3) e nós transformamo-las num quadro de arte botânica. Cada pétala é prensada individualmente, a composição é aprovada por si, e o resultado é emoldurado com vidro museu anti-UV e moldura feita à medida em Coimbra.
-          </p>
+          <p className="momento-content-p">{t("p1")}</p>
+          <p className="momento-content-p">{t("p2")}</p>
         </motion.div>
       </section>
 
       <section className="momento-features">
         <div className="momento-features-grid">
-          {FEATURES.map((f, i) => (
+          {features.map((f, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 12 }}
@@ -83,7 +72,7 @@ export default function PedidoCasamentoClient() {
             >
               <CheckIcon />
               <div>
-                <h3 className="momento-feature-title">{f.title}</h3>
+                <h3 className="momento-feature-title">{f.titulo}</h3>
                 <p className="momento-feature-desc">{f.desc}</p>
               </div>
             </motion.div>
@@ -99,21 +88,19 @@ export default function PedidoCasamentoClient() {
           className="momento-final-cta-inner"
         >
           <h2 className="momento-final-cta-h2">
-            Preserve o vosso<br />
-            <em>primeiro sim</em>
+            {t("ctaFinalTitle").split(t("ctaFinalEm"))[0]}<br />
+            <em>{t("ctaFinalEm")}</em>
           </h2>
-          <p className="momento-final-cta-p">
-            As flores do pedido merecem ser preservadas antes que sequem. Preços a partir de 300€, com pagamento em três prestações.
-          </p>
+          <p className="momento-final-cta-p">{t("ctaDesc")}</p>
           <div className="momento-ctas">
-            <a href={FORM_URL} className="btn-primary">Reservar Data</a>
-            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">WhatsApp</a>
+            <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
+            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
           <div className="momento-links">
             {[
-              { href: "/como-funciona", label: "Como funciona" },
-              { href: "/opcoes-e-precos", label: "Opções e preços" },
-              { href: "/preservar-bouquet-noiva", label: "Bouquet de noiva" },
+              { href: comoHref,   label: t("linkComoFunciona") },
+              { href: precosHref, label: t("linkPrecos") },
+              { href: bouquetHref, label: t("ctaBouquet") },
             ].map((l) => (
               <a key={l.href} href={l.href} className="momento-link">{l.label}</a>
             ))}

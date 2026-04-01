@@ -1,23 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL, WA_URL_LUTO } from "../_lib/constants";
 
 const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } };
-
-const FEATURES = [
-  {
-    title: "Com todo o cuidado",
-    desc: "Tratamos cada encomenda deste tipo com especial atenção. Sabemos o que representa e trabalhamos com o respeito e a discrição que a circunstância exige.",
-  },
-  {
-    title: "Envie-nos as flores até 5 dias depois",
-    desc: "O ideal é entregar as flores nos primeiros 1 a 3 dias após a cerimónia. Se o prazo já tiver passado, contacte-nos para avaliarmos as opções, incluindo a recriação com flores frescas.",
-  },
-  {
-    title: "Sem pressão para decidir",
-    desc: "Se ainda não é o momento de pensar nisto, não há pressa. As flores podem ser recriadas com flores frescas semelhantes, mesmo que as originais já tenham murchado. Estamos cá quando precisar.",
-  },
-];
 
 function CheckIcon() {
   return (
@@ -29,21 +15,28 @@ function CheckIcon() {
 }
 
 export default function LutoHomenagemClient() {
+  const t = useTranslations("lutoHomenagem");
+  const locale = useLocale();
+  const features = t.raw("features");
+
+  const bookHref = locale === "en" ? "/en/book-preservation" : FORM_URL;
+  const comoHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
+  const precosHref = locale === "en" ? "/en/pricing-options" : "/opcoes-e-precos";
+  const faqHref = locale === "en" ? "/en/faq" : "/perguntas-frequentes";
+
   return (
     <div className="momento-page">
       <section className="momento-hero">
         <motion.div {...anim} className="momento-inner">
-          <span className="momento-eyebrow">Homenagem e Luto</span>
+          <span className="momento-eyebrow">{t("eyebrow")}</span>
           <h1 className="momento-h1">
-            Preservar Flores de<br />
-            <em>Homenagem e Luto</em>
+            {t("h1").split(t("eyebrow"))[0]}<br />
+            <em>{t("eyebrow")}</em>
           </h1>
-          <p className="momento-desc">
-            Eternize as flores de uma cerimónia fúnebre como forma de homenagem duradoura. Um gesto de carinho permanente, preservado com todo o respeito e sensibilidade.
-          </p>
+          <p className="momento-desc">{t("heroDesc")}</p>
           <div className="momento-ctas">
-            <a href={WA_URL_LUTO} target="_blank" rel="noopener noreferrer" className="btn-wa">Falar connosco</a>
-            <a href={FORM_URL} className="btn-primary">Reservar Data</a>
+            <a href={WA_URL_LUTO} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
+            <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
           </div>
         </motion.div>
       </section>
@@ -56,23 +49,19 @@ export default function LutoHomenagemClient() {
           transition={{ duration: 0.75 }}
           className="momento-content-inner"
         >
-          <span className="momento-eyebrow">Uma memória que permanece</span>
+          <span className="momento-eyebrow">{t("eyebrow2")}</span>
           <h2 className="momento-content-h2">
-            Uma homenagem que<br />
-            <em>fica para sempre</em>
+            {t("contentTitle").split(t("contentEm"))[0]}<br />
+            <em>{t("contentEm")}</em>
           </h2>
-          <p className="momento-content-p">
-            As flores que estiveram presentes numa cerimónia de despedida carregam um significado profundo. Preservá-las é uma forma de manter viva a memória de quem partiu, transformando-as numa peça de arte botânica que pode permanecer em casa como homenagem silenciosa e permanente.
-          </p>
-          <p className="momento-content-p">
-            Cada pétala é tratada individualmente por prensagem artesanal e emoldurada com vidro museu anti-UV e moldura feita à medida em Coimbra. Pode também incluir na composição uma fotografia, um cartão ou qualquer elemento que tenha significado para si.
-          </p>
+          <p className="momento-content-p">{t("p1")}</p>
+          <p className="momento-content-p">{t("p2")}</p>
         </motion.div>
       </section>
 
       <section className="momento-features">
         <div className="momento-features-grid">
-          {FEATURES.map((f, i) => (
+          {features.map((f, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 12 }}
@@ -83,7 +72,7 @@ export default function LutoHomenagemClient() {
             >
               <CheckIcon />
               <div>
-                <h3 className="momento-feature-title">{f.title}</h3>
+                <h3 className="momento-feature-title">{f.titulo}</h3>
                 <p className="momento-feature-desc">{f.desc}</p>
               </div>
             </motion.div>
@@ -99,21 +88,19 @@ export default function LutoHomenagemClient() {
           className="momento-final-cta-inner"
         >
           <h2 className="momento-final-cta-h2">
-            Preserve a memória<br />
-            <em>de quem amou</em>
+            {t("ctaFinalTitle").split(t("ctaFinalEm"))[0]}<br />
+            <em>{t("ctaFinalEm")}</em>
           </h2>
-          <p className="momento-final-cta-p">
-            Contacte-nos quando for o momento certo. Preços a partir de 300€, com pagamento em três prestações. Enviamos para toda a Europa.
-          </p>
+          <p className="momento-final-cta-p">{t("ctaDesc")}</p>
           <div className="momento-ctas">
-            <a href={WA_URL_LUTO} target="_blank" rel="noopener noreferrer" className="btn-wa">Falar connosco</a>
-            <a href={FORM_URL} className="btn-primary">Reservar Data</a>
+            <a href={WA_URL_LUTO} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
+            <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
           </div>
           <div className="momento-links">
             {[
-              { href: "/como-funciona", label: "Como funciona" },
-              { href: "/opcoes-e-precos", label: "Opções e preços" },
-              { href: "/perguntas-frequentes", label: "Perguntas frequentes" },
+              { href: comoHref,  label: t("linkComoFunciona") },
+              { href: precosHref, label: t("linkPrecos") },
+              { href: faqHref,   label: t("linkFAQ") },
             ].map((l) => (
               <a key={l.href} href={l.href} className="momento-link">{l.label}</a>
             ))}

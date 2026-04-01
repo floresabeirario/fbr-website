@@ -1,23 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL, WA_URL } from "../_lib/constants";
 
 const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } };
-
-const FEATURES = [
-  {
-    title: "Para qualquer aniversário",
-    desc: "De casamento, de namoro, ou de qualquer data que queira guardar para sempre. Cada aniversário tem o seu significado e as flores que o marcaram merecem ser preservadas.",
-  },
-  {
-    title: "Todo o ramo ou apenas algumas flores",
-    desc: "Trabalhamos com o bouquet inteiro ou apenas com as flores que deseja preservar. Pode também incluir fotografias, bilhetes ou outros elementos com significado.",
-  },
-  {
-    title: "Composição aprovada por si",
-    desc: "Desenhamos a composição à medida e enviamos fotografias para aprovação. Tem 72 horas para aprovar ou pedir alterações antes de selarmos o quadro.",
-  },
-];
 
 function CheckIcon() {
   return (
@@ -29,21 +15,28 @@ function CheckIcon() {
 }
 
 export default function AniversarioClient() {
+  const t = useTranslations("aniversario");
+  const locale = useLocale();
+  const features = t.raw("features");
+
+  const bookHref = locale === "en" ? "/en/book-preservation" : FORM_URL;
+  const comoHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
+  const precosHref = locale === "en" ? "/en/pricing-options" : "/opcoes-e-precos";
+  const faqHref = locale === "en" ? "/en/faq" : "/perguntas-frequentes";
+
   return (
     <div className="momento-page">
       <section className="momento-hero">
         <motion.div {...anim} className="momento-inner">
-          <span className="momento-eyebrow">Aniversário</span>
+          <span className="momento-eyebrow">{t("eyebrow")}</span>
           <h1 className="momento-h1">
-            Preservar Flores de<br />
-            <em>Aniversário</em>
+            {t("h1").split(t("eyebrow"))[0]}<br />
+            <em>{t("eyebrow")}</em>
           </h1>
-          <p className="momento-desc">
-            Guarde para sempre as flores de um aniversário de casamento, de namoro, ou de qualquer data que queira eternizar. Arte botânica emoldurada com vidro museu anti-UV, feita à mão em Coimbra.
-          </p>
+          <p className="momento-desc">{t("heroDesc")}</p>
           <div className="momento-ctas">
-            <a href={FORM_URL} className="btn-primary">Reservar Data</a>
-            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">WhatsApp</a>
+            <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
+            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
         </motion.div>
       </section>
@@ -56,23 +49,19 @@ export default function AniversarioClient() {
           transition={{ duration: 0.75 }}
           className="momento-content-inner"
         >
-          <span className="momento-eyebrow">Arte Botânica para Cada Data</span>
+          <span className="momento-eyebrow">{t("eyebrow2")}</span>
           <h2 className="momento-content-h2">
-            Flores que merecem durar<br />
-            <em>mais do que uma semana</em>
+            {t("contentTitle").split(t("contentEm"))[0]}<br />
+            <em>{t("contentEm")}</em>
           </h2>
-          <p className="momento-content-p">
-            As flores de aniversário duram, em média, uma semana. A emoção que representam pode durar toda uma vida. Através de prensagem botânica artesanal, transformamos essas flores num quadro que fica permanentemente em casa.
-          </p>
-          <p className="momento-content-p">
-            Basta entregar-nos as flores nos dias seguintes ao aniversário (até 5 dias, idealmente 1 a 3). Nós tratamos da prensagem, da composição artística, da aprovação consigo, e do emolduramento com vidro museu anti-UV e moldura feita à medida em Coimbra.
-          </p>
+          <p className="momento-content-p">{t("p1")}</p>
+          <p className="momento-content-p">{t("p2")}</p>
         </motion.div>
       </section>
 
       <section className="momento-features">
         <div className="momento-features-grid">
-          {FEATURES.map((f, i) => (
+          {features.map((f, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 12 }}
@@ -83,7 +72,7 @@ export default function AniversarioClient() {
             >
               <CheckIcon />
               <div>
-                <h3 className="momento-feature-title">{f.title}</h3>
+                <h3 className="momento-feature-title">{f.titulo}</h3>
                 <p className="momento-feature-desc">{f.desc}</p>
               </div>
             </motion.div>
@@ -99,21 +88,19 @@ export default function AniversarioClient() {
           className="momento-final-cta-inner"
         >
           <h2 className="momento-final-cta-h2">
-            Transforme as flores<br />
-            <em>numa memória</em>
+            {t("ctaFinalTitle").split(t("ctaFinalEm"))[0]}<br />
+            <em>{t("ctaFinalEm")}</em>
           </h2>
-          <p className="momento-final-cta-p">
-            Reserve a sua vaga e garanta que esse aniversário fica para sempre. Preços a partir de 300€, com pagamento em três prestações.
-          </p>
+          <p className="momento-final-cta-p">{t("ctaFinalDesc")}</p>
           <div className="momento-ctas">
-            <a href={FORM_URL} className="btn-primary">Reservar Data</a>
-            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">WhatsApp</a>
+            <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
+            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
           <div className="momento-links">
             {[
-              { href: "/como-funciona", label: "Como funciona" },
-              { href: "/opcoes-e-precos", label: "Opções e preços" },
-              { href: "/perguntas-frequentes", label: "Perguntas frequentes" },
+              { href: comoHref,  label: t("linkComoFunciona") },
+              { href: precosHref,label: t("linkPrecos") },
+              { href: faqHref,   label: t("linkFAQ") },
             ].map((l) => (
               <a key={l.href} href={l.href} className="momento-link">{l.label}</a>
             ))}

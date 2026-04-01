@@ -1,60 +1,15 @@
-// app/_components/Footer.jsx
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
+import { usePathname as useIntlPathname } from "@/navigation";
+import { useRouter } from "next/navigation";
 import { IconInstagram, IconFacebook, IconWhatsApp, IconEmail, FlagPT, FlagEN } from "./Icons";
-import { FOOTER_LINKS } from "@/app/_lib/data/navigation";
 import { FORM_URL, WA_URL, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "@/app/_lib/constants";
+import { TRACKING_URL } from "@/app/_lib/constants";
 
 const FONT = "var(--font-google-sans), 'Google Sans', sans-serif";
-
-const FooterENButton = ({ style }) => {
-  const [visible, setVisible] = useState(false);
-  const timerRef = useRef(null);
-
-  const show = useCallback(() => {
-    clearTimeout(timerRef.current);
-    setVisible(true);
-    timerRef.current = setTimeout(() => setVisible(false), 2200);
-  }, []);
-
-  useEffect(() => () => clearTimeout(timerRef.current), []);
-
-  return (
-    <span style={{ position: "relative", display: "inline-flex", alignItems: "center" }}>
-      <button
-        type="button"
-        onClick={show}
-        aria-label="Versão em inglês — coming soon"
-        style={{ background: "none", border: "none", cursor: "pointer", padding: 0, font: "inherit", display: "flex", alignItems: "center", ...style }}
-      >
-        EN <FlagEN />
-      </button>
-      <AnimatePresence>
-        {visible && (
-          <motion.span
-            key="tooltip"
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 4 }}
-            transition={{ duration: 0.18 }}
-            style={{
-              position: "absolute", bottom: "calc(100% + 8px)", right: 0,
-              background: "var(--green-d)", color: "var(--cream)",
-              fontSize: "0.68rem", fontWeight: 600, letterSpacing: "1px",
-              whiteSpace: "nowrap", padding: "6px 12px", borderRadius: "8px",
-              fontFamily: FONT, pointerEvents: "none",
-              boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
-            }}
-          >
-            Coming soon
-          </motion.span>
-        )}
-      </AnimatePresence>
-    </span>
-  );
-};
 
 const FooterAccordion = ({ label, children }) => {
   const [open, setOpen] = useState(false);
@@ -116,8 +71,8 @@ const labelStyle = {
   fontFamily: FONT, display: "block",
 };
 
-const renderLinks = (list) =>
-  list.map((l, i) => (
+function renderLinks(list) {
+  return list.map((l, i) => (
     <a key={i} href={l.href}
       {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       style={linkStyle}
@@ -126,8 +81,88 @@ const renderLinks = (list) =>
       {l.label}
     </a>
   ));
+}
+
+function LangSwitcher({ style = {} }) {
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = useIntlPathname();
+
+  function switchLocale(next) {
+    router.replace(pathname, { locale: next });
+  }
+
+  return (
+    <div style={{ display: "flex", gap: "14px" }}>
+      <button
+        type="button"
+        onClick={() => switchLocale("pt")}
+        aria-current={locale === "pt" ? "true" : undefined}
+        style={{
+          ...linkStyle, ...style,
+          color: locale === "pt" ? "var(--cream)" : "rgba(250,247,240,0.4)",
+          fontWeight: locale === "pt" ? "600" : "300",
+          fontSize: "0.72rem", letterSpacing: "1.5px",
+          background: "none", border: "none", cursor: "pointer", padding: 0,
+          display: "flex", alignItems: "center",
+        }}
+      >
+        PT <FlagPT />
+      </button>
+      <button
+        type="button"
+        onClick={() => switchLocale("en")}
+        aria-current={locale === "en" ? "true" : undefined}
+        style={{
+          ...linkStyle, ...style,
+          color: locale === "en" ? "var(--cream)" : "rgba(250,247,240,0.4)",
+          fontWeight: locale === "en" ? "600" : "300",
+          fontSize: "0.72rem", letterSpacing: "1.5px",
+          background: "none", border: "none", cursor: "pointer", padding: 0,
+          display: "flex", alignItems: "center",
+        }}
+      >
+        EN <FlagEN />
+      </button>
+    </div>
+  );
+}
 
 export default function FooterClient() {
+  const locale = useLocale();
+  const t = useTranslations("footer");
+
+  const prefix = locale === "en" ? "/en" : "";
+
+  const footerLinks = {
+    servicos: [
+      { href: `${prefix}${locale === "en" ? "/flower-preservation" : "/preservacao-de-flores"}`,  label: locale === "en" ? "Flower Preservation" : "Preservação de Flores" },
+      { href: `${prefix}${locale === "en" ? "/pricing-options" : "/opcoes-e-precos"}`,              label: locale === "en" ? "Options & Pricing" : "Opções e Preços" },
+      { href: `${prefix}${locale === "en" ? "/how-it-works" : "/como-funciona"}`,                  label: locale === "en" ? "How It Works" : "Como Funciona" },
+      { href: `${prefix}${locale === "en" ? "/frame-dried-flowers" : "/emoldurar-flores-secas"}`,  label: locale === "en" ? "Frame Dried Flowers" : "Emoldurar Flores Já Secas" },
+      { href: `${prefix}${locale === "en" ? "/bouquet-recreation" : "/recriacao"}`,                label: locale === "en" ? "Bouquet Recreation" : "Recriação de Bouquet" },
+      { href: `${prefix}${locale === "en" ? "/gift-preservation" : "/oferecer-preservacao"}`,      label: locale === "en" ? "Gift Preservation" : "Oferecer Preservação" },
+    ],
+    momentos: [
+      { href: `${prefix}${locale === "en" ? "/special-moments" : "/momentos-especiais"}`,                           label: locale === "en" ? "Special Occasions" : "Momentos Especiais" },
+      { href: `${prefix}${locale === "en" ? "/preserve-wedding-bouquet" : "/preservar-bouquet-noiva"}`,             label: locale === "en" ? "Wedding Bouquet" : "Bouquet de Noiva" },
+      { href: `${prefix}${locale === "en" ? "/preserve-memorial-flowers" : "/preservar-flores-luto-homenagem"}`,    label: locale === "en" ? "Memorial & Tribute" : "Homenagem e Luto" },
+      { href: `${prefix}${locale === "en" ? "/preserve-baptism-flowers" : "/preservar-flores-batizado-nascimento"}`,label: locale === "en" ? "Baptism & Birth" : "Batizado e Nascimento" },
+      { href: `${prefix}${locale === "en" ? "/preserve-anniversary-flowers" : "/preservar-flores-aniversario"}`,    label: locale === "en" ? "Anniversary" : "Aniversário" },
+      { href: `${prefix}${locale === "en" ? "/preserve-proposal-flowers" : "/preservar-flores-pedido-casamento"}`,  label: locale === "en" ? "Proposal" : "Pedido de Casamento" },
+    ],
+    ajuda: [
+      { href: `${prefix}${locale === "en" ? "/faq" : "/perguntas-frequentes"}`,  label: locale === "en" ? "FAQ" : "Perguntas Frequentes" },
+      { href: `${prefix}${locale === "en" ? "/contact" : "/contactos"}`,          label: locale === "en" ? "Contact & Team" : "Contactos e Equipa" },
+      { href: TRACKING_URL, label: locale === "en" ? "Track Order" : "Acompanhar Encomenda", external: true },
+      { href: `${prefix}/blog`,                                                   label: "Blog" },
+    ],
+    legal: [
+      { href: `${prefix}${locale === "en" ? "/privacy-policy" : "/politica-de-privacidade"}`,       label: locale === "en" ? "Privacy Policy" : "Política de Privacidade" },
+      { href: `${prefix}${locale === "en" ? "/terms-and-conditions" : "/termos-e-condicoes"}`,       label: locale === "en" ? "Terms & Conditions" : "Termos e Condições" },
+    ],
+  };
+
   return (
     <footer style={{ backgroundColor: "var(--dark)", color: "var(--cream)", position: "relative" }}>
       <div style={{ textAlign: "center", padding: "72px 24px 56px" }}>
@@ -143,14 +178,14 @@ export default function FooterClient() {
           fontSize: "0.6rem", letterSpacing: "4px", textTransform: "uppercase",
           color: "rgba(250,247,240,0.45)", margin: "0 0 36px", fontFamily: FONT,
         }}>
-          Especialistas em Preservação de Flores · Coimbra, Portugal
+          {t("tagline")}
         </p>
         <div style={{ display: "flex", justifyContent: "center", gap: "24px", marginBottom: "40px" }}>
           {[
-            { href: SOCIAL_INSTAGRAM,   icon: <IconInstagram size={20} />, label: "Instagram" },
-            { href: SOCIAL_FACEBOOK,    icon: <IconFacebook size={20} />,  label: "Facebook" },
-            { href: WA_URL,             icon: <IconWhatsApp size={20} />,  label: "WhatsApp" },
-            { href: `mailto:${EMAIL}`,  icon: <IconEmail size={20} />,     label: "Email" },
+            { href: SOCIAL_INSTAGRAM, icon: <IconInstagram size={20} />, label: "Instagram" },
+            { href: SOCIAL_FACEBOOK,  icon: <IconFacebook size={20} />,  label: "Facebook" },
+            { href: WA_URL,           icon: <IconWhatsApp size={20} />,  label: "WhatsApp" },
+            { href: `mailto:${EMAIL}`,icon: <IconEmail size={20} />,     label: "Email" },
           ].map((s, i) => (
             <a key={i} href={s.href}
               target={s.href.startsWith("mailto") ? undefined : "_blank"}
@@ -185,33 +220,28 @@ export default function FooterClient() {
       <div className="footer-desktop" style={{ maxWidth: "1100px", margin: "0 auto", padding: "48px 40px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "36px 32px" }}>
           <div>
-            <span style={labelStyle}>Serviços</span>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(FOOTER_LINKS.servicos)}</div>
+            <span style={labelStyle}>{t("servicos")}</span>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(footerLinks.servicos)}</div>
           </div>
           <div>
-            <span style={labelStyle}>Momentos</span>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(FOOTER_LINKS.momentos)}</div>
+            <span style={labelStyle}>{t("momentos")}</span>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(footerLinks.momentos)}</div>
           </div>
           <div>
-            <span style={labelStyle}>Ajuda</span>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(FOOTER_LINKS.ajuda)}</div>
+            <span style={labelStyle}>{t("ajuda")}</span>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(footerLinks.ajuda)}</div>
           </div>
           <div>
-            <span style={labelStyle}>Legal</span>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "24px" }}>{renderLinks(FOOTER_LINKS.legal)}</div>
-            <div style={{ display: "flex", gap: "14px" }}>
-              <a href="/" style={{ ...linkStyle, color: "var(--cream)", fontWeight: "600", fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}>
-                PT <FlagPT />
-              </a>
-              <FooterENButton style={{ ...linkStyle, fontSize: "0.72rem", letterSpacing: "1.5px" }} />
-            </div>
+            <span style={labelStyle}>{t("legal")}</span>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "24px" }}>{renderLinks(footerLinks.legal)}</div>
+            <LangSwitcher />
           </div>
           <div>
-            <span style={labelStyle}>Contacto</span>
+            <span style={labelStyle}>{t("contacto")}</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               <a href={`mailto:${EMAIL}`} style={linkStyle} className="footer-nav-link">{EMAIL}</a>
               <a href={WA_URL} target="_blank" rel="noopener noreferrer" style={linkStyle} className="footer-nav-link">+351 934 680 300</a>
-              <span style={{ ...linkStyle, color: "rgba(250,247,240,0.28)", cursor: "default" }}>Coimbra, Portugal</span>
+              <span style={{ ...linkStyle, color: "rgba(250,247,240,0.28)", cursor: "default" }}>{t("localidade")}</span>
             </div>
           </div>
         </div>
@@ -219,31 +249,30 @@ export default function FooterClient() {
 
       {/* Mobile */}
       <div className="footer-mobile" style={{ padding: "8px 24px 24px" }}>
-        <FooterAccordion label="Serviços">
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(FOOTER_LINKS.servicos)}</div>
+        <FooterAccordion label={t("servicos")}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(footerLinks.servicos)}</div>
         </FooterAccordion>
-        <FooterAccordion label="Momentos">
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(FOOTER_LINKS.momentos)}</div>
+        <FooterAccordion label={t("momentos")}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(footerLinks.momentos)}</div>
         </FooterAccordion>
-        <FooterAccordion label="Ajuda">
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(FOOTER_LINKS.ajuda)}</div>
+        <FooterAccordion label={t("ajuda")}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(footerLinks.ajuda)}</div>
         </FooterAccordion>
-        <FooterAccordion label="Legal">
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(FOOTER_LINKS.legal)}</div>
+        <FooterAccordion label={t("legal")}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>{renderLinks(footerLinks.legal)}</div>
         </FooterAccordion>
         <div style={{ paddingTop: "20px", display: "flex", flexDirection: "column", gap: "8px" }}>
           <a href={`mailto:${EMAIL}`} style={{ ...linkStyle, fontSize: "0.8rem" }} className="footer-nav-link">{EMAIL}</a>
           <a href={WA_URL} target="_blank" rel="noopener noreferrer" style={{ ...linkStyle, fontSize: "0.8rem" }} className="footer-nav-link">+351 934 680 300</a>
-          <div style={{ display: "flex", gap: "16px", paddingTop: "4px" }}>
-            <a href="/" style={{ ...linkStyle, color: "var(--cream)", fontWeight: "600", fontSize: "0.72rem", letterSpacing: "1.5px", display: "flex", alignItems: "center" }}>PT <FlagPT /></a>
-            <FooterENButton style={{ ...linkStyle, fontSize: "0.72rem", letterSpacing: "1.5px" }} />
+          <div style={{ paddingTop: "4px" }}>
+            <LangSwitcher />
           </div>
         </div>
       </div>
 
       <div style={{ borderTop: "1px solid rgba(250,247,240,0.07)", padding: "20px 24px 28px", textAlign: "center" }}>
         <p style={{ fontSize: "0.68rem", letterSpacing: "1px", color: "rgba(250,247,240,0.45)", fontFamily: FONT, textTransform: "uppercase", margin: 0 }}>
-          © 2026 Flores à Beira-Rio · Todos os direitos reservados
+          {t("copyright")}
         </p>
       </div>
     </footer>

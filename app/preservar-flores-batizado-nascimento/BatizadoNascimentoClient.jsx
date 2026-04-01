@@ -1,23 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL, WA_URL } from "../_lib/constants";
 
 const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } };
-
-const FEATURES = [
-  {
-    title: "Flores da cerimónia ou da maternidade",
-    desc: "Preservamos ramos do batizado, flores oferecidas no hospital, ou arranjos do quarto do bebé. Qualquer flor desse início de vida pode ser transformada em arte.",
-  },
-  {
-    title: "Uma peça que cresce com o seu filho",
-    desc: "O quadro que hoje decora o quarto do bebé torna-se, com o tempo, numa recordação de adulto cheia de significado. Uma memória para toda a vida.",
-  },
-  {
-    title: "Inclua elementos especiais",
-    desc: "Pode adicionar ao quadro a pulseira da maternidade, uma fotografia, fitas, ou qualquer elemento com significado especial. A composição é sempre aprovada por si.",
-  },
-];
 
 function CheckIcon() {
   return (
@@ -29,21 +15,28 @@ function CheckIcon() {
 }
 
 export default function BatizadoNascimentoClient() {
+  const t = useTranslations("batizadoNascimento");
+  const locale = useLocale();
+  const features = t.raw("features");
+
+  const bookHref = locale === "en" ? "/en/book-preservation" : FORM_URL;
+  const comoHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
+  const precosHref = locale === "en" ? "/en/pricing-options" : "/opcoes-e-precos";
+  const faqHref = locale === "en" ? "/en/faq" : "/perguntas-frequentes";
+
   return (
     <div className="momento-page">
       <section className="momento-hero">
         <motion.div {...anim} className="momento-inner">
-          <span className="momento-eyebrow">Batizado e Nascimento</span>
+          <span className="momento-eyebrow">{t("eyebrow")}</span>
           <h1 className="momento-h1">
-            Preservar Flores de<br />
-            <em>Batizado e Nascimento</em>
+            {t("h1").split(t("eyebrow"))[0]}<br />
+            <em>{t("eyebrow")}</em>
           </h1>
-          <p className="momento-desc">
-            As flores do batizado ou do nascimento merecem ser guardadas para sempre. Preservamos cada pétala em arte botânica que acompanha o seu filho ao longo da vida.
-          </p>
+          <p className="momento-desc">{t("heroDesc")}</p>
           <div className="momento-ctas">
-            <a href={FORM_URL} className="btn-primary">Reservar Data</a>
-            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">WhatsApp</a>
+            <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
+            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
         </motion.div>
       </section>
@@ -56,23 +49,19 @@ export default function BatizadoNascimentoClient() {
           transition={{ duration: 0.75 }}
           className="momento-content-inner"
         >
-          <span className="momento-eyebrow">O início de tudo</span>
+          <span className="momento-eyebrow">{t("eyebrow2")}</span>
           <h2 className="momento-content-h2">
-            O primeiro ramo<br />
-            <em>de uma vida inteira</em>
+            {t("contentTitle").split(t("contentEm"))[0]}<br />
+            <em>{t("contentEm")}</em>
           </h2>
-          <p className="momento-content-p">
-            O nascimento de um filho ou o dia do batizado são momentos que marcam o início de tudo. As flores que os acompanharam carregam a emoção desses primeiros dias e merecem mais do que uma semana num vaso.
-          </p>
-          <p className="momento-content-p">
-            Através de prensagem botânica artesanal, transformamos essas flores num quadro feito à mão, emoldurado com vidro museu anti-UV e moldura feita à medida em Coimbra. Basta entregar-nos as flores nos dias seguintes à cerimónia e nós tratamos de tudo, incluindo o envio do quadro finalizado para a sua morada. É também uma oferta original e duradoura para padrinhos ou familiares que queiram marcar o momento.
-          </p>
+          <p className="momento-content-p">{t("p1")}</p>
+          <p className="momento-content-p">{t("p2")}</p>
         </motion.div>
       </section>
 
       <section className="momento-features">
         <div className="momento-features-grid">
-          {FEATURES.map((f, i) => (
+          {features.map((f, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 12 }}
@@ -83,7 +72,7 @@ export default function BatizadoNascimentoClient() {
             >
               <CheckIcon />
               <div>
-                <h3 className="momento-feature-title">{f.title}</h3>
+                <h3 className="momento-feature-title">{f.titulo}</h3>
                 <p className="momento-feature-desc">{f.desc}</p>
               </div>
             </motion.div>
@@ -99,21 +88,19 @@ export default function BatizadoNascimentoClient() {
           className="momento-final-cta-inner"
         >
           <h2 className="momento-final-cta-h2">
-            Preserve o início<br />
-            <em>da história</em>
+            {t("ctaFinalTitle").split(t("ctaFinalEm"))[0]}<br />
+            <em>{t("ctaFinalEm")}</em>
           </h2>
-          <p className="momento-final-cta-p">
-            As flores do batizado ou do nascimento não precisam de ficar apenas nas fotografias. Preços a partir de 300€, com pagamento em três prestações.
-          </p>
+          <p className="momento-final-cta-p">{t("ctaDesc")}</p>
           <div className="momento-ctas">
-            <a href={FORM_URL} className="btn-primary">Reservar Data</a>
-            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">WhatsApp</a>
+            <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
+            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
           <div className="momento-links">
             {[
-              { href: "/como-funciona", label: "Como funciona" },
-              { href: "/opcoes-e-precos", label: "Opções e preços" },
-              { href: "/perguntas-frequentes", label: "Perguntas frequentes" },
+              { href: comoHref,   label: t("linkComoFunciona") },
+              { href: precosHref, label: t("linkPrecos") },
+              { href: faqHref,    label: t("linkFAQ") },
             ].map((l) => (
               <a key={l.href} href={l.href} className="momento-link">{l.label}</a>
             ))}
