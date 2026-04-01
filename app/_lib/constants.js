@@ -36,7 +36,9 @@ export const PHONE_DISPLAY = "+351 934 680 300";
 export const PHONE = `+${WA_NUMBER}`; // Formato E.164 para JSON-LD
 
 // Redes sociais
-export const SOCIAL_INSTAGRAM = "https://www.instagram.com/floresabeirario/";
-export const SOCIAL_FACEBOOK  = "https://www.facebook.com/floresabeirario/";
-export const SOCIAL_TIKTOK    = "https://www.tiktok.com/@floresabeirario";
+export const SOCIAL_INSTAGRAM  = "https://www.instagram.com/floresabeirario/";
+export const SOCIAL_FACEBOOK   = "https://www.facebook.com/floresabeirario/";
+export const SOCIAL_TIKTOK     = "https://www.tiktok.com/@floresabeirario";
+export const SOCIAL_PINTEREST  = "https://www.pinterest.com/floresabeirario/";
 export const SOCIAL_CASAMENTOS = "https://www.casamentos.pt/ideias-criativas-para-casamentos/flores-a-beira-rio-preservacao-de-flores--e171385";
+export const SOCIAL_GOOGLE_BUSINESS = "https://share.google/aZx3mBtbs7di8nH8K";

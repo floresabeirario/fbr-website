@@ -1,8 +1,40 @@
 // app/[locale]/oferecer-preservacao/page.js
 import { getTranslations } from "next-intl/server";
 import { buildOpenGraph, buildTwitterCard, buildAlternates } from "@/app/_lib/metadata";
-import { SITE_URL } from "@/app/_lib/constants";
+import { SITE_URL, PHONE, EMAIL } from "@/app/_lib/constants";
 import OfereceClient from "@/app/oferecer-preservacao/OfereceClient";
+
+function buildSchema(locale) {
+  const isEN = locale === "en";
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: isEN
+      ? "Flower Preservation as a Gift, Flores à Beira-Rio"
+      : "Oferecer Preservação de Flores, Flores à Beira-Rio",
+    description: isEN
+      ? "Give the gift of flower preservation. Choose from our gift options and let the recipient select their own flowers and preservation style. The perfect wedding gift, anniversary or baptism present."
+      : "Ofereça a preservação de flores a alguém especial. Escolha entre as nossas opções e deixe o presenteado escolher as flores e o estilo de preservação ao seu gosto. O presente perfeito para casamentos, aniversários e batizados.",
+    provider: {
+      "@type": "LocalBusiness",
+      name: "Flores à Beira-Rio",
+      url: SITE_URL,
+      telephone: PHONE,
+      email: EMAIL,
+      address: { "@type": "PostalAddress", addressLocality: "Coimbra", addressCountry: "PT" },
+    },
+    areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
+    serviceType: isEN ? "Flower Preservation Gift" : "Oferta de Preservação de Flores",
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "EUR",
+      lowPrice: "300",
+      highPrice: "500",
+      offerCount: "3",
+    },
+    url: isEN ? `${SITE_URL}/en/gift-preservation` : `${SITE_URL}/oferecer-preservacao`,
+  };
+}
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -13,6 +45,7 @@ export async function generateMetadata({ params }) {
   return {
     title: t("title"),
     description: t("description"),
+    keywords: t("keywords"),
     openGraph: buildOpenGraph({
       title: t("ogTitle"),
       description: t("ogDescription"),
@@ -30,6 +63,15 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function OferecePreservacaoPage() {
-  return <OfereceClient />;
+export default async function OferecePreservacaoPage({ params }) {
+  const { locale } = await params;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(locale)) }}
+      />
+      <OfereceClient />
+    </>
+  );
 }

@@ -10,23 +10,6 @@ import { FAQ_DATA_EN } from "./faq-data-en";
 import FaqAccordion from "./FaqAccordion";
 import "./PerguntasFrequentesClient.css";
 
-const SchemaScript = ({ faqData }) => (
-  <script
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{
-      __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: faqData.map(f => ({
-          "@type": "Question",
-          name: f.q,
-          acceptedAnswer: { "@type": "Answer", text: f.plain },
-        })),
-      }),
-    }}
-  />
-);
-
 export default function PerguntasFrequentesClient() {
   const t = useTranslations("faq");
   const locale = useLocale();
@@ -41,8 +24,6 @@ export default function PerguntasFrequentesClient() {
 
   return (
     <>
-      <SchemaScript faqData={faqData} />
-
       <div style={{ backgroundColor: "var(--cream)" }}>
 
         {/* Hero */}

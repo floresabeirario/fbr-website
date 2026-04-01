@@ -53,16 +53,49 @@ export async function generateMetadata({ params }) {
   };
 }
 
+function buildBlogPostingSchema(post, locale) {
+  const imageUrl = post.image.startsWith("http") ? post.image : `${SITE_URL}${post.image}`;
+  const postUrl = `${SITE_URL}${locale === "en" ? "/en" : ""}/blog/${post.slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    image: imageUrl,
+    datePublished: post.date,
+    author: {
+      "@type": "Organization",
+      name: "Flores à Beira-Rio",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Flores à Beira-Rio",
+      url: SITE_URL,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.webp` },
+    },
+    url: postUrl,
+    mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
+    keywords: post.tags.join(", "),
+  };
+}
+
 export default async function ArticlePage({ params }) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
   const related = getRelatedPosts(post.slug, post.category, post.tags);
 
   return (
-    <ArticleClient post={post} related={related}>
-      <MDXRemote source={post.content} components={mdxComponents} />
-    </ArticleClient>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBlogPostingSchema(post, locale)) }}
+      />
+      <ArticleClient post={post} related={related}>
+        <MDXRemote source={post.content} components={mdxComponents} />
+      </ArticleClient>
+    </>
   );
 }

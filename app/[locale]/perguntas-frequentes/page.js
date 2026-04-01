@@ -2,7 +2,22 @@
 import { getTranslations } from "next-intl/server";
 import { buildOpenGraph, buildTwitterCard, buildAlternates } from "@/app/_lib/metadata";
 import { SITE_URL } from "@/app/_lib/constants";
+import { FAQ_DATA } from "@/app/perguntas-frequentes/faq-data";
+import { FAQ_DATA_EN } from "@/app/perguntas-frequentes/faq-data-en";
 import PerguntasFrequentesClient from "@/app/perguntas-frequentes/PerguntasFrequentesClient";
+
+function buildFaqSchema(locale) {
+  const faqData = locale === "en" ? FAQ_DATA_EN : FAQ_DATA;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqData.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.plain },
+    })),
+  };
+}
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -13,6 +28,7 @@ export async function generateMetadata({ params }) {
   return {
     title: t("title"),
     description: t("description"),
+    keywords: t("keywords"),
     openGraph: buildOpenGraph({
       title: t("ogTitle"),
       description: t("ogDescription"),
@@ -30,6 +46,15 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function PerguntasFrequentesPage() {
-  return <PerguntasFrequentesClient />;
+export default async function PerguntasFrequentesPage({ params }) {
+  const { locale } = await params;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqSchema(locale)) }}
+      />
+      <PerguntasFrequentesClient />
+    </>
+  );
 }
