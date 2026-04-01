@@ -3,8 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
-import { usePathname as useIntlPathname } from "@/navigation";
-import { useRouter } from "next/navigation";
+import { usePathname as useIntlPathname, useRouter } from "@/navigation";
 import { IconInstagram, IconFacebook, IconWhatsApp, IconEmail, FlagPT, FlagEN } from "./Icons";
 import { FORM_URL, WA_URL, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "@/app/_lib/constants";
 import { TRACKING_URL } from "@/app/_lib/constants";

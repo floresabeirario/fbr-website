@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { FlagPT, FlagEN, IconWhatsApp } from "./Icons";
-import { usePathname as useIntlPathname } from "@/navigation";
+import { usePathname as useIntlPathname, useRouter } from "@/navigation";
 import { FORM_URL, WA_URL } from "@/app/_lib/constants";
 
 // ── Cores do botão CTA por pathname (sem prefixo de locale) ────────────────

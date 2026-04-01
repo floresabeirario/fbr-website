@@ -77,7 +77,8 @@
       "Bash(ls app/[locale]/preservar-flores-pedido-casamento/)",
       "Bash(cat app/[locale]/preservar-flores-aniversario/page.js)",
       "Bash(grep -l useTranslations app/**/*Client.jsx app/**/**/*Client.jsx)",
-      "Bash(find app:*)"
+      "Bash(find app:*)",
+      "Bash(find /c/Users/maria/Documents/fbr-website/fbr-website -type f -name Nav.jsx -o -name Footer.jsx -o -name middleware.* -o -name next.config.* -o -name *i18n* -o -name *locale*)"
     ]
   }
 }
