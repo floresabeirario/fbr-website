@@ -37,36 +37,11 @@ const THEMES = {
   },
 };
 import Image from "next/image";
-import { FORM_URL, WA_URL, PHONE, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "./_lib/constants";
+import { FORM_URL, WA_URL } from "./_lib/constants";
 import HomeHero from "./HomeHero";
 import HomeSteps from "./HomeSteps";
 import BeforeAfterSlider from "./BeforeAfterSlider";
 import "./HomeClient.css";
-
-// ─── JSON-LD ──────────────────────────────────────────────────────────────────
-const StructuredData = () => (
-  <script type="application/ld+json" dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org", "@type": "LocalBusiness",
-      name: "Flores à Beira-Rio",
-      description: "Atelier de preservação botânica artesanal em Coimbra. Transformamos bouquets de casamento em quadros de arte botânica que duram décadas.",
-      image: "https://floresabeirario.pt/fotoquadro1.webp",
-      address: { "@type": "PostalAddress", addressLocality: "Coimbra", addressRegion: "Coimbra", addressCountry: "PT" },
-      geo: { "@type": "GeoCoordinates", latitude: "40.2033", longitude: "-8.4103" },
-      telephone: PHONE, email: EMAIL,
-      priceRange: "€€€", openingHours: "Mo-Fr 10:00-18:00",
-      sameAs: [SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK],
-      offers: {
-        "@type": "AggregateOffer", priceCurrency: "EUR", lowPrice: "300",
-        offers: [
-          { "@type": "Offer", name: "Preservação de Bouquet 30×40cm", price: "300", priceCurrency: "EUR" },
-          { "@type": "Offer", name: "Preservação de Bouquet 40×50cm", price: "400", priceCurrency: "EUR" },
-          { "@type": "Offer", name: "Preservação de Bouquet 50×70cm", price: "500", priceCurrency: "EUR" },
-        ],
-      },
-    }),
-  }} />
-);
 
 // ─── Icons (usados nas secções 4 e 6) ─────────────────────────────────────────
 const IconFlower = () => (
@@ -189,7 +164,6 @@ export default function HomeClient() {
 
   return (
     <>
-      <StructuredData />
       {/* Cross-fade gradient overlays — inset: -1px prevents hairline edge artifacts */}
       <div ref={overlayARef} aria-hidden="true"
         style={{ position: "fixed", inset: "-1px", zIndex: 0, pointerEvents: "none", transition: "opacity 0.85s ease", opacity: 1 }} />
