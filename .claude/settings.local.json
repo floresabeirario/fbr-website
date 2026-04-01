@@ -78,7 +78,11 @@
       "Bash(cat app/[locale]/preservar-flores-aniversario/page.js)",
       "Bash(grep -l useTranslations app/**/*Client.jsx app/**/**/*Client.jsx)",
       "Bash(find app:*)",
-      "Bash(find /c/Users/maria/Documents/fbr-website/fbr-website -type f -name Nav.jsx -o -name Footer.jsx -o -name middleware.* -o -name next.config.* -o -name *i18n* -o -name *locale*)"
+      "Bash(find /c/Users/maria/Documents/fbr-website/fbr-website -type f -name Nav.jsx -o -name Footer.jsx -o -name middleware.* -o -name next.config.* -o -name *i18n* -o -name *locale*)",
+      "Bash(ls -la /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/)",
+      "Bash(find /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale] -maxdepth 2 -type f -name \"page.js\" -o -name \"page.jsx\" -o -name \"layout.js\")",
+      "Bash(grep -l \"useTranslations\\\\|getTranslations\" /c/Users/maria/Documents/fbr-website/fbr-website/components/*.jsx)",
+      "Bash(ls -la /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/preservar-bouquet-noiva/)"
     ]
   }
 }
