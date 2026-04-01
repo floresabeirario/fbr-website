@@ -1,8 +1,38 @@
 // app/[locale]/preservar-flores-luto-homenagem/page.js
 import { getTranslations } from "next-intl/server";
 import { buildOpenGraph, buildTwitterCard, buildAlternates } from "@/app/_lib/metadata";
-import { SITE_URL } from "@/app/_lib/constants";
+import { SITE_URL, PHONE, EMAIL } from "@/app/_lib/constants";
 import LutoHomenagemClient from "@/app/preservar-flores-luto-homenagem/LutoHomenagemClient";
+
+function buildSchema(locale) {
+  const isEN = locale === "en";
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: isEN ? "Memorial Flower Preservation, Flores à Beira-Rio" : "Preservação de Flores de Homenagem e Luto, Flores à Beira-Rio",
+    description: isEN
+      ? "Artisan preservation of memorial and funeral flowers into botanical art frames with museum anti-UV glass. Handmade with care in Coimbra, Portugal."
+      : "Preservação artesanal de flores de cerimónias fúnebres em quadros de arte botânica com vidro museu anti-UV. Feito com todo o respeito em Coimbra.",
+    provider: {
+      "@type": "LocalBusiness",
+      name: "Flores à Beira-Rio",
+      url: SITE_URL,
+      telephone: PHONE,
+      email: EMAIL,
+      address: { "@type": "PostalAddress", addressLocality: "Coimbra", addressCountry: "PT" },
+    },
+    areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
+    serviceType: isEN ? "Memorial Flower Preservation" : "Preservação de Flores de Homenagem",
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "EUR",
+      lowPrice: "300",
+      highPrice: "500",
+      offerCount: "3",
+    },
+    url: isEN ? `${SITE_URL}/en/preserve-memorial-flowers` : `${SITE_URL}/preservar-flores-luto-homenagem`,
+  };
+}
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -13,6 +43,7 @@ export async function generateMetadata({ params }) {
   return {
     title: t("title"),
     description: t("description"),
+    keywords: t("keywords"),
     openGraph: buildOpenGraph({
       title: t("ogTitle"),
       description: t("ogDescription"),
@@ -30,6 +61,15 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function LutoHomenagemPage() {
-  return <LutoHomenagemClient />;
+export default async function LutoHomenagemPage({ params }) {
+  const { locale } = await params;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(locale)) }}
+      />
+      <LutoHomenagemClient />
+    </>
+  );
 }

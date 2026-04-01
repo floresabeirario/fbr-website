@@ -1,3 +1,5 @@
+import { getAllPosts } from "@/app/_lib/blog";
+
 export default function sitemap() {
   const base = "https://floresabeirario.pt";
 
@@ -25,6 +27,17 @@ export default function sitemap() {
     { pt: "/politica-de-privacidade",                 en: "/en/privacy-policy",                        priority: 0.3,  changeFrequency: "yearly"  },
     { pt: "/termos-e-condicoes",                      en: "/en/terms-and-conditions",                  priority: 0.3,  changeFrequency: "yearly"  },
   ];
+
+  // Add blog posts (dynamic MDX articles)
+  const posts = getAllPosts();
+  for (const post of posts) {
+    routes.push({
+      pt: `/blog/${post.slug}`,
+      en: `/en/blog/${post.slug}`,
+      priority: 0.6,
+      changeFrequency: "yearly",
+    });
+  }
 
   const entries = [];
 

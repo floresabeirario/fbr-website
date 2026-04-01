@@ -22,7 +22,7 @@ function buildSchema(locale) {
       email: EMAIL,
       address: { "@type": "PostalAddress", addressLocality: "Coimbra", addressCountry: "PT" },
     },
-    areaServed: "PT",
+    areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
     serviceType: isEN ? "Flower Preservation" : "Preservação de Flores",
     offers: {
       "@type": "AggregateOffer",
@@ -52,6 +52,7 @@ export async function generateMetadata({ params }) {
   return {
     title: t("title"),
     description: t("description"),
+    keywords: t("keywords"),
     openGraph: buildOpenGraph({
       title: t("ogTitle"),
       description: t("ogDescription"),
