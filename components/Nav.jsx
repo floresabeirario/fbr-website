@@ -171,18 +171,20 @@ function LangDropdown({ scrolled, mobile = false }) {
           >
             <div style={{ position: "absolute", top: "-14px", left: 0, right: 0, height: "14px" }} />
             <div style={{
-              background: "#FAFAF8",
-              border: "1px solid rgba(61,107,94,0.13)",
-              borderRadius: "16px", padding: "6px",
-              boxShadow: "0 4px 6px rgba(30,45,42,0.04), 0 12px 32px rgba(30,45,42,0.13), 0 24px 48px rgba(30,45,42,0.07)",
-              minWidth: "120px", position: "relative",
+              background: "rgba(250,247,240,0.72)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              border: "1px solid rgba(61,107,94,0.18)",
+              borderRadius: "12px", padding: "4px",
+              boxShadow: "0 4px 20px rgba(30,45,42,0.12)",
+              minWidth: "90px", position: "relative",
             }}>
               <div style={{
                 position: "absolute", top: "-5px", right: "16px",
-                transform: "rotate(45deg)", width: "10px", height: "10px",
-                background: "#FAFAF8",
-                borderLeft: "1px solid rgba(61,107,94,0.13)",
-                borderTop: "1px solid rgba(61,107,94,0.13)",
+                transform: "rotate(45deg)", width: "8px", height: "8px",
+                background: "rgba(250,247,240,0.72)",
+                borderLeft: "1px solid rgba(61,107,94,0.18)",
+                borderTop: "1px solid rgba(61,107,94,0.18)",
               }} />
               {[
                 { code: "pt", label: "PT", Flag: FlagPT },
