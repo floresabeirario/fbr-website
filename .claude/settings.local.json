@@ -82,7 +82,9 @@
       "Bash(ls -la /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/)",
       "Bash(find /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale] -maxdepth 2 -type f -name \"page.js\" -o -name \"page.jsx\" -o -name \"layout.js\")",
       "Bash(grep -l \"useTranslations\\\\|getTranslations\" /c/Users/maria/Documents/fbr-website/fbr-website/components/*.jsx)",
-      "Bash(ls -la /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/preservar-bouquet-noiva/)"
+      "Bash(ls -la /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/preservar-bouquet-noiva/)",
+      "Bash(node -e \"const en = require\\(''./messages/en.json''\\); const pt = require\\(''./messages/pt.json''\\); console.log\\(''EN top-level keys:'', Object.keys\\(en\\).join\\('', ''\\)\\); console.log\\(''PT top-level keys:'', Object.keys\\(pt\\).join\\('', ''\\)\\);\")",
+      "Bash(node -e \":*)"
     ]
   }
 }

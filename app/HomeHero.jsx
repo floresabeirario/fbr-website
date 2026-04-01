@@ -2,10 +2,12 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { FORM_URL } from "./_lib/constants";
 
 export default function HomeHero() {
+  const t = useTranslations("home");
   const heroRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -19,7 +21,7 @@ export default function HomeHero() {
   return (
     <section
       ref={heroRef}
-      aria-label="Flores à Beira-Rio, Preservação de flores de casamento"
+      aria-label="Flores à Beira-Rio"
       data-bg="neutral"
       style={{ height: "100dvh", maxHeight: "100dvh", minHeight: "100dvh", position: "relative", overflow: "hidden" }}
     >
@@ -59,7 +61,7 @@ export default function HomeHero() {
           transition={{ delay: 0.25, duration: 0.8 }}
           style={{ fontSize: "clamp(0.65rem,1.2vw,0.82rem)", letterSpacing: "clamp(3px,1vw,5px)", textTransform: "uppercase", fontWeight: "700", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 clamp(10px,2vw,18px)" }}
         >
-          Especialistas em preservação de flores
+          {t("heroEyebrow")}
         </motion.p>
 
         <motion.h1
@@ -77,7 +79,7 @@ export default function HomeHero() {
           transition={{ delay: 0.7, duration: 0.8 }}
           style={{ position: "absolute", bottom: "clamp(44px,7vh,80px)", left: 0, right: 0, display: "flex", justifyContent: "center" }}
         >
-          <a href={FORM_URL} className="hero-btn">Reservar Data</a>
+          <a href={FORM_URL} className="hero-btn">{t("heroCTA")}</a>
         </motion.div>
       </motion.div>
     </section>

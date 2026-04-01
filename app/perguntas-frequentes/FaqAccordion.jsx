@@ -2,7 +2,9 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocale } from "next-intl";
 import { FAQ_DATA, CATEGORIES } from "./faq-data";
+import { FAQ_DATA_EN, CATEGORIES_EN } from "./faq-data-en";
 
 // ─── Accent colours per category — paleta da página: plum + terracotta + gold ─
 const CAT_META = {
@@ -220,7 +222,7 @@ const CategoryBlock = ({ cat, faqs, isOpen, onToggle, openFaqIndex, setOpenFaqIn
                 marginTop: "clamp(14px,2vw,20px)",
               }}>
                 {faqs.map((faq, idx) => {
-                  const globalIndex = FAQ_DATA.indexOf(faq);
+                  const globalIndex = FAQ_ITEMS.indexOf(faq);
                   return (
                     <FAQItem
                       key={globalIndex}
@@ -244,6 +246,10 @@ const CategoryBlock = ({ cat, faqs, isOpen, onToggle, openFaqIndex, setOpenFaqIn
 
 // ─── Main component ───────────────────────────────────────────────────────────
 export default function FaqAccordion() {
+  const locale = useLocale();
+  const FAQ_ITEMS = locale === "en" ? FAQ_DATA_EN : FAQ_DATA;
+  const CATS      = locale === "en" ? CATEGORIES_EN : CATEGORIES;
+
   const [openFaqIndex, setOpenFaqIndex]   = useState(null);
   const [openCatId, setOpenCatId]         = useState("processo"); // first open by default
   const [search, setSearch]               = useState("");
@@ -253,14 +259,14 @@ export default function FaqAccordion() {
   const searchResults = useMemo(() => {
     if (!isSearching) return [];
     const q = search.toLowerCase();
-    return FAQ_DATA.filter(f =>
+    return FAQ_ITEMS.filter(f =>
       f.q.toLowerCase().includes(q) || f.plain.toLowerCase().includes(q)
     );
-  }, [search, isSearching]);
+  }, [search, isSearching, FAQ_ITEMS]);
 
-  const categoriesWithFaqs = CATEGORIES.filter(c => c.id !== "todas").map(cat => ({
+  const categoriesWithFaqs = CATS.filter(c => c.id !== "todas").map(cat => ({
     cat,
-    faqs: FAQ_DATA.filter(f => f.cat === cat.id),
+    faqs: FAQ_ITEMS.filter(f => f.cat === cat.id),
   }));
 
   const toggleCat = (catId) => {
@@ -333,7 +339,7 @@ export default function FaqAccordion() {
             ) : (
               <div role="list">
                 {searchResults.map((faq, idx) => {
-                  const globalIndex = FAQ_DATA.indexOf(faq);
+                  const globalIndex = FAQ_ITEMS.indexOf(faq);
                   const meta = CAT_META[faq.cat] || { color: ACCENT };
                   return (
                     <div key={globalIndex} role="listitem">
