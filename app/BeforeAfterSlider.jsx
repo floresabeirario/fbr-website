@@ -30,6 +30,13 @@ export default function BeforeAfterSlider({ beforeLabel = "Antes", afterLabel = 
     rafRef.current = requestAnimationFrame(() => applyPosition(e.touches[0].clientX));
   }, [applyPosition]);
   const onTouchEnd = useCallback(() => { isDragging.current = false; }, []);
+  const onKeyDown = useCallback((e) => {
+    const step = e.shiftKey ? 10 : 2;
+    if (e.key === "ArrowLeft")  { e.preventDefault(); setPosition(p => Math.max(0,   p - step)); }
+    if (e.key === "ArrowRight") { e.preventDefault(); setPosition(p => Math.min(100, p + step)); }
+    if (e.key === "Home")       { e.preventDefault(); setPosition(0); }
+    if (e.key === "End")        { e.preventDefault(); setPosition(100); }
+  }, []);
 
   useEffect(() => {
     window.addEventListener("mousemove", onMouseMove);
@@ -58,7 +65,17 @@ export default function BeforeAfterSlider({ beforeLabel = "Antes", afterLabel = 
         <div style={{ position: "absolute", top: "16px", left: "16px", backgroundColor: "rgba(30,45,42,0.72)", color: "var(--cream)", padding: "5px 14px", borderRadius: "50px", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", backdropFilter: "blur(6px)", opacity: position > 12 ? 1 : 0, transition: "opacity 0.2s", pointerEvents: "none" }}>{beforeLabel}</div>
         <div style={{ position: "absolute", top: "16px", right: "16px", backgroundColor: "rgba(61,107,94,0.8)", color: "var(--cream)", padding: "5px 14px", borderRadius: "50px", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2px", textTransform: "uppercase", fontFamily: "'Google Sans', Roboto, sans-serif", backdropFilter: "blur(6px)", opacity: position < 88 ? 1 : 0, transition: "opacity 0.2s", pointerEvents: "none" }}>{afterLabel}</div>
         <div style={{ position: "absolute", top: 0, bottom: 0, left: `${position}%`, transform: "translateX(-50%)", width: "2px", background: "rgba(250,247,240,0.9)", pointerEvents: "none", willChange: "left" }} />
-        <div style={{ position: "absolute", top: "50%", left: `${position}%`, transform: "translate(-50%, -50%)", width: "46px", height: "46px", borderRadius: "50%", backgroundColor: "var(--cream)", boxShadow: "0 4px 20px rgba(0,0,0,0.28)", display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none", willChange: "left" }}>
+        <div
+          role="slider"
+          aria-valuenow={Math.round(position)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label={dragLabel}
+          tabIndex={0}
+          onKeyDown={onKeyDown}
+          className="bas-handle"
+          style={{ position: "absolute", top: "50%", left: `${position}%`, transform: "translate(-50%, -50%)", width: "46px", height: "46px", borderRadius: "50%", backgroundColor: "var(--cream)", boxShadow: "0 4px 20px rgba(0,0,0,0.28)", display: "flex", alignItems: "center", justifyContent: "center", willChange: "left", cursor: "ew-resize" }}
+        >
           <svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <line x1="0" y1="7" x2="22" y2="7" /><polyline points="5,1 0,7 5,13" /><polyline points="17,1 22,7 17,13" />
           </svg>

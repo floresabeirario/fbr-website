@@ -503,7 +503,7 @@ export default function EmoldurarFloresSecasClient() {
           ].map((vis, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <a href={NAV_SQUARES[i].href} className="nav-square">
-                <img src={vis.img} alt="" aria-hidden="true" className="nav-square-img" />
+                <Image fill src={vis.img} alt="" aria-hidden="true" className="nav-square-img" sizes="(max-width: 640px) 50vw, 25vw" style={{ objectFit: "cover" }} />
                 <div className="nav-square-overlay">
                   <span className="nav-square-label">{NAV_SQUARES[i].label}</span>
                 </div>
