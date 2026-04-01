@@ -2,7 +2,7 @@
 import { getTranslations } from "next-intl/server";
 import { buildOpenGraph, buildTwitterCard, buildAlternates } from "@/app/_lib/metadata";
 import { SITE_URL } from "@/app/_lib/constants";
-import { getAllPosts, getCategories, CATEGORY_LABELS } from "@/app/_lib/blog";
+import { getAllPosts, getCategories } from "@/app/_lib/blog";
 import BlogClient from "@/app/blog/BlogClient";
 
 export async function generateMetadata({ params }) {
@@ -31,15 +31,18 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function BlogPage() {
+export default async function BlogPage({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "blog" });
   const posts      = getAllPosts();
   const categories = getCategories();
+  const categoryLabels = t.raw("categorias");
 
   return (
     <BlogClient
       posts={posts}
       categories={categories}
-      categoryLabels={CATEGORY_LABELS}
+      categoryLabels={categoryLabels}
     />
   );
 }

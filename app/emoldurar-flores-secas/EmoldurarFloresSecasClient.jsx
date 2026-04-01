@@ -3,10 +3,10 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { useTranslations, useLocale } from "next-intl";
 
-import { WA_NUMBER, TRACKING_URL } from "../_lib/constants";
+import { TRACKING_URL } from "../_lib/constants";
 import "./EmoldurarFloresSecasClient.css";
-const WA_URL = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Olá! Gostaria de saber mais sobre emoldurar flores secas.")}`;
 
 const C = {
   creme:   "var(--cream)",
@@ -128,68 +128,16 @@ function SVGOpcao1Escuro({ width = "120px", accent = "#5A8FA8" }) {
   );
 }
 
-
-const opcoes = [
-  {
-    n: "Opção 1", cor: C.azul,
-    sub: "O ramo tal como ficou",
-    titulo: "Emoldurar ramo original seco",
-    desc: "Se secou as suas flores ao ar, ou o seu ramo já era composto de flores secas, podemos emoldurá-lo. Quer em forma de bouquet, quer desconstruído numa composição com as flores à volta de uma fotografia, por exemplo.",
-    detalhe: "Moldura profunda com 4,5 cm de altura útil.",
-    time: "até 3 meses",
-    svg: "op1",
-  },
-  {
-    n: "Opção 2", cor: C.terra,
-    sub: "Cores mais vivas",
-    titulo: "Recriação do bouquet",
-    desc: "Caso já não tenha as suas flores ou se já não estão em bom estado, recriamos o ramo com flores frescas e eternizamo-lo num quadro emoldurado. As cores são preservadas e ficam mais próximas do dia original. Composição bidimensional, moldura pouco funda.",
-    detalhe: "Visita a nossa página da recriação para mais detalhes.",
-    time: "até 6 meses",
-    link: { href: "/recriacao", label: "Saber mais sobre recriação" },
-    svg: "op2",
-  },
-  {
-    n: "Opção 3", cor: C.azulClr,
-    sub: "O melhor dos dois mundos",
-    titulo: "Combinação mista",
-    desc: "Se ainda tem flores originais do dia especial, mas algumas não ficaram bem depois de secas, esta é a solução perfeita para si: aproveitamos as flores originais que ainda estão bem e substituímos as restantes. O quadro combina elementos do ramo original com réplicas de flores prensadas numa composição equilibrada.",
-    detalhe: "Aplicam-se os preços de preservação de flores.",
-    time: "até 6 meses",
-    link: { href: "/opcoes-e-precos", label: "Ver preços de preservação" },
-    svg: "op2",
-  },
-];
-
-const processo = [
-  { n: "01", titulo: "Entregue-nos o ramo",   desc: "Por correio (Transportador/CTT frágil) ou em mãos no atelier em Coimbra, mediante agendamento." },
-  { n: "02", titulo: "Criamos a composição",  desc: "Trabalhamos a composição das flores. Após aprovação do design por si, o quadro é emoldurado, sempre com moldura feita à medida, com vidro museu anti-UV." },
-  { n: "03", titulo: "Entregamos o quadro",   desc: "Por correio (Transportador/CTT frágil), ou recolha gratuita em mãos no atelier em Coimbra, mediante agendamento." },
+const OPCOES_VISUAL = [
+  { cor: C.azul,    svg: "op1" },
+  { cor: C.terra,   svg: "op2" },
+  { cor: C.azulClr, svg: "op2" },
 ];
 
 const precos = [
   { size: "30 × 40 cm", price: "200€", svgW: "80px" },
   { size: "40 × 50 cm", price: "270€", svgW: "96px" },
   { size: "50 × 70 cm", price: "360€", svgW: "112px" },
-];
-
-const pagamento = [
-  { pct: "30%", label: "Reserva",            desc: "Garante a sua vaga. Não reembolsável." },
-  { pct: "40%", label: "Início do trabalho", desc: "Quando o ramo chega ao atelier." },
-  { pct: "30%", label: "Antes da entrega",   desc: "Após aprovação da composição final." },
-];
-
-const faqs = [
-  { q: "Posso emoldurar um bouquet de noiva que já secou?",
-    a: "Sim, e é exatamente para isso que este serviço existe. Muitos ramos chegam-nos anos depois do casamento, e conseguimos trabalhar com eles. Se o ramo já estiver com algumas flores danificadas, podemos combinar os elementos originais com réplicas de flores prensadas que preservam as suas cores originais." },
-  { q: "Recebem ramos de outras cidades ou países?",
-    a: "Sim. Trabalhamos com clientes de toda a Europa. O ramo pode ser enviado por transportadora ou CTT correio frágil. Os portes de envio ficam a cargo do cliente." },
-  { q: "O ramo tem de estar perfeito?",
-    a: <>Não. Trabalhamos com o que chega. Se algumas flores já não estiverem em bom estado, podemos substituir esses elementos por flores semelhantes preservadas por prensagem. O resultado final é sempre harmonioso. Nestes casos aplicam-se os preços da preservação{" "}<a href="/opcoes-e-precos" style={{ color: C.azul, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: "2px" }}>(ver página opções e preços)</a>.</> },
-  { q: "Como sei em que fase está o meu quadro?",
-    a: "Pode acompanhar o estado da sua encomenda em qualquer momento em status.floresabeirario.pt, uma página dedicada ao acompanhamento de cada trabalho em curso." },
-  { q: "Posso incluir uma fotografia no quadro?",
-    a: "Sim. Em qualquer opção pode pedir que incluamos uma fotografia na composição, do casamento, do batizado, ou outra imagem com significado especial." },
 ];
 
 function FAQItem({ faq, i }) {
@@ -210,7 +158,12 @@ function FAQItem({ faq, i }) {
           {open && (
             <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }} style={{ overflow: "hidden" }}>
-              <p style={{ color: C.sec, fontSize: "0.9rem", lineHeight: 1.9, padding: "0 0 22px", margin: 0, fontWeight: 300 }}>{faq.a}</p>
+              <p style={{ color: C.sec, fontSize: "0.9rem", lineHeight: 1.9, padding: "0 0 22px", margin: 0, fontWeight: 300 }}>
+                {faq.a}
+                {faq.aLinkHref && (
+                  <>{" "}<a href={faq.aLinkHref} style={{ color: C.azul, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: "2px" }}>{faq.aLinkLabel}</a>{faq.aAfter}</>
+                )}
+              </p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -220,6 +173,17 @@ function FAQItem({ faq, i }) {
 }
 
 export default function EmoldurarFloresSecasClient() {
+  const t = useTranslations("emoldurar");
+  const locale = useLocale();
+  const OPCOES_TEXT = t.raw("opcoes");
+  const PROCESSO_TEXT = t.raw("processo");
+  const VIDRO_FEATURES = t.raw("vidroFeatures");
+  const PAGAMENTO_TEXT = t.raw("pagamento");
+  const FAQS = t.raw("faqs");
+  const NAV_SQUARES = t.raw("navSquares");
+
+  const contactosHref = locale === "en" ? "/en/contact" : "/contactos";
+
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroOpacity = useTransform(scrollYProgress, [0, 0.38], [1, 0]);
@@ -229,7 +193,7 @@ export default function EmoldurarFloresSecasClient() {
     <div style={{ backgroundColor: C.creme, fontFamily: "'Google Sans', sans-serif", color: C.escuro, overflowX: "clip" }}>
 
       {/* ══ 1. HERO ═══════════════════════════════════════════════════════════ */}
-      <section ref={heroRef} className="hero-wrap" aria-label="Emoldurar flores já secas">
+      <section ref={heroRef} className="hero-wrap" aria-label={t("heroH1")}>
         <div className="hero-bg">
           <Image fill src="/quadrovidrosobrevidro.webp" alt="Quadro de flores secas emoldurado com vidro museu anti-UV" priority sizes="100vw" style={{ objectFit: "cover" }} />
         </div>
@@ -245,7 +209,7 @@ export default function EmoldurarFloresSecasClient() {
               fontSize: "0.72rem", letterSpacing: "2.5px", textTransform: "uppercase",
               color: "rgba(250,247,240,0.82)", fontFamily: "'Google Sans', sans-serif",
               margin: "0 0 20px", fontWeight: 500,
-            }}>Dê uma moldura ao capítulo mais bonito da sua história</p>
+            }}>{t("heroEyebrow")}</p>
             <h1 style={{
               fontFamily: "'TAN-MEMORIES', serif",
               fontSize: "clamp(2.4rem,6vw,5rem)",
@@ -254,20 +218,19 @@ export default function EmoldurarFloresSecasClient() {
               lineHeight: 1.05,
               textShadow: "0 4px 40px rgba(0,0,0,0.5)",
             }}>
-              Emoldurar<br />
-              <em style={{ fontStyle: "italic", color: "#A8C4D4" }}>flores já secas</em>
+              {t("heroH1")}<br />
+              <em style={{ fontStyle: "italic", color: "#A8C4D4" }}>{t("heroH1em")}</em>
             </h1>
             <p style={{
               fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.88, maxWidth: "480px",
               color: "rgba(250,247,240,0.86)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)",
               fontWeight: 300, textShadow: "0 2px 16px rgba(0,0,0,0.4)",
             }}>
-              Muitos ramos de flores foram secos naturalmente com o passar do tempo. Alguns foram criados originalmente com flores secas. Na Flores à Beira-Rio, podemos transformar esse ramo numa peça emoldurada.
+              {t("heroDesc")}
             </p>
             <div className="cta-row" style={{ justifyContent: "center", marginBottom: "1.6rem" }}>
-              <a href="/contactos" className="btn-ghost-light">Falar connosco</a>
+              <a href={contactosHref} className="btn-ghost-light">{t("heroCta")}</a>
             </div>
-
           </motion.div>
         </motion.div>
       </section>
@@ -277,34 +240,37 @@ export default function EmoldurarFloresSecasClient() {
         <div style={{ maxWidth: "1060px", margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem,5vw,4rem)" }}>
-              <Eyebrow>Como funciona</Eyebrow>
+              <Eyebrow>{t("opcoesEyebrow")}</Eyebrow>
               <h2 id="h2-opcoes" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5vw,3.2rem)", color: C.escuro, margin: 0, lineHeight: 1.1 }}>
-                Três formas de preservar
+                {t("opcoesH2")}
               </h2>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
             <div className="opcao-grid" role="list">
-              {opcoes.map((item, i) => (
-                <article key={i} className="opcao-item" role="listitem">
-                  {item.svg === "op1" ? <SVGOpcao1 width="160px" /> : <SVGOpcao2 width="160px" />}
-                  <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "1rem" }}>
-                    <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", color: item.cor, lineHeight: 1 }}>{item.n}</span>
-                    <div style={{ flex: 1, height: "1px", background: `${item.cor}2A` }} aria-hidden="true" />
-                  </div>
-                  <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: item.cor, fontFamily: "'Google Sans', sans-serif", margin: "0 0 10px", fontWeight: 700 }}>{item.sub}</p>
-                  <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.1rem,2.2vw,1.4rem)", color: C.escuro, margin: "0 0 0.7rem", lineHeight: 1.15 }}>{item.titulo}</h3>
-                  <p style={{ fontSize: "0.9rem", lineHeight: 1.85, color: C.sec, margin: "0 0 0.8rem", fontWeight: 300 }}>{item.desc}</p>
-                  <p style={{ fontSize: "0.77rem", color: C.azulClr, margin: "0 0 0.9rem", fontStyle: "italic" }}>{item.detalhe}</p>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "8px" }}>
-                    <span style={{ fontSize: "0.72rem", color: C.sec }}>Produção: <strong style={{ color: item.cor }}>{item.time}</strong></span>
-                    {item.link && (
-                      <a href={item.link.href} className="hover-border-full" style={{ fontSize: "0.74rem", fontWeight: 600, color: item.cor, textDecoration: "none", borderBottom: `1px solid ${item.cor}40`, paddingBottom: "1px", transition: "border-color 0.2s" }}
-                      >{item.link.label} →</a>
-                    )}
-                  </div>
-                </article>
-              ))}
+              {OPCOES_VISUAL.map((vis, i) => {
+                const item = OPCOES_TEXT[i];
+                return (
+                  <article key={i} className="opcao-item" role="listitem">
+                    {vis.svg === "op1" ? <SVGOpcao1 width="160px" /> : <SVGOpcao2 width="160px" />}
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "1rem" }}>
+                      <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.1rem", color: vis.cor, lineHeight: 1 }}>{item.n}</span>
+                      <div style={{ flex: 1, height: "1px", background: `${vis.cor}2A` }} aria-hidden="true" />
+                    </div>
+                    <p style={{ fontSize: "0.58rem", letterSpacing: "3px", textTransform: "uppercase", color: vis.cor, fontFamily: "'Google Sans', sans-serif", margin: "0 0 10px", fontWeight: 700 }}>{item.sub}</p>
+                    <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.1rem,2.2vw,1.4rem)", color: C.escuro, margin: "0 0 0.7rem", lineHeight: 1.15 }}>{item.titulo}</h3>
+                    <p style={{ fontSize: "0.9rem", lineHeight: 1.85, color: C.sec, margin: "0 0 0.8rem", fontWeight: 300 }}>{item.desc}</p>
+                    <p style={{ fontSize: "0.77rem", color: C.azulClr, margin: "0 0 0.9rem", fontStyle: "italic" }}>{item.detalhe}</p>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "8px" }}>
+                      <span style={{ fontSize: "0.72rem", color: C.sec }}>{t("producaoLabel")} <strong style={{ color: vis.cor }}>{item.time}</strong></span>
+                      {item.linkHref && (
+                        <a href={item.linkHref} className="hover-border-full" style={{ fontSize: "0.74rem", fontWeight: 600, color: vis.cor, textDecoration: "none", borderBottom: `1px solid ${vis.cor}40`, paddingBottom: "1px", transition: "border-color 0.2s" }}
+                        >{item.linkLabel} →</a>
+                      )}
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </Reveal>
         </div>
@@ -320,12 +286,12 @@ export default function EmoldurarFloresSecasClient() {
           <Reveal>
             <Divider light />
             <div style={{ marginTop: "clamp(2rem,4vw,3rem)" }}>
-              <Eyebrow light>Detalhe que faz diferença</Eyebrow>
+              <Eyebrow light>{t("fotoEyebrow")}</Eyebrow>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4vw,2.6rem)", color: C.creme, margin: "0 0 1rem" }}>
-                Inclua uma fotografia
+                {t("fotoH2")}
               </h2>
               <p style={{ color: "rgba(250,247,240,0.85)", lineHeight: 1.9, fontSize: "0.97rem", fontWeight: 300 }}>
-                Em qualquer das três opções, podemos integrar uma fotografia na composição: do casamento, do batizado, ou qualquer imagem com significado especial. O quadro torna-se ainda mais único.
+                {t("fotoDesc")}
               </p>
             </div>
           </Reveal>
@@ -338,19 +304,19 @@ export default function EmoldurarFloresSecasClient() {
         <div style={{ maxWidth: "1060px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem,5vw,4rem)" }}>
-              <Eyebrow light>Da sua casa ao quadro</Eyebrow>
+              <Eyebrow light>{t("processoEyebrow")}</Eyebrow>
               <h2 id="h2-processo" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5vw,3.2rem)", color: C.creme, margin: 0 }}>
-                O processo, passo a passo
+                {t("processoH2")}
               </h2>
             </div>
           </Reveal>
           <div className="processo-steps" role="list">
-            {processo.map((item, i) => (
+            {PROCESSO_TEXT.map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div className="processo-step" role="listitem">
                   <div style={{ position: "relative", display: "inline-flex", alignItems: "center", justifyContent: "center", width: "46px", height: "46px", borderRadius: "50%", border: "1px solid rgba(250,247,240,0.18)", marginBottom: "1rem" }}>
-                    <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.82rem", color: "rgba(250,247,240,0.55)" }} aria-hidden="true">{item.n}</span>
-                    {i < processo.length - 1 && <div className="processo-connector" aria-hidden="true" />}
+                    <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.82rem", color: "rgba(250,247,240,0.55)" }} aria-hidden="true">{`0${i + 1}`}</span>
+                    {i < PROCESSO_TEXT.length - 1 && <div className="processo-connector" aria-hidden="true" />}
                   </div>
                   <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem,2vw,1.2rem)", color: C.creme, margin: "0 0 0.6rem", lineHeight: 1.2 }}>{item.titulo}</h3>
                   <p style={{ fontSize: "0.85rem", lineHeight: 1.8, color: "rgba(250,247,240,0.62)", margin: 0, fontWeight: 300 }}>{item.desc}</p>
@@ -367,7 +333,7 @@ export default function EmoldurarFloresSecasClient() {
                 <path d="M10 2C6.686 2 4 4.686 4 8c0 4.5 6 9 6 9s6-4.5 6-9c0-3.314-2.686-6-6-6z" stroke="currentColor" strokeWidth="1.3" fill="none"/>
               </svg>
               <p style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.85rem", color: "rgba(250,247,240,0.75)", margin: 0, lineHeight: 1.65, fontWeight: 300 }}>
-                Ao longo de todo o processo, pode sempre acompanhar a sua encomenda em{" "}
+                {t("trackingNote")}{" "}
                 <a href={TRACKING_URL} target="_blank" rel="noopener noreferrer"
                   style={{ color: C.azulClr, textDecoration: "none", fontWeight: 500, borderBottom: `1px solid ${C.azulClr}60`, paddingBottom: "1px" }}>
                   status.floresabeirario.pt
@@ -383,28 +349,22 @@ export default function EmoldurarFloresSecasClient() {
         <div style={{ maxWidth: "1060px", margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem,5vw,4rem)" }}>
-              <Eyebrow>Qualidade museológica</Eyebrow>
+              <Eyebrow>{t("materiaisEyebrow")}</Eyebrow>
               <h2 id="h2-materiais" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5vw,3.2rem)", color: C.escuro, margin: 0 }}>
-                Materiais & Qualidade
+                {t("materiaisH2")}
               </h2>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
             <div className="ultravue-box">
               <div style={{ flex: 1 }}>
-                <Eyebrow color={C.azulClr}>Vidro museu</Eyebrow>
+                <Eyebrow color={C.azulClr}>{t("vidroEyebrow")}</Eyebrow>
                 <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.3rem,2.5vw,1.8rem)", color: C.escuro, margin: "0 0 1rem", lineHeight: 1.15 }}>
-                  UltraVue® UV70<br />
-                  <em style={{ fontStyle: "italic", color: C.azulClr }}>clareza verdadeiramente incrível</em>
+                  {t("vidroH3")}<br />
+                  <em style={{ fontStyle: "italic", color: C.azulClr }}>{t("vidroH3em")}</em>
                 </h3>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                  {[
-                    "Praticamente elimina reflexos",
-                    "Filtra até 70% dos raios UV nocivos",
-                    "Vidro Water White com transmissão de cores cristalinas",
-                    "Ilumina cores e níveis de contraste",
-                    "Superfície duradoura e de fácil limpeza",
-                  ].map((feat, idx) => (
+                  {VIDRO_FEATURES.map((feat, idx) => (
                     <li key={idx} style={{ display: "flex", alignItems: "flex-start", gap: "12px", padding: "10px 0", borderBottom: "1px solid rgba(15,30,26,0.07)", fontFamily: "'Google Sans', sans-serif", fontWeight: 300, fontSize: "0.88rem", lineHeight: 1.6, color: C.sec }}>
                       <span style={{ width: "18px", height: "18px", borderRadius: "50%", backgroundColor: C.azulClr, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "2px" }} aria-hidden="true">
                         <svg width="9" height="7" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#FAF7F0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -417,7 +377,7 @@ export default function EmoldurarFloresSecasClient() {
               <div className="ultravue-img">
                 <Image src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" width={0} height={0} sizes="100vw" style={{ width: "100%", height: "auto", display: "block", borderRadius: "10px 10px 0 0" }} />
                 <div style={{ backgroundColor: C.creEsc, padding: "10px 14px", display: "flex", justifyContent: "space-between", borderRadius: "0 0 10px 10px" }}>
-                  <span style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.6rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(15,30,26,0.35)", fontWeight: 500 }}>Normal</span>
+                  <span style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.6rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(15,30,26,0.35)", fontWeight: 500 }}>{t("vidroLabelNormal")}</span>
                   <span style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.6rem", letterSpacing: "1.5px", textTransform: "uppercase", color: C.azulClr, fontWeight: 700 }}>UltraVue®</span>
                 </div>
               </div>
@@ -434,20 +394,19 @@ export default function EmoldurarFloresSecasClient() {
         <div style={{ maxWidth: "760px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
             <div style={{ marginBottom: "clamp(2.5rem,5vw,4rem)" }}>
-              <Eyebrow light>Emoldurar flores já secas</Eyebrow>
+              <Eyebrow light>{t("precosEyebrow")}</Eyebrow>
               <h2 id="h2-precos" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5vw,3.4rem)", color: C.creme, margin: "0 0 1rem", lineHeight: 1.05 }}>
-                Tamanhos e preços
+                {t("precosH2")}
               </h2>
               <p style={{ color: "rgba(250,247,240,0.5)", fontSize: "0.85rem", lineHeight: 1.75, fontWeight: 300, maxWidth: "480px" }}>
-                Preços para emoldurar flores já secas. Estes preços não incluem os nossos serviços de preservação. Caso as suas flores estejam frescas e precisem de ser preservadas, visite a{" "}
-                <a href="/opcoes-e-precos" style={{ color: C.azulClr, textDecoration: "none", borderBottom: `1px solid ${C.azulClr}50`, paddingBottom: "1px" }}>
-                  página opções e preços
+                {t("precosDesc")}{" "}
+                <a href={t("precosDescLinkHref")} style={{ color: C.azulClr, textDecoration: "none", borderBottom: `1px solid ${C.azulClr}50`, paddingBottom: "1px" }}>
+                  {t("precosDescLinkLabel")}
                 </a>.
               </p>
             </div>
           </Reveal>
 
-          {/* 3 caixas independentes empilhadas */}
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             {precos.map((row, i) => {
               const accent = [C.azulClr, C.terra, C.azul][i];
@@ -463,27 +422,20 @@ export default function EmoldurarFloresSecasClient() {
                   }}
                     className="hover-lift-shadow"
                   >
-                    {/* SVG lado esquerdo */}
                     <div style={{ flexShrink: 0 }}>
                       <SVGOpcao1Escuro width={row.svgW} accent={accent} />
                     </div>
-
-                    {/* Divisor vertical */}
                     <div style={{ width: "1px", alignSelf: "stretch", background: `${accent}30`, flexShrink: 0 }} aria-hidden="true" />
-
-                    {/* Texto lado direito */}
                     <div style={{ flex: 1 }}>
-                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: C.sec, fontSize: "0.65rem", letterSpacing: "2.5px", textTransform: "uppercase", margin: "0 0 8px", fontWeight: 500 }}>Tamanho</p>
+                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: C.sec, fontSize: "0.65rem", letterSpacing: "2.5px", textTransform: "uppercase", margin: "0 0 8px", fontWeight: 500 }}>{t("precosLabelTamanho")}</p>
                       <p style={{ fontFamily: "'TAN-MEMORIES', serif", color: C.escuro, fontSize: "clamp(1rem,2.5vw,1.2rem)", margin: "0 0 12px", lineHeight: 1.1 }}>{row.size}</p>
                       <div style={{ width: "24px", height: "1px", background: `${accent}80`, marginBottom: "12px" }} aria-hidden="true" />
-                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: C.sec, fontSize: "0.65rem", letterSpacing: "2.5px", textTransform: "uppercase", margin: "0 0 6px", fontWeight: 500 }}>Preço</p>
+                      <p style={{ fontFamily: "'Google Sans', sans-serif", color: C.sec, fontSize: "0.65rem", letterSpacing: "2.5px", textTransform: "uppercase", margin: "0 0 6px", fontWeight: 500 }}>{t("precosLabelPreco")}</p>
                       <p style={{ fontFamily: "'TAN-MEMORIES', serif", color: accent, fontSize: "clamp(1.8rem,4vw,2.6rem)", margin: 0, lineHeight: 1 }}>{row.price}</p>
                     </div>
-
-                    {/* Nota canto direito — só desktop */}
                     <div style={{ flexShrink: 0, display: "none", maxWidth: "160px" }} className="preco-nota">
                       <p style={{ fontFamily: "'Google Sans', sans-serif", color: C.sec, fontSize: "0.68rem", lineHeight: 1.6, margin: 0, fontWeight: 300, textAlign: "right" }}>
-                        Inclui vidro museu anti-UV, moldura à medida e composição artística
+                        {t("precosNota2")}
                       </p>
                     </div>
                   </div>
@@ -492,10 +444,9 @@ export default function EmoldurarFloresSecasClient() {
             })}
           </div>
 
-          {/* Nota rodapé */}
           <Reveal delay={0.35}>
             <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.35)", fontSize: "0.75rem", lineHeight: 1.7, margin: "1.8rem 0 0", fontWeight: 300 }}>
-              Todos os quadros incluem vidro museu anti-UV, moldura feita à medida e design artístico da composição.
+              {t("precosNota")}
             </p>
           </Reveal>
         </div>
@@ -506,17 +457,17 @@ export default function EmoldurarFloresSecasClient() {
         <div style={{ maxWidth: "820px", margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(1.5rem,3vw,2.5rem)" }}>
-              <Eyebrow>Sem surpresas</Eyebrow>
+              <Eyebrow>{t("pagamentoEyebrow")}</Eyebrow>
               <h2 id="h2-pagamento" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem,4vw,2.4rem)", color: C.escuro, margin: 0 }}>
-                Pagamento em 3 fases
+                {t("pagamentoH2")}
               </h2>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
             <div className="pag-grid" role="list">
-              {pagamento.map((p, i) => (
+              {PAGAMENTO_TEXT.map((p, i) => (
                 <div key={i} className="pag-item" role="listitem">
-                  <div style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem,3.5vw,2.2rem)", color: C.azul, marginBottom: "4px" }}>{p.pct}</div>
+                  <div style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem,3.5vw,2.2rem)", color: C.azul, marginBottom: "4px" }}>{["30%", "40%", "30%"][i]}</div>
                   <div style={{ fontWeight: 600, color: C.escuro, fontSize: "0.75rem", marginBottom: "4px", fontFamily: "'Google Sans', sans-serif" }}>{p.label}</div>
                   <p style={{ color: C.sec, fontSize: "0.72rem", margin: 0, lineHeight: 1.55, fontWeight: 300 }}>{p.desc}</p>
                 </div>
@@ -531,13 +482,13 @@ export default function EmoldurarFloresSecasClient() {
         <div style={{ maxWidth: "700px", margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem,5vw,3.5rem)" }}>
-              <Eyebrow>FAQ</Eyebrow>
+              <Eyebrow>{t("faqEyebrow")}</Eyebrow>
               <h2 id="h2-faq" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5vw,3rem)", color: C.escuro, margin: 0 }}>
-                Perguntas frequentes
+                {t("faqH2")}
               </h2>
             </div>
           </Reveal>
-          {faqs.map((faq, i) => <FAQItem key={i} faq={faq} i={i} />)}
+          {FAQS.map((faq, i) => <FAQItem key={i} faq={faq} i={i} />)}
         </div>
       </section>
 
@@ -545,16 +496,16 @@ export default function EmoldurarFloresSecasClient() {
       <section aria-label="Explorar serviços">
         <div className="nav-squares-grid">
           {[
-            { href: "/opcoes-e-precos",      label: "Opções e Preços",      img: "/molduranogueira.webp" },
-            { href: "/como-funciona",        label: "Como Funciona",        img: "/ramo.webp" },
-            { href: "/oferecer-preservacao", label: "Oferecer Preservação", img: "/vale1.webp" },
-            { href: "/perguntas-frequentes", label: "Perguntas Frequentes", img: "/fotoquadrocloseup2.webp" },
-          ].map((item, i) => (
+            { img: "/molduranogueira.webp" },
+            { img: "/ramo.webp" },
+            { img: "/vale1.webp" },
+            { img: "/fotoquadrocloseup2.webp" },
+          ].map((vis, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <a href={item.href} className="nav-square">
-                <img src={item.img} alt="" aria-hidden="true" className="nav-square-img" />
+              <a href={NAV_SQUARES[i].href} className="nav-square">
+                <img src={vis.img} alt="" aria-hidden="true" className="nav-square-img" />
                 <div className="nav-square-overlay">
-                  <span className="nav-square-label">{item.label}</span>
+                  <span className="nav-square-label">{NAV_SQUARES[i].label}</span>
                 </div>
               </a>
             </Reveal>

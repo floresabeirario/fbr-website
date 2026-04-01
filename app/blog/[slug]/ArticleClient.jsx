@@ -2,11 +2,12 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { formatDate } from "@/app/_lib/utils";
 import "./ArticleClient.css";
 
 // ─── Card artigo relacionado ──────────────────────────────────────────────────
-function RelatedCard({ post }) {
+function RelatedCard({ post, t }) {
   return (
     <a
       href={`/blog/${post.slug}`}
@@ -17,7 +18,7 @@ function RelatedCard({ post }) {
       </div>
       <div style={{ padding: "16px 18px 20px" }}>
         <span style={{ display: "inline-block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "var(--green)", fontFamily: "Roboto, sans-serif", marginBottom: "8px" }}>
-          {post.readTime} de leitura
+          {post.readTime} {t("minLeitura")}
         </span>
         <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1rem", color: "var(--green-d)", margin: "0 0 6px", lineHeight: 1.25 }}>
           {post.title}
@@ -33,6 +34,7 @@ function RelatedCard({ post }) {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 // Recebe o MDX já renderizado como `children` (Server Component passado ao Client)
 export default function ArticleClient({ post, related, children }) {
+  const t = useTranslations("artigo");
   return (
     <div style={{ backgroundColor: "var(--cream)", overflowX: "clip" }}>
 
@@ -43,9 +45,9 @@ export default function ArticleClient({ post, related, children }) {
       >
         <div style={{ maxWidth: "760px", margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-            <nav aria-label="Caminho" style={{ marginBottom: "20px", display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+            <nav aria-label={t("breadcrumbAriaLabel")} style={{ marginBottom: "20px", display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
               <a href="/blog" className="breadcrumb-link">
-                Blog
+                {t("blogBreadcrumb")}
               </a>
               <span style={{ color: "var(--sage)", fontSize: "0.72rem" }} aria-hidden="true">›</span>
               <span style={{ fontSize: "0.78rem", color: "var(--mid)", fontFamily: "Roboto, sans-serif" }}>{post.title}</span>
@@ -55,7 +57,7 @@ export default function ArticleClient({ post, related, children }) {
               <span style={{ fontSize: "0.62rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "var(--green)", fontFamily: "Roboto, sans-serif", backgroundColor: "rgba(61,107,94,0.08)", padding: "5px 12px", borderRadius: "50px" }}>
                 {post.category}
               </span>
-              <span style={{ fontSize: "0.78rem", color: "var(--mid-l)", fontFamily: "Roboto, sans-serif" }}>{post.readTime} de leitura</span>
+              <span style={{ fontSize: "0.78rem", color: "var(--mid-l)", fontFamily: "Roboto, sans-serif" }}>{post.readTime} {t("minLeitura")}</span>
               <span style={{ fontSize: "0.78rem", color: "var(--mid-l)", fontFamily: "Roboto, sans-serif" }}>{formatDate(post.date)}</span>
             </div>
 
@@ -93,7 +95,7 @@ export default function ArticleClient({ post, related, children }) {
         {/* Tags */}
         {post.tags && post.tags.length > 0 && (
           <div style={{ marginTop: "40px", paddingTop: "28px", borderTop: "1px solid rgba(61,107,94,0.1)", display: "flex", flexWrap: "wrap", gap: "8px", alignItems: "center" }}>
-            <span style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "var(--mid-l)", fontFamily: "Roboto, sans-serif", marginRight: "4px" }}>Tags:</span>
+            <span style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "var(--mid-l)", fontFamily: "Roboto, sans-serif", marginRight: "4px" }}>{t("tags")}</span>
             {post.tags.map((tag) => (
               <span key={tag} style={{ fontSize: "0.72rem", color: "var(--mid)", fontFamily: "Roboto, sans-serif", backgroundColor: "rgba(61,107,94,0.07)", padding: "4px 12px", borderRadius: "50px", border: "1px solid rgba(61,107,94,0.12)" }}>
                 {tag}
@@ -111,7 +113,7 @@ export default function ArticleClient({ post, related, children }) {
           </div>
           <div>
             <p style={{ margin: "0 0 2px", fontWeight: 700, fontSize: "0.88rem", color: "var(--green-d)", fontFamily: "Roboto, sans-serif" }}>{post.author}</p>
-            <p style={{ margin: 0, fontSize: "0.78rem", color: "var(--mid-l)", fontFamily: "Roboto, sans-serif" }}>Flores à Beira-Rio, Coimbra</p>
+            <p style={{ margin: 0, fontSize: "0.78rem", color: "var(--mid-l)", fontFamily: "Roboto, sans-serif" }}>{t("autor")}</p>
           </div>
         </div>
       </article>
@@ -125,22 +127,22 @@ export default function ArticleClient({ post, related, children }) {
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
             <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }} style={{ marginBottom: "28px" }}>
               <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "var(--terra)", marginBottom: "8px", fontFamily: "Roboto, sans-serif" }}>
-                Continua a ler
+                {t("continuaLer")}
               </span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.4rem,3.5vw,2rem)", color: "var(--green-d)", margin: 0 }}>
-                Artigos relacionados
+                {t("artigosRelacionados")}
               </h2>
             </motion.div>
             <div className="related-grid">
               {related.map((p, i) => (
                 <motion.div key={p.slug} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.6 }}>
-                  <RelatedCard post={p} />
+                  <RelatedCard post={p} t={t} />
                 </motion.div>
               ))}
             </div>
             <div style={{ textAlign: "center", marginTop: "36px" }}>
               <a href="/blog" style={{ fontSize: "0.78rem", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "var(--green)", fontFamily: "Roboto, sans-serif", textDecoration: "none", borderBottom: "1px solid rgba(61,107,94,0.35)", paddingBottom: "2px" }}>
-                Ver todos os artigos →
+                {t("verTodos")}
               </a>
             </div>
           </div>

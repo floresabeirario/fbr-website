@@ -3,11 +3,12 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { formatDate } from "@/app/_lib/utils";
 import "./BlogClient.css";
 
 // ─── Card de artigo ───────────────────────────────────────────────────────────
-function PostCard({ post, categoryLabels, index }) {
+function PostCard({ post, categoryLabels, index, t }) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
@@ -32,7 +33,7 @@ function PostCard({ post, categoryLabels, index }) {
           />
           {post.featured && (
             <div style={{ position: "absolute", top: "14px", left: "14px", backgroundColor: "var(--gold)", color: "var(--cream)", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", padding: "5px 12px", borderRadius: "50px" }}>
-              Destaque
+              {t("destaque")}
             </div>
           )}
         </div>
@@ -44,7 +45,7 @@ function PostCard({ post, categoryLabels, index }) {
               {categoryLabels[post.category] || post.category}
             </span>
             <span style={{ fontSize: "0.72rem", color: "var(--mid-l)", fontFamily: "Roboto, sans-serif" }}>
-              {post.readTime} de leitura
+              {post.readTime} {t("minLeitura")}
             </span>
           </div>
 
@@ -61,7 +62,7 @@ function PostCard({ post, categoryLabels, index }) {
               {formatDate(post.date)}
             </span>
             <span style={{ fontSize: "0.72rem", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "var(--green)", fontFamily: "Roboto, sans-serif" }}>
-              Ler →
+              {t("ler")}
             </span>
           </div>
         </div>
@@ -72,6 +73,7 @@ function PostCard({ post, categoryLabels, index }) {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function BlogClient({ posts, categories, categoryLabels }) {
+  const t = useTranslations("blog");
   const [activeCategory, setActiveCategory] = useState("todas");
 
   const filtered = useMemo(() => {
@@ -86,20 +88,19 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
 
       {/* HERO */}
       <section
-        aria-label="Blog da Flores à Beira-Rio"
+        aria-label={t("h1")}
         style={{ paddingTop: "clamp(110px,16vw,170px)", paddingBottom: "clamp(52px,8vw,80px)", paddingLeft: "clamp(20px,5vw,48px)", paddingRight: "clamp(20px,5vw,48px)", background: "linear-gradient(175deg, #EDF2E8 0%, #FAF7F0 100%)" }}
       >
         <div style={{ maxWidth: "700px" }}>
           <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
             <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#C4846B", marginBottom: 14, fontFamily: "Roboto, sans-serif" }}>
-              Do atelier para ti
+              {t("eyebrow")}
             </span>
             <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.8rem,9vw,5.5rem)", color: "var(--green-d)", margin: "0 0 18px", lineHeight: 1.02 }}>
-              O nosso<br />
-              <em style={{ fontStyle: "italic", color: "var(--green)" }}>blog</em>
+              {t("h1")}
             </h1>
             <p style={{ color: "var(--mid)", fontSize: "clamp(0.95rem,2vw,1.06rem)", lineHeight: 1.88, maxWidth: "520px", margin: 0 }}>
-              Dicas, guias e histórias sobre preservação botânica. Tudo o que precisas de saber para eternizar as tuas flores.
+              {t("heroDesc")}
             </p>
           </motion.div>
         </div>
@@ -108,12 +109,12 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
       {/* ARTIGO DESTAQUE */}
       {featured && (
         <section
-          aria-label="Artigo em destaque"
+          aria-label={t("artigoDestaque")}
           style={{ padding: "clamp(48px,8vw,72px) clamp(20px,5vw,48px)", backgroundColor: "var(--cream)" }}
         >
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "var(--gold)", marginBottom: 20, fontFamily: "Roboto, sans-serif" }}>
-              Artigo em destaque
+              {t("artigoDestaque")}
             </span>
             <motion.a
               href={`/blog/${featured.slug}`}
@@ -134,7 +135,7 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
                       {categoryLabels[featured.category] || featured.category}
                     </span>
                     <span style={{ fontSize: "0.75rem", color: "var(--mid-l)", fontFamily: "Roboto, sans-serif" }}>
-                      {featured.readTime} de leitura
+                      {featured.readTime} {t("minLeitura")}
                     </span>
                   </div>
                   <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem,3.5vw,2.2rem)", color: "var(--green-d)", margin: "0 0 14px", lineHeight: 1.15 }}>
@@ -148,7 +149,7 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
                       {formatDate(featured.date)}
                     </span>
                     <span style={{ fontSize: "0.72rem", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "var(--green)", fontFamily: "Roboto, sans-serif" }}>
-                      Ler artigo →
+                      {t("lerArtigo")}
                     </span>
                   </div>
                 </div>
@@ -160,22 +161,22 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
 
       {/* LISTAGEM COM FILTROS */}
       <section
-        aria-label="Todos os artigos"
+        aria-label={t("todosArtigos")}
         style={{ padding: "clamp(16px,4vw,40px) clamp(20px,5vw,48px) clamp(72px,12vw,120px)", backgroundColor: "var(--cream)" }}
       >
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "16px", flexWrap: "wrap", marginBottom: "32px" }}>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.3rem,3vw,1.8rem)", color: "var(--green-d)", margin: 0 }}>
-              Todos os artigos
+              {t("todosArtigos")}
             </h2>
-            <div className="pills-row" role="tablist" aria-label="Filtrar por categoria">
+            <div className="pills-row" role="tablist" aria-label={t("todosArtigos")}>
               <button
                 role="tab"
                 aria-selected={activeCategory === "todas"}
                 className={`pill${activeCategory === "todas" ? " active" : ""}`}
                 onClick={() => setActiveCategory("todas")}
               >
-                Todos
+                {t("todos")}
                 <span className="pill-count">{posts.length}</span>
               </button>
               {categories.map((cat) => (
@@ -204,13 +205,13 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
               {filtered.length === 0 ? (
                 <div style={{ textAlign: "center", padding: "64px 20px", color: "var(--mid-l)" }}>
                   <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.3rem", marginBottom: "8px" }}>
-                    Ainda não há artigos nesta categoria.
+                    {t("semArtigos")}
                   </p>
                   <button
                     onClick={() => setActiveCategory("todas")}
                     style={{ background: "none", border: "none", cursor: "pointer", color: "var(--green)", fontWeight: 600, fontSize: "0.88rem", fontFamily: "Roboto, sans-serif", borderBottom: "1px solid rgba(61,107,94,0.35)", paddingBottom: "2px" }}
                   >
-                    Ver todos os artigos
+                    {t("verTodos")}
                   </button>
                 </div>
               ) : (
@@ -221,6 +222,7 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
                       post={post}
                       categoryLabels={categoryLabels}
                       index={i}
+                      t={t}
                     />
                   ))}
                 </div>
