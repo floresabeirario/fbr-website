@@ -198,7 +198,7 @@ export default function OfereceClient() {
               <Reveal key={i} delay={i * 0.06} className="ocasiao-reveal">
                 <article className="ocasiao-card">
                   <div className="ocasiao-img">
-                    <img src={OCASIOES_IMGS[i]} alt={item.titulo} loading="lazy" />
+                    <Image fill src={OCASIOES_IMGS[i]} alt={item.titulo} sizes="(max-width: 640px) 50vw, 18vw" style={{ objectFit: "cover" }} />
                   </div>
                   <div className="ocasiao-content">
                     <h3 className="ocasiao-titulo">{item.titulo}</h3>

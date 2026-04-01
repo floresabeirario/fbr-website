@@ -101,7 +101,9 @@
       "Bash(rm add_legal.js)",
       "Bash(node add_content.js)",
       "Bash(rm add_content.js)",
-      "Bash(\"c:\\\\Users\\\\maria\\\\Documents\\\\fbr-website\\\\fbr-website\\\\app\\\\opcoes-e-precos\\\\OpcoesClient.jsx\")"
+      "Bash(\"c:\\\\Users\\\\maria\\\\Documents\\\\fbr-website\\\\fbr-website\\\\app\\\\opcoes-e-precos\\\\OpcoesClient.jsx\")",
+      "Bash(find /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale] -name \"page.js\" -type f)",
+      "Bash(grep -l generateMetadata /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/*.js /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/*/*.js /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/*/*/*.js)"
     ]
   }
 }

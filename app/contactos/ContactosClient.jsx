@@ -2,7 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { IconInstagram, IconFacebook, IconTikTok, IconWhatsApp, IconEmail, IconCasamentos } from "@/components/Icons";
 import { WA_URL, EMAIL, PHONE_DISPLAY, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK, SOCIAL_TIKTOK, SOCIAL_CASAMENTOS } from "../_lib/constants";
 import "./ContactosClient.css";
@@ -188,16 +189,12 @@ export default function ContactosClient() {
                 <div className="team-card">
                   {/* Foto */}
                   <div className="team-photo-wrap">
-                    <img
+                    <Image
+                      fill
                       src={member.img}
                       alt={`${member.name}, ${member.role} na Flores à Beira-Rio`}
-                      loading="lazy"
-                      style={{
-                        width: "100%", height: "100%",
-                        objectFit: "cover", display: "block",
-                        transition: "filter 0.4s ease",
-                        ...member.imgStyle,
-                      }}
+                      sizes="(max-width: 640px) 38vw, 200px"
+                      style={{ objectFit: "cover", ...member.imgStyle }}
                     />
                     <div className="team-photo-overlay">
                       <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem, 3.5vw, 1.6rem)", color: C.cream, margin: "0 0 6px", lineHeight: 1.1, textShadow: "0 2px 10px rgba(0,0,0,0.3)" }}>{member.name}</p>
@@ -232,7 +229,7 @@ export default function ContactosClient() {
           ].map((item, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <a href={item.href} className="nav-square">
-                <img src={item.img} alt="" aria-hidden="true" className="nav-square-img" />
+                <Image fill src={item.img} alt="" aria-hidden="true" className="nav-square-img" sizes="(max-width: 640px) 50vw, 25vw" style={{ objectFit: "cover" }} />
                 <div className="nav-square-overlay">
                   <span className="nav-square-label">{item.label}</span>
                 </div>

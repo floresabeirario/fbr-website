@@ -1,54 +1,58 @@
 export default function sitemap() {
   const base = "https://floresabeirario.pt";
 
-  const ptRoutes = [
-    { path: "/",                                        priority: 1.0,  changeFrequency: "monthly" },
-    { path: "/como-funciona",                           priority: 0.9,  changeFrequency: "monthly" },
-    { path: "/opcoes-e-precos",                         priority: 0.9,  changeFrequency: "monthly" },
-    { path: "/preservacao-de-flores",                   priority: 0.85, changeFrequency: "monthly" },
-    { path: "/preservar-bouquet-noiva",                 priority: 0.85, changeFrequency: "monthly" },
-    { path: "/preservar-flores-luto-homenagem",         priority: 0.85, changeFrequency: "monthly" },
-    { path: "/preservar-flores-batizado-nascimento",    priority: 0.8,  changeFrequency: "monthly" },
-    { path: "/preservar-flores-aniversario",            priority: 0.8,  changeFrequency: "monthly" },
-    { path: "/preservar-flores-pedido-casamento",       priority: 0.8,  changeFrequency: "monthly" },
-    { path: "/momentos-especiais",                      priority: 0.75, changeFrequency: "monthly" },
-    { path: "/emoldurar-flores-secas",                  priority: 0.75, changeFrequency: "monthly" },
-    { path: "/recriacao",                               priority: 0.8,  changeFrequency: "monthly" },
-    { path: "/oferecer-preservacao",                    priority: 0.8,  changeFrequency: "monthly" },
-    { path: "/sustentabilidade",                        priority: 0.7,  changeFrequency: "monthly" },
-    { path: "/perguntas-frequentes",                    priority: 0.8,  changeFrequency: "monthly" },
-    { path: "/contactos",                               priority: 0.7,  changeFrequency: "yearly"  },
-    { path: "/blog",                                    priority: 0.5,  changeFrequency: "weekly"  },
-    { path: "/politica-de-privacidade",                 priority: 0.3,  changeFrequency: "yearly"  },
-    { path: "/termos-e-condicoes",                      priority: 0.3,  changeFrequency: "yearly"  },
+  // Each entry: { pt, en, priority, changeFrequency }
+  // PT pages are served without prefix (/), EN pages with (/en/...)
+  const routes = [
+    { pt: "/",                                        en: "/en",                                       priority: 1.0,  changeFrequency: "monthly" },
+    { pt: "/como-funciona",                           en: "/en/how-it-works",                          priority: 0.9,  changeFrequency: "monthly" },
+    { pt: "/opcoes-e-precos",                         en: "/en/pricing-options",                       priority: 0.9,  changeFrequency: "monthly" },
+    { pt: "/preservacao-de-flores",                   en: "/en/flower-preservation",                   priority: 0.85, changeFrequency: "monthly" },
+    { pt: "/preservar-bouquet-noiva",                 en: "/en/preserve-wedding-bouquet",              priority: 0.85, changeFrequency: "monthly" },
+    { pt: "/preservar-flores-luto-homenagem",         en: "/en/preserve-memorial-flowers",             priority: 0.85, changeFrequency: "monthly" },
+    { pt: "/preservar-flores-batizado-nascimento",    en: "/en/preserve-baptism-flowers",              priority: 0.8,  changeFrequency: "monthly" },
+    { pt: "/preservar-flores-aniversario",            en: "/en/preserve-anniversary-flowers",          priority: 0.8,  changeFrequency: "monthly" },
+    { pt: "/preservar-flores-pedido-casamento",       en: "/en/preserve-proposal-flowers",             priority: 0.8,  changeFrequency: "monthly" },
+    { pt: "/momentos-especiais",                      en: "/en/special-moments",                       priority: 0.75, changeFrequency: "monthly" },
+    { pt: "/emoldurar-flores-secas",                  en: "/en/frame-dried-flowers",                   priority: 0.75, changeFrequency: "monthly" },
+    { pt: "/recriacao",                               en: "/en/bouquet-recreation",                    priority: 0.8,  changeFrequency: "monthly" },
+    { pt: "/oferecer-preservacao",                    en: "/en/gift-preservation",                     priority: 0.8,  changeFrequency: "monthly" },
+    { pt: "/vale-presente",                           en: "/en/gift-voucher",                          priority: 0.75, changeFrequency: "monthly" },
+    { pt: "/sustentabilidade",                        en: "/en/sustainability",                        priority: 0.7,  changeFrequency: "monthly" },
+    { pt: "/perguntas-frequentes",                    en: "/en/faq",                                   priority: 0.8,  changeFrequency: "monthly" },
+    { pt: "/contactos",                               en: "/en/contact",                               priority: 0.7,  changeFrequency: "yearly"  },
+    { pt: "/blog",                                    en: "/en/blog",                                  priority: 0.5,  changeFrequency: "weekly"  },
+    { pt: "/politica-de-privacidade",                 en: "/en/privacy-policy",                        priority: 0.3,  changeFrequency: "yearly"  },
+    { pt: "/termos-e-condicoes",                      en: "/en/terms-and-conditions",                  priority: 0.3,  changeFrequency: "yearly"  },
   ];
 
-  const enRoutes = [
-    { path: "/en",                                      priority: 1.0,  changeFrequency: "monthly" },
-    { path: "/en/how-it-works",                         priority: 0.9,  changeFrequency: "monthly" },
-    { path: "/en/pricing-options",                      priority: 0.9,  changeFrequency: "monthly" },
-    { path: "/en/flower-preservation",                  priority: 0.85, changeFrequency: "monthly" },
-    { path: "/en/preserve-wedding-bouquet",             priority: 0.85, changeFrequency: "monthly" },
-    { path: "/en/preserve-memorial-flowers",            priority: 0.85, changeFrequency: "monthly" },
-    { path: "/en/preserve-baptism-flowers",             priority: 0.8,  changeFrequency: "monthly" },
-    { path: "/en/preserve-anniversary-flowers",         priority: 0.8,  changeFrequency: "monthly" },
-    { path: "/en/preserve-proposal-flowers",            priority: 0.8,  changeFrequency: "monthly" },
-    { path: "/en/special-moments",                      priority: 0.75, changeFrequency: "monthly" },
-    { path: "/en/frame-dried-flowers",                  priority: 0.75, changeFrequency: "monthly" },
-    { path: "/en/bouquet-recreation",                   priority: 0.8,  changeFrequency: "monthly" },
-    { path: "/en/gift-preservation",                    priority: 0.8,  changeFrequency: "monthly" },
-    { path: "/en/sustainability",                       priority: 0.7,  changeFrequency: "monthly" },
-    { path: "/en/faq",                                  priority: 0.8,  changeFrequency: "monthly" },
-    { path: "/en/contact",                              priority: 0.7,  changeFrequency: "yearly"  },
-    { path: "/en/blog",                                 priority: 0.5,  changeFrequency: "weekly"  },
-    { path: "/en/privacy-policy",                       priority: 0.3,  changeFrequency: "yearly"  },
-    { path: "/en/terms-and-conditions",                 priority: 0.3,  changeFrequency: "yearly"  },
-  ];
+  const entries = [];
 
-  return [...ptRoutes, ...enRoutes].map((route) => ({
-    url:             `${base}${route.path}`,
-    lastModified:    new Date(),
-    changeFrequency: route.changeFrequency,
-    priority:        route.priority,
-  }));
+  for (const route of routes) {
+    const altLanguages = {
+      "pt-PT":     `${base}${route.pt}`,
+      "en":        `${base}${route.en}`,
+      "x-default": `${base}${route.pt}`,
+    };
+
+    // PT entry
+    entries.push({
+      url:             `${base}${route.pt}`,
+      lastModified:    new Date(),
+      changeFrequency: route.changeFrequency,
+      priority:        route.priority,
+      alternates:      { languages: altLanguages },
+    });
+
+    // EN entry
+    entries.push({
+      url:             `${base}${route.en}`,
+      lastModified:    new Date(),
+      changeFrequency: route.changeFrequency,
+      priority:        route.priority,
+      alternates:      { languages: altLanguages },
+    });
+  }
+
+  return entries;
 }

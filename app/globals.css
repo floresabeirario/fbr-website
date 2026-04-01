@@ -54,6 +54,13 @@ button:focus-visible {
   border-radius: 4px;
 }
 
+.bas-handle { outline: none; }
+.bas-handle:focus-visible {
+  outline: 3px solid var(--green-l);
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+
 /* ── Acessibilidade: movimento reduzido ────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
