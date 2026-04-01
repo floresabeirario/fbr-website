@@ -97,7 +97,10 @@
     "contactos": "Contacts",
     "paraNoivas": "For brides",
     "noivasTitle": "Getting married soon?",
-    "noivasDesc": "Book your slot in advance — wedding season dates fill up quickly."
+    "noivasDesc": "Book your slot in advance — wedding season dates fill up quickly.",
+    "sliderAntes": "Before",
+    "sliderDepois": "After",
+    "sliderArraste": "Drag to compare"
   },
   "preservacao": {
     "meta": {

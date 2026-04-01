@@ -212,7 +212,7 @@ export default function HomeClient() {
               <p style={{ color: "var(--mid)", fontSize: "clamp(1rem,2vw,1.1rem)", lineHeight: 1.85, maxWidth: "600px", margin: "0 auto 48px" }}>
                 {t("heroDesc")}
               </p>
-              <BeforeAfterSlider />
+              <BeforeAfterSlider beforeLabel={t("sliderAntes")} afterLabel={t("sliderDepois")} dragLabel={t("sliderArraste")} />
             </motion.div>
           </div>
         </section>

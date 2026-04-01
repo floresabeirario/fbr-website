@@ -200,7 +200,10 @@ export async function POST(request) {
     if (process.env.RESEND_API_KEY) {
       const e = (v) => escapeHtml(!v ? "—" : v);
 
+      const idiomaLabel = data.locale === "en" ? "Inglês" : "Português";
+
       const linhas = [
+        `<tr><td><strong>Idioma da reserva</strong></td><td>${idiomaLabel}</td></tr>`,
         `<tr><td><strong>Nome</strong></td><td>${e(data.nome)}</td></tr>`,
         `<tr><td><strong>Meio de contacto</strong></td><td>${e(data.meioContacto)}</td></tr>`,
         `<tr><td><strong>E-mail</strong></td><td>${e(data.email)}</td></tr>`,

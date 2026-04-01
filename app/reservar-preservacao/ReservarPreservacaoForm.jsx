@@ -212,6 +212,7 @@ export default function ReservarPreservacaoForm() {
           telefone: form.telefone.trim()
             ? `${form.telefoneIndicativo}${form.telefone.trim()}`
             : "",
+          locale,
         }),
       });
       const json = await res.json();

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useId, isValidElement, cloneElement } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import PhonePrefix from "../_components/PhonePrefix";
 
 const INIT = {
@@ -67,6 +67,7 @@ function Field({ label, required, hint, error, children, as: Tag }) {
 
 export default function ValeApresenteForm() {
   const t = useTranslations("formVale");
+  const locale = useLocale();
 
   const meioContactoOpcoes     = t.raw("meioContactoOpcoes");
   const entregueAOpcoes        = t.raw("entregueAOpcoes");
@@ -173,6 +174,7 @@ export default function ValeApresenteForm() {
           telefone: form.telefone.trim()
             ? `${form.telefoneIndicativo}${form.telefone.trim()}`
             : "",
+          locale,
         }),
       });
       const json = await res.json();

@@ -97,7 +97,10 @@
     "contactos": "Contactos",
     "paraNoivas": "Para noivas",
     "noivasTitle": "Vai casar em breve?",
-    "noivasDesc": "Reserve a sua vaga com antecedência, as datas em época de casamentos esgotam rapidamente."
+    "noivasDesc": "Reserve a sua vaga com antecedência, as datas em época de casamentos esgotam rapidamente.",
+    "sliderAntes": "Antes",
+    "sliderDepois": "Depois",
+    "sliderArraste": "Arraste para comparar"
   },
   "preservacao": {
     "meta": {

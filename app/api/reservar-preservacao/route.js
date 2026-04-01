@@ -279,7 +279,10 @@ export async function POST(request) {
       const e = (v) =>
         escapeHtml(!v || (Array.isArray(v) && !v.length) ? "—" : Array.isArray(v) ? v.join(", ") : v);
 
+      const idiomaLabel = data.locale === "en" ? "Inglês" : "Português";
+
       const linhas = [
+        `<tr><td><strong>Idioma da reserva</strong></td><td>${idiomaLabel}</td></tr>`,
         `<tr><td><strong>Nome</strong></td><td>${e(data.nome)}</td></tr>`,
         `<tr><td><strong>Meio de contacto</strong></td><td>${e(data.meioContacto)}</td></tr>`,
         `<tr><td><strong>E-mail</strong></td><td>${e(data.email)}</td></tr>`,
