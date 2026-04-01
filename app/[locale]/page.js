@@ -28,6 +28,8 @@ function buildSchema(locale) {
         addressRegion: "Centro",
         addressCountry: "PT",
       },
+      geo: { "@type": "GeoCoordinates", latitude: "40.2033", longitude: "-8.4103" },
+      openingHours: "Mo-Fr 10:00-18:00",
       areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
       priceRange: "€€€",
       aggregateRating: {
