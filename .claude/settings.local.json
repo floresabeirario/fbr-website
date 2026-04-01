@@ -103,7 +103,10 @@
       "Bash(rm add_content.js)",
       "Bash(\"c:\\\\Users\\\\maria\\\\Documents\\\\fbr-website\\\\fbr-website\\\\app\\\\opcoes-e-precos\\\\OpcoesClient.jsx\")",
       "Bash(find /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale] -name \"page.js\" -type f)",
-      "Bash(grep -l generateMetadata /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/*.js /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/*/*.js /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/*/*/*.js)"
+      "Bash(grep -l generateMetadata /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/*.js /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/*/*.js /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/*/*/*.js)",
+      "Bash(ls -lah c:/Users/maria/Documents/fbr-website/fbr-website/public/*.jpg c:/Users/maria/Documents/fbr-website/fbr-website/public/*.xml)",
+      "WebFetch(domain:www.instagram.com)",
+      "WebFetch(domain:www.facebook.com)"
     ]
   }
 }
