@@ -107,7 +107,7 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm, accentColor, itemIndex }) 
 );
 
 // ─── Category accordion block ─────────────────────────────────────────────────
-const CategoryBlock = ({ cat, faqs, isOpen, onToggle, openFaqIndex, setOpenFaqIndex, sectionIndex }) => {
+const CategoryBlock = ({ cat, faqs, faqItems, isOpen, onToggle, openFaqIndex, setOpenFaqIndex, sectionIndex }) => {
   const meta = CAT_META[cat.id] || { num: "0" + (sectionIndex + 1), color: ACCENT, bg: "rgba(139,58,107,0.07)", border: ACCENT_BORDER };
 
   return (
@@ -222,7 +222,7 @@ const CategoryBlock = ({ cat, faqs, isOpen, onToggle, openFaqIndex, setOpenFaqIn
                 marginTop: "clamp(14px,2vw,20px)",
               }}>
                 {faqs.map((faq, idx) => {
-                  const globalIndex = FAQ_ITEMS.indexOf(faq);
+                  const globalIndex = faqItems.indexOf(faq);
                   return (
                     <FAQItem
                       key={globalIndex}
@@ -368,6 +368,7 @@ export default function FaqAccordion() {
               key={cat.id}
               cat={cat}
               faqs={faqs}
+              faqItems={FAQ_ITEMS}
               isOpen={openCatId === cat.id}
               onToggle={() => toggleCat(cat.id)}
               openFaqIndex={openFaqIndex}
