@@ -1,4 +1,5 @@
 // Dados das FAQ — importados por FaqAccordion.jsx e PerguntasFrequentesClient.jsx
+import { TRACKING_URL } from "../_lib/constants";
 
 export const FAQ_DATA = [
   {
@@ -233,7 +234,7 @@ export const FAQ_DATA = [
       <>
         Sim. Após a confirmação da encomenda, receberá um <strong>link personalizado</strong> para
         acompanhar o estado do seu quadro em tempo real em{" "}
-        <a href="https://status.floresabeirario.pt" className="faq-link" target="_blank" rel="noopener noreferrer">
+        <a href={TRACKING_URL} className="faq-link" target="_blank" rel="noopener noreferrer">
           status.floresabeirario.pt
         </a>
         , desde a receção do bouquet até à entrega do quadro concluído.

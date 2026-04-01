@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 import { IconInstagram, IconFacebook, IconTikTok, IconWhatsApp, IconEmail, IconCasamentos } from "@/components/Icons";
 import { WA_URL, EMAIL, PHONE_DISPLAY, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK, SOCIAL_TIKTOK, SOCIAL_CASAMENTOS } from "../_lib/constants";
 import "./ContactosClient.css";
@@ -10,14 +11,14 @@ const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
 
 // Paleta principal
 const C = {
-  tealDeep:    "#0F2622",
+  tealDeep:    "var(--dark)",
   teal:        "#1E3D38",
   tealMid:     "#2A4F49",
-  tealLight:   "#3D6B5E",
-  salmon:      "#C4846B",
+  tealLight:   "var(--green)",
+  salmon:      "var(--terra)",
   salmonLight: "#D9A090",
-  gold:        "#B8954A",
-  cream:       "#FAF7F0",
+  gold:        "var(--gold)",
+  cream:       "var(--cream)",
 };
 
 // ─── Reveal ───────────────────────────────────────────────────────────────────
@@ -38,33 +39,10 @@ function Reveal({ children, delay = 0, style, className }) {
   );
 }
 
-// ─── Dados ────────────────────────────────────────────────────────────────────
-const TEAM = [
-  {
-    name: "Maria João",
-    img: "/mj.webp",
-    imgStyle: {},
-    role: "Cofundadora & Designer",
-    bio: "A Maria João é a nossa cofundadora e designer. É a mão artística das nossas peças.",
-    accent: C.salmon,
-  },
-  {
-    name: "António",
-    img: "/antonio.webp",
-    imgStyle: {},
-    role: "Cofundador & Operações",
-    bio: "O António é o nosso cofundador e coordenador de operações. Gere o material, fornecedores, recebimento de flores e envios de quadros e muito mais.",
-    accent: C.tealLight,
-  },
-  {
-    name: "Ana",
-    img: "/ana.webp",
-    // zoom ligeiro para compensar enquadramento mais afastado
-    imgStyle: { transform: "scale(1.22)", transformOrigin: "center 28%" },
-    role: "Comunicação",
-    bio: "A Ana é a nossa especialista em comunicação. É quem garante que os nossos clientes estão felizes com o nosso trabalho.",
-    accent: C.gold,
-  },
+const TEAM_IMGS = [
+  { img: "/mj.webp",      imgStyle: {},                                                       accent: C.salmon },
+  { img: "/antonio.webp", imgStyle: {},                                                       accent: C.tealLight },
+  { img: "/ana.webp",     imgStyle: { transform: "scale(1.22)", transformOrigin: "center 28%" }, accent: C.gold },
 ];
 
 const SOCIALS = [
@@ -76,6 +54,10 @@ const SOCIALS = [
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function ContactosClient() {
+  const t = useTranslations("contactos");
+  const membros = t.raw("membros");
+  const navSquares = t.raw("navSquares");
+  const TEAM = membros.map((m, i) => ({ name: m.nome, img: TEAM_IMGS[i].img, imgStyle: TEAM_IMGS[i].imgStyle, role: m.cargo, bio: m.bio, accent: TEAM_IMGS[i].accent }));
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroOpacity = useTransform(scrollYProgress, [0, 0.38], [1, 0]);
@@ -87,7 +69,7 @@ export default function ContactosClient() {
       {/* ════ 1. HERO ════ */}
       <section
         ref={heroRef}
-        aria-label="Contactos e Equipa, Flores à Beira-Rio"
+        aria-label={t("h1")}
         style={{ position: "relative", overflow: "hidden", minHeight: "100svh", display: "flex", alignItems: "center" }}
       >
         {/* Foto de fundo */}
@@ -108,13 +90,12 @@ export default function ContactosClient() {
           <div className="contact-split" style={{ gap: "clamp(40px,6vw,80px)", alignItems: "center" }}>
 
             <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="hero-text-col">
-              <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmonLight, marginBottom: 16, fontFamily: GS }}>Fale connosco</span>
+              <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmonLight, marginBottom: 16, fontFamily: GS }}>{t("eyebrow")}</span>
               <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", color: C.cream, margin: "0 0 20px", lineHeight: 1.02 }}>
-                Contactos<br />
-                <em style={{ fontStyle: "italic", color: C.salmon }}>e Equipa</em>
+                {t("h1")}
               </h1>
               <p style={{ color: "rgba(250,247,240,0.95)", fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.08rem)", lineHeight: 1.88, maxWidth: 480, margin: "0 auto 32px", textShadow: "0 1px 12px rgba(0,0,0,0.5)" }}>
-                Estamos disponíveis para responder a todas as suas dúvidas. Adoramos conhecer a história por detrás das flores que nos chegam.
+                {t("heroDesc")}
               </p>
             </motion.div>
 
@@ -131,11 +112,11 @@ export default function ContactosClient() {
                 padding: "clamp(20px,4vw,40px)",
               }}
             >
-              <p style={{ fontFamily: GS, fontWeight: 700, fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase", color: C.salmon, marginBottom: 24 }}>Contacto direto</p>
+              <p style={{ fontFamily: GS, fontWeight: 700, fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase", color: C.salmon, marginBottom: 24 }}>{t("contactoDireto")}</p>
 
               {[
-                { icon: <IconWhatsApp size={22} />, label: PHONE_DISPLAY,  sub: "Respondemos em 24 horas", href: WA_URL,                  color: "#25D366" },
-                { icon: <IconEmail    size={22} />, label: EMAIL,          sub: "Resposta em 72 horas",   href: `mailto:${EMAIL}`,       color: C.salmonLight },
+                { icon: <IconWhatsApp size={22} />, label: PHONE_DISPLAY,  sub: t("waLabel"),    href: WA_URL,            color: "#25D366" },
+                { icon: <IconEmail    size={22} />, label: EMAIL,          sub: t("emailLabel"), href: `mailto:${EMAIL}`, color: C.salmonLight },
               ].map((item, i) => (
                 <a
                   key={i}
@@ -152,7 +133,7 @@ export default function ContactosClient() {
                 </a>
               ))}
 
-              <p style={{ fontFamily: GS, fontWeight: 700, fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase", color: C.salmonLight, margin: "20px 0 14px" }}>Siga-nos</p>
+              <p style={{ fontFamily: GS, fontWeight: 700, fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase", color: C.salmonLight, margin: "20px 0 14px" }}>{t("seguirNos")}</p>
               <div className="socials-row">
                 {SOCIALS.map((s, i) => (
                   <a
@@ -176,7 +157,7 @@ export default function ContactosClient() {
 
       {/* ════ 2. EQUIPA ════ */}
       <section
-        aria-label="A nossa equipa"
+        aria-label={t("equipaSub")}
         style={{
           padding: "clamp(60px,10vw,100px) 24px",
           background: `linear-gradient(165deg, ${C.teal} 0%, ${C.tealMid} 40%, ${C.tealDeep} 100%)`,
@@ -191,13 +172,12 @@ export default function ContactosClient() {
         <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "clamp(40px,7vw,64px)" }}>
-              <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmonLight, marginBottom: 14, fontFamily: GS }}>Quem somos</span>
+              <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmonLight, marginBottom: 14, fontFamily: GS }}>{t("equipaTitle")}</span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,5.5vw,3.8rem)", fontWeight: 400, color: C.cream, margin: "0 0 16px", lineHeight: 1.08 }}>
-                A equipa por detrás<br />
-                <em style={{ fontStyle: "italic", color: C.salmon }}>de cada peça</em>
+                {t("equipaSub")}
               </h2>
               <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.05rem)", lineHeight: 1.85, color: "rgba(250,247,240,0.55)", maxWidth: 500, margin: "0 auto" }}>
-                Somos uma equipa pequena baseada em Coimbra, unida pela paixão de transformar flores em memórias que duram para sempre.
+                {t("equipaDesc")}
               </p>
             </div>
           </Reveal>
@@ -242,13 +222,13 @@ export default function ContactosClient() {
       </section>
 
       {/* ════ 3. NAVEGAÇÃO — 4 QUADRADOS ════ */}
-      <section aria-label="Explorar serviços">
+      <section aria-label={t("explorarTitle")}>
         <div className="nav-squares-grid">
           {[
-            { href: "/opcoes-e-precos",        label: "Opções e Preços",           img: "/molduranogueira.webp" },
-            { href: "/como-funciona",          label: "Como Funciona",              img: "/ramo.webp" },
-            { href: "/oferecer-preservacao",   label: "Oferecer Preservação",       img: "/vale1.webp" },
-            { href: "/emoldurar-flores-secas", label: "Emoldurar Flores Já Secas",  img: "/fotoquadrocloseup2.webp" },
+            { ...navSquares[0], img: "/molduranogueira.webp" },
+            { ...navSquares[1], img: "/ramo.webp" },
+            { ...navSquares[2], img: "/vale1.webp" },
+            { ...navSquares[3], img: "/fotoquadrocloseup2.webp" },
           ].map((item, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <a href={item.href} className="nav-square">

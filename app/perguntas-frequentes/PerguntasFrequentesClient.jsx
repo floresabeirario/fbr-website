@@ -3,19 +3,21 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL, WA_NUMBER } from "../_lib/constants";
 import { FAQ_DATA } from "./faq-data";
+import { FAQ_DATA_EN } from "./faq-data-en";
 import FaqAccordion from "./FaqAccordion";
 import "./PerguntasFrequentesClient.css";
 
-const SchemaScript = () => (
+const SchemaScript = ({ faqData }) => (
   <script
     type="application/ld+json"
     dangerouslySetInnerHTML={{
       __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        mainEntity: FAQ_DATA.map(f => ({
+        mainEntity: faqData.map(f => ({
           "@type": "Question",
           name: f.q,
           acceptedAnswer: { "@type": "Answer", text: f.plain },
@@ -26,6 +28,9 @@ const SchemaScript = () => (
 );
 
 export default function PerguntasFrequentesClient() {
+  const t = useTranslations("faq");
+  const locale = useLocale();
+  const faqData = locale === "en" ? FAQ_DATA_EN : FAQ_DATA;
   const WA   = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Olá! Tenho uma dúvida sobre a preservação das minhas flores.")}`;
   const FORM = FORM_URL;
 
@@ -36,14 +41,14 @@ export default function PerguntasFrequentesClient() {
 
   return (
     <>
-      <SchemaScript />
+      <SchemaScript faqData={faqData} />
 
-      <div style={{ backgroundColor: "#FAF7F0" }}>
+      <div style={{ backgroundColor: "var(--cream)" }}>
 
         {/* Hero */}
         <section
           ref={heroRef}
-          aria-label="Perguntas frequentes sobre preservação de flores"
+          aria-label={t("h1")}
           style={{
             position: "relative",
             height: "100dvh",
@@ -90,20 +95,19 @@ export default function PerguntasFrequentesClient() {
                 marginBottom: "20px",
                 fontFamily: "'Google Sans', Roboto, sans-serif",
               }}>
-                Tire as suas dúvidas
+                {t("eyebrow")}
               </span>
 
               <h1 style={{
                 fontFamily: "'TAN-MEMORIES', serif",
                 fontSize: "clamp(2.4rem,6vw,5rem)",
-                color: "#FAF7F0",
+                color: "var(--cream)",
                 margin: "0 auto",
                 lineHeight: 1.02,
                 textShadow: "0 4px 32px rgba(0,0,0,0.3)",
                 maxWidth: "800px",
               }}>
-                Perguntas<br />
-                <em style={{ fontStyle: "italic", color: "#FAF7F0" }}>Frequentes</em>
+                {t("h1")}
               </h1>
 
               <p style={{
@@ -114,8 +118,7 @@ export default function PerguntasFrequentesClient() {
                 margin: "20px auto 0",
                 fontFamily: "'Google Sans', Roboto, sans-serif",
               }}>
-                Tudo o que precisa de saber sobre preservação de flores,
-                processo artesanal, entrega e pagamentos.
+                {t("heroDesc")}
               </p>
             </motion.div>
           </motion.div>
@@ -142,15 +145,15 @@ export default function PerguntasFrequentesClient() {
             color: "rgba(230,180,210,0.85)", marginBottom: "16px",
             fontFamily: "'Google Sans', Roboto, sans-serif",
           }}>
-            Apoio personalizado
+            {t("apoioTitle")}
           </span>
 
           <h3 style={{
             fontFamily: "'TAN-MEMORIES', serif",
             fontSize: "clamp(1.6rem,4vw,2.6rem)",
-            color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.15,
+            color: "var(--cream)", margin: "0 0 16px", lineHeight: 1.15,
           }}>
-            À procura de mais ajuda?
+            {t("apoioSub")}
           </h3>
 
           <p style={{
@@ -158,11 +161,7 @@ export default function PerguntasFrequentesClient() {
             lineHeight: 1.85, margin: "0 auto 36px", maxWidth: "520px",
             fontFamily: "'Google Sans', Roboto, sans-serif",
           }}>
-            Agende uma <strong style={{ color: "#FAF7F0" }}>sessão de esclarecimento gratuita</strong> por{" "}
-            <strong style={{ color: "#FAF7F0" }}>videochamada</strong> antes de fazer o seu pedido.
-            Podemos ajudá-lo a <strong style={{ color: "#FAF7F0" }}>entender o processo de preservação</strong> e a{" "}
-            <strong style={{ color: "#FAF7F0" }}>escolher os produtos</strong> que melhor se adequam a si.
-            Esta sessão tem a duração aproximada de <strong style={{ color: "#FAF7F0" }}>30 minutos</strong>.
+            {t("apoioDesc")}
           </p>
 
           <div className="cta-row" style={{ justifyContent: "center" }}>
@@ -175,20 +174,19 @@ export default function PerguntasFrequentesClient() {
                 background: "rgba(255,255,255,0.12)",
                 backdropFilter: "blur(8px)",
                 border: "1.5px solid rgba(255,255,255,0.25)",
-                color: "#FAF7F0", padding: "14px 32px",
+                color: "var(--cream)", padding: "14px 32px",
                 borderRadius: "100px", textDecoration: "none", fontWeight: "600",
                 fontSize: "0.8rem", letterSpacing: "1.2px", textTransform: "uppercase",
                 transition: "all 0.3s ease",
                 fontFamily: "'Google Sans', Roboto, sans-serif",
                 whiteSpace: "nowrap",
               }}
-              onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.2)"}
-              onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.12)"}
+              className="hover-bg-glass"
             >
-              Agendar Sessão Gratuita
+              {t("ctaSessao")}
             </a>
             <a href={FORM} className="btn-primary">
-              Reservar Data
+              {t("ctaReservar")}
             </a>
           </div>
         </motion.div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 // ─── Gradient themes (semantic keys used in data-bg) ─────────────────────────
 // Golden rule: light cream dominates 85-90%, deeper accent is a single whisper at the far edge.
@@ -106,14 +107,15 @@ const IconWA = () => (
   </svg>
 );
 
-const apccItems = [
-  { icon: <IconReuse />, title: "Pensado para reutilizar", desc: "O saco protege o quadro e pode depois ser usado para guardar roupa, coisas de praia, o que couber." },
-  { icon: <IconHeart />, title: "Trabalho com valor social", desc: "Cada encomenda apoia diretamente o trabalho e a autonomia dos utentes da APCC." },
-  { icon: <IconLeaf />, title: "Arte consciente e local", desc: "Artesanato português, embalagem sem desperdício, flores preservadas para durar décadas." },
-];
-
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function HomeClient() {
+  const t = useTranslations("home");
+
+  const apccItems = [
+    { icon: <IconReuse />, title: t("pensadoReutilizar"), desc: t("pensadoReutilizarDesc") },
+    { icon: <IconHeart />, title: t("trabalhoValorSocial"), desc: t("trabalhoValorSocialDesc") },
+    { icon: <IconLeaf />, title: t("arteConsciante"), desc: t("arteCoscianteDesc") },
+  ];
   const mainRef = useRef(null);
   const overlayARef = useRef(null);
   const overlayBRef = useRef(null);
@@ -166,7 +168,7 @@ export default function HomeClient() {
       if (best) {
         applyTheme(best);
       } else {
-        document.documentElement.style.setProperty("--nav-cta-color", "#3D6B5E");
+        document.documentElement.style.setProperty("--nav-cta-color", "var(--green)");
       }
     };
 
@@ -205,12 +207,12 @@ export default function HomeClient() {
         >
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "48px" }}>
-              <span className="eyebrow">O que fazemos</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,5vw,3.5rem)", color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1 }}>As suas flores, para sempre</h2>
-              <p style={{ color: "#5A6B60", fontSize: "clamp(1rem,2vw,1.1rem)", lineHeight: 1.85, maxWidth: "600px", margin: "0 auto 48px" }}>
-                Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Recebemos flores de Portugal e de toda a Europa no nosso estúdio em Coimbra.
+              <span className="eyebrow">{t("oQueFazemos")}</span>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,5vw,3.5rem)", color: "var(--green-d)", margin: "0 0 16px", lineHeight: 1.1 }}>{t("heroTitle")}</h2>
+              <p style={{ color: "var(--mid)", fontSize: "clamp(1rem,2vw,1.1rem)", lineHeight: 1.85, maxWidth: "600px", margin: "0 auto 48px" }}>
+                {t("heroDesc")}
               </p>
-              <BeforeAfterSlider />
+              <BeforeAfterSlider beforeLabel={t("sliderAntes")} afterLabel={t("sliderDepois")} dragLabel={t("sliderArraste")} />
             </motion.div>
           </div>
         </section>
@@ -225,9 +227,9 @@ export default function HomeClient() {
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
             <motion.div className="tracking-title" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} style={{ marginBottom: "32px" }}>
-              <span className="eyebrow">Transparência total</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "#1E2D2A", margin: "0 0 4px", lineHeight: 1.1 }}>
-                Acompanhe a sua<br /><em style={{ fontStyle: "italic", color: "var(--section-accent)" }}>encomenda ao vivo</em>
+              <span className="eyebrow">{t("transparencia")}</span>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "var(--green-d)", margin: "0 0 4px", lineHeight: 1.1 }}>
+                {t("acompanheTitle")}
               </h2>
             </motion.div>
 
@@ -235,7 +237,7 @@ export default function HomeClient() {
               <motion.div initial={{ opacity: 0, x: -28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div className="phone-float" style={{ position: "relative", width: "clamp(200px, 38vw, 280px)", transform: "rotate(-2deg)" }}>
                   <div style={{ position: "absolute", bottom: "-24px", left: "50%", transform: "translateX(-50%)", width: "70%", height: "40px", background: "radial-gradient(ellipse, rgba(30,45,42,0.18) 0%, transparent 70%)", borderRadius: "50%", zIndex: 0 }} aria-hidden="true" />
-                  <div style={{ position: "relative", zIndex: 1, backgroundColor: "#1E2D2A", borderRadius: "42px", padding: "14px 10px", boxShadow: "0 32px 80px rgba(30,45,42,0.35), 0 0 0 1px rgba(255,255,255,0.06)" }}>
+                  <div style={{ position: "relative", zIndex: 1, backgroundColor: "var(--green-d)", borderRadius: "42px", padding: "14px 10px", boxShadow: "0 32px 80px rgba(30,45,42,0.35), 0 0 0 1px rgba(255,255,255,0.06)" }}>
                     <div style={{ display: "flex", justifyContent: "center", marginBottom: "10px", gap: "6px", alignItems: "center" }} aria-hidden="true">
                       <div style={{ width: "60px", height: "6px", borderRadius: "10px", backgroundColor: "#2D4A40" }} />
                       <div style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#2D4A40" }} />
@@ -253,25 +255,25 @@ export default function HomeClient() {
               </motion.div>
 
               <motion.div initial={{ opacity: 0, x: 28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}>
-                <span className="eyebrow tracking-desktop-title">Transparência total</span>
-                <h2 className="tracking-desktop-title" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "#1E2D2A", margin: "0 0 20px", lineHeight: 1.1 }}>
-                  Acompanhe a sua<br /><em style={{ fontStyle: "italic", color: "var(--section-accent)" }}>encomenda ao vivo</em>
+                <span className="eyebrow tracking-desktop-title">{t("transparencia")}</span>
+                <h2 className="tracking-desktop-title" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "var(--green-d)", margin: "0 0 20px", lineHeight: 1.1 }}>
+                  {t("acompanheTitle")}
                 </h2>
-                <p style={{ color: "#5A6B60", lineHeight: 1.85, fontSize: "clamp(1rem,2vw,1.1rem)", margin: "0 0 36px" }}>
-                  Após a reserva estar confirmada, partilhamos consigo cada etapa do processo, da receção das flores à composição final. Pode acompanhar tudo em tempo real, sem ter de perguntar.
+                <p style={{ color: "var(--mid)", lineHeight: 1.85, fontSize: "clamp(1rem,2vw,1.1rem)", margin: "0 0 36px" }}>
+                  {t("acompanheDesc")}
                 </p>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   {[
-                    { icon: <IconFlower />, title: "Receção das flores", desc: "Confirmamos a chegada e avaliamos o estado das flores no mesmo dia." },
-                    { icon: <IconFrame />, title: "Composição aprovada por si", desc: "Enviamos uma fotografia da composição antes de emoldurar. Tem sempre a palavra final." },
+                    { icon: <IconFlower />, title: t("recepcaoFlores"), desc: t("recepcaoFloresDesc") },
+                    { icon: <IconFrame />, title: t("composicaoAprovada"), desc: t("composicaoAprovadaDesc") },
                   ].map((item, i) => (
                     <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
                       style={{ display: "flex", alignItems: "flex-start", gap: "16px", padding: "18px 0", borderBottom: i === 0 ? "1px solid rgba(61,107,94,0.12)" : "none" }}
                     >
                       <div style={{ width: "44px", height: "44px", borderRadius: "12px", background: "rgba(255,255,255,0.45)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--section-accent)", flexShrink: 0, marginTop: "2px", border: "1px solid rgba(255,255,255,0.7)" }}>{item.icon}</div>
                       <div>
-                        <p style={{ margin: "0 0 4px", fontWeight: "700", color: "#1E2D2A", fontSize: "1rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
-                        <p style={{ margin: 0, color: "#5A6B60", fontSize: "0.95rem", lineHeight: 1.65 }}>{item.desc}</p>
+                        <p style={{ margin: "0 0 4px", fontWeight: "700", color: "var(--green-d)", fontSize: "1rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
+                        <p style={{ margin: 0, color: "var(--mid)", fontSize: "0.95rem", lineHeight: 1.65 }}>{item.desc}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -284,8 +286,8 @@ export default function HomeClient() {
         {/* ════ 5. GOOGLE REVIEWS ════ */}
         <section aria-label="Avaliações de clientes" data-bg="lavender" style={{ padding: "clamp(64px,10vw,88px) 20px", background: "transparent", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "940px", margin: "0 auto" }}>
-            <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--section-accent)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Clientes felizes</span>
-            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "#1E2D2A" }}>O que diz quem confiou em nós</h2>
+            <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--section-accent)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{t("clientesFelizes")}</span>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "var(--green-d)" }}>{t("oqueDizTitle")}</h2>
             <script src="https://elfsightcdn.com/platform.js" async></script>
             <div className="elfsight-app-65dc34c1-0003-4419-ab4e-11e52faa447f" data-elfsight-app-lazy></div>
           </motion.div>
@@ -300,24 +302,24 @@ export default function HomeClient() {
             <div className="apcc-grid">
               <motion.div className="apcc-text" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(139,168,136,0.12)", border: "1px solid rgba(139,168,136,0.25)", borderRadius: "100px", padding: "7px 16px", marginBottom: "20px" }}>
-                  <span style={{ color: "#8BA888", fontSize: "0.75rem" }} aria-hidden="true">♥</span>
-                  <span style={{ fontSize: "0.78rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#8BA888", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Parceria solidária</span>
+                  <span style={{ color: "var(--green-l)", fontSize: "0.75rem" }} aria-hidden="true">♥</span>
+                  <span style={{ fontSize: "0.78rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "var(--green-l)", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{t("parceiriaSolidaria")}</span>
                 </div>
-                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "#1E2D2A", margin: "0 0 16px", lineHeight: 1.1 }}>
-                  Cada detalhe<br /><em style={{ fontStyle: "italic", color: "var(--section-accent)" }}>tem um propósito</em>
+                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "var(--green-d)", margin: "0 0 16px", lineHeight: 1.1 }}>
+                  {t("cadaDetalhe")}
                 </h2>
                 <p style={{ color: "rgba(30,45,42,0.68)", lineHeight: 1.82, fontSize: "0.97rem", margin: "0 0 28px" }}>
-                  Parte da embalagem do seu quadro é feita à mão pelos utentes da APCC Coimbra. Cada peça é única, criada com cuidado especialmente para a Flores à Beira-Rio.
+                  {t("apccDesc")}
                 </p>
                 {apccItems.map((item, i) => (
                   <motion.div key={i} initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.12 + i * 0.08, duration: 0.5 }}
                     style={{ display: "flex", alignItems: "flex-start", gap: "14px", padding: "13px 0", borderBottom: i < 2 ? "1px solid rgba(139,168,136,0.1)" : "none" }}
                   >
-                    <div style={{ width: "36px", height: "36px", borderRadius: "10px", background: "rgba(139,168,136,0.12)", border: "1px solid rgba(139,168,136,0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "#8BA888", flexShrink: 0, marginTop: "2px" }}>
+                    <div style={{ width: "36px", height: "36px", borderRadius: "10px", background: "rgba(139,168,136,0.12)", border: "1px solid rgba(139,168,136,0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--green-l)", flexShrink: 0, marginTop: "2px" }}>
                       {item.icon}
                     </div>
                     <div>
-                      <p style={{ margin: "0 0 2px", fontWeight: "700", color: "#1E2D2A", fontSize: "0.9rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
+                      <p style={{ margin: "0 0 2px", fontWeight: "700", color: "var(--green-d)", fontSize: "0.9rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
                       <p style={{ margin: 0, color: "rgba(30,45,42,0.58)", fontSize: "0.86rem", lineHeight: 1.6 }}>{item.desc}</p>
                     </div>
                   </motion.div>
@@ -331,7 +333,7 @@ export default function HomeClient() {
                   href="https://apc-coimbra.org.pt/capacitacao"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Saber mais sobre a APCC, Associação de Paralisia Cerebral de Coimbra"
+                  aria-label={t("apccNome")}
                   className="apcc-photo-link"
                   style={{ display: "block", position: "relative", maxWidth: "340px", width: "100%", textDecoration: "none" }}
                 >
@@ -341,19 +343,19 @@ export default function HomeClient() {
                     <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "45%", background: "linear-gradient(to top, rgba(12,25,41,0.9) 0%, transparent 100%)" }} aria-hidden="true" />
                     <div style={{ position: "absolute", bottom: "18px", left: "18px", right: "18px" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                        <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "#FAF7F0", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                        <div style={{ width: "36px", height: "36px", borderRadius: "8px", backgroundColor: "var(--cream)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
                           <Image src="/apcc.webp" alt="Logótipo APCC" width={28} height={28} style={{ objectFit: "contain" }} />
                         </div>
                         <div>
-                          <p style={{ margin: 0, fontWeight: "700", color: "#FAF7F0", fontSize: "0.78rem", fontFamily: "'Google Sans', Roboto, sans-serif", lineHeight: 1.25, textShadow: "0 1px 4px rgba(0,0,0,0.4)" }}>Associação de Paralisia Cerebral de Coimbra</p>
-                          <p style={{ margin: "2px 0 0", color: "var(--green-l)", fontSize: "0.7rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Oficina de Tecelagem de Almalaguês e Costura</p>
+                          <p style={{ margin: 0, fontWeight: "700", color: "var(--cream)", fontSize: "0.78rem", fontFamily: "'Google Sans', Roboto, sans-serif", lineHeight: 1.25, textShadow: "0 1px 4px rgba(0,0,0,0.4)" }}>{t("apccNome")}</p>
+                          <p style={{ margin: "2px 0 0", color: "var(--green-l)", fontSize: "0.7rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{t("apccOficina")}</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </a>
                 <a href="/sustentabilidade" className="apcc-link">
-                  Saiba mais sobre a origem dos nossos materiais e a nossa política de sustentabilidade →
+                  {t("sustentabilidadeLink")}
                 </a>
               </motion.div>
             </div>
@@ -371,16 +373,16 @@ export default function HomeClient() {
             <div style={{ maxWidth: "580px" }}>
               <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(180,160,240,0.15)", border: "1px solid rgba(180,160,240,0.35)", borderRadius: "100px", padding: "6px 16px", marginBottom: "20px" }}>
-                  <span style={{ fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#D4C4F0", fontFamily: "'Google Sans', Roboto, sans-serif" }}>O presente mais especial</span>
+                  <span style={{ fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#D4C4F0", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{t("presenteTitle")}</span>
                 </div>
-                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.5rem)", color: "#FAF7F0", margin: "0 0 20px", lineHeight: 1.1 }}>
-                  Ofereça memórias<br /><em style={{ fontStyle: "italic", color: "#D4C4F0" }}>que duram para sempre</em>
+                <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.5rem)", color: "var(--cream)", margin: "0 0 20px", lineHeight: 1.1 }}>
+                  {t("presenteSubtitle")}
                 </h2>
                 <p style={{ color: "rgba(250,247,240,0.78)", lineHeight: 1.85, fontSize: "clamp(1rem,2vw,1.08rem)", margin: "0 0 34px" }}>
-                  Ofereça a preservação das flores na forma do nosso cartão-oferta e deixe que os presenteados escolham a preservação ao seu gosto.
+                  {t("presenteDesc")}
                 </p>
                 <a href="/oferecer-preservacao" className="gift-card-btn">
-                  Descobrir o Cartão-Oferta
+                  {t("descobrirCartao")}
                 </a>
               </motion.div>
             </div>
@@ -399,19 +401,19 @@ export default function HomeClient() {
             <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,25,20,0.45) 0%, rgba(15,25,20,0.72) 100%)" }} />
             <div style={{ maxWidth: "440px", margin: "0 auto", width: "100%", position: "relative", zIndex: 1 }}>
               <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.82)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
-                Apoio personalizado
+                {t("apoioPersonalizado")}
               </span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,3rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>
-                À procura de<br /><em style={{ fontStyle: "italic", color: "rgba(250,247,240,0.92)" }}>mais ajuda?</em>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4vw,3rem)", color: "var(--cream)", margin: "0 0 16px", lineHeight: 1.1 }}>
+                {t("maisAjudaTitle")}
               </h2>
               <p style={{ color: "rgba(250,247,240,0.82)", fontSize: "0.97rem", lineHeight: 1.82, margin: "0 0 10px" }}>
-                Agende uma sessão de esclarecimento gratuita por videochamada antes de fazer o seu pedido.
+                {t("maisAjudaDesc1")}
               </p>
               <p style={{ color: "rgba(250,247,240,0.62)", fontSize: "0.9rem", lineHeight: 1.75, margin: "0 0 32px" }}>
-                Podemos ajudá-lo a entender o processo de preservação e a escolher os produtos que melhor se adequam a si. Esta sessão tem a duração aproximada de 30 minutos.
+                {t("maisAjudaDesc2")}
               </p>
               <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-                <a href="/contactos" className="btn-ghost">Contactos</a>
+                <a href="/contactos" className="btn-ghost">{t("contactos")}</a>
                 <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="cta-btn-wa">
                   <IconWA /> WhatsApp
                 </a>
@@ -427,13 +429,13 @@ export default function HomeClient() {
             <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/noiva.webp')", backgroundSize: "cover", backgroundPosition: "center top", filter: "brightness(0.52)" }} />
             <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.28) 0%, rgba(15,30,26,0.65) 100%)" }} />
             <div style={{ position: "relative", zIndex: 1, maxWidth: "440px", margin: "0 auto" }}>
-              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.75)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>Para noivas</span>
-              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4vw,3.2rem)", color: "#FAF7F0", margin: "0 0 16px", lineHeight: 1.1 }}>Vai casar em breve?</h2>
+              <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.75)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{t("paraNoivas")}</span>
+              <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4vw,3.2rem)", color: "var(--cream)", margin: "0 0 16px", lineHeight: 1.1 }}>{t("noivasTitle")}</h2>
               <p style={{ color: "rgba(250,247,240,0.8)", fontSize: "1rem", lineHeight: 1.82, margin: "0 0 32px" }}>
-                Reserve a sua vaga com antecedência, as datas em época de casamentos esgotam rapidamente.
+                {t("noivasDesc")}
               </p>
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <a href={FORM_URL} className="btn-noiva-ghost">Reservar Data</a>
+                <a href={FORM_URL} className="btn-noiva-ghost">{t("heroCTA")}</a>
               </div>
             </div>
           </motion.div>

@@ -2,20 +2,9 @@
 
 import { useState, useRef, useId, isValidElement, cloneElement } from "react";
 import Link from "next/link";
-import { SOCIAL_INSTAGRAM } from "../_lib/constants";
+import { useTranslations, useLocale } from "next-intl";
+import { SOCIAL_INSTAGRAM, EMAIL } from "../_lib/constants";
 import PhonePrefix from "../_components/PhonePrefix";
-
-const ELEMENTOS_OPTIONS = [
-  "Não pretendo incluir extras",
-  "Votos manuscritos",
-  "Convite do casamento",
-  "Fitas, tecidos ou rendas",
-  "Fotografia",
-  "Joia ou medalha",
-  "Coleira de animal",
-  "Cartas ou bilhetes",
-  "Outro (especifique abaixo)",
-];
 
 const INIT = {
   nome: "",
@@ -47,9 +36,6 @@ const INIT = {
 };
 
 // ─── Field component ────────────────────────────────────────────────────────
-// Suporta dois modos:
-//   - padrão: <div> com <label htmlFor> associado ao controlo filho
-//   - as="fieldset": <fieldset> + <legend> para grupos de checkboxes (WCAG)
 function Field({ label, required, hint, error, children, as: Tag }) {
   const autoId = useId();
 
@@ -67,7 +53,6 @@ function Field({ label, required, hint, error, children, as: Tag }) {
     );
   }
 
-  // Para controlos simples (input/select/textarea), injeta id e usa htmlFor
   const childType = isValidElement(children) ? children.type : null;
   const isFormControl = childType === "input" || childType === "select" || childType === "textarea";
   const enhanced = isFormControl ? cloneElement(children, { id: autoId }) : children;
@@ -89,6 +74,36 @@ function Field({ label, required, hint, error, children, as: Tag }) {
 }
 
 export default function ReservarPreservacaoForm() {
+  const t = useTranslations("formReserva");
+  const locale = useLocale();
+
+  const elementosOpcoes     = t.raw("elementosOpcoes");
+  const quadrosExtraOpcoes  = t.raw("quadrosExtraOpcoes");
+  const ornamentosOpcoes    = t.raw("ornamentosOpcoes");
+  const pendentesOpcoes     = t.raw("pendentesOpcoes");
+  const comoConheceuOpcoes  = t.raw("comoConheceuOpcoes");
+  const meioContactoOpcoes  = t.raw("meioContactoOpcoes");
+  const comoEnviarOpcoes    = t.raw("comoEnviarOpcoes");
+  const comoReceberOpcoes   = t.raw("comoReceberOpcoes");
+  const tamanhoOpcoes       = t.raw("tamanhoOpcoes");
+  const fundoOpcoes         = t.raw("fundoOpcoes");
+
+  // O primeiro elemento é o exclusivo "sem extras"; o último é "Outro"
+  const ELEM_NENHUM = elementosOpcoes[0];
+  const ELEM_OUTRO  = elementosOpcoes[elementosOpcoes.length - 1];
+
+  // Valores internos usados para lógica condicional (iguais em PT e EN)
+  const QUADROS_SIM    = quadrosExtraOpcoes[1].valor;
+  const ORNAMENTOS_SIM = ornamentosOpcoes[1].valor;
+  const PENDENTES_SIM  = pendentesOpcoes[1].valor;
+  const FLORISTA_VALOR = comoConheceuOpcoes.find((o) => o.valor === "Recomendação de florista")?.valor ?? "Recomendação de florista";
+  const OUTRO_VALOR    = comoConheceuOpcoes.find((o) => o.valor === "Outro (especificar abaixo)")?.valor ?? "Outro (especificar abaixo)";
+
+  // Hrefs localizados para links internos nos hints
+  const comoFuncionaHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
+  const opcoesHref       = locale === "en" ? "/en/pricing-options" : "/opcoes-e-precos";
+  const termosHref       = locale === "en" ? "/en/terms-and-conditions" : "/termos-e-condicoes";
+
   const [form, setForm] = useState(INIT);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
@@ -97,12 +112,9 @@ export default function ReservarPreservacaoForm() {
   const set = (key, val) => {
     setForm((f) => {
       const next = { ...f, [key]: val };
-      if (key === "quadrosExtra" && val !== "Sim, quero acrescentar quadros extra")
-        next.quantosQuadros = "";
-      if (key === "ornamentosNatal" && val !== "Sim, gostaria de acrescentar ornamentos de natal")
-        next.quantosOrnamentos = "";
-      if (key === "pendentes" && val !== "Sim, gostaria de acrescentar pendentes")
-        next.quantosPendentes = "";
+      if (key === "quadrosExtra"   && val !== QUADROS_SIM)    next.quantosQuadros   = "";
+      if (key === "ornamentosNatal" && val !== ORNAMENTOS_SIM) next.quantosOrnamentos = "";
+      if (key === "pendentes"       && val !== PENDENTES_SIM)  next.quantosPendentes  = "";
       if (key === "comoConheceu") {
         next.comoConheceuOutro = "";
         next.nomeFlorista = "";
@@ -115,16 +127,16 @@ export default function ReservarPreservacaoForm() {
   const toggleElemento = (opcao) => {
     setForm((f) => {
       let next;
-      if (opcao === "Não pretendo incluir extras") {
-        next = { ...f, elementosExtra: ["Não pretendo incluir extras"], elementosExtraOutro: "" };
+      if (opcao === ELEM_NENHUM) {
+        next = { ...f, elementosExtra: [ELEM_NENHUM], elementosExtraOutro: "" };
       } else {
-        const semExclusivo = f.elementosExtra.filter((x) => x !== "Não pretendo incluir extras");
+        const semExclusivo = f.elementosExtra.filter((x) => x !== ELEM_NENHUM);
         if (semExclusivo.includes(opcao)) {
           const removed = semExclusivo.filter((x) => x !== opcao);
           next = {
             ...f,
             elementosExtra: removed,
-            elementosExtraOutro: opcao === "Outro (especifique abaixo)" ? "" : f.elementosExtraOutro,
+            elementosExtraOutro: opcao === ELEM_OUTRO ? "" : f.elementosExtraOutro,
           };
         } else {
           next = { ...f, elementosExtra: [...semExclusivo, opcao] };
@@ -141,42 +153,42 @@ export default function ReservarPreservacaoForm() {
     className: `pf-input${errors[key] ? " pf-input-err" : ""}`,
   });
 
-  const showQuantosQuadros = form.quadrosExtra === "Sim, quero acrescentar quadros extra";
-  const showQuantosOrnamentos = form.ornamentosNatal === "Sim, gostaria de acrescentar ornamentos de natal";
-  const showQuantosPendentes = form.pendentes === "Sim, gostaria de acrescentar pendentes";
-  const showComoConheceuOutro = form.comoConheceu === "Outro (especificar abaixo)";
-  const showNomeFlorista = form.comoConheceu === "Recomendação de florista";
-  const showElementosExtraOutro = form.elementosExtra.includes("Outro (especifique abaixo)");
+  const showQuantosQuadros    = form.quadrosExtra    === QUADROS_SIM;
+  const showQuantosOrnamentos = form.ornamentosNatal === ORNAMENTOS_SIM;
+  const showQuantosPendentes  = form.pendentes       === PENDENTES_SIM;
+  const showComoConheceuOutro = form.comoConheceu    === OUTRO_VALOR;
+  const showNomeFlorista      = form.comoConheceu    === FLORISTA_VALOR;
+  const showElementosExtraOutro = form.elementosExtra.includes(ELEM_OUTRO);
   const today = new Date().toISOString().split("T")[0];
 
   function validate() {
     const e = {};
-    if (!form.nome.trim()) e.nome = "Campo obrigatório.";
-    if (!form.meioContacto) e.meioContacto = "Escolha um meio de contacto.";
-    if (!form.email.trim()) e.email = "Campo obrigatório.";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "E-mail inválido.";
-    if (!form.telefone.trim()) e.telefone = "Campo obrigatório.";
-    else if (!/^\+?[\d\s\-]{7,20}$/.test(form.telefone)) e.telefone = "Número de telefone inválido.";
-    if (!form.dataEvento) e.dataEvento = "Campo obrigatório.";
+    if (!form.nome.trim())        e.nome = t("erroCampoObrigatorio");
+    if (!form.meioContacto)       e.meioContacto = t("erroEscolhaContacto");
+    if (!form.email.trim())       e.email = t("erroCampoObrigatorio");
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = t("erroEmailInvalido");
+    if (!form.telefone.trim())    e.telefone = t("erroCampoObrigatorio");
+    else if (!/^\+?[\d\s\-]{7,20}$/.test(form.telefone)) e.telefone = t("erroTelefoneInvalido");
+    if (!form.dataEvento)         e.dataEvento = t("erroCampoObrigatorio");
     else {
       const year = parseInt(form.dataEvento.split("-")[0], 10);
-      if (isNaN(year) || year < 2020 || year > 2099) e.dataEvento = "Data inválida. Verifique o ano introduzido.";
+      if (isNaN(year) || year < 2020 || year > 2099) e.dataEvento = t("erroDataInvalida");
     }
-    if (!form.comoEnviarFlores) e.comoEnviarFlores = "Campo obrigatório.";
-    if (!form.comoReceberQuadro) e.comoReceberQuadro = "Campo obrigatório.";
-    if (!form.tamanhoMoldura) e.tamanhoMoldura = "Campo obrigatório.";
-    if (!form.tipoFundo) e.tipoFundo = "Campo obrigatório.";
-    if (!form.elementosExtra.length) e.elementosExtra = "Seleccione pelo menos uma opção.";
-    if (!form.quadrosExtra) e.quadrosExtra = "Campo obrigatório.";
-    if (showQuantosQuadros && !form.quantosQuadros.toString().trim()) e.quantosQuadros = "Campo obrigatório.";
-    if (showQuantosOrnamentos && !form.quantosOrnamentos.trim()) e.quantosOrnamentos = "Campo obrigatório.";
-    if (!form.ornamentosNatal) e.ornamentosNatal = "Campo obrigatório.";
-    if (!form.pendentes) e.pendentes = "Campo obrigatório.";
-    if (showQuantosPendentes && !form.quantosPendentes.trim()) e.quantosPendentes = "Campo obrigatório.";
-    if (!form.comoConheceu) e.comoConheceu = "Campo obrigatório.";
-    if (showNomeFlorista && !form.nomeFlorista.trim()) e.nomeFlorista = "Campo obrigatório.";
-    if (showComoConheceuOutro && !form.comoConheceuOutro.trim()) e.comoConheceuOutro = "Campo obrigatório.";
-    if (!form.termosCondicoes) e.termosCondicoes = "Deve aceitar os Termos e Condições para continuar.";
+    if (!form.comoEnviarFlores)   e.comoEnviarFlores = t("erroCampoObrigatorio");
+    if (!form.comoReceberQuadro)  e.comoReceberQuadro = t("erroCampoObrigatorio");
+    if (!form.tamanhoMoldura)     e.tamanhoMoldura = t("erroCampoObrigatorio");
+    if (!form.tipoFundo)          e.tipoFundo = t("erroCampoObrigatorio");
+    if (!form.elementosExtra.length) e.elementosExtra = t("erroSelecioneOpcao");
+    if (!form.quadrosExtra)       e.quadrosExtra = t("erroCampoObrigatorio");
+    if (showQuantosQuadros && !form.quantosQuadros.toString().trim()) e.quantosQuadros = t("erroCampoObrigatorio");
+    if (showQuantosOrnamentos && !form.quantosOrnamentos.trim())      e.quantosOrnamentos = t("erroCampoObrigatorio");
+    if (!form.ornamentosNatal)    e.ornamentosNatal = t("erroCampoObrigatorio");
+    if (!form.pendentes)          e.pendentes = t("erroCampoObrigatorio");
+    if (showQuantosPendentes && !form.quantosPendentes.trim()) e.quantosPendentes = t("erroCampoObrigatorio");
+    if (!form.comoConheceu)       e.comoConheceu = t("erroCampoObrigatorio");
+    if (showNomeFlorista && !form.nomeFlorista.trim())         e.nomeFlorista = t("erroCampoObrigatorio");
+    if (showComoConheceuOutro && !form.comoConheceuOutro.trim()) e.comoConheceuOutro = t("erroCampoObrigatorio");
+    if (!form.termosCondicoes)    e.termosCondicoes = t("erroTermos");
     return e;
   }
 
@@ -200,6 +212,7 @@ export default function ReservarPreservacaoForm() {
           telefone: form.telefone.trim()
             ? `${form.telefoneIndicativo}${form.telefone.trim()}`
             : "",
+          locale,
         }),
       });
       const json = await res.json();
@@ -213,23 +226,21 @@ export default function ReservarPreservacaoForm() {
   }
 
   if (status === "success") {
+    const horas = locale === "en" ? "24 hours" : "24 horas";
     return (
       <div className="pf-success" role="status" ref={successRef}>
         <div className="pf-success-icon" aria-hidden="true">✓</div>
-        <h2 className="pf-success-title">Pré-reserva registada com sucesso!</h2>
+        <h2 className="pf-success-title">{t("successTitle")}</h2>
         <p className="pf-success-text">
-          Nos próximos <strong>3 dias úteis</strong>, será contactado com a confirmação do valor total
-          do serviço de preservação e os dados para o pagamento do <strong>sinal de 30%</strong>.
-          Este valor deve ser pago no prazo de <strong>24 horas</strong> após o envio do e-mail para garantir a sua vaga.
+          {t("successP1", { dias: 3, sinal: "sinal de 30%", horas })}
         </p>
         <p className="pf-success-text">
-          A sua reserva só fica confirmada <strong>após o pagamento do sinal</strong>.
-          Caso não receba o e-mail dentro do prazo, verifique a pasta de spam ou entre em contacto connosco.
+          {t("successP2")}
         </p>
         <p className="pf-success-closing">
-          Estamos muito felizes por poder preservar as suas flores e memórias.
+          {t("successClosing")}
           <br />
-          <strong>Com carinho, Flores à Beira-Rio</strong>
+          <strong>{t("successAssinatura")}</strong>
         </p>
       </div>
     );
@@ -238,33 +249,31 @@ export default function ReservarPreservacaoForm() {
   return (
     <form className="preservacao-form" onSubmit={handleSubmit} noValidate>
       <p className="pf-intro">
-        Campos assinalados com <span aria-hidden="true" className="pf-req">*</span> são obrigatórios.
+        {t("camposObrigatorios")} <span aria-hidden="true" className="pf-req">*</span> {locale === "en" ? "are required." : "são obrigatórios."}
       </p>
 
       {/* ── DADOS PESSOAIS ── */}
       <div className="pf-section" role="group" aria-labelledby="sec-pessoais">
-        <h2 className="pf-section-title" id="sec-pessoais">Dados pessoais</h2>
+        <h2 className="pf-section-title" id="sec-pessoais">{t("secDadosPessoais")}</h2>
 
-        <Field label="Nome completo" required error={errors.nome}
-          hint="Para identificarmos correctamente a sua reserva.">
-          <input type="text" {...inp("nome")} placeholder="O seu nome completo" autoComplete="name" />
+        <Field label={t("nomeLabel")} required error={errors.nome} hint={t("nomeHint")}>
+          <input type="text" {...inp("nome")} placeholder={t("nomePlaceholder")} autoComplete="name" />
         </Field>
 
-        <Field label="Como prefere que comuniquemos consigo?" required error={errors.meioContacto}
-          hint="Escolha o meio de contacto que lhe for mais conveniente. Pode alterar esta preferência mais tarde.">
+        <Field label={t("contactoLabel")} required error={errors.meioContacto} hint={t("contactoHint")}>
           <select {...inp("meioContacto")}>
-            <option value="">Escolha...</option>
-            <option value="E-mail">E-mail</option>
-            <option value="WhatsApp">WhatsApp</option>
+            <option value="">{t("escolha")}</option>
+            {meioContactoOpcoes.map((o) => (
+              <option key={o.valor} value={o.valor}>{o.label}</option>
+            ))}
           </select>
         </Field>
 
-        <Field label="Endereço de e-mail" required error={errors.email}
-          hint="Mesmo que prefira ser contactado/a por WhatsApp, pedimos um e-mail como contacto alternativo.">
-          <input type="email" {...inp("email")} placeholder="email@exemplo.pt" autoComplete="email" />
+        <Field label={t("emailLabel")} required error={errors.email} hint={t("emailHint")}>
+          <input type="email" {...inp("email")} placeholder={t("emailPlaceholder")} autoComplete="email" />
         </Field>
 
-        <Field label="Número de telemóvel" required error={errors.telefone}>
+        <Field label={t("telefoneLabel")} required error={errors.telefone}>
           <div className="pf-phone-wrap">
             <PhonePrefix
               value={form.telefoneIndicativo}
@@ -275,7 +284,7 @@ export default function ReservarPreservacaoForm() {
               type="tel"
               {...inp("telefone")}
               className={`pf-input pf-phone-number${errors.telefone ? " pf-input-err" : ""}`}
-              placeholder="912 345 678"
+              placeholder={t("telefonePlaceholder")}
               autoComplete="tel-national"
             />
           </div>
@@ -284,94 +293,113 @@ export default function ReservarPreservacaoForm() {
 
       {/* ── O EVENTO ── */}
       <div className="pf-section" role="group" aria-labelledby="sec-evento">
-        <h2 className="pf-section-title" id="sec-evento">O evento</h2>
+        <h2 className="pf-section-title" id="sec-evento">{t("secEvento")}</h2>
 
-        <Field label="Data do evento" required error={errors.dataEvento}
-          hint="Indique a data do casamento, batizado ou outro evento. As flores devem ser enviadas idealmente até 2 a 3 dias após o evento.">
+        <Field label={t("dataEventoLabel")} required error={errors.dataEvento} hint={t("dataEventoHint")}>
           <input type="date" {...inp("dataEvento")} min={today} max="2099-12-31" />
         </Field>
 
-        <Field label="Tipo de flores no arranjo"
-          hint="Indique o tipo de flores e o tipo de arranjo (ex.: bouquet de noiva, coroa, flores soltas). Se ainda não tiver esta informação, deixe em branco.">
-          <textarea {...inp("tipoFlores")} rows={4}
-            placeholder="Ex.: orquídeas, girassóis, malmequeres. Bouquet de noiva." />
+        <Field label={t("tipoFloresLabel")} hint={t("tipoFloresHint")}>
+          <textarea {...inp("tipoFlores")} rows={4} placeholder={t("tipoFloresPlaceholder")} />
         </Field>
       </div>
 
       {/* ── ENVIO E RECEPÇÃO ── */}
       <div className="pf-section" role="group" aria-labelledby="sec-logistica">
-        <h2 className="pf-section-title" id="sec-logistica">Envio e recepção</h2>
+        <h2 className="pf-section-title" id="sec-logistica">{t("secLogistica")}</h2>
 
-        <Field label="Como pretende enviar as flores para nós?" required error={errors.comoEnviarFlores}
-          hint={<>Em caso de dúvida, consulte a nossa página{" "}
-            <Link href="/como-funciona" className="pf-link" target="_blank" rel="noopener noreferrer">Como Funciona</Link>.
-            Após a confirmação da reserva, receberá instruções específicas conforme a opção escolhida.</>}>
+        <Field
+          label={t("enviarFloresLabel")}
+          required
+          error={errors.comoEnviarFlores}
+          hint={locale === "en"
+            ? <>If in doubt, see our <Link href={comoFuncionaHref} className="pf-link" target="_blank" rel="noopener noreferrer">How It Works</Link> page. After booking confirmation, you will receive specific instructions based on the option chosen.</>
+            : <>Em caso de dúvida, consulte a nossa página <Link href={comoFuncionaHref} className="pf-link" target="_blank" rel="noopener noreferrer">Como Funciona</Link>. Após a confirmação da reserva, receberá instruções específicas conforme a opção escolhida.</>
+          }
+        >
           <select {...inp("comoEnviarFlores")}>
-            <option value="">Escolha...</option>
-            <option value="Entrega em mãos em Coimbra">Entrega em mãos em Coimbra</option>
-            <option value="Envio por CTT/transportadora para o estúdio (custos a cargo do cliente)">Envio por CTT/transportadora para o estúdio (custos a cargo do cliente)</option>
-            <option value="Recolha no evento por parte da Flores à Beira-Rio - mediante orçamento e disponibilidade">Recolha no evento por parte da Flores à Beira-Rio (mediante orçamento e disponibilidade)</option>
-            <option value="Ainda não sei">Ainda não sei</option>
+            <option value="">{t("escolha")}</option>
+            {comoEnviarOpcoes.map((o) => (
+              <option key={o.valor} value={o.valor}>{o.label}</option>
+            ))}
           </select>
         </Field>
 
-        <Field label="Como prefere receber o quadro finalizado?" required error={errors.comoReceberQuadro}
-          hint={<>Saiba mais sobre esta etapa na nossa página{" "}
-            <Link href="/como-funciona" className="pf-link" target="_blank" rel="noopener noreferrer">Como Funciona</Link>.
-            O envio pelos CTT é feito com toda a segurança, devidamente embalado. A recolha em mãos é feita mediante agendamento.</>}>
+        <Field
+          label={t("receberQuadroLabel")}
+          required
+          error={errors.comoReceberQuadro}
+          hint={locale === "en"
+            ? <>Learn more about this step on our <Link href={comoFuncionaHref} className="pf-link" target="_blank" rel="noopener noreferrer">How It Works</Link> page. Frames sent by courier are carefully packaged. In-person collection is by appointment.</>
+            : <>Saiba mais sobre esta etapa na nossa página <Link href={comoFuncionaHref} className="pf-link" target="_blank" rel="noopener noreferrer">Como Funciona</Link>. O envio pelos CTT é feito com toda a segurança, devidamente embalado. A recolha em mãos é feita mediante agendamento.</>
+          }
+        >
           <select {...inp("comoReceberQuadro")}>
-            <option value="">Escolha...</option>
-            <option value="Recolha em mãos em Coimbra">Recolha em mãos em Coimbra</option>
-            <option value="Envio por transportadora/CTT para morada (custos a cargo do cliente)">Envio por transportadora/CTT para morada (custos a cargo do cliente)</option>
-            <option value="Ainda não sei">Ainda não sei</option>
+            <option value="">{t("escolha")}</option>
+            {comoReceberOpcoes.map((o) => (
+              <option key={o.valor} value={o.valor}>{o.label}</option>
+            ))}
           </select>
         </Field>
       </div>
 
       {/* ── O QUADRO ── */}
       <div className="pf-section" role="group" aria-labelledby="sec-quadro">
-        <h2 className="pf-section-title" id="sec-quadro">O quadro</h2>
+        <h2 className="pf-section-title" id="sec-quadro">{t("secQuadro")}</h2>
 
-        <Field label="Tamanho de moldura pretendido" required error={errors.tamanhoMoldura}
-          hint={<>Consulte exemplos e valores na nossa página{" "}
-            <Link href="/opcoes-e-precos" className="pf-link" target="_blank" rel="noopener noreferrer">Opções e Preços</Link>.</>}>
+        <Field
+          label={t("tamanhoLabel")}
+          required
+          error={errors.tamanhoMoldura}
+          hint={<>
+            {locale === "en" ? "See examples and prices on our " : "Consulte exemplos e valores na nossa página "}
+            <Link href={opcoesHref} className="pf-link" target="_blank" rel="noopener noreferrer">
+              {locale === "en" ? "Pricing Options" : "Opções e Preços"}
+            </Link>.
+          </>}
+        >
           <select {...inp("tamanhoMoldura")}>
-            <option value="">Escolha...</option>
-            <option value="30x40cm">30×40 cm</option>
-            <option value="40x50cm">40×50 cm</option>
-            <option value="50x70cm">50×70 cm</option>
-            <option value="Ainda não sei">Ainda não sei</option>
+            <option value="">{t("escolha")}</option>
+            {tamanhoOpcoes.map((o) => (
+              <option key={o.valor} value={o.valor}>{o.label}</option>
+            ))}
           </select>
         </Field>
 
-        <Field label="Que tipo de fundo gostaria para o seu quadro?" required error={errors.tipoFundo}
-          hint={<>Consulte a nossa página{" "}
-            <Link href="/opcoes-e-precos" className="pf-link" target="_blank" rel="noopener noreferrer">Opções e Preços</Link>{" "}
-            para conhecer cada opção e visite o nosso{" "}
-            <a href={SOCIAL_INSTAGRAM} className="pf-link" target="_blank" rel="noopener noreferrer">Instagram</a>.
-            Se não tiver a certeza, não precisa de decidir já.</>}>
+        <Field
+          label={t("fundoLabel")}
+          required
+          error={errors.tipoFundo}
+          hint={<>
+            {locale === "en" ? "Visit our " : "Consulte a nossa página "}
+            <Link href={opcoesHref} className="pf-link" target="_blank" rel="noopener noreferrer">
+              {locale === "en" ? "Pricing Options" : "Opções e Preços"}
+            </Link>{" "}
+            {t("fundoHintSuffix")}{" "}
+            <a href={SOCIAL_INSTAGRAM} className="pf-link" target="_blank" rel="noopener noreferrer">
+              {t("fundoHintInstagram")}
+            </a>.{" "}
+            {t("fundoHintSuffix2")}
+          </>}
+        >
           <select {...inp("tipoFundo")}>
-            <option value="">Escolha...</option>
-            <option value="Transparente (vidro sobre vidro)">Transparente (vidro sobre vidro)</option>
-            <option value="Preto">Preto</option>
-            <option value="Branco">Branco</option>
-            <option value="Fotografia (custo adicional da impressão profissional)">Fotografia (custo adicional da impressão profissional)</option>
-            <option value="Cor">Cor</option>
-            <option value="Gostaria que fossem vocês a escolher">Gostaria que fossem vocês a escolher</option>
-            <option value="Ainda não sei">Ainda não sei</option>
+            <option value="">{t("escolha")}</option>
+            {fundoOpcoes.map((o) => (
+              <option key={o.valor} value={o.valor}>{o.label}</option>
+            ))}
           </select>
         </Field>
 
         {/* Checkbox group — usa fieldset + legend (WCAG) */}
         <Field
-          label="Gostaria de incluir algum elemento extra no seu quadro?"
+          label={t("elementosLabel")}
           required
           error={errors.elementosExtra}
-          hint="Pode adicionar itens com valor simbólico ou emocional. Se seleccionar alguma opção, deve entregar os elementos juntamente com as flores."
+          hint={t("elementosHint")}
           as="fieldset"
         >
           <div className="pf-checkgroup">
-            {ELEMENTOS_OPTIONS.map((opcao) => (
+            {elementosOpcoes.map((opcao) => (
               <label key={opcao} className="pf-check-label">
                 <input
                   type="checkbox"
@@ -386,13 +414,13 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         {showElementosExtraOutro && (
-          <Field label="Especifique o elemento extra" error={errors.elementosExtraOutro}>
+          <Field label={t("elementosOutroLabel")} error={errors.elementosExtraOutro}>
             <textarea
               value={form.elementosExtraOutro}
               onChange={(e) => set("elementosExtraOutro", e.target.value)}
               className={`pf-input${errors.elementosExtraOutro ? " pf-input-err" : ""}`}
               rows={2}
-              placeholder="Descreva o elemento que pretende incluir."
+              placeholder={t("elementosOutroPlaceholder")}
             />
           </Field>
         )}
@@ -400,102 +428,93 @@ export default function ReservarPreservacaoForm() {
 
       {/* ── EXTRAS OPCIONAIS ── */}
       <div className="pf-section" role="group" aria-labelledby="sec-extras">
-        <h2 className="pf-section-title" id="sec-extras">Extras opcionais</h2>
+        <h2 className="pf-section-title" id="sec-extras">{t("secExtras")}</h2>
 
-        <Field label="Além do quadro principal, gostaria de acrescentar quadros extra em formato mais pequeno?" required error={errors.quadrosExtra}
-          hint="Ideais para oferecer a pais, padrinhos, irmãos ou amigos. Cada quadro extra tem o preço de 90€ (20×25 cm).">
+        <Field label={t("quadrosExtraLabel")} required error={errors.quadrosExtra} hint={t("quadrosExtraHint")}>
           <select {...inp("quadrosExtra")}>
-            <option value="">Escolha...</option>
-            <option value="Não, apenas o quadro principal">Não, apenas o quadro principal</option>
-            <option value="Sim, quero acrescentar quadros extra">Sim, quero acrescentar quadros extra</option>
-            <option value="Gostava de receber mais informações">Gostava de receber mais informações</option>
+            <option value="">{t("escolha")}</option>
+            {quadrosExtraOpcoes.map((o) => (
+              <option key={o.valor} value={o.valor}>{o.label}</option>
+            ))}
           </select>
         </Field>
 
         {showQuantosQuadros && (
-          <Field label="Quantos quadros extra em formato pequeno gostaria de adicionar?" required error={errors.quantosQuadros}>
+          <Field label={t("quantosQuadrosLabel")} required error={errors.quantosQuadros}>
             <input type="number" min={1}
               value={form.quantosQuadros}
               onChange={(e) => set("quantosQuadros", e.target.value)}
               className={`pf-input${errors.quantosQuadros ? " pf-input-err" : ""}`}
-              placeholder="Ex.: 2" />
+              placeholder={t("quantosQuadrosPlaceholder")} />
           </Field>
         )}
 
-        <Field label="Além do quadro principal, gostaria de acrescentar ornamentos de Natal?" required error={errors.ornamentosNatal}
-          hint="Ornamentos de Natal feitos com as suas flores. Ideais para oferecer.">
+        <Field label={t("ornamentosLabel")} required error={errors.ornamentosNatal} hint={t("ornamentosHint")}>
           <select {...inp("ornamentosNatal")}>
-            <option value="">Escolha...</option>
-            <option value="Não, apenas o quadro principal">Não, apenas o quadro principal</option>
-            <option value="Sim, gostaria de acrescentar ornamentos de natal">Sim, gostaria de acrescentar ornamentos de Natal</option>
-            <option value="Gostava de receber mais informações">Gostava de receber mais informações</option>
+            <option value="">{t("escolha")}</option>
+            {ornamentosOpcoes.map((o) => (
+              <option key={o.valor} value={o.valor}>{o.label}</option>
+            ))}
           </select>
         </Field>
 
         {showQuantosOrnamentos && (
-          <Field label="Quantos ornamentos de Natal gostaria de ter?" required error={errors.quantosOrnamentos}>
+          <Field label={t("quantosOrnamentosLabel")} required error={errors.quantosOrnamentos}>
             <input type="number" min={1}
               value={form.quantosOrnamentos}
               onChange={(e) => set("quantosOrnamentos", e.target.value)}
               className={`pf-input${errors.quantosOrnamentos ? " pf-input-err" : ""}`}
-              placeholder="Ex.: 3" />
+              placeholder={t("quantosOrnamentosPlaceholder")} />
           </Field>
         )}
 
-        <Field label="Além do quadro principal, gostaria de acrescentar pendentes para colar?" required error={errors.pendentes}
-          hint="Pendentes feitos com as suas flores.">
+        <Field label={t("pendentesLabel")} required error={errors.pendentes} hint={t("pendentesHint")}>
           <select {...inp("pendentes")}>
-            <option value="">Escolha...</option>
-            <option value="Não, apenas o quadro principal">Não, apenas o quadro principal</option>
-            <option value="Sim, gostaria de acrescentar pendentes">Sim, gostaria de acrescentar pendentes</option>
-            <option value="Gostava de receber mais informações">Gostava de receber mais informações</option>
+            <option value="">{t("escolha")}</option>
+            {pendentesOpcoes.map((o) => (
+              <option key={o.valor} value={o.valor}>{o.label}</option>
+            ))}
           </select>
         </Field>
 
         {showQuantosPendentes && (
-          <Field label="Quantos pendentes gostaria de ter?" required error={errors.quantosPendentes}>
+          <Field label={t("quantosPendentesLabel")} required error={errors.quantosPendentes}>
             <input type="number" min={1}
               value={form.quantosPendentes}
               onChange={(e) => set("quantosPendentes", e.target.value)}
               className={`pf-input${errors.quantosPendentes ? " pf-input-err" : ""}`}
-              placeholder="Ex.: 2" />
+              placeholder={t("quantosPendentesPlaceholder")} />
           </Field>
         )}
       </div>
 
       {/* ── OUTROS ── */}
       <div className="pf-section" role="group" aria-labelledby="sec-outros">
-        <h2 className="pf-section-title" id="sec-outros">Outros</h2>
+        <h2 className="pf-section-title" id="sec-outros">{t("secOutros")}</h2>
 
-        <Field label="Como conheceu a Flores à Beira-Rio?" required error={errors.comoConheceu}>
+        <Field label={t("comoConheceuLabel")} required error={errors.comoConheceu}>
           <select {...inp("comoConheceu")}>
-            <option value="">Escolha...</option>
-            <option value="Ofereceram-me um Vale-Presente para preservação">Ofereceram-me um Vale-Presente para preservação</option>
-            <option value="Através do Instagram">Através do Instagram</option>
-            <option value="Através do Facebook">Através do Facebook</option>
-            <option value="Através do casamentos.pt">Através do casamentos.pt</option>
-            <option value="Pesquisa no Google">Pesquisa no Google</option>
-            <option value="Recomendação de florista">Recomendação de florista</option>
-            <option value="Recomendação de alguém que já contratou o serviço anteriormente">Recomendação de alguém que já contratou o serviço</option>
-            <option value="Outro (especificar abaixo)">Outro (especificar abaixo)</option>
+            <option value="">{t("escolha")}</option>
+            {comoConheceuOpcoes.map((o) => (
+              <option key={o.valor} value={o.valor}>{o.label}</option>
+            ))}
           </select>
         </Field>
 
         {showNomeFlorista && (
-          <Field label="Qual a florista que lhe falou de nós?" required error={errors.nomeFlorista}>
-            <textarea {...inp("nomeFlorista")} rows={2} placeholder="Nome da florista." />
+          <Field label={t("nomeFlorista")} required error={errors.nomeFlorista}>
+            <textarea {...inp("nomeFlorista")} rows={2} placeholder={t("nomeFlorePlaceholder")} />
           </Field>
         )}
 
         {showComoConheceuOutro && (
-          <Field label="Conte-nos como conheceu a Flores à Beira-Rio" required error={errors.comoConheceuOutro}>
+          <Field label={t("comoConheceuOutroLabel")} required error={errors.comoConheceuOutro}>
             <textarea {...inp("comoConheceuOutro")} rows={3} />
           </Field>
         )}
 
-        <Field label="Notas adicionais (opcional)">
-          <textarea {...inp("notasAdicionais")} rows={4}
-            placeholder="Se tiver algum comentário ou pedido especial, escreva aqui." />
+        <Field label={t("notasLabel")}>
+          <textarea {...inp("notasAdicionais")} rows={4} placeholder={t("notasPlaceholder")} />
         </Field>
 
         <div className="pf-group">
@@ -510,9 +529,9 @@ export default function ReservarPreservacaoForm() {
               }}
             />
             <span>
-              Concordo com os{" "}
-              <Link href="/termos-e-condicoes" className="pf-link" target="_blank" rel="noopener noreferrer">
-                Termos e Condições
+              {t("termosLabel")}{" "}
+              <Link href={termosHref} className="pf-link" target="_blank" rel="noopener noreferrer">
+                {t("termosLink")}
               </Link>
               <span className="pf-req" aria-hidden="true"> *</span>
             </span>
@@ -537,19 +556,19 @@ export default function ReservarPreservacaoForm() {
 
       {Object.keys(errors).length > 0 && (
         <p className="pf-errors-summary" role="alert">
-          Existem campos por preencher ou com erros. Por favor, verifique o formulário acima antes de submeter.
+          {t("erroFormulario")}
         </p>
       )}
 
       {status === "error" && (
         <p className="pf-submit-error" role="alert">
-          Ocorreu um erro ao enviar. Por favor, tente novamente ou contacte-nos em{" "}
-          <a href="mailto:info@floresabeirario.pt">info@floresabeirario.pt</a>.
+          {t("erroEnvio")}{" "}
+          <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
         </p>
       )}
 
       <button type="submit" className="pf-btn" disabled={status === "loading"}>
-        {status === "loading" ? "A enviar..." : "Submeter pré-reserva"}
+        {status === "loading" ? t("submitLoading") : t("submitBtn")}
       </button>
     </form>
   );

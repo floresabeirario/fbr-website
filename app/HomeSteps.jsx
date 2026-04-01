@@ -1,46 +1,49 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { FORM_URL } from "./_lib/constants";
 
-const steps = [
-  {
-    number: "01",
-    title: "Reserve a sua data",
-    desc: "Preencha o formulário de reserva para garantir a sua vaga. As datas esgotam rapidamente.",
-    imageSrc: "/calendario.webp",
-    imgAlt: "Calendário de marcação de reserva de preservação de flores",
-    link: FORM_URL,
-    linkLabel: "Reservar a minha data",
-    external: false,
-  },
-  {
-    number: "02",
-    title: "Entregue as flores",
-    desc: "Entrega em mãos em Coimbra, envio por correio ou recolha no local do evento.",
-    imageSrc: "/ramojoana.webp",
-    imgAlt: "Ramo de flores frescas para preservação botânica",
-    link: "/como-funciona",
-    linkLabel: "Como funciona",
-    external: false,
-  },
-  {
-    number: "03",
-    title: "Recebe a sua obra de arte",
-    desc: "Após aprovação da composição, o quadro é emoldurado e entregue à sua porta.",
-    imageSrc: "/joanaceu.webp",
-    imgAlt: "Quadro de flores preservadas emoldurado, pronto a entregar",
-    link: "/perguntas-frequentes",
-    linkLabel: "Perguntas frequentes",
-    external: false,
-  },
-];
-
 export default function HomeSteps() {
+  const t = useTranslations("home");
+
+  const steps = [
+    {
+      number: "01",
+      title: t("step1Title"),
+      desc: t("step1Desc"),
+      imageSrc: "/calendario.webp",
+      imgAlt: t("step1ImgAlt"),
+      link: FORM_URL,
+      linkLabel: t("step1Link"),
+      external: false,
+    },
+    {
+      number: "02",
+      title: t("step2Title"),
+      desc: t("step2Desc"),
+      imageSrc: "/ramojoana.webp",
+      imgAlt: t("step2ImgAlt"),
+      link: "/como-funciona",
+      linkLabel: t("step2Link"),
+      external: false,
+    },
+    {
+      number: "03",
+      title: t("step3Title"),
+      desc: t("step3Desc"),
+      imageSrc: "/joanaceu.webp",
+      imgAlt: t("step3ImgAlt"),
+      link: "/perguntas-frequentes",
+      linkLabel: t("step3Link"),
+      external: false,
+    },
+  ];
+
   return (
     <section
-      aria-label="Como funciona a preservação de flores em 3 passos"
+      aria-label={t("stepsEyebrow")}
       className="steps-section"
       data-bg="blush"
     >
@@ -56,13 +59,13 @@ export default function HomeSteps() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="steps-eyebrow">O seu quadro em três passos</span>
+          <span className="steps-eyebrow">{t("stepsEyebrow")}</span>
           <h2 className="steps-heading">
-            Do bouquet<br />
-            <em className="steps-heading-em">ao quadro</em>
+            {t("stepsHeadingLine1")}<br />
+            <em className="steps-heading-em">{t("stepsHeadingLine2")}</em>
           </h2>
           <p className="steps-subheading">
-            Um processo artesanal, com acompanhamento em cada etapa.
+            {t("stepsSubheading")}
           </p>
         </motion.div>
       </div>

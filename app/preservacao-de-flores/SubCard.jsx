@@ -12,7 +12,7 @@ export const SUBPAGES = [
     img: "/fotoquadro1.webp",
     imgAlt: "Quadro de flores prensadas com vidro museu, Opções e Preços",
     cta: "Ver tamanhos e preços",
-    accent: "#8BA888",
+    accent: "var(--green-l)",
     n: "01",
   },
   {
@@ -23,7 +23,7 @@ export const SUBPAGES = [
     img: "/prensa.webp",
     imgAlt: "Processo de prensagem botânica artesanal, Como Funciona",
     cta: "Ver o processo",
-    accent: "#C8522A",
+    accent: "var(--rust)",
     n: "02",
   },
   {
@@ -34,7 +34,7 @@ export const SUBPAGES = [
     img: "/ines1.webp",
     imgAlt: "Preservação botânica sustentável, Flores à Beira-Rio Coimbra",
     cta: "Conhecer os valores",
-    accent: "#3D6B5E",
+    accent: "var(--green)",
     n: "03",
   },
   {
@@ -50,7 +50,7 @@ export const SUBPAGES = [
   },
 ];
 
-const Arrow = ({ color = "#FAF7F0" }) => (
+const Arrow = ({ color = "var(--cream)" }) => (
   <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
     <path d="M3 8h10M9 4l4 4-4 4" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
@@ -79,19 +79,19 @@ export default function SubCard({ item, index }) {
           />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,18,14,0.85) 0%, rgba(10,18,14,0.3) 55%, transparent 100%)" }} aria-hidden="true" />
 
-          <div style={{ position: "absolute", top: "16px", left: "16px", backgroundColor: item.accent, color: "#FAF7F0", borderRadius: "50px", padding: "4px 13px", display: "flex", alignItems: "center", gap: "8px" }}>
+          <div style={{ position: "absolute", top: "16px", left: "16px", backgroundColor: item.accent, color: "var(--cream)", borderRadius: "50px", padding: "4px 13px", display: "flex", alignItems: "center", gap: "8px" }}>
             <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.68rem", lineHeight: 1 }}>{item.n}</span>
             <span style={{ fontSize: "0.52rem", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif", opacity: 0.85 }}>{item.tag}</span>
           </div>
 
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "clamp(20px,3vw,28px)" }}>
-            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem,3.5vw,2rem)", color: "#FAF7F0", margin: "0 0 8px", lineHeight: 1.1, textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem,3.5vw,2rem)", color: "var(--cream)", margin: "0 0 8px", lineHeight: 1.1, textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}>
               {item.title}
             </h2>
             <p style={{ color: "rgba(250,247,240,0.82)", fontSize: "clamp(0.82rem,1.5vw,0.92rem)", lineHeight: 1.65, margin: "0 0 14px", fontFamily: "Roboto, sans-serif", maxWidth: "420px" }}>
               {item.desc}
             </p>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", backgroundColor: item.accent, color: "#FAF7F0", padding: "9px 18px", borderRadius: "100px", fontSize: "0.68rem", fontWeight: 600, letterSpacing: "1.2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif" }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", backgroundColor: item.accent, color: "var(--cream)", padding: "9px 18px", borderRadius: "100px", fontSize: "0.68rem", fontWeight: 600, letterSpacing: "1.2px", textTransform: "uppercase", fontFamily: "Roboto, sans-serif" }}>
               {item.cta}
               <Arrow />
             </span>
