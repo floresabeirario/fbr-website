@@ -1640,7 +1640,7 @@
     "submitBtn": "Send order",
     "submitLoading": "Sending...",
     "successTitle": "Order sent!",
-    "successDesc": "We will be in touch via {contacto} shortly with confirmation of the details and payment instructions. We only proceed with producing the voucher after payment. Thank you for choosing Flores à Beira-Rio.",
+    "successDesc": "We will be in touch via {contacto} shortly with confirmation of the details and payment instructions. The voucher is delivered after full payment. Thank you for choosing Flores à Beira-Rio.",
     "camposObrigatorios": "Fields marked with"
   },
   "faq": {

@@ -1640,7 +1640,7 @@
     "submitBtn": "Enviar pedido",
     "submitLoading": "A enviar...",
     "successTitle": "Pedido enviado!",
-    "successDesc": "Entraremos em contacto por {contacto} em breve com a confirmação dos dados e as instruções de pagamento. Só avançamos com a produção do vale após o pagamento. Obrigado por escolher a Flores à Beira-Rio.",
+    "successDesc": "Entraremos em contacto por {contacto} em breve com a confirmação dos dados e as instruções de pagamento. O vale é entregue após o pagamento completo. Obrigado por escolher a Flores à Beira-Rio.",
     "camposObrigatorios": "Campos assinalados com"
   },
   "faq": {
