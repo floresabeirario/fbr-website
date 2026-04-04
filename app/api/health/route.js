@@ -43,16 +43,19 @@ async function checkResend() {
   if (!process.env.RESEND_API_KEY)
     return { ok: false, reason: "RESEND_API_KEY não configurado" };
 
+  // Verificamos apenas se a chave está presente e a API está acessível.
+  // Não chamamos /domains porque chaves com permissão apenas de envio retornam 401
+  // nesse endpoint mesmo sendo válidas — o que causaria um falso negativo.
   try {
-    const res = await fetch("https://api.resend.com/domains", {
+    const res = await fetch("https://api.resend.com/emails", {
       headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}` },
       signal: AbortSignal.timeout(8000),
     });
 
+    // 401 = chave mesmo inválida. Qualquer outro código = API acessível e chave reconhecida.
     if (res.status === 401)
       return { ok: false, reason: "RESEND_API_KEY inválida (401)" };
 
-    // 200 ou outro código não-401 = chave válida e API acessível
     return { ok: true };
   } catch (err) {
     return { ok: false, reason: `Resend API inacessível: ${err.message}` };
