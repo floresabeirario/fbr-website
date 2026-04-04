@@ -1,0 +1,54 @@
+name: Form Health Check
+
+on:
+  # Dias 1 e 16 de cada mês, às 09:30 UTC (30 min depois do cron do Vercel — redundância)
+  schedule:
+    - cron: "30 9 1,16 * *"
+  # Permite correr manualmente em qualquer altura
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    name: Verificar formulários
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Chamar endpoint de health check
+        id: health
+        run: |
+          response=$(curl -s -w "\n%{http_code}" https://floresabeirario.pt/api/health)
+          body=$(echo "$response" | head -n -1)
+          status=$(echo "$response" | tail -n 1)
+
+          echo "HTTP status: $status"
+          echo "Response body: $body"
+          echo "http_status=$status" >> "$GITHUB_OUTPUT"
+          echo "body=$body" >> "$GITHUB_OUTPUT"
+
+          ok=$(echo "$body" | python3 -c "import sys,json; d=json.load(sys.stdin); print(str(d.get('ok',False)).lower())" 2>/dev/null || echo "false")
+          echo "ok=$ok" >> "$GITHUB_OUTPUT"
+
+      - name: Verificar resultado
+        run: |
+          if [ "${{ steps.health.outputs.ok }}" != "true" ]; then
+            echo "::error::Health check FALHOU"
+            echo "HTTP status: ${{ steps.health.outputs.http_status }}"
+            echo "Resposta: ${{ steps.health.outputs.body }}"
+            exit 1
+          fi
+          echo "Tudo OK — formulários operacionais."
+          echo "Resposta: ${{ steps.health.outputs.body }}"
+
+      - name: Resumo
+        if: always()
+        run: |
+          if [ "${{ steps.health.outputs.ok }}" == "true" ]; then
+            echo "## Formulários operacionais" >> "$GITHUB_STEP_SUMMARY"
+            echo "Monday.com e Resend a responder correctamente." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "## Problema detectado nos formulários" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            echo "${{ steps.health.outputs.body }}" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            echo "Verifica o painel do Vercel e as variáveis de ambiente." >> "$GITHUB_STEP_SUMMARY"
+          fi
