@@ -1541,7 +1541,9 @@
     "mensagemPlaceholder": "E.g.: For Sarah: May your flowers last as long as the memory of this special day.",
     "valorLabel": "Voucher value (€)",
     "valorPlaceholder": "300",
-    "valorHint": "Minimum value: €300.",
+    "valorHint": "Minimum value: €300. See our",
+    "valorHintLinkText": "Options and Prices",
+    "valorHintSuffix": "page to choose the right frame size.",
     "entreguaALabel": "I want the voucher delivered to",
     "tipoValeLabel": "Voucher type",
     "comoReceberFisicoLabel": "How would you prefer to receive the physical voucher?",
@@ -1640,7 +1642,7 @@
     "submitBtn": "Send order",
     "submitLoading": "Sending...",
     "successTitle": "Order sent!",
-    "successDesc": "We will be in touch via {contacto} shortly with confirmation of the details and payment instructions. We only proceed with producing the voucher after payment. Thank you for choosing Flores à Beira-Rio.",
+    "successDesc": "We will be in touch via {contacto} shortly with confirmation of the details and payment instructions. The voucher is delivered after full payment. Thank you for choosing Flores à Beira-Rio.",
     "camposObrigatorios": "Fields marked with"
   },
   "faq": {

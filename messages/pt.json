@@ -1541,7 +1541,9 @@
     "mensagemPlaceholder": "Ex: Para a Inês: Que as tuas flores durem tanto quanto a memória deste dia especial.",
     "valorLabel": "Valor do vale (€)",
     "valorPlaceholder": "300",
-    "valorHint": "Valor mínimo: 300€.",
+    "valorHint": "Valor mínimo: 300€, correspondentes ao quadro mais pequeno. Consulte a nossa página",
+    "valorHintLinkText": "Opções e Preços",
+    "valorHintSuffix": "para conhecer os tamanhos dos quadros.",
     "entreguaALabel": "Quero que o vale seja entregue a",
     "tipoValeLabel": "Tipo de vale",
     "comoReceberFisicoLabel": "Como prefere receber o vale físico?",
@@ -1640,7 +1642,7 @@
     "submitBtn": "Enviar pedido",
     "submitLoading": "A enviar...",
     "successTitle": "Pedido enviado!",
-    "successDesc": "Entraremos em contacto por {contacto} em breve com a confirmação dos dados e as instruções de pagamento. Só avançamos com a produção do vale após o pagamento. Obrigado por escolher a Flores à Beira-Rio.",
+    "successDesc": "Entraremos em contacto por {contacto} em breve com a confirmação dos dados e as instruções de pagamento. O vale é entregue após o pagamento completo. Obrigado por escolher a Flores à Beira-Rio.",
     "camposObrigatorios": "Campos assinalados com"
   },
   "faq": {

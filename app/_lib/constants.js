@@ -6,6 +6,9 @@ export const SITE_URL = "https://floresabeirario.pt";
 // Página de reserva de preservação
 export const FORM_URL = "/reservar-preservacao";
 
+// Página de opções e preços
+export const OPCOES_PRECOS_URL = "/opcoes-e-precos";
+
 // Formulário Monday.com — vale oferta
 export const FORM_URL_VALE = "https://wkf.ms/4jUqeAR";
 

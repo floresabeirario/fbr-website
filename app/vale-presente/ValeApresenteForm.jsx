@@ -2,7 +2,9 @@
 
 import { useState, useRef, useId, isValidElement, cloneElement } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import Link from "next/link";
 import PhonePrefix from "../_components/PhonePrefix";
+import { OPCOES_PRECOS_URL } from "../_lib/constants";
 
 const INIT = {
   nome: "",
@@ -265,7 +267,20 @@ export default function ValeApresenteForm() {
           <textarea {...inp("mensagem")} rows={4} placeholder={t("mensagemPlaceholder")} />
         </Field>
 
-        <Field label={t("valorLabel")} required error={errors.valorVale} hint={t("valorHint")}>
+        <Field
+          label={t("valorLabel")}
+          required
+          error={errors.valorVale}
+          hint={
+            <>
+              {t("valorHint")}{" "}
+              <Link href={OPCOES_PRECOS_URL} className="vf-hint-link">
+                {t("valorHintLinkText")}
+              </Link>{" "}
+              {t("valorHintSuffix")}
+            </>
+          }
+        >
           <input type="number" {...inp("valorVale")} min={300} max={100000} step={1} placeholder={t("valorPlaceholder")} />
         </Field>
       </div>
