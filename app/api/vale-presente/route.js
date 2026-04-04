@@ -99,6 +99,10 @@ export async function POST(request) {
       console.error("[vale-presente] MONDAY_BOARD_ID_VALE not set");
       return NextResponse.json({ error: "Configuração em falta no servidor." }, { status: 500 });
     }
+    if (!process.env.MONDAY_API_TOKEN) {
+      console.error("[vale-presente] MONDAY_API_TOKEN not set");
+      return NextResponse.json({ error: "Configuração em falta no servidor." }, { status: 500 });
+    }
 
     // ── Rate limiting ───────────────────────────────────────────────────────
     const headersList = await headers();
@@ -183,7 +187,8 @@ export async function POST(request) {
     const json = await res.json();
 
     if (json.errors?.length) {
-      console.error("Monday API errors:", JSON.stringify(json.errors, null, 2));
+      console.error("[vale-presente] Monday API errors:", JSON.stringify(json.errors, null, 2));
+      console.error("[vale-presente] Monday full response:", JSON.stringify(json, null, 2));
       return NextResponse.json(
         { error: "Erro ao registar no sistema." },
         { status: 500 }
@@ -191,7 +196,7 @@ export async function POST(request) {
     }
 
     if (!json.data?.create_item?.id) {
-      console.error("Monday unexpected response:", JSON.stringify(json, null, 2));
+      console.error("[vale-presente] Monday unexpected response:", JSON.stringify(json, null, 2));
       return NextResponse.json({ error: "Resposta inesperada do sistema." }, { status: 500 });
     }
 
