@@ -1253,6 +1253,7 @@
     "emailHint": "Even if you prefer to be contacted by WhatsApp, we ask for an email as a backup contact.",
     "emailPlaceholder": "email@example.com",
     "telefoneLabel": "Mobile number",
+    "telefoneHint": "Even if you prefer to be contacted by email, we ask for a mobile number as a backup contact. We will only use it in urgent situations, such as a potential delay in receiving your flowers.",
     "telefonePlaceholder": "912 345 678",
     "dataEventoLabel": "Event date",
     "dataEventoHint": "Enter the date of the wedding, baptism or other event. Flowers should ideally be sent within 2 to 3 days of the event.",
