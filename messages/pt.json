@@ -1253,6 +1253,7 @@
     "emailHint": "Mesmo que prefira ser contactado/a por WhatsApp, pedimos um e-mail como contacto alternativo.",
     "emailPlaceholder": "email@exemplo.pt",
     "telefoneLabel": "Número de telemóvel",
+    "telefoneHint": "Mesmo que prefira ser contactado/a por e-mail, pedimos um número de telemóvel como contacto alternativo. Utilizamo-lo apenas em situações urgentes, como um eventual atraso na recepção das flores.",
     "telefonePlaceholder": "912 345 678",
     "dataEventoLabel": "Data do evento",
     "dataEventoHint": "Indique a data do casamento, batizado ou outro evento. As flores devem ser enviadas idealmente até 2 a 3 dias após o evento.",

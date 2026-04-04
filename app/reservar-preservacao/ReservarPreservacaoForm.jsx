@@ -273,7 +273,7 @@ export default function ReservarPreservacaoForm() {
           <input type="email" {...inp("email")} placeholder={t("emailPlaceholder")} autoComplete="email" />
         </Field>
 
-        <Field label={t("telefoneLabel")} required error={errors.telefone}>
+        <Field label={t("telefoneLabel")} required error={errors.telefone} hint={t("telefoneHint")}>
           <div className="pf-phone-wrap">
             <PhonePrefix
               value={form.telefoneIndicativo}
