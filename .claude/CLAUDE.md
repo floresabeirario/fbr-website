@@ -32,6 +32,7 @@ develop  →  (PR revisto)  →  main  →  deploy automático Vercel
    (Nav, Footer, layout.js), confirma o impacto em todas as páginas que o importam.
 6. **Nunca faças push directo para `main`** sem confirmar com a fundadora.
 7. **Nunca cries ficheiros de documentação** (`.md`, `README`) sem ser pedido explicitamente.
+8. **Qualquer alteração de conteúdo (texto, copy) tem de ser feita SEMPRE em ambos os ficheiros de tradução:** `messages/pt.json` E `messages/en.json`. Sem excepções.
 
 ---
 
