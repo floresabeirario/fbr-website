@@ -278,6 +278,18 @@
   line-height: 1.65;
 }
 
+.vf-hint-link {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.vf-hint-link:hover,
+.vf-hint-link:focus-visible {
+  color: var(--green-dark, var(--green));
+  text-decoration: none;
+}
+
 .vf-input {
   display: block;
   width: 100%;
