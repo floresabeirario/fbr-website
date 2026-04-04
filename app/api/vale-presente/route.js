@@ -15,11 +15,44 @@ import { EMAIL } from "@/app/_lib/constants";
 const MONDAY_API = "https://api.monday.com/v2";
 const isRateLimited = createRateLimiter();
 
+// Mappings from internal form values (valor) to exact Monday board status labels.
+const MONDAY_LABELS = {
+  meioContacto: {
+    "E-mail":    "E-mail",
+    "WhatsApp":  "WhatsApp",
+  },
+  entrega: {
+    "remetente":    "Ao remetente",
+    "destinatario": "Diretamente ao destinatário",
+  },
+  tipoVale: {
+    "digital": "Por email / WhatsApp",
+    "fisico":  "Físico - cartão com envelope",
+  },
+  entregaRemetenteComo: {
+    "levantamento": "Em mãos em Coimbra",
+    "correio":      "Por correio",
+  },
+  comoConheceu: {
+    "recomendacao-cliente": "Recomendação de alguém que já contratou o serviço anteriormente",
+    "instagram":            "Através do Instagram",
+    "facebook":             "Através do Facebook",
+    "casamentos":           "Através do casamentos.pt",
+    "google":               "Pesquisa no Google",
+    "florista":             "Recomendação de florista",
+    "outro":                "Outro (especificar abaixo)",
+  },
+};
+
+function mondayLabel(field, valor) {
+  return MONDAY_LABELS[field]?.[valor] ?? valor;
+}
+
 function buildColumnValues(data) {
   const cols = {};
 
   if (data.meioContacto)
-    cols.single_select29teo39 = { label: data.meioContacto };
+    cols.single_select29teo39 = { label: mondayLabel("meioContacto", data.meioContacto) };
 
   if (data.telefone) {
     // Remove espaços — Monday rejeita números com espaços em alguns países.
@@ -42,13 +75,13 @@ function buildColumnValues(data) {
     cols.numberuey1dh9l = Number(data.valorVale);
 
   if (data.entrega)
-    cols.single_selectpkp4rxv = { label: data.entrega };
+    cols.single_selectpkp4rxv = { label: mondayLabel("entrega", data.entrega) };
 
   if (data.tipoVale)
-    cols.single_selectflb64wv = { label: data.tipoVale };
+    cols.single_selectflb64wv = { label: mondayLabel("tipoVale", data.tipoVale) };
 
   if (data.entregaRemetenteComo)
-    cols.color_mm1kya1x = { label: data.entregaRemetenteComo };
+    cols.color_mm1kya1x = { label: mondayLabel("entregaRemetenteComo", data.entregaRemetenteComo) };
 
   if (data.morada)
     cols.long_texthqr0263u = { text: data.morada };
@@ -68,7 +101,7 @@ function buildColumnValues(data) {
     cols.long_textcxluujwf = { text: data.comentarios };
 
   if (data.comoConheceu)
-    cols.color_mkqwk84z = { label: data.comoConheceu };
+    cols.color_mkqwk84z = { label: mondayLabel("comoConheceu", data.comoConheceu) };
 
   if (data.comoConheceuOutro)
     cols.long_text_mkqwhb3 = { text: data.comoConheceuOutro };
