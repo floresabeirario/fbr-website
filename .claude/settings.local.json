@@ -106,7 +106,11 @@
       "Bash(grep -l generateMetadata /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/*.js /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/*/*.js /c/Users/maria/Documents/fbr-website/fbr-website/app/[locale]/*/*/*.js)",
       "Bash(ls -lah c:/Users/maria/Documents/fbr-website/fbr-website/public/*.jpg c:/Users/maria/Documents/fbr-website/fbr-website/public/*.xml)",
       "WebFetch(domain:www.instagram.com)",
-      "WebFetch(domain:www.facebook.com)"
+      "WebFetch(domain:www.facebook.com)",
+      "mcp__claude_ai_Vercel__list_teams",
+      "mcp__claude_ai_Vercel__list_projects",
+      "mcp__claude_ai_Vercel__get_runtime_logs",
+      "mcp__claude_ai_Vercel__get_project"
     ]
   }
 }
