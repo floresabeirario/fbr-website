@@ -112,7 +112,12 @@
       "mcp__claude_ai_Vercel__get_runtime_logs",
       "mcp__claude_ai_Vercel__get_project",
       "Bash(ls -la /c/Users/maria/Documents/fbr-website/fbr-website/.env*)",
-      "Bash(git -C /c/Users/maria/Documents/fbr-website/fbr-website ls-files --error-unmatch .env.local)"
+      "Bash(git -C /c/Users/maria/Documents/fbr-website/fbr-website ls-files --error-unmatch .env.local)",
+      "Bash(mkdir -p \"c:/Users/maria/Documents/fbr-website/fbr-website/content/blog/pt\" \"c:/Users/maria/Documents/fbr-website/fbr-website/content/blog/en\")",
+      "Bash(mv \"c:/Users/maria/Documents/fbr-website/fbr-website/content/blog/vale-a-pena-preservar-bouquet-noiva.mdx\" \"c:/Users/maria/Documents/fbr-website/fbr-website/content/blog/pt/\")",
+      "Bash(mv \"c:/Users/maria/Documents/fbr-website/fbr-website/content/blog/resina-vs-prensagem-botanica.mdx\" \"c:/Users/maria/Documents/fbr-website/fbr-website/content/blog/pt/\")",
+      "Bash(mv \"c:/Users/maria/Documents/fbr-website/fbr-website/content/blog/quanto-tempo-duram-flores-preservadas.mdx\" \"c:/Users/maria/Documents/fbr-website/fbr-website/content/blog/pt/\")",
+      "Bash(mv \"c:/Users/maria/Documents/fbr-website/fbr-website/content/blog/presente-original-para-noiva.mdx\" \"c:/Users/maria/Documents/fbr-website/fbr-website/content/blog/pt/\")"
     ]
   }
 }

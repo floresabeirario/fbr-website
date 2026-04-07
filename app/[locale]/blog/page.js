@@ -35,8 +35,8 @@ export async function generateMetadata({ params }) {
 export default async function BlogPage({ params }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "blog" });
-  const posts      = getAllPosts();
-  const categories = getCategories();
+  const posts      = getAllPosts(locale);
+  const categories = getCategories(locale);
   const categoryLabels = t.raw("categorias");
 
   return (

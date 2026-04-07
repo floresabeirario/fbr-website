@@ -9,19 +9,22 @@ import { SITE_URL } from "@/app/_lib/constants";
 import { buildBlogAlternates } from "@/app/_lib/metadata";
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
-  const locales = ["pt", "en"];
-  return locales.flatMap((locale) =>
-    posts.map((post) => ({ locale, slug: post.slug }))
-  );
+  const ptPosts = getAllPosts("pt");
+  const enPosts = getAllPosts("en");
+  return [
+    ...ptPosts.map((post) => ({ locale: "pt", slug: post.slug })),
+    ...enPosts.map((post) => ({ locale: "en", slug: post.slug })),
+  ];
 }
 
 export async function generateMetadata({ params }) {
   const { slug, locale } = await params;
-  const post = getPostBySlug(slug);
+  const post = getPostBySlug(slug, locale);
   if (!post) return { title: locale === "en" ? "Article not found | Flores à Beira-Rio" : "Artigo não encontrado | Flores à Beira-Rio" };
 
   const ogLocale = locale === "en" ? "en_GB" : "pt_PT";
+  const ptSlug = locale === "pt" ? slug : post.ptSlug;
+  const enSlug = locale === "en" ? slug : post.enSlug;
 
   return {
     title: `${post.title} | Flores à Beira-Rio`,
@@ -29,7 +32,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: post.title,
       description: post.description,
-      url: `${SITE_URL}${locale === "en" ? "/en" : ""}/blog/${post.slug}`,
+      url: `${SITE_URL}${locale === "en" ? "/en" : ""}/blog/${slug}`,
       siteName: "Flores à Beira-Rio",
       images: [
         {
@@ -50,13 +53,13 @@ export async function generateMetadata({ params }) {
       description: post.description,
       images: [post.image.startsWith("http") ? post.image : `${SITE_URL}${post.image}`],
     },
-    alternates: buildBlogAlternates(post.slug),
+    alternates: ptSlug && enSlug ? buildBlogAlternates(ptSlug, enSlug) : undefined,
   };
 }
 
-function buildBlogPostingSchema(post, locale) {
+function buildBlogPostingSchema(post, locale, slug) {
   const imageUrl = post.image.startsWith("http") ? post.image : `${SITE_URL}${post.image}`;
-  const postUrl = `${SITE_URL}${locale === "en" ? "/en" : ""}/blog/${post.slug}`;
+  const postUrl = `${SITE_URL}${locale === "en" ? "/en" : ""}/blog/${slug}`;
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -83,16 +86,16 @@ function buildBlogPostingSchema(post, locale) {
 
 export default async function ArticlePage({ params }) {
   const { slug, locale } = await params;
-  const post = getPostBySlug(slug);
+  const post = getPostBySlug(slug, locale);
   if (!post) notFound();
 
-  const related = getRelatedPosts(post.slug, post.category, post.tags);
+  const related = getRelatedPosts(post.slug, post.category, post.tags, locale);
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBlogPostingSchema(post, locale)) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBlogPostingSchema(post, locale, slug)) }}
       />
       <ArticleClient post={post} related={related}>
         <MDXRemote source={post.content} components={mdxComponents} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
