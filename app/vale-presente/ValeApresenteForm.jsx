@@ -341,7 +341,7 @@ export default function ValeApresenteForm() {
       <div className="vf-section" role="group" aria-labelledby="sec-outros">
         <h2 className="vf-section-title" id="sec-outros">{t("secOutros")}</h2>
 
-        <Field label={t("comentariosLabel")}>
+        <Field label={t("comentariosLabel")} hint={t("comentariosHint")}>
           <textarea {...inp("comentarios")} rows={3} placeholder={t("comentariosPlaceholder")} />
         </Field>
 

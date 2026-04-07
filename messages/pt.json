@@ -960,9 +960,9 @@
   "oferecer": {
     "meta": {
       "title": "Vale Oferta de Preservação de Flores | Flores à Beira-Rio",
-      "description": "Ofereça uma memória que dura para sempre. O vale oferta da Flores à Beira-Rio é o presente perfeito para casamento, batizado, aniversário ou homenagem. A partir de 300€, sem data de validade.",
+      "description": "Ofereça uma memória que dura para sempre. O vale oferta da Flores à Beira-Rio é o presente perfeito para casamento, batizado, aniversário ou homenagem. A partir de 300€, válido por 2 anos a partir da data de compra.",
       "ogTitle": "Vale Oferta de Preservação de Flores | Flores à Beira-Rio",
-      "ogDescription": "O vale oferta perfeito para casamento, batizado ou aniversário. A partir de 300€, sem data de validade.",
+      "ogDescription": "O vale oferta perfeito para casamento, batizado ou aniversário. A partir de 300€, válido por 2 anos a partir da data de compra.",
       "ogImageAlt": "Vale oferta de preservação de flores, Flores à Beira-Rio",
       "keywords": "vale oferta preservação flores, presente flores preservadas, oferta original casamento, presente bodas prata ouro"
     },
@@ -985,7 +985,7 @@
     "ctaFinalTitle": "Pronto para oferecer?",
     "ctaFinalSub": "Um dia especial merece uma recordação especial",
     "ctaFinalDesc": "Transforme um momento efémero numa obra de arte feita à mão, para durar uma vida inteira.",
-    "apartirDe": "A partir de 300€ · Sem data de validade",
+    "apartirDe": "A partir de 300€ · Válido por 2 anos",
     "ocasioes": [
       {
         "titulo": "Casamento",
@@ -1025,14 +1025,14 @@
       },
       {
         "titulo": "A pessoa usa quando quiser",
-        "desc": "O vale não tem data de validade. O presenteado deve contactar-nos quando quiser, pelo site ou pelo WhatsApp, e tratamos de tudo juntos. Recomendamos fazer a reserva com o máximo de antecedência para garantir vaga na data desejada.",
+        "desc": "O vale é válido por 2 anos a partir da data de compra. O presenteado deve contactar-nos quando quiser, pelo site ou pelo WhatsApp, e tratamos de tudo juntos. Recomendamos fazer a reserva com o máximo de antecedência para garantir vaga na data desejada.",
         "linkHref": "/como-funciona",
         "linkLabel": "Ver processo completo"
       }
     ],
     "condicoes": [
       "Valor mínimo de 300€, correspondente à nossa moldura mais pequena",
-      "Sem data de validade, pode ser usado quando quiser",
+      "Válido por 2 anos a partir da data de compra",
       "Não é reembolsável",
       "Válido exclusivamente para os serviços da Flores à Beira-Rio"
     ],
@@ -1490,9 +1490,9 @@
   "vale": {
     "meta": {
       "title": "Vale Presente | Ofereça Preservação de Flores | Flores à Beira-Rio",
-      "description": "Encomende um vale presente para preservação de flores. O presente perfeito para casamento, batizado ou aniversário. A partir de 300€, sem data de validade.",
+      "description": "Encomende um vale presente para preservação de flores. O presente perfeito para casamento, batizado ou aniversário. A partir de 300€, válido por 2 anos a partir da data de compra.",
       "ogTitle": "Vale Presente | Flores à Beira-Rio",
-      "ogDescription": "Encomende um vale presente de preservação de flores. A partir de 300€, sem data de validade.",
+      "ogDescription": "Encomende um vale presente de preservação de flores. A partir de 300€, válido por 2 anos a partir da data de compra.",
       "ogImageAlt": "Vale presente de preservação de flores, Flores à Beira-Rio",
       "keywords": "vale presente preservação flores, cartão oferta flores, encomendar vale flores, presente casamento flores preservadas"
     },
@@ -1501,7 +1501,7 @@
     "heroDesc": "Preencha o formulário abaixo para encomendar o seu vale. Entramos em contacto para confirmar os detalhes e processar o pagamento.",
     "saberMais": "Saber mais sobre como funciona",
     "formTitle": "Formulário de encomenda",
-    "formSub": "A partir de 300€, sem data de validade. Entrega digital (gratuita) ou em cartão físico (9€ + portes).",
+    "formSub": "A partir de 300€, válido por 2 anos a partir da data de compra. Entrega digital (gratuita) ou em cartão físico (9€ + portes).",
     "comoFuncionaLabel": "Como funciona a encomenda",
     "passos": [
       {
@@ -1557,6 +1557,7 @@
     "dataEnvioHint": "Deixe em branco se for indiferente.",
     "comentariosLabel": "Comentários ou pedidos especiais (opcional)",
     "comentariosPlaceholder": "Se tiver algum comentário ou pedido especial, escreva aqui.",
+    "comentariosHint": "Caso necessite de receber o vale em menos de 3 dias úteis, informe-nos aqui para que possamos priorizar o seu pedido.",
     "comoConheceuLabel": "Como conheceu a Flores à Beira-Rio?",
     "nomeFlorista": "Qual o nome da florista que lhe falou de nós?",
     "comoConheceuOutro": "Conte-nos como conheceu a Flores à Beira-Rio",

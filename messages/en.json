@@ -960,9 +960,9 @@
   "oferecer": {
     "meta": {
       "title": "Flower Preservation Gift Voucher | Flores à Beira-Rio",
-      "description": "Give a memory that lasts forever. The Flores à Beira-Rio gift voucher is the perfect present for a wedding, baptism, anniversary or memorial. From €300, no expiry date.",
+      "description": "Give a memory that lasts forever. The Flores à Beira-Rio gift voucher is the perfect present for a wedding, baptism, anniversary or memorial. From €300, valid for 2 years from the purchase date.",
       "ogTitle": "Flower Preservation Gift Voucher | Flores à Beira-Rio",
-      "ogDescription": "The perfect gift voucher for a wedding, baptism or anniversary. From €300, no expiry date.",
+      "ogDescription": "The perfect gift voucher for a wedding, baptism or anniversary. From €300, valid for 2 years from the purchase date.",
       "ogImageAlt": "Flower preservation gift voucher, Flores à Beira-Rio",
       "keywords": "flower preservation gift voucher, gift card preserved flowers, original wedding gift, anniversary gift idea flowers"
     },
@@ -985,7 +985,7 @@
     "ctaFinalTitle": "Ready to give?",
     "ctaFinalSub": "A special day deserves a special memento",
     "ctaFinalDesc": "Turn a fleeting moment into a handmade work of art, to last a lifetime.",
-    "apartirDe": "From €300 · No expiry date",
+    "apartirDe": "From €300 · Valid for 2 years",
     "ocasioes": [
       {
         "titulo": "Wedding",
@@ -1025,14 +1025,14 @@
       },
       {
         "titulo": "The person uses it whenever they like",
-        "desc": "The voucher has no expiry date. The recipient should contact us when ready, through the website or WhatsApp, and we handle everything together. We recommend booking as far in advance as possible to secure a spot on the desired date.",
+        "desc": "The voucher is valid for 2 years from the purchase date. The recipient should contact us when ready, through the website or WhatsApp, and we handle everything together. We recommend booking as far in advance as possible to secure a spot on the desired date.",
         "linkHref": "/en/how-it-works",
         "linkLabel": "See full process"
       }
     ],
     "condicoes": [
       "Minimum value of €300, equivalent to our smallest frame",
-      "No expiry date, can be used whenever",
+      "Valid for 2 years from the purchase date",
       "Non-refundable",
       "Valid exclusively for Flores à Beira-Rio services"
     ],
@@ -1490,9 +1490,9 @@
   "vale": {
     "meta": {
       "title": "Gift Voucher | Flower Preservation | Flores à Beira-Rio",
-      "description": "Order a flower preservation gift voucher. The perfect present for a wedding, baptism or anniversary. From €300, no expiry date.",
+      "description": "Order a flower preservation gift voucher. The perfect present for a wedding, baptism or anniversary. From €300, valid for 2 years from the purchase date.",
       "ogTitle": "Gift Voucher | Flores à Beira-Rio",
-      "ogDescription": "Order a flower preservation gift voucher. From €300, no expiry date.",
+      "ogDescription": "Order a flower preservation gift voucher. From €300, valid for 2 years from the purchase date.",
       "ogImageAlt": "Flower preservation gift voucher, Flores à Beira-Rio",
       "keywords": "flower preservation gift voucher, order gift card flowers, wedding gift preserved flowers, botanical art gift"
     },
@@ -1501,7 +1501,7 @@
     "heroDesc": "Fill in the form below to order your voucher. We will be in touch to confirm the details and process payment.",
     "saberMais": "Learn more about how it works",
     "formTitle": "Order form",
-    "formSub": "From €300, no expiry date. Digital delivery (free) or physical card (€9 + postage).",
+    "formSub": "From €300, valid for 2 years from the purchase date. Digital delivery (free) or physical card (€9 + postage).",
     "comoFuncionaLabel": "How the order works",
     "passos": [
       {
@@ -1557,6 +1557,7 @@
     "dataEnvioHint": "Leave blank if you have no preference.",
     "comentariosLabel": "Comments or special requests (optional)",
     "comentariosPlaceholder": "If you have any comments or special requests, write them here.",
+    "comentariosHint": "If you need to receive the voucher in less than 3 business days, please let us know here so we can prioritise your request.",
     "comoConheceuLabel": "How did you hear about Flores à Beira-Rio?",
     "nomeFlorista": "What is the florist's name who told you about us?",
     "comoConheceuOutro": "Tell us how you heard about Flores à Beira-Rio",

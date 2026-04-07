@@ -110,7 +110,9 @@
       "mcp__claude_ai_Vercel__list_teams",
       "mcp__claude_ai_Vercel__list_projects",
       "mcp__claude_ai_Vercel__get_runtime_logs",
-      "mcp__claude_ai_Vercel__get_project"
+      "mcp__claude_ai_Vercel__get_project",
+      "Bash(ls -la /c/Users/maria/Documents/fbr-website/fbr-website/.env*)",
+      "Bash(git -C /c/Users/maria/Documents/fbr-website/fbr-website ls-files --error-unmatch .env.local)"
     ]
   }
 }
