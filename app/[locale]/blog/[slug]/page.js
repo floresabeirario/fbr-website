@@ -1,6 +1,7 @@
 // app/[locale]/blog/[slug]/page.js
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import { getPostBySlug, getAllPosts, getRelatedPosts } from "@/app/_lib/blog";
 import ArticleClient from "@/app/blog/[slug]/ArticleClient";
 import { mdxComponents } from "@/app/blog/[slug]/MdxComponents";
@@ -94,7 +95,7 @@ export default async function ArticlePage({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBlogPostingSchema(post, locale)) }}
       />
       <ArticleClient post={post} related={related}>
-        <MDXRemote source={post.content} components={mdxComponents} />
+        <MDXRemote source={post.content} components={mdxComponents} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
       </ArticleClient>
     </>
   );
