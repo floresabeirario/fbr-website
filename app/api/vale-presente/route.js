@@ -271,7 +271,7 @@ export async function POST(request) {
           body: JSON.stringify({
             from: "Flores à Beira-Rio <noreply@floresabeirario.pt>",
             to: [EMAIL],
-            subject: `Novo pedido de vale presente — ${data.nome}`,
+            subject: `Novo pedido de vale presente | ${data.nome}`,
             html: `<h2 style="font-family:sans-serif;color:#3A4A78;">Novo pedido de vale presente</h2>
 <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse;width:100%;max-width:600px;">
   <tbody style="line-height:1.7;">${linhas}</tbody>
