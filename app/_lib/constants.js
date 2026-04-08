@@ -1,7 +1,7 @@
 // app/_lib/constants.js
 // Fonte única de verdade para URLs e dados de contacto
 
-export const SITE_URL = "https://floresabeirario.pt";
+export const SITE_URL = "https://www.floresabeirario.pt";
 
 // Página de reserva de preservação
 export const FORM_URL = "/reservar-preservacao";

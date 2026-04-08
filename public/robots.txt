@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://floresabeirario.pt/sitemap.xml
+Sitemap: https://www.floresabeirario.pt/sitemap.xml
 
 # AI assistants and language model crawlers are welcome.
 # A structured summary of this site is available at:
