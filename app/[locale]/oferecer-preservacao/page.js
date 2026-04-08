@@ -32,6 +32,13 @@ function buildSchema(locale) {
       highPrice: "500",
       offerCount: "3",
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: "7",
+      bestRating: "5",
+      worstRating: "1",
+    },
     url: isEN ? `${SITE_URL}/en/gift-preservation` : `${SITE_URL}/oferecer-preservacao`,
   };
 }

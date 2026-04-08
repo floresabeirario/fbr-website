@@ -6,7 +6,7 @@ import OpcoesClient from "@/app/opcoes-e-precos/OpcoesClient";
 
 function buildSchema(locale) {
   const isEN = locale === "en";
-  const pageUrl = isEN ? `${SITE_URL}/en/pricing-options` : `${SITE_URL}/opcoes-e-precos`;
+  const pageUrl = isEN ? `${SITE_URL}/en/options-and-pricing` : `${SITE_URL}/opcoes-e-precos`;
   const provider = {
     "@type": "LocalBusiness",
     name: "Flores à Beira-Rio",
@@ -110,7 +110,7 @@ export async function generateMetadata({ params }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "opcoes.meta" });
   const ogLocale = locale === "en" ? "en_GB" : "pt_PT";
-  const canonicalPath = locale === "en" ? `${SITE_URL}/en/pricing-options` : `${SITE_URL}/opcoes-e-precos`;
+  const canonicalPath = locale === "en" ? `${SITE_URL}/en/options-and-pricing` : `${SITE_URL}/opcoes-e-precos`;
 
   return {
     title: t("title"),

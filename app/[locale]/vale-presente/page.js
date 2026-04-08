@@ -33,6 +33,13 @@ function buildSchema(locale) {
         address: { "@type": "PostalAddress", addressLocality: "Coimbra", addressCountry: "PT" },
       },
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: "7",
+      bestRating: "5",
+      worstRating: "1",
+    },
     url: isEN ? `${SITE_URL}/en/gift-voucher` : `${SITE_URL}/vale-presente`,
   };
 }

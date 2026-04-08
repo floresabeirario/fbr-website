@@ -14,7 +14,7 @@ export const routing = defineRouting({
     },
     "/opcoes-e-precos": {
       pt: "/opcoes-e-precos",
-      en: "/pricing-options",
+      en: "/options-and-pricing",
     },
     "/como-funciona": {
       pt: "/como-funciona",

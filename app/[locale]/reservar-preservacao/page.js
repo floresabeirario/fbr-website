@@ -51,6 +51,13 @@ function buildSchema(locale) {
         name: isEN ? "Flower Preservation Reservation" : "Reserva de Preservação de Flores",
       },
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: "7",
+      bestRating: "5",
+      worstRating: "1",
+    },
     url: pageUrl,
   };
 }
