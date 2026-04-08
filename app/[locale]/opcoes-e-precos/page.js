@@ -29,7 +29,7 @@ function buildSchema(locale) {
         position: 1,
         item: {
           "@type": "Service",
-          name: isEN ? "Flower Preservation — 30×40 cm frame" : "Preservação de Flores — moldura 30×40 cm",
+          name: isEN ? "Flower Preservation:30×40 cm frame" : "Preservação de Flores:moldura 30×40 cm",
           provider,
           offers: { "@type": "Offer", price: "300", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
           url: pageUrl,
@@ -40,7 +40,7 @@ function buildSchema(locale) {
         position: 2,
         item: {
           "@type": "Service",
-          name: isEN ? "Flower Preservation — 40×50 cm frame" : "Preservação de Flores — moldura 40×50 cm",
+          name: isEN ? "Flower Preservation:40×50 cm frame" : "Preservação de Flores:moldura 40×50 cm",
           provider,
           offers: { "@type": "Offer", price: "400", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
           url: pageUrl,
@@ -51,7 +51,7 @@ function buildSchema(locale) {
         position: 3,
         item: {
           "@type": "Service",
-          name: isEN ? "Flower Preservation — 50×70 cm frame" : "Preservação de Flores — moldura 50×70 cm",
+          name: isEN ? "Flower Preservation:50×70 cm frame" : "Preservação de Flores:moldura 50×70 cm",
           provider,
           offers: { "@type": "Offer", price: "500", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
           url: pageUrl,
@@ -62,7 +62,7 @@ function buildSchema(locale) {
         position: 4,
         item: {
           "@type": "Product",
-          name: isEN ? "Flower Preservation — 20×25 cm frame (add-on)" : "Preservação de Flores — moldura 20×25 cm (complemento)",
+          name: isEN ? "Flower Preservation:20×25 cm frame (add-on)" : "Preservação de Flores:moldura 20×25 cm (complemento)",
           description: isEN
             ? "Small frame available as an add-on with the purchase of a larger frame."
             : "Moldura pequena disponível em conjunto com a compra de um quadro maior.",

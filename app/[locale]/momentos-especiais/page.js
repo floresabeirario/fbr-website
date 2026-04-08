@@ -12,8 +12,8 @@ function buildSchema(locale) {
     "@type": "ItemList",
     name: isEN ? "Flower Preservation Services by Occasion" : "Serviços de Preservação de Flores por Ocasião",
     description: isEN
-      ? "Artisan botanical art frames for every special moment — weddings, baptisms, memorials, anniversaries and proposals."
-      : "Quadros de arte botânica artesanal para cada momento especial — casamentos, batizados, homenagens, aniversários e pedidos de casamento.",
+      ? "Artisan botanical art frames for every special moment: weddings, baptisms, memorials, anniversaries and proposals."
+      : "Quadros de arte botânica artesanal para cada momento especial: casamentos, batizados, homenagens, aniversários e pedidos de casamento.",
     url: isEN ? `${SITE_URL}/en/special-moments` : `${SITE_URL}/momentos-especiais`,
     itemListElement: [
       { "@type": "ListItem", position: 1, name: isEN ? "Wedding Bouquet Preservation" : "Bouquet de Noiva",     url: `${base}/${isEN ? "preserve-wedding-bouquet" : "preservar-bouquet-noiva"}` },
