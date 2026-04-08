@@ -7,10 +7,10 @@ export const FAQ_DATA_EN = [
     cat: "processo",
     q: "When should I book my bouquet preservation?",
     plain:
-      "The ideal time is as soon as you know your event date — there is no need to wait until it is approaching. By booking early, we can plan every detail of the flower delivery together, ensuring the process runs smoothly. Slots are limited, and during peak months some dates book out well in advance. If your event has already taken place, contact us as soon as possible. If more than 5 days have passed and the flowers are no longer in good condition, we can always recreate the bouquet using similar fresh flowers from a photograph.",
+      "The ideal time is as soon as you know your event date, there is no need to wait until it is approaching. By booking early, we can plan every detail of the flower delivery together, ensuring the process runs smoothly. Slots are limited, and during peak months some dates book out well in advance. If your event has already taken place, contact us as soon as possible. If more than 5 days have passed and the flowers are no longer in good condition, we can always recreate the bouquet using similar fresh flowers from a photograph.",
     a: (
       <>
-        The ideal time is as soon as you know your event date — there is{" "}
+        The ideal time is as soon as you know your event date, there is{" "}
         <strong>no need to wait</strong> until it is approaching. By booking
         early, we can plan every detail of the flower delivery together,
         ensuring the process runs smoothly and carefully.
@@ -150,10 +150,10 @@ export const FAQ_DATA_EN = [
     cat: "flores",
     q: "Do the colours stay the same after drying?",
     plain:
-      "There is always some colour change — it is inevitable when all the moisture is removed from the flower. Some flowers keep very vibrant colours; others fade slightly. This transformation is part of the natural beauty of the process.",
+      "There is always some colour change, it is inevitable when all the moisture is removed from the flower. Some flowers keep very vibrant colours; others fade slightly. This transformation is part of the natural beauty of the process.",
     a: (
       <>
-        There is always <strong>some colour change</strong> — it is inevitable
+        There is always <strong>some colour change</strong>, it is inevitable
         when all the moisture is removed from the flower. Some flowers keep
         very vibrant colours; others fade slightly (red roses become burgundy,
         for example).
@@ -172,20 +172,20 @@ export const FAQ_DATA_EN = [
       <>
         You have three options:
         <br /><br />
-        <strong>Framing the original flowers</strong> — we can frame them in a
+        <strong>Framing the original flowers</strong>: we can frame them in a
         deeper frame and create a composition with them as they are.{" "}
         <a href="/en/frame-dried-flowers" className="faq-link">
           Learn more about framing already-dried flowers →
         </a>
         <br /><br />
-        <strong>Bouquet recreation</strong> — we reproduce the arrangement with
+        <strong>Bouquet recreation</strong>: we reproduce the arrangement with
         fresh flowers matching the originals, using the photographs from the
         day as reference.{" "}
         <a href="/en/bouquet-recreation" className="faq-link">
           Learn more about bouquet recreation →
         </a>
         <br /><br />
-        <strong>Mixed combination</strong> — if you still have original flowers
+        <strong>Mixed combination</strong>: if you still have original flowers
         from the special day but some did not press well, we keep the ones in
         good condition and replace the rest. The frame combines elements from
         the original bouquet with pressed flower replicas in a balanced
@@ -220,7 +220,7 @@ export const FAQ_DATA_EN = [
     cat: "flores",
     q: "Why don't you preserve flowers in resin?",
     plain:
-      "Resin is a petrochemical plastic — it is not biodegradable, not recyclable, and its curing process releases harmful volatile compounds. Our approach is 100% natural and sustainable.",
+      "Resin is a petrochemical plastic, it is not biodegradable, not recyclable, and its curing process releases harmful volatile compounds. Our approach is 100% natural and sustainable.",
     a: (
       <>
         Resin is a <strong>petrochemical plastic</strong>: it is not
@@ -228,7 +228,7 @@ export const FAQ_DATA_EN = [
         volatile compounds.
         <br /><br />
         Our preservation is <strong>100% natural</strong>: handcrafted
-        pressing, a wooden frame with museum-grade UV-protective glass — no
+        pressing, a wooden frame with museum-grade UV-protective glass, no
         chemicals, no plastic.
       </>
     ),
@@ -301,13 +301,13 @@ export const FAQ_DATA_EN = [
       <>
         You have three options:
         <br /><br />
-        <strong>Drop off in person</strong> — free of charge, at our atelier
+        <strong>Drop off in person</strong>: free of charge, at our atelier
         in Ceira, Coimbra, by prior appointment.
         <br /><br />
-        <strong>Ship by post</strong> — fragile and urgent mail; shipping costs
+        <strong>Ship by post</strong>: fragile and urgent mail; shipping costs
         are the client&apos;s responsibility.
         <br /><br />
-        <strong>Collection at the venue</strong> — we travel to the location;
+        <strong>Collection at the venue</strong>: we travel to the location;
         subject to a quote and availability.
       </>
     ),
@@ -402,11 +402,11 @@ export const FAQ_DATA_EN = [
     cat: "pagamentos",
     q: "Do you accept returns?",
     plain:
-      "We do not accept returns on personalised orders. Each frame is created exclusively for you — it is a unique and unrepeatable work. For that reason, we always send a photograph of the composition for your approval before framing.",
+      "We do not accept returns on personalised orders. Each frame is created exclusively for you, it is a unique and unrepeatable work. For that reason, we always send a photograph of the composition for your approval before framing.",
     a: (
       <>
         We do not accept returns on personalised orders. Each frame is created
-        exclusively for you — it is a <strong>unique and unrepeatable</strong>{" "}
+        exclusively for you, it is a <strong>unique and unrepeatable</strong>{" "}
         work.
         <br /><br />
         For that reason, we always send a photograph of the composition for

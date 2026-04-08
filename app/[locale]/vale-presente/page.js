@@ -10,8 +10,8 @@ function buildSchema(locale) {
     "@context": "https://schema.org",
     "@type": "Product",
     name: isEN
-      ? "Flower Preservation Gift Voucher — Flores à Beira-Rio"
-      : "Vale-Presente de Preservação de Flores — Flores à Beira-Rio",
+      ? "Flower Preservation Gift Voucher, Flores à Beira-Rio"
+      : "Vale-Presente de Preservação de Flores, Flores à Beira-Rio",
     description: isEN
       ? "Give the gift of flower preservation with our gift voucher. The recipient chooses their own flowers and preferred preservation style. Perfect wedding gift, anniversary or baptism present."
       : "Ofereça a preservação de flores com o nosso vale-presente. O presenteado escolhe as flores e o estilo de preservação ao seu gosto. O presente perfeito para casamentos, aniversários e batizados.",

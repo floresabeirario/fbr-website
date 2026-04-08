@@ -54,8 +54,8 @@ function buildSchema(locale) {
       "@context": "https://schema.org",
       "@type": "VideoObject",
       name: isEN
-        ? "Flower Preservation into Botanical Art Frames — Flores à Beira-Rio"
-        : "Preservação de Flores em Quadros de Arte Botânica — Flores à Beira-Rio",
+        ? "Flower Preservation into Botanical Art Frames, Flores à Beira-Rio"
+        : "Preservação de Flores em Quadros de Arte Botânica, Flores à Beira-Rio",
       description: isEN
         ? "At Flores à Beira-Rio, we receive flowers from special occasions and transform them into framed pressed flower art that lasts for decades."
         : "Na Flores à Beira-Rio, recebemos flores de dias especiais e transformamo-las em quadros feitos com flores prensadas que duram décadas.",
