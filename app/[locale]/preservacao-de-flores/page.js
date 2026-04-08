@@ -40,6 +40,13 @@ function buildSchema(locale) {
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "50×70 cm" }, price: "500", priceCurrency: "EUR" },
       ],
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: "7",
+      bestRating: "5",
+      worstRating: "1",
+    },
   };
 }
 
