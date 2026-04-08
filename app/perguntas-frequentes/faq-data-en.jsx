@@ -345,7 +345,7 @@ export const FAQ_DATA_EN = [
         museum quality.
         <br /><br />
         Learn more about our materials on the{" "}
-        <a href="/en/pricing-options" className="faq-link">
+        <a href="/en/options-and-pricing" className="faq-link">
           options &amp; pricing page
         </a>{" "}
         and on the{" "}

@@ -8,7 +8,7 @@ export default function sitemap() {
   const routes = [
     { pt: "/",                                        en: "/en",                                       priority: 1.0,  changeFrequency: "monthly" },
     { pt: "/como-funciona",                           en: "/en/how-it-works",                          priority: 0.9,  changeFrequency: "monthly" },
-    { pt: "/opcoes-e-precos",                         en: "/en/pricing-options",                       priority: 0.9,  changeFrequency: "monthly" },
+    { pt: "/opcoes-e-precos",                         en: "/en/options-and-pricing",                       priority: 0.9,  changeFrequency: "monthly" },
     { pt: "/preservacao-de-flores",                   en: "/en/flower-preservation",                   priority: 0.85, changeFrequency: "monthly" },
     { pt: "/preservar-bouquet-noiva",                 en: "/en/preserve-wedding-bouquet",              priority: 0.85, changeFrequency: "monthly" },
     { pt: "/preservar-flores-luto-homenagem",         en: "/en/preserve-memorial-flowers",             priority: 0.85, changeFrequency: "monthly" },

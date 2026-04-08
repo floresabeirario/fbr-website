@@ -136,7 +136,7 @@ export default function FooterClient() {
   const footerLinks = {
     servicos: [
       { href: `${prefix}${locale === "en" ? "/flower-preservation" : "/preservacao-de-flores"}`,  label: locale === "en" ? "Flower Preservation" : "Preservação de Flores" },
-      { href: `${prefix}${locale === "en" ? "/pricing-options" : "/opcoes-e-precos"}`,              label: locale === "en" ? "Options & Pricing" : "Opções e Preços" },
+      { href: `${prefix}${locale === "en" ? "/options-and-pricing" : "/opcoes-e-precos"}`,              label: locale === "en" ? "Options & Pricing" : "Opções e Preços" },
       { href: `${prefix}${locale === "en" ? "/how-it-works" : "/como-funciona"}`,                  label: locale === "en" ? "How It Works" : "Como Funciona" },
       { href: `${prefix}${locale === "en" ? "/frame-dried-flowers" : "/emoldurar-flores-secas"}`,  label: locale === "en" ? "Frame Dried Flowers" : "Emoldurar Flores Já Secas" },
       { href: `${prefix}${locale === "en" ? "/bouquet-recreation" : "/recriacao"}`,                label: locale === "en" ? "Bouquet Recreation" : "Recriação de Bouquet" },

@@ -771,7 +771,7 @@
         "detalhe": "Preservation flower prices apply.",
         "time": "up to 6 months",
         "linkLabel": "See preservation prices",
-        "linkHref": "/en/pricing-options"
+        "linkHref": "/en/options-and-pricing"
       }
     ],
     "fotoEyebrow": "A detail that makes a difference",
@@ -812,7 +812,7 @@
     "precosH2": "Sizes and prices",
     "precosDesc": "Prices for framing dried flowers. These prices do not include our preservation services. If your flowers are fresh and need to be preserved, visit the",
     "precosDescLinkLabel": "pricing options page",
-    "precosDescLinkHref": "/en/pricing-options",
+    "precosDescLinkHref": "/en/options-and-pricing",
     "precosLabelTamanho": "Size",
     "precosLabelPreco": "Price",
     "precosNota": "All frames include museum anti-UV glass, a custom-made frame and artistic composition design.",
@@ -847,7 +847,7 @@
         "q": "Does the bouquet have to be in perfect condition?",
         "a": "No. We work with whatever arrives. If some flowers are no longer in good condition, we can replace those elements with similar preserved pressed flowers. The final result is always harmonious. In these cases, preservation prices apply",
         "aLinkLabel": "(see pricing options page)",
-        "aLinkHref": "/en/pricing-options",
+        "aLinkHref": "/en/options-and-pricing",
         "aAfter": "."
       },
       {
@@ -861,7 +861,7 @@
     ],
     "navSquares": [
       {
-        "href": "/en/pricing-options",
+        "href": "/en/options-and-pricing",
         "label": "Pricing Options"
       },
       {
@@ -1016,7 +1016,7 @@
       {
         "titulo": "Choose the value",
         "desc": "The voucher can be any value you wish, with a minimum of €300. You can customise the amount to suit the service you want to give.",
-        "linkHref": "/en/pricing-options",
+        "linkHref": "/en/options-and-pricing",
         "linkLabel": "See pricing"
       },
       {
@@ -1187,7 +1187,7 @@
     "ctaComoFunciona": "How It Works",
     "ctaLinks": [
       {
-        "href": "/en/pricing-options",
+        "href": "/en/options-and-pricing",
         "label": "See pricing"
       },
       {
@@ -1704,7 +1704,7 @@
     "seguirNos": "Follow us",
     "navSquares": [
       {
-        "href": "/en/pricing-options",
+        "href": "/en/options-and-pricing",
         "label": "Options & Pricing"
       },
       {

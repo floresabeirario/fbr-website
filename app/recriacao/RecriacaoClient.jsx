@@ -117,7 +117,7 @@ export default function RecriacaoClient() {
   const passos = t.raw("passos");
   const casosUso = t.raw("casosUso");
 
-  const precosHref = locale === "en" ? "/en/pricing-options" : "/opcoes-e-precos";
+  const precosHref = locale === "en" ? "/en/options-and-pricing" : "/opcoes-e-precos";
 
   return (
     <div style={{ backgroundColor: "#FAF5EC", overflowX: "clip" }}>
