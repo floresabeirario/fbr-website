@@ -21,7 +21,7 @@ export default function BatizadoNascimentoClient() {
 
   const bookHref = locale === "en" ? "/en/book-preservation" : FORM_URL;
   const comoHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
-  const precosHref = locale === "en" ? "/en/pricing-options" : "/opcoes-e-precos";
+  const precosHref = locale === "en" ? "/en/options-and-pricing" : "/opcoes-e-precos";
   const faqHref = locale === "en" ? "/en/faq" : "/perguntas-frequentes";
 
   return (

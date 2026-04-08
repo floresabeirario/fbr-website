@@ -119,7 +119,10 @@
       "Bash(mv \"c:/Users/maria/Documents/fbr-website/fbr-website/content/blog/quanto-tempo-duram-flores-preservadas.mdx\" \"c:/Users/maria/Documents/fbr-website/fbr-website/content/blog/pt/\")",
       "Bash(mv \"c:/Users/maria/Documents/fbr-website/fbr-website/content/blog/presente-original-para-noiva.mdx\" \"c:/Users/maria/Documents/fbr-website/fbr-website/content/blog/pt/\")",
       "WebFetch(domain:share.google)",
-      "WebFetch(domain:www.google.com)"
+      "WebFetch(domain:www.google.com)",
+      "Bash(xargs sed:*)",
+      "Bash(powershell -Command 'Get-ChildItem -Recurse -Include *.js,*.jsx,*.ts,*.tsx,*.json,*.mjs | Where-Object { $_.FullName -notlike '\\\\''*\\\\node_modules\\\\*'\\\\'' } | ForEach-Object { $content = Get-Content $_.FullName -Raw; if \\($content -match '\\\\''options-and-pricing'\\\\''\\) { $content = $content -replace '\\\\''options-and-pricing'\\\\'','\\\\''options-and-pricing'\\\\''; Set-Content $_.FullName $content -NoNewline; Write-Host $_.FullName } }')",
+      "Bash(node -e ':*)"
     ]
   }
 }

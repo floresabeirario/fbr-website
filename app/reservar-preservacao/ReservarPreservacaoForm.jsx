@@ -101,7 +101,7 @@ export default function ReservarPreservacaoForm() {
 
   // Hrefs localizados para links internos nos hints
   const comoFuncionaHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
-  const opcoesHref       = locale === "en" ? "/en/pricing-options" : "/opcoes-e-precos";
+  const opcoesHref       = locale === "en" ? "/en/options-and-pricing" : "/opcoes-e-precos";
   const termosHref       = locale === "en" ? "/en/terms-and-conditions" : "/termos-e-condicoes";
 
   const [form, setForm] = useState(INIT);

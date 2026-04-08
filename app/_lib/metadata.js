@@ -9,7 +9,7 @@ const SITE_NAME = "Flores à Beira-Rio";
 const SLUG_MAP = {
   "/":                                    { pt: "/",                                     en: "/en" },
   "/preservacao-de-flores":               { pt: "/preservacao-de-flores",                en: "/en/flower-preservation" },
-  "/opcoes-e-precos":                     { pt: "/opcoes-e-precos",                      en: "/en/pricing-options" },
+  "/opcoes-e-precos":                     { pt: "/opcoes-e-precos",                      en: "/en/options-and-pricing" },
   "/como-funciona":                       { pt: "/como-funciona",                        en: "/en/how-it-works" },
   "/momentos-especiais":                  { pt: "/momentos-especiais",                   en: "/en/special-moments" },
   "/preservar-bouquet-noiva":             { pt: "/preservar-bouquet-noiva",              en: "/en/preserve-wedding-bouquet" },

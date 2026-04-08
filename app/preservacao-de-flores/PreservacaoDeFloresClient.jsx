@@ -23,7 +23,7 @@ const OCASIOES_HREFS_EN = [
   "/en/how-it-works",
   "/en/how-it-works",
   "/en/frame-dried-flowers",
-  "/en/pricing-options",
+  "/en/options-and-pricing",
 ];
 
 export default function PreservacaoDeFloresClient() {
@@ -33,7 +33,7 @@ export default function PreservacaoDeFloresClient() {
   const ocasioes = t.raw("ocasioes");
 
   const bookHref = locale === "en" ? "/en/book-preservation" : FORM_URL;
-  const precosHref = locale === "en" ? "/en/pricing-options" : "/opcoes-e-precos";
+  const precosHref = locale === "en" ? "/en/options-and-pricing" : "/opcoes-e-precos";
   const comoHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
   const floresSHref = locale === "en" ? "/en/frame-dried-flowers" : "/emoldurar-flores-secas";
   const faqHref = locale === "en" ? "/en/faq" : "/perguntas-frequentes";

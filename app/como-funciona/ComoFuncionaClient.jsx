@@ -134,7 +134,7 @@ export default function ComoFuncionaClient() {
   const incluidos = t.raw("incluidos");
 
   const bookHref = locale === "en" ? "/en/book-preservation" : FORM_URL;
-  const precosHref = locale === "en" ? "/en/pricing-options" : "/opcoes-e-precos";
+  const precosHref = locale === "en" ? "/en/options-and-pricing" : "/opcoes-e-precos";
   const recriacaoHref = locale === "en" ? "/en/bouquet-recreation" : "/recriacao";
   const faqHref = locale === "en" ? "/en/faq" : "/perguntas-frequentes";
 

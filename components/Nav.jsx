@@ -27,7 +27,7 @@ const PAGE_COLORS = {
   "/contactos":                            { bg: "var(--terra)", shadow: "rgba(196,132,107,0.32)" },
   "/contact":                              { bg: "var(--terra)", shadow: "rgba(196,132,107,0.32)" },
   "/opcoes-e-precos":                      { bg: "var(--green-l)", shadow: "rgba(139,168,136,0.32)" },
-  "/pricing-options":                      { bg: "var(--green-l)", shadow: "rgba(139,168,136,0.32)" },
+  "/options-and-pricing":                      { bg: "var(--green-l)", shadow: "rgba(139,168,136,0.32)" },
   "/como-funciona":                        { bg: "var(--rust)", shadow: "rgba(200,82,42,0.32)" },
   "/how-it-works":                         { bg: "var(--rust)", shadow: "rgba(200,82,42,0.32)" },
 };
@@ -474,7 +474,7 @@ export default function NavClient() {
 
   if (locale === "en") {
     NAV_PRESERVACAO.href = "/en/flower-preservation";
-    NAV_PRESERVACAO.items[0].href = "/en/pricing-options";
+    NAV_PRESERVACAO.items[0].href = "/en/options-and-pricing";
     NAV_PRESERVACAO.items[1].href = "/en/how-it-works";
     NAV_PRESERVACAO.items[2].href = "/en/sustainability";
     NAV_PRESERVACAO.items[3].href = "/en/frame-dried-flowers";
