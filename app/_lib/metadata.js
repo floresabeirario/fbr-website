@@ -48,15 +48,16 @@ export function buildAlternates(pathnameKey) {
 }
 
 /**
- * Builds hreflang alternates for blog articles (same slug both locales).
+ * Builds hreflang alternates for blog articles.
+ * ptSlug: slug of the PT article, enSlug: slug of the EN article.
  */
-export function buildBlogAlternates(slug) {
+export function buildBlogAlternates(ptSlug, enSlug) {
   return {
-    canonical: `${SITE_URL}/blog/${slug}`,
+    canonical: `${SITE_URL}/blog/${ptSlug}`,
     languages: {
-      "pt-PT":     `${SITE_URL}/blog/${slug}`,
-      "en":        `${SITE_URL}/en/blog/${slug}`,
-      "x-default": `${SITE_URL}/blog/${slug}`,
+      "pt-PT":     `${SITE_URL}/blog/${ptSlug}`,
+      "en":        `${SITE_URL}/en/blog/${enSlug}`,
+      "x-default": `${SITE_URL}/blog/${ptSlug}`,
     },
   };
 }

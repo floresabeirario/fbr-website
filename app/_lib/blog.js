@@ -7,15 +7,20 @@ import matter from "gray-matter";
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 
-// ─── Ler todos os artigos (para listagem e sitemap) ───────────────────────────
-export function getAllPosts() {
-  if (!fs.existsSync(BLOG_DIR)) return [];
+function getBlogDir(locale) {
+  return path.join(BLOG_DIR, locale);
+}
 
-  const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".mdx"));
+// ─── Ler todos os artigos (para listagem e sitemap) ───────────────────────────
+export function getAllPosts(locale = "pt") {
+  const dir = getBlogDir(locale);
+  if (!fs.existsSync(dir)) return [];
+
+  const files = fs.readdirSync(dir).filter((f) => f.endsWith(".mdx"));
 
   const posts = files.reduce((acc, filename) => {
     const slug = filename.replace(/\.mdx$/, "");
-    const fullPath = path.join(BLOG_DIR, filename);
+    const fullPath = path.join(dir, filename);
 
     try {
       const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -33,6 +38,8 @@ export function getAllPosts() {
         author:      data.author      || "Flores à Beira-Rio",
         readTime:    data.readTime    || "5 min",
         featured:    data.featured    || false,
+        enSlug:      data.enSlug      || null,
+        ptSlug:      data.ptSlug      || null,
       });
     } catch (err) {
       console.error(`[blog] Erro ao ler o ficheiro "${filename}":`, err.message);
@@ -46,8 +53,9 @@ export function getAllPosts() {
 }
 
 // ─── Ler um artigo pelo slug (para página individual) ─────────────────────────
-export function getPostBySlug(slug) {
-  const fullPath = path.join(BLOG_DIR, `${slug}.mdx`);
+export function getPostBySlug(slug, locale = "pt") {
+  const dir = getBlogDir(locale);
+  const fullPath = path.join(dir, `${slug}.mdx`);
 
   if (!fs.existsSync(fullPath)) return null;
 
@@ -67,6 +75,8 @@ export function getPostBySlug(slug) {
       author:      data.author      || "Flores à Beira-Rio",
       readTime:    data.readTime    || "5 min",
       featured:    data.featured    || false,
+      enSlug:      data.enSlug      || null,
+      ptSlug:      data.ptSlug      || null,
       content,
     };
   } catch (err) {
@@ -76,8 +86,8 @@ export function getPostBySlug(slug) {
 }
 
 // ─── Artigos relacionados (mesma categoria ou tags em comum) ──────────────────
-export function getRelatedPosts(currentSlug, category, tags = [], limit = 3) {
-  const all = getAllPosts().filter((p) => p.slug !== currentSlug);
+export function getRelatedPosts(currentSlug, category, tags = [], locale = "pt", limit = 3) {
+  const all = getAllPosts(locale).filter((p) => p.slug !== currentSlug);
 
   // Pontuação: mesma categoria = 2 pts, cada tag em comum = 1 pt
   const scored = all.map((post) => {
@@ -95,8 +105,8 @@ export function getRelatedPosts(currentSlug, category, tags = [], limit = 3) {
 }
 
 // ─── Categorias únicas com contagem ──────────────────────────────────────────
-export function getCategories() {
-  const posts = getAllPosts();
+export function getCategories(locale = "pt") {
+  const posts = getAllPosts(locale);
   const map = {};
 
   posts.forEach((p) => {
@@ -115,4 +125,12 @@ export const CATEGORY_LABELS = {
   presentes:   "Presentes",
   historias:   "Histórias",
   geral:       "Geral",
+  // EN categories
+  process:     "Process",
+  care:        "Care",
+  wedding:     "Wedding",
+  sustainability: "Sustainability",
+  gifts:       "Gifts",
+  stories:     "Stories",
+  general:     "General",
 };

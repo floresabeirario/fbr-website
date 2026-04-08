@@ -28,15 +28,29 @@ export default function sitemap() {
     { pt: "/termos-e-condicoes",                      en: "/en/terms-and-conditions",                  priority: 0.3,  changeFrequency: "yearly"  },
   ];
 
-  // Add blog posts (dynamic MDX articles)
-  const posts = getAllPosts();
-  for (const post of posts) {
+  // Add blog posts (dynamic MDX articles, locale-specific slugs)
+  const ptPosts = getAllPosts("pt");
+  const enPosts = getAllPosts("en");
+  for (const ptPost of ptPosts) {
+    const enSlug = ptPost.enSlug;
     routes.push({
-      pt: `/blog/${post.slug}`,
-      en: `/en/blog/${post.slug}`,
+      pt: `/blog/${ptPost.slug}`,
+      en: enSlug ? `/en/blog/${enSlug}` : `/en/blog/${ptPost.slug}`,
       priority: 0.6,
       changeFrequency: "yearly",
     });
+  }
+  // Add any EN-only posts that have no PT counterpart
+  const ptSlugsSet = new Set(ptPosts.map((p) => p.enSlug).filter(Boolean));
+  for (const enPost of enPosts) {
+    if (!ptSlugsSet.has(enPost.slug)) {
+      routes.push({
+        pt: `/blog/${enPost.ptSlug || enPost.slug}`,
+        en: `/en/blog/${enPost.slug}`,
+        priority: 0.6,
+        changeFrequency: "yearly",
+      });
+    }
   }
 
   const entries = [];
