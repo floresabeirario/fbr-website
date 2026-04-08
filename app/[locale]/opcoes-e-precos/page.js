@@ -66,6 +66,7 @@ function buildSchema(locale) {
           description: isEN
             ? "Small frame available as an add-on with the purchase of a larger frame."
             : "Moldura pequena disponível em conjunto com a compra de um quadro maior.",
+          image: `${SITE_URL}/miniquadros.webp`,
           brand: { "@type": "Brand", name: "Flores à Beira-Rio" },
           offers: { "@type": "Offer", price: "90", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
           url: pageUrl,
@@ -80,6 +81,7 @@ function buildSchema(locale) {
           description: isEN
             ? "Christmas ornament with double lead-free silver-plated glass. Available as an add-on with the purchase of a larger frame."
             : "Ornamento de Natal com vidro duplo soldado sem chumbo, com prata. Disponível em conjunto com a compra de um quadro maior.",
+          image: `${SITE_URL}/ornamento1.webp`,
           brand: { "@type": "Brand", name: "Flores à Beira-Rio" },
           offers: { "@type": "Offer", price: "35", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
           url: pageUrl,
@@ -94,6 +96,7 @@ function buildSchema(locale) {
           description: isEN
             ? "Necklace pendant with double lead-free silver-plated glass. Available as an add-on with the purchase of a larger frame."
             : "Pendente com vidro duplo soldado sem chumbo, com prata. Disponível em conjunto com a compra de um quadro maior.",
+          image: `${SITE_URL}/pendente1.webp`,
           brand: { "@type": "Brand", name: "Flores à Beira-Rio" },
           offers: { "@type": "Offer", price: "35", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
           url: pageUrl,
