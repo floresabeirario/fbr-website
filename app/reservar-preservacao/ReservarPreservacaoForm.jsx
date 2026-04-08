@@ -354,7 +354,7 @@ export default function ReservarPreservacaoForm() {
           hint={<>
             {locale === "en" ? "See examples and prices on our " : "Consulte exemplos e valores na nossa página "}
             <Link href={opcoesHref} className="pf-link" target="_blank" rel="noopener noreferrer">
-              {locale === "en" ? "Pricing Options" : "Opções e Preços"}
+              {locale === "en" ? "Options & Pricing" : "Opções e Preços"}
             </Link>.
           </>}
         >
@@ -373,7 +373,7 @@ export default function ReservarPreservacaoForm() {
           hint={<>
             {locale === "en" ? "Visit our " : "Consulte a nossa página "}
             <Link href={opcoesHref} className="pf-link" target="_blank" rel="noopener noreferrer">
-              {locale === "en" ? "Pricing Options" : "Opções e Preços"}
+              {locale === "en" ? "Options & Pricing" : "Opções e Preços"}
             </Link>{" "}
             {t("fundoHintSuffix")}{" "}
             <a href={SOCIAL_INSTAGRAM} className="pf-link" target="_blank" rel="noopener noreferrer">
