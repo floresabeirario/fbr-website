@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import React from "react";
 import { FORM_URL } from "./_lib/constants";
 
 export default function HomeSteps() {
@@ -71,43 +72,52 @@ export default function HomeSteps() {
       </div>
 
       {/* Steps grid */}
-      <div className="steps-grid" role="list">
+      <div className="steps-grid">
         {steps.map((step, i) => (
-          <motion.article
-            key={i}
-            role="listitem"
-            className="step-card"
-            initial={{ opacity: 0, y: 36 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.14, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {/* Photo */}
-            <div className="step-photo-wrap">
-              <Image
-                fill
-                src={step.imageSrc}
-                alt={step.imgAlt}
-                sizes="(max-width: 768px) 100vw, 33vw"
-                style={{ objectFit: "cover" }}
-              />
-              <div className="step-photo-overlay" aria-hidden="true" />
-            </div>
+          <React.Fragment key={i}>
+            <motion.article
+              className="step-card"
+              initial={{ opacity: 0, y: 36 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.14, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {/* Photo */}
+              <div className="step-photo-wrap">
+                <Image
+                  fill
+                  src={step.imageSrc}
+                  alt={step.imgAlt}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  style={{ objectFit: "cover" }}
+                />
+                <div className="step-photo-overlay" aria-hidden="true" />
+              </div>
 
-            {/* Content */}
-            <div className="step-content">
-              <span className="step-num" aria-hidden="true">{step.number}</span>
-              <h3 className="step-title">{step.title}</h3>
-              <p className="step-desc">{step.desc}</p>
-              <a
-                href={step.link}
-                className="step-inline-link"
-                {...(step.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              >
-                {step.linkLabel} <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </motion.article>
+              {/* Content */}
+              <div className="step-content">
+                <span className="step-num" aria-hidden="true">{step.number}</span>
+                <span className="step-badge">
+                  {t("stepBadge", { step: i + 1, total: 3 })}
+                </span>
+                <h3 className="step-title">{step.title}</h3>
+                <p className="step-desc">{step.desc}</p>
+                <a
+                  href={step.link}
+                  className="step-inline-link"
+                  {...(step.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  {step.linkLabel} <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </motion.article>
+
+            {i < steps.length - 1 && (
+              <div className="step-connector" aria-hidden="true">
+                <span className="step-connector-arrow">→</span>
+              </div>
+            )}
+          </React.Fragment>
         ))}
       </div>
     </section>
