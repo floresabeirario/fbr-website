@@ -128,7 +128,7 @@ export default function ContactosClient() {
                 >
                   <div style={{ width: 40, height: 40, borderRadius: 10, flexShrink: 0, background: `${item.color}22`, display: "flex", alignItems: "center", justifyContent: "center", color: item.color }}>{item.icon}</div>
                   <div style={{ minWidth: 0 }}>
-                    <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.8rem, 3.5vw, 0.95rem)", color: C.cream, margin: 0, lineHeight: 1.2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{item.label}</p>
+                    <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.8rem, 3.5vw, 0.95rem)", color: C.cream, margin: 0, lineHeight: 1.2, letterSpacing: "0.06em", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{item.label}</p>
                     <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.74rem", color: "rgba(250,247,240,0.45)", margin: "3px 0 0" }}>{item.sub}</p>
                   </div>
                 </a>
