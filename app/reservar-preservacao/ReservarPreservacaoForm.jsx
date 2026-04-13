@@ -89,8 +89,8 @@ export default function ReservarPreservacaoForm() {
   const fundoOpcoes         = t.raw("fundoOpcoes");
 
   // O primeiro elemento é o exclusivo "sem extras"; o último é "Outro"
-  const ELEM_NENHUM = elementosOpcoes[0];
-  const ELEM_OUTRO  = elementosOpcoes[elementosOpcoes.length - 1];
+  const ELEM_NENHUM = elementosOpcoes[0].valor;
+  const ELEM_OUTRO  = elementosOpcoes[elementosOpcoes.length - 1].valor;
 
   // Valores internos usados para lógica condicional (iguais em PT e EN)
   const QUADROS_SIM    = quadrosExtraOpcoes[1].valor;
@@ -400,14 +400,14 @@ export default function ReservarPreservacaoForm() {
         >
           <div className="pf-checkgroup">
             {elementosOpcoes.map((opcao) => (
-              <label key={opcao} className="pf-check-label">
+              <label key={opcao.valor} className="pf-check-label">
                 <input
                   type="checkbox"
                   className="pf-checkbox"
-                  checked={form.elementosExtra.includes(opcao)}
-                  onChange={() => toggleElemento(opcao)}
+                  checked={form.elementosExtra.includes(opcao.valor)}
+                  onChange={() => toggleElemento(opcao.valor)}
                 />
-                <span>{opcao}</span>
+                <span>{opcao.label}</span>
               </label>
             ))}
           </div>
