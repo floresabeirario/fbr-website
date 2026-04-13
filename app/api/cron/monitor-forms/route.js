@@ -47,7 +47,8 @@ export async function GET() {
 
   if (process.env.RESEND_API_KEY) {
     const problemas = [];
-    if (!health.monday?.ok) problemas.push(`<li><strong>Monday.com</strong>: ${health.monday?.reason ?? "erro desconhecido"}</li>`);
+    if (!health.monday?.ok) problemas.push(`<li><strong>Monday.com (conectividade)</strong>: ${health.monday?.reason ?? "erro desconhecido"}</li>`);
+    if (!health.dropdown?.ok) problemas.push(`<li><strong>Monday.com (dropdown elementosExtra)</strong>: ${health.dropdown?.reason ?? "erro desconhecido"}</li>`);
     if (!health.resend?.ok) problemas.push(`<li><strong>Resend (e-mail)</strong>: ${health.resend?.reason ?? "erro desconhecido"}</li>`);
 
     const html = `
