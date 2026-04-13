@@ -1373,15 +1373,15 @@
       }
     ],
     "elementosOpcoes": [
-      "I do not wish to include extras",
-      "Handwritten vows",
-      "Wedding invitation",
-      "Ribbons, fabric or lace",
-      "Photograph",
-      "Jewellery or medal",
-      "Pet collar",
-      "Letters or notes",
-      "Other (specify below)"
+      { "valor": "Não pretendo incluir extras", "label": "I do not wish to include extras" },
+      { "valor": "Votos manuscritos", "label": "Handwritten vows" },
+      { "valor": "Convite do casamento", "label": "Wedding invitation" },
+      { "valor": "Fitas, tecidos ou rendas", "label": "Ribbons, fabric or lace" },
+      { "valor": "Fotografia", "label": "Photograph" },
+      { "valor": "Joia ou medalha", "label": "Jewellery or medal" },
+      { "valor": "Coleira de animal", "label": "Pet collar" },
+      { "valor": "Cartas ou bilhetes", "label": "Letters or notes" },
+      { "valor": "Outro (especifique abaixo)", "label": "Other (specify below)" }
     ],
     "quadrosExtraOpcoes": [
       {

@@ -1373,15 +1373,15 @@
       }
     ],
     "elementosOpcoes": [
-      "Não pretendo incluir extras",
-      "Votos manuscritos",
-      "Convite do casamento",
-      "Fitas, tecidos ou rendas",
-      "Fotografia",
-      "Joia ou medalha",
-      "Coleira de animal",
-      "Cartas ou bilhetes",
-      "Outro (especifique abaixo)"
+      { "valor": "Não pretendo incluir extras", "label": "Não pretendo incluir extras" },
+      { "valor": "Votos manuscritos", "label": "Votos manuscritos" },
+      { "valor": "Convite do casamento", "label": "Convite do casamento" },
+      { "valor": "Fitas, tecidos ou rendas", "label": "Fitas, tecidos ou rendas" },
+      { "valor": "Fotografia", "label": "Fotografia" },
+      { "valor": "Joia ou medalha", "label": "Joia ou medalha" },
+      { "valor": "Coleira de animal", "label": "Coleira de animal" },
+      { "valor": "Cartas ou bilhetes", "label": "Cartas ou bilhetes" },
+      { "valor": "Outro (especifique abaixo)", "label": "Outro (especifique abaixo)" }
     ],
     "quadrosExtraOpcoes": [
       {

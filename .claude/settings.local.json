@@ -122,7 +122,8 @@
       "WebFetch(domain:www.google.com)",
       "Bash(xargs sed:*)",
       "Bash(powershell -Command 'Get-ChildItem -Recurse -Include *.js,*.jsx,*.ts,*.tsx,*.json,*.mjs | Where-Object { $_.FullName -notlike '\\\\''*\\\\node_modules\\\\*'\\\\'' } | ForEach-Object { $content = Get-Content $_.FullName -Raw; if \\($content -match '\\\\''options-and-pricing'\\\\''\\) { $content = $content -replace '\\\\''options-and-pricing'\\\\'','\\\\''options-and-pricing'\\\\''; Set-Content $_.FullName $content -NoNewline; Write-Host $_.FullName } }')",
-      "Bash(node -e ':*)"
+      "Bash(node -e ':*)",
+      "Bash(echo \"no middleware found\" ls *.js *.ts *.mjs)"
     ]
   }
 }
