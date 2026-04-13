@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Script from "next/script";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
@@ -262,7 +263,7 @@ export default function HomeClient() {
           <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "940px", margin: "0 auto" }}>
             <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--section-accent)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{t("clientesFelizes")}</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "var(--green-d)" }}>{t("oqueDizTitle")}</h2>
-            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
             <div className="elfsight-app-65dc34c1-0003-4419-ab4e-11e52faa447f" data-elfsight-app-lazy></div>
           </motion.div>
         </section>
