@@ -62,7 +62,7 @@ export default function PreservacaoDeFloresClient() {
             </p>
             <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.03, color: "var(--cream)", margin: "0 0 clamp(1rem,2.5vw,1.6rem)" }}>
               {t("h1").split(t("h1Em"))[0]}<br />
-              <em style={{ fontStyle: "italic", color: "#D4956A" }}>{t("h1Em")}</em>
+              <em style={{ fontStyle: "italic", color: "var(--cream)" }}>{t("h1Em")}</em>
             </h1>
             <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.88, maxWidth: "480px", color: "rgba(250,247,240,0.88)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
               {t("heroDesc")}

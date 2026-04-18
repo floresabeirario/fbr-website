@@ -126,7 +126,9 @@
       "Bash(echo \"no middleware found\" ls *.js *.ts *.mjs)",
       "mcp__claude_ai_Vercel__list_deployments",
       "mcp__claude_ai_Vercel__web_fetch_vercel_url",
-      "Bash(curl -s -o /dev/null -w \"%{http_code} -> %{redirect_url}\" https://floresabeirario.pt/api/health)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code} -> %{redirect_url}\" https://floresabeirario.pt/api/health)",
+      "Bash(python3)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }

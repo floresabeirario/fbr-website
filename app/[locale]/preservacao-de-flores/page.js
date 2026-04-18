@@ -21,6 +21,13 @@ function buildSchema(locale) {
       telephone: PHONE,
       email: EMAIL,
       address: { "@type": "PostalAddress", addressLocality: "Coimbra", addressCountry: "PT" },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "5.0",
+        reviewCount: "7",
+        bestRating: "5",
+        worstRating: "1",
+      },
     },
     areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
     serviceType: isEN ? "Flower Preservation" : "Preservação de Flores",
@@ -39,13 +46,6 @@ function buildSchema(locale) {
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "40×50 cm" }, price: "400", priceCurrency: "EUR" },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "50×70 cm" }, price: "500", priceCurrency: "EUR" },
       ],
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5.0",
-      reviewCount: "7",
-      bestRating: "5",
-      worstRating: "1",
     },
   };
 }
