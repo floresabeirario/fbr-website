@@ -267,7 +267,7 @@ export default function OpcoesClient() {
             </p>
             <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem, 6vw, 5rem)", lineHeight: 1.05, color: "var(--cream)", margin: "0 0 clamp(1.2rem, 2.5vw, 1.8rem)" }}>
               {t("heroH1")}<br />
-              <em style={{ fontStyle: "italic", color: VERDE_CLARO }}>{t("heroH1em")}</em>
+              <em style={{ fontStyle: "italic", color: "var(--cream)" }}>{t("heroH1em")}</em>
             </h1>
             <p style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto" }}>
               {t("heroDesc")}

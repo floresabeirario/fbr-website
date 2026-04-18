@@ -22,6 +22,13 @@ function buildSchema(locale) {
       telephone: PHONE,
       email: EMAIL,
       address: { "@type": "PostalAddress", addressLocality: "Coimbra", addressCountry: "PT" },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "5.0",
+        reviewCount: "7",
+        bestRating: "5",
+        worstRating: "1",
+      },
     },
     areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
     serviceType: isEN ? "Flower Preservation Gift" : "Oferta de Preservação de Flores",
@@ -31,13 +38,6 @@ function buildSchema(locale) {
       lowPrice: "300",
       highPrice: "500",
       offerCount: "3",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5.0",
-      reviewCount: "7",
-      bestRating: "5",
-      worstRating: "1",
     },
     url: isEN ? `${SITE_URL}/en/gift-preservation` : `${SITE_URL}/oferecer-preservacao`,
   };

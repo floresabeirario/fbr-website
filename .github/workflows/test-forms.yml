@@ -16,7 +16,7 @@ jobs:
       - name: Chamar endpoint de health check
         id: health
         run: |
-          response=$(curl -s -w "\n%{http_code}" https://floresabeirario.pt/api/health)
+          response=$(curl -sL -w "\n%{http_code}" https://www.floresabeirario.pt/api/health)
           body=$(echo "$response" | head -n -1)
           status=$(echo "$response" | tail -n 1)
 

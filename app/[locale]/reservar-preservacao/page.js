@@ -25,6 +25,13 @@ function buildSchema(locale) {
         addressLocality: "Coimbra",
         addressCountry: "PT",
       },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "5.0",
+        reviewCount: "7",
+        bestRating: "5",
+        worstRating: "1",
+      },
     },
     serviceType: isEN ? "Flower Preservation" : "Preservação de Flores",
     areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
@@ -50,13 +57,6 @@ function buildSchema(locale) {
         "@type": "Reservation",
         name: isEN ? "Flower Preservation Reservation" : "Reserva de Preservação de Flores",
       },
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5.0",
-      reviewCount: "7",
-      bestRating: "5",
-      worstRating: "1",
     },
     url: pageUrl,
   };

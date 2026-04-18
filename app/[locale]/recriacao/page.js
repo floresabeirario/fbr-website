@@ -20,6 +20,13 @@ function buildSchema(locale) {
       telephone: PHONE,
       email: EMAIL,
       address: { "@type": "PostalAddress", addressLocality: "Coimbra", addressCountry: "PT" },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "5.0",
+        reviewCount: "7",
+        bestRating: "5",
+        worstRating: "1",
+      },
     },
     areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
     serviceType: isEN ? "Bouquet Recreation and Preservation" : "Recriação e Preservação de Bouquet",
@@ -30,13 +37,6 @@ function buildSchema(locale) {
       description: isEN
         ? "From €300 for preservation and framing, plus fresh flower cost quoted separately."
         : "A partir de 300€ para preservação e moldura, mais o custo das flores frescas cotado separadamente.",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5.0",
-      reviewCount: "7",
-      bestRating: "5",
-      worstRating: "1",
     },
     url: isEN ? `${SITE_URL}/en/bouquet-recreation` : `${SITE_URL}/recriacao`,
   };
