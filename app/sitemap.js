@@ -1,7 +1,7 @@
 import { getAllPosts } from "@/app/_lib/blog";
 
 export default function sitemap() {
-  const base = "https://floresabeirario.pt";
+  const base = "https://www.floresabeirario.pt";
 
   // Each entry: { pt, en, priority, changeFrequency }
   // PT pages are served without prefix (/), EN pages with (/en/...)
@@ -19,6 +19,7 @@ export default function sitemap() {
     { pt: "/emoldurar-flores-secas",                  en: "/en/frame-dried-flowers",                   priority: 0.75, changeFrequency: "monthly" },
     { pt: "/recriacao",                               en: "/en/bouquet-recreation",                    priority: 0.8,  changeFrequency: "monthly" },
     { pt: "/oferecer-preservacao",                    en: "/en/gift-preservation",                     priority: 0.8,  changeFrequency: "monthly" },
+    { pt: "/reservar-preservacao",                    en: "/en/book-preservation",                     priority: 0.85, changeFrequency: "monthly" },
     { pt: "/vale-presente",                           en: "/en/gift-voucher",                          priority: 0.75, changeFrequency: "monthly" },
     { pt: "/sustentabilidade",                        en: "/en/sustainability",                        priority: 0.7,  changeFrequency: "monthly" },
     { pt: "/perguntas-frequentes",                    en: "/en/faq",                                   priority: 0.8,  changeFrequency: "monthly" },
