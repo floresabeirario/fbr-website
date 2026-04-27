@@ -598,7 +598,7 @@
       {
         "num": "01",
         "title": "Reservar antes do casamento",
-        "desc": "As vagas são limitadas, especialmente entre maio e setembro. Reserve assim que souber a data — guardamos o seu lugar sem compromisso imediato."
+        "desc": "As vagas são limitadas, especialmente entre maio e setembro. Reserve assim que souber a data, guardamos o seu lugar sem compromisso imediato."
       },
       {
         "num": "02",
@@ -634,7 +634,7 @@
       },
       {
         "q": "Qual o prazo máximo para entregar o bouquet depois do casamento?",
-        "a": "Aceitamos bouquets até 5 dias após a cerimónia. O ideal é entregar entre 1 a 3 dias — quanto mais fresco o bouquet, mais opções de composição são possíveis."
+        "a": "Aceitamos bouquets até 5 dias após a cerimónia. O ideal é entregar entre 1 a 3 dias, quanto mais fresco o bouquet, mais opções de composição são possíveis."
       },
       {
         "q": "Como devo conservar o bouquet até o entregar?",
@@ -642,26 +642,26 @@
       },
       {
         "q": "O que posso incluir no quadro além das flores?",
-        "a": "Pode incluir o convite do casamento, votos manuscritos, fitas do bouquet, uma fotografia do dia, ou qualquer elemento com significado especial. Diga-nos o que tem em mente e encontramos uma forma de o integrar."
+        "a": "Pode incluir o convite do casamento, votos manuscritos, fitas do bouquet, uma fotografia, uma jóia ou uma carta com significado especial. Diga-nos o que tem em mente e encontramos uma forma de o integrar."
       },
       {
         "q": "Quanto tempo demora o processo?",
-        "a": "O processo completo — prensagem, composição, aprovação e emolduramento — demora entre 6 a 8 semanas. Trabalhos com elementos adicionais ou de maior dimensão podem demorar um pouco mais."
+        "a": "O processo completo (prensagem, composição, aprovação e emolduramento) demora entre 6 a 8 semanas. Quando a composição estiver pronta, recebe fotografias por email e tem 72 horas para aprovar ou pedir alterações. Trabalhos com elementos adicionais ou de maior dimensão podem demorar um pouco mais."
       },
       {
         "q": "Qual o preço e como funciona o pagamento?",
-        "a": "Os preços começam nos 300€. Consulte a página de opções e preços para ver todos os formatos e acabamentos disponíveis. O pagamento é feito em três prestações ao longo do processo."
+        "a": "Os preços começam nos 300€. Consulte a página de opções e preços para ver todos os formatos e acabamentos disponíveis. O pagamento é feito em três prestações: 30% para reservar a data, 40% na aprovação da composição e 30% na entrega do quadro."
       },
       {
         "q": "Enviam para fora de Portugal?",
-        "a": "Sim. Enviamos para toda a Europa — Espanha, França, Reino Unido, Irlanda, Itália, Bélgica, Países Baixos, Alemanha, Áustria e Suíça, entre outros. O envio é feito com seguro e embalagem especializada."
+        "a": "Sim. Enviamos para toda a Europa: Espanha, França, Reino Unido, Irlanda, Itália, Bélgica, Países Baixos, Alemanha, Áustria e Suíça, entre outros. O envio é feito com seguro e embalagem especializada."
       }
     ],
     "pricingNote": "Ver todas as opções e preços →",
     "featuresPricingNote": "A partir de 300€ · Ver opções e preços →",
     "pricingEyebrow": "Investimento",
     "pricingCtaTitle": "Opções e preços",
-    "pricingCtaDesc": "Antes de reservar, consulte todos os formatos disponíveis — tamanhos, acabamentos e preços. É uma leitura obrigatória para escolher o quadro certo para o seu casamento.",
+    "pricingCtaDesc": "Antes de reservar, consulte todos os formatos disponíveis: tamanhos, acabamentos e preços. É uma leitura obrigatória para escolher o quadro certo para o seu casamento.",
     "pricingCtaBtn": "Ver opções e preços"
   },
   "lutoHomenagem": {

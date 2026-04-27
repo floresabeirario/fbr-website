@@ -598,7 +598,7 @@
       {
         "num": "01",
         "title": "Book before the wedding",
-        "desc": "Slots are limited, especially between May and September. Book as soon as you know the date — we hold your place with no immediate commitment."
+        "desc": "Slots are limited, especially between May and September. Book as soon as you know the date, we hold your place with no immediate commitment."
       },
       {
         "num": "02",
@@ -617,7 +617,7 @@
       }
     ],
     "weekendBadge": "We receive bouquets at the weekend, including Sunday",
-    "weekendNote": "You don't need to wait until Monday to contact us or hand in the bouquet. We are available on Saturdays and Sundays — because that is when weddings happen.",
+    "weekendNote": "You don't need to wait until Monday to contact us or hand in the bouquet. We are available on Saturdays and Sundays, because that is when weddings happen.",
     "reviewsEyebrow": "Verified reviews",
     "reviewsTitle": "What our clients say",
     "faqEyebrow": "Common questions",
@@ -634,7 +634,7 @@
       },
       {
         "q": "What is the maximum time to hand in the bouquet after the wedding?",
-        "a": "We accept bouquets up to 5 days after the ceremony. Ideally within 1 to 3 days — the fresher the bouquet, the more compositional options are available."
+        "a": "We accept bouquets up to 5 days after the ceremony. Ideally within 1 to 3 days, the fresher the bouquet, the more compositional options are available."
       },
       {
         "q": "How should I keep the bouquet until I hand it in?",
@@ -642,26 +642,26 @@
       },
       {
         "q": "What else can I include in the frame?",
-        "a": "You can include the wedding invitation, handwritten vows, bouquet ribbons, a photograph, or any meaningful element. Tell us what you have in mind and we will find a way to incorporate it."
+        "a": "You can include the wedding invitation, handwritten vows, bouquet ribbons, a photograph, a piece of jewellery, a letter, or any meaningful element. Tell us what you have in mind and we will find a way to incorporate it."
       },
       {
         "q": "How long does the process take?",
-        "a": "The full process — pressing, composition, approval and framing — takes 6 to 8 weeks. Larger works or those with additional elements may take slightly longer."
+        "a": "The full process (pressing, composition, approval and framing) takes 6 to 8 weeks. When the composition is ready, you will receive photos by email and have 72 hours to approve or request changes. Larger works or those with additional elements may take slightly longer."
       },
       {
         "q": "What are the prices and how does payment work?",
-        "a": "Prices start from €300. See the options and pricing page for all available formats and finishes. Payment is made in three instalments throughout the process."
+        "a": "Prices start from €300. See the options and pricing page for all available formats and finishes. Payment is made in three instalments: 30% to book your date, 40% when you approve the composition, and 30% on delivery."
       },
       {
         "q": "Do you ship outside Portugal?",
-        "a": "Yes. We ship across Europe — Spain, France, United Kingdom, Ireland, Italy, Belgium, Netherlands, Germany, Austria and Switzerland, among others. Shipping includes insurance and specialist packaging."
+        "a": "Yes. We ship across Europe: Spain, France, United Kingdom, Ireland, Italy, Belgium, Netherlands, Germany, Austria and Switzerland, among others. Shipping includes insurance and specialist packaging."
       }
     ],
     "pricingNote": "See all options & prices →",
     "featuresPricingNote": "From €300 · See options & pricing →",
     "pricingEyebrow": "Investment",
     "pricingCtaTitle": "Options & pricing",
-    "pricingCtaDesc": "Before booking, please browse all available formats — sizes, finishes and prices. Essential reading to choose the right frame for your wedding.",
+    "pricingCtaDesc": "Before booking, please browse all available formats: sizes, finishes and prices. Essential reading to choose the right frame for your wedding.",
     "pricingCtaBtn": "See options & pricing"
   },
   "lutoHomenagem": {
