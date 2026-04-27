@@ -626,7 +626,7 @@
     "faqItems": [
       {
         "q": "How can I hand in the bouquet?",
-        "a": "You can hand it in at our studio in Coimbra, send it by registered post, or request collection from your venue (subject to availability). We are open Monday to Sunday, including weekends."
+        "a": "You can drop it off in person in Coimbra, send it by express courier, or request collection from a location by our team (subject to availability). We receive bouquets Monday to Sunday, including weekends."
       },
       {
         "q": "Do you receive bouquets at the weekend, including Sunday?",
@@ -634,7 +634,7 @@
       },
       {
         "q": "What is the maximum time to hand in the bouquet after the wedding?",
-        "a": "We accept bouquets up to 5 days after the ceremony. Ideally within 1 to 3 days, the fresher the bouquet, the more compositional options are available."
+        "a": "We accept bouquets up to 5 days after the ceremony. Ideally within 1 to 3 days: the fresher the bouquet, the more compositional options are available."
       },
       {
         "q": "How should I keep the bouquet until I hand it in?",
@@ -654,7 +654,7 @@
       },
       {
         "q": "Do you ship outside Portugal?",
-        "a": "Yes. We ship across Europe: Spain, France, United Kingdom, Ireland, Italy, Belgium, Netherlands, Germany, Austria and Switzerland, among others. Shipping includes insurance and specialist packaging."
+        "a": "Yes. We ship across Europe: Spain, France, United Kingdom, Ireland, Italy, Belgium, Netherlands, Germany, Austria and Switzerland, among others. We also ship to the United States, Canada and China. Shipping includes insurance and specialist packaging."
       }
     ],
     "pricingNote": "See all options & prices →",
