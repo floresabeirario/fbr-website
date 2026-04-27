@@ -573,7 +573,94 @@
         "titulo": "Museum quality that lasts decades",
         "desc": "UltraVue® anti-UV glass, acid-free card and adhesive, frame made to measure in Coimbra. The same materials used in museums and professional archives."
       }
-    ]
+    ],
+    "socialProofRating": "5.0 ★★★★★",
+    "socialProofCount": "7 verified Google reviews",
+    "beforeAfterEyebrow": "Before and after",
+    "beforeAfterTitle": "From fresh bouquet to botanical frame",
+    "beforeAfterDesc": "Every petal is treated individually, pressed and composed by hand. The result is a piece that lasts decades, ready to hang on the wall at home.",
+    "beforeAfterAlt": "Before and after: fresh wedding bouquet and the same transformed into a botanical art frame",
+    "galleryEyebrow": "Portfolio",
+    "galleryTitle": "Real work, real brides",
+    "galleryAlts": [
+      "Wedding bouquet preserved in close-up",
+      "Botanical composition of wedding bouquet",
+      "Couple on their wedding day with bouquet",
+      "Pressed flower composition with glass over glass",
+      "Wedding flower frame with black moulding",
+      "Close-up of pressed flowers in botanical composition",
+      "Sunset on the wedding day"
+    ],
+    "processEyebrow": "How it works",
+    "processTitle": "The process, step by step",
+    "processEm": "step by step",
+    "processSteps": [
+      {
+        "num": "01",
+        "title": "Book before the wedding",
+        "desc": "Slots are limited, especially between May and September. Book as soon as you know the date — we hold your place with no immediate commitment."
+      },
+      {
+        "num": "02",
+        "title": "Hand in the bouquet in the days following",
+        "desc": "After the ceremony, hand in the bouquet ideally within 1 to 3 days, up to a maximum of 5. We receive bouquets at the weekend, including Sunday. You don't need to wait until Monday."
+      },
+      {
+        "num": "03",
+        "title": "Approve the composition",
+        "desc": "We send you photographs of the composition by email. You have 72 hours to approve or request changes. Nothing is final without your explicit approval."
+      },
+      {
+        "num": "04",
+        "title": "Receive the frame at home",
+        "desc": "The framed piece arrives carefully packaged, ready to hang. We ship across Europe."
+      }
+    ],
+    "weekendBadge": "We receive bouquets at the weekend, including Sunday",
+    "weekendNote": "You don't need to wait until Monday to contact us or hand in the bouquet. We are available on Saturdays and Sundays — because that is when weddings happen.",
+    "reviewsEyebrow": "Verified reviews",
+    "reviewsTitle": "What our brides say",
+    "faqEyebrow": "Common questions",
+    "faqTitle": "Frequently asked questions",
+    "faqEm": "asked questions",
+    "faqItems": [
+      {
+        "q": "How can I hand in the bouquet?",
+        "a": "You can hand it in at our studio in Coimbra, send it by registered post, or request collection from your venue (subject to availability). We are open Monday to Sunday, including weekends."
+      },
+      {
+        "q": "Do you receive bouquets at the weekend, including Sunday?",
+        "a": "Yes. We know most weddings take place on Saturdays or Sundays, so we are available at the weekend to receive your bouquet. You don't need to wait until Monday to contact us or make the handover."
+      },
+      {
+        "q": "What is the maximum time to hand in the bouquet after the wedding?",
+        "a": "We accept bouquets up to 5 days after the ceremony. Ideally within 1 to 3 days — the fresher the bouquet, the more compositional options are available."
+      },
+      {
+        "q": "How should I keep the bouquet until I hand it in?",
+        "a": "Place it in a vase with fresh water, away from heat and direct sunlight. Do not refrigerate it. If possible, trim the stems slightly before placing them in water."
+      },
+      {
+        "q": "What else can I include in the frame?",
+        "a": "You can include the wedding invitation, handwritten vows, bouquet ribbons, a photograph, or any meaningful element. Tell us what you have in mind and we will find a way to incorporate it."
+      },
+      {
+        "q": "How long does the process take?",
+        "a": "The full process — pressing, composition, approval and framing — takes 6 to 8 weeks. Larger works or those with additional elements may take slightly longer."
+      },
+      {
+        "q": "What are the prices and how does payment work?",
+        "a": "Prices start from €300. See the options and pricing page for all available formats and finishes. Payment is made in three instalments throughout the process."
+      },
+      {
+        "q": "Do you ship outside Portugal?",
+        "a": "Yes. We ship across Europe — Spain, France, United Kingdom, Ireland, Italy, Belgium, Netherlands, Germany, Austria and Switzerland, among others. Shipping includes insurance and specialist packaging."
+      }
+    ],
+    "pricingEyebrow": "Investment",
+    "pricingCtaTitle": "Options & pricing",
+    "pricingCtaDesc": "Before booking, please browse all available formats — sizes, finishes and prices. Essential reading to choose the right frame for your wedding.",
+    "pricingCtaBtn": "See options & pricing"
   },
   "lutoHomenagem": {
     "meta": {

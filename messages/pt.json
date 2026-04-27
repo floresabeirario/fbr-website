@@ -573,7 +573,94 @@
         "titulo": "Qualidade museu que dura décadas",
         "desc": "Vidro UltraVue® anti-UV, cartão e cola de pH neutro, moldura feita à medida em Coimbra. Os mesmos materiais usados em museus e arquivos profissionais."
       }
-    ]
+    ],
+    "socialProofRating": "5,0 ★★★★★",
+    "socialProofCount": "7 avaliações verificadas no Google",
+    "beforeAfterEyebrow": "Antes e depois",
+    "beforeAfterTitle": "Do bouquet fresco ao quadro botânico",
+    "beforeAfterDesc": "Cada pétala é tratada individualmente, prensada e composta à mão. O resultado é uma obra que dura décadas, pronta a pendurar na parede de casa.",
+    "beforeAfterAlt": "Antes e depois: bouquet de noiva fresco e o mesmo transformado em quadro de arte botânica",
+    "galleryEyebrow": "Portefólio",
+    "galleryTitle": "Trabalhos reais, noivas reais",
+    "galleryAlts": [
+      "Bouquet de noiva preservado em close-up",
+      "Composição botânica de bouquet de noiva",
+      "Casal no dia do casamento com bouquet",
+      "Composição de flores prensadas com vidro sobre vidro",
+      "Quadro de flores de casamento com moldura preta",
+      "Close-up de flores prensadas em composição botânica",
+      "Pôr do sol no dia do casamento"
+    ],
+    "processEyebrow": "Como funciona",
+    "processTitle": "O processo, passo a passo",
+    "processEm": "passo a passo",
+    "processSteps": [
+      {
+        "num": "01",
+        "title": "Reservar antes do casamento",
+        "desc": "As vagas são limitadas, especialmente entre maio e setembro. Reserve assim que souber a data — guardamos o seu lugar sem compromisso imediato."
+      },
+      {
+        "num": "02",
+        "title": "Entregar o bouquet nos dias seguintes",
+        "desc": "Após a cerimónia, entregue o bouquet idealmente em 1 a 3 dias, até um máximo de 5. Recebemos ao fim de semana, incluindo ao domingo. Não tem de esperar pela segunda-feira."
+      },
+      {
+        "num": "03",
+        "title": "Aprovação da composição por si",
+        "desc": "Enviamos fotografias da composição por e-mail. Tem 72 horas para aprovar ou pedir alterações. Nada é definitivo sem o seu acordo explícito."
+      },
+      {
+        "num": "04",
+        "title": "Receber o quadro em casa",
+        "desc": "O quadro emoldurado chega cuidadosamente embalado, pronto a pendurar. Enviamos para toda a Europa."
+      }
+    ],
+    "weekendBadge": "Recebemos ao fim de semana, incluindo ao domingo",
+    "weekendNote": "Não tem de esperar pela segunda-feira para nos contactar ou para entregar o bouquet. Estamos disponíveis ao sábado e ao domingo, porque é quando os casamentos acontecem.",
+    "reviewsEyebrow": "Avaliações reais",
+    "reviewsTitle": "O que dizem as nossas noivas",
+    "faqEyebrow": "Dúvidas frequentes",
+    "faqTitle": "Perguntas frequentes",
+    "faqEm": "frequentes",
+    "faqItems": [
+      {
+        "q": "Como posso entregar o bouquet?",
+        "a": "Pode entregar em mãos na nossa oficina em Coimbra, enviar por correio registado, ou solicitar recolha no local da cerimónia (consulte disponibilidade). Recebemos de segunda a domingo, incluindo fins de semana."
+      },
+      {
+        "q": "Recebem bouquets ao fim de semana, incluindo ao domingo?",
+        "a": "Sim. Sabemos que a maioria dos casamentos acontece ao sábado ou ao domingo, por isso estamos disponíveis ao fim de semana para receber o bouquet. Não tem de esperar pela segunda-feira para nos contactar ou para fazer a entrega."
+      },
+      {
+        "q": "Qual o prazo máximo para entregar o bouquet depois do casamento?",
+        "a": "Aceitamos bouquets até 5 dias após a cerimónia. O ideal é entregar entre 1 a 3 dias — quanto mais fresco o bouquet, mais opções de composição são possíveis."
+      },
+      {
+        "q": "Como devo conservar o bouquet até o entregar?",
+        "a": "Coloque-o num vaso com água fresca, longe do calor e da luz solar directa. Não o coloque no frigorífico. Se possível, corte ligeiramente os caules antes de os colocar em água."
+      },
+      {
+        "q": "O que posso incluir no quadro além das flores?",
+        "a": "Pode incluir o convite do casamento, votos manuscritos, fitas do bouquet, uma fotografia do dia, ou qualquer elemento com significado especial. Diga-nos o que tem em mente e encontramos uma forma de o integrar."
+      },
+      {
+        "q": "Quanto tempo demora o processo?",
+        "a": "O processo completo — prensagem, composição, aprovação e emolduramento — demora entre 6 a 8 semanas. Trabalhos com elementos adicionais ou de maior dimensão podem demorar um pouco mais."
+      },
+      {
+        "q": "Qual o preço e como funciona o pagamento?",
+        "a": "Os preços começam nos 300€. Consulte a página de opções e preços para ver todos os formatos e acabamentos disponíveis. O pagamento é feito em três prestações ao longo do processo."
+      },
+      {
+        "q": "Enviam para fora de Portugal?",
+        "a": "Sim. Enviamos para toda a Europa — Espanha, França, Reino Unido, Irlanda, Itália, Bélgica, Países Baixos, Alemanha, Áustria e Suíça, entre outros. O envio é feito com seguro e embalagem especializada."
+      }
+    ],
+    "pricingEyebrow": "Investimento",
+    "pricingCtaTitle": "Opções e preços",
+    "pricingCtaDesc": "Antes de reservar, consulte todos os formatos disponíveis — tamanhos, acabamentos e preços. É uma leitura obrigatória para escolher o quadro certo para o seu casamento.",
+    "pricingCtaBtn": "Ver opções e preços"
   },
   "lutoHomenagem": {
     "meta": {
