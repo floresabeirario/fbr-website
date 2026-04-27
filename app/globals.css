@@ -698,26 +698,17 @@ button:focus-visible {
 /* ── Preservar Bouquet de Noiva — page specific ────────── */
 .bouquet-hero {
   position: relative;
-  min-height: 100svh;
+  height: 100svh;
+  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-image: url('/fotoquadrocloseup2.webp');
-  background-size: cover;
-  background-position: center;
 }
 
-.bouquet-hero-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+.bouquet-hero-img {
   object-fit: cover;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bouquet-hero-video { display: none; }
+  object-position: center;
 }
 
 .bouquet-hero-overlay {
@@ -824,16 +815,60 @@ button:focus-visible {
   .bouquet-before-after-inner { grid-template-columns: 1fr; }
 }
 
-.bouquet-before-after-img-wrap {
-  position: relative;
+.bouquet-before-after-img {
+  width: 100%;
+  height: auto;
+  display: block;
   border-radius: 20px;
-  overflow: hidden;
   box-shadow: 0 20px 60px rgba(30,45,42,0.14);
-  aspect-ratio: 4 / 3;
 }
 
-.bouquet-before-after-img {
-  object-fit: cover;
+.bouquet-pricing-note {
+  margin-top: 24px;
+}
+
+.bouquet-pricing-note-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--terra);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(196,132,107,0.35);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.bouquet-pricing-note-link:hover,
+.bouquet-pricing-note-link:focus-visible {
+  color: var(--green-d);
+  border-bottom-color: var(--green-d);
+}
+
+.bouquet-features-pricing-note {
+  max-width: 1000px;
+  margin: 20px auto 0;
+  text-align: center;
+}
+
+.bouquet-features-pricing-note a {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(61,107,94,0.3);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease;
+}
+
+.bouquet-features-pricing-note a:hover,
+.bouquet-features-pricing-note a:focus-visible {
+  border-bottom-color: var(--green);
 }
 
 /* Gallery */

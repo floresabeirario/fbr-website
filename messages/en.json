@@ -619,7 +619,7 @@
     "weekendBadge": "We receive bouquets at the weekend, including Sunday",
     "weekendNote": "You don't need to wait until Monday to contact us or hand in the bouquet. We are available on Saturdays and Sundays — because that is when weddings happen.",
     "reviewsEyebrow": "Verified reviews",
-    "reviewsTitle": "What our brides say",
+    "reviewsTitle": "What our clients say",
     "faqEyebrow": "Common questions",
     "faqTitle": "Frequently asked questions",
     "faqEm": "asked questions",
@@ -657,6 +657,8 @@
         "a": "Yes. We ship across Europe — Spain, France, United Kingdom, Ireland, Italy, Belgium, Netherlands, Germany, Austria and Switzerland, among others. Shipping includes insurance and specialist packaging."
       }
     ],
+    "pricingNote": "See all options & prices →",
+    "featuresPricingNote": "From €300 · See options & pricing →",
     "pricingEyebrow": "Investment",
     "pricingCtaTitle": "Options & pricing",
     "pricingCtaDesc": "Before booking, please browse all available formats — sizes, finishes and prices. Essential reading to choose the right frame for your wedding.",

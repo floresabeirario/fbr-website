@@ -8,16 +8,6 @@ import BouquetNoivaFAQ from "./BouquetNoivaFAQ";
 
 const fadeUp = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } };
 
-const GALLERY = [
-  { src: "/fotoquadrocloseup2.webp",        index: 0 },
-  { src: "/LaurenJcloseup.webp",            index: 1 },
-  { src: "/historia-casamento-recente.jpg", index: 2 },
-  { src: "/quadrovidrosobrevidro.webp",     index: 3 },
-  { src: "/moldurapreta.webp",              index: 4 },
-  { src: "/fotoquadrocloseup3.webp",        index: 5 },
-  { src: "/sunset.webp",                    index: 6 },
-];
-
 function CheckIcon() {
   return (
     <svg className="momento-feature-icon" width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -29,9 +19,9 @@ function CheckIcon() {
 
 function CalendarIcon() {
   return (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="3" y="4" width="18" height="17" rx="2" stroke="var(--green)" strokeWidth="1.6" />
-      <path d="M3 9h18M8 2v4M16 2v4" stroke="var(--green)" strokeWidth="1.6" strokeLinecap="round" />
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="17" rx="2" stroke="currentColor" strokeWidth="1.7" />
+      <path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
     </svg>
   );
 }
@@ -41,29 +31,25 @@ export default function BouquetNoivaClient() {
   const locale = useLocale();
   const features = t.raw("features");
   const processSteps = t.raw("processSteps");
-  const galleryAlts = t.raw("galleryAlts");
 
-  const bookHref   = locale === "en" ? "/en/book-preservation"    : FORM_URL;
-  const precosHref = locale === "en" ? "/en/options-and-pricing"  : OPCOES_PRECOS_URL;
-  const comoHref   = locale === "en" ? "/en/how-it-works"         : "/como-funciona";
-  const faqHref    = locale === "en" ? "/en/faq"                  : "/perguntas-frequentes";
+  const bookHref   = locale === "en" ? "/en/book-preservation"   : FORM_URL;
+  const precosHref = locale === "en" ? "/en/options-and-pricing" : OPCOES_PRECOS_URL;
+  const comoHref   = locale === "en" ? "/en/how-it-works"        : "/como-funciona";
+  const faqHref    = locale === "en" ? "/en/faq"                 : "/perguntas-frequentes";
 
   return (
     <div className="momento-page">
 
-      {/* ── Hero vídeo ─────────────────────────────────────── */}
+      {/* ── Hero imagem ─────────────────────────────────────── */}
       <section className="bouquet-hero">
-        <video
-          className="bouquet-hero-video"
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/fotoquadrocloseup2.webp"
-          aria-hidden="true"
-        >
-          <source src="/quadrofloresprensadas.webm" type="video/webm" />
-        </video>
+        <Image
+          src="/quadroflores.webp"
+          alt=""
+          fill
+          priority
+          className="bouquet-hero-img"
+          sizes="100vw"
+        />
         <div className="bouquet-hero-overlay" aria-hidden="true" />
         <motion.div {...fadeUp} className="bouquet-hero-content">
           <span className="bouquet-hero-eyebrow">{t("eyebrow")}</span>
@@ -81,7 +67,7 @@ export default function BouquetNoivaClient() {
       </section>
 
       {/* ── Barra de prova social ───────────────────────────── */}
-      <div className="bouquet-proof-bar" aria-label={`${t("socialProofRating")} · ${t("socialProofCount")}`}>
+      <div className="bouquet-proof-bar">
         <span className="bouquet-proof-stars" aria-hidden="true">{t("socialProofRating")}</span>
         <span className="bouquet-proof-text">{t("socialProofCount")}</span>
       </div>
@@ -99,51 +85,21 @@ export default function BouquetNoivaClient() {
             <span className="momento-eyebrow">{t("beforeAfterEyebrow")}</span>
             <h2 className="momento-content-h2">{t("beforeAfterTitle")}</h2>
             <p className="momento-content-p">{t("beforeAfterDesc")}</p>
+            <div className="bouquet-pricing-note">
+              <a href={precosHref} className="bouquet-pricing-note-link">
+                {t("pricingNote")}
+              </a>
+            </div>
           </div>
-          <div className="bouquet-before-after-img-wrap">
-            <Image
-              src="/antesedepois.png"
-              alt={t("beforeAfterAlt")}
-              fill
-              className="bouquet-before-after-img"
-              sizes="(max-width: 768px) 100vw, 58vw"
-            />
-          </div>
+          <Image
+            src="/antesedepois.png"
+            alt={t("beforeAfterAlt")}
+            width={1200}
+            height={700}
+            className="bouquet-before-after-img"
+            sizes="(max-width: 768px) 100vw, 55vw"
+          />
         </motion.div>
-      </section>
-
-      {/* ── Galeria ─────────────────────────────────────────── */}
-      <section className="bouquet-gallery">
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="bouquet-gallery-header"
-        >
-          <span className="momento-eyebrow">{t("galleryEyebrow")}</span>
-          <h2 className="bouquet-gallery-title">{t("galleryTitle")}</h2>
-        </motion.div>
-        <div className="bouquet-gallery-grid">
-          {GALLERY.map((img, i) => (
-            <motion.div
-              key={img.src}
-              initial={{ opacity: 0, scale: 0.97 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.06, duration: 0.6 }}
-              className="bouquet-gallery-item"
-            >
-              <Image
-                src={img.src}
-                alt={galleryAlts[img.index] ?? ""}
-                fill
-                className="bouquet-gallery-img"
-                sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
-              />
-            </motion.div>
-          ))}
-        </div>
       </section>
 
       {/* ── Processo ────────────────────────────────────────── */}
@@ -182,7 +138,12 @@ export default function BouquetNoivaClient() {
       {/* ── Destaque fim de semana ──────────────────────────── */}
       <section className="bouquet-weekend-section">
         <div className="bouquet-weekend-inner">
-          <div className="bouquet-weekend-icon"><CalendarIcon /></div>
+          <div className="bouquet-weekend-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="17" rx="2" stroke="var(--green)" strokeWidth="1.6" />
+              <path d="M3 9h18M8 2v4M16 2v4" stroke="var(--green)" strokeWidth="1.6" strokeLinecap="round" />
+            </svg>
+          </div>
           <div>
             <h3 className="bouquet-weekend-title">{t("weekendBadge")}</h3>
             <p className="bouquet-weekend-desc">{t("weekendNote")}</p>
@@ -209,6 +170,9 @@ export default function BouquetNoivaClient() {
               </div>
             </motion.div>
           ))}
+        </div>
+        <div className="bouquet-features-pricing-note">
+          <a href={precosHref}>{t("featuresPricingNote")}</a>
         </div>
       </section>
 

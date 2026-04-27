@@ -123,14 +123,14 @@ export async function generateMetadata({ params }) {
       title: t("ogTitle"),
       description: t("ogDescription"),
       url: canonicalPath,
-      imagePath: `${SITE_URL}/fotoquadrocloseup2.webp`,
+      imagePath: `${SITE_URL}/og-homepage.jpg`,
       imageAlt: t("ogImageAlt"),
       locale: ogLocale,
     }),
     twitter: buildTwitterCard({
       title: t("ogTitle"),
       description: t("ogDescription"),
-      imagePath: `${SITE_URL}/fotoquadrocloseup2.webp`,
+      imagePath: `${SITE_URL}/og-homepage.jpg`,
     }),
     alternates: buildAlternates("/preservar-bouquet-noiva"),
   };
