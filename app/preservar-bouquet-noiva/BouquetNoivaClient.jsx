@@ -178,12 +178,16 @@ export default function BouquetNoivaClient() {
 
       {/* ── Avaliações Google (Elfsight) ────────────────────── */}
       <section className="bouquet-reviews">
-        <div className="bouquet-reviews-inner">
-          <span className="momento-eyebrow">{t("reviewsEyebrow")}</span>
-          <h2 className="bouquet-reviews-title">{t("reviewsTitle")}</h2>
+        <div className="bouquet-reviews-layout">
+          <div className="bouquet-reviews-inner">
+            <span className="momento-eyebrow">{t("reviewsEyebrow")}</span>
+            <h2 className="bouquet-reviews-title">{t("reviewsTitle")}</h2>
+          </div>
+          <div className="bouquet-reviews-widget">
+            <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
+            <div className="elfsight-app-50e03463-0acc-415f-956d-af31053a03b6" data-elfsight-app-lazy />
+          </div>
         </div>
-        <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
-        <div className="elfsight-app-50e03463-0acc-415f-956d-af31053a03b6" data-elfsight-app-lazy />
       </section>
 
       {/* ── FAQ ─────────────────────────────────────────────── */}
