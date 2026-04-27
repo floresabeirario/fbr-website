@@ -1,9 +1,12 @@
 "use client";
+import Image from "next/image";
+import Script from "next/script";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
-import { FORM_URL, WA_URL_NOIVA } from "../_lib/constants";
+import { FORM_URL, WA_URL_NOIVA, OPCOES_PRECOS_URL } from "../_lib/constants";
+import BouquetNoivaFAQ from "./BouquetNoivaFAQ";
 
-const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } };
+const fadeUp = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } };
 
 function CheckIcon() {
   return (
@@ -14,26 +17,48 @@ function CheckIcon() {
   );
 }
 
+function CalendarIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="17" rx="2" stroke="currentColor" strokeWidth="1.7" />
+      <path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export default function BouquetNoivaClient() {
   const t = useTranslations("bouquetNoiva");
   const locale = useLocale();
   const features = t.raw("features");
+  const processSteps = t.raw("processSteps");
 
-  const bookHref = locale === "en" ? "/en/book-preservation" : FORM_URL;
-  const comoHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
-  const precosHref = locale === "en" ? "/en/options-and-pricing" : "/opcoes-e-precos";
-  const faqHref = locale === "en" ? "/en/faq" : "/perguntas-frequentes";
+  const bookHref   = locale === "en" ? "/en/book-preservation"   : FORM_URL;
+  const precosHref = locale === "en" ? "/en/options-and-pricing" : OPCOES_PRECOS_URL;
+  const comoHref   = locale === "en" ? "/en/how-it-works"        : "/como-funciona";
+  const faqHref    = locale === "en" ? "/en/faq"                 : "/perguntas-frequentes";
 
   return (
     <div className="momento-page">
-      <section className="momento-hero">
-        <motion.div {...anim} className="momento-inner">
-          <span className="momento-eyebrow">{t("eyebrow")}</span>
-          <h1 className="momento-h1">
-            {t("h1").split(t("eyebrow"))[0]}<br />
-            <em>{t("eyebrow")}</em>
-          </h1>
-          <p className="momento-desc">{t("heroDesc")}</p>
+
+      {/* ── Hero imagem ─────────────────────────────────────── */}
+      <section className="bouquet-hero">
+        <Image
+          src="/quadroflores.webp"
+          alt=""
+          fill
+          priority
+          className="bouquet-hero-img"
+          sizes="100vw"
+        />
+        <div className="bouquet-hero-overlay" aria-hidden="true" />
+        <motion.div {...fadeUp} className="bouquet-hero-content">
+          <span className="bouquet-hero-eyebrow">{t("eyebrow")}</span>
+          <h1 className="bouquet-hero-h1">{t("h1")}</h1>
+          <p className="bouquet-hero-desc">{t("heroDesc")}</p>
+          <div className="bouquet-weekend-badge" aria-label={t("weekendBadge")}>
+            <CalendarIcon />
+            <span>{t("weekendBadge")}</span>
+          </div>
           <div className="momento-ctas">
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
             <a href={WA_URL_NOIVA} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
@@ -41,24 +66,92 @@ export default function BouquetNoivaClient() {
         </motion.div>
       </section>
 
-      <section className="momento-content momento-content--warm">
+      {/* ── Barra de prova social ───────────────────────────── */}
+      <div className="bouquet-proof-bar">
+        <span className="bouquet-proof-stars" aria-hidden="true">{t("socialProofRating")}</span>
+        <span className="bouquet-proof-text">{t("socialProofCount")}</span>
+      </div>
+
+      {/* ── Antes e depois ─────────────────────────────────── */}
+      <section className="bouquet-before-after">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.75 }}
-          className="momento-content-inner"
+          className="bouquet-before-after-inner"
         >
-          <span className="momento-eyebrow">{t("eyebrow2")}</span>
-          <h2 className="momento-content-h2">
-            {t("contentTitle").split(t("contentEm"))[0]}<br />
-            <em>{t("contentEm")}</em>
-          </h2>
-          <p className="momento-content-p">{t("p1")}</p>
-          <p className="momento-content-p">{t("p2")}</p>
+          <div>
+            <span className="momento-eyebrow">{t("beforeAfterEyebrow")}</span>
+            <h2 className="momento-content-h2">{t("beforeAfterTitle")}</h2>
+            <p className="momento-content-p">{t("beforeAfterDesc")}</p>
+            <div className="bouquet-pricing-note">
+              <a href={precosHref} className="bouquet-pricing-note-link">
+                {t("pricingNote")}
+              </a>
+            </div>
+          </div>
+          <Image
+            src="/antesedepois.png"
+            alt={t("beforeAfterAlt")}
+            width={1200}
+            height={700}
+            className="bouquet-before-after-img"
+            sizes="(max-width: 768px) 100vw, 55vw"
+          />
         </motion.div>
       </section>
 
+      {/* ── Processo ────────────────────────────────────────── */}
+      <section className="bouquet-process">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="bouquet-process-header"
+        >
+          <span className="momento-eyebrow">{t("processEyebrow")}</span>
+          <h2 className="bouquet-process-title">
+            {t("processTitle").split(t("processEm"))[0]}
+            <em>{t("processEm")}</em>
+          </h2>
+        </motion.div>
+        <div className="bouquet-process-steps">
+          {processSteps.map((step, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.65 }}
+              className="bouquet-process-step"
+            >
+              <div className="bouquet-process-num" aria-hidden="true">{step.num}</div>
+              <h3 className="bouquet-process-step-title">{step.title}</h3>
+              <p className="bouquet-process-step-desc">{step.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Destaque fim de semana ──────────────────────────── */}
+      <section className="bouquet-weekend-section">
+        <div className="bouquet-weekend-inner">
+          <div className="bouquet-weekend-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="17" rx="2" stroke="var(--green)" strokeWidth="1.6" />
+              <path d="M3 9h18M8 2v4M16 2v4" stroke="var(--green)" strokeWidth="1.6" strokeLinecap="round" />
+            </svg>
+          </div>
+          <div>
+            <h3 className="bouquet-weekend-title">{t("weekendBadge")}</h3>
+            <p className="bouquet-weekend-desc">{t("weekendNote")}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Garantias de qualidade ──────────────────────────── */}
       <section className="momento-features">
         <div className="momento-features-grid">
           {features.map((f, i) => (
@@ -78,8 +171,45 @@ export default function BouquetNoivaClient() {
             </motion.div>
           ))}
         </div>
+        <div className="bouquet-features-pricing-note">
+          <a href={precosHref}>{t("featuresPricingNote")}</a>
+        </div>
       </section>
 
+      {/* ── Avaliações Google (Elfsight) ────────────────────── */}
+      <section className="bouquet-reviews">
+        <div className="bouquet-reviews-layout">
+          <div className="bouquet-reviews-inner">
+            <span className="momento-eyebrow">{t("reviewsEyebrow")}</span>
+            <h2 className="bouquet-reviews-title">{t("reviewsTitle")}</h2>
+          </div>
+          <div className="bouquet-reviews-widget">
+            <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
+            <div className="elfsight-app-50e03463-0acc-415f-956d-af31053a03b6" data-elfsight-app-lazy />
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ─────────────────────────────────────────────── */}
+      <BouquetNoivaFAQ />
+
+      {/* ── CTA Opções e Preços ─────────────────────────────── */}
+      <section className="bouquet-pricing-cta">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.75 }}
+          className="bouquet-pricing-cta-inner"
+        >
+          <span className="momento-eyebrow">{t("pricingEyebrow")}</span>
+          <h2 className="bouquet-pricing-cta-title">{t("pricingCtaTitle")}</h2>
+          <p className="momento-content-p">{t("pricingCtaDesc")}</p>
+          <a href={precosHref} className="btn-primary">{t("pricingCtaBtn")}</a>
+        </motion.div>
+      </section>
+
+      {/* ── CTA final ───────────────────────────────────────── */}
       <section className="momento-final-cta">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -88,7 +218,7 @@ export default function BouquetNoivaClient() {
           className="momento-final-cta-inner"
         >
           <h2 className="momento-final-cta-h2">
-            {t("ctaFinalTitle").split(t("ctaFinalEm"))[0]}<br />
+            {t("ctaFinalTitle").split(t("ctaFinalEm"))[0]}
             <em>{t("ctaFinalEm")}</em>
           </h2>
           <p className="momento-final-cta-p">{t("ctaDesc")}</p>

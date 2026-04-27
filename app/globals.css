@@ -695,6 +695,516 @@ button:focus-visible {
   margin: 0 0 32px;
 }
 
+/* ── Preservar Bouquet de Noiva — page specific ────────── */
+.bouquet-hero {
+  position: relative;
+  height: 100svh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bouquet-hero-img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.bouquet-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(20,35,30,0.4) 0%, rgba(20,35,30,0.62) 55%, rgba(20,35,30,0.82) 100%);
+}
+
+.bouquet-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: clamp(130px, 18vw, 190px) 24px clamp(64px, 10vw, 100px);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.bouquet-hero-eyebrow {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: rgba(250,235,210,0.82);
+  margin-bottom: 16px;
+}
+
+.bouquet-hero-h1 {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(2.8rem, 9vw, 5.4rem);
+  color: #FAF7F0;
+  margin: 0 0 24px;
+  line-height: 1.25;
+}
+
+.bouquet-hero-desc {
+  color: rgba(250,247,240,0.86);
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.88;
+  max-width: 560px;
+  margin: 0 auto 28px;
+}
+
+.bouquet-weekend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(250,247,240,0.1);
+  border: 1px solid rgba(250,247,240,0.28);
+  color: rgba(250,247,240,0.9);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+
+/* Social proof bar */
+.bouquet-proof-bar {
+  background: var(--green-d);
+  color: var(--cream);
+  text-align: center;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.bouquet-proof-stars {
+  color: #FFD066;
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+.bouquet-proof-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(250,247,240,0.82);
+}
+
+/* Before / After */
+.bouquet-before-after {
+  padding: clamp(56px, 9vw, 96px) clamp(20px, 5vw, 48px);
+  background: linear-gradient(160deg, var(--cream) 0%, #F5EDE4 100%);
+}
+
+.bouquet-before-after-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: clamp(32px, 6vw, 72px);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .bouquet-before-after-inner { grid-template-columns: 1fr; }
+}
+
+.bouquet-before-after-img {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(30,45,42,0.14);
+}
+
+.bouquet-pricing-note {
+  margin-top: 24px;
+}
+
+.bouquet-pricing-note-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--terra);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(196,132,107,0.35);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.bouquet-pricing-note-link:hover,
+.bouquet-pricing-note-link:focus-visible {
+  color: var(--green-d);
+  border-bottom-color: var(--green-d);
+}
+
+.bouquet-features-pricing-note {
+  max-width: 1000px;
+  margin: 20px auto 0;
+  text-align: center;
+}
+
+.bouquet-features-pricing-note a {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(61,107,94,0.3);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease;
+}
+
+.bouquet-features-pricing-note a:hover,
+.bouquet-features-pricing-note a:focus-visible {
+  border-bottom-color: var(--green);
+}
+
+/* Gallery */
+.bouquet-gallery {
+  padding: clamp(48px, 8vw, 80px) clamp(20px, 4vw, 40px);
+  background-color: var(--cream);
+}
+
+.bouquet-gallery-header {
+  text-align: center;
+  max-width: 540px;
+  margin: 0 auto clamp(32px, 5vw, 52px);
+}
+
+.bouquet-gallery-title {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--green-d);
+  margin: 10px 0 0;
+  line-height: 1.1;
+}
+
+.bouquet-gallery-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 260px;
+  gap: 12px;
+}
+
+.bouquet-gallery-item {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #e8e2da;
+}
+
+.bouquet-gallery-item:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.bouquet-gallery-img {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.bouquet-gallery-item:hover .bouquet-gallery-img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+  .bouquet-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .bouquet-gallery-item:first-child { grid-column: span 2; grid-row: span 1; }
+}
+
+@media (max-width: 600px) {
+  .bouquet-gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+  .bouquet-gallery-item:first-child { grid-column: span 1; }
+}
+
+/* Process steps */
+.bouquet-process {
+  padding: clamp(56px, 9vw, 88px) clamp(20px, 5vw, 48px);
+  background: linear-gradient(160deg, #EDF2E8 0%, var(--cream) 65%);
+}
+
+.bouquet-process-header {
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto clamp(36px, 6vw, 60px);
+}
+
+.bouquet-process-title {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--green-d);
+  margin: 10px 0 0;
+  line-height: 1.1;
+}
+
+.bouquet-process-title em {
+  font-style: italic;
+  color: var(--terra);
+}
+
+.bouquet-process-steps {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 2vw, 20px);
+}
+
+@media (max-width: 840px) {
+  .bouquet-process-steps { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 500px) {
+  .bouquet-process-steps { grid-template-columns: 1fr; }
+}
+
+.bouquet-process-step {
+  background: #fff;
+  border-radius: 18px;
+  padding: clamp(22px, 3vw, 32px);
+  border: 1px solid rgba(61,107,94,0.08);
+  box-shadow: 0 4px 16px rgba(30,45,42,0.05);
+}
+
+.bouquet-process-num {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: 2.4rem;
+  color: rgba(61,107,94,0.14);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.bouquet-process-step-title {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(0.92rem, 1.5vw, 1.05rem);
+  color: var(--green-d);
+  margin: 0 0 10px;
+  line-height: 1.25;
+}
+
+.bouquet-process-step-desc {
+  color: var(--mid);
+  font-size: 0.83rem;
+  line-height: 1.72;
+  margin: 0;
+}
+
+/* Weekend callout */
+.bouquet-weekend-section {
+  padding: clamp(28px, 4.5vw, 48px) clamp(20px, 5vw, 48px);
+  background-color: var(--cream);
+}
+
+.bouquet-weekend-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #EDF2E8 0%, #E6EEE2 100%);
+  border-radius: 20px;
+  padding: clamp(22px, 3.5vw, 36px) clamp(22px, 4vw, 40px);
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  border: 1px solid rgba(61,107,94,0.12);
+}
+
+.bouquet-weekend-icon {
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 12px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(61,107,94,0.1);
+}
+
+.bouquet-weekend-title {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: var(--green-d);
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+.bouquet-weekend-desc {
+  color: var(--mid);
+  font-size: 0.88rem;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* Reviews section */
+.bouquet-reviews {
+  padding: clamp(56px, 9vw, 88px) clamp(20px, 5vw, 48px);
+  background: linear-gradient(160deg, #F5EDE4 0%, var(--cream) 65%);
+}
+
+.bouquet-reviews-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+
+.bouquet-reviews-inner {
+  position: sticky;
+  top: 100px;
+}
+
+.bouquet-reviews-title {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: var(--green-d);
+  margin: 10px 0 0;
+  line-height: 1.15;
+}
+
+.bouquet-reviews-widget {
+  min-width: 0;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .bouquet-reviews-layout { grid-template-columns: 1fr; }
+  .bouquet-reviews-inner { position: static; }
+}
+
+/* FAQ */
+.bouquet-faq {
+  padding: clamp(56px, 9vw, 88px) clamp(20px, 5vw, 48px);
+  background-color: var(--cream);
+}
+
+.bouquet-faq-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.bouquet-faq-header {
+  margin-bottom: clamp(28px, 4.5vw, 48px);
+}
+
+.bouquet-faq-title {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--green-d);
+  margin: 10px 0 0;
+  line-height: 1.1;
+}
+
+.bouquet-faq-title em {
+  font-style: italic;
+  color: var(--terra);
+}
+
+.bouquet-faq-list {
+  border-top: 1px solid rgba(61,107,94,0.14);
+}
+
+.bouquet-faq-item {
+  border-bottom: 1px solid rgba(61,107,94,0.14);
+}
+
+.bouquet-faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: clamp(0.9rem, 1.6vw, 0.98rem);
+  font-weight: 600;
+  color: var(--green-d);
+  line-height: 1.45;
+}
+
+.bouquet-faq-question:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.bouquet-faq-icon {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.bouquet-faq-icon--open {
+  transform: rotate(45deg);
+}
+
+.bouquet-faq-answer {
+  padding: 0 0 20px;
+  color: var(--mid);
+  font-size: 0.9rem;
+  line-height: 1.88;
+  margin: 0;
+}
+
+/* Pricing CTA */
+.bouquet-pricing-cta {
+  padding: clamp(56px, 9vw, 88px) 24px;
+  background: var(--green-d);
+  text-align: center;
+}
+
+.bouquet-pricing-cta-inner {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.bouquet-pricing-cta .momento-eyebrow {
+  color: rgba(250,247,240,0.55);
+}
+
+.bouquet-pricing-cta-title {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--cream);
+  margin: 14px 0 20px;
+  line-height: 1.0;
+}
+
+.bouquet-pricing-cta .momento-content-p {
+  color: rgba(250,247,240,0.78);
+  margin-bottom: 36px;
+}
+
+.bouquet-pricing-cta .btn-primary {
+  background: var(--cream);
+  color: var(--green-d);
+  box-shadow: 0 6px 28px rgba(0,0,0,0.22);
+}
+
+.bouquet-pricing-cta .btn-primary:hover {
+  background: #fff;
+  color: var(--green-d);
+  transform: translateY(-3px);
+}
+
 /* ── Páginas legais (privacidade, termos) ─────────────── */
 .legal-page {
   padding-top: clamp(140px, 18vw, 200px);
