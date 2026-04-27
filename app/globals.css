@@ -741,7 +741,7 @@ button:focus-visible {
   font-size: clamp(2.8rem, 9vw, 5.4rem);
   color: #FAF7F0;
   margin: 0 0 24px;
-  line-height: 1.0;
+  line-height: 1.25;
 }
 
 .bouquet-hero-desc {
