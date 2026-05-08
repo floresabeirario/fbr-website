@@ -1,186 +1,60 @@
 // app/api/reservar-preservacao/route.js
-// Recebe os dados do formulário de reserva de preservação e cria um item no Monday.com via GraphQL.
-// O token fica apenas no servidor — nunca exposto ao browser.
+// ============================================================
+// Recebe os dados do formulário de reserva de preservação e cria
+// uma encomenda na base de dados do admin (Supabase).
+//
+// Histórico:
+//   - até 2026-05-08: gravava no Monday.com via GraphQL.
+//   - 2026-05-08+ : grava directamente em `orders` (Supabase),
+//     que é a fonte de verdade do admin.floresabeirario.pt.
+//
+// Mantém intactas as protecções existentes:
+//   • honeypot (campo "website")
+//   • rate limit (5 pedidos/IP/min, in-memory)
+//   • validações server-side (email, telefone, datas, max length)
+//   • notificação interna por email (Resend) — opcional, depende
+//     de a env var RESEND_API_KEY estar definida.
+//
+// Adicionados nesta migração:
+//   • RGPD: persistência do consentimento (consent_at + version + ip).
+//   • Cloudflare Turnstile (opcional, activa via TURNSTILE_SECRET).
+// ============================================================
 
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
+import { createClient } from "@supabase/supabase-js";
 import {
   escapeHtml,
   createRateLimiter,
-  detectCountryShortName,
   exceedsLength,
 } from "@/app/_lib/api-helpers";
 import { EMAIL } from "@/app/_lib/constants";
+import { mapReservaToOrder } from "@/app/_lib/supabase-mappings";
+import { verifyTurnstile } from "@/app/_lib/turnstile";
 
-const MONDAY_API = "https://api.monday.com/v2";
 const isRateLimited = createRateLimiter();
 
-// ─── Colunas Status (color) neste board rejeitam { label } com missingLabel ──
-// Usamos { index } com os valores confirmados pelos erros da API Monday.
-
-// single_select634naka / color_mm1kz8vz
-// {0: "Sim,...", 2: "Gostava...", 3: "Não,..."}
-function extrasIndex(val) {
-  if (!val) return undefined;
-  const v = val.trim();
-  if (v.startsWith("Sim,")) return 0;
-  if (v.startsWith("Gostava")) return 2;
-  if (v.startsWith("Não,")) return 3;
-  return undefined;
-}
-
-// single_selectif561xw (quadrosExtra)
-// 0=Não, 1=Sim, 2=Gostava
-function quadrosExtraIndex(val) {
-  if (!val) return undefined;
-  const v = val.trim();
-  if (v.startsWith("Não,")) return 0;
-  if (v.startsWith("Sim,")) return 1;
-  if (v.startsWith("Gostava")) return 2;
-  return undefined;
-}
-
-// color_mkq09fxw (tamanho de moldura)
-// {0: 40x50cm, 1: 30x40cm, 2: 50x70cm, 3: Ainda não sei}
-function tamanhoMolduraIndex(val) {
-  if (!val) return undefined;
-  const v = val.trim();
-  if (v === "30x40cm") return 1;
-  if (v === "40x50cm") return 0;
-  if (v === "50x70cm") return 2;
-  if (v.startsWith("Ainda não sei")) return 3;
-  return undefined;
-}
-
-// color_mkq04a2f (comoEnviarFlores)
-// {0: Envio por CTT/..., 1: Entrega em mãos, 2: Recolha no evento, 3: Ainda não sei}
-function comoEnviarFloresIndex(val) {
-  if (!val) return undefined;
-  const v = val.trim();
-  if (v.startsWith("Envio por CTT")) return 0;
-  if (v.startsWith("Entrega em mãos")) return 1;
-  if (v.startsWith("Recolha no evento")) return 2;
-  if (v.startsWith("Ainda não sei")) return 3;
-  return undefined;
-}
-
-// color_mkq0xxf4 (tipo de fundo)
-// {0:Preto, 1:Transparente, 2:Branco, 3:Fotografia, 4:Ainda não sei, 6:Cor, 7:Gostaria}
-function tipoFundoIndex(val) {
-  if (!val) return undefined;
-  const v = val.trim();
-  if (v === "Preto") return 0;
-  if (v.startsWith("Transparente")) return 1;
-  if (v === "Branco") return 2;
-  if (v.startsWith("Fotografia")) return 3;
-  if (v.startsWith("Ainda não sei")) return 4;
-  if (v === "Cor") return 6;
-  if (v.startsWith("Gostaria que fossem")) return 7;
-  return undefined;
-}
-
-function buildColumnValues(data) {
-  const cols = {};
-
-  if (data.meioContacto)
-    cols.color_mks92sp9 = { label: data.meioContacto };
-
-  if (data.email)
-    cols.email_mkq0dm3f = { email: data.email, text: data.email };
-
-  if (data.telefone) {
-    const phoneClean = data.telefone.replace(/\s+/g, "");
-    if (phoneClean.length >= 7)
-      cols.phone_mkq0xfnm = { phone: phoneClean, countryShortName: detectCountryShortName(data.telefone) };
-  }
-
-  if (data.dataEvento)
-    cols.date_mkpzn3z3 = { date: data.dataEvento };
-
-  if (data.tipoFlores)
-    cols.long_text_mkq0e33x = { text: data.tipoFlores };
-
-  if (data.comoEnviarFlores) {
-    const idx = comoEnviarFloresIndex(data.comoEnviarFlores);
-    cols.color_mkq04a2f = idx !== undefined ? { index: idx } : { label: data.comoEnviarFlores };
-  }
-
-  if (data.comoReceberQuadro)
-    cols.color_mkq066bs = { label: data.comoReceberQuadro };
-
-  if (data.tamanhoMoldura) {
-    const idx = tamanhoMolduraIndex(data.tamanhoMoldura);
-    cols.color_mkq09fxw = idx !== undefined ? { index: idx } : { label: data.tamanhoMoldura };
-  }
-
-  if (data.tipoFundo) {
-    const idx = tipoFundoIndex(data.tipoFundo);
-    cols.color_mkq0xxf4 = idx !== undefined ? { index: idx } : { label: data.tipoFundo };
-  }
-
-  if (data.elementosExtra?.length)
-    cols.dropdown_mkq0vepg = { labels: data.elementosExtra };
-
-  if (data.quadrosExtra) {
-    const idx = quadrosExtraIndex(data.quadrosExtra);
-    cols.single_selectif561xw = idx !== undefined ? { index: idx } : { label: data.quadrosExtra };
-  }
-
-  if (data.quantosQuadros)
-    cols.long_textnvi49n07 = { text: String(data.quantosQuadros) };
-
-  if (data.ornamentosNatal) {
-    const idx = extrasIndex(data.ornamentosNatal);
-    cols.single_select634naka = idx !== undefined ? { index: idx } : { label: data.ornamentosNatal };
-  }
-
-  if (data.quantosOrnamentos)
-    cols.text_mm1kx2jh = String(data.quantosOrnamentos);
-
-  if (data.pendentes) {
-    const idx = extrasIndex(data.pendentes);
-    cols.color_mm1kz8vz = idx !== undefined ? { index: idx } : { label: data.pendentes };
-  }
-
-  if (data.quantosPendentes)
-    cols.text_mm1k610f = String(data.quantosPendentes);
-
-  if (data.comoConheceu)
-    cols.color_mkq0n7rp = { label: data.comoConheceu };
-
-  if (data.comoConheceuOutro)
-    cols.long_text_mkq0qwqs = { text: data.comoConheceuOutro };
-
-  if (data.nomeFlorista)
-    cols.long_textyoq9dh7s = { text: data.nomeFlorista };
-
-  if (data.elementosExtraOutro)
-    cols.long_text_mkq090y7 = { text: data.elementosExtraOutro };
-
-  if (data.notasAdicionais)
-    cols.long_text_mkq0z9d = { text: data.notasAdicionais };
-
-  return cols;
-}
-
-// ─── Limites de comprimento para campos de texto livre ───────────────────────
+// ─── Limites de comprimento para campos de texto livre ────────────────────────
 const MAX_LENGTHS = {
-  nome: 200,
-  email: 200,
-  telefone: 30,
-  tipoFlores: 1000,
+  nome:                200,
+  email:               200,
+  telefone:            30,
+  tipoFlores:          1000,
   elementosExtraOutro: 500,
-  notasAdicionais: 2000,
-  comoConheceuOutro: 1000,
-  nomeFlorista: 300,
+  notasAdicionais:     2000,
+  comoConheceuOutro:   1000,
+  nomeFlorista:        300,
 };
 
 export async function POST(request) {
   try {
     // ── Variáveis de ambiente obrigatórias ──────────────────────────────────
-    if (!process.env.MONDAY_BOARD_ID_PRESERVACAO) {
-      console.error("[reservar-preservacao] MONDAY_BOARD_ID_PRESERVACAO not set");
-      return NextResponse.json({ error: "Configuração em falta no servidor." }, { status: 500 });
+    if (!process.env.SUPABASE_URL || !process.env.SUPABASE_ANON_KEY) {
+      console.error("[reservar-preservacao] SUPABASE_URL/ANON_KEY not set");
+      return NextResponse.json(
+        { error: "Configuração em falta no servidor." },
+        { status: 500 }
+      );
     }
 
     // ── Rate limiting ───────────────────────────────────────────────────────
@@ -202,17 +76,35 @@ export async function POST(request) {
       return NextResponse.json({ success: true });
     }
 
+    // ── Cloudflare Turnstile (opcional) ─────────────────────────────────────
+    const turnstileOk = await verifyTurnstile(data.turnstileToken, ip);
+    if (!turnstileOk) {
+      return NextResponse.json(
+        { error: "Verificação anti-spam falhou. Recarregue a página e tente novamente." },
+        { status: 400 }
+      );
+    }
+
     // ── Validação server-side ───────────────────────────────────────────────
     if (!data.nome?.trim() || !data.email?.trim()) {
-      return NextResponse.json({ error: "Campos obrigatórios em falta." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Campos obrigatórios em falta." },
+        { status: 400 }
+      );
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-      return NextResponse.json({ error: "Endereço de e-mail inválido." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Endereço de e-mail inválido." },
+        { status: 400 }
+      );
     }
 
     if (data.telefone && !/^\+?[\d\s\-]{5,30}$/.test(data.telefone)) {
-      return NextResponse.json({ error: "Número de telefone inválido." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Número de telefone inválido." },
+        { status: 400 }
+      );
     }
 
     const overLimit = exceedsLength(data, MAX_LENGTHS);
@@ -223,58 +115,59 @@ export async function POST(request) {
       );
     }
 
-    // Rejeita datas com ano inválido antes de enviar ao Monday
     if (data.dataEvento) {
       const year = parseInt(data.dataEvento.split("-")[0], 10);
       if (isNaN(year) || year > 9999 || year < 1900) {
-        return NextResponse.json({ error: "Data do evento inválida." }, { status: 400 });
+        return NextResponse.json(
+          { error: "Data do evento inválida." },
+          { status: 400 }
+        );
       }
+    }
+
+    // RGPD — checkbox de Termos e Condições é obrigatória pelo form,
+    // mas validamos também aqui para defesa em profundidade.
+    if (data.termosCondicoes !== true) {
+      return NextResponse.json(
+        { error: "Tem de aceitar os Termos e Condições para continuar." },
+        { status: 400 }
+      );
     }
 
     console.log("[reservar-preservacao] new submission from:", ip);
 
-    const columnValues = buildColumnValues(data);
-
-    const query = `
-      mutation {
-        create_item(
-          board_id: ${process.env.MONDAY_BOARD_ID_PRESERVACAO}
-          item_name: ${JSON.stringify(data.nome)}
-          column_values: ${JSON.stringify(JSON.stringify(columnValues))}
-        ) {
-          id
-        }
-      }
-    `;
-
-    const res = await fetch(MONDAY_API, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.MONDAY_API_TOKEN}`,
-        "Content-Type": "application/json",
-        "API-Version": "2024-10",
-      },
-      body: JSON.stringify({ query }),
-    });
-
-    const json = await res.json();
-
-    if (json.errors?.length) {
-      console.error("Monday API errors:", JSON.stringify(json.errors, null, 2));
+    // ── Mapeia e insere ─────────────────────────────────────────────────────
+    const { payload, errors } = mapReservaToOrder(data, { ip });
+    if (errors.length) {
+      console.error("[reservar-preservacao] mapping errors:", errors);
       return NextResponse.json(
-        { error: "Erro ao registar no sistema." },
+        { error: `Valores inválidos em: ${errors.join(", ")}` },
+        { status: 400 }
+      );
+    }
+
+    const supabase = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_ANON_KEY,
+      { auth: { persistSession: false } }
+    );
+
+    const { data: inserted, error: dbError } = await supabase
+      .from("orders")
+      .insert(payload)
+      .select("id, order_id")
+      .single();
+
+    if (dbError) {
+      console.error("[reservar-preservacao] supabase error:", dbError);
+      return NextResponse.json(
+        { error: "Erro ao registar a reserva. Tente novamente em instantes." },
         { status: 500 }
       );
     }
 
-    if (!json.data?.create_item?.id) {
-      console.error("Monday unexpected response:", JSON.stringify(json, null, 2));
-      return NextResponse.json({ error: "Resposta inesperada do sistema." }, { status: 500 });
-    }
-
     // ── Notificação por e-mail (Resend) ─────────────────────────────────────
     // Falha silenciosamente se a chave não estiver configurada.
-    // escapeHtml() previne XSS no cliente de e-mail da destinatária.
     if (process.env.RESEND_API_KEY) {
       const e = (v) =>
         escapeHtml(!v || (Array.isArray(v) && !v.length) ? "—" : Array.isArray(v) ? v.join(", ") : v);
@@ -282,6 +175,7 @@ export async function POST(request) {
       const idiomaLabel = data.locale === "en" ? "Inglês" : "Português";
 
       const linhas = [
+        `<tr><td><strong>ID</strong></td><td><code>${escapeHtml(inserted.order_id)}</code></td></tr>`,
         `<tr><td><strong>Idioma da reserva</strong></td><td>${idiomaLabel}</td></tr>`,
         `<tr><td><strong>Nome</strong></td><td>${e(data.nome)}</td></tr>`,
         `<tr><td><strong>Meio de contacto</strong></td><td>${e(data.meioContacto)}</td></tr>`,
@@ -319,6 +213,9 @@ export async function POST(request) {
             to: [EMAIL],
             subject: `Nova pré-reserva de preservação | ${data.nome}`,
             html: `<h2 style="font-family:sans-serif;color:#5A1E38;">Nova pré-reserva de preservação</h2>
+<p style="font-family:sans-serif;font-size:13px;color:#666;">
+  Veja no admin: <a href="https://admin.floresabeirario.pt/preservacao/${escapeHtml(inserted.order_id)}">${escapeHtml(inserted.order_id)}</a>
+</p>
 <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse;width:100%;max-width:600px;">
   <tbody style="line-height:1.7;">${linhas}</tbody>
 </table>`,
@@ -329,7 +226,7 @@ export async function POST(request) {
       }
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, orderId: inserted.order_id });
   } catch (err) {
     console.error("Reservar preservacao route error:", err);
     return NextResponse.json({ error: "Erro interno." }, { status: 500 });
