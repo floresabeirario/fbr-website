@@ -170,7 +170,6 @@ export default function ReservarPreservacaoForm() {
   const showCodigoVale        = form.comoConheceu    === VALE_VALOR;
   const showNomeNoivos        = form.tipoEvento      === CASAMENTO_VALOR;
   const showElementosExtraOutro = form.elementosExtra.includes(ELEM_OUTRO);
-  const today = new Date().toISOString().split("T")[0];
 
   function validate() {
     const e = {};
@@ -187,18 +186,29 @@ export default function ReservarPreservacaoForm() {
     }
     if (!form.tipoEvento)         e.tipoEvento = t("erroCampoObrigatorio");
     if (showNomeNoivos && !form.nomeNoivos.trim()) e.nomeNoivos = t("erroCampoObrigatorio");
-    if (!form.localEvento.trim()) e.localEvento = t("erroCampoObrigatorio");
     if (!form.comoEnviarFlores)   e.comoEnviarFlores = t("erroCampoObrigatorio");
     if (!form.comoReceberQuadro)  e.comoReceberQuadro = t("erroCampoObrigatorio");
     if (!form.tamanhoMoldura)     e.tamanhoMoldura = t("erroCampoObrigatorio");
     if (!form.tipoFundo)          e.tipoFundo = t("erroCampoObrigatorio");
     if (!form.elementosExtra.length) e.elementosExtra = t("erroSelecioneOpcao");
     if (!form.quadrosExtra)       e.quadrosExtra = t("erroCampoObrigatorio");
-    if (showQuantosQuadros && !form.quantosQuadros.toString().trim()) e.quantosQuadros = t("erroCampoObrigatorio");
-    if (showQuantosOrnamentos && !form.quantosOrnamentos.trim())      e.quantosOrnamentos = t("erroCampoObrigatorio");
+    if (showQuantosQuadros) {
+      const v = form.quantosQuadros.toString().trim();
+      if (!v) e.quantosQuadros = t("erroCampoObrigatorio");
+      else if (parseInt(v, 10) < 1) e.quantosQuadros = t("erroQuantidadeMinima");
+    }
     if (!form.ornamentosNatal)    e.ornamentosNatal = t("erroCampoObrigatorio");
+    if (showQuantosOrnamentos) {
+      const v = form.quantosOrnamentos.toString().trim();
+      if (!v) e.quantosOrnamentos = t("erroCampoObrigatorio");
+      else if (parseInt(v, 10) < 1) e.quantosOrnamentos = t("erroQuantidadeMinima");
+    }
     if (!form.pendentes)          e.pendentes = t("erroCampoObrigatorio");
-    if (showQuantosPendentes && !form.quantosPendentes.trim()) e.quantosPendentes = t("erroCampoObrigatorio");
+    if (showQuantosPendentes) {
+      const v = form.quantosPendentes.toString().trim();
+      if (!v) e.quantosPendentes = t("erroCampoObrigatorio");
+      else if (parseInt(v, 10) < 1) e.quantosPendentes = t("erroQuantidadeMinima");
+    }
     if (!form.comoConheceu)       e.comoConheceu = t("erroCampoObrigatorio");
     if (showNomeFlorista && !form.nomeFlorista.trim())         e.nomeFlorista = t("erroCampoObrigatorio");
     if (showComoConheceuOutro && !form.comoConheceuOutro.trim()) e.comoConheceuOutro = t("erroCampoObrigatorio");
@@ -311,7 +321,7 @@ export default function ReservarPreservacaoForm() {
         <h2 className="pf-section-title" id="sec-evento">{t("secEvento")}</h2>
 
         <Field label={t("dataEventoLabel")} required error={errors.dataEvento} hint={t("dataEventoHint")}>
-          <input type="date" {...inp("dataEvento")} min={today} max="2099-12-31" />
+          <input type="date" {...inp("dataEvento")} min="2020-01-01" max="2099-12-31" />
         </Field>
 
         <Field label={t("tipoEventoLabel")} required error={errors.tipoEvento} hint={t("tipoEventoHint")}>
@@ -329,7 +339,7 @@ export default function ReservarPreservacaoForm() {
           </Field>
         )}
 
-        <Field label={t("localEventoLabel")} required error={errors.localEvento} hint={t("localEventoHint")}>
+        <Field label={t("localEventoLabel")} error={errors.localEvento} hint={t("localEventoHint")}>
           <input type="text" {...inp("localEvento")} placeholder={t("localEventoPlaceholder")} autoComplete="off" />
         </Field>
 
@@ -553,7 +563,7 @@ export default function ReservarPreservacaoForm() {
           </Field>
         )}
 
-        <Field label={t("notasLabel")}>
+        <Field label={t("notasLabel")} hint={t("notasHint")}>
           <textarea {...inp("notasAdicionais")} rows={4} placeholder={t("notasPlaceholder")} />
         </Field>
 

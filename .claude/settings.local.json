@@ -128,7 +128,8 @@
       "mcp__claude_ai_Vercel__web_fetch_vercel_url",
       "Bash(curl -s -o /dev/null -w \"%{http_code} -> %{redirect_url}\" https://floresabeirario.pt/api/health)",
       "Bash(python3)",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "PowerShell(npm run build)"
     ]
   }
 }
