@@ -769,6 +769,33 @@ button:focus-visible {
   backdrop-filter: blur(8px);
 }
 
+@media (max-width: 600px) {
+  .bouquet-hero-content {
+    padding-top: 80px;
+    padding-bottom: 28px;
+  }
+  .bouquet-hero-h1 {
+    font-size: clamp(1.9rem, 7vw, 2.8rem);
+    margin-bottom: 12px;
+  }
+  .bouquet-hero-desc {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .bouquet-weekend-badge {
+    flex-direction: column;
+    gap: 4px;
+    white-space: normal;
+    text-align: center;
+    max-width: 100%;
+    letter-spacing: 1px;
+    font-size: 0.6rem;
+    margin-bottom: 16px;
+    padding: 8px 14px;
+  }
+}
+
 /* Social proof bar */
 .bouquet-proof-bar {
   background: var(--green-d);
