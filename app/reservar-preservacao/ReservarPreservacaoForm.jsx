@@ -13,6 +13,9 @@ const INIT = {
   telefoneIndicativo: "+351",
   telefone: "",
   dataEvento: "",
+  tipoEvento: "",
+  nomeNoivos: "",
+  localEvento: "",
   tipoFlores: "",
   comoEnviarFlores: "",
   comoReceberQuadro: "",
@@ -29,6 +32,7 @@ const INIT = {
   comoConheceu: "",
   comoConheceuOutro: "",
   nomeFlorista: "",
+  codigoValePresente: "",
   notasAdicionais: "",
   termosCondicoes: false,
   // Honeypot — invisível para humanos, bots costumam preencher
@@ -87,6 +91,7 @@ export default function ReservarPreservacaoForm() {
   const comoReceberOpcoes   = t.raw("comoReceberOpcoes");
   const tamanhoOpcoes       = t.raw("tamanhoOpcoes");
   const fundoOpcoes         = t.raw("fundoOpcoes");
+  const tipoEventoOpcoes    = t.raw("tipoEventoOpcoes");
 
   // O primeiro elemento é o exclusivo "sem extras"; o último é "Outro"
   const ELEM_NENHUM = elementosOpcoes[0].valor;
@@ -98,6 +103,8 @@ export default function ReservarPreservacaoForm() {
   const PENDENTES_SIM  = pendentesOpcoes[1].valor;
   const FLORISTA_VALOR = comoConheceuOpcoes.find((o) => o.valor === "Recomendação de florista")?.valor ?? "Recomendação de florista";
   const OUTRO_VALOR    = comoConheceuOpcoes.find((o) => o.valor === "Outro (especificar abaixo)")?.valor ?? "Outro (especificar abaixo)";
+  const VALE_VALOR     = comoConheceuOpcoes.find((o) => o.valor === "Ofereceram-me um Vale-Presente para preservação")?.valor ?? "Ofereceram-me um Vale-Presente para preservação";
+  const CASAMENTO_VALOR = tipoEventoOpcoes.find((o) => o.valor === "Casamento")?.valor ?? "Casamento";
 
   // Hrefs localizados para links internos nos hints
   const comoFuncionaHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
@@ -115,9 +122,11 @@ export default function ReservarPreservacaoForm() {
       if (key === "quadrosExtra"   && val !== QUADROS_SIM)    next.quantosQuadros   = "";
       if (key === "ornamentosNatal" && val !== ORNAMENTOS_SIM) next.quantosOrnamentos = "";
       if (key === "pendentes"       && val !== PENDENTES_SIM)  next.quantosPendentes  = "";
+      if (key === "tipoEvento"      && val !== CASAMENTO_VALOR) next.nomeNoivos       = "";
       if (key === "comoConheceu") {
         next.comoConheceuOutro = "";
         next.nomeFlorista = "";
+        next.codigoValePresente = "";
       }
       return next;
     });
@@ -158,6 +167,8 @@ export default function ReservarPreservacaoForm() {
   const showQuantosPendentes  = form.pendentes       === PENDENTES_SIM;
   const showComoConheceuOutro = form.comoConheceu    === OUTRO_VALOR;
   const showNomeFlorista      = form.comoConheceu    === FLORISTA_VALOR;
+  const showCodigoVale        = form.comoConheceu    === VALE_VALOR;
+  const showNomeNoivos        = form.tipoEvento      === CASAMENTO_VALOR;
   const showElementosExtraOutro = form.elementosExtra.includes(ELEM_OUTRO);
   const today = new Date().toISOString().split("T")[0];
 
@@ -174,6 +185,9 @@ export default function ReservarPreservacaoForm() {
       const year = parseInt(form.dataEvento.split("-")[0], 10);
       if (isNaN(year) || year < 2020 || year > 2099) e.dataEvento = t("erroDataInvalida");
     }
+    if (!form.tipoEvento)         e.tipoEvento = t("erroCampoObrigatorio");
+    if (showNomeNoivos && !form.nomeNoivos.trim()) e.nomeNoivos = t("erroCampoObrigatorio");
+    if (!form.localEvento.trim()) e.localEvento = t("erroCampoObrigatorio");
     if (!form.comoEnviarFlores)   e.comoEnviarFlores = t("erroCampoObrigatorio");
     if (!form.comoReceberQuadro)  e.comoReceberQuadro = t("erroCampoObrigatorio");
     if (!form.tamanhoMoldura)     e.tamanhoMoldura = t("erroCampoObrigatorio");
@@ -188,6 +202,7 @@ export default function ReservarPreservacaoForm() {
     if (!form.comoConheceu)       e.comoConheceu = t("erroCampoObrigatorio");
     if (showNomeFlorista && !form.nomeFlorista.trim())         e.nomeFlorista = t("erroCampoObrigatorio");
     if (showComoConheceuOutro && !form.comoConheceuOutro.trim()) e.comoConheceuOutro = t("erroCampoObrigatorio");
+    if (showCodigoVale && !form.codigoValePresente.trim())     e.codigoValePresente = t("erroCampoObrigatorio");
     if (!form.termosCondicoes)    e.termosCondicoes = t("erroTermos");
     return e;
   }
@@ -297,6 +312,25 @@ export default function ReservarPreservacaoForm() {
 
         <Field label={t("dataEventoLabel")} required error={errors.dataEvento} hint={t("dataEventoHint")}>
           <input type="date" {...inp("dataEvento")} min={today} max="2099-12-31" />
+        </Field>
+
+        <Field label={t("tipoEventoLabel")} required error={errors.tipoEvento} hint={t("tipoEventoHint")}>
+          <select {...inp("tipoEvento")}>
+            <option value="">{t("escolha")}</option>
+            {tipoEventoOpcoes.map((o) => (
+              <option key={o.valor} value={o.valor}>{o.label}</option>
+            ))}
+          </select>
+        </Field>
+
+        {showNomeNoivos && (
+          <Field label={t("nomeNoivosLabel")} required error={errors.nomeNoivos} hint={t("nomeNoivosHint")}>
+            <input type="text" {...inp("nomeNoivos")} placeholder={t("nomeNoivosPlaceholder")} />
+          </Field>
+        )}
+
+        <Field label={t("localEventoLabel")} required error={errors.localEvento} hint={t("localEventoHint")}>
+          <input type="text" {...inp("localEvento")} placeholder={t("localEventoPlaceholder")} autoComplete="off" />
         </Field>
 
         <Field label={t("tipoFloresLabel")} hint={t("tipoFloresHint")}>
@@ -510,6 +544,12 @@ export default function ReservarPreservacaoForm() {
         {showComoConheceuOutro && (
           <Field label={t("comoConheceuOutroLabel")} required error={errors.comoConheceuOutro}>
             <textarea {...inp("comoConheceuOutro")} rows={3} />
+          </Field>
+        )}
+
+        {showCodigoVale && (
+          <Field label={t("codigoValeLabel")} required error={errors.codigoValePresente} hint={t("codigoValeHint")}>
+            <input type="text" {...inp("codigoValePresente")} placeholder={t("codigoValePlaceholder")} autoComplete="off" maxLength={20} />
           </Field>
         )}
 
