@@ -20,6 +20,9 @@ const INIT = {
   entregaRemetenteComo: "",
   morada: "",
   contactoDestinatario: "",
+  contactoDestinatarioTipo: "email", // "email" | "whatsapp"
+  contactoDestinatarioIndicativo: "+351",
+  contactoDestinatarioNumero: "",
   dataEnvio: "",
   comentarios: "",
   comoConheceu: "",
@@ -89,6 +92,7 @@ export default function ValeApresenteForm() {
   const [form, setForm] = useState(INIT);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
+  const [submitError, setSubmitError] = useState("");
   const successRef = useRef(null);
 
   const set = (key, val) => {
@@ -146,7 +150,15 @@ export default function ValeApresenteForm() {
     if (!form.tipoVale)         e.tipoVale = t("erroCampoObrigatorio");
     if (showEntregaRemetenteComo && !form.entregaRemetenteComo) e.entregaRemetenteComo = t("erroCampoObrigatorio");
     if (showMorada && !form.morada.trim())                      e.morada = t("erroCampoObrigatorio");
-    if (showContactoDestinatario && !form.contactoDestinatario.trim()) e.contactoDestinatario = t("erroCampoObrigatorio");
+    if (showContactoDestinatario) {
+      if (form.contactoDestinatarioTipo === "whatsapp") {
+        if (!form.contactoDestinatarioNumero.trim()) e.contactoDestinatario = t("erroCampoObrigatorio");
+        else if (!/^[\d\s\-]{5,20}$/.test(form.contactoDestinatarioNumero)) e.contactoDestinatario = t("erroTelefoneInvalido");
+      } else {
+        if (!form.contactoDestinatario.trim()) e.contactoDestinatario = t("erroCampoObrigatorio");
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.contactoDestinatario)) e.contactoDestinatario = t("erroEmailInvalido");
+      }
+    }
     if (form.dataEnvio) {
       const year = parseInt(form.dataEnvio.split("-")[0], 10);
       if (isNaN(year) || year < 2020 || year > 2099) e.dataEnvio = t("erroDataInvalida");
@@ -176,15 +188,26 @@ export default function ValeApresenteForm() {
           telefone: form.telefone.trim()
             ? `${form.telefoneIndicativo}${form.telefone.trim()}`
             : "",
+          contactoDestinatario: form.contactoDestinatarioTipo === "whatsapp"
+            ? (form.contactoDestinatarioNumero.trim()
+              ? `${form.contactoDestinatarioIndicativo}${form.contactoDestinatarioNumero.trim()}`
+              : "")
+            : form.contactoDestinatario.trim(),
           locale,
         }),
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(JSON.stringify(json));
+      if (!res.ok) {
+        const serverMsg = (json && (json.error || json.message)) || "";
+        const err = new Error(serverMsg || "submit-failed");
+        err.serverMsg = serverMsg;
+        throw err;
+      }
       setStatus("success");
       setTimeout(() => successRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
     } catch (err) {
       console.error("[vale-presente] submit error:", err);
+      setSubmitError(err?.serverMsg || "");
       setStatus("error");
     }
   }
@@ -326,7 +349,50 @@ export default function ValeApresenteForm() {
 
         {showContactoDestinatario && (
           <Field label={t("emailDestinatarioLabel")} required error={errors.contactoDestinatario} hint={t("emailDestinatarioHint")}>
-            <input type="text" {...inp("contactoDestinatario")} placeholder={t("emailDestinatarioPlaceholder")} />
+            <div className="vf-contacto-toggle" role="tablist" aria-label={t("emailDestinatarioLabel")}>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={form.contactoDestinatarioTipo === "email"}
+                className={`vf-toggle-btn${form.contactoDestinatarioTipo === "email" ? " vf-toggle-active" : ""}`}
+                onClick={() => set("contactoDestinatarioTipo", "email")}
+              >
+                {t("destinatarioTipoEmail")}
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={form.contactoDestinatarioTipo === "whatsapp"}
+                className={`vf-toggle-btn${form.contactoDestinatarioTipo === "whatsapp" ? " vf-toggle-active" : ""}`}
+                onClick={() => set("contactoDestinatarioTipo", "whatsapp")}
+              >
+                {t("destinatarioTipoWhatsapp")}
+              </button>
+            </div>
+            {form.contactoDestinatarioTipo === "email" ? (
+              <input
+                type="email"
+                {...inp("contactoDestinatario")}
+                placeholder={t("emailDestinatarioPlaceholder")}
+                autoComplete="email"
+              />
+            ) : (
+              <div className="vf-phone-wrap">
+                <PhonePrefix
+                  value={form.contactoDestinatarioIndicativo}
+                  onChange={(code) => set("contactoDestinatarioIndicativo", code)}
+                  btnClassName="vf-input vf-phone-prefix"
+                />
+                <input
+                  type="tel"
+                  value={form.contactoDestinatarioNumero}
+                  onChange={(e) => set("contactoDestinatarioNumero", e.target.value)}
+                  className={`vf-input vf-phone-number${errors.contactoDestinatario ? " vf-input-err" : ""}`}
+                  placeholder={t("destinatarioTelefonePlaceholder")}
+                  autoComplete="tel-national"
+                />
+              </div>
+            )}
           </Field>
         )}
 
@@ -387,7 +453,7 @@ export default function ValeApresenteForm() {
 
       {status === "error" && (
         <p className="vf-submit-error" role="alert">
-          {t("erroEnvio")}
+          {submitError ? `${submitError} ` : ""}{t("erroEnvio")}
         </p>
       )}
 

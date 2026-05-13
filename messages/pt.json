@@ -1395,7 +1395,7 @@
     "codigoValeHint": "Indique-nos o código presente no seu vale para que possamos validar a oferta.",
     "codigoValePlaceholder": "Ex.: A4F8K2",
     "notasLabel": "Notas adicionais (opcional)",
-    "notasHint": "Se tiver preferências de design, indique aqui. Após a preservação, enviamos-lhe foto com a disposição das flores sem estarem coladas, para que possa pedir os ajustes que sentir necessários antes da finalização definitiva do quadro.",
+    "notasHint": "Se tiver preferências de design, indique aqui. Após a preservação, enviamos-lhe sempre uma foto com a disposição das flores sem estarem coladas, para que possa pedir os ajustes que sentir necessários antes da finalização definitiva do quadro.",
     "notasPlaceholder": "Se tiver algum comentário ou pedido especial, escreva aqui.",
     "termosLabel": "Concordo com os",
     "termosLink": "Termos e Condições",
@@ -1410,8 +1410,8 @@
         "label": "Envio por CTT/transportadora para o estúdio (custos a cargo do cliente)"
       },
       {
-        "valor": "Recolha no evento por parte da Flores à Beira-Rio - mediante orçamento e disponibilidade",
-        "label": "Recolha no evento por parte da Flores à Beira-Rio (mediante orçamento e disponibilidade)"
+        "valor": "Recolha no local por parte da Flores à Beira-Rio - mediante orçamento e disponibilidade",
+        "label": "Recolha no local por parte da Flores à Beira-Rio (mediante orçamento e disponibilidade)"
       },
       {
         "valor": "Ainda não sei",
@@ -1563,6 +1563,10 @@
         "label": "Recomendação de alguém que já contratou o serviço"
       },
       {
+        "valor": "Recomendação de uma IA (ChatGPT, Gemini, etc.)",
+        "label": "Recomendação de IA (ChatGPT, Gemini, etc.)"
+      },
+      {
         "valor": "Outro (especificar abaixo)",
         "label": "Outro (especificar abaixo)"
       }
@@ -1660,7 +1664,10 @@
     "moradaLabel": "Morada para envio",
     "moradaPlaceholder": "Rua, número, andar, código postal, localidade",
     "emailDestinatarioLabel": "E-mail ou WhatsApp do destinatário",
-    "emailDestinatarioPlaceholder": "email@exemplo.pt ou +351 912 345 678",
+    "emailDestinatarioPlaceholder": "email@exemplo.pt",
+    "destinatarioTelefonePlaceholder": "912 345 678",
+    "destinatarioTipoEmail": "E-mail",
+    "destinatarioTipoWhatsapp": "WhatsApp",
     "emailDestinatarioHint": "Utilizado apenas para enviar o vale.",
     "dataEnvioLabel": "Data ideal para envio",
     "dataEnvioHint": "Deixe em branco se for indiferente.",
@@ -1714,6 +1721,10 @@
       {
         "valor": "recomendacao-cliente",
         "label": "Recomendação de alguém que já contratou o serviço"
+      },
+      {
+        "valor": "recomendacao-ia",
+        "label": "Recomendação de IA (ChatGPT, Gemini, etc.)"
       },
       {
         "valor": "instagram",
