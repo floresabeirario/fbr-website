@@ -1395,7 +1395,7 @@
     "codigoValeHint": "Please give us the code on your gift voucher so we can validate the offer.",
     "codigoValePlaceholder": "E.g.: A4F8K2",
     "notasLabel": "Additional notes (optional)",
-    "notasHint": "If you have any design preferences, please indicate them here. After preservation, we'll send you a photo of the flower arrangement before they are glued, so you can request any adjustments you wish before the final finishing of the frame.",
+    "notasHint": "If you have any design preferences, please indicate them here. After preservation, we'll always send you a photo of the flower arrangement before they are glued, so you can request any adjustments you wish before the final finishing of the frame.",
     "notasPlaceholder": "If you have any comments or special requests, write them here.",
     "termosLabel": "I agree to the",
     "termosLink": "Terms and Conditions",
@@ -1410,7 +1410,7 @@
         "label": "Post via courier to the studio (shipping costs at client's expense)"
       },
       {
-        "valor": "Recolha no evento por parte da Flores à Beira-Rio - mediante orçamento e disponibilidade",
+        "valor": "Recolha no local por parte da Flores à Beira-Rio - mediante orçamento e disponibilidade",
         "label": "Collection at the venue by Flores à Beira-Rio (subject to quote and availability)"
       },
       {
@@ -1563,6 +1563,10 @@
         "label": "Recommendation from someone who has used the service"
       },
       {
+        "valor": "Recomendação de uma IA (ChatGPT, Gemini, etc.)",
+        "label": "AI recommendation (ChatGPT, Gemini, etc.)"
+      },
+      {
         "valor": "Outro (especificar abaixo)",
         "label": "Other (specify below)"
       }
@@ -1660,7 +1664,10 @@
     "moradaLabel": "Delivery address",
     "moradaPlaceholder": "Street, number, floor, postcode, city",
     "emailDestinatarioLabel": "Recipient's email or WhatsApp",
-    "emailDestinatarioPlaceholder": "email@example.com or +351 912 345 678",
+    "emailDestinatarioPlaceholder": "email@example.com",
+    "destinatarioTelefonePlaceholder": "912 345 678",
+    "destinatarioTipoEmail": "Email",
+    "destinatarioTipoWhatsapp": "WhatsApp",
     "emailDestinatarioHint": "Used only to send the voucher.",
     "dataEnvioLabel": "Preferred send date",
     "dataEnvioHint": "Leave blank if you have no preference.",
@@ -1714,6 +1721,10 @@
       {
         "valor": "recomendacao-cliente",
         "label": "Recommendation from someone who has used the service"
+      },
+      {
+        "valor": "recomendacao-ia",
+        "label": "AI recommendation (ChatGPT, Gemini, etc.)"
       },
       {
         "valor": "instagram",
