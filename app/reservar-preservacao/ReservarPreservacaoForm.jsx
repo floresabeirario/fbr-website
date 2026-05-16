@@ -625,7 +625,7 @@ export default function ReservarPreservacaoForm() {
         </p>
       )}
 
-      <TurnstileWidget onToken={setTurnstileToken} />
+      <TurnstileWidget onToken={setTurnstileToken} language={locale} />
 
       {status === "error" && (
         <p className="pf-submit-error" role="alert">

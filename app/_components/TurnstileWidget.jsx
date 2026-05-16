@@ -19,7 +19,9 @@ import Script from "next/script";
 
 const SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
-export default function TurnstileWidget({ onToken }) {
+// Aceita "pt" e "en" do next-intl. "auto" deixa Cloudflare decidir
+// com base no header Accept-Language do browser.
+export default function TurnstileWidget({ onToken, language = "auto" }) {
   const widgetRef = useRef(null);
   const widgetIdRef = useRef(null);
   const onTokenRef = useRef(onToken);
@@ -51,6 +53,7 @@ export default function TurnstileWidget({ onToken }) {
       // (creme em /reservar-preservacao, azul em /vale-presente).
       // No admin é "auto" porque tem dark mode toggle.
       theme: "light",
+      language,
     });
 
     return () => {
@@ -59,7 +62,7 @@ export default function TurnstileWidget({ onToken }) {
         widgetIdRef.current = null;
       }
     };
-  }, [ready]);
+  }, [ready, language]);
 
   if (!SITE_KEY) return null;
 
