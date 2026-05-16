@@ -47,7 +47,10 @@ export default function TurnstileWidget({ onToken }) {
       callback: (token) => onTokenRef.current?.(token),
       "error-callback": () => onTokenRef.current?.(null),
       "expired-callback": () => onTokenRef.current?.(null),
-      theme: "auto",
+      // Forçado a "light" porque o site público tem sempre fundo claro
+      // (creme em /reservar-preservacao, azul em /vale-presente).
+      // No admin é "auto" porque tem dark mode toggle.
+      theme: "light",
     });
 
     return () => {
