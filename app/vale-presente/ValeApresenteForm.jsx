@@ -5,6 +5,9 @@ import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import PhonePrefix from "../_components/PhonePrefix";
 import { OPCOES_PRECOS_URL } from "../_lib/constants";
+import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget";
+
+const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
 const INIT = {
   nome: "",
@@ -93,6 +96,7 @@ export default function ValeApresenteForm() {
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
   const [submitError, setSubmitError] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState(null);
   const successRef = useRef(null);
 
   const set = (key, val) => {
@@ -178,6 +182,10 @@ export default function ValeApresenteForm() {
         ?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
+    if (TURNSTILE_ENABLED && !turnstileToken) {
+      setStatus("error");
+      return;
+    }
     setStatus("loading");
     try {
       const res = await fetch("/api/vale-presente", {
@@ -194,6 +202,7 @@ export default function ValeApresenteForm() {
               : "")
             : form.contactoDestinatario.trim(),
           locale,
+          turnstileToken,
         }),
       });
       const json = await res.json();
@@ -208,6 +217,12 @@ export default function ValeApresenteForm() {
     } catch (err) {
       console.error("[vale-presente] submit error:", err);
       setSubmitError(err?.serverMsg || "");
+      // Token Turnstile só é válido uma vez — reseta para o cliente
+      // conseguir tentar outra vez.
+      if (TURNSTILE_ENABLED) {
+        resetTurnstile();
+        setTurnstileToken(null);
+      }
       setStatus("error");
     }
   }
@@ -451,13 +466,19 @@ export default function ValeApresenteForm() {
         </p>
       )}
 
+      <TurnstileWidget onToken={setTurnstileToken} />
+
       {status === "error" && (
         <p className="vf-submit-error" role="alert">
           {submitError ? `${submitError} ` : ""}{t("erroEnvio")}
         </p>
       )}
 
-      <button type="submit" className="vf-btn" disabled={status === "loading"}>
+      <button
+        type="submit"
+        className="vf-btn"
+        disabled={status === "loading" || (TURNSTILE_ENABLED && !turnstileToken)}
+      >
         {status === "loading" ? t("submitLoading") : t("submitBtn")}
       </button>
     </form>

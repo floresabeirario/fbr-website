@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { SOCIAL_INSTAGRAM, EMAIL } from "../_lib/constants";
 import PhonePrefix from "../_components/PhonePrefix";
+import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget";
+
+const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
 const INIT = {
   nome: "",
@@ -114,6 +117,7 @@ export default function ReservarPreservacaoForm() {
   const [form, setForm] = useState(INIT);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
+  const [turnstileToken, setTurnstileToken] = useState(null);
   const successRef = useRef(null);
 
   const set = (key, val) => {
@@ -227,6 +231,10 @@ export default function ReservarPreservacaoForm() {
         ?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
+    if (TURNSTILE_ENABLED && !turnstileToken) {
+      setStatus("error");
+      return;
+    }
     setStatus("loading");
     try {
       const res = await fetch("/api/reservar-preservacao", {
@@ -238,6 +246,7 @@ export default function ReservarPreservacaoForm() {
             ? `${form.telefoneIndicativo}${form.telefone.trim()}`
             : "",
           locale,
+          turnstileToken,
         }),
       });
       const json = await res.json();
@@ -246,6 +255,12 @@ export default function ReservarPreservacaoForm() {
       setTimeout(() => successRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
     } catch (err) {
       console.error("[reservar-preservacao] submit error:", err);
+      // Token Turnstile só é válido uma vez — reseta para o cliente
+      // conseguir tentar outra vez.
+      if (TURNSTILE_ENABLED) {
+        resetTurnstile();
+        setTurnstileToken(null);
+      }
       setStatus("error");
     }
   }
@@ -610,6 +625,8 @@ export default function ReservarPreservacaoForm() {
         </p>
       )}
 
+      <TurnstileWidget onToken={setTurnstileToken} />
+
       {status === "error" && (
         <p className="pf-submit-error" role="alert">
           {t("erroEnvio")}{" "}
@@ -617,7 +634,11 @@ export default function ReservarPreservacaoForm() {
         </p>
       )}
 
-      <button type="submit" className="pf-btn" disabled={status === "loading"}>
+      <button
+        type="submit"
+        className="pf-btn"
+        disabled={status === "loading" || (TURNSTILE_ENABLED && !turnstileToken)}
+      >
         {status === "loading" ? t("submitLoading") : t("submitBtn")}
       </button>
     </form>
