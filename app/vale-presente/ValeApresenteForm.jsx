@@ -466,7 +466,7 @@ export default function ValeApresenteForm() {
         </p>
       )}
 
-      <TurnstileWidget onToken={setTurnstileToken} />
+      <TurnstileWidget onToken={setTurnstileToken} language={locale} />
 
       {status === "error" && (
         <p className="vf-submit-error" role="alert">
