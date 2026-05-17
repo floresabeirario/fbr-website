@@ -1666,6 +1666,8 @@
     "erroSelecioneOpcao": "Please select at least one option.",
     "erroTermos": "You must accept the Terms and Conditions to continue.",
     "erroFormulario": "Some fields are incomplete or contain errors. Please review the form above before submitting.",
+    "erroResumoTitulo": "The following fields are missing or need correction. Click a field to fix it:",
+    "termosResumo": "Terms and Conditions",
     "erroEnvio": "An error occurred while sending. Please try again or contact us at",
     "submitBtn": "Submit pre-booking",
     "submitLoading": "Sending...",

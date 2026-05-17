@@ -135,7 +135,20 @@
       "PowerShell($wb = [xml]\\(Get-Content \"$env:TEMP\\\\gsc_extract\\\\xl\\\\workbook.xml\" -Raw\\); $wb.workbook.sheets.sheet | ForEach-Object { \"$\\($_.sheetId\\) | $\\($_.name\\) | $\\($_.'r:id'\\)\" })",
       "PowerShell(& \"$env:TEMP\\\\gsc_extract\\\\parse.ps1\" 2>&1 | Out-File \"$env:TEMP\\\\gsc_extract\\\\output.txt\" -Encoding utf8; Get-Item \"$env:TEMP\\\\gsc_extract\\\\output.txt\" | Select-Object Length)",
       "Bash(awk 'NR==313,NR==500' messages/pt.json)",
-      "Bash(awk -F: '$2 > 1043 && $2 < 1055')"
+      "Bash(awk -F: '$2 > 1043 && $2 < 1055')",
+      "Bash(git rev-list *)",
+      "Bash(npm audit *)",
+      "Bash(nslookup floresabeirario.pt)",
+      "Bash(nslookup -type=NS floresabeirario.pt)",
+      "Bash(npm view *)",
+      "Bash(curl -sI https://floresabeirario.pt/en/book-preservation)",
+      "Bash(curl -sI https://www.floresabeirario.pt/en/book-preservation)",
+      "Bash(curl -s https://www.floresabeirario.pt/en/book-preservation)",
+      "Bash(git fetch *)",
+      "Bash(node -e \"const m = require\\('./messages/pt.json'\\); console.log\\(JSON.stringify\\(m.formReserva, null, 2\\)\\)\")",
+      "Bash(curl -sI https://floresabeirario.pt)",
+      "Bash(curl -sI https://www.floresabeirario.pt)",
+      "WebFetch(domain:securityheaders.com)"
     ]
   }
 }

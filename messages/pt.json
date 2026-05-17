@@ -1666,6 +1666,8 @@
     "erroSelecioneOpcao": "Seleccione pelo menos uma opção.",
     "erroTermos": "Deve aceitar os Termos e Condições para continuar.",
     "erroFormulario": "Existem campos por preencher ou com erros. Por favor, verifique o formulário acima antes de submeter.",
+    "erroResumoTitulo": "Faltam preencher (ou corrigir) os seguintes campos. Clique num campo para o corrigir:",
+    "termosResumo": "Termos e Condições",
     "erroEnvio": "Ocorreu um erro ao enviar. Por favor, tente novamente ou contacte-nos em",
     "submitBtn": "Submeter pré-reserva",
     "submitLoading": "A enviar...",
