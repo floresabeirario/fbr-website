@@ -193,10 +193,10 @@
   },
   "comoFunciona": {
     "meta": {
-      "title": "Como Funciona a Preservação de Flores | 5 Passos, 6-8 Semanas",
-      "description": "Os 5 passos da preservação artesanal: reserva, entrega em 5 dias, prensagem, aprovação da composição e envio do quadro emoldurado. Demora 6-8 semanas.",
-      "ogTitle": "Como Funciona a Preservação de Flores | 5 Passos, 6-8 Semanas",
-      "ogDescription": "Os 5 passos da preservação artesanal: reserva, entrega, prensagem, aprovação e envio do quadro emoldurado. Demora 6-8 semanas.",
+      "title": "Como Funciona: Preservar Flores em 5 Passos | Flores à Beira-Rio",
+      "description": "Os 5 passos da preservação artesanal: reserva, entrega em 5 dias, prensagem, aprovação da composição e envio do quadro emoldurado. Até 6 meses.",
+      "ogTitle": "Como Funciona: Preservar Flores em 5 Passos | Flores à Beira-Rio",
+      "ogDescription": "Os 5 passos da preservação artesanal: reserva, entrega, prensagem, aprovação e envio do quadro emoldurado. Até 6 meses.",
       "ogImageAlt": "Processo de preservação botânica de flores, Flores à Beira-Rio",
       "keywords": "como funciona preservação de flores, processo preservação botânica, passos preservar bouquet, quanto tempo demora preservação flores, prazo preservar flores, processo prensagem bouquet"
     },
@@ -646,7 +646,7 @@
       },
       {
         "q": "Quanto tempo demora o processo?",
-        "a": "O processo completo (prensagem, composição, aprovação e emolduramento) demora entre 6 a 8 semanas. Quando a composição estiver pronta, recebe fotografias por email e tem 72 horas para aprovar ou pedir alterações. Trabalhos com elementos adicionais ou de maior dimensão podem demorar um pouco mais."
+        "a": "O nosso tempo médio é de até 6 meses desde a recepção das flores até ao quadro emoldurado. A prensagem é um processo delicado que não pode ser apressado, e nunca sacrificamos a qualidade em favor da rapidez. Quando a composição estiver pronta, recebe fotografias por email e tem 72 horas para aprovar ou pedir alterações."
       },
       {
         "q": "Qual o preço e como funciona o pagamento?",
@@ -1218,12 +1218,12 @@
   },
   "sustentabilidade": {
     "meta": {
-      "title": "Preservar Flores Sem Resinas: Sustentabilidade | Flores à Beira-Rio",
-      "description": "Prensagem natural sem resinas nem sílica industrial. Materiais de conservação museu. Embalagem artesanal em parceria social com a APCC Coimbra.",
-      "ogTitle": "Preservar Flores Sem Resinas: Sustentabilidade | Flores à Beira-Rio",
-      "ogDescription": "Prensagem natural sem resinas. Materiais museu. Embalagem artesanal em parceria social com a APCC Coimbra.",
+      "title": "Sustentabilidade | Flores à Beira-Rio, Preservação de Flores",
+      "description": "Conheça o compromisso da Flores à Beira-Rio com a sustentabilidade: prensagem natural sem resinas, materiais museu, embalagem artesanal social e parceria com a APCC Coimbra.",
+      "ogTitle": "Sustentabilidade | Flores à Beira-Rio",
+      "ogDescription": "Arte botânica consciente: sem resinas, materiais museu e embalagem artesanal em parceria social.",
       "ogImageAlt": "Sustentabilidade na preservação de flores, Flores à Beira-Rio",
-      "keywords": "preservação flores sustentável, prensagem botânica natural, preservar flores sem resinas, sem sílica industrial, materiais museu arte botânica, APCC Coimbra parceria social"
+      "keywords": "preservação flores sustentável, prensagem botânica natural, sem resinas flores, materiais museu arte botânica, APCC Coimbra"
     },
     "eyebrow": "Os nossos valores",
     "h1": "Sustentabilidade sem compromissos",
