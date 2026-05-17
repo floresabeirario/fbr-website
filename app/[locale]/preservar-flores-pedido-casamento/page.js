@@ -68,9 +68,30 @@ function buildSchema(locale) {
         ],
   };
 
+  const faqPT = [
+    { q: "Quando devo entregar as flores depois do pedido?", a: "O mais cedo possível, até 5 dias após o pedido. Quanto mais frescas as flores, melhor o resultado da prensagem." },
+    { q: "Preservam todo o tipo de flores?", a: "Sim. Trabalhamos com todo o tipo de flores. Cada espécie reage de forma diferente à prensagem e adaptamos a técnica em conformidade." },
+    { q: "Apenas fazem quadros?", a: "Não. Além do quadro principal, pode acrescentar à sua encomenda Ornamentos de Natal, quadros mais pequenos e Pendentes para Colar feitos com as mesmas flores. Veja todas as opções e preços em " + SITE_URL + "/opcoes-e-precos" },
+  ];
+
+  const faqEN = [
+    { q: "When should I hand in the flowers after the proposal?", a: "As soon as possible, within 5 days of the proposal. The fresher the flowers, the better the pressing result." },
+    { q: "Do you preserve any type of flowers?", a: "Yes. We work with all kinds of flowers. Each species reacts differently to pressing, and we adapt the technique accordingly." },
+    { q: "Do you only make framed pieces?", a: "No. In addition to the main frame, you can add Christmas Ornaments, smaller frames, and Pendant Necklaces made from the same flowers to your order. See all options and prices at " + SITE_URL + "/en/options-and-pricing" },
+  ];
+
+  const faqPage = {
+    "@type": "FAQPage",
+    mainEntity: (isEN ? faqEN : faqPT).map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+
   return {
     "@context": "https://schema.org",
-    "@graph": [service, howTo],
+    "@graph": [service, howTo, faqPage],
   };
 }
 

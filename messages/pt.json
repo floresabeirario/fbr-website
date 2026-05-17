@@ -826,6 +826,24 @@
         "titulo": "Inclua o que quiser na composição",
         "desc": "Uma fotografia do momento, o bilhete que acompanhou as flores, a fita da caixa. Qualquer elemento com significado pode fazer parte do quadro."
       }
+    ],
+    "faqEyebrow": "Dúvidas frequentes",
+    "faqTitle": "Perguntas frequentes",
+    "faqEm": "frequentes",
+    "faqItems": [
+      {
+        "q": "Quando devo entregar as flores depois do pedido?",
+        "a": "O mais cedo possível, até 5 dias após o pedido. Quanto mais frescas as flores, melhor o resultado da prensagem."
+      },
+      {
+        "q": "Preservam todo o tipo de flores?",
+        "a": "Sim. Trabalhamos com todo o tipo de flores. Cada espécie reage de forma diferente à prensagem e adaptamos a técnica em conformidade."
+      },
+      {
+        "q": "Apenas fazem quadros?",
+        "a": "Não. Além do quadro principal, pode acrescentar à sua encomenda Ornamentos de Natal, quadros mais pequenos e Pendentes para Colar feitos com as mesmas flores.",
+        "linkPrecos": "Ver todas as opções e preços →"
+      }
     ]
   },
   "emoldurar": {

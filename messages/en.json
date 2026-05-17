@@ -826,6 +826,24 @@
         "titulo": "Include whatever you like in the composition",
         "desc": "A photograph of the moment, the note that came with the flowers, the ribbon from the box. Any meaningful element can be part of the frame."
       }
+    ],
+    "faqEyebrow": "Common questions",
+    "faqTitle": "Frequently asked questions",
+    "faqEm": "asked questions",
+    "faqItems": [
+      {
+        "q": "When should I hand in the flowers after the proposal?",
+        "a": "As soon as possible, within 5 days of the proposal. The fresher the flowers, the better the pressing result."
+      },
+      {
+        "q": "Do you preserve any type of flowers?",
+        "a": "Yes. We work with all kinds of flowers. Each species reacts differently to pressing, and we adapt the technique accordingly."
+      },
+      {
+        "q": "Do you only make framed pieces?",
+        "a": "No. In addition to the main frame, you can add Christmas Ornaments, smaller frames, and Pendant Necklaces made from the same flowers to your order.",
+        "linkPrecos": "See all options & prices →"
+      }
     ]
   },
   "emoldurar": {
