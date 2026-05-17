@@ -19,8 +19,8 @@ function PlusIcon({ open }) {
   );
 }
 
-export default function PedidoCasamentoFAQ() {
-  const t = useTranslations("pedidoCasamento");
+export default function MomentoFAQ({ namespace }) {
+  const t = useTranslations(namespace);
   const locale = useLocale();
   const items = t.raw("faqItems");
   const [open, setOpen] = useState(null);

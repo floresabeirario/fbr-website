@@ -671,11 +671,11 @@
   "lutoHomenagem": {
     "meta": {
       "title": "Preservar Flores de Homenagem e Luto | Flores à Beira-Rio",
-      "description": "Eternize as flores de uma cerimónia fúnebre como forma de homenagem duradoura. Arte botânica artesanal feita à mão em Coimbra, com todo o respeito e sensibilidade. A partir de 300€.",
+      "description": "Eternize as flores de uma cerimónia fúnebre em arte botânica artesanal. Uma homenagem permanente, feita com todo o respeito em Coimbra. A partir de 300€.",
       "ogTitle": "Preservar Flores de Homenagem e Luto | Flores à Beira-Rio",
-      "ogDescription": "Eternize as flores de uma cerimónia fúnebre. Uma homenagem permanente, preservada com todo o respeito.",
+      "ogDescription": "Eternize as flores de uma cerimónia fúnebre em arte botânica artesanal. Uma homenagem permanente, feita com todo o respeito.",
       "ogImageAlt": "Flores de homenagem preservadas em quadro de arte botânica",
-      "keywords": "preservar flores homenagem, flores luto preservadas, flores funeral quadro, homenagem floral arte botânica"
+      "keywords": "preservar flores homenagem, preservar flores luto, preservar flores funeral, flores luto preservadas, flores funeral quadro, coroa funeral preservada, homenagem floral arte botânica"
     },
     "eyebrow": "Homenagem e Luto",
     "h1": "Preservar Flores de Homenagem e Luto",
@@ -706,16 +706,34 @@
         "titulo": "Sem pressão para decidir",
         "desc": "Se ainda não é o momento de pensar nisto, não há pressa. As flores podem ser recriadas com flores frescas semelhantes, mesmo que as originais já tenham murchado. Estamos cá quando precisar."
       }
+    ],
+    "faqEyebrow": "Dúvidas frequentes",
+    "faqTitle": "Perguntas frequentes",
+    "faqEm": "frequentes",
+    "faqItems": [
+      {
+        "q": "Quando devo entregar as flores depois da cerimónia?",
+        "a": "O mais cedo possível, até 5 dias após a cerimónia. Quanto mais frescas as flores, melhor o resultado da prensagem. Se já passou tempo, contacte-nos: a recriação com flores semelhantes é uma alternativa possível."
+      },
+      {
+        "q": "Que tipo de flores se podem preservar?",
+        "a": "Qualquer tipo: coroas, ramos, ou flores enviadas pela família e amigos. Cada espécie reage de forma diferente à prensagem e adaptamos a técnica em conformidade."
+      },
+      {
+        "q": "Apenas fazem quadros, ou peças mais pequenas?",
+        "a": "Além do quadro principal, pode acrescentar à encomenda quadros mais pequenos e Pendentes para Colar feitos com as mesmas flores.",
+        "linkPrecos": "Ver todas as opções e preços →"
+      }
     ]
   },
   "batizadoNascimento": {
     "meta": {
       "title": "Preservar Flores de Batizado e Nascimento | Flores à Beira-Rio",
-      "description": "As flores do batizado ou do nascimento merecem ser guardadas para sempre. Preservamos cada pétala em arte botânica que acompanha o seu filho ao longo da vida. A partir de 300€.",
+      "description": "Preserve as flores do batizado ou nascimento num quadro de arte botânica artesanal. Para si ou para oferecer aos padrinhos. Em Coimbra. A partir de 300€.",
       "ogTitle": "Preservar Flores de Batizado e Nascimento | Flores à Beira-Rio",
-      "ogDescription": "As flores do batizado ou do nascimento preservadas em arte botânica que dura toda uma vida.",
+      "ogDescription": "Preserve as flores do batizado ou nascimento num quadro de arte botânica artesanal. Para si ou para oferecer aos padrinhos. Em Coimbra.",
       "ogImageAlt": "Flores de batizado preservadas em quadro de arte botânica",
-      "keywords": "preservar flores batizado, flores nascimento preservadas, quadro flores batizado, arte botânica bebé, flores maternidade"
+      "keywords": "preservar flores batizado, preservar flores baptizado, preservar flores nascimento, flores nascimento preservadas, quadro flores batizado, arte botânica bebé, flores maternidade, preservar flores padrinhos"
     },
     "eyebrow": "Batizado e Nascimento",
     "h1": "Preservar Flores de Batizado e Nascimento",
@@ -746,16 +764,34 @@
         "titulo": "Inclua elementos especiais",
         "desc": "Pode adicionar ao quadro a pulseira da maternidade, uma fotografia, fitas, ou qualquer elemento com significado especial. A composição é sempre aprovada por si."
       }
+    ],
+    "faqEyebrow": "Dúvidas frequentes",
+    "faqTitle": "Perguntas frequentes",
+    "faqEm": "frequentes",
+    "faqItems": [
+      {
+        "q": "Quando devo entregar as flores do batizado ou nascimento?",
+        "a": "O mais cedo possível, até 5 dias após a celebração. Quanto mais frescas as flores, melhor o resultado da prensagem."
+      },
+      {
+        "q": "Que tipo de flores se podem preservar?",
+        "a": "Qualquer tipo: ramos, arranjos da cerimónia, ou flores oferecidas em casa. Cada espécie reage de forma diferente à prensagem e adaptamos a técnica em conformidade."
+      },
+      {
+        "q": "Apenas fazem quadros, ou peças mais pequenas?",
+        "a": "Além do quadro principal, pode acrescentar à encomenda Ornamentos de Natal, quadros mais pequenos e Pendentes para Colar feitos com as mesmas flores.",
+        "linkPrecos": "Ver todas as opções e preços →"
+      }
     ]
   },
   "aniversario": {
     "meta": {
-      "title": "Preservar Flores de Aniversário | Flores à Beira-Rio",
-      "description": "Preserve as flores de um aniversário de casamento, de namoro ou de qualquer data especial. Arte botânica artesanal emoldurada com vidro museu anti-UV, feita à mão em Coimbra. A partir de 300€.",
-      "ogTitle": "Preservar Flores de Aniversário | Flores à Beira-Rio",
-      "ogDescription": "Preserve as flores de qualquer aniversário especial em arte botânica que dura décadas.",
+      "title": "Preservar Flores de Aniversário e Bodas | Flores à Beira-Rio",
+      "description": "Preserve as flores de um aniversário de casamento, namoro, bodas ou data especial num quadro de arte botânica artesanal em Coimbra. A partir de 300€.",
+      "ogTitle": "Preservar Flores de Aniversário e Bodas | Flores à Beira-Rio",
+      "ogDescription": "Preserve as flores de qualquer aniversário ou bodas em arte botânica artesanal. Feito à mão em Coimbra.",
       "ogImageAlt": "Flores de aniversário preservadas em quadro de arte botânica",
-      "keywords": "preservar flores aniversário, flores aniversário casamento preservadas, quadro flores aniversário, bodas prata ouro flores"
+      "keywords": "preservar flores aniversário, preservar flores bodas, flores aniversário casamento preservadas, bodas prata preservadas, bodas ouro preservadas, quadro flores aniversário, eternizar flores aniversário"
     },
     "eyebrow": "Aniversário",
     "h1": "Preservar Flores de Aniversário",
@@ -785,6 +821,24 @@
       {
         "titulo": "Composição aprovada por si",
         "desc": "Desenhamos a composição à medida e enviamos fotografias para aprovação. Tem 72 horas para aprovar ou pedir alterações antes de selarmos o quadro."
+      }
+    ],
+    "faqEyebrow": "Dúvidas frequentes",
+    "faqTitle": "Perguntas frequentes",
+    "faqEm": "frequentes",
+    "faqItems": [
+      {
+        "q": "Quando devo entregar as flores depois do aniversário?",
+        "a": "O mais cedo possível, até 5 dias após o aniversário. Quanto mais frescas as flores, melhor o resultado da prensagem."
+      },
+      {
+        "q": "Que tipo de flores se podem preservar?",
+        "a": "Qualquer tipo: ramos oferecidos, arranjos da celebração, ou flores compradas para a ocasião. Cada espécie reage de forma diferente à prensagem e adaptamos a técnica em conformidade."
+      },
+      {
+        "q": "Apenas fazem quadros, ou peças mais pequenas?",
+        "a": "Além do quadro principal, pode acrescentar à encomenda Ornamentos de Natal, quadros mais pequenos e Pendentes para Colar feitos com as mesmas flores.",
+        "linkPrecos": "Ver todas as opções e preços →"
       }
     ]
   },

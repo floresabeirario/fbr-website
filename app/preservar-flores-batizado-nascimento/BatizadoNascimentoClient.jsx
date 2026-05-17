@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL, WA_URL } from "../_lib/constants";
+import MomentoFAQ from "../_components/MomentoFAQ";
 
 const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } };
 
@@ -79,6 +80,8 @@ export default function BatizadoNascimentoClient() {
           ))}
         </div>
       </section>
+
+      <MomentoFAQ namespace="batizadoNascimento" />
 
       <section className="momento-final-cta">
         <motion.div
