@@ -6,28 +6,33 @@ import PedidoCasamentoClient from "@/app/preservar-flores-pedido-casamento/Pedid
 
 function buildSchema(locale) {
   const isEN = locale === "en";
-  return {
-    "@context": "https://schema.org",
+  const canonicalUrl = isEN
+    ? `${SITE_URL}/en/preserve-proposal-flowers`
+    : `${SITE_URL}/preservar-flores-pedido-casamento`;
+
+  const provider = {
+    "@type": "LocalBusiness",
+    name: "Flores à Beira-Rio",
+    url: SITE_URL,
+    telephone: PHONE,
+    email: EMAIL,
+    address: { "@type": "PostalAddress", addressLocality: "Coimbra", addressCountry: "PT" },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: "7",
+      bestRating: "5",
+      worstRating: "1",
+    },
+  };
+
+  const service = {
     "@type": "Service",
     name: isEN ? "Proposal Flower Preservation, Flores à Beira-Rio" : "Preservação de Flores de Pedido de Casamento, Flores à Beira-Rio",
     description: isEN
-      ? "Artisan preservation of proposal flowers into botanical art frames with museum anti-UV glass. Handmade in Coimbra, Portugal."
-      : "Preservação artesanal de flores de pedido de casamento em quadros de arte botânica com vidro museu anti-UV. Feito à mão em Coimbra.",
-    provider: {
-      "@type": "LocalBusiness",
-      name: "Flores à Beira-Rio",
-      url: SITE_URL,
-      telephone: PHONE,
-      email: EMAIL,
-      address: { "@type": "PostalAddress", addressLocality: "Coimbra", addressCountry: "PT" },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "5.0",
-        reviewCount: "7",
-        bestRating: "5",
-        worstRating: "1",
-      },
-    },
+      ? "Artisan preservation of marriage proposal and engagement flowers into botanical art frames with museum anti-UV glass. Handmade in Coimbra, Portugal."
+      : "Preservação artesanal de flores de pedido de casamento e noivado em quadros de arte botânica com vidro museu anti-UV. Feito à mão em Coimbra.",
+    provider,
     areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
     serviceType: isEN ? "Proposal Flower Preservation" : "Preservação de Flores de Pedido de Casamento",
     offers: {
@@ -37,7 +42,35 @@ function buildSchema(locale) {
       highPrice: "500",
       offerCount: "3",
     },
-    url: isEN ? `${SITE_URL}/en/preserve-proposal-flowers` : `${SITE_URL}/preservar-flores-pedido-casamento`,
+    url: canonicalUrl,
+  };
+
+  const howTo = {
+    "@type": "HowTo",
+    name: isEN
+      ? "How to preserve proposal flowers in a botanical frame"
+      : "Como preservar flores de pedido de casamento num quadro botânico",
+    description: isEN
+      ? "Step-by-step process to turn proposal or engagement flowers into a lasting botanical art frame."
+      : "Processo artesanal para preservar as flores do pedido de casamento ou noivado num quadro botânico.",
+    step: isEN
+      ? [
+          { "@type": "HowToStep", position: 1, name: "Contact us within days of the proposal", text: "Get in touch as soon as possible, ideally within 1 to 3 days of the proposal (up to 5 days). The flowers are at their best for preservation." },
+          { "@type": "HowToStep", position: 2, name: "Hand in the flowers", text: "Drop them off in person in Coimbra, send them by express courier, or request collection (subject to availability). We receive flowers Monday to Sunday." },
+          { "@type": "HowToStep", position: 3, name: "Approve the composition", text: "We send photographs of the composition by email. You have 72 hours to approve or request changes." },
+          { "@type": "HowToStep", position: 4, name: "Receive the framed piece", text: "The framed artwork is shipped with insurance and specialist packaging, worldwide." },
+        ]
+      : [
+          { "@type": "HowToStep", position: 1, name: "Contactar nos primeiros dias após o pedido", text: "Entre em contacto assim que possível, idealmente nos primeiros 1 a 3 dias após o pedido (até 5 dias). As flores estão no ponto óptimo para preservação." },
+          { "@type": "HowToStep", position: 2, name: "Entregar as flores", text: "Pode entregar em mãos em Coimbra, enviar por correio expresso, ou solicitar recolha (consulte disponibilidade). Recebemos de segunda a domingo." },
+          { "@type": "HowToStep", position: 3, name: "Aprovar a composição", text: "Enviamos fotografias da composição por e-mail. Tem 72 horas para aprovar ou pedir alterações." },
+          { "@type": "HowToStep", position: 4, name: "Receber o quadro em casa", text: "O quadro emoldurado é enviado com seguro e embalagem especializada para qualquer ponto do país." },
+        ],
+  };
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [service, howTo],
   };
 }
 

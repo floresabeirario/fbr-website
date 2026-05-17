@@ -78,7 +78,8 @@ function buildSchema(locale) {
     { q: "O que posso incluir no quadro além das flores?", a: "Pode incluir o convite do casamento, votos manuscritos, fitas, uma fotografia ou qualquer elemento com significado especial." },
     { q: "Quanto tempo demora o processo?", a: "O processo completo demora entre 6 a 8 semanas: prensagem, composição, aprovação e emolduramento." },
     { q: "Qual o preço e como funciona o pagamento?", a: "Os preços começam nos 300€. Consulte a página de opções e preços para ver todos os formatos. O pagamento é feito em três prestações." },
-    { q: "Enviam para fora de Portugal?", a: "Sim. Enviamos para toda a Europa: Espanha, França, Reino Unido, Irlanda, Itália, Bélgica, Países Baixos, Alemanha, Áustria e Suíça, entre outros." },
+    { q: "Enviam para fora de Portugal?", a: "Sim. Enviamos para toda a Europa: Espanha, França, Reino Unido, Irlanda, Itália, Bélgica, Países Baixos, Alemanha, Áustria e Suíça, entre outros. Enviamos também para os Estados Unidos, Canadá e China. O envio é feito com seguro e embalagem especializada." },
+    { q: "Aceitam buquês de noivas estrangeiras a casar em Portugal?", a: "Sim. Recebemos buquês de noivas de qualquer nacionalidade que casem em Portugal, e enviamos o quadro emoldurado para o país onde residem. Trabalhamos regularmente com noivas brasileiras, espanholas, francesas, britânicas e irlandesas." },
   ];
 
   const faqEN = [
@@ -89,7 +90,8 @@ function buildSchema(locale) {
     { q: "What else can I include in the frame?", a: "You can include the wedding invitation, handwritten vows, ribbons, a photograph, or any meaningful element." },
     { q: "How long does the process take?", a: "The full process takes 6 to 8 weeks: pressing, composition, approval and framing." },
     { q: "What are the prices and how does payment work?", a: "Prices start from €300. See the options and pricing page for all available formats. Payment is made in three instalments." },
-    { q: "Do you ship outside Portugal?", a: "Yes. We ship across Europe: Spain, France, United Kingdom, Ireland, Italy, Belgium, Netherlands, Germany, Austria and Switzerland, among others." },
+    { q: "Do you ship outside Portugal?", a: "Yes. We ship across Europe: Spain, France, United Kingdom, Ireland, Italy, Belgium, Netherlands, Germany, Austria and Switzerland, among others. We also ship to the United States, Canada and China. Shipping includes insurance and specialist packaging." },
+    { q: "Do you accept bouquets from international brides marrying in Portugal?", a: "Yes. We receive bouquets from brides of any nationality marrying in Portugal and ship the framed artwork to the bride's home country. We regularly work with Brazilian, Spanish, French, British and Irish brides." },
   ];
 
   const faqPage = {

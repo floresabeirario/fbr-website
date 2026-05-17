@@ -33,12 +33,12 @@
   },
   "home": {
     "meta": {
-      "title": "Flores à Beira-Rio | Flower Preservation in Coimbra, Portugal",
-      "description": "Artisan botanical preservation atelier in Coimbra. We transform wedding bouquets and flowers from special moments into works of art that last decades.",
-      "ogTitle": "Flores à Beira-Rio | Flower Preservation in Coimbra",
-      "ogDescription": "We transform your bouquet into a botanical work of art that lasts decades. Handmade in Coimbra.",
-      "twitterTitle": "Flores à Beira-Rio | Flower Preservation in Coimbra",
-      "twitterDescription": "We transform your bouquet into a botanical work of art that lasts decades.",
+      "title": "Wedding Bouquet Preservation | Flores à Beira-Rio, Portugal",
+      "description": "We preserve wedding bouquets and flowers from baptisms, anniversaries, proposals and memorials in framed botanical art. Coimbra atelier, worldwide shipping.",
+      "ogTitle": "Wedding Bouquet, Baptism & Memorial Flower Preservation | Flores à Beira-Rio",
+      "ogDescription": "We preserve wedding bouquets and flowers from baptisms, anniversaries, proposals and memorials in framed botanical art. Coimbra atelier, worldwide shipping.",
+      "twitterTitle": "Wedding Bouquet Preservation | Flores à Beira-Rio, Portugal",
+      "twitterDescription": "We preserve wedding bouquets and flowers from baptisms, anniversaries, proposals and memorials in framed botanical art. Worldwide shipping.",
       "ogImageAlt": "Pressed flower frame, Flores à Beira-Rio",
       "keywords": "flower preservation Portugal, flower preservation Coimbra, preserved flowers Portugal, botanical art frames, pressed flowers, wedding bouquet preservation"
     },
@@ -537,10 +537,10 @@
   },
   "bouquetNoiva": {
     "meta": {
-      "title": "Preserve Wedding Bouquet Portugal | Botanical Art Frame | Flores à Beira-Rio",
-      "description": "We transform your wedding bouquet into a botanical work of art that lasts decades. Artisan pressing, anti-UV museum glass and handmade framing in Coimbra. From €300.",
-      "ogTitle": "Preserve Wedding Bouquet | Flores à Beira-Rio",
-      "ogDescription": "We transform your wedding bouquet into a botanical work of art that lasts decades.",
+      "title": "Preserve Wedding Bouquet, Worldwide Shipping | Flores à Beira-Rio",
+      "description": "Your wedding bouquet preserved into framed botanical art. Artisan pressing, anti-UV museum glass, worldwide shipping from Coimbra, Portugal. From €300.",
+      "ogTitle": "Preserve Wedding Bouquet, Worldwide Shipping | Flores à Beira-Rio",
+      "ogDescription": "Your wedding bouquet preserved into framed botanical art. Artisan pressing, anti-UV museum glass, worldwide shipping from Coimbra. From €300.",
       "ogImageAlt": "Wedding bouquet preserved in botanical art frame",
       "keywords": "preserve wedding bouquet Portugal, preserve wedding bouquet Coimbra, bouquet preservation Portugal, bouquet preservation Coimbra, wedding flowers preserved Portugal, bridal bouquet frame, pressed wedding flowers"
     },
@@ -655,6 +655,10 @@
       {
         "q": "Do you ship outside Portugal?",
         "a": "Yes. We ship across Europe: Spain, France, United Kingdom, Ireland, Italy, Belgium, Netherlands, Germany, Austria and Switzerland, among others. We also ship to the United States, Canada and China. Shipping includes insurance and specialist packaging."
+      },
+      {
+        "q": "Do you accept bouquets from international brides marrying in Portugal?",
+        "a": "Yes. We receive bouquets from brides of any nationality marrying in Portugal and ship the framed artwork to the bride's home country. We regularly work with Brazilian, Spanish, French, British and Irish brides."
       }
     ],
     "pricingNote": "See all options & prices →",
@@ -786,12 +790,12 @@
   },
   "pedidoCasamento": {
     "meta": {
-      "title": "Preserve Proposal Flowers | Flores à Beira-Rio",
-      "description": "Proposal flowers mark the start of a story. Preserve that moment in a botanical work of art handmade in Coimbra. From €300.",
-      "ogTitle": "Preserve Proposal Flowers | Flores à Beira-Rio",
-      "ogDescription": "Proposal flowers preserved in a botanical work of art handmade in Coimbra.",
+      "title": "Preserve Proposal & Engagement Flowers | Flores à Beira-Rio",
+      "description": "Preserve your proposal flowers into framed botanical art before they wilt. Artisan atelier in Coimbra, Portugal, with worldwide shipping. From €300.",
+      "ogTitle": "Preserve Proposal & Engagement Flowers | Flores à Beira-Rio",
+      "ogDescription": "Preserve your proposal flowers into framed botanical art before they wilt. Worldwide shipping from Coimbra, Portugal.",
       "ogImageAlt": "Proposal flowers preserved in botanical art frame",
-      "keywords": "preserve proposal flowers, engagement flowers preserved, proposal bouquet frame, botanical art engagement, engagement flower preservation"
+      "keywords": "preserve proposal flowers, preserve engagement flowers, engagement flowers preserved, proposal bouquet frame, botanical art engagement, engagement flower preservation, proposal flower preservation"
     },
     "eyebrow": "Marriage Proposal",
     "h1": "Preserve Marriage Proposal Flowers",

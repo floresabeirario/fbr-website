@@ -33,12 +33,12 @@
   },
   "home": {
     "meta": {
-      "title": "Flores à Beira-Rio | Preservação de Flores em Coimbra",
-      "description": "Atelier de preservação botânica artesanal em Coimbra. Transformamos bouquets de casamento e flores de momentos especiais em quadros de arte que duram décadas.",
-      "ogTitle": "Flores à Beira-Rio | Preservação de Flores em Coimbra",
-      "ogDescription": "Transformamos o seu bouquet numa obra de arte botânica que dura décadas. Feito à mão em Coimbra.",
-      "twitterTitle": "Flores à Beira-Rio | Preservação de Flores em Coimbra",
-      "twitterDescription": "Transformamos o seu bouquet numa obra de arte botânica que dura décadas.",
+      "title": "Preservar Bouquet de Noiva | Flores à Beira-Rio, Coimbra",
+      "description": "Eternizamos o bouquet de noiva e flores de baptizados, aniversários, pedidos e homenagens em arte botânica artesanal. Em Coimbra, com envio nacional.",
+      "ogTitle": "Preservar Bouquet de Noiva, Baptizado, Homenagem | Flores à Beira-Rio",
+      "ogDescription": "Eternizamos o bouquet de noiva e flores de baptizados, aniversários, pedidos e homenagens em arte botânica artesanal. Em Coimbra, com envio nacional.",
+      "twitterTitle": "Preservar Bouquet de Noiva | Flores à Beira-Rio, Coimbra",
+      "twitterDescription": "Eternizamos o bouquet de noiva e flores de baptizados, aniversários, pedidos e homenagens em arte botânica artesanal.",
       "ogImageAlt": "Quadro de flores prensadas, Flores à Beira-Rio",
       "keywords": "preservação de flores Portugal, preservação de flores Coimbra, flores preservadas Portugal, quadros de flores, arte botânica, bouquet de noiva preservado, eternização de bouquet, preservação de bouquet"
     },
@@ -542,7 +542,7 @@
       "ogTitle": "Preservar Bouquet de Noiva | Flores à Beira-Rio",
       "ogDescription": "Transformamos o bouquet do seu casamento numa obra de arte botânica que dura décadas.",
       "ogImageAlt": "Bouquet de noiva preservado em quadro de arte botânica",
-      "keywords": "preservar bouquet noiva Portugal, preservar bouquet noiva Coimbra, bouquet casamento preservado Portugal, eternização de bouquet, eternização bouquet noiva, preservação de bouquet, preservação bouquet casamento, flores casamento quadro, flores prensadas casamento"
+      "keywords": "preservar bouquet noiva Portugal, preservar buquê de noiva Portugal, preservar bouquet noiva Coimbra, eternizar buquê de noiva, conservar buquê de noiva, bouquet casamento preservado Portugal, eternização de bouquet, eternização bouquet noiva, preservação de bouquet, preservação bouquet casamento, flores casamento quadro, flores prensadas casamento"
     },
     "eyebrow": "Bouquet de Noiva",
     "h1": "Preservar o Bouquet de Noiva",
@@ -655,6 +655,10 @@
       {
         "q": "Enviam para fora de Portugal?",
         "a": "Sim. Enviamos para toda a Europa: Espanha, França, Reino Unido, Irlanda, Itália, Bélgica, Países Baixos, Alemanha, Áustria e Suíça, entre outros. Enviamos também para os Estados Unidos, Canadá e China. O envio é feito com seguro e embalagem especializada."
+      },
+      {
+        "q": "Aceitam buquês de noivas estrangeiras a casar em Portugal?",
+        "a": "Sim. Recebemos buquês de noivas de qualquer nacionalidade que casem em Portugal, e enviamos o quadro emoldurado para o país onde residem. Trabalhamos regularmente com noivas brasileiras, espanholas, francesas, britânicas e irlandesas."
       }
     ],
     "pricingNote": "Ver todas as opções e preços →",
@@ -786,12 +790,12 @@
   },
   "pedidoCasamento": {
     "meta": {
-      "title": "Preservar Flores do Pedido de Casamento | Flores à Beira-Rio",
-      "description": "As flores do pedido de casamento marcam o início de uma história. Preserve esse momento numa obra de arte botânica feita à mão em Coimbra. A partir de 300€.",
-      "ogTitle": "Preservar Flores do Pedido de Casamento | Flores à Beira-Rio",
-      "ogDescription": "As flores do pedido de casamento preservadas numa obra de arte botânica feita à mão em Coimbra.",
+      "title": "Preservar Flores do Pedido de Casamento e Noivado | Flores à Beira-Rio",
+      "description": "Eternize as flores do pedido de casamento num quadro de arte botânica, antes que sequem. Atelier artesanal em Coimbra, envio para todo o país. A partir de 300€.",
+      "ogTitle": "Preservar Flores do Pedido de Casamento e Noivado | Flores à Beira-Rio",
+      "ogDescription": "Eternize as flores do pedido de casamento num quadro de arte botânica, antes que sequem. Em Coimbra, com envio nacional.",
       "ogImageAlt": "Flores de pedido de casamento preservadas em quadro de arte botânica",
-      "keywords": "preservar flores pedido casamento, flores noivado preservadas, quadro flores noivado, arte botânica pedido casamento"
+      "keywords": "preservar flores pedido casamento, preservar flores noivado, flores noivado preservadas, eternizar flores pedido, quadro flores noivado, arte botânica pedido casamento, preservação flores pedido"
     },
     "eyebrow": "Pedido de Casamento",
     "h1": "Preservar Flores do Pedido de Casamento",
