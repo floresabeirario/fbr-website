@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 Sitemap: https://www.floresabeirario.pt/sitemap.xml
 
 # AI assistants and language model crawlers are welcome.

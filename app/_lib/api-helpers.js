@@ -1,6 +1,30 @@
 // app/_lib/api-helpers.js
 // Utilitários partilhados entre rotas de API (server-only).
 
+// ─── Origens autorizadas a submeter aos formulários ──────────────────────────
+// Bloqueia pedidos cross-site para impedir que outros domínios usem as nossas
+// APIs como backend de spam. Os formulários do próprio site ficam autorizados
+// porque a Origin coincide com SITE_URL (www.floresabeirario.pt) ou apex.
+const ALLOWED_ORIGINS = new Set([
+  "https://www.floresabeirario.pt",
+  "https://floresabeirario.pt",
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+]);
+
+// Permite previews do Vercel (https://*.vercel.app) e branches deploy.
+function isVercelPreview(origin) {
+  return /^https:\/\/[a-z0-9-]+\.vercel\.app$/i.test(origin);
+}
+
+export function isAllowedOrigin(originHeader, refererHeader) {
+  const origin = originHeader || (refererHeader ? new URL(refererHeader).origin : "");
+  if (!origin) return false;
+  if (ALLOWED_ORIGINS.has(origin)) return true;
+  if (isVercelPreview(origin)) return true;
+  return false;
+}
+
 // ─── Segurança: escaping HTML ─────────────────────────────────────────────────
 // Previne XSS no corpo de e-mails enviados via Resend.
 export function escapeHtml(val) {

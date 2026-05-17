@@ -27,6 +27,7 @@ import {
   escapeHtml,
   createRateLimiter,
   exceedsLength,
+  isAllowedOrigin,
 } from "@/app/_lib/api-helpers";
 import { EMAIL } from "@/app/_lib/constants";
 import { mapReservaToOrder } from "@/app/_lib/supabase-mappings";
@@ -60,8 +61,15 @@ export async function POST(request) {
       );
     }
 
-    // ── Rate limiting ───────────────────────────────────────────────────────
     const headersList = await headers();
+
+    // ── Validação de Origin (anti-CSRF/abuso cross-site) ───────────────────
+    // Impede que outros sites usem este endpoint como backend de spam.
+    if (!isAllowedOrigin(headersList.get("origin"), headersList.get("referer"))) {
+      return NextResponse.json({ error: "Origem não autorizada." }, { status: 403 });
+    }
+
+    // ── Rate limiting ───────────────────────────────────────────────────────
     const ip = headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anonymous";
     if (isRateLimited(ip)) {
       return NextResponse.json(
