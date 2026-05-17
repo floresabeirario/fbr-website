@@ -43,12 +43,13 @@ const INIT = {
 };
 
 // ─── Field component ────────────────────────────────────────────────────────
-function Field({ label, required, hint, error, children, as: Tag }) {
+function Field({ label, required, hint, error, children, as: Tag, name }) {
   const autoId = useId();
+  const dataAttr = name ? { "data-field": name } : {};
 
   if (Tag === "fieldset") {
     return (
-      <fieldset className="pf-group pf-fieldset-group">
+      <fieldset className="pf-group pf-fieldset-group" {...dataAttr}>
         <legend className="pf-label pf-legend">
           {label}
           {required && <span className="pf-req" aria-hidden="true"> *</span>}
@@ -65,7 +66,7 @@ function Field({ label, required, hint, error, children, as: Tag }) {
   const enhanced = isFormControl ? cloneElement(children, { id: autoId }) : children;
 
   return (
-    <div className="pf-group">
+    <div className="pf-group" {...dataAttr}>
       <label
         className="pf-label"
         {...(isFormControl ? { htmlFor: autoId } : {})}
@@ -119,6 +120,42 @@ export default function ReservarPreservacaoForm() {
   const [status, setStatus] = useState("idle");
   const [turnstileToken, setTurnstileToken] = useState(null);
   const successRef = useRef(null);
+  const errorsSummaryRef = useRef(null);
+
+  const FIELD_LABEL_KEYS = {
+    nome: "nomeLabel",
+    meioContacto: "contactoLabel",
+    email: "emailLabel",
+    telefone: "telefoneLabel",
+    dataEvento: "dataEventoLabel",
+    tipoEvento: "tipoEventoLabel",
+    nomeNoivos: "nomeNoivosLabel",
+    comoEnviarFlores: "enviarFloresLabel",
+    comoReceberQuadro: "receberQuadroLabel",
+    tamanhoMoldura: "tamanhoLabel",
+    tipoFundo: "fundoLabel",
+    elementosExtra: "elementosLabel",
+    elementosExtraOutro: "elementosOutroLabel",
+    quadrosExtra: "quadrosExtraLabel",
+    quantosQuadros: "quantosQuadrosLabel",
+    ornamentosNatal: "ornamentosLabel",
+    quantosOrnamentos: "quantosOrnamentosLabel",
+    pendentes: "pendentesLabel",
+    quantosPendentes: "quantosPendentesLabel",
+    comoConheceu: "comoConheceuLabel",
+    nomeFlorista: "nomeFlorista",
+    comoConheceuOutro: "comoConheceuOutroLabel",
+    codigoValePresente: "codigoValeLabel",
+    termosCondicoes: "termosResumo",
+  };
+
+  const focusField = (key) => {
+    const wrapper = document.querySelector(`[data-field="${key}"]`);
+    if (!wrapper) return;
+    wrapper.scrollIntoView({ behavior: "smooth", block: "center" });
+    const focusable = wrapper.querySelector("input, select, textarea");
+    focusable?.focus({ preventScroll: true });
+  };
 
   const set = (key, val) => {
     setForm((f) => {
@@ -226,9 +263,10 @@ export default function ReservarPreservacaoForm() {
     const errs = validate();
     setErrors(errs);
     if (Object.keys(errs).length) {
-      document.querySelector(".pf-input-err, [role='alert']")
-        ?.closest(".pf-group, fieldset")
-        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+      requestAnimationFrame(() => {
+        errorsSummaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        errorsSummaryRef.current?.focus({ preventScroll: true });
+      });
       return;
     }
     if (TURNSTILE_ENABLED && !turnstileToken) {
@@ -292,15 +330,43 @@ export default function ReservarPreservacaoForm() {
         {t("camposObrigatorios")} <span aria-hidden="true" className="pf-req">*</span> {locale === "en" ? "are required." : "são obrigatórios."}
       </p>
 
+      {Object.keys(errors).length > 0 && (
+        <div
+          className="pf-errors-summary"
+          role="alert"
+          tabIndex={-1}
+          ref={errorsSummaryRef}
+        >
+          <p className="pf-errors-summary-title">{t("erroResumoTitulo")}</p>
+          <ul className="pf-errors-summary-list">
+            {Object.keys(errors).map((key) => {
+              const labelKey = FIELD_LABEL_KEYS[key];
+              const label = labelKey ? t(labelKey) : key;
+              return (
+                <li key={key}>
+                  <button
+                    type="button"
+                    className="pf-errors-summary-link"
+                    onClick={() => focusField(key)}
+                  >
+                    {label}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+
       {/* ── DADOS PESSOAIS ── */}
       <div className="pf-section" role="group" aria-labelledby="sec-pessoais">
         <h2 className="pf-section-title" id="sec-pessoais">{t("secDadosPessoais")}</h2>
 
-        <Field label={t("nomeLabel")} required error={errors.nome} hint={t("nomeHint")}>
+        <Field name="nome" label={t("nomeLabel")} required error={errors.nome} hint={t("nomeHint")}>
           <input type="text" {...inp("nome")} placeholder={t("nomePlaceholder")} autoComplete="name" />
         </Field>
 
-        <Field label={t("contactoLabel")} required error={errors.meioContacto} hint={t("contactoHint")}>
+        <Field name="meioContacto" label={t("contactoLabel")} required error={errors.meioContacto} hint={t("contactoHint")}>
           <select {...inp("meioContacto")}>
             <option value="">{t("escolha")}</option>
             {meioContactoOpcoes.map((o) => (
@@ -309,11 +375,11 @@ export default function ReservarPreservacaoForm() {
           </select>
         </Field>
 
-        <Field label={t("emailLabel")} required error={errors.email} hint={t("emailHint")}>
+        <Field name="email" label={t("emailLabel")} required error={errors.email} hint={t("emailHint")}>
           <input type="email" {...inp("email")} placeholder={t("emailPlaceholder")} autoComplete="email" />
         </Field>
 
-        <Field label={t("telefoneLabel")} required error={errors.telefone} hint={t("telefoneHint")}>
+        <Field name="telefone" label={t("telefoneLabel")} required error={errors.telefone} hint={t("telefoneHint")}>
           <div className="pf-phone-wrap">
             <PhonePrefix
               value={form.telefoneIndicativo}
@@ -335,11 +401,11 @@ export default function ReservarPreservacaoForm() {
       <div className="pf-section" role="group" aria-labelledby="sec-evento">
         <h2 className="pf-section-title" id="sec-evento">{t("secEvento")}</h2>
 
-        <Field label={t("dataEventoLabel")} required error={errors.dataEvento} hint={t("dataEventoHint")}>
+        <Field name="dataEvento" label={t("dataEventoLabel")} required error={errors.dataEvento} hint={t("dataEventoHint")}>
           <input type="date" {...inp("dataEvento")} min="2020-01-01" max="2099-12-31" />
         </Field>
 
-        <Field label={t("tipoEventoLabel")} required error={errors.tipoEvento} hint={t("tipoEventoHint")}>
+        <Field name="tipoEvento" label={t("tipoEventoLabel")} required error={errors.tipoEvento} hint={t("tipoEventoHint")}>
           <select {...inp("tipoEvento")}>
             <option value="">{t("escolha")}</option>
             {tipoEventoOpcoes.map((o) => (
@@ -349,7 +415,7 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         {showNomeNoivos && (
-          <Field label={t("nomeNoivosLabel")} required error={errors.nomeNoivos} hint={t("nomeNoivosHint")}>
+          <Field name="nomeNoivos" label={t("nomeNoivosLabel")} required error={errors.nomeNoivos} hint={t("nomeNoivosHint")}>
             <input type="text" {...inp("nomeNoivos")} placeholder={t("nomeNoivosPlaceholder")} />
           </Field>
         )}
@@ -368,6 +434,7 @@ export default function ReservarPreservacaoForm() {
         <h2 className="pf-section-title" id="sec-logistica">{t("secLogistica")}</h2>
 
         <Field
+          name="comoEnviarFlores"
           label={t("enviarFloresLabel")}
           required
           error={errors.comoEnviarFlores}
@@ -385,6 +452,7 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         <Field
+          name="comoReceberQuadro"
           label={t("receberQuadroLabel")}
           required
           error={errors.comoReceberQuadro}
@@ -407,6 +475,7 @@ export default function ReservarPreservacaoForm() {
         <h2 className="pf-section-title" id="sec-quadro">{t("secQuadro")}</h2>
 
         <Field
+          name="tamanhoMoldura"
           label={t("tamanhoLabel")}
           required
           error={errors.tamanhoMoldura}
@@ -426,6 +495,7 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         <Field
+          name="tipoFundo"
           label={t("fundoLabel")}
           required
           error={errors.tipoFundo}
@@ -451,6 +521,7 @@ export default function ReservarPreservacaoForm() {
 
         {/* Checkbox group — usa fieldset + legend (WCAG) */}
         <Field
+          name="elementosExtra"
           label={t("elementosLabel")}
           required
           error={errors.elementosExtra}
@@ -473,7 +544,7 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         {showElementosExtraOutro && (
-          <Field label={t("elementosOutroLabel")} error={errors.elementosExtraOutro}>
+          <Field name="elementosExtraOutro" label={t("elementosOutroLabel")} error={errors.elementosExtraOutro}>
             <textarea
               value={form.elementosExtraOutro}
               onChange={(e) => set("elementosExtraOutro", e.target.value)}
@@ -489,7 +560,7 @@ export default function ReservarPreservacaoForm() {
       <div className="pf-section" role="group" aria-labelledby="sec-extras">
         <h2 className="pf-section-title" id="sec-extras">{t("secExtras")}</h2>
 
-        <Field label={t("quadrosExtraLabel")} required error={errors.quadrosExtra} hint={t("quadrosExtraHint")}>
+        <Field name="quadrosExtra" label={t("quadrosExtraLabel")} required error={errors.quadrosExtra} hint={t("quadrosExtraHint")}>
           <select {...inp("quadrosExtra")}>
             <option value="">{t("escolha")}</option>
             {quadrosExtraOpcoes.map((o) => (
@@ -499,7 +570,7 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         {showQuantosQuadros && (
-          <Field label={t("quantosQuadrosLabel")} required error={errors.quantosQuadros}>
+          <Field name="quantosQuadros" label={t("quantosQuadrosLabel")} required error={errors.quantosQuadros}>
             <input type="number" min={1}
               value={form.quantosQuadros}
               onChange={(e) => set("quantosQuadros", e.target.value)}
@@ -508,7 +579,7 @@ export default function ReservarPreservacaoForm() {
           </Field>
         )}
 
-        <Field label={t("ornamentosLabel")} required error={errors.ornamentosNatal} hint={t("ornamentosHint")}>
+        <Field name="ornamentosNatal" label={t("ornamentosLabel")} required error={errors.ornamentosNatal} hint={t("ornamentosHint")}>
           <select {...inp("ornamentosNatal")}>
             <option value="">{t("escolha")}</option>
             {ornamentosOpcoes.map((o) => (
@@ -518,7 +589,7 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         {showQuantosOrnamentos && (
-          <Field label={t("quantosOrnamentosLabel")} required error={errors.quantosOrnamentos}>
+          <Field name="quantosOrnamentos" label={t("quantosOrnamentosLabel")} required error={errors.quantosOrnamentos}>
             <input type="number" min={1}
               value={form.quantosOrnamentos}
               onChange={(e) => set("quantosOrnamentos", e.target.value)}
@@ -527,7 +598,7 @@ export default function ReservarPreservacaoForm() {
           </Field>
         )}
 
-        <Field label={t("pendentesLabel")} required error={errors.pendentes} hint={t("pendentesHint")}>
+        <Field name="pendentes" label={t("pendentesLabel")} required error={errors.pendentes} hint={t("pendentesHint")}>
           <select {...inp("pendentes")}>
             <option value="">{t("escolha")}</option>
             {pendentesOpcoes.map((o) => (
@@ -537,7 +608,7 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         {showQuantosPendentes && (
-          <Field label={t("quantosPendentesLabel")} required error={errors.quantosPendentes}>
+          <Field name="quantosPendentes" label={t("quantosPendentesLabel")} required error={errors.quantosPendentes}>
             <input type="number" min={1}
               value={form.quantosPendentes}
               onChange={(e) => set("quantosPendentes", e.target.value)}
@@ -551,7 +622,7 @@ export default function ReservarPreservacaoForm() {
       <div className="pf-section" role="group" aria-labelledby="sec-outros">
         <h2 className="pf-section-title" id="sec-outros">{t("secOutros")}</h2>
 
-        <Field label={t("comoConheceuLabel")} required error={errors.comoConheceu}>
+        <Field name="comoConheceu" label={t("comoConheceuLabel")} required error={errors.comoConheceu}>
           <select {...inp("comoConheceu")}>
             <option value="">{t("escolha")}</option>
             {comoConheceuOpcoes.map((o) => (
@@ -561,19 +632,19 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         {showNomeFlorista && (
-          <Field label={t("nomeFlorista")} required error={errors.nomeFlorista}>
+          <Field name="nomeFlorista" label={t("nomeFlorista")} required error={errors.nomeFlorista}>
             <textarea {...inp("nomeFlorista")} rows={2} placeholder={t("nomeFlorePlaceholder")} />
           </Field>
         )}
 
         {showComoConheceuOutro && (
-          <Field label={t("comoConheceuOutroLabel")} required error={errors.comoConheceuOutro}>
+          <Field name="comoConheceuOutro" label={t("comoConheceuOutroLabel")} required error={errors.comoConheceuOutro}>
             <textarea {...inp("comoConheceuOutro")} rows={3} />
           </Field>
         )}
 
         {showCodigoVale && (
-          <Field label={t("codigoValeLabel")} required error={errors.codigoValePresente} hint={t("codigoValeHint")}>
+          <Field name="codigoValePresente" label={t("codigoValeLabel")} required error={errors.codigoValePresente} hint={t("codigoValeHint")}>
             <input type="text" {...inp("codigoValePresente")} placeholder={t("codigoValePlaceholder")} autoComplete="off" maxLength={20} />
           </Field>
         )}
@@ -582,7 +653,7 @@ export default function ReservarPreservacaoForm() {
           <textarea {...inp("notasAdicionais")} rows={4} placeholder={t("notasPlaceholder")} />
         </Field>
 
-        <div className="pf-group">
+        <div className="pf-group" data-field="termosCondicoes">
           <label className="pf-check-label pf-termos-label">
             <input
               type="checkbox"
@@ -618,12 +689,6 @@ export default function ReservarPreservacaoForm() {
           autoComplete="off"
         />
       </div>
-
-      {Object.keys(errors).length > 0 && (
-        <p className="pf-errors-summary" role="alert">
-          {t("erroFormulario")}
-        </p>
-      )}
 
       <TurnstileWidget onToken={setTurnstileToken} language={locale} />
 
