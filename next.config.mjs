@@ -35,6 +35,14 @@ const nextConfig = {
           },
           // Impede carregamento de plugins externos (Flash, etc.)
           { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
+          // Isolamento de janelas/popups (mitiga Spectre, tabnabbing).
+          // same-origin-allow-popups permite WhatsApp/Instagram a abrirem em popup
+          // mas mantém o site isolado do contexto da janela aberta.
+          { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
+          // Impede que recursos sejam embebidos por outros sites
+          { key: "Cross-Origin-Resource-Policy", value: "same-site" },
+          // Permite pré-resolução DNS para imagens/scripts externos (Cloudflare, Google)
+          { key: "X-DNS-Prefetch-Control", value: "on" },
           // Content Security Policy
           // script-src 'unsafe-inline': necessário para hydration do Next.js e JSON-LD inline
           // style-src 'unsafe-inline': necessário para Framer Motion (estilos inline)
