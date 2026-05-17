@@ -72,7 +72,16 @@ const nextConfig = {
 
   // Redireccionamentos permanentes
   async redirects() {
-    return [];
+    return [
+      // Apex (floresabeirario.pt) -> www (www.floresabeirario.pt)
+      // Consolida autoridade SEO num único domínio canónico
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "floresabeirario.pt" }],
+        destination: "https://www.floresabeirario.pt/:path*",
+        permanent: true,
+      },
+    ];
   },
 };
 

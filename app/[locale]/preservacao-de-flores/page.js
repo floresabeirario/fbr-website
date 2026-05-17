@@ -6,29 +6,31 @@ import PreservacaoDeFloresClient from "@/app/preservacao-de-flores/PreservacaoDe
 
 function buildSchema(locale) {
   const isEN = locale === "en";
-  return {
-    "@context": "https://schema.org",
+
+  const provider = {
+    "@type": "LocalBusiness",
+    name: "Flores à Beira-Rio",
+    url: SITE_URL,
+    image: `${SITE_URL}/logo.webp`,
+    telephone: PHONE,
+    email: EMAIL,
+    address: { "@type": "PostalAddress", addressLocality: "Coimbra", addressCountry: "PT" },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: "7",
+      bestRating: "5",
+      worstRating: "1",
+    },
+  };
+
+  const service = {
     "@type": "Service",
     name: isEN ? "Flower Preservation, Flores à Beira-Rio" : "Preservação de Flores, Flores à Beira-Rio",
     description: isEN
-      ? "Artisan botanical preservation of emotionally meaningful flowers. Wedding bouquets, baptism and memorial flowers transformed into frames with museum anti-UV glass. Atelier in Coimbra, we ship across Europe."
-      : "Preservação botânica artesanal de flores com valor emocional. Bouquets de casamento, flores de batizado e homenagem transformados em quadros de arte com vidro museu anti-UV. Atelier em Coimbra, enviamos para toda a Europa.",
-    provider: {
-      "@type": "LocalBusiness",
-      name: "Flores à Beira-Rio",
-      url: SITE_URL,
-      image: `${SITE_URL}/logo.webp`,
-      telephone: PHONE,
-      email: EMAIL,
-      address: { "@type": "PostalAddress", addressLocality: "Coimbra", addressCountry: "PT" },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "5.0",
-        reviewCount: "7",
-        bestRating: "5",
-        worstRating: "1",
-      },
-    },
+      ? "Artisan botanical preservation of emotionally meaningful flowers. Wedding bouquets, baptism and memorial flowers transformed into frames with museum anti-UV glass. Atelier in Coimbra, with worldwide shipping."
+      : "Preservação botânica artesanal de flores com valor emocional. Bouquets de casamento, flores de batizado e homenagem transformados em quadros de arte com vidro museu anti-UV. Atelier em Coimbra, com envio nacional e internacional.",
+    provider,
     areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
     serviceType: isEN ? "Flower Preservation" : "Preservação de Flores",
     offers: {
@@ -47,6 +49,34 @@ function buildSchema(locale) {
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "50×70 cm" }, price: "500", priceCurrency: "EUR" },
       ],
     },
+  };
+
+  const howTo = {
+    "@type": "HowTo",
+    name: isEN
+      ? "How to preserve flowers in a botanical art frame"
+      : "Como preservar flores num quadro de arte botânica",
+    description: isEN
+      ? "The artisan process to turn meaningful flowers into a lasting framed piece, from booking to delivery."
+      : "O processo artesanal para transformar flores com valor emocional num quadro duradouro, da reserva à entrega.",
+    step: isEN
+      ? [
+          { "@type": "HowToStep", position: 1, name: "Book your date", text: "Get in touch as soon as possible, especially for weddings (May to September are limited)." },
+          { "@type": "HowToStep", position: 2, name: "Hand in the flowers within 5 days", text: "Drop them off in person in Coimbra, send by express courier, or request collection. We receive flowers Monday to Sunday." },
+          { "@type": "HowToStep", position: 3, name: "Approve the composition", text: "We send photographs of the composition by email. You have 72 hours to approve or request changes." },
+          { "@type": "HowToStep", position: 4, name: "Receive the framed piece", text: "The framed artwork is shipped with insurance and specialist packaging, worldwide." },
+        ]
+      : [
+          { "@type": "HowToStep", position: 1, name: "Reservar a data", text: "Entre em contacto assim que possível, especialmente para casamentos (Maio a Setembro são vagas limitadas)." },
+          { "@type": "HowToStep", position: 2, name: "Entregar as flores em 5 dias", text: "Pode entregar em mãos em Coimbra, enviar por correio expresso, ou solicitar recolha. Recebemos de segunda a domingo." },
+          { "@type": "HowToStep", position: 3, name: "Aprovar a composição", text: "Enviamos fotografias da composição por e-mail. Tem 72 horas para aprovar ou pedir alterações." },
+          { "@type": "HowToStep", position: 4, name: "Receber o quadro em casa", text: "O quadro emoldurado é enviado com seguro e embalagem especializada, para Portugal e para o estrangeiro." },
+        ],
+  };
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [service, howTo],
   };
 }
 
