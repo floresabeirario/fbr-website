@@ -25,6 +25,9 @@ Thumbs.db
 *.swp
 *.swo
 
+# ─── Claude Code (settings local de máquina) ──────────────
+.claude/settings.local.json
+
 # ─── Debug e Logs ─────────────────────────────────────────
 npm-debug.log*
 yarn-debug.log*
