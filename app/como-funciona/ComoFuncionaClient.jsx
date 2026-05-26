@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL, WA_URL } from "../_lib/constants";
 import PageHero from "@/components/PageHero";
+import ExploreSquares from "@/components/ExploreSquares";
 import "./ComoFuncionaClient.css";
 
 // ─── HowTo Schema ─────────────────────────────────────────────────────────────
@@ -129,6 +130,8 @@ const Step = ({ step, meta, index, reservarLabel, bookHref }) => {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function ComoFuncionaClient() {
   const t = useTranslations("comoFunciona");
+  const tNav = useTranslations("nav");
+  const tCommon = useTranslations("common");
   const locale = useLocale();
   const passosRaw = t.raw("passos");
   const incluidos = t.raw("incluidos");
@@ -137,6 +140,15 @@ export default function ComoFuncionaClient() {
   const precosHref = locale === "en" ? "/en/options-and-pricing" : "/opcoes-e-precos";
   const recriacaoHref = locale === "en" ? "/en/bouquet-recreation" : "/recriacao";
   const faqHref = locale === "en" ? "/en/faq" : "/perguntas-frequentes";
+  const bouquetNoivaHref = locale === "en" ? "/en/preserve-wedding-bouquet" : "/preservar-bouquet-noiva";
+  const oferecerHref = locale === "en" ? "/en/gift-preservation" : "/oferecer-preservacao";
+
+  const exploreItems = [
+    { href: bouquetNoivaHref, label: tNav("preservacao.bouquetNoiva"), img: "/quadroflores.webp" },
+    { href: precosHref,       label: tNav("preservacao.opcoes"),       img: "/molduranogueira.webp" },
+    { href: oferecerHref,     label: tNav("oferecer"),                 img: "/vale1.webp" },
+    { href: recriacaoHref,    label: tNav("recriacao"),                img: "/recriacao-passo4-quadro.jpg" },
+  ];
 
   const passos = passosRaw.map((p, i) => ({
     ...p,
@@ -263,6 +275,9 @@ export default function ComoFuncionaClient() {
             </div>
           </motion.div>
         </section>
+
+        {/* ═══ EXPLORAR — 4 QUADRADOS ═══════════════════════════════════════ */}
+        <ExploreSquares items={exploreItems} ariaLabel={tCommon("explorar")} />
       </div>
     </>
   );

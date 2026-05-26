@@ -465,7 +465,8 @@ export default function NavClient() {
     label: t("preservacao.label"),
     href:  `${prefix}/preservacao-de-flores`,
     items: [
-      { name: t("preservacao.opcoes"),         href: `${prefix}/opcoes-e-precos` },
+      { name: t("preservacao.bouquetNoiva"),    href: `${prefix}/preservar-bouquet-noiva` },
+      { name: t("preservacao.opcoes"),          href: `${prefix}/opcoes-e-precos` },
       { name: t("preservacao.comoFunciona"),    href: `${prefix}/como-funciona` },
       { name: t("preservacao.sustentabilidade"),href: `${prefix}/sustentabilidade` },
       { name: t("preservacao.emoldurar"),       href: `${prefix}/emoldurar-flores-secas` },
@@ -474,10 +475,11 @@ export default function NavClient() {
 
   if (locale === "en") {
     NAV_PRESERVACAO.href = "/en/flower-preservation";
-    NAV_PRESERVACAO.items[0].href = "/en/options-and-pricing";
-    NAV_PRESERVACAO.items[1].href = "/en/how-it-works";
-    NAV_PRESERVACAO.items[2].href = "/en/sustainability";
-    NAV_PRESERVACAO.items[3].href = "/en/frame-dried-flowers";
+    NAV_PRESERVACAO.items[0].href = "/en/preserve-wedding-bouquet";
+    NAV_PRESERVACAO.items[1].href = "/en/options-and-pricing";
+    NAV_PRESERVACAO.items[2].href = "/en/how-it-works";
+    NAV_PRESERVACAO.items[3].href = "/en/sustainability";
+    NAV_PRESERVACAO.items[4].href = "/en/frame-dried-flowers";
   }
 
   const recriacaoHref = locale === "en" ? "/en/bouquet-recreation" : "/recriacao";

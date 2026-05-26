@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Script from "next/script";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 // ─── Gradient themes (semantic keys used in data-bg) ─────────────────────────
 // Golden rule: light cream dominates 85-90%, deeper accent is a single whisper at the far edge.
@@ -86,6 +86,8 @@ const IconWA = () => (
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function HomeClient() {
   const t = useTranslations("home");
+  const locale = useLocale();
+  const bouquetNoivaHref = locale === "en" ? "/en/preserve-wedding-bouquet" : "/preservar-bouquet-noiva";
 
   const apccItems = [
     { icon: <IconReuse />, title: t("pensadoReutilizar"), desc: t("pensadoReutilizarDesc") },
@@ -409,8 +411,9 @@ export default function HomeClient() {
               <p style={{ color: "rgba(250,247,240,0.8)", fontSize: "1rem", lineHeight: 1.82, margin: "0 0 32px" }}>
                 {t("noivasDesc")}
               </p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              <div style={{ display: "flex", justifyContent: "center", gap: "12px", flexWrap: "wrap" }}>
                 <a href={FORM_URL} className="btn-noiva-ghost">{t("heroCTA")}</a>
+                <a href={bouquetNoivaHref} className="btn-noiva-ghost">{t("noivasSaberMais")}</a>
               </div>
             </div>
           </motion.div>
