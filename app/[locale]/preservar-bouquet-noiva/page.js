@@ -136,7 +136,7 @@ export async function generateMetadata({ params }) {
       description: t("ogDescription"),
       imagePath: `${SITE_URL}/og-homepage.jpg`,
     }),
-    alternates: buildAlternates("/preservar-bouquet-noiva"),
+    alternates: buildAlternates("/preservar-bouquet-noiva", locale),
   };
 }
 

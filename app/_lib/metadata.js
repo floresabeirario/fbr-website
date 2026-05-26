@@ -32,13 +32,16 @@ const SLUG_MAP = {
 
 /**
  * Builds hreflang alternates for a given pathname key.
- * ptPath: e.g. "/preservacao-de-flores"
+ * pathnameKey: e.g. "/preservacao-de-flores"
+ * locale: "pt" or "en". Each locale's page must canonicalize to itself,
+ * otherwise Google treats EN pages as duplicates of PT and refuses to index them.
  */
-export function buildAlternates(pathnameKey) {
+export function buildAlternates(pathnameKey, locale = "pt") {
   const paths = SLUG_MAP[pathnameKey];
   if (!paths) return {};
+  const selfPath = locale === "en" ? paths.en : paths.pt;
   return {
-    canonical: `${SITE_URL}${paths.pt}`,
+    canonical: `${SITE_URL}${selfPath}`,
     languages: {
       "pt-PT":    `${SITE_URL}${paths.pt}`,
       "en":       `${SITE_URL}${paths.en}`,
@@ -49,11 +52,14 @@ export function buildAlternates(pathnameKey) {
 
 /**
  * Builds hreflang alternates for blog articles.
- * ptSlug: slug of the PT article, enSlug: slug of the EN article.
+ * Each locale's article must canonicalize to itself.
  */
-export function buildBlogAlternates(ptSlug, enSlug) {
+export function buildBlogAlternates(ptSlug, enSlug, locale = "pt") {
+  const selfUrl = locale === "en"
+    ? `${SITE_URL}/en/blog/${enSlug}`
+    : `${SITE_URL}/blog/${ptSlug}`;
   return {
-    canonical: `${SITE_URL}/blog/${ptSlug}`,
+    canonical: selfUrl,
     languages: {
       "pt-PT":     `${SITE_URL}/blog/${ptSlug}`,
       "en":        `${SITE_URL}/en/blog/${enSlug}`,

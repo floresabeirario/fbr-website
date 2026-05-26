@@ -53,7 +53,7 @@ export async function generateMetadata({ params }) {
       description: post.description,
       images: [post.image.startsWith("http") ? post.image : `${SITE_URL}${post.image}`],
     },
-    alternates: ptSlug && enSlug ? buildBlogAlternates(ptSlug, enSlug) : undefined,
+    alternates: ptSlug && enSlug ? buildBlogAlternates(ptSlug, enSlug, locale) : undefined,
   };
 }
 

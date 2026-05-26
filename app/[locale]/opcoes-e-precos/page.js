@@ -132,7 +132,7 @@ export async function generateMetadata({ params }) {
       description: t("ogDescription"),
       imagePath: `${SITE_URL}/fotoquadro1.webp`,
     }),
-    alternates: buildAlternates("/opcoes-e-precos"),
+    alternates: buildAlternates("/opcoes-e-precos", locale),
   };
 }
 
