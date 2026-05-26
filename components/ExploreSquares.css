@@ -1,0 +1,44 @@
+.explore-squares-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 640px) {
+  .explore-squares-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.explore-square {
+  position: relative;
+  aspect-ratio: 1;
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.explore-square-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s ease;
+}
+.explore-square:hover .explore-square-img { transform: scale(1.07); }
+
+.explore-square-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15,38,34,0.78) 0%, rgba(15,38,34,0.12) 55%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(12px, 2.5vw, 22px);
+  transition: background 0.35s ease;
+}
+.explore-square:hover .explore-square-overlay {
+  background: linear-gradient(to top, rgba(15,38,34,0.88) 0%, rgba(15,38,34,0.25) 60%, transparent 100%);
+}
+
+.explore-square-label {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(0.72rem, 2vw, 1rem);
+  color: var(--cream);
+  line-height: 1.2;
+}

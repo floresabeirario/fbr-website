@@ -12,6 +12,7 @@
     "preservacao": {
       "label": "Flower Preservation",
       "href": "/en/flower-preservation",
+      "bouquetNoiva": "Wedding Bouquet",
       "opcoes": "Options & Pricing",
       "comoFunciona": "How It Works",
       "sustentabilidade": "Sustainability",
@@ -99,6 +100,7 @@
     "paraNoivas": "For brides",
     "noivasTitle": "Getting married soon?",
     "noivasDesc": "Book your slot in advance: wedding season dates fill up quickly.",
+    "noivasSaberMais": "Learn More",
     "sliderAntes": "Before",
     "sliderDepois": "After",
     "sliderArraste": "Drag to compare"
@@ -546,7 +548,7 @@
     },
     "eyebrow": "Wedding Bouquet",
     "h1": "Preserve the Wedding Bouquet",
-    "heroDesc": "We transform your wedding bouquet into a botanical work of art that lasts decades. Artisan pressing, anti-UV museum glass and handmade framing in Coimbra. We receive bouquets in person, by post, or with collection at your venue.",
+    "heroDesc": "We transform your wedding bouquet into a botanical work of art that lasts decades. Artisan pressing, anti-UV museum glass and handmade framing in Coimbra, with shipping across Portugal and Europe. We receive bouquets in person, by post, or by collection at your wedding venue by our team.",
     "eyebrow2": "Artisan Botanical Art",
     "contentTitle": "The bouquet that was there for your vows",
     "contentEm": "for your vows",
@@ -627,6 +629,10 @@
       {
         "q": "How can I hand in the bouquet?",
         "a": "You can drop it off in person in Coimbra, send it by express courier, or request collection from a location by our team (subject to availability). We receive bouquets Monday to Sunday, including weekends."
+      },
+      {
+        "q": "Do you receive bouquets from outside Coimbra? I'm in Porto / Lisbon / the Algarve.",
+        "a": "Yes. We receive bouquets from across mainland Portugal and the islands, and most of our clients are based outside Coimbra. The most convenient option is collection at your wedding venue by our team: we arrange the date and time with you and handle transport back to the studio. Alternatively, you can send the bouquet by express courier (CTT, MRW, DHL) with insurance. We regularly work with brides from Lisbon, Porto, Braga, the Algarve and Madeira."
       },
       {
         "q": "Do you receive bouquets at the weekend, including Sunday?",
@@ -2078,6 +2084,7 @@
     "perguntasFrequentes": "Frequently asked questions",
     "voltarBlog": "Back to blog",
     "falarConnosco": "Talk to us",
-    "opcoesPrecos": "Options & Pricing"
+    "opcoesPrecos": "Options & Pricing",
+    "explorar": "Explore services"
   }
 }

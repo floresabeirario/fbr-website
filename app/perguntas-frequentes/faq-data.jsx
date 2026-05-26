@@ -20,6 +20,8 @@ export const FAQ_DATA = [
         podemos sempre{" "}
         <a href="/recriacao" className="faq-link">recriar o bouquet</a>{" "}
         com flores frescas semelhantes, a partir de uma fotografia.
+        <br /><br />
+        <a href="/preservar-bouquet-noiva" className="faq-link">Saber mais sobre preservação do bouquet de noiva →</a>
       </>
     ),
   },

@@ -9,21 +9,21 @@ import SubCard, { SUBPAGES } from "./SubCard";
 import "./PreservacaoDeFloresClient.css";
 
 const OCASIOES_HREFS_PT = [
-  "/como-funciona",
-  "/como-funciona",
-  "/como-funciona",
-  "/como-funciona",
+  "/preservar-bouquet-noiva",
+  "/preservar-flores-batizado-nascimento",
+  "/preservar-flores-luto-homenagem",
+  "/preservar-flores-aniversario",
   "/emoldurar-flores-secas",
-  "/opcoes-e-precos",
+  "/oferecer-preservacao",
 ];
 
 const OCASIOES_HREFS_EN = [
-  "/en/how-it-works",
-  "/en/how-it-works",
-  "/en/how-it-works",
-  "/en/how-it-works",
+  "/en/preserve-wedding-bouquet",
+  "/en/preserve-baptism-flowers",
+  "/en/preserve-memorial-flowers",
+  "/en/preserve-anniversary-flowers",
   "/en/frame-dried-flowers",
-  "/en/options-and-pricing",
+  "/en/gift-preservation",
 ];
 
 export default function PreservacaoDeFloresClient() {

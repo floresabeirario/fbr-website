@@ -72,6 +72,7 @@ function buildSchema(locale) {
 
   const faqPT = [
     { q: "Como posso entregar o bouquet?", a: "Pode entregar em mãos na nossa oficina em Coimbra, enviar por correio registado, ou solicitar recolha no local da cerimónia. Recebemos de segunda a domingo, incluindo fins de semana." },
+    { q: "Recebem bouquets de fora de Coimbra? Estou no Porto / Lisboa / Algarve.", a: "Sim. Recebemos bouquets de todo o Portugal continental e ilhas, e a maioria dos nossos clientes está fora de Coimbra. A forma mais confortável é a recolha no local do casamento pela nossa equipa: combinamos data e hora consigo e tratamos do transporte até ao atelier. Em alternativa, pode enviar por correio expresso (CTT, MRW, DHL) com seguro. Trabalhamos regularmente com noivas de Lisboa, Porto, Braga, Algarve e Madeira." },
     { q: "Recebem bouquets ao fim de semana, incluindo ao domingo?", a: "Sim. Sabemos que a maioria dos casamentos acontece ao sábado ou ao domingo, por isso estamos disponíveis ao fim de semana. Não tem de esperar pela segunda-feira para nos contactar ou para fazer a entrega." },
     { q: "Qual o prazo máximo para entregar o bouquet depois do casamento?", a: "Aceitamos bouquets até 5 dias após a cerimónia. O ideal é 1 a 3 dias, quanto mais fresco, mais opções de composição são possíveis." },
     { q: "Como devo conservar o bouquet até o entregar?", a: "Coloque-o num vaso com água fresca, longe do calor e da luz solar directa. Não o coloque no frigorífico. Corte ligeiramente os caules antes de os colocar em água." },
@@ -84,6 +85,7 @@ function buildSchema(locale) {
 
   const faqEN = [
     { q: "How can I hand in the bouquet?", a: "You can hand it in at our studio in Coimbra, send it by registered post, or request collection from your venue. We are open Monday to Sunday, including weekends." },
+    { q: "Do you receive bouquets from outside Coimbra? I'm in Porto / Lisbon / the Algarve.", a: "Yes. We receive bouquets from across mainland Portugal and the islands, and most of our clients are based outside Coimbra. The most convenient option is collection at your wedding venue by our team: we arrange the date and time with you and handle transport back to the studio. Alternatively, you can send the bouquet by express courier (CTT, MRW, DHL) with insurance. We regularly work with brides from Lisbon, Porto, Braga, the Algarve and Madeira." },
     { q: "Do you receive bouquets at the weekend, including Sunday?", a: "Yes. We know most weddings take place on Saturdays or Sundays, so we are available at the weekend. You don't need to wait until Monday to contact us or hand in the bouquet." },
     { q: "What is the maximum time to hand in the bouquet after the wedding?", a: "We accept bouquets up to 5 days after the ceremony. Ideally within 1 to 3 days, the fresher the bouquet, the more options are available." },
     { q: "How should I keep the bouquet until I hand it in?", a: "Place it in a vase with fresh water, away from heat and direct sunlight. Do not refrigerate it. Trim the stems slightly before placing them in water." },

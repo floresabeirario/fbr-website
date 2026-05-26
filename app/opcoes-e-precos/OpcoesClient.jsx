@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 
 import { FORM_URL, TRACKING_URL } from "../_lib/constants";
+import ExploreSquares from "@/components/ExploreSquares";
 
 const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
 const VERDE_CLARO = "var(--green-l)";
@@ -219,6 +220,8 @@ const fundosVisual = [
 
 export default function OpcoesClient() {
   const t = useTranslations("opcoes");
+  const tNav = useTranslations("nav");
+  const tCommon = useTranslations("common");
   const locale = useLocale();
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
@@ -232,6 +235,16 @@ export default function OpcoesClient() {
   const recriacaoHref   = locale === "en" ? "/en/bouquet-recreation"  : "/recriacao";
   const perguntasHref   = locale === "en" ? "/en/faq"                 : "/perguntas-frequentes";
   const contactosHref   = locale === "en" ? "/en/contact"             : "/contactos";
+  const bouquetNoivaHref = locale === "en" ? "/en/preserve-wedding-bouquet" : "/preservar-bouquet-noiva";
+  const comoFuncionaHref = locale === "en" ? "/en/how-it-works"             : "/como-funciona";
+  const oferecerHref     = locale === "en" ? "/en/gift-preservation"        : "/oferecer-preservacao";
+
+  const exploreItems = [
+    { href: bouquetNoivaHref,  label: tNav("preservacao.bouquetNoiva"),  img: "/quadroflores.webp" },
+    { href: comoFuncionaHref,  label: tNav("preservacao.comoFunciona"),  img: "/prensa.webp" },
+    { href: recriacaoHref,     label: tNav("recriacao"),                  img: "/recriacao-passo4-quadro.jpg" },
+    { href: oferecerHref,      label: tNav("oferecer"),                   img: "/vale1.webp" },
+  ];
 
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -614,6 +627,9 @@ export default function OpcoesClient() {
           </Reveal>
         </div>
       </section>
+
+      {/* ═══ EXPLORAR — 4 QUADRADOS ═══════════════════════════════════════ */}
+      <ExploreSquares items={exploreItems} ariaLabel={tCommon("explorar")} />
 
       <style jsx global>{`
         .fundos-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 16px; padding: 0 24px 4px; }

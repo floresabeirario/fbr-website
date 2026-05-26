@@ -26,6 +26,8 @@ export const FAQ_DATA_EN = [
           recreate the bouquet
         </a>{" "}
         using similar fresh flowers from a photograph.
+        <br /><br />
+        <a href="/en/preserve-wedding-bouquet" className="faq-link">Learn more about wedding bouquet preservation →</a>
       </>
     ),
   },
