@@ -42,7 +42,7 @@ export async function generateMetadata({ params }) {
       description: t("ogDescription"),
       imagePath: `${SITE_URL}/og-homepage.jpg`,
     }),
-    alternates: buildAlternates("/perguntas-frequentes"),
+    alternates: buildAlternates("/perguntas-frequentes", locale),
   };
 }
 

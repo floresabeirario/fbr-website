@@ -65,7 +65,7 @@ export async function generateMetadata({ params }) {
       description: t("ogDescription"),
       imagePath: `${SITE_URL}/og-homepage.jpg`,
     }),
-    alternates: buildAlternates("/recriacao"),
+    alternates: buildAlternates("/recriacao", locale),
   };
 }
 

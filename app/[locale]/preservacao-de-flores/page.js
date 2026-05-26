@@ -103,7 +103,7 @@ export async function generateMetadata({ params }) {
       description: t("ogDescription"),
       imagePath: `${SITE_URL}/joanaceu.webp`,
     }),
-    alternates: buildAlternates("/preservacao-de-flores"),
+    alternates: buildAlternates("/preservacao-de-flores", locale),
   };
 }
 

@@ -118,7 +118,7 @@ export async function generateMetadata({ params }) {
       description: t("ogDescription"),
       imagePath: `${SITE_URL}/og-homepage.jpg`,
     }),
-    alternates: buildAlternates("/preservar-flores-pedido-casamento"),
+    alternates: buildAlternates("/preservar-flores-pedido-casamento", locale),
   };
 }
 

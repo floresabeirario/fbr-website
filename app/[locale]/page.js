@@ -91,7 +91,7 @@ export async function generateMetadata({ params }) {
       description: t("twitterDescription"),
       imagePath: "/og-homepage.jpg",
     }),
-    alternates: buildAlternates("/"),
+    alternates: buildAlternates("/", locale),
   };
 }
 

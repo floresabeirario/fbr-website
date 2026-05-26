@@ -135,7 +135,8 @@
       "PowerShell($wb = [xml]\\(Get-Content \"$env:TEMP\\\\gsc_extract\\\\xl\\\\workbook.xml\" -Raw\\); $wb.workbook.sheets.sheet | ForEach-Object { \"$\\($_.sheetId\\) | $\\($_.name\\) | $\\($_.'r:id'\\)\" })",
       "PowerShell(& \"$env:TEMP\\\\gsc_extract\\\\parse.ps1\" 2>&1 | Out-File \"$env:TEMP\\\\gsc_extract\\\\output.txt\" -Encoding utf8; Get-Item \"$env:TEMP\\\\gsc_extract\\\\output.txt\" | Select-Object Length)",
       "Bash(awk 'NR==313,NR==500' messages/pt.json)",
-      "Bash(awk -F: '$2 > 1043 && $2 < 1055')"
+      "Bash(awk -F: '$2 > 1043 && $2 < 1055')",
+      "Bash(curl -sI https://www.floresabeirario.pt/en)"
     ]
   }
 }

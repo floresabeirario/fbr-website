@@ -64,7 +64,7 @@ export async function generateMetadata({ params }) {
       description: t("ogDescription"),
       imagePath: `${SITE_URL}/og-homepage.jpg`,
     }),
-    alternates: buildAlternates("/emoldurar-flores-secas"),
+    alternates: buildAlternates("/emoldurar-flores-secas", locale),
   };
 }
 

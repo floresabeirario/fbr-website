@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
       description: t("ogDescription"),
       imagePath: `${SITE_URL}/fotoquadro1.webp`,
     }),
-    alternates: buildAlternates("/blog"),
+    alternates: buildAlternates("/blog", locale),
   };
 }
 

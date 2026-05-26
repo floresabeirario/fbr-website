@@ -85,7 +85,7 @@ export async function generateMetadata({ params }) {
       description: t("ogDescription"),
       imagePath: `${SITE_URL}/moldurapreta.webp`,
     }),
-    alternates: buildAlternates("/reservar-preservacao"),
+    alternates: buildAlternates("/reservar-preservacao", locale),
   };
 }
 
