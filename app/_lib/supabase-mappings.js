@@ -20,7 +20,7 @@ const MEIO_CONTACTO = {
 const COMO_ENVIAR_FLORES = {
   "Entrega em mãos em Coimbra":                                                                 "maos",
   "Envio por CTT/transportadora para o estúdio (custos a cargo do cliente)":                    "ctt",
-  "Recolha no evento por parte da Flores à Beira-Rio - mediante orçamento e disponibilidade":   "recolha_evento",
+  "Recolha no local por parte da Flores à Beira-Rio - mediante orçamento e disponibilidade":    "recolha_evento",
   "Ainda não sei":                                                                              "nao_sei",
 };
 
