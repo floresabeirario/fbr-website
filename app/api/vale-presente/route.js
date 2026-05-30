@@ -27,6 +27,7 @@ import {
   createRateLimiter,
   exceedsLength,
   isAllowedOrigin,
+  formatDatePT,
 } from "@/app/_lib/api-helpers";
 import { EMAIL } from "@/app/_lib/constants";
 import { mapValeToVoucher } from "@/app/_lib/supabase-mappings";
@@ -190,7 +191,7 @@ export async function POST(request) {
         data.entregaRemetenteComo ? `<tr><td><strong>Como receber (remetente)</strong></td><td>${e(data.entregaRemetenteComo)}</td></tr>` : "",
         data.morada ? `<tr><td><strong>Morada</strong></td><td>${e(data.morada)}</td></tr>` : "",
         data.contactoDestinatario ? `<tr><td><strong>Contacto destinatário</strong></td><td>${e(data.contactoDestinatario)}</td></tr>` : "",
-        data.dataEnvio ? `<tr><td><strong>Data de envio</strong></td><td>${e(data.dataEnvio)}</td></tr>` : "",
+        data.dataEnvio ? `<tr><td><strong>Data de envio</strong></td><td>${e(formatDatePT(data.dataEnvio) || data.dataEnvio)}</td></tr>` : "",
         data.comentarios ? `<tr><td><strong>Comentários</strong></td><td>${e(data.comentarios)}</td></tr>` : "",
         `<tr><td><strong>Como conheceu</strong></td><td>${e(data.comoConheceu)}</td></tr>`,
         data.nomeFlorista ? `<tr><td><strong>Nome da florista</strong></td><td>${e(data.nomeFlorista)}</td></tr>` : "",
