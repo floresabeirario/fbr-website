@@ -63,6 +63,7 @@ const COMO_CONHECEU_RESERVA = {
   "Pesquisa no Google":                                                    "google",
   "Recomendação de florista":                                              "florista",
   "Recomendação de alguém que já contratou o serviço anteriormente":       "recomendacao",
+  "Recomendação de uma IA (ChatGPT, Gemini, etc.)":                        "recomendacao_ia",
   "Outro (especificar abaixo)":                                            "outro",
 };
 
@@ -97,6 +98,7 @@ function inferDeliveryChannel(contactoDestinatario) {
 
 const VALE_COMO_CONHECEU = {
   "recomendacao-cliente": "recomendacao",
+  "recomendacao-ia":      "recomendacao_ia",
   "instagram":            "instagram",
   "facebook":             "facebook",
   "casamentos":           "casamentos_pt",
