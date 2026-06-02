@@ -91,15 +91,15 @@ export default function EnviarFloresClient() {
           </motion.div>
         </header>
 
-        <div style={{ maxWidth: "760px", margin: "0 auto", padding: "clamp(36px,6vw,60px) clamp(20px,5vw,40px) 0" }}>
+        <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "clamp(36px,6vw,60px) clamp(20px,5vw,40px) 0" }}>
 
           {/* ── TIMING NOTE ─────────────────────────────────────────── */}
-          <motion.p {...fadeUp} style={{ padding: "clamp(14px,2.5vw,18px) clamp(16px,3vw,22px)", borderRadius: "12px", backgroundColor: "rgba(200,82,42,0.05)", borderLeft: "3px solid rgba(200,82,42,0.3)", color: "var(--rust)", fontSize: "clamp(0.86rem,1.7vw,0.96rem)", lineHeight: 1.7, margin: "0 0 clamp(40px,7vw,64px)" }}>
+          <motion.p {...fadeUp} style={{ maxWidth: "720px", padding: "clamp(14px,2.5vw,18px) clamp(16px,3vw,22px)", borderRadius: "12px", backgroundColor: "rgba(200,82,42,0.05)", borderLeft: "3px solid rgba(200,82,42,0.3)", color: "var(--rust)", fontSize: "clamp(0.86rem,1.7vw,0.96rem)", lineHeight: 1.7, margin: "0 auto clamp(40px,7vw,64px)" }}>
             {t("introDesc")}
           </motion.p>
 
           {/* ── MATERIALS CHECKLIST ─────────────────────────────────── */}
-          <motion.section {...fadeUp} aria-label={t("materiaisTitle")} style={{ backgroundColor: "#fff", borderRadius: "18px", padding: "clamp(20px,4vw,32px)", border: "1px solid rgba(200,82,42,0.1)", boxShadow: "0 4px 18px rgba(160,60,20,0.05)", marginBottom: "clamp(48px,8vw,72px)" }}>
+          <motion.section {...fadeUp} aria-label={t("materiaisTitle")} style={{ maxWidth: "720px", margin: "0 auto clamp(48px,8vw,72px)", backgroundColor: "#fff", borderRadius: "18px", padding: "clamp(20px,4vw,32px)", border: "1px solid rgba(200,82,42,0.1)", boxShadow: "0 4px 18px rgba(160,60,20,0.05)" }}>
             <div className="ship-materials">
               <div className="ship-materials-img">
                 <Image src={imgMateriais} alt={t("materiaisAlt")} sizes="(max-width: 600px) 260px, 230px" />
@@ -116,36 +116,34 @@ export default function EnviarFloresClient() {
             </div>
           </motion.section>
 
-          {/* ── TIMELINE ────────────────────────────────────────────── */}
+          {/* ── STEP CARDS ──────────────────────────────────────────── */}
           <section aria-label={t("passosTitle")} style={{ marginBottom: "clamp(48px,8vw,72px)" }}>
             <motion.h2 {...fadeUp} style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem,3.6vw,2.3rem)", color: "var(--green-d)", textAlign: "center", margin: "0 0 clamp(32px,6vw,52px)", lineHeight: 1.15 }}>
               {t("passosTitle")}
             </motion.h2>
-            <ol className="ship-timeline">
+            <div className="ship-cards">
               {passos.map((step, i) => (
-                <motion.li key={i} {...fadeUp} id={`passo-${i + 1}`} className="ship-tl-item" aria-labelledby={`passo-${i + 1}-title`}>
-                  <span className="ship-tl-num" aria-hidden="true">{step.n}</span>
-                  <div className="ship-tl-content">
-                    <div className="ship-tl-thumb">
-                      <Image src={STEP_IMAGES[i]} alt={step.alt} sizes="(max-width: 560px) 280px, 210px" />
-                    </div>
-                    <div className="ship-tl-body">
-                      <h3 id={`passo-${i + 1}-title`} style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.15rem,2.6vw,1.45rem)", color: "var(--green-d)", margin: "0 0 8px", lineHeight: 1.2 }}>
-                        {step.titulo}
-                      </h3>
-                      <p style={{ color: "var(--mid)", lineHeight: 1.75, fontSize: "clamp(0.88rem,1.7vw,0.96rem)", margin: 0 }}>{step.corpo}</p>
-                      {step.nota && (
-                        <p style={{ marginTop: "10px", color: "var(--rust)", fontSize: "clamp(0.8rem,1.5vw,0.86rem)", lineHeight: 1.6, fontStyle: "italic", margin: "10px 0 0" }}>{step.nota}</p>
-                      )}
-                    </div>
+                <motion.article key={i} {...fadeUp} id={`passo-${i + 1}`} className="ship-card" aria-labelledby={`passo-${i + 1}-title`}>
+                  <div className="ship-card-img">
+                    <span className="ship-card-num" aria-hidden="true">{step.n}</span>
+                    <Image fill src={STEP_IMAGES[i]} alt={step.alt} sizes="(max-width: 680px) 100vw, 480px" />
                   </div>
-                </motion.li>
+                  <div className="ship-card-body">
+                    <h3 id={`passo-${i + 1}-title`} style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.2rem,2.6vw,1.5rem)", color: "var(--green-d)", margin: "0 0 10px", lineHeight: 1.2 }}>
+                      {step.titulo}
+                    </h3>
+                    <p style={{ color: "var(--mid)", lineHeight: 1.75, fontSize: "clamp(0.88rem,1.7vw,0.96rem)", margin: 0 }}>{step.corpo}</p>
+                    {step.nota && (
+                      <p style={{ color: "var(--rust)", fontSize: "clamp(0.8rem,1.5vw,0.86rem)", lineHeight: 1.6, fontStyle: "italic", margin: "12px 0 0" }}>{step.nota}</p>
+                    )}
+                  </div>
+                </motion.article>
               ))}
-            </ol>
+            </div>
           </section>
 
           {/* ── WHAT TO AVOID ───────────────────────────────────────── */}
-          <motion.section {...fadeUp} aria-label={t("naoTitle")} style={{ backgroundColor: "rgba(200,82,42,0.04)", borderRadius: "16px", padding: "clamp(20px,4vw,30px)", border: "1px solid rgba(200,82,42,0.1)", marginBottom: "clamp(56px,9vw,84px)" }}>
+          <motion.section {...fadeUp} aria-label={t("naoTitle")} style={{ maxWidth: "720px", margin: "0 auto clamp(56px,9vw,84px)", backgroundColor: "rgba(200,82,42,0.04)", borderRadius: "16px", padding: "clamp(20px,4vw,30px)", border: "1px solid rgba(200,82,42,0.1)" }}>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.3rem,3vw,1.7rem)", color: "var(--green-d)", margin: "0 0 clamp(16px,3vw,22px)", lineHeight: 1.1 }}>{t("naoTitle")}</h2>
             <ul className="ship-avoid-list">
               {naoItens.map((item, i) => (
