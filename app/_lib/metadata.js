@@ -22,6 +22,7 @@ const SLUG_MAP = {
   "/oferecer-preservacao":                { pt: "/oferecer-preservacao",                 en: "/en/gift-preservation" },
   "/sustentabilidade":                    { pt: "/sustentabilidade",                     en: "/en/sustainability" },
   "/reservar-preservacao":                { pt: "/reservar-preservacao",                 en: "/en/book-preservation" },
+  "/enviar-flores-por-correio":           { pt: "/enviar-flores-por-correio",            en: "/en/how-to-ship-your-flowers" },
   "/vale-presente":                       { pt: "/vale-presente",                        en: "/en/gift-voucher" },
   "/perguntas-frequentes":                { pt: "/perguntas-frequentes",                 en: "/en/faq" },
   "/contactos":                           { pt: "/contactos",                            en: "/en/contact" },

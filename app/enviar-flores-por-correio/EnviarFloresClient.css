@@ -1,0 +1,33 @@
+.ship-step-grid { display: grid; grid-template-columns: 1fr; gap: clamp(20px,5vw,44px); align-items: center; }
+.ship-title-mobile  { display: block; }
+.ship-title-desktop { display: none; }
+
+@media (min-width: 768px) {
+  .ship-step-grid { grid-template-columns: 1fr 1fr; gap: clamp(40px,5vw,72px); }
+  .ship-step-grid--odd .ship-photo-wrap { order: 2; }
+  .ship-step-grid--odd .ship-text       { order: 1; }
+  .ship-title-mobile  { display: none; }
+  .ship-title-desktop { display: block; }
+}
+
+.ship-photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: clamp(14px,2.5vw,22px);
+  overflow: hidden;
+  background-color: #F5EDE0;
+  box-shadow: 0 16px 48px rgba(160,60,20,0.12);
+}
+.ship-photo img { object-fit: contain; padding: clamp(10px,2vw,18px); }
+
+.ship-badge {
+  position: absolute; top: 14px; left: 14px; z-index: 2;
+  background-color: var(--rust); color: var(--cream);
+  padding: 5px 14px; border-radius: 50px;
+  display: flex; align-items: center; gap: 7px;
+}
+
+.ship-avoid-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+@media (min-width: 560px) { .ship-avoid-grid { grid-template-columns: 1fr 1fr; } }
+
+[id^="passo-"] { scroll-margin-top: 100px; }

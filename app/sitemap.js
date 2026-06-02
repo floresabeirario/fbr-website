@@ -20,6 +20,7 @@ export default function sitemap() {
     { pt: "/recriacao",                               en: "/en/bouquet-recreation",                    priority: 0.8,  changeFrequency: "monthly" },
     { pt: "/oferecer-preservacao",                    en: "/en/gift-preservation",                     priority: 0.8,  changeFrequency: "monthly" },
     { pt: "/reservar-preservacao",                    en: "/en/book-preservation",                     priority: 0.85, changeFrequency: "monthly" },
+    { pt: "/enviar-flores-por-correio",               en: "/en/how-to-ship-your-flowers",              priority: 0.6,  changeFrequency: "yearly"  },
     { pt: "/vale-presente",                           en: "/en/gift-voucher",                          priority: 0.75, changeFrequency: "monthly" },
     { pt: "/sustentabilidade",                        en: "/en/sustainability",                        priority: 0.7,  changeFrequency: "monthly" },
     { pt: "/perguntas-frequentes",                    en: "/en/faq",                                   priority: 0.8,  changeFrequency: "monthly" },

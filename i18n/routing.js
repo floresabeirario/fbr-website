@@ -64,6 +64,10 @@ export const routing = defineRouting({
       pt: "/reservar-preservacao",
       en: "/book-preservation",
     },
+    "/enviar-flores-por-correio": {
+      pt: "/enviar-flores-por-correio",
+      en: "/how-to-ship-your-flowers",
+    },
     "/vale-presente": {
       pt: "/vale-presente",
       en: "/gift-voucher",
