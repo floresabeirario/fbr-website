@@ -14,17 +14,21 @@
     "heroDesc": "A simple, step-by-step guide to packing and shipping your bouquet safely, so it reaches the atelier as beautiful as on the day of your ceremony.",
     "introTitle": "Before you send",
     "introDesc": "Flowers are delicate and every day counts. Send them as soon as possible after the ceremony and, whenever you can, choose an express service with insurance. These six steps keep your bouquet protected on its journey.",
-    "passosTitle": "Six steps to a safe delivery",
+    "passosTitle": "Five steps to a safe delivery",
+    "materiaisTitle": "What you'll need",
+    "materiais": [
+      "Sturdy cardboard box",
+      "Paper towels or newspaper",
+      "Tape",
+      "Aluminium foil",
+      "Scissors",
+      "Paper and pen"
+    ],
+    "materiaisNota": "If you still have the original box from your florist, reuse it.",
+    "materiaisAlt": "Materials on a table for packing flowers: cardboard box, roll of tape, newspaper, scissors and pen.",
     "passos": [
       {
         "n": "01",
-        "tag": "Materials",
-        "titulo": "Gather your materials",
-        "corpo": "Collect everything you will need: a sturdy cardboard box, paper towels or newspaper, tape, aluminium foil, scissors, and a sheet of paper with a pen. If you still have the original box from your florist, reuse it.",
-        "alt": "Materials on a table for packing flowers: cardboard box, roll of tape, newspaper, scissors and pen."
-      },
-      {
-        "n": "02",
         "tag": "Stems",
         "titulo": "Protect and hydrate the stems",
         "corpo": "Dampen a few paper towels and wrap them around the stems. Then cover them with aluminium foil to hold the moisture in during the journey.",
@@ -32,28 +36,28 @@
         "alt": "Hands holding a bouquet with the stems wrapped in aluminium foil to retain moisture."
       },
       {
-        "n": "03",
+        "n": "02",
         "tag": "The box",
         "titulo": "Prepare the box",
         "corpo": "Line the bottom of the box with scrunched-up paper or newspaper, forming a soft nest in the centre where the flowers will rest. Well-filled sides stop the bouquet from moving.",
         "alt": "Open cardboard box lined with scrunched paper forming a central nest, with a FRAGILE label."
       },
       {
-        "n": "04",
+        "n": "03",
         "tag": "The flowers",
         "titulo": "Place the flowers",
         "corpo": "Set the bouquet, with its stems already protected, into the nest you prepared. Fill the spaces around it with more scrunched paper, gently, so the flowers stay firm without being crushed.",
         "alt": "Bouquet resting in the paper nest inside the cardboard box, ready to be shipped."
       },
       {
-        "n": "05",
+        "n": "04",
         "tag": "Keepsakes",
         "titulo": "Add what matters to you",
         "corpo": "If you would like to include a photograph, a note, the bouquet ribbon or your vows, place them in a sealed bag near the bottom of the box, away from the petals. Add a sheet with your name and a list of what is inside.",
         "alt": "Sealed bag with a flower, a ribbon and a wedding-vows letter, beside the box."
       },
       {
-        "n": "06",
+        "n": "05",
         "tag": "Shipping",
         "titulo": "Seal and label",
         "corpo": "Seal the box well with tape, leaving no gaps. Write FRAGILE and THIS WAY UP with an arrow pointing up. Send it by fragile post or courier, using an express, insured service.",

@@ -14,17 +14,21 @@
     "heroDesc": "Um guia simples, passo a passo, para embalar e enviar o seu bouquet em segurança, para que chegue ao atelier tão bonito como no dia da cerimónia.",
     "introTitle": "Antes de enviar",
     "introDesc": "As flores são delicadas e cada dia conta. Envie-as o mais cedo possível após a cerimónia e, sempre que puder, opte por um serviço urgente com seguro. Estes seis passos garantem que o seu bouquet viaja protegido.",
-    "passosTitle": "Seis passos para um envio seguro",
+    "passosTitle": "Cinco passos para um envio seguro",
+    "materiaisTitle": "Materiais necessários",
+    "materiais": [
+      "Caixa de cartão resistente",
+      "Papel de cozinha ou jornal",
+      "Fita-cola",
+      "Papel de alumínio",
+      "Tesoura",
+      "Papel e caneta"
+    ],
+    "materiaisNota": "Se ainda tiver a caixa original da florista, aproveite-a.",
+    "materiaisAlt": "Materiais sobre uma mesa para embalar flores: caixa de cartão, rolo de fita-cola, jornal, tesoura e caneta.",
     "passos": [
       {
         "n": "01",
-        "tag": "Materiais",
-        "titulo": "Reúna os materiais",
-        "corpo": "Junte tudo o que vai precisar: uma caixa de cartão resistente, papel de cozinha ou jornal, fita-cola, papel de alumínio, uma tesoura, e uma folha de papel com uma caneta. Se ainda tiver a caixa original da florista, aproveite-a.",
-        "alt": "Materiais sobre uma mesa para embalar flores: caixa de cartão, rolo de fita-cola, jornal, tesoura e caneta."
-      },
-      {
-        "n": "02",
         "tag": "Caules",
         "titulo": "Proteja e hidrate os caules",
         "corpo": "Humedeça algumas folhas de papel de cozinha e envolva-as à volta dos caules. Cubra depois com papel de alumínio para reter a humidade durante a viagem.",
@@ -32,28 +36,28 @@
         "alt": "Mãos a segurar um bouquet com os caules envolvidos em papel de alumínio para reter a humidade."
       },
       {
-        "n": "03",
+        "n": "02",
         "tag": "A caixa",
         "titulo": "Prepare a caixa",
         "corpo": "Forre o fundo da caixa com papel amassado ou jornal, formando um ninho macio no centro, onde as flores vão assentar. As laterais bem preenchidas evitam que o bouquet se mova.",
         "alt": "Caixa de cartão aberta, forrada com papel amassado a formar um ninho central, com etiqueta FRÁGIL."
       },
       {
-        "n": "04",
+        "n": "03",
         "tag": "As flores",
         "titulo": "Coloque as flores",
         "corpo": "Pouse o bouquet, com os caules já protegidos, no ninho que preparou. Preencha os espaços à volta com mais papel amassado, com cuidado, para que as flores fiquem firmes mas sem serem esmagadas.",
         "alt": "Bouquet pousado no ninho de papel dentro da caixa de cartão, pronto a ser enviado."
       },
       {
-        "n": "05",
+        "n": "04",
         "tag": "Memórias",
         "titulo": "Junte o que tem significado",
         "corpo": "Se quiser incluir uma fotografia, um bilhete, a fita do bouquet ou os votos, coloque-os num saco fechado, junto ao fundo da caixa e afastado das pétalas. Junte também uma folha com o seu nome e a lista do que vai dentro.",
         "alt": "Saco fechado com uma flor, uma fita e uma carta de votos de casamento, ao lado da caixa."
       },
       {
-        "n": "06",
+        "n": "05",
         "tag": "Envio",
         "titulo": "Feche e identifique",
         "corpo": "Sele bem a caixa com fita-cola, sem deixar frestas. Escreva FRÁGIL e CIMA com uma seta a apontar para cima. Envie por CTT correio frágil ou transportadora, em serviço urgente e com seguro.",
