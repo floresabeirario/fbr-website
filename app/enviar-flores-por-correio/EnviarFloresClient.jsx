@@ -4,9 +4,15 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { SITE_URL, WA_URL } from "../_lib/constants";
+import imgMateriais from "@/public/Envio/1.png";
+import img2 from "@/public/Envio/2.png";
+import img3 from "@/public/Envio/3.png";
+import img4 from "@/public/Envio/4.png";
+import img5 from "@/public/Envio/5.png";
+import img6 from "@/public/Envio/6.png";
 import "./EnviarFloresClient.css";
 
-const STEP_IMAGES = ["/Envio/2.png", "/Envio/3.png", "/Envio/4.png", "/Envio/5.png", "/Envio/6.png"];
+const STEP_IMAGES = [img2, img3, img4, img5, img6];
 
 const CheckIcon = () => (
   <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true" style={{ flexShrink: 0, marginTop: "1px" }}>
@@ -96,7 +102,7 @@ export default function EnviarFloresClient() {
           <motion.section {...fadeUp} aria-label={t("materiaisTitle")} style={{ backgroundColor: "#fff", borderRadius: "18px", padding: "clamp(20px,4vw,32px)", border: "1px solid rgba(200,82,42,0.1)", boxShadow: "0 4px 18px rgba(160,60,20,0.05)", marginBottom: "clamp(48px,8vw,72px)" }}>
             <div className="ship-materials">
               <div className="ship-materials-img">
-                <Image fill src="/Envio/1.png" alt={t("materiaisAlt")} sizes="(max-width: 600px) 100vw, 190px" />
+                <Image src={imgMateriais} alt={t("materiaisAlt")} sizes="(max-width: 600px) 260px, 230px" />
               </div>
               <div>
                 <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.3rem,3vw,1.7rem)", color: "var(--green-d)", margin: "0 0 clamp(14px,2vw,18px)", lineHeight: 1.1 }}>{t("materiaisTitle")}</h2>
@@ -121,7 +127,7 @@ export default function EnviarFloresClient() {
                   <span className="ship-tl-num" aria-hidden="true">{step.n}</span>
                   <div className="ship-tl-content">
                     <div className="ship-tl-thumb">
-                      <Image fill src={STEP_IMAGES[i]} alt={step.alt} sizes="(max-width: 560px) 100vw, 156px" />
+                      <Image src={STEP_IMAGES[i]} alt={step.alt} sizes="(max-width: 560px) 280px, 210px" />
                     </div>
                     <div className="ship-tl-body">
                       <h3 id={`passo-${i + 1}-title`} style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.15rem,2.6vw,1.45rem)", color: "var(--green-d)", margin: "0 0 8px", lineHeight: 1.2 }}>

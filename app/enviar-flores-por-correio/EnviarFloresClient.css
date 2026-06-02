@@ -1,8 +1,9 @@
 /* ── Materials checklist card ─────────────────────────────────────────── */
 .ship-materials { display: grid; grid-template-columns: 1fr; gap: clamp(18px,3vw,28px); align-items: center; }
-@media (min-width: 600px) { .ship-materials { grid-template-columns: 190px 1fr; } }
-.ship-materials-img { position: relative; aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; background-color: #F5EDE0; }
-.ship-materials-img img { object-fit: contain; padding: 8px; }
+@media (min-width: 600px) { .ship-materials { grid-template-columns: 230px 1fr; } }
+.ship-materials-img { width: 100%; max-width: 260px; margin: 0 auto; }
+.ship-materials-img img { width: 100%; height: auto; display: block; border-radius: 14px; }
+@media (min-width: 600px) { .ship-materials-img { max-width: none; } }
 .ship-materials-list { display: grid; grid-template-columns: 1fr; gap: 10px 20px; margin: 0; padding: 0; list-style: none; }
 @media (min-width: 420px) { .ship-materials-list { grid-template-columns: 1fr 1fr; } }
 .ship-materials-item { display: flex; gap: 10px; align-items: flex-start; color: var(--mid); font-size: 0.9rem; line-height: 1.4; }
@@ -21,14 +22,11 @@
   display: flex; align-items: center; justify-content: center;
   font-family: 'TAN-MEMORIES', serif; font-size: 0.95rem;
 }
-.ship-tl-content { display: flex; flex-direction: column; gap: 12px; }
-@media (min-width: 560px) { .ship-tl-content { flex-direction: row; align-items: flex-start; gap: 20px; } }
-.ship-tl-thumb {
-  position: relative; flex-shrink: 0; width: 100%; aspect-ratio: 4 / 3;
-  border-radius: 12px; overflow: hidden; background-color: #F5EDE0;
-}
-@media (min-width: 560px) { .ship-tl-thumb { width: 156px; } }
-.ship-tl-thumb img { object-fit: contain; padding: 6px; }
+.ship-tl-content { display: flex; flex-direction: column; gap: 14px; }
+@media (min-width: 560px) { .ship-tl-content { flex-direction: row; align-items: flex-start; gap: 22px; } }
+.ship-tl-thumb { width: 100%; max-width: 280px; }
+@media (min-width: 560px) { .ship-tl-thumb { width: 210px; max-width: none; flex-shrink: 0; } }
+.ship-tl-thumb img { width: 100%; height: auto; display: block; border-radius: 12px; }
 .ship-tl-body { flex: 1; }
 
 /* ── What to avoid strip ──────────────────────────────────────────────── */
