@@ -85,18 +85,16 @@ export default function EnviarFloresClient() {
             <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5.5vw,3.6rem)", lineHeight: 1.08, color: "var(--cream)", margin: "0 0 clamp(14px,2vw,20px)" }}>
               {h1Start}<em style={{ fontStyle: "italic", color: "var(--gold)" }}>{t("h1Em")}</em>
             </h1>
-            <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.06rem)", lineHeight: 1.8, maxWidth: "500px", color: "rgba(250,247,240,0.78)", margin: "0 auto" }}>
+            <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.06rem)", lineHeight: 1.8, maxWidth: "520px", color: "rgba(250,247,240,0.82)", margin: "0 auto clamp(12px,2vw,16px)" }}>
               {t("heroDesc")}
+            </p>
+            <p style={{ fontSize: "clamp(0.86rem,1.6vw,0.96rem)", lineHeight: 1.8, maxWidth: "540px", color: "rgba(250,247,240,0.62)", margin: "0 auto" }}>
+              {t("introDesc")}
             </p>
           </motion.div>
         </header>
 
         <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "clamp(36px,6vw,60px) clamp(20px,5vw,40px) 0" }}>
-
-          {/* ── TIMING NOTE ─────────────────────────────────────────── */}
-          <motion.p {...fadeUp} style={{ maxWidth: "720px", padding: "clamp(14px,2.5vw,18px) clamp(16px,3vw,22px)", borderRadius: "12px", backgroundColor: "rgba(184,149,74,0.1)", borderLeft: "3px solid var(--gold)", color: "var(--sage)", fontSize: "clamp(0.86rem,1.7vw,0.96rem)", lineHeight: 1.7, margin: "0 auto clamp(40px,7vw,64px)" }}>
-            {t("introDesc")}
-          </motion.p>
 
           {/* ── MATERIALS CHECKLIST ─────────────────────────────────── */}
           <motion.section {...fadeUp} aria-label={t("materiaisTitle")} style={{ maxWidth: "720px", margin: "0 auto clamp(48px,8vw,72px)", backgroundColor: "var(--cream)", borderRadius: "18px", padding: "clamp(20px,4vw,32px)", border: "1px solid rgba(0,0,0,0.06)", boxShadow: "0 12px 32px rgba(0,0,0,0.28)" }}>
@@ -155,9 +153,14 @@ export default function EnviarFloresClient() {
         {/* ── MORADA + CTA ──────────────────────────────────────────── */}
         <section aria-label={t("ctaTitle")} style={{ padding: "clamp(52px,9vw,80px) clamp(20px,5vw,48px)", background: "linear-gradient(140deg, #3A4528 0%, #2E3621 55%, #262E1B 100%)", textAlign: "center" }}>
           <motion.div {...fadeUp} style={{ maxWidth: "560px", margin: "0 auto" }}>
-            <p style={{ fontSize: "0.86rem", color: "rgba(250,247,240,0.7)", lineHeight: 1.7, margin: "0 0 clamp(28px,5vw,40px)" }}>
-              <strong style={{ color: "var(--gold)", fontWeight: 600 }}>{t("moradaTitle")}.</strong>{" "}{t("moradaDesc")}
-            </p>
+            <div style={{ maxWidth: "500px", margin: "0 auto clamp(34px,6vw,48px)", padding: "clamp(20px,3.5vw,28px) clamp(22px,4vw,32px)", backgroundColor: "rgba(184,149,74,0.1)", border: "1px solid rgba(184,149,74,0.3)", borderRadius: "16px" }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ display: "block", margin: "0 auto 10px" }}>
+                <path d="M12 21.5s7-5.8 7-11.5a7 7 0 10-14 0c0 5.7 7 11.5 7 11.5z" stroke="var(--gold)" strokeWidth="1.5" strokeLinejoin="round" />
+                <circle cx="12" cy="10" r="2.5" stroke="var(--gold)" strokeWidth="1.5" />
+              </svg>
+              <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.1rem,2.4vw,1.35rem)", color: "var(--gold)", margin: "0 0 8px", lineHeight: 1.2 }}>{t("moradaTitle")}</p>
+              <p style={{ fontSize: "clamp(0.88rem,1.7vw,0.96rem)", color: "rgba(250,247,240,0.88)", lineHeight: 1.7, margin: 0 }}>{t("moradaDesc")}</p>
+            </div>
             <div aria-hidden="true" style={{ width: "40px", height: "1px", margin: "0 auto 24px", background: "linear-gradient(to right, transparent, #B8954A, transparent)" }} />
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem,4.2vw,2.5rem)", color: "var(--cream)", margin: "0 0 14px", lineHeight: 1.12 }}>{t("ctaTitle")}</h2>
             <p style={{ color: "rgba(250,247,240,0.75)", lineHeight: 1.8, fontSize: "clamp(0.9rem,1.9vw,1rem)", margin: "0 0 28px" }}>{t("ctaDesc")}</p>

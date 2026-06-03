@@ -4,9 +4,10 @@
 .ship-materials-img { width: 100%; max-width: 260px; margin: 0 auto; }
 .ship-materials-img img { width: 100%; height: auto; display: block; border-radius: 14px; }
 @media (min-width: 600px) { .ship-materials-img { max-width: none; } }
-.ship-materials-list { display: grid; grid-template-columns: 1fr; gap: 10px 20px; margin: 0; padding: 0; list-style: none; }
-@media (min-width: 420px) { .ship-materials-list { grid-template-columns: 1fr 1fr; } }
-.ship-materials-item { display: flex; gap: 10px; align-items: flex-start; color: var(--mid); font-size: 0.9rem; line-height: 1.4; }
+.ship-materials-list { margin: 0; padding: 0; list-style: none; }
+@media (min-width: 420px) { .ship-materials-list { column-count: 2; column-gap: 24px; } }
+.ship-materials-item { display: flex; gap: 10px; align-items: flex-start; color: var(--mid); font-size: 0.9rem; line-height: 1.4; break-inside: avoid; margin-bottom: 12px; }
+.ship-materials-item:last-child { margin-bottom: 0; }
 
 /* ── Step cards grid ──────────────────────────────────────────────────── */
 .ship-cards { display: grid; grid-template-columns: 1fr; gap: clamp(18px,3vw,28px); }
