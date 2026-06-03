@@ -1,4 +1,84 @@
 {
+  "enviarCorreio": {
+    "meta": {
+      "title": "Como Enviar as Suas Flores por Correio | Flores à Beira-Rio",
+      "description": "Guia passo a passo para embalar e enviar em segurança o seu bouquet para preservação. Materiais, hidratação dos caules e envio por correio frágil com seguro.",
+      "keywords": "enviar bouquet por correio, embalar flores para preservação, enviar flores frescas, preservação de flores Coimbra",
+      "ogTitle": "Como Enviar as Suas Flores por Correio",
+      "ogDescription": "Guia passo a passo para embalar e enviar em segurança o seu bouquet para preservação.",
+      "ogImageAlt": "Caixa identificada com FRÁGIL pronta para envio de flores para preservação"
+    },
+    "eyebrow": "Guia de envio",
+    "h1": "Enviar as suas flores por correio",
+    "h1Em": "por correio",
+    "heroDesc": "Um guia simples, passo a passo, para embalar e enviar o seu bouquet em segurança, para que chegue ao atelier tão bonito como no dia da cerimónia.",
+    "introTitle": "Antes de enviar",
+    "introDesc": "As flores são delicadas e cada dia conta. Envie-as o mais cedo possível após a cerimónia e, sempre que puder, opte por um serviço urgente. Estes cinco passos garantem que o seu bouquet viaja protegido.",
+    "passosTitle": "Cinco passos para um envio seguro",
+    "materiaisTitle": "Materiais necessários",
+    "materiais": [
+      "Caixa de cartão resistente",
+      "Papel de cozinha",
+      "Jornal ou papel",
+      "Fita-cola",
+      "Papel de alumínio",
+      "Tesoura",
+      "Papel e caneta"
+    ],
+    "materiaisAlt": "Materiais sobre uma mesa para embalar flores: caixa de cartão, rolo de fita-cola, jornal, tesoura e caneta.",
+    "passos": [
+      {
+        "n": "01",
+        "tag": "Caules",
+        "titulo": "Proteja e hidrate os caules",
+        "corpo": "Humedeça algumas folhas de papel de cozinha e envolva-as à volta dos caules. Cubra depois com papel de alumínio para reter a humidade durante a viagem.",
+        "nota": "Nunca use película aderente nem sacos de plástico à volta das flores: ao transpirarem, podem ganhar humidade a mais e estragar-se.",
+        "alt": "Mãos a segurar um bouquet com os caules envolvidos em papel de alumínio para reter a humidade."
+      },
+      {
+        "n": "02",
+        "tag": "A caixa",
+        "titulo": "Prepare a caixa",
+        "corpo": "Forre o fundo da caixa com papel amassado ou jornal, formando um ninho macio no centro, onde as flores vão assentar. As laterais bem preenchidas evitam que o bouquet se mova.",
+        "alt": "Caixa de cartão aberta, forrada com papel amassado a formar um ninho central, com etiqueta FRÁGIL."
+      },
+      {
+        "n": "03",
+        "tag": "As flores",
+        "titulo": "Coloque as flores",
+        "corpo": "Pouse o bouquet no ninho que preparou. Preencha os espaços à volta com mais papel amassado, com cuidado, para que as flores fiquem firmes na caixa mas sem serem esmagadas.",
+        "alt": "Bouquet pousado no ninho de papel dentro da caixa de cartão, pronto a ser enviado."
+      },
+      {
+        "n": "04",
+        "tag": "Memórias",
+        "titulo": "Junte o que tem significado",
+        "corpo": "Se quiser incluir no quadro uma fotografia, um bilhete, a fita do bouquet, os votos, ou outros, coloque-os num saco fechado, junto à lateral da caixa e afastado das flores, se possível. Junte também uma folha com o seu nome e a lista do que vai dentro da caixa.",
+        "alt": "Saco fechado com uma flor, uma fita e uma carta de votos de casamento, ao lado da caixa."
+      },
+      {
+        "n": "05",
+        "tag": "Envio",
+        "titulo": "Feche e identifique",
+        "corpo": "Sele bem a caixa com fita-cola para garantir que não se abre durante o transporte. Escreva FRÁGIL e CIMA com uma seta a apontar para cima. Envie por CTT correio ou transportadora, em serviço urgente.",
+        "nota": "Os custos de envio são a cargo do cliente.",
+        "alt": "Caixa de cartão selada e identificada com a palavra FRÁGIL e a indicação CIMA com seta para cima."
+      }
+    ],
+    "naoTitle": "O que evitar",
+    "naoItens": [
+      "Película aderente ou sacos de plástico colados às flores.",
+      "Esperar vários dias para enviar: quanto mais frescas preservarmos as flores, melhor o resultado.",
+      "Caixas demasiado grandes, onde o bouquet baloiça durante o transporte.",
+      "Envio normal, sem urgência. Os CTT disponibilizam entregas no dia seguinte (1 dia útil)."
+    ],
+    "moradaTitle": "Para onde enviar",
+    "moradaDesc": "A morada de envio é-lhe enviada juntamente com a confirmação da sua reserva. Se tiver qualquer dúvida sobre o envio, fale connosco, ajudamos com todo o gosto.",
+    "ctaTitle": "Ficou com alguma dúvida?",
+    "ctaDesc": "Estamos aqui para a ajudar a preparar o envio. Envie-nos uma mensagem e respondemos com todos os detalhes.",
+    "ctaWA": "Falar no WhatsApp",
+    "ctaComoFunciona": "Ver como funciona a preservação"
+  },
   "nav": {
     "reservar": "Reservar Data",
     "oferecer": "Oferecer Preservação",

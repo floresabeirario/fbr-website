@@ -152,6 +152,7 @@ export default function FooterClient() {
     ],
     ajuda: [
       { href: `${prefix}${locale === "en" ? "/faq" : "/perguntas-frequentes"}`,  label: locale === "en" ? "FAQ" : "Perguntas Frequentes" },
+      { href: `${prefix}${locale === "en" ? "/how-to-ship-your-flowers" : "/enviar-flores-por-correio"}`, label: locale === "en" ? "How to Ship Your Flowers" : "Como Enviar as Flores" },
       { href: `${prefix}${locale === "en" ? "/contact" : "/contactos"}`,          label: locale === "en" ? "Contact & Team" : "Contactos e Equipa" },
       { href: TRACKING_URL, label: locale === "en" ? "Track Order" : "Acompanhar Encomenda", external: true },
       { href: `${prefix}/blog`,                                                   label: "Blog" },

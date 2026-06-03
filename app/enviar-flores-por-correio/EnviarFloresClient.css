@@ -1,0 +1,40 @@
+/* ── Materials checklist card ─────────────────────────────────────────── */
+.ship-materials { display: grid; grid-template-columns: 1fr; gap: clamp(18px,3vw,28px); align-items: center; }
+@media (min-width: 600px) { .ship-materials { grid-template-columns: 230px 1fr; } }
+.ship-materials-img { width: 100%; max-width: 260px; margin: 0 auto; }
+.ship-materials-img img { width: 100%; height: auto; display: block; border-radius: 14px; }
+@media (min-width: 600px) { .ship-materials-img { max-width: none; } }
+.ship-materials-list { margin: 0; padding: 0; list-style: none; }
+@media (min-width: 420px) { .ship-materials-list { column-count: 2; column-gap: 24px; } }
+.ship-materials-item { display: flex; gap: 10px; align-items: flex-start; color: var(--mid); font-size: 0.9rem; line-height: 1.4; break-inside: avoid; margin-bottom: 12px; }
+.ship-materials-item:last-child { margin-bottom: 0; }
+
+/* ── Step cards grid ──────────────────────────────────────────────────── */
+.ship-cards { display: grid; grid-template-columns: 1fr; gap: clamp(18px,3vw,28px); }
+@media (min-width: 680px) { .ship-cards { grid-template-columns: 1fr 1fr; } }
+.ship-page .eyebrow { color: var(--gold); }
+.ship-page .text-link { color: var(--gold); border-bottom-color: rgba(184,149,74,0.45); }
+.ship-page .text-link:hover { border-bottom-color: var(--gold); }
+.ship-card {
+  display: flex; flex-direction: column; overflow: hidden;
+  background: var(--cream); border: 1px solid rgba(0,0,0,0.06); border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.28);
+}
+.ship-card-img { position: relative; aspect-ratio: 16 / 10; background: #EDE8DC; }
+.ship-card-img img { object-fit: cover; }
+.ship-card-num {
+  position: absolute; top: 14px; left: 14px; z-index: 1;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--gold); color: #2E3621;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'TAN-MEMORIES', serif; font-size: 0.92rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.22);
+}
+.ship-card-body { padding: clamp(16px,2.5vw,24px); }
+
+/* ── What to avoid strip ──────────────────────────────────────────────── */
+.ship-avoid-list { display: grid; grid-template-columns: 1fr; gap: 10px 24px; margin: 0; padding: 0; list-style: none; }
+@media (min-width: 560px) { .ship-avoid-list { grid-template-columns: 1fr 1fr; } }
+.ship-avoid-item { display: flex; gap: 10px; align-items: flex-start; color: rgba(250,247,240,0.82); font-size: 0.88rem; line-height: 1.5; }
+
+[id^="passo-"] { scroll-margin-top: 100px; }

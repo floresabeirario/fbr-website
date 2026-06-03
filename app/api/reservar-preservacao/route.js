@@ -28,6 +28,7 @@ import {
   createRateLimiter,
   exceedsLength,
   isAllowedOrigin,
+  formatDatePT,
 } from "@/app/_lib/api-helpers";
 import { EMAIL } from "@/app/_lib/constants";
 import { mapReservaToOrder } from "@/app/_lib/supabase-mappings";
@@ -192,7 +193,7 @@ export async function POST(request) {
         `<tr><td><strong>Meio de contacto</strong></td><td>${e(data.meioContacto)}</td></tr>`,
         `<tr><td><strong>E-mail</strong></td><td>${e(data.email)}</td></tr>`,
         `<tr><td><strong>Telefone</strong></td><td>${e(data.telefone)}</td></tr>`,
-        `<tr><td><strong>Data do evento</strong></td><td>${e(data.dataEvento)}</td></tr>`,
+        `<tr><td><strong>Data do evento</strong></td><td>${e(formatDatePT(data.dataEvento) || data.dataEvento)}</td></tr>`,
         `<tr><td><strong>Tipo de evento</strong></td><td>${e(data.tipoEvento)}</td></tr>`,
         data.nomeNoivos ? `<tr><td><strong>Noivos</strong></td><td>${e(data.nomeNoivos)}</td></tr>` : "",
         `<tr><td><strong>Local do evento</strong></td><td>${e(data.localEvento)}</td></tr>`,

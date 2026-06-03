@@ -93,3 +93,21 @@ export function exceedsLength(data, maxLengths) {
   }
   return null;
 }
+
+// ─── Formatação de datas em PT por extenso ────────────────────────────────────
+// Recebe ISO "YYYY-MM-DD" (do input HTML type=date) e devolve "8 de Junho de 2026".
+// Pedido pela Maria — no email de pré-reserva o formato dd/MM/yyyy confundia-a.
+const MONTHS_PT = [
+  "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro",
+];
+
+export function formatDatePT(isoDate) {
+  if (!isoDate || typeof isoDate !== "string") return "";
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(isoDate);
+  if (!m) return isoDate; // se o formato não é o esperado, devolve original
+  const [, y, mo, d] = m;
+  const monthIdx = parseInt(mo, 10) - 1;
+  if (monthIdx < 0 || monthIdx > 11) return isoDate;
+  return `${parseInt(d, 10)} de ${MONTHS_PT[monthIdx]} de ${y}`;
+}
