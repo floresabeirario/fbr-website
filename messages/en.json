@@ -13,18 +13,18 @@
     "h1Em": "by post",
     "heroDesc": "A simple, step-by-step guide to packing and shipping your bouquet safely, so it reaches the atelier as beautiful as on the day of your ceremony.",
     "introTitle": "Before you send",
-    "introDesc": "Flowers are delicate and every day counts. Send them as soon as possible after the ceremony and, whenever you can, choose an express service with insurance. These six steps keep your bouquet protected on its journey.",
+    "introDesc": "Flowers are delicate and every day counts. Send them as soon as possible after the ceremony and, whenever you can, choose an express service. These five steps keep your bouquet protected on its journey.",
     "passosTitle": "Five steps to a safe delivery",
     "materiaisTitle": "What you'll need",
     "materiais": [
       "Sturdy cardboard box",
-      "Paper towels or newspaper",
+      "Paper towels",
+      "Newspaper or paper",
       "Tape",
       "Aluminium foil",
       "Scissors",
       "Paper and pen"
     ],
-    "materiaisNota": "If you still have the original box from your florist, reuse it.",
     "materiaisAlt": "Materials on a table for packing flowers: cardboard box, roll of tape, newspaper, scissors and pen.",
     "passos": [
       {
@@ -46,21 +46,21 @@
         "n": "03",
         "tag": "The flowers",
         "titulo": "Place the flowers",
-        "corpo": "Set the bouquet, with its stems already protected, into the nest you prepared. Fill the spaces around it with more scrunched paper, gently, so the flowers stay firm without being crushed.",
+        "corpo": "Set the bouquet into the nest you prepared. Fill the spaces around it with more scrunched paper, gently, so the flowers stay firm in the box without being crushed.",
         "alt": "Bouquet resting in the paper nest inside the cardboard box, ready to be shipped."
       },
       {
         "n": "04",
         "tag": "Keepsakes",
         "titulo": "Add what matters to you",
-        "corpo": "If you would like to include a photograph, a note, the bouquet ribbon or your vows, place them in a sealed bag near the bottom of the box, away from the petals. Add a sheet with your name and a list of what is inside.",
+        "corpo": "If you would like to include a photograph, a note, the bouquet ribbon, your vows or anything else in the frame, place them in a sealed bag, against the side of the box and away from the flowers if possible. Also add a sheet with your name and a list of what is inside the box.",
         "alt": "Sealed bag with a flower, a ribbon and a wedding-vows letter, beside the box."
       },
       {
         "n": "05",
         "tag": "Shipping",
         "titulo": "Seal and label",
-        "corpo": "Seal the box well with tape, leaving no gaps. Write FRAGILE and THIS WAY UP with an arrow pointing up. Send it by fragile post or courier, using an express, insured service.",
+        "corpo": "Seal the box well with tape so it cannot open in transit. Write FRAGILE and THIS WAY UP with an arrow pointing up. Send it by post or courier (CTT or a carrier), using an express service.",
         "nota": "Shipping costs are the customer's responsibility.",
         "alt": "Sealed cardboard box marked FRAGILE with a THIS WAY UP arrow pointing upwards."
       }
@@ -68,9 +68,9 @@
     "naoTitle": "What to avoid",
     "naoItens": [
       "Cling film or plastic bags pressed against the flowers.",
-      "Waiting several days to send: the fresher, the better.",
+      "Waiting several days to send: the fresher the flowers when we preserve them, the better the result.",
       "Boxes that are too large, where the bouquet shifts in transit.",
-      "Standard shipping with no insurance or tracking."
+      "Standard, non-express shipping. CTT offers next-day delivery (one working day)."
     ],
     "moradaTitle": "Where to send it",
     "moradaDesc": "The shipping address is sent to you together with your booking confirmation. If you have any questions about sending your flowers, just talk to us, we are happy to help.",

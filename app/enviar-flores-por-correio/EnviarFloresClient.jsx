@@ -16,15 +16,15 @@ const STEP_IMAGES = [img2, img3, img4, img5, img6];
 
 const CheckIcon = () => (
   <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true" style={{ flexShrink: 0, marginTop: "1px" }}>
-    <circle cx="10" cy="10" r="10" fill="rgba(200,82,42,0.1)" />
-    <path d="M6 10l3 3 5-5" stroke="var(--rust)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="10" cy="10" r="10" fill="rgba(61,107,94,0.12)" />
+    <path d="M6 10l3 3 5-5" stroke="var(--green)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
 const CrossIcon = () => (
   <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true" style={{ flexShrink: 0, marginTop: "1px" }}>
-    <circle cx="10" cy="10" r="10" fill="rgba(200,82,42,0.1)" />
-    <path d="M7 7l6 6M13 7l-6 6" stroke="var(--rust)" strokeWidth="1.8" strokeLinecap="round" />
+    <circle cx="10" cy="10" r="10" fill="rgba(61,107,94,0.12)" />
+    <path d="M7 7l6 6M13 7l-6 6" stroke="var(--green)" strokeWidth="1.8" strokeLinecap="round" />
   </svg>
 );
 
@@ -76,14 +76,14 @@ export default function EnviarFloresClient() {
     <>
       <HowToSchema name={t("meta.ogTitle")} description={t("meta.description")} materiais={materiais} passos={passos} baseUrl={baseUrl} />
 
-      <main style={{ backgroundColor: "var(--cream)", overflowX: "clip" }}>
+      <main className="ship-page" style={{ backgroundColor: "var(--cream)", overflowX: "clip" }}>
 
         {/* ── HEADER BAND ──────────────────────────────────────────── */}
         <header style={{ padding: "clamp(104px,16vw,150px) clamp(20px,5vw,48px) clamp(36px,6vw,56px)", textAlign: "center", background: "linear-gradient(180deg, #F0E8D8 0%, #FAF7F0 100%)" }}>
           <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", margin: "0 auto" }}>
             <span className="eyebrow">{t("eyebrow")}</span>
             <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5.5vw,3.6rem)", lineHeight: 1.08, color: "var(--green-d)", margin: "0 0 clamp(14px,2vw,20px)" }}>
-              {h1Start}<em style={{ fontStyle: "italic", color: "var(--rust)" }}>{t("h1Em")}</em>
+              {h1Start}<em style={{ fontStyle: "italic", color: "var(--green)" }}>{t("h1Em")}</em>
             </h1>
             <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.06rem)", lineHeight: 1.8, maxWidth: "500px", color: "var(--mid)", margin: "0 auto" }}>
               {t("heroDesc")}
@@ -94,12 +94,12 @@ export default function EnviarFloresClient() {
         <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "clamp(36px,6vw,60px) clamp(20px,5vw,40px) 0" }}>
 
           {/* ── TIMING NOTE ─────────────────────────────────────────── */}
-          <motion.p {...fadeUp} style={{ maxWidth: "720px", padding: "clamp(14px,2.5vw,18px) clamp(16px,3vw,22px)", borderRadius: "12px", backgroundColor: "rgba(200,82,42,0.05)", borderLeft: "3px solid rgba(200,82,42,0.3)", color: "var(--rust)", fontSize: "clamp(0.86rem,1.7vw,0.96rem)", lineHeight: 1.7, margin: "0 auto clamp(40px,7vw,64px)" }}>
+          <motion.p {...fadeUp} style={{ maxWidth: "720px", padding: "clamp(14px,2.5vw,18px) clamp(16px,3vw,22px)", borderRadius: "12px", backgroundColor: "rgba(61,107,94,0.06)", borderLeft: "3px solid rgba(61,107,94,0.35)", color: "var(--green)", fontSize: "clamp(0.86rem,1.7vw,0.96rem)", lineHeight: 1.7, margin: "0 auto clamp(40px,7vw,64px)" }}>
             {t("introDesc")}
           </motion.p>
 
           {/* ── MATERIALS CHECKLIST ─────────────────────────────────── */}
-          <motion.section {...fadeUp} aria-label={t("materiaisTitle")} style={{ maxWidth: "720px", margin: "0 auto clamp(48px,8vw,72px)", backgroundColor: "#fff", borderRadius: "18px", padding: "clamp(20px,4vw,32px)", border: "1px solid rgba(200,82,42,0.1)", boxShadow: "0 4px 18px rgba(160,60,20,0.05)" }}>
+          <motion.section {...fadeUp} aria-label={t("materiaisTitle")} style={{ maxWidth: "720px", margin: "0 auto clamp(48px,8vw,72px)", backgroundColor: "#fff", borderRadius: "18px", padding: "clamp(20px,4vw,32px)", border: "1px solid rgba(61,107,94,0.12)", boxShadow: "0 4px 18px rgba(30,45,42,0.06)" }}>
             <div className="ship-materials">
               <div className="ship-materials-img">
                 <Image src={imgMateriais} alt={t("materiaisAlt")} sizes="(max-width: 600px) 260px, 230px" />
@@ -111,7 +111,6 @@ export default function EnviarFloresClient() {
                     <li key={i} className="ship-materials-item"><CheckIcon />{m}</li>
                   ))}
                 </ul>
-                <p style={{ margin: "clamp(14px,2vw,18px) 0 0", fontSize: "0.82rem", color: "var(--mid)", fontStyle: "italic", lineHeight: 1.55 }}>{t("materiaisNota")}</p>
               </div>
             </div>
           </motion.section>
@@ -134,7 +133,7 @@ export default function EnviarFloresClient() {
                     </h3>
                     <p style={{ color: "var(--mid)", lineHeight: 1.75, fontSize: "clamp(0.88rem,1.7vw,0.96rem)", margin: 0 }}>{step.corpo}</p>
                     {step.nota && (
-                      <p style={{ color: "var(--rust)", fontSize: "clamp(0.8rem,1.5vw,0.86rem)", lineHeight: 1.6, fontStyle: "italic", margin: "12px 0 0" }}>{step.nota}</p>
+                      <p style={{ color: "var(--green)", fontSize: "clamp(0.8rem,1.5vw,0.86rem)", lineHeight: 1.6, fontStyle: "italic", margin: "12px 0 0" }}>{step.nota}</p>
                     )}
                   </div>
                 </motion.article>
@@ -143,7 +142,7 @@ export default function EnviarFloresClient() {
           </section>
 
           {/* ── WHAT TO AVOID ───────────────────────────────────────── */}
-          <motion.section {...fadeUp} aria-label={t("naoTitle")} style={{ maxWidth: "720px", margin: "0 auto clamp(56px,9vw,84px)", backgroundColor: "rgba(200,82,42,0.04)", borderRadius: "16px", padding: "clamp(20px,4vw,30px)", border: "1px solid rgba(200,82,42,0.1)" }}>
+          <motion.section {...fadeUp} aria-label={t("naoTitle")} style={{ maxWidth: "720px", margin: "0 auto clamp(56px,9vw,84px)", backgroundColor: "rgba(61,107,94,0.05)", borderRadius: "16px", padding: "clamp(20px,4vw,30px)", border: "1px solid rgba(61,107,94,0.12)" }}>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.3rem,3vw,1.7rem)", color: "var(--green-d)", margin: "0 0 clamp(16px,3vw,22px)", lineHeight: 1.1 }}>{t("naoTitle")}</h2>
             <ul className="ship-avoid-list">
               {naoItens.map((item, i) => (
@@ -159,7 +158,7 @@ export default function EnviarFloresClient() {
             <p style={{ fontSize: "0.86rem", color: "var(--mid)", lineHeight: 1.7, margin: "0 0 clamp(28px,5vw,40px)" }}>
               <strong style={{ color: "var(--green-d)", fontWeight: 600 }}>{t("moradaTitle")}.</strong>{" "}{t("moradaDesc")}
             </p>
-            <div aria-hidden="true" style={{ width: "40px", height: "1px", margin: "0 auto 24px", background: "linear-gradient(to right, transparent, #C8522A, transparent)" }} />
+            <div aria-hidden="true" style={{ width: "40px", height: "1px", margin: "0 auto 24px", background: "linear-gradient(to right, transparent, #3D6B5E, transparent)" }} />
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem,4.2vw,2.5rem)", color: "var(--green-d)", margin: "0 0 14px", lineHeight: 1.12 }}>{t("ctaTitle")}</h2>
             <p style={{ color: "var(--mid)", lineHeight: 1.8, fontSize: "clamp(0.9rem,1.9vw,1rem)", margin: "0 0 28px" }}>{t("ctaDesc")}</p>
             <div className="cta-row" style={{ marginBottom: "22px" }}>

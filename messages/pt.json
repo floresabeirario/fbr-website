@@ -13,18 +13,18 @@
     "h1Em": "por correio",
     "heroDesc": "Um guia simples, passo a passo, para embalar e enviar o seu bouquet em segurança, para que chegue ao atelier tão bonito como no dia da cerimónia.",
     "introTitle": "Antes de enviar",
-    "introDesc": "As flores são delicadas e cada dia conta. Envie-as o mais cedo possível após a cerimónia e, sempre que puder, opte por um serviço urgente com seguro. Estes seis passos garantem que o seu bouquet viaja protegido.",
+    "introDesc": "As flores são delicadas e cada dia conta. Envie-as o mais cedo possível após a cerimónia e, sempre que puder, opte por um serviço urgente. Estes cinco passos garantem que o seu bouquet viaja protegido.",
     "passosTitle": "Cinco passos para um envio seguro",
     "materiaisTitle": "Materiais necessários",
     "materiais": [
       "Caixa de cartão resistente",
-      "Papel de cozinha ou jornal",
+      "Papel de cozinha",
+      "Jornal ou papel",
       "Fita-cola",
       "Papel de alumínio",
       "Tesoura",
       "Papel e caneta"
     ],
-    "materiaisNota": "Se ainda tiver a caixa original da florista, aproveite-a.",
     "materiaisAlt": "Materiais sobre uma mesa para embalar flores: caixa de cartão, rolo de fita-cola, jornal, tesoura e caneta.",
     "passos": [
       {
@@ -46,31 +46,31 @@
         "n": "03",
         "tag": "As flores",
         "titulo": "Coloque as flores",
-        "corpo": "Pouse o bouquet, com os caules já protegidos, no ninho que preparou. Preencha os espaços à volta com mais papel amassado, com cuidado, para que as flores fiquem firmes mas sem serem esmagadas.",
+        "corpo": "Pouse o bouquet no ninho que preparou. Preencha os espaços à volta com mais papel amassado, com cuidado, para que as flores fiquem firmes na caixa mas sem serem esmagadas.",
         "alt": "Bouquet pousado no ninho de papel dentro da caixa de cartão, pronto a ser enviado."
       },
       {
         "n": "04",
         "tag": "Memórias",
         "titulo": "Junte o que tem significado",
-        "corpo": "Se quiser incluir uma fotografia, um bilhete, a fita do bouquet ou os votos, coloque-os num saco fechado, junto ao fundo da caixa e afastado das pétalas. Junte também uma folha com o seu nome e a lista do que vai dentro.",
+        "corpo": "Se quiser incluir no quadro uma fotografia, um bilhete, a fita do bouquet, os votos, ou outros, coloque-os num saco fechado, junto à lateral da caixa e afastado das flores, se possível. Junte também uma folha com o seu nome e a lista do que vai dentro da caixa.",
         "alt": "Saco fechado com uma flor, uma fita e uma carta de votos de casamento, ao lado da caixa."
       },
       {
         "n": "05",
         "tag": "Envio",
         "titulo": "Feche e identifique",
-        "corpo": "Sele bem a caixa com fita-cola, sem deixar frestas. Escreva FRÁGIL e CIMA com uma seta a apontar para cima. Envie por CTT correio frágil ou transportadora, em serviço urgente e com seguro.",
-        "nota": "Os custos de envio ficam a cargo do cliente.",
+        "corpo": "Sele bem a caixa com fita-cola para garantir que não se abre durante o transporte. Escreva FRÁGIL e CIMA com uma seta a apontar para cima. Envie por CTT correio ou transportadora, em serviço urgente.",
+        "nota": "Os custos de envio são a cargo do cliente.",
         "alt": "Caixa de cartão selada e identificada com a palavra FRÁGIL e a indicação CIMA com seta para cima."
       }
     ],
     "naoTitle": "O que evitar",
     "naoItens": [
       "Película aderente ou sacos de plástico colados às flores.",
-      "Esperar vários dias para enviar: quanto mais frescas, melhor.",
+      "Esperar vários dias para enviar: quanto mais frescas preservarmos as flores, melhor o resultado.",
       "Caixas demasiado grandes, onde o bouquet baloiça durante o transporte.",
-      "Envio normal, sem seguro nem rastreio."
+      "Envio normal, sem urgência. Os CTT disponibilizam entregas no dia seguinte (1 dia útil)."
     ],
     "moradaTitle": "Para onde enviar",
     "moradaDesc": "A morada de envio é-lhe enviada juntamente com a confirmação da sua reserva. Se tiver qualquer dúvida sobre o envio, fale connosco, ajudamos com todo o gosto.",
