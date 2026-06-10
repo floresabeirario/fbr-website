@@ -80,8 +80,8 @@ function buildSchema(locale) {
           "@type": "Product",
           name: isEN ? "Christmas Ornament with preserved flowers (~8 cm)" : "Ornamento de Natal com flores preservadas (~8 cm)",
           description: isEN
-            ? "Christmas ornament with double lead-free silver-plated glass. Available as an add-on with the purchase of a larger frame."
-            : "Ornamento de Natal com vidro duplo soldado sem chumbo, com prata. Disponível em conjunto com a compra de um quadro maior.",
+            ? "Christmas ornament with double lead-free soldered glass. Available as an add-on with the purchase of a larger frame."
+            : "Ornamento de Natal com vidro duplo soldado sem chumbo. Disponível em conjunto com a compra de um quadro maior.",
           image: `${SITE_URL}/ornamento1.webp`,
           brand: { "@type": "Brand", name: "Flores à Beira-Rio" },
           aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: "7", bestRating: "5", worstRating: "1" },
@@ -96,8 +96,8 @@ function buildSchema(locale) {
           "@type": "Product",
           name: isEN ? "Necklace pendant with preserved flowers (~3 cm)" : "Pendente para colar com flores preservadas (~3 cm)",
           description: isEN
-            ? "Necklace pendant with double lead-free silver-plated glass. Available as an add-on with the purchase of a larger frame."
-            : "Pendente com vidro duplo soldado sem chumbo, com prata. Disponível em conjunto com a compra de um quadro maior.",
+            ? "Necklace pendant with double lead-free soldered glass. Available as an add-on with the purchase of a larger frame."
+            : "Pendente com vidro duplo soldado sem chumbo. Disponível em conjunto com a compra de um quadro maior.",
           image: `${SITE_URL}/pendente1.webp`,
           brand: { "@type": "Brand", name: "Flores à Beira-Rio" },
           aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: "7", bestRating: "5", worstRating: "1" },
