@@ -1,7 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
-import { FORM_URL, WA_URL } from "../_lib/constants";
+import { FORM_URL } from "../_lib/constants";
+import { waUrl } from "../_lib/wa";
 
 const anim = {
   initial: { opacity: 0, y: 22 },
@@ -28,7 +29,7 @@ export default function MomentosEspeciaisClient() {
           <p className="momento-desc">{t("heroDesc")}</p>
           <div className="momento-ctas">
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
-            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
+            <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
         </motion.div>
       </section>
@@ -80,7 +81,7 @@ export default function MomentosEspeciaisClient() {
           <p className="momentos-hub-cta-p">{t("reserveDesc")}</p>
           <div className="momento-ctas">
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
-            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
+            <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
         </motion.div>
       </section>

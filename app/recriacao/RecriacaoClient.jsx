@@ -4,7 +4,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
-import { WA_URL_RECRIACAO, EMAIL } from "../_lib/constants";
+import { EMAIL } from "../_lib/constants";
+import { waUrl } from "../_lib/wa";
 import PageHero from "@/components/PageHero";
 import "./RecriacaoClient.css";
 
@@ -152,7 +153,7 @@ export default function RecriacaoClient() {
             initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.7 }}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <a href={WA_URL_RECRIACAO} target="_blank" rel="noopener noreferrer" className="btn-wa-hero">
+            <a href={waUrl(locale, "recriacao")} target="_blank" rel="noopener noreferrer" className="btn-wa-hero">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={WA_PATH} /></svg>
               {t("ctaEnviarFotos")}
             </a>
@@ -282,7 +283,7 @@ export default function RecriacaoClient() {
             {t("recriarDesc")}
           </p>
           <div className="cta-row">
-            <a href={WA_URL_RECRIACAO} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
+            <a href={waUrl(locale, "recriacao")} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={WA_PATH} /></svg>
               {t("ctaWA")}
             </a>

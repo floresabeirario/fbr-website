@@ -3,7 +3,8 @@ import Image from "next/image";
 import Script from "next/script";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
-import { FORM_URL, WA_URL_NOIVA, OPCOES_PRECOS_URL } from "../_lib/constants";
+import { FORM_URL, OPCOES_PRECOS_URL } from "../_lib/constants";
+import { waUrl } from "../_lib/wa";
 import BouquetNoivaFAQ from "./BouquetNoivaFAQ";
 
 const fadeUp = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } };
@@ -61,7 +62,7 @@ export default function BouquetNoivaClient() {
           </div>
           <div className="momento-ctas">
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
-            <a href={WA_URL_NOIVA} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
+            <a href={waUrl(locale, "noiva")} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
         </motion.div>
       </section>
@@ -224,7 +225,7 @@ export default function BouquetNoivaClient() {
           <p className="momento-final-cta-p">{t("ctaDesc")}</p>
           <div className="momento-ctas">
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
-            <a href={WA_URL_NOIVA} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
+            <a href={waUrl(locale, "noiva")} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
           <div className="momento-links">
             {[

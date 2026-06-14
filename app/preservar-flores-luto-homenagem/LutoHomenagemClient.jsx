@@ -1,7 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
-import { FORM_URL, WA_URL_LUTO } from "../_lib/constants";
+import { FORM_URL } from "../_lib/constants";
+import { waUrl } from "../_lib/wa";
 import MomentoFAQ from "../_components/MomentoFAQ";
 
 const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } };
@@ -36,7 +37,7 @@ export default function LutoHomenagemClient() {
           </h1>
           <p className="momento-desc">{t("heroDesc")}</p>
           <div className="momento-ctas">
-            <a href={WA_URL_LUTO} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
+            <a href={waUrl(locale, "luto")} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
           </div>
         </motion.div>
@@ -96,7 +97,7 @@ export default function LutoHomenagemClient() {
           </h2>
           <p className="momento-final-cta-p">{t("ctaDesc")}</p>
           <div className="momento-ctas">
-            <a href={WA_URL_LUTO} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
+            <a href={waUrl(locale, "luto")} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
           </div>
           <div className="momento-links">

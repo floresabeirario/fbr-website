@@ -38,7 +38,8 @@ const THEMES = {
   },
 };
 import Image from "next/image";
-import { FORM_URL, WA_URL } from "./_lib/constants";
+import { FORM_URL } from "./_lib/constants";
+import { waUrl } from "./_lib/wa";
 import HomeHero from "./HomeHero";
 import HomeSteps from "./HomeSteps";
 import BeforeAfterSlider from "./BeforeAfterSlider";
@@ -391,7 +392,7 @@ export default function HomeClient() {
               </p>
               <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
                 <a href="/contactos" className="btn-ghost">{t("contactos")}</a>
-                <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="cta-btn-wa">
+                <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer" className="cta-btn-wa">
                   <IconWA /> WhatsApp
                 </a>
               </div>

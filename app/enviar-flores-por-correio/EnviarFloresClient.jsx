@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
-import { SITE_URL, WA_URL } from "../_lib/constants";
+import { SITE_URL } from "../_lib/constants";
+import { waUrl } from "../_lib/wa";
 import imgMateriais from "@/public/Envio/1.png";
 import img2 from "@/public/Envio/2.png";
 import img3 from "@/public/Envio/3.png";
@@ -165,7 +166,7 @@ export default function EnviarFloresClient() {
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.6rem,4.2vw,2.5rem)", color: "var(--cream)", margin: "0 0 14px", lineHeight: 1.12 }}>{t("ctaTitle")}</h2>
             <p style={{ color: "rgba(250,247,240,0.75)", lineHeight: 1.8, fontSize: "clamp(0.9rem,1.9vw,1rem)", margin: "0 0 28px" }}>{t("ctaDesc")}</p>
             <div className="cta-row" style={{ marginBottom: "22px" }}>
-              <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-wa"><WhatsAppIcon />{t("ctaWA")}</a>
+              <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer" className="btn-wa"><WhatsAppIcon />{t("ctaWA")}</a>
             </div>
             <a href={comoFuncionaHref} className="text-link">{t("ctaComoFunciona")}</a>
           </motion.div>

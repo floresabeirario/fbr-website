@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/cron/monitor-forms",
-      "schedule": "0 9 1,16 * *"
+      "schedule": "0 6 * * 1"
     }
   ]
 }
