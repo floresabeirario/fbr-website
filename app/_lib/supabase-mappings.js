@@ -62,6 +62,7 @@ const COMO_CONHECEU_RESERVA = {
   "Através do casamentos.pt":                                              "casamentos_pt",
   "Pesquisa no Google":                                                    "google",
   "Recomendação de florista":                                              "florista",
+  "Recomendação de Wedding Planner":                                       "wedding_planner",
   "Recomendação de alguém que já contratou o serviço anteriormente":       "recomendacao",
   "Recomendação de uma IA (ChatGPT, Gemini, etc.)":                        "recomendacao_ia",
   "Outro (especificar abaixo)":                                            "outro",
@@ -104,6 +105,7 @@ const VALE_COMO_CONHECEU = {
   "casamentos":           "casamentos_pt",
   "google":               "google",
   "florista":             "florista",
+  "wedding-planner":      "wedding_planner",
   "outro":                "outro",
 };
 

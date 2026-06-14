@@ -2,10 +2,11 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { IconInstagram, IconFacebook, IconTikTok, IconWhatsApp, IconEmail, IconCasamentos } from "@/components/Icons";
-import { WA_URL, EMAIL, PHONE_DISPLAY, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK, SOCIAL_TIKTOK, SOCIAL_CASAMENTOS } from "../_lib/constants";
+import { EMAIL, PHONE_DISPLAY, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK, SOCIAL_TIKTOK, SOCIAL_CASAMENTOS } from "../_lib/constants";
+import { waUrl } from "../_lib/wa";
 import "./ContactosClient.css";
 
 const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
@@ -56,6 +57,7 @@ const SOCIALS = [
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function ContactosClient() {
   const t = useTranslations("contactos");
+  const locale = useLocale();
   const membros = t.raw("membros");
   const navSquares = t.raw("navSquares");
   const TEAM = membros.map((m, i) => ({ name: m.nome, img: TEAM_IMGS[i].img, imgStyle: TEAM_IMGS[i].imgStyle, role: m.cargo, bio: m.bio, accent: TEAM_IMGS[i].accent }));
@@ -116,7 +118,7 @@ export default function ContactosClient() {
               <p style={{ fontFamily: GS, fontWeight: 700, fontSize: "0.56rem", letterSpacing: "3px", textTransform: "uppercase", color: C.salmon, marginBottom: 24 }}>{t("contactoDireto")}</p>
 
               {[
-                { icon: <IconWhatsApp size={22} />, label: PHONE_DISPLAY,  sub: t("waLabel"),    href: WA_URL,            color: "#25D366" },
+                { icon: <IconWhatsApp size={22} />, label: PHONE_DISPLAY,  sub: t("waLabel"),    href: waUrl(locale),            color: "#25D366" },
                 { icon: <IconEmail    size={22} />, label: EMAIL,          sub: t("emailLabel"), href: `mailto:${EMAIL}`, color: C.salmonLight },
               ].map((item, i) => (
                 <a

@@ -1721,6 +1721,10 @@
         "label": "Recomendação de florista"
       },
       {
+        "valor": "Recomendação de Wedding Planner",
+        "label": "Recomendação de Wedding Planner"
+      },
+      {
         "valor": "Recomendação de alguém que já contratou o serviço anteriormente",
         "label": "Recomendação de alguém que já contratou o serviço"
       },
@@ -1909,6 +1913,10 @@
       {
         "valor": "florista",
         "label": "Recomendação de florista"
+      },
+      {
+        "valor": "wedding-planner",
+        "label": "Recomendação de Wedding Planner"
       },
       {
         "valor": "outro",

@@ -1,117 +1,142 @@
 // app/api/health/route.js
-// Verifica a conectividade com Monday.com e Resend.
-// Chamado pelo cron do Vercel e pelo GitHub Actions a cada 15 dias.
-// Não cria dados — apenas valida tokens e env vars.
+// Verifica que os FORMULÁRIOS conseguem mesmo funcionar — ou seja, que a
+// app consegue ESCREVER no Supabase (o backend real desde 2026-05-08) e que
+// o envio de e-mail (Resend) está configurado.
+//
+// Antes este health check só testava o Monday.com, que os forms já não usam.
+// Resultado: se o Supabase partisse (o caso real), o alarme não dava por nada.
+//
+// O teste de escrita é uma submissão de TESTE de ponta-a-ponta: usa o mesmo
+// mapeamento e a mesma chave anónima dos forms para inserir uma encomenda e um
+// vale "sentinela", e depois apaga-os via a função `cleanup_form_healthchecks`
+// (SECURITY DEFINER, migração 077 do admin). Assim testamos exactamente o que
+// o cliente faz, sem deixar lixo na base de dados.
 
 import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
+import {
+  mapReservaToOrder,
+  mapValeToVoucher,
+} from "@/app/_lib/supabase-mappings";
 
-const MONDAY_API = "https://api.monday.com/v2";
+export const dynamic = "force-dynamic";
 
-// Valores de `valor` em messages/pt.json > reservar.elementosOpcoes.
-// Têm de existir como labels na coluna dropdown_mkq0vepg do Monday.
-// Se divergirem, submissões em EN voltam a causar erro 500.
-const ELEMENTOS_OPCOES_VALORES = [
-  "Não pretendo incluir extras",
-  "Votos manuscritos",
-  "Convite do casamento",
-  "Fitas, tecidos ou rendas",
-  "Fotografia",
-  "Joia ou medalha",
-  "Coleira de animal",
-  "Cartas ou bilhetes",
-  "Outro (especifique abaixo)",
-];
+const SENTINEL_EMAIL = "healthcheck@floresabeirario.pt";
+const SENTINEL_NAME = "HEALTHCHECK — apagar";
 
-async function checkMonday() {
-  if (!process.env.MONDAY_API_TOKEN)
-    return { ok: false, reason: "MONDAY_API_TOKEN não configurado" };
-  if (!process.env.MONDAY_BOARD_ID_PRESERVACAO)
-    return { ok: false, reason: "MONDAY_BOARD_ID_PRESERVACAO não configurado" };
-  if (!process.env.MONDAY_BOARD_ID_VALE)
-    return { ok: false, reason: "MONDAY_BOARD_ID_VALE não configurado" };
+function getSupabase() {
+  if (!process.env.SUPABASE_URL || !process.env.SUPABASE_ANON_KEY) return null;
+  return createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY, {
+    auth: { persistSession: false },
+  });
+}
 
+// Leitura: confirma que conseguimos chegar às tabelas (conectividade + grant
+// de SELECT ao anónimo). Não conta linhas reais — head:true.
+async function checkSupabaseRead(supabase) {
   try {
-    const res = await fetch(MONDAY_API, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.MONDAY_API_TOKEN}`,
-        "Content-Type": "application/json",
-        "API-Version": "2024-10",
-      },
-      body: JSON.stringify({ query: "{ me { id } }" }),
-      signal: AbortSignal.timeout(8000),
-    });
-
-    const json = await res.json();
-
-    if (json.data?.me?.id) return { ok: true };
-    if (json.errors?.length)
-      return { ok: false, reason: `Monday API: ${json.errors[0]?.message ?? "erro desconhecido"}` };
-
-    return { ok: false, reason: "Monday API: resposta inesperada" };
+    const [orders, vouchers] = await Promise.all([
+      supabase.from("orders").select("id", { count: "exact", head: true }),
+      supabase.from("vouchers").select("id", { count: "exact", head: true }),
+    ]);
+    if (orders.error)
+      return { ok: false, reason: `Tabela orders: ${orders.error.message}` };
+    if (vouchers.error)
+      return { ok: false, reason: `Tabela vouchers: ${vouchers.error.message}` };
+    return { ok: true };
   } catch (err) {
-    return { ok: false, reason: `Monday API inacessível: ${err.message}` };
+    return { ok: false, reason: `Supabase inacessível: ${err.message}` };
   }
 }
 
-async function checkMondayDropdowns() {
-  if (!process.env.MONDAY_API_TOKEN || !process.env.MONDAY_BOARD_ID_PRESERVACAO)
-    return { ok: false, reason: "Variáveis de ambiente do Monday não configuradas" };
-
+// Escrita real: insere uma encomenda + um vale sentinela (mesma chave anónima
+// e mesmo mapeamento dos forms) e limpa logo a seguir. É isto que apanha uma
+// policy/grant/coluna partida — a causa típica de "o form dá erro".
+async function checkSupabaseWrite(supabase) {
+  let orderInserted = false;
+  let voucherInserted = false;
   try {
-    const res = await fetch(MONDAY_API, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.MONDAY_API_TOKEN}`,
-        "Content-Type": "application/json",
-        "API-Version": "2024-10",
-      },
-      body: JSON.stringify({
-        query: `{ boards(ids: [${process.env.MONDAY_BOARD_ID_PRESERVACAO}]) { columns(ids: ["dropdown_mkq0vepg"]) { settings_str } } }`,
-      }),
-      signal: AbortSignal.timeout(8000),
-    });
+    const { payload: orderPayload, errors: orderErrors } = mapReservaToOrder(
+      { nome: SENTINEL_NAME, email: SENTINEL_EMAIL, dataEvento: "2099-12-31", locale: "pt" },
+      {},
+    );
+    if (orderErrors.length)
+      return { ok: false, reason: `Mapeamento da reserva: ${orderErrors.join(", ")}` };
 
-    const json = await res.json();
-    const settingsStr = json.data?.boards?.[0]?.columns?.[0]?.settings_str;
+    const ins1 = await supabase.from("orders").insert(orderPayload).select("id").single();
+    if (ins1.error)
+      return { ok: false, reason: `INSERT em orders falhou: ${ins1.error.message}` };
+    orderInserted = true;
 
-    if (!settingsStr)
-      return { ok: false, reason: "Coluna dropdown_mkq0vepg não encontrada no board" };
+    const { payload: voucherPayload, errors: voucherErrors } = mapValeToVoucher(
+      { nome: SENTINEL_NAME, email: SENTINEL_EMAIL, nomeDestinatario: SENTINEL_NAME, valorVale: 300, locale: "pt" },
+      {},
+    );
+    if (voucherErrors.length)
+      return { ok: false, reason: `Mapeamento do vale: ${voucherErrors.join(", ")}` };
 
-    const settings = JSON.parse(settingsStr);
-    const mondayLabels = (settings.labels ?? []).map((l) => l.name);
-
-    const missing = ELEMENTOS_OPCOES_VALORES.filter((l) => !mondayLabels.includes(l));
-    if (missing.length > 0)
-      return { ok: false, reason: `Labels em falta no dropdown do Monday: ${missing.join("; ")}` };
+    const ins2 = await supabase.from("vouchers").insert(voucherPayload).select("id").single();
+    if (ins2.error)
+      return { ok: false, reason: `INSERT em vouchers falhou: ${ins2.error.message}` };
+    voucherInserted = true;
 
     return { ok: true };
   } catch (err) {
-    return { ok: false, reason: `Erro ao verificar dropdown: ${err.message}` };
+    return { ok: false, reason: `Erro no teste de escrita: ${err.message}` };
+  } finally {
+    // Limpeza — corre sempre, mesmo que algo acima tenha falhado a meio.
+    if (orderInserted || voucherInserted) {
+      try {
+        await supabase.rpc("cleanup_form_healthchecks");
+      } catch {
+        // Se a função não existir ainda, a limpeza falha em silêncio; as
+        // linhas sentinela ficam marcadas e são fáceis de identificar/apagar.
+      }
+    }
   }
 }
 
-async function checkResend() {
-  // Chaves do Resend com permissão apenas de envio retornam 401 em todos os
-  // endpoints de leitura, mesmo sendo válidas. Verificamos só a presença da
-  // variável — se estiver configurada, a chave está em uso e os e-mails chegam.
+function checkResend() {
+  // Chaves do Resend só-de-envio devolvem 401 nos endpoints de leitura mesmo
+  // sendo válidas — por isso verificamos apenas a presença da variável.
   if (!process.env.RESEND_API_KEY)
     return { ok: false, reason: "RESEND_API_KEY não configurado" };
-
   return { ok: true };
 }
 
 export async function GET() {
-  const [monday, dropdown, resend] = await Promise.all([
-    checkMonday(),
-    checkMondayDropdowns(),
-    checkResend(),
-  ]);
+  const supabase = getSupabase();
+  if (!supabase) {
+    return NextResponse.json(
+      {
+        ok: false,
+        supabaseRead: { ok: false, reason: "SUPABASE_URL/ANON_KEY não configurados" },
+        supabaseWrite: { ok: false, reason: "SUPABASE_URL/ANON_KEY não configurados" },
+        resend: checkResend(),
+        checkedAt: new Date().toISOString(),
+      },
+      { status: 503 },
+    );
+  }
 
-  const ok = monday.ok && dropdown.ok && resend.ok;
+  const read = await checkSupabaseRead(supabase);
+  // Só tentamos escrever se a leitura passou (senão o erro de escrita seria
+  // redundante e ainda deixava sentinelas se a limpeza também falhasse).
+  const write = read.ok
+    ? await checkSupabaseWrite(supabase)
+    : { ok: false, reason: "Saltado — leitura ao Supabase falhou" };
+  const resend = checkResend();
+
+  const ok = read.ok && write.ok && resend.ok;
 
   return NextResponse.json(
-    { ok, monday, dropdown, resend, checkedAt: new Date().toISOString() },
-    { status: ok ? 200 : 503 }
+    {
+      ok,
+      supabaseRead: read,
+      supabaseWrite: write,
+      resend,
+      checkedAt: new Date().toISOString(),
+    },
+    { status: ok ? 200 : 503 },
   );
 }

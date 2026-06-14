@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname as useIntlPathname, useRouter } from "@/navigation";
 import { IconInstagram, IconFacebook, IconWhatsApp, IconEmail, FlagPT, FlagEN } from "./Icons";
-import { FORM_URL, WA_URL, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "@/app/_lib/constants";
+import { FORM_URL, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "@/app/_lib/constants";
+import { waUrl } from "@/app/_lib/wa";
 import { TRACKING_URL } from "@/app/_lib/constants";
 
 const FONT = "var(--font-google-sans), 'Google Sans', sans-serif";
@@ -184,7 +185,7 @@ export default function FooterClient() {
           {[
             { href: SOCIAL_INSTAGRAM, icon: <IconInstagram size={20} />, label: "Instagram" },
             { href: SOCIAL_FACEBOOK,  icon: <IconFacebook size={20} />,  label: "Facebook" },
-            { href: WA_URL,           icon: <IconWhatsApp size={20} />,  label: "WhatsApp" },
+            { href: waUrl(locale),           icon: <IconWhatsApp size={20} />,  label: "WhatsApp" },
             { href: `mailto:${EMAIL}`,icon: <IconEmail size={20} />,     label: "Email" },
           ].map((s, i) => (
             <a key={i} href={s.href}
@@ -198,7 +199,7 @@ export default function FooterClient() {
             </a>
           ))}
         </div>
-        <a href={WA_URL} target="_blank" rel="noopener noreferrer"
+        <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer"
           className="footer-wa-btn"
           style={{
             display: "inline-flex", alignItems: "center", gap: "10px",
@@ -240,7 +241,7 @@ export default function FooterClient() {
             <span style={labelStyle}>{t("contacto")}</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               <a href={`mailto:${EMAIL}`} style={linkStyle} className="footer-nav-link">{EMAIL}</a>
-              <a href={WA_URL} target="_blank" rel="noopener noreferrer" style={linkStyle} className="footer-nav-link">+351 934 680 300</a>
+              <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer" style={linkStyle} className="footer-nav-link">+351 934 680 300</a>
               <span style={{ ...linkStyle, color: "rgba(250,247,240,0.28)", cursor: "default" }}>{t("localidade")}</span>
             </div>
           </div>
@@ -263,7 +264,7 @@ export default function FooterClient() {
         </FooterAccordion>
         <div style={{ paddingTop: "20px", display: "flex", flexDirection: "column", gap: "8px" }}>
           <a href={`mailto:${EMAIL}`} style={{ ...linkStyle, fontSize: "0.8rem" }} className="footer-nav-link">{EMAIL}</a>
-          <a href={WA_URL} target="_blank" rel="noopener noreferrer" style={{ ...linkStyle, fontSize: "0.8rem" }} className="footer-nav-link">+351 934 680 300</a>
+          <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer" style={{ ...linkStyle, fontSize: "0.8rem" }} className="footer-nav-link">+351 934 680 300</a>
           <div style={{ paddingTop: "4px" }}>
             <LangSwitcher />
           </div>

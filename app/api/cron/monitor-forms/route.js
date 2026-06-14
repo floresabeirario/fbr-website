@@ -1,5 +1,5 @@
 // app/api/cron/monitor-forms/route.js
-// Chamado pelo Vercel Cron de 15 em 15 dias (dias 1 e 16 de cada mês, 09:00 UTC).
+// Chamado pelo Vercel Cron uma vez por semana (segundas, 06:00 UTC).
 // Corre o health check e envia e-mail de alerta se algo falhar.
 // Protegido pela variável CRON_SECRET — o Vercel envia-a automaticamente.
 
@@ -47,13 +47,13 @@ export async function GET() {
 
   if (process.env.RESEND_API_KEY) {
     const problemas = [];
-    if (!health.monday?.ok) problemas.push(`<li><strong>Monday.com (conectividade)</strong>: ${health.monday?.reason ?? "erro desconhecido"}</li>`);
-    if (!health.dropdown?.ok) problemas.push(`<li><strong>Monday.com (dropdown elementosExtra)</strong>: ${health.dropdown?.reason ?? "erro desconhecido"}</li>`);
+    if (!health.supabaseRead?.ok) problemas.push(`<li><strong>Base de dados (leitura)</strong>: ${health.supabaseRead?.reason ?? "erro desconhecido"}</li>`);
+    if (!health.supabaseWrite?.ok) problemas.push(`<li><strong>Formulários (gravação de teste)</strong>: ${health.supabaseWrite?.reason ?? "erro desconhecido"}</li>`);
     if (!health.resend?.ok) problemas.push(`<li><strong>Resend (e-mail)</strong>: ${health.resend?.reason ?? "erro desconhecido"}</li>`);
 
     const html = `
 <h2 style="font-family:sans-serif;color:#c0392b;">Alerta: possível problema nos formulários</h2>
-<p style="font-family:sans-serif;">A verificação automática de 15 em 15 dias detectou o seguinte:</p>
+<p style="font-family:sans-serif;">A verificação automática semanal detectou o seguinte:</p>
 <ul style="font-family:sans-serif;color:#c0392b;line-height:1.8;">
   ${problemas.join("\n  ")}
 </ul>
@@ -64,7 +64,7 @@ export async function GET() {
 </p>
 <p style="font-family:sans-serif;">
   Se o problema persistir, verifica as variáveis de ambiente no painel do Vercel
-  e o estado da API do Monday.com.
+  (SUPABASE_URL, SUPABASE_ANON_KEY, RESEND_API_KEY) e o estado do projecto Supabase.
 </p>
 <p style="font-family:sans-serif;color:#999;font-size:12px;">Verificação feita em: ${health.checkedAt}</p>
     `.trim();
