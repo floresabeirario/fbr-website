@@ -41,6 +41,7 @@ export default function sitemap() {
       en: ptPost.enSlug ? `/en/blog/${ptPost.enSlug}` : null,
       priority: 0.6,
       changeFrequency: "yearly",
+      lastModified: ptPost.date ? new Date(ptPost.date) : undefined,
     });
   }
   // Add any EN-only posts that have no PT counterpart
@@ -52,6 +53,7 @@ export default function sitemap() {
         en: `/en/blog/${enPost.slug}`,
         priority: 0.6,
         changeFrequency: "yearly",
+        lastModified: enPost.date ? new Date(enPost.date) : undefined,
       });
     }
   }
@@ -68,11 +70,15 @@ export default function sitemap() {
           }
         : undefined;
 
+    // lastModified: só quando conhecemos a data real (artigos do blog, via
+    // frontmatter). "new Date()" a cada build ensinava o Google a ignorar
+    // o sinal, porque todas as páginas pareciam mudar todos os dias.
+
     // PT entry
     if (route.pt) {
       entries.push({
         url:             `${base}${route.pt}`,
-        lastModified:    new Date(),
+        ...(route.lastModified ? { lastModified: route.lastModified } : {}),
         changeFrequency: route.changeFrequency,
         priority:        route.priority,
         ...(altLanguages ? { alternates: { languages: altLanguages } } : {}),
@@ -83,7 +89,7 @@ export default function sitemap() {
     if (route.en) {
       entries.push({
         url:             `${base}${route.en}`,
-        lastModified:    new Date(),
+        ...(route.lastModified ? { lastModified: route.lastModified } : {}),
         changeFrequency: route.changeFrequency,
         priority:        route.priority,
         ...(altLanguages ? { alternates: { languages: altLanguages } } : {}),

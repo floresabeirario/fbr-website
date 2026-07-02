@@ -608,3 +608,92 @@ input[type="date"].vf-input {
     padding: 15px 24px;
   }
 }
+
+/* ── Checkbox + Termos (RGPD) ── */
+.vf-check-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.88rem;
+  color: #1C1008;
+  cursor: pointer;
+  line-height: 1.45;
+}
+
+.vf-checkbox {
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  accent-color: #5A4030;
+  cursor: pointer;
+}
+
+.vf-termos-label {
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.vf-link {
+  color: #6A3A18;
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+
+.vf-link:hover {
+  color: #2A1E10;
+}
+
+/* ── Resumo de erros clicável (espelha o formulário de reserva) ── */
+.vf-errors-summary {
+  text-align: left;
+  scroll-margin-top: 120px;
+  margin-bottom: 24px;
+}
+
+.vf-errors-summary:focus {
+  outline: none;
+}
+
+.vf-errors-summary:focus-visible {
+  outline: 2px solid var(--terra);
+  outline-offset: 2px;
+}
+
+.vf-errors-summary-title {
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+.vf-errors-summary-list {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vf-errors-summary-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: #9A4A30;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.vf-errors-summary-link:hover,
+.vf-errors-summary-link:focus-visible {
+  color: var(--terra);
+  text-decoration-thickness: 2px;
+}
+
+.vf-errors-summary-link:focus-visible {
+  outline: 2px solid var(--terra);
+  outline-offset: 3px;
+  border-radius: 2px;
+}

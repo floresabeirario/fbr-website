@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { useParams, useRouter as useNextRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname as useIntlPathname, useRouter } from "@/navigation";
@@ -8,6 +10,7 @@ import { IconInstagram, IconFacebook, IconWhatsApp, IconEmail, FlagPT, FlagEN } 
 import { FORM_URL, EMAIL, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK } from "@/app/_lib/constants";
 import { waUrl } from "@/app/_lib/wa";
 import { TRACKING_URL } from "@/app/_lib/constants";
+import { useAltLocaleHref } from "@/app/_components/AltLocaleHref";
 
 const FONT = "var(--font-google-sans), 'Google Sans', sans-serif";
 
@@ -72,23 +75,42 @@ const labelStyle = {
 };
 
 function renderLinks(list) {
-  return list.map((l, i) => (
-    <a key={i} href={l.href}
-      {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      style={linkStyle}
-      className="footer-nav-link"
-    >
-      {l.label}
-    </a>
-  ));
+  return list.map((l, i) =>
+    l.external ? (
+      <a key={i} href={l.href} target="_blank" rel="noopener noreferrer"
+        style={linkStyle} className="footer-nav-link">
+        {l.label}
+      </a>
+    ) : (
+      <Link key={i} href={l.href} style={linkStyle} className="footer-nav-link">
+        {l.label}
+      </Link>
+    )
+  );
 }
 
 function LangSwitcher({ style = {} }) {
   const locale = useLocale();
   const router = useRouter();
+  const nextRouter = useNextRouter();
   const pathname = useIntlPathname();
+  const params = useParams();
+  const alt = useAltLocaleHref();
 
+  // Mesma lógica do Nav: em rotas dinâmicas (artigos do blog) o pathname da
+  // next-intl é o TEMPLATE (/blog/[slug]) — sem os params, o replace navegava
+  // para o URL literal "[slug]" e dava 404.
   function switchLocale(next) {
+    if (next === locale) return;
+    if (alt?.altHref) {
+      nextRouter.push(alt.altHref);
+      return;
+    }
+    if (pathname.includes("[")) {
+      const { locale: _ignored, ...rest } = params ?? {};
+      router.replace({ pathname, params: rest }, { locale: next });
+      return;
+    }
     router.replace(pathname, { locale: next });
   }
 

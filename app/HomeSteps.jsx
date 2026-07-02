@@ -1,12 +1,18 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { FORM_URL } from "./_lib/constants";
 
 export default function HomeSteps() {
   const t = useTranslations("home");
+  const locale = useLocale();
+
+  const bookHref = locale === "en" ? "/en/book-preservation" : FORM_URL;
+  const comoHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
+  const faqHref  = locale === "en" ? "/en/faq" : "/perguntas-frequentes";
 
   const steps = [
     {
@@ -15,7 +21,7 @@ export default function HomeSteps() {
       desc: t("step1Desc"),
       imageSrc: "/calendario.webp",
       imgAlt: t("step1ImgAlt"),
-      link: FORM_URL,
+      link: bookHref,
       linkLabel: t("step1Link"),
       external: false,
     },
@@ -25,7 +31,7 @@ export default function HomeSteps() {
       desc: t("step2Desc"),
       imageSrc: "/ramojoana.webp",
       imgAlt: t("step2ImgAlt"),
-      link: "/como-funciona",
+      link: comoHref,
       linkLabel: t("step2Link"),
       external: false,
     },
@@ -35,7 +41,7 @@ export default function HomeSteps() {
       desc: t("step3Desc"),
       imageSrc: "/joanaceu.webp",
       imgAlt: t("step3ImgAlt"),
-      link: "/perguntas-frequentes",
+      link: faqHref,
       linkLabel: t("step3Link"),
       external: false,
     },
@@ -99,13 +105,9 @@ export default function HomeSteps() {
               <span className="step-num" aria-hidden="true">{step.number}</span>
               <h3 className="step-title">{step.title}</h3>
               <p className="step-desc">{step.desc}</p>
-              <a
-                href={step.link}
-                className="step-inline-link"
-                {...(step.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              >
+              <Link href={step.link} className="step-inline-link">
                 {step.linkLabel} <span aria-hidden="true">→</span>
-              </a>
+              </Link>
             </div>
           </motion.article>
         ))}

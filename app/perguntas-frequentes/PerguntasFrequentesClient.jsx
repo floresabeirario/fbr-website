@@ -2,9 +2,11 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
-import { FORM_URL, WA_NUMBER } from "../_lib/constants";
+import { FORM_URL } from "../_lib/constants";
+import { waUrl } from "../_lib/wa";
 import { FAQ_DATA } from "./faq-data";
 import { FAQ_DATA_EN } from "./faq-data-en";
 import FaqAccordion from "./FaqAccordion";
@@ -14,8 +16,9 @@ export default function PerguntasFrequentesClient() {
   const t = useTranslations("faq");
   const locale = useLocale();
   const faqData = locale === "en" ? FAQ_DATA_EN : FAQ_DATA;
-  const WA   = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Olá! Tenho uma dúvida sobre a preservação das minhas flores.")}`;
-  const FORM = FORM_URL;
+  // Antes: mensagem WhatsApp fixa em PT e formulário PT mesmo na página EN.
+  const WA   = waUrl(locale, "duvida");
+  const FORM = locale === "en" ? "/en/book-preservation" : FORM_URL;
 
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -166,9 +169,9 @@ export default function PerguntasFrequentesClient() {
             >
               {t("ctaSessao")}
             </a>
-            <a href={FORM} className="btn-primary">
+            <Link href={FORM} className="btn-primary">
               {t("ctaReservar")}
-            </a>
+            </Link>
           </div>
         </motion.div>
 

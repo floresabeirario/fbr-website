@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 
 import { TRACKING_URL } from "../_lib/constants";
+import { PRECO_EMOLDURAR_30x40, PRECO_EMOLDURAR_40x50, PRECO_EMOLDURAR_50x70 } from "../_lib/precos";
 import "./EmoldurarFloresSecasClient.css";
 
 const C = {
@@ -135,9 +136,9 @@ const OPCOES_VISUAL = [
 ];
 
 const precos = [
-  { size: "30 × 40 cm", price: "200€", svgW: "80px" },
-  { size: "40 × 50 cm", price: "270€", svgW: "96px" },
-  { size: "50 × 70 cm", price: "360€", svgW: "112px" },
+  { size: "30 × 40 cm", price: `${PRECO_EMOLDURAR_30x40}€`, svgW: "80px" },
+  { size: "40 × 50 cm", price: `${PRECO_EMOLDURAR_40x50}€`, svgW: "96px" },
+  { size: "50 × 70 cm", price: `${PRECO_EMOLDURAR_50x70}€`, svgW: "112px" },
 ];
 
 function FAQItem({ faq, i }) {

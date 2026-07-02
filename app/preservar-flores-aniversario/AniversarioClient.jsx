@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
+import { splitTitle } from "../_lib/splitTitle";
 import MomentoFAQ from "../_components/MomentoFAQ";
 
 const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } };
@@ -20,6 +21,9 @@ export default function AniversarioClient() {
   const t = useTranslations("aniversario");
   const locale = useLocale();
   const features = t.raw("features");
+  const [h1Start, h1Em] = splitTitle(t("h1"), t("eyebrow"));
+  const [contentStart, contentEm] = splitTitle(t("contentTitle"), t("contentEm"));
+  const [ctaStart, ctaEm] = splitTitle(t("ctaFinalTitle"), t("ctaFinalEm"));
 
   const bookHref = locale === "en" ? "/en/book-preservation" : FORM_URL;
   const comoHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
@@ -32,8 +36,7 @@ export default function AniversarioClient() {
         <motion.div {...anim} className="momento-inner">
           <span className="momento-eyebrow">{t("eyebrow")}</span>
           <h1 className="momento-h1">
-            {t("h1").split(t("eyebrow"))[0]}<br />
-            <em>{t("eyebrow")}</em>
+            {h1Start}{h1Em && <><br /><em>{h1Em}</em></>}
           </h1>
           <p className="momento-desc">{t("heroDesc")}</p>
           <div className="momento-ctas">
@@ -53,8 +56,7 @@ export default function AniversarioClient() {
         >
           <span className="momento-eyebrow">{t("eyebrow2")}</span>
           <h2 className="momento-content-h2">
-            {t("contentTitle").split(t("contentEm"))[0]}<br />
-            <em>{t("contentEm")}</em>
+            {contentStart}{contentEm && <><br /><em>{contentEm}</em></>}
           </h2>
           <p className="momento-content-p">{t("p1")}</p>
           <p className="momento-content-p">{t("p2")}</p>
@@ -92,8 +94,7 @@ export default function AniversarioClient() {
           className="momento-final-cta-inner"
         >
           <h2 className="momento-final-cta-h2">
-            {t("ctaFinalTitle").split(t("ctaFinalEm"))[0]}<br />
-            <em>{t("ctaFinalEm")}</em>
+            {ctaStart}{ctaEm && <><br /><em>{ctaEm}</em></>}
           </h2>
           <p className="momento-final-cta-p">{t("ctaFinalDesc")}</p>
           <div className="momento-ctas">

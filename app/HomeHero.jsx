@@ -1,13 +1,16 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { FORM_URL } from "./_lib/constants";
 
 export default function HomeHero() {
   const t = useTranslations("home");
+  const locale = useLocale();
+  const bookHref = locale === "en" ? "/en/book-preservation" : FORM_URL;
   const heroRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -55,23 +58,26 @@ export default function HomeHero() {
           padding: "0 20px",
         }}
       >
-        <motion.p
+        {/* SEO: o h1 é a eyebrow com a keyword ("Especialistas em preservação
+            de flores"); o nome da marca mantém exactamente o mesmo aspecto
+            visual mas passa a <p>. O Google lê o tema da página no h1. */}
+        <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.8 }}
-          style={{ fontSize: "clamp(0.65rem,1.2vw,0.82rem)", letterSpacing: "clamp(3px,1vw,5px)", textTransform: "uppercase", fontWeight: "700", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 clamp(10px,2vw,18px)" }}
+          style={{ fontSize: "clamp(0.65rem,1.2vw,0.82rem)", letterSpacing: "clamp(3px,1vw,5px)", textTransform: "uppercase", fontWeight: "700", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 clamp(10px,2vw,18px)", lineHeight: 1.4 }}
         >
           {t("heroEyebrow")}
-        </motion.p>
+        </motion.h1>
 
-        <motion.h1
+        <motion.p
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
           style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3.2rem, 11vw, 8rem)", lineHeight: 1.15, margin: 0 }}
         >
           Flores à<br /><span style={{ whiteSpace: "nowrap" }}>Beira&#8209;Rio</span>
-        </motion.h1>
+        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -79,7 +85,9 @@ export default function HomeHero() {
           transition={{ delay: 0.7, duration: 0.8 }}
           style={{ position: "absolute", bottom: "clamp(44px,7vh,80px)", left: 0, right: 0, display: "flex", justifyContent: "center" }}
         >
-          <a href={FORM_URL} className="hero-btn">{t("heroCTA")}</a>
+          {/* "Reservar eternização de flores" — o "Reservar Data" já existe
+              na nav em cima à esquerda; aqui o botão diz o que se reserva. */}
+          <Link href={bookHref} className="hero-btn">{t("heroCTALong")}</Link>
         </motion.div>
       </motion.div>
     </section>

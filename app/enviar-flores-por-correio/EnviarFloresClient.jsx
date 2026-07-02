@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { SITE_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
+import { splitTitle } from "../_lib/splitTitle";
 import imgMateriais from "@/public/Envio/1.png";
 import img2 from "@/public/Envio/2.png";
 import img3 from "@/public/Envio/3.png";
@@ -71,20 +72,21 @@ export default function EnviarFloresClient() {
 
   const baseUrl = locale === "en" ? `${SITE_URL}/en/how-to-ship-your-flowers` : `${SITE_URL}/enviar-flores-por-correio`;
   const comoFuncionaHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
-  const [h1Start] = t("h1").split(t("h1Em"));
+  const [h1Start, h1Em] = splitTitle(t("h1"), t("h1Em"));
 
   return (
     <>
       <HowToSchema name={t("meta.ogTitle")} description={t("meta.description")} materiais={materiais} passos={passos} baseUrl={baseUrl} />
 
-      <main className="ship-page" style={{ backgroundColor: "#2E3621", overflowX: "clip" }}>
+      {/* <div> em vez de <main>: o layout já embrulha as páginas num <main>. */}
+      <div className="ship-page" style={{ backgroundColor: "#2E3621", overflowX: "clip" }}>
 
         {/* ── HEADER BAND ──────────────────────────────────────────── */}
         <header style={{ padding: "clamp(104px,16vw,150px) clamp(20px,5vw,48px) clamp(36px,6vw,56px)", textAlign: "center", background: "linear-gradient(180deg, #3A4528 0%, #2E3621 100%)" }}>
           <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", margin: "0 auto" }}>
             <span className="eyebrow">{t("eyebrow")}</span>
             <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5.5vw,3.6rem)", lineHeight: 1.08, color: "var(--cream)", margin: "0 0 clamp(14px,2vw,20px)" }}>
-              {h1Start}<em style={{ fontStyle: "italic", color: "var(--gold)" }}>{t("h1Em")}</em>
+              {h1Start}{h1Em && <em style={{ fontStyle: "italic", color: "var(--gold)" }}>{h1Em}</em>}
             </h1>
             <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.06rem)", lineHeight: 1.8, maxWidth: "520px", color: "rgba(250,247,240,0.82)", margin: "0 auto clamp(12px,2vw,16px)" }}>
               {t("heroDesc")}
@@ -172,7 +174,7 @@ export default function EnviarFloresClient() {
           </motion.div>
         </section>
 
-      </main>
+      </div>
     </>
   );
 }

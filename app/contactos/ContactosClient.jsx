@@ -194,7 +194,7 @@ export default function ContactosClient() {
                     <Image
                       fill
                       src={member.img}
-                      alt={`${member.name}, ${member.role} na Flores à Beira-Rio`}
+                      alt={`${member.name}, ${member.role}, Flores à Beira-Rio`}
                       sizes="(max-width: 640px) 38vw, 200px"
                       style={{ objectFit: "cover", ...member.imgStyle }}
                     />

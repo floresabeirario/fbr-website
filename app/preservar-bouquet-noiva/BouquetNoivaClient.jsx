@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL, OPCOES_PRECOS_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
+import { splitTitle } from "../_lib/splitTitle";
 import BouquetNoivaFAQ from "./BouquetNoivaFAQ";
 
 const fadeUp = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } };
@@ -37,6 +38,8 @@ export default function BouquetNoivaClient() {
   const precosHref = locale === "en" ? "/en/options-and-pricing" : OPCOES_PRECOS_URL;
   const comoHref   = locale === "en" ? "/en/how-it-works"        : "/como-funciona";
   const faqHref    = locale === "en" ? "/en/faq"                 : "/perguntas-frequentes";
+  const [processStart, processEm] = splitTitle(t("processTitle"), t("processEm"));
+  const [ctaFinalStart, ctaFinalEm] = splitTitle(t("ctaFinalTitle"), t("ctaFinalEm"));
 
   return (
     <div className="momento-page">
@@ -114,8 +117,7 @@ export default function BouquetNoivaClient() {
         >
           <span className="momento-eyebrow">{t("processEyebrow")}</span>
           <h2 className="bouquet-process-title">
-            {t("processTitle").split(t("processEm"))[0]}
-            <em>{t("processEm")}</em>
+            {processStart}{processEm && <em>{processEm}</em>}
           </h2>
         </motion.div>
         <div className="bouquet-process-steps">
@@ -219,8 +221,7 @@ export default function BouquetNoivaClient() {
           className="momento-final-cta-inner"
         >
           <h2 className="momento-final-cta-h2">
-            {t("ctaFinalTitle").split(t("ctaFinalEm"))[0]}
-            <em>{t("ctaFinalEm")}</em>
+            {ctaFinalStart}{ctaFinalEm && <em>{ctaFinalEm}</em>}
           </h2>
           <p className="momento-final-cta-p">{t("ctaDesc")}</p>
           <div className="momento-ctas">
