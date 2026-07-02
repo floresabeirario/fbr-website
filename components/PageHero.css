@@ -1,6 +1,9 @@
 .page-hero {
   position: relative;
   height: 100svh;
+  /* espaço para a barra de anúncio (30px) + nav fixa — o conteúdo
+     centra no que fica visível abaixo da nav, não no ecrã todo */
+  padding-top: clamp(100px, 12svh, 128px);
   overflow: hidden;
   display: flex;
   align-items: center;
