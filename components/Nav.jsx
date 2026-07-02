@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useParams, useRouter as useNextRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { FlagPT, FlagEN, IconWhatsApp } from "./Icons";
 import { usePathname as useIntlPathname, useRouter } from "@/navigation";
 import { FORM_URL } from "@/app/_lib/constants";
 import { waUrl } from "@/app/_lib/wa";
+import { useAltLocaleHref } from "@/app/_components/AltLocaleHref";
 
 // ── Cores do botão CTA por pathname (sem prefixo de locale) ────────────────
 const PAGE_COLORS = {
@@ -33,6 +34,10 @@ const PAGE_COLORS = {
   "/how-it-works":                         { bg: "var(--rust)", shadow: "rgba(200,82,42,0.32)" },
 };
 const DEFAULT_CTA = { bg: "var(--green)", shadow: "rgba(61,107,94,0.32)" };
+
+// Altura da barra de anúncio no topo (px) — a nav desloca-se esta altura
+// enquanto a barra está visível; ao fazer scroll a barra sai e a nav volta a 0.
+const ANNOUNCE_H = 30;
 
 // ── Ícones do menu mobile ──────────────────────────────────────────────────
 const IconFlor6 = () => (
@@ -87,7 +92,10 @@ const IconBlog = () => (
 function LangDropdown({ scrolled, mobile = false }) {
   const locale = useLocale();
   const router = useRouter();
+  const nextRouter = useNextRouter();
   const pathname = useIntlPathname();
+  const params = useParams();
+  const alt = useAltLocaleHref();
   const t = useTranslations("nav");
   const [open, setOpen] = useState(false);
   const timerRef = useRef(null);
@@ -100,8 +108,22 @@ function LangDropdown({ scrolled, mobile = false }) {
   const textColor = scrolled ? "#1a1a1a" : "#fff";
 
   function switchLocale(next) {
-    router.replace(pathname, { locale: next });
     setOpen(false);
+    if (next === locale) return;
+    // Páginas com slugs diferentes por idioma (artigos do blog) registam o
+    // URL da contraparte via AltLocaleHref — navegar directo para ele.
+    if (alt?.altHref) {
+      nextRouter.push(alt.altHref);
+      return;
+    }
+    // Rotas dinâmicas: o pathname da next-intl é o TEMPLATE (/blog/[slug]);
+    // é preciso passar os params para substituir os placeholders.
+    if (pathname.includes("[")) {
+      const { locale: _ignored, ...rest } = params ?? {};
+      router.replace({ pathname, params: rest }, { locale: next });
+      return;
+    }
+    router.replace(pathname, { locale: next });
   }
 
   if (mobile) {
@@ -500,16 +522,40 @@ export default function NavClient() {
 
   return (
     <>
+      {/* ── BARRA DE ANÚNCIO — "servimos todo o país" ── */}
+      <div
+        role="note"
+        style={{
+          position: "fixed", top: 0, width: "100%", zIndex: 101,
+          height: `${ANNOUNCE_H}px`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          padding: "0 14px",
+          backgroundColor: "var(--dark)",
+          color: "var(--cream)",
+          transform: scrolled ? `translateY(-${ANNOUNCE_H}px)` : "translateY(0)",
+          transition: "transform 0.4s ease",
+        }}
+      >
+        <span style={{
+          fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
+          fontSize: "0.6rem", fontWeight: 600, letterSpacing: "1.6px",
+          textTransform: "uppercase", whiteSpace: "nowrap",
+          overflow: "hidden", textOverflow: "ellipsis",
+        }}>
+          {t("announce")}
+        </span>
+      </div>
+
       {/* ── BARRA DE NAVEGAÇÃO ── */}
       <nav
         role="navigation"
         aria-label={t("menuLabel")}
         data-scrolled={scrolled ? "true" : "false"}
         style={{
-          position: "fixed", top: 0, width: "100%", zIndex: 100,
+          position: "fixed", top: scrolled ? 0 : ANNOUNCE_H, width: "100%", zIndex: 100,
           backgroundColor: show ? "rgba(250,247,240,0.95)" : "transparent",
           backdropFilter: show ? "blur(10px)" : "none",
-          transition: "background-color 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease",
+          transition: "background-color 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease, top 0.4s ease",
           padding: show ? "14px 0" : "24px 0",
         }}
       >

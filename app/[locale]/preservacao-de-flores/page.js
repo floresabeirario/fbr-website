@@ -62,13 +62,13 @@ function buildSchema(locale) {
     step: isEN
       ? [
           { "@type": "HowToStep", position: 1, name: "Book your date", text: "Get in touch as soon as possible, especially for weddings (May to September are limited)." },
-          { "@type": "HowToStep", position: 2, name: "Hand in the flowers within 5 days", text: "Drop them off in person in Coimbra, send by express courier, or request collection. We receive flowers Monday to Sunday." },
+          { "@type": "HowToStep", position: 2, name: "Hand in the flowers within 6 days", text: "Drop them off in person in Coimbra, send by express courier, or request collection. We receive flowers Monday to Sunday." },
           { "@type": "HowToStep", position: 3, name: "Approve the composition", text: "We send photographs of the composition by email. You have 72 hours to approve or request changes." },
           { "@type": "HowToStep", position: 4, name: "Receive the framed piece", text: "The framed artwork is shipped with insurance and specialist packaging, worldwide." },
         ]
       : [
           { "@type": "HowToStep", position: 1, name: "Reservar a data", text: "Entre em contacto assim que possível, especialmente para casamentos (Maio a Setembro são vagas limitadas)." },
-          { "@type": "HowToStep", position: 2, name: "Entregar as flores em 5 dias", text: "Pode entregar em mãos em Coimbra, enviar por correio expresso, ou solicitar recolha. Recebemos de segunda a domingo." },
+          { "@type": "HowToStep", position: 2, name: "Entregar as flores em 6 dias", text: "Pode entregar em mãos em Coimbra, enviar por correio expresso, ou solicitar recolha. Recebemos de segunda a domingo." },
           { "@type": "HowToStep", position: 3, name: "Aprovar a composição", text: "Enviamos fotografias da composição por e-mail. Tem 72 horas para aprovar ou pedir alterações." },
           { "@type": "HowToStep", position: 4, name: "Receber o quadro em casa", text: "O quadro emoldurado é enviado com seguro e embalagem especializada, para Portugal e para o estrangeiro." },
         ],

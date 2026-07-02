@@ -100,7 +100,8 @@
     },
     "recriacao": "Recriação de Bouquet",
     "faq": "FAQ",
-    "langLabel": "Versão em inglês"
+    "langLabel": "Versão em inglês",
+    "announce": "Servimos clientes em todo o país, com envio de flores fácil e seguro"
   },
   "footer": {
     "tagline": "Especialistas em Preservação de Flores · Coimbra, Portugal",
@@ -181,6 +182,11 @@
     "noivasTitle": "Vai casar em breve?",
     "noivasDesc": "Reserve a sua vaga com antecedência, as datas em época de casamentos esgotam rapidamente.",
     "noivasSaberMais": "Saber Mais",
+    "eventoPassouEyebrow": "Ainda vai a tempo",
+    "eventoPassouTitle": "O seu evento já passou?",
+    "eventoPassouDesc": "Contacte-nos na mesma. Se as flores forem mantidas em água, num local fresco, normalmente ainda conseguimos preservá-las até 6 dias após o casamento ou evento, dependendo do tipo de flores. E se já passou demasiado tempo, podemos recriar o bouquet com flores semelhantes a partir de uma fotografia.",
+    "eventoPassouCTA": "Falar connosco agora",
+    "eventoPassouRecriacao": "Conhecer a recriação de bouquet →",
     "sliderAntes": "Antes",
     "sliderDepois": "Depois",
     "sliderArraste": "Arraste para comparar"
@@ -276,7 +282,7 @@
   "comoFunciona": {
     "meta": {
       "title": "Como Funciona: Preservar Flores em 5 Passos | Flores à Beira-Rio",
-      "description": "Os 5 passos da preservação artesanal: reserva, entrega em 5 dias, prensagem, aprovação da composição e envio do quadro emoldurado. Até 6 meses.",
+      "description": "Os 5 passos da preservação artesanal: reserva, entrega em 6 dias, prensagem, aprovação da composição e envio do quadro emoldurado. Até 6 meses.",
       "ogTitle": "Como Funciona: Preservar Flores em 5 Passos | Flores à Beira-Rio",
       "ogDescription": "Os 5 passos da preservação artesanal: reserva, entrega, prensagem, aprovação e envio do quadro emoldurado. Até 6 meses.",
       "ogImageAlt": "Processo de preservação botânica de flores, Flores à Beira-Rio",
@@ -324,7 +330,7 @@
       },
       {
         "titulo": "As flores chegam até nós",
-        "tag": "Até 5 dias após",
+        "tag": "Até 6 dias após",
         "corpo": "Depois do dia do evento, as flores têm de chegar até nós o mais frescas possível, preferencialmente em 1 a 3 dias, no máximo 5. Enquanto aguarda, mantenha as flores num vaso com água fresca longe do sol e do calor. O pagamento de 40% da encomenda será solicitado após recebermos as flores.",
         "nota": "",
         "opcoes": [
@@ -586,6 +592,8 @@
     "floresTitle": "Flores que contam a sua história",
     "floresP1": "Na Flores à Beira-Rio, transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Cada pétala é prensada individualmente e emoldurada com vidro museu anti-UV, num quadro feito à mão no nosso atelier em Coimbra.",
     "floresP2": "Preços a partir de 300€, com pagamento em três prestações. O processo demora até 6 meses e enviamos para toda a Europa.",
+    "floresP3": "Chegam-nos flores de todos os capítulos da vida: o ramo de noiva do casamento, as flores do batizado ou do nascimento de um filho, o raminho de um pedido de casamento, as flores de um aniversário redondo, e também as flores de uma homenagem fúnebre, preservadas como memória serena de quem partiu. As flores podem chegar até nós em mãos, por correio de qualquer ponto do país, ou com recolha no local do evento. E se as suas vêm de um momento que não está nesta lista, fale connosco na mesma: se têm história, nós preservamo-las.",
+    "envioGuiaLink": "Como enviar as suas flores por correio →",
     "saberMais": "Saber mais →",
     "reserveTitle": "Reserve a sua vaga",
     "reserveDesc": "As vagas são limitadas, especialmente entre maio e setembro. Reserve assim que souber a data do evento.",
@@ -619,20 +627,20 @@
   },
   "bouquetNoiva": {
     "meta": {
-      "title": "Preservar Bouquet de Noiva em Portugal | Quadro de Flores do Casamento",
-      "description": "O bouquet do seu casamento preservado em quadro de arte botânica. Recebemos bouquets de todo o Portugal, em mãos, por correio ou com recolha. A partir de 300€.",
-      "ogTitle": "Preservar Bouquet de Noiva em Portugal | Flores à Beira-Rio",
-      "ogDescription": "O bouquet do seu casamento preservado em quadro de arte botânica artesanal. Recebemos bouquets de todo o Portugal e Europa.",
+      "title": "Preservar Bouquet de Noiva em Portugal | Eternizar o Ramo do Casamento",
+      "description": "Eternizamos o bouquet (ramo) de noiva num quadro de arte botânica. Recebemos flores de todo o Portugal, em mãos, por correio ou com recolha. A partir de 300€.",
+      "ogTitle": "Preservar Bouquet ou Ramo de Noiva | Flores à Beira-Rio",
+      "ogDescription": "O ramo do seu casamento eternizado em quadro de arte botânica artesanal. Recebemos bouquets de todo o Portugal e Europa.",
       "ogImageAlt": "Bouquet de noiva preservado em quadro de arte botânica",
-      "keywords": "preservar bouquet noiva Portugal, preservar buquê de noiva Portugal, preservar bouquet noiva Coimbra, eternizar buquê de noiva, conservar buquê de noiva, bouquet casamento preservado Portugal, eternização de bouquet, eternização bouquet noiva, preservação de bouquet, preservação bouquet casamento, flores casamento quadro, flores prensadas casamento"
+      "keywords": "preservar bouquet noiva Portugal, preservar buquê de noiva Portugal, preservar ramo de noiva, eternizar ramo de noiva, conservar ramo de noiva, ramo de noiva preservado, preservar bouquet noiva Coimbra, eternizar buquê de noiva, conservar buquê de noiva, bouquet casamento preservado Portugal, eternização de bouquet, eternização bouquet noiva, preservação de bouquet, preservação bouquet casamento, flores casamento quadro, flores prensadas casamento"
     },
     "eyebrow": "Bouquet de Noiva",
     "h1": "Preservar o Bouquet de Noiva",
-    "heroDesc": "Transformamos o bouquet do seu casamento numa obra de arte botânica que dura décadas. Prensagem artesanal, vidro museu anti-UV e emolduramento feito à mão em Coimbra, com envio para todo o Portugal e Europa. Recebemos bouquets em mãos, por correio, ou com recolha no local do casamento pela nossa equipa.",
+    "heroDesc": "Eternizamos o bouquet do seu casamento numa obra de arte botânica que dura décadas. Prensagem artesanal, vidro museu anti-UV e emolduramento feito à mão em Coimbra, com envio para todo o Portugal e Europa. Recebemos bouquets em mãos, por correio, ou com recolha no local do casamento pela nossa equipa.",
     "eyebrow2": "Arte Botânica Artesanal",
     "contentTitle": "O bouquet que esteve presente nos seus votos",
     "contentEm": "nos seus votos",
-    "p1": "O bouquet de noiva é, para muitos casais, a peça mais simbólica do dia do casamento. Em vez de o ver murchar ao longo dos dias seguintes, pode transformá-lo num quadro de arte botânica que dura décadas, pronto a pendurar na parede de casa.",
+    "p1": "O bouquet de noiva (ou ramo de noiva, como muitas famílias lhe chamam) é, para muitos casais, a peça mais simbólica do dia do casamento. Em vez de o ver murchar ao longo dos dias seguintes, pode eternizá-lo num quadro de arte botânica que dura décadas, pronto a pendurar na parede de casa.",
     "p2": "O processo começa com a reserva da data, idealmente assim que souber quando é o casamento. Nos dias seguintes à cerimónia, entrega-nos o bouquet e nós tratamos de tudo: prensagem pétala a pétala, composição artística, aprovação por si, e emolduramento com vidro museu anti-UV. Pode também incluir na composição o convite do casamento, votos manuscritos, fitas, ou qualquer elemento com significado especial.",
     "ctaReservar": "Reservar Data",
     "ctaWA": "WhatsApp",
@@ -644,8 +652,8 @@
     "ctaFAQ": "Perguntas frequentes",
     "features": [
       {
-        "titulo": "Entregue o bouquet até 5 dias depois",
-        "desc": "Após o casamento, envie-nos o bouquet o mais rápido possível. O ideal é 1 a 3 dias; aceitamos até 5 dias após a cerimónia. Enquanto espera, mantenha-o num vaso com água fresca, longe do calor e da luz solar."
+        "titulo": "Entregue o bouquet até 6 dias depois",
+        "desc": "Após o casamento, envie-nos o bouquet o mais rápido possível. O ideal é 1 a 3 dias; aceitamos até 6 dias após a cerimónia. Enquanto espera, mantenha-o num vaso com água fresca, longe do calor e da luz solar."
       },
       {
         "titulo": "Aprove a composição antes de selar",
@@ -720,7 +728,7 @@
       },
       {
         "q": "Qual o prazo máximo para entregar o bouquet depois do casamento?",
-        "a": "Aceitamos bouquets até 5 dias após a cerimónia. O ideal é entregar entre 1 a 3 dias: quanto mais fresco o bouquet, mais opções de composição são possíveis."
+        "a": "Aceitamos bouquets até 6 dias após a cerimónia, dependendo do tipo de flores. O ideal é entregar entre 1 a 3 dias: quanto mais fresco o bouquet, mais opções de composição são possíveis."
       },
       {
         "q": "Como devo conservar o bouquet até o entregar?",
@@ -785,7 +793,7 @@
         "desc": "Tratamos cada encomenda deste tipo com especial atenção. Sabemos o que representa e trabalhamos com o respeito e a discrição que a circunstância exige."
       },
       {
-        "titulo": "Envie-nos as flores até 5 dias depois",
+        "titulo": "Envie-nos as flores até 6 dias depois",
         "desc": "O ideal é entregar as flores nos primeiros 1 a 3 dias após a cerimónia. Se o prazo já tiver passado, contacte-nos para avaliarmos as opções, incluindo a recriação com flores frescas."
       },
       {
@@ -799,7 +807,7 @@
     "faqItems": [
       {
         "q": "Quando devo entregar as flores depois da cerimónia?",
-        "a": "O mais cedo possível, até 5 dias após a cerimónia. Quanto mais frescas as flores, melhor o resultado da prensagem. Se já passou tempo, contacte-nos: a recriação com flores semelhantes é uma alternativa possível."
+        "a": "O mais cedo possível, até 6 dias após a cerimónia. Quanto mais frescas as flores, melhor o resultado da prensagem. Se já passou tempo, contacte-nos: a recriação com flores semelhantes é uma alternativa possível."
       },
       {
         "q": "Que tipo de flores se podem preservar?",
@@ -814,12 +822,12 @@
   },
   "batizadoNascimento": {
     "meta": {
-      "title": "Preservar Flores de Batizado e Nascimento | Flores à Beira-Rio",
-      "description": "Preserve as flores do batizado ou nascimento num quadro de arte botânica artesanal. Para si ou para oferecer aos padrinhos. Em Coimbra. A partir de 300€.",
-      "ogTitle": "Preservar Flores de Batizado e Nascimento | Flores à Beira-Rio",
-      "ogDescription": "Preserve as flores do batizado ou nascimento num quadro de arte botânica artesanal. Para si ou para oferecer aos padrinhos. Em Coimbra.",
+      "title": "Flores do Batizado num Quadro | Recordação para a Vida do Bebé",
+      "description": "Transforme as flores do batizado ou do nascimento numa recordação que acompanha o seu filho a vida inteira: um quadro de arte botânica artesanal. Também para oferecer aos padrinhos. A partir de 300€.",
+      "ogTitle": "Flores do Batizado num Quadro | Recordação para a Vida",
+      "ogDescription": "Transforme as flores do batizado ou do nascimento numa recordação que dura a vida inteira: um quadro de arte botânica artesanal. Também para oferecer aos padrinhos.",
       "ogImageAlt": "Flores de batizado preservadas em quadro de arte botânica",
-      "keywords": "preservar flores batizado, preservar flores baptizado, preservar flores nascimento, flores nascimento preservadas, quadro flores batizado, arte botânica bebé, flores maternidade, preservar flores padrinhos"
+      "keywords": "preservar flores batizado, recordação do batizado, lembrança do batizado, preservar flores baptizado, preservar flores nascimento, flores nascimento preservadas, quadro flores batizado, arte botânica bebé, flores maternidade, preservar flores padrinhos, prenda para padrinhos"
     },
     "eyebrow": "Batizado e Nascimento",
     "h1": "Preservar Flores de Batizado e Nascimento",
@@ -857,7 +865,7 @@
     "faqItems": [
       {
         "q": "Quando devo entregar as flores do batizado ou nascimento?",
-        "a": "O mais cedo possível, até 5 dias após a celebração. Quanto mais frescas as flores, melhor o resultado da prensagem."
+        "a": "O mais cedo possível, até 6 dias após a celebração. Quanto mais frescas as flores, melhor o resultado da prensagem."
       },
       {
         "q": "Que tipo de flores se podem preservar?",
@@ -888,7 +896,7 @@
     "contentTitle": "Flores que merecem durar mais do que uma semana",
     "contentEm": "mais do que uma semana",
     "p1": "As flores de aniversário duram, em média, uma semana. A emoção que representam pode durar toda uma vida. Através de prensagem botânica artesanal, transformamos essas flores num quadro que fica permanentemente em casa.",
-    "p2": "Basta entregar-nos as flores nos dias seguintes ao aniversário (até 5 dias, idealmente 1 a 3). Nós tratamos da prensagem, da composição artística, da aprovação consigo, e do emolduramento com vidro museu anti-UV e moldura feita à medida em Coimbra.",
+    "p2": "Basta entregar-nos as flores nos dias seguintes ao aniversário (até 6 dias, idealmente 1 a 3). Nós tratamos da prensagem, da composição artística, da aprovação consigo, e do emolduramento com vidro museu anti-UV e moldura feita à medida em Coimbra.",
     "ctaFinalTitle": "Transforme as flores numa memória",
     "ctaFinalEm": "numa memória",
     "ctaFinalDesc": "Reserve a sua vaga e garanta que esse aniversário fica para sempre. Preços a partir de 300€, com pagamento em três prestações.",
@@ -915,7 +923,7 @@
     "faqItems": [
       {
         "q": "Quando devo entregar as flores depois do aniversário?",
-        "a": "O mais cedo possível, até 5 dias após o aniversário. Quanto mais frescas as flores, melhor o resultado da prensagem."
+        "a": "O mais cedo possível, até 6 dias após o aniversário. Quanto mais frescas as flores, melhor o resultado da prensagem."
       },
       {
         "q": "Que tipo de flores se podem preservar?",
@@ -943,7 +951,7 @@
     "eyebrow2": "Antes de Tudo o Resto",
     "contentTitle": "Onde tudo começou",
     "p1": "Há uma data anterior ao casamento que muitas vezes se perde: o dia do pedido. As flores que estiveram presentes nessa noite merecem ser guardadas com o mesmo cuidado que o bouquet de noiva.",
-    "p2": "Entregue-nos as flores nos dias seguintes ao pedido (até 5 dias, idealmente 1 a 3) e nós transformamo-las num quadro de arte botânica. Cada pétala é prensada individualmente, a composição é aprovada por si, e o resultado é emoldurado com vidro museu anti-UV e moldura feita à medida em Coimbra.",
+    "p2": "Entregue-nos as flores nos dias seguintes ao pedido (até 6 dias, idealmente 1 a 3) e nós transformamo-las num quadro de arte botânica. Cada pétala é prensada individualmente, a composição é aprovada por si, e o resultado é emoldurado com vidro museu anti-UV e moldura feita à medida em Coimbra.",
     "ctaReservar": "Reservar Data",
     "ctaWA": "WhatsApp",
     "contentEm": "começou",
@@ -973,7 +981,7 @@
     "faqItems": [
       {
         "q": "Quando devo entregar as flores depois do pedido?",
-        "a": "O mais cedo possível, até 5 dias após o pedido. Quanto mais frescas as flores, melhor o resultado da prensagem."
+        "a": "O mais cedo possível, até 6 dias após o pedido. Quanto mais frescas as flores, melhor o resultado da prensagem."
       },
       {
         "q": "Preservam todo o tipo de flores?",
@@ -1972,7 +1980,12 @@
     "contactoDireto": "Contacto direto",
     "equipaTitle": "Quem somos",
     "equipaSub": "A equipa por detrás de cada peça",
-    "equipaDesc": "Somos uma equipa pequena baseada em Coimbra, unida pela paixão de transformar flores em memórias que duram para sempre.",
+    "equipaDesc": "Somos uma equipa familiar baseada em Coimbra, unida pela paixão de transformar flores em memórias que duram para sempre.",
+    "localTitle": "Onde estamos",
+    "localSub": "Um atelier em Coimbra, de portas para todo o país",
+    "localDesc1": "Trabalhamos a partir de Coimbra, num atelier dedicado à preservação botânica. Por ser um espaço de trabalho, com flores em prensa e peças delicadas em curso, não está aberto ao público.",
+    "localDesc2": "Recebemos as suas flores em Coimbra, venham elas de onde vierem: entregues em mãos (mediante marcação), enviadas por correio de qualquer ponto do país, ou recolhidas por nós no local do evento.",
+    "localEnvioLink": "Como enviar as suas flores por correio →",
     "explorarTitle": "Explorar serviços",
     "membros": [
       {

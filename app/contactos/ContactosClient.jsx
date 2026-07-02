@@ -94,7 +94,7 @@ export default function ContactosClient() {
 
             <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="hero-text-col">
               <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmonLight, marginBottom: 16, fontFamily: GS }}>{t("eyebrow")}</span>
-              <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", color: C.cream, margin: "0 0 20px", lineHeight: 1.02 }}>
+              <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", color: C.cream, margin: "0 0 20px", lineHeight: 1.12 }}>
                 {t("h1")}
               </h1>
               <p style={{ color: "rgba(250,247,240,0.95)", fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.08rem)", lineHeight: 1.88, maxWidth: 480, margin: "0 auto 32px", textShadow: "0 1px 12px rgba(0,0,0,0.5)" }}>
@@ -220,7 +220,34 @@ export default function ContactosClient() {
         </div>
       </section>
 
-      {/* ════ 3. NAVEGAÇÃO — 4 QUADRADOS ════ */}
+      {/* ════ 3. ONDE ESTAMOS ════ */}
+      <section
+        aria-label={t("localTitle")}
+        style={{ padding: "clamp(60px,9vw,90px) 24px", background: C.cream }}
+      >
+        <div style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
+          <Reveal>
+            <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmon, marginBottom: 14, fontFamily: GS }}>{t("localTitle")}</span>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,4.5vw,3rem)", fontWeight: 400, color: C.tealDeep, margin: "0 0 20px", lineHeight: 1.12 }}>
+              {t("localSub")}
+            </h2>
+            <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.05rem)", lineHeight: 1.85, color: "rgba(30,45,42,0.72)", margin: "0 0 16px" }}>
+              {t("localDesc1")}
+            </p>
+            <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.05rem)", lineHeight: 1.85, color: "rgba(30,45,42,0.72)", margin: 0 }}>
+              {t("localDesc2")}
+            </p>
+            <a
+              href={locale === "en" ? "/en/how-to-ship-your-flowers" : "/enviar-flores-por-correio"}
+              style={{ display: "inline-block", marginTop: 20, color: "var(--green)", fontFamily: GS, fontWeight: 600, fontSize: "0.85rem", textDecoration: "none", borderBottom: "1px solid rgba(61,107,94,0.3)", paddingBottom: 2 }}
+            >
+              {t("localEnvioLink")}
+            </a>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ════ 4. NAVEGAÇÃO — 4 QUADRADOS ════ */}
       <section aria-label={t("explorarTitle")}>
         <div className="nav-squares-grid">
           {[
