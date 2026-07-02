@@ -21,7 +21,7 @@
 
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
-import { createClient } from "@supabase/supabase-js";
+import { createFormsClient } from "@/app/_lib/supabase-server";
 import {
   escapeHtml,
   createRateLimiter,
@@ -150,11 +150,7 @@ export async function POST(request) {
       );
     }
 
-    const supabase = createClient(
-      process.env.SUPABASE_URL,
-      process.env.SUPABASE_ANON_KEY,
-      { auth: { persistSession: false } }
-    );
+    const supabase = createFormsClient();
 
     const { data: inserted, error: dbError } = await supabase
       .from("vouchers")

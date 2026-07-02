@@ -22,7 +22,7 @@
 
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
-import { createClient } from "@supabase/supabase-js";
+import { createFormsClient } from "@/app/_lib/supabase-server";
 import {
   escapeHtml,
   createRateLimiter,
@@ -54,6 +54,7 @@ const MAX_LENGTHS = {
 export async function POST(request) {
   try {
     // ── Variáveis de ambiente obrigatórias ──────────────────────────────────
+    // (a escrita prefere SUPABASE_SERVICE_ROLE_KEY — ver supabase-server.js)
     if (!process.env.SUPABASE_URL || !process.env.SUPABASE_ANON_KEY) {
       console.error("[reservar-preservacao] SUPABASE_URL/ANON_KEY not set");
       return NextResponse.json(
@@ -158,11 +159,7 @@ export async function POST(request) {
       );
     }
 
-    const supabase = createClient(
-      process.env.SUPABASE_URL,
-      process.env.SUPABASE_ANON_KEY,
-      { auth: { persistSession: false } }
-    );
+    const supabase = createFormsClient();
 
     const { data: inserted, error: dbError } = await supabase
       .from("orders")

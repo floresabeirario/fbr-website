@@ -13,7 +13,10 @@
 // o cliente faz, sem deixar lixo na base de dados.
 
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import {
+  createAnonClient,
+  createFormsClient,
+} from "@/app/_lib/supabase-server";
 import {
   mapReservaToOrder,
   mapValeToVoucher,
@@ -23,13 +26,6 @@ export const dynamic = "force-dynamic";
 
 const SENTINEL_EMAIL = "healthcheck@floresabeirario.pt";
 const SENTINEL_NAME = "HEALTHCHECK — apagar";
-
-function getSupabase() {
-  if (!process.env.SUPABASE_URL || !process.env.SUPABASE_ANON_KEY) return null;
-  return createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY, {
-    auth: { persistSession: false },
-  });
-}
 
 // Leitura: confirma que conseguimos chegar às tabelas (conectividade + grant
 // de SELECT ao anónimo). Não conta linhas reais — head:true.
@@ -105,8 +101,12 @@ function checkResend() {
 }
 
 export async function GET() {
-  const supabase = getSupabase();
-  if (!supabase) {
+  // Leitura testa o que um visitante anónimo vê (sites de status/voucher);
+  // escrita testa o caminho REAL dos forms (service role com fallback anon
+  // — ver supabase-server.js).
+  const anon = createAnonClient();
+  const forms = createFormsClient();
+  if (!anon || !forms) {
     return NextResponse.json(
       {
         ok: false,
@@ -119,11 +119,11 @@ export async function GET() {
     );
   }
 
-  const read = await checkSupabaseRead(supabase);
+  const read = await checkSupabaseRead(anon);
   // Só tentamos escrever se a leitura passou (senão o erro de escrita seria
   // redundante e ainda deixava sentinelas se a limpeza também falhasse).
   const write = read.ok
-    ? await checkSupabaseWrite(supabase)
+    ? await checkSupabaseWrite(forms)
     : { ok: false, reason: "Saltado — leitura ao Supabase falhou" };
   const resend = checkResend();
 
