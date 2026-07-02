@@ -1,14 +1,18 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { formatDate } from "@/app/_lib/utils";
 import "./BlogClient.css";
 
+// Link do Next com animação framer-motion (navegação client-side).
+const MotionLink = motion.create(Link);
+
 // ─── Card de artigo ───────────────────────────────────────────────────────────
-function PostCard({ post, categoryLabels, index, t }) {
+function PostCard({ post, categoryLabels, index, t, blogBase }) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
@@ -16,7 +20,7 @@ function PostCard({ post, categoryLabels, index, t }) {
       exit={{ opacity: 0, y: 12 }}
       transition={{ delay: index * 0.07, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
-      <a href={`/blog/${post.slug}`} className="post-card">
+      <Link href={`${blogBase}/${post.slug}`} className="post-card">
         <div className="post-card-img-wrap">
           <Image
             fill
@@ -38,7 +42,7 @@ function PostCard({ post, categoryLabels, index, t }) {
           <p className="post-card-desc">{post.description}</p>
           <span className="post-card-read">{t("lerArtigo")} <span className="post-card-arrow" aria-hidden="true">→</span></span>
         </div>
-      </a>
+      </Link>
     </motion.article>
   );
 }
@@ -46,6 +50,10 @@ function PostCard({ post, categoryLabels, index, t }) {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function BlogClient({ posts, categories, categoryLabels }) {
   const t = useTranslations("blog");
+  const locale = useLocale();
+  // Sem o prefixo /en, os cards da listagem inglesa apontavam para
+  // /blog/<slug-en>, que o middleware tratava como PT e dava 404.
+  const blogBase = locale === "en" ? "/en/blog" : "/blog";
   const [activeCategory, setActiveCategory] = useState("todas");
 
   const filtered = useMemo(() => {
@@ -84,8 +92,8 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
         >
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <span className="featured-section-eyebrow">{t("artigoDestaque")}</span>
-            <motion.a
-              href={`/blog/${featured.slug}`}
+            <MotionLink
+              href={`${blogBase}/${featured.slug}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
@@ -115,7 +123,7 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
                   </div>
                 </div>
               </div>
-            </motion.a>
+            </MotionLink>
           </div>
         </section>
       )}
@@ -172,7 +180,7 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
               ) : (
                 <div className="posts-grid">
                   {filtered.map((post, i) => (
-                    <PostCard key={post.slug} post={post} categoryLabels={categoryLabels} index={i} t={t} />
+                    <PostCard key={post.slug} post={post} categoryLabels={categoryLabels} index={i} t={t} blogBase={blogBase} />
                   ))}
                 </div>
               )}

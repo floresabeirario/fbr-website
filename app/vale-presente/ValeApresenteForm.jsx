@@ -31,17 +31,19 @@ const INIT = {
   comoConheceu: "",
   comoConheceuOutro: "",
   nomeFlorista: "",
+  termosCondicoes: false,
   // Honeypot — invisível para humanos, bots costumam preencher
   website: "",
 };
 
 // ─── Field component ────────────────────────────────────────────────────────
-function Field({ label, required, hint, error, children, as: Tag }) {
+function Field({ label, required, hint, error, children, as: Tag, name }) {
   const autoId = useId();
+  const dataAttr = name ? { "data-field": name } : {};
 
   if (Tag === "fieldset") {
     return (
-      <fieldset className="vf-group vf-fieldset-group">
+      <fieldset className="vf-group vf-fieldset-group" {...dataAttr}>
         <legend className="vf-label vf-legend">
           {label}
           {required && <span className="vf-req" aria-hidden="true"> *</span>}
@@ -58,7 +60,7 @@ function Field({ label, required, hint, error, children, as: Tag }) {
   const enhanced = isFormControl ? cloneElement(children, { id: autoId }) : children;
 
   return (
-    <div className="vf-group">
+    <div className="vf-group" {...dataAttr}>
       <label
         className="vf-label"
         {...(isFormControl ? { htmlFor: autoId } : {})}
@@ -92,12 +94,45 @@ export default function ValeApresenteForm() {
   const FLORISTA_VALOR      = comoConheceuOpcoes.find((o) => o.valor === "florista")?.valor ?? "florista";
   const OUTRO_VALOR         = comoConheceuOpcoes.find((o) => o.valor === "outro")?.valor ?? "outro";
 
+  // Hrefs localizados
+  const termosHref = locale === "en" ? "/en/terms-and-conditions" : "/termos-e-condicoes";
+  const precosHref = locale === "en" ? "/en/options-and-pricing" : OPCOES_PRECOS_URL;
+
   const [form, setForm] = useState(INIT);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
   const [submitError, setSubmitError] = useState("");
   const [turnstileToken, setTurnstileToken] = useState(null);
   const successRef = useRef(null);
+  const errorsSummaryRef = useRef(null);
+
+  // Labels usados no resumo de erros clicável (espelha o form de reserva)
+  const FIELD_LABEL_KEYS = {
+    nome: "nomeLabel",
+    meioContacto: "contactoLabel",
+    telefone: "telefoneLabel",
+    email: "emailLabel",
+    nomeDestinatario: "destinatarioLabel",
+    valorVale: "valorLabel",
+    entrega: "entreguaALabel",
+    tipoVale: "tipoValeLabel",
+    entregaRemetenteComo: "comoReceberFisicoLabel",
+    morada: "moradaLabel",
+    contactoDestinatario: "emailDestinatarioLabel",
+    dataEnvio: "dataEnvioLabel",
+    comoConheceu: "comoConheceuLabel",
+    nomeFlorista: "nomeFlorista",
+    comoConheceuOutro: "comoConheceuOutro",
+    termosCondicoes: "termosResumo",
+  };
+
+  const focusField = (key) => {
+    const wrapper = document.querySelector(`[data-field="${key}"]`);
+    if (!wrapper) return;
+    wrapper.scrollIntoView({ behavior: "smooth", block: "center" });
+    const focusable = wrapper.querySelector("input, select, textarea");
+    focusable?.focus({ preventScroll: true });
+  };
 
   const set = (key, val) => {
     setForm((f) => {
@@ -169,6 +204,7 @@ export default function ValeApresenteForm() {
     }
     if (!form.comoConheceu)     e.comoConheceu = t("erroCampoObrigatorio");
     if (showNomeFlorista && !form.nomeFlorista.trim()) e.nomeFlorista = t("erroCampoObrigatorio");
+    if (!form.termosCondicoes)  e.termosCondicoes = t("erroTermos");
     return e;
   }
 
@@ -177,13 +213,14 @@ export default function ValeApresenteForm() {
     const errs = validate();
     setErrors(errs);
     if (Object.keys(errs).length) {
-      document.querySelector(".vf-input-err, [role='alert']")
-        ?.closest(".vf-group, fieldset")
-        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+      requestAnimationFrame(() => {
+        errorsSummaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        errorsSummaryRef.current?.focus({ preventScroll: true });
+      });
       return;
     }
     if (TURNSTILE_ENABLED && !turnstileToken) {
-      setStatus("error");
+      setStatus("turnstile");
       return;
     }
     setStatus("loading");
@@ -251,11 +288,11 @@ export default function ValeApresenteForm() {
       <div className="vf-section" role="group" aria-labelledby="sec-remetente">
         <h2 className="vf-section-title" id="sec-remetente">{t("secRemetente")}</h2>
 
-        <Field label={t("nomeLabel")} required error={errors.nome}>
+        <Field name="nome" label={t("nomeLabel")} required error={errors.nome}>
           <input type="text" {...inp("nome")} placeholder={t("nomePlaceholder")} autoComplete="name" />
         </Field>
 
-        <Field label={t("contactoLabel")} required error={errors.meioContacto}>
+        <Field name="meioContacto" label={t("contactoLabel")} required error={errors.meioContacto}>
           <select {...inp("meioContacto")}>
             <option value="">{t("escolha")}</option>
             {meioContactoOpcoes.map((o) => (
@@ -265,7 +302,7 @@ export default function ValeApresenteForm() {
         </Field>
 
         {showTelefone && (
-          <Field label={t("telefoneLabel")} required error={errors.telefone}>
+          <Field name="telefone" label={t("telefoneLabel")} required error={errors.telefone}>
             <div className="vf-phone-wrap">
               <PhonePrefix
                 value={form.telefoneIndicativo}
@@ -284,6 +321,7 @@ export default function ValeApresenteForm() {
         )}
 
         <Field
+          name="email"
           label={t("emailLabel")}
           required
           error={errors.email}
@@ -297,7 +335,7 @@ export default function ValeApresenteForm() {
       <div className="vf-section" role="group" aria-labelledby="sec-vale">
         <h2 className="vf-section-title" id="sec-vale">{t("secVale")}</h2>
 
-        <Field label={t("destinatarioLabel")} required error={errors.nomeDestinatario} hint={t("destinatarioHint")}>
+        <Field name="nomeDestinatario" label={t("destinatarioLabel")} required error={errors.nomeDestinatario} hint={t("destinatarioHint")}>
           <input type="text" {...inp("nomeDestinatario")} placeholder={t("destinatarioPlaceholder")} />
         </Field>
 
@@ -306,13 +344,14 @@ export default function ValeApresenteForm() {
         </Field>
 
         <Field
+          name="valorVale"
           label={t("valorLabel")}
           required
           error={errors.valorVale}
           hint={
             <>
               {t("valorHint")}{" "}
-              <Link href={OPCOES_PRECOS_URL} className="vf-hint-link">
+              <Link href={precosHref} className="vf-hint-link">
                 {t("valorHintLinkText")}
               </Link>{" "}
               {t("valorHintSuffix")}
@@ -327,7 +366,7 @@ export default function ValeApresenteForm() {
       <div className="vf-section" role="group" aria-labelledby="sec-entrega">
         <h2 className="vf-section-title" id="sec-entrega">{t("secEntrega")}</h2>
 
-        <Field label={t("entreguaALabel")} required error={errors.entrega}>
+        <Field name="entrega" label={t("entreguaALabel")} required error={errors.entrega}>
           <select {...inp("entrega")}>
             <option value="">{t("escolha")}</option>
             {entregueAOpcoes.map((o) => (
@@ -336,7 +375,7 @@ export default function ValeApresenteForm() {
           </select>
         </Field>
 
-        <Field label={t("tipoValeLabel")} required error={errors.tipoVale}>
+        <Field name="tipoVale" label={t("tipoValeLabel")} required error={errors.tipoVale}>
           <select {...inp("tipoVale")}>
             <option value="">{t("escolha")}</option>
             {tipoValeOpcoes.map((o) => (
@@ -346,7 +385,7 @@ export default function ValeApresenteForm() {
         </Field>
 
         {showEntregaRemetenteComo && (
-          <Field label={t("comoReceberFisicoLabel")} required error={errors.entregaRemetenteComo}>
+          <Field name="entregaRemetenteComo" label={t("comoReceberFisicoLabel")} required error={errors.entregaRemetenteComo}>
             <select {...inp("entregaRemetenteComo")}>
               <option value="">{t("escolha")}</option>
               {comoReceberFisicoOpcoes.map((o) => (
@@ -357,13 +396,13 @@ export default function ValeApresenteForm() {
         )}
 
         {showMorada && (
-          <Field label={t("moradaLabel")} required error={errors.morada}>
+          <Field name="morada" label={t("moradaLabel")} required error={errors.morada}>
             <textarea {...inp("morada")} rows={3} placeholder={t("moradaPlaceholder")} />
           </Field>
         )}
 
         {showContactoDestinatario && (
-          <Field label={t("emailDestinatarioLabel")} required error={errors.contactoDestinatario} hint={t("emailDestinatarioHint")}>
+          <Field name="contactoDestinatario" label={t("emailDestinatarioLabel")} required error={errors.contactoDestinatario} hint={t("emailDestinatarioHint")}>
             <div className="vf-contacto-toggle" role="tablist" aria-label={t("emailDestinatarioLabel")}>
               <button
                 type="button"
@@ -412,7 +451,7 @@ export default function ValeApresenteForm() {
         )}
 
         {showDataEnvio && (
-          <Field label={t("dataEnvioLabel")} hint={t("dataEnvioHint")}>
+          <Field name="dataEnvio" label={t("dataEnvioLabel")} hint={t("dataEnvioHint")}>
             <input type="date" {...inp("dataEnvio")} min={today} max="2099-12-31" />
           </Field>
         )}
@@ -426,7 +465,7 @@ export default function ValeApresenteForm() {
           <textarea {...inp("comentarios")} rows={3} placeholder={t("comentariosPlaceholder")} />
         </Field>
 
-        <Field label={t("comoConheceuLabel")} required error={errors.comoConheceu}>
+        <Field name="comoConheceu" label={t("comoConheceuLabel")} required error={errors.comoConheceu}>
           <select {...inp("comoConheceu")}>
             <option value="">{t("escolha")}</option>
             {comoConheceuOpcoes.map((o) => (
@@ -436,16 +475,38 @@ export default function ValeApresenteForm() {
         </Field>
 
         {showNomeFlorista && (
-          <Field label={t("nomeFlorista")} required error={errors.nomeFlorista}>
+          <Field name="nomeFlorista" label={t("nomeFlorista")} required error={errors.nomeFlorista}>
             <textarea {...inp("nomeFlorista")} rows={2} />
           </Field>
         )}
 
         {showComoConheceuOutro && (
-          <Field label={t("comoConheceuOutro")}>
+          <Field name="comoConheceuOutro" label={t("comoConheceuOutro")}>
             <textarea {...inp("comoConheceuOutro")} rows={3} />
           </Field>
         )}
+
+        {/* Termos e Condições / RGPD — obrigatório, como no form de reserva */}
+        <div className="vf-group" data-field="termosCondicoes">
+          <label className="vf-check-label vf-termos-label">
+            <input
+              type="checkbox"
+              className="vf-checkbox"
+              checked={form.termosCondicoes}
+              onChange={(e) => set("termosCondicoes", e.target.checked)}
+            />
+            <span>
+              {t("termosLabel")}{" "}
+              <Link href={termosHref} className="vf-link" target="_blank" rel="noopener noreferrer">
+                {t("termosLink")}
+              </Link>
+              <span className="vf-req" aria-hidden="true"> *</span>
+            </span>
+          </label>
+          {errors.termosCondicoes && (
+            <p className="vf-error" role="alert">{errors.termosCondicoes}</p>
+          )}
+        </div>
       </div>
 
       {/* Honeypot anti-spam — oculto para utilizadores, visível para bots */}
@@ -461,9 +522,31 @@ export default function ValeApresenteForm() {
       </div>
 
       {Object.keys(errors).length > 0 && (
-        <p className="vf-errors-summary" role="alert">
-          {t("erroFormulario")}
-        </p>
+        <div
+          className="vf-errors-summary"
+          role="alert"
+          tabIndex={-1}
+          ref={errorsSummaryRef}
+        >
+          <p className="vf-errors-summary-title">{t("erroFormulario")}</p>
+          <ul className="vf-errors-summary-list">
+            {Object.keys(errors).map((key) => {
+              const labelKey = FIELD_LABEL_KEYS[key];
+              const label = labelKey ? t(labelKey) : key;
+              return (
+                <li key={key}>
+                  <button
+                    type="button"
+                    className="vf-errors-summary-link"
+                    onClick={() => focusField(key)}
+                  >
+                    {label}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       )}
 
       <TurnstileWidget onToken={setTurnstileToken} language={locale} />
@@ -473,11 +556,16 @@ export default function ValeApresenteForm() {
           {submitError ? `${submitError} ` : ""}{t("erroEnvio")}
         </p>
       )}
+      {status === "turnstile" && (
+        <p className="vf-submit-error" role="alert">
+          {t("erroTurnstile")}
+        </p>
+      )}
 
       <button
         type="submit"
         className="vf-btn"
-        disabled={status === "loading" || (TURNSTILE_ENABLED && !turnstileToken)}
+        disabled={status === "loading"}
       >
         {status === "loading" ? t("submitLoading") : t("submitBtn")}
       </button>

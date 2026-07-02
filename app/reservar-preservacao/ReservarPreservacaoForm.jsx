@@ -269,8 +269,11 @@ export default function ReservarPreservacaoForm() {
       });
       return;
     }
+    // Antes o botão ficava disabled sem explicação enquanto o Turnstile não
+    // carregava (adblockers/rede lenta deixavam o utilizador preso). Agora o
+    // botão está sempre activo e explicamos porque não pode submeter ainda.
     if (TURNSTILE_ENABLED && !turnstileToken) {
-      setStatus("error");
+      setStatus("turnstile");
       return;
     }
     setStatus("loading");
@@ -698,11 +701,16 @@ export default function ReservarPreservacaoForm() {
           <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
         </p>
       )}
+      {status === "turnstile" && (
+        <p className="pf-submit-error" role="alert">
+          {t("erroTurnstile")}
+        </p>
+      )}
 
       <button
         type="submit"
         className="pf-btn"
-        disabled={status === "loading" || (TURNSTILE_ENABLED && !turnstileToken)}
+        disabled={status === "loading"}
       >
         {status === "loading" ? t("submitLoading") : t("submitBtn")}
       </button>

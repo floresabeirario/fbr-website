@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import Link from "next/link";
 import { usePathname, useParams, useRouter as useNextRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
@@ -9,6 +10,10 @@ import { usePathname as useIntlPathname, useRouter } from "@/navigation";
 import { FORM_URL } from "@/app/_lib/constants";
 import { waUrl } from "@/app/_lib/wa";
 import { useAltLocaleHref } from "@/app/_components/AltLocaleHref";
+
+// Link do Next com suporte a animações framer-motion (navegação client-side,
+// sem full page reload — antes os <a> recarregavam a página inteira).
+const MotionLink = motion.create(Link);
 
 // ── Cores do botão CTA por pathname (sem prefixo de locale) ────────────────
 const PAGE_COLORS = {
@@ -167,10 +172,13 @@ function LangDropdown({ scrolled, mobile = false }) {
       className="lang-container"
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
+      onFocus={handleEnter}
+      onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) handleLeave(); }}
     >
       <button
         type="button"
         className="nav-link lang-trigger"
+        onClick={() => setOpen((o) => !o)}
         style={{
           fontWeight: "500", textTransform: "uppercase",
           color: textColor, display: "flex", alignItems: "center",
@@ -178,6 +186,7 @@ function LangDropdown({ scrolled, mobile = false }) {
           font: "inherit", fontSize: "0.68rem", letterSpacing: "1.3px",
         }}
         aria-label={isPT ? t("langLabel") : "Versão em português"}
+        aria-haspopup="true"
         aria-expanded={open}
       >
         {isPT ? <><span>PT</span><FlagPT /></> : <><span>EN</span><FlagEN /></>}
@@ -246,6 +255,14 @@ const DesktopDropdown = ({ menu, scrolled }) => {
 
   const handleEnter = () => { clearTimeout(timerRef.current); setOpen(true); };
   const handleLeave = () => { timerRef.current = setTimeout(() => setOpen(false), 150); };
+  // Teclado: abrir quando o foco entra no grupo, fechar quando sai por completo
+  // (senão os itens do dropdown eram inacessíveis sem rato — WCAG 2.1.1).
+  const handleFocus = () => { clearTimeout(timerRef.current); setOpen(true); };
+  const handleBlur = (e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      timerRef.current = setTimeout(() => setOpen(false), 150);
+    }
+  };
   useEffect(() => () => clearTimeout(timerRef.current), []);
 
   return (
@@ -254,8 +271,10 @@ const DesktopDropdown = ({ menu, scrolled }) => {
       className="desktop-only"
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
     >
-      <a href={menu.href} className="nav-link" style={{
+      <Link href={menu.href} className="nav-link" aria-haspopup="true" aria-expanded={open} style={{
         fontSize: "0.68rem", fontWeight: 500, textTransform: "uppercase",
         letterSpacing: "1.3px", color: textColor,
         display: "inline-flex", alignItems: "center", whiteSpace: "nowrap",
@@ -271,7 +290,7 @@ const DesktopDropdown = ({ menu, scrolled }) => {
         >
           <path d="M2 3.5L5 6.5L8 3.5" stroke={textColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </motion.svg>
-      </a>
+      </Link>
 
       <AnimatePresence>
         {open && (
@@ -298,15 +317,15 @@ const DesktopDropdown = ({ menu, scrolled }) => {
                 borderTop: "1px solid rgba(61,107,94,0.13)",
               }} />
               {menu.items.map((item, i) => (
-                <a key={i} href={item.href} className="dd-item">{item.name}</a>
+                <Link key={i} href={item.href} className="dd-item">{item.name}</Link>
               ))}
               <div style={{ margin: "4px 6px 2px", borderTop: "1px solid rgba(61,107,94,0.1)", paddingTop: "4px" }}>
-                <a href={menu.href} className="dd-item dd-item-all">
+                <Link href={menu.href} className="dd-item dd-item-all">
                   <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
                     <path d="M2 6h8M6 2l4 4-4 4" stroke="var(--green)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                   {t("verTudo")}
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -370,7 +389,7 @@ const MobileAccordion = ({ menu, onClose, delay, icon }) => {
             transition={{ duration: 0.26, ease: [0.25, 0.1, 0.25, 1] }}
             style={{ overflow: "hidden" }}
           >
-            <a
+            <Link
               href={menu.href}
               onClick={onClose}
               className="nav-mobile-accordion-all"
@@ -382,9 +401,9 @@ const MobileAccordion = ({ menu, onClose, delay, icon }) => {
               }}
             >
               {t("verTudo")}
-            </a>
+            </Link>
             {menu.items.map((item, i) => (
-              <a
+              <Link
                 key={i}
                 href={item.href}
                 onClick={onClose}
@@ -398,7 +417,7 @@ const MobileAccordion = ({ menu, onClose, delay, icon }) => {
                 }}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
             <div style={{ height: "10px" }} />
           </motion.div>
@@ -438,7 +457,7 @@ function NavCTA({ shouldShowScrolled, pathname, isHome }) {
     : "none";
   const href = locale === "en" ? "/en/book-preservation" : FORM_URL;
   return (
-    <a
+    <Link
       href={href}
       className="nav-cta"
       style={{
@@ -449,7 +468,7 @@ function NavCTA({ shouldShowScrolled, pathname, isHome }) {
       }}
     >
       {t("reservar")}
-    </a>
+    </Link>
   );
 }
 
@@ -567,16 +586,16 @@ export default function NavClient() {
             <NavDivider scrolled={show} />
             <DesktopDropdown menu={NAV_PRESERVACAO} scrolled={show} />
             <NavDivider scrolled={show} />
-            <a href={ofereceHref} className="nav-link" style={{
+            <Link href={ofereceHref} className="nav-link" style={{
               fontSize: "0.68rem", fontWeight: 500, textTransform: "uppercase",
               letterSpacing: "1.3px", color: show ? "#1a1a1a" : "#fff", whiteSpace: "nowrap",
             }}>
               {t("oferecer")}
-            </a>
+            </Link>
           </div>
 
           {/* CENTRO: Logo */}
-          <motion.a
+          <MotionLink
             href={homeHref}
             className="nav-logo desktop-only"
             initial={{ opacity: 0, y: 8 }}
@@ -586,8 +605,8 @@ export default function NavClient() {
             aria-label={t("logoLabel")}
           >
             Flores à Beira&#8209;Rio
-          </motion.a>
-          <motion.a
+          </MotionLink>
+          <MotionLink
             href={homeHref}
             className="nav-logo mobile-only"
             initial={{ opacity: 0 }}
@@ -601,7 +620,7 @@ export default function NavClient() {
             aria-label={t("logoLabel")}
           >
             Flores à Beira&#8209;Rio
-          </motion.a>
+          </MotionLink>
 
           {/* DIREITA desktop + botão MENU mobile */}
           <div className="nav-right-col">
@@ -612,12 +631,12 @@ export default function NavClient() {
                 { name: t("contactos"), href: contactosHref },
               ].map((item, i, arr) => (
                 <React.Fragment key={item.name}>
-                  <a href={item.href} className="nav-link" style={{
+                  <Link href={item.href} className="nav-link" style={{
                     fontSize: "0.68rem", fontWeight: "500", textTransform: "uppercase",
                     letterSpacing: "1.3px", color: show ? "#1a1a1a" : "#fff", whiteSpace: "nowrap",
                   }}>
                     {item.name}
-                  </a>
+                  </Link>
                   {i < arr.length - 1 && <NavDivider scrolled={show} />}
                 </React.Fragment>
               ))}
@@ -672,13 +691,13 @@ export default function NavClient() {
                 display: "flex", justifyContent: "space-between", alignItems: "center",
                 padding: "20px 28px", borderBottom: "1px solid rgba(250,247,240,0.07)", flexShrink: 0,
               }}>
-                <a
+                <Link
                   href={homeHref}
                   onClick={() => setIsOpen(false)}
                   style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1rem", color: "var(--cream)", textDecoration: "none" }}
                 >
                   Flores à Beira&#8209;Rio
-                </a>
+                </Link>
                 <button
                   onClick={() => setIsOpen(false)}
                   aria-label={t("fecharMenu")}
@@ -697,7 +716,7 @@ export default function NavClient() {
               <nav aria-label={t("menuMobile")} style={{ flex: 1, overflowY: "auto", padding: "6px 0" }}>
                 <MobileAccordion menu={NAV_PRESERVACAO} onClose={() => setIsOpen(false)} delay={0.06} icon={<IconFlor6 />} />
                 {mobileLinks.map((item) => (
-                  <motion.a
+                  <MotionLink
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
@@ -717,7 +736,7 @@ export default function NavClient() {
                     <span style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.05rem, 4vw, 1.3rem)", lineHeight: 1.1 }}>
                       {item.name}
                     </span>
-                  </motion.a>
+                  </MotionLink>
                 ))}
               </nav>
 
@@ -731,7 +750,7 @@ export default function NavClient() {
                   flexShrink: 0, display: "flex", flexDirection: "column", gap: "10px",
                 }}
               >
-                <a
+                <Link
                   href={locale === "en" ? "/en/book-preservation" : FORM_URL}
                   onClick={() => setIsOpen(false)}
                   style={{
@@ -745,7 +764,7 @@ export default function NavClient() {
                   }}
                 >
                   {t("reservar")}
-                </a>
+                </Link>
                 <a
                   href={waUrl(locale)}
                   target="_blank"

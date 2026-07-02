@@ -3,41 +3,77 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
-import { FORM_URL } from "../_lib/constants";
+import { FORM_URL, SITE_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
+import { splitTitle } from "../_lib/splitTitle";
+import { PRECO_QUADRO_30x40 } from "../_lib/precos";
 import PageHero from "@/components/PageHero";
 import ExploreSquares from "@/components/ExploreSquares";
 import "./ComoFuncionaClient.css";
 
 // ─── HowTo Schema ─────────────────────────────────────────────────────────────
-const HowToSchema = () => (
-  <script
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{
-      __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        name: "Como funciona a preservação de flores de momentos especiais",
-        description:
-          "Processo artesanal completo de preservação botânica de flores desde a reserva até ao quadro emoldurado com vidro museu anti-UV, pronto a pendurar em casa.",
-        totalTime: "P6M",
-        estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "300" },
-        supply: [
-          { "@type": "HowToSupply", name: "Flores frescas (até 6 dias após o evento)" },
-          { "@type": "HowToSupply", name: "Fotografias do dia (opcional, para referência)" },
-        ],
-        tool: [{ "@type": "HowToTool", name: "Formulário de reserva online" }],
-        step: [
-          { "@type": "HowToStep", position: 1, name: "Reservar a data", text: "Preencha o formulário de reserva com a data do evento e detalhes das flores. Pague o sinal de 30% para garantir a sua vaga.", url: "https://floresabeirario.pt/como-funciona#passo-1" },
-          { "@type": "HowToStep", position: 2, name: "Entregar as flores", text: "Entregue em mãos no atelier (Ceira, Coimbra), envie por CTT correio frágil urgente, ou solicite recolha no local do evento. Preferencialmente até 3 dias após o evento.", url: "https://floresabeirario.pt/como-funciona#passo-2" },
-          { "@type": "HowToStep", position: 3, name: "Prensagem e secagem artesanal", text: "Cada pétala é prensada e seca individualmente com técnicas de botânica artesanal, sem químicos agressivos, sem plásticos.", url: "https://floresabeirario.pt/como-funciona#passo-3" },
-          { "@type": "HowToStep", position: 4, name: "Composição e aprovação", text: "Criamos a composição artística e enviamos fotografia para aprovação. Pode pedir ajustes antes de selarmos a moldura definitivamente.", url: "https://floresabeirario.pt/como-funciona#passo-4" },
-          { "@type": "HowToStep", position: 5, name: "Emolduramento e entrega do quadro", text: "O quadro é emoldurado com vidro museu anti-reflexo com proteção UV e enviado por CTT com rastreio, ou levantado no atelier em Coimbra.", url: "https://floresabeirario.pt/como-funciona#passo-5" },
-        ],
-      }),
-    }}
-  />
-);
+// Localizado por idioma (antes estava fixo em PT mesmo nas páginas EN) e com
+// URLs no domínio canónico www (antes apontava para o apex sem www).
+const HOWTO_TEXT = {
+  pt: {
+    path: "/como-funciona",
+    name: "Como funciona a preservação de flores de momentos especiais",
+    description:
+      "Processo artesanal completo de preservação botânica de flores desde a reserva até ao quadro emoldurado com vidro museu anti-UV, pronto a pendurar em casa.",
+    supplies: ["Flores frescas (até 6 dias após o evento)", "Fotografias do dia (opcional, para referência)"],
+    tool: "Formulário de reserva online",
+    steps: [
+      { name: "Reservar a data", text: "Preencha o formulário de reserva com a data do evento e detalhes das flores. Pague o sinal de 30% para garantir a sua vaga." },
+      { name: "Entregar as flores", text: "Entregue em mãos no atelier (Ceira, Coimbra), envie por CTT correio frágil urgente, ou solicite recolha no local do evento. Preferencialmente até 3 dias após o evento." },
+      { name: "Prensagem e secagem artesanal", text: "Cada pétala é prensada e seca individualmente com técnicas de botânica artesanal, sem químicos agressivos, sem plásticos." },
+      { name: "Composição e aprovação", text: "Criamos a composição artística e enviamos fotografia para aprovação. Pode pedir ajustes antes de selarmos a moldura definitivamente." },
+      { name: "Emolduramento e entrega do quadro", text: "O quadro é emoldurado com vidro museu anti-reflexo com proteção UV e enviado por CTT com rastreio, ou levantado no atelier em Coimbra." },
+    ],
+  },
+  en: {
+    path: "/en/how-it-works",
+    name: "How flower preservation for special occasions works",
+    description:
+      "The complete artisanal botanical preservation process, from booking to the finished frame with anti-UV museum glass, ready to hang at home.",
+    supplies: ["Fresh flowers (up to 6 days after the event)", "Photos of the day (optional, for reference)"],
+    tool: "Online booking form",
+    steps: [
+      { name: "Book your date", text: "Fill in the booking form with the event date and flower details. Pay the 30% deposit to secure your spot." },
+      { name: "Deliver the flowers", text: "Hand-deliver to the atelier (Ceira, Coimbra), send by urgent fragile courier, or request collection at the event venue. Preferably within 3 days of the event." },
+      { name: "Artisanal pressing and drying", text: "Each petal is pressed and dried individually using artisanal botanical techniques, with no harsh chemicals and no plastics." },
+      { name: "Composition and approval", text: "We create the artistic composition and send you a photo for approval. You can request adjustments before we seal the frame permanently." },
+      { name: "Framing and delivery", text: "The frame is finished with anti-reflective museum glass with UV protection and shipped with tracking, or collected at the atelier in Coimbra." },
+    ],
+  },
+};
+
+const HowToSchema = ({ locale }) => {
+  const c = HOWTO_TEXT[locale] ?? HOWTO_TEXT.pt;
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          name: c.name,
+          description: c.description,
+          totalTime: "P6M",
+          estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: PRECO_QUADRO_30x40 },
+          supply: c.supplies.map((name) => ({ "@type": "HowToSupply", name })),
+          tool: [{ "@type": "HowToTool", name: c.tool }],
+          step: c.steps.map((s, i) => ({
+            "@type": "HowToStep",
+            position: i + 1,
+            name: s.name,
+            text: s.text,
+            url: `${SITE_URL}${c.path}#passo-${i + 1}`,
+          })),
+        }),
+      }}
+    />
+  );
+};
 
 const STEP_IMAGES = [
   { img: "/reserva.webp",            imgAlt: "Calendário com data de evento marcada para reserva de preservação de flores", id: "passo-1", imgLink: true },
@@ -84,7 +120,7 @@ const Step = ({ step, meta, index, reservarLabel, bookHref }) => {
             {step.titulo}
           </h2>
           {meta.imgLink ? (
-            <a href={bookHref} target="_blank" rel="noopener noreferrer" aria-label={reservarLabel} style={{ display: "block", textDecoration: "none", cursor: "pointer" }}>
+            <a href={bookHref} aria-label={reservarLabel} style={{ display: "block", textDecoration: "none", cursor: "pointer" }}>
               {photoInner}
             </a>
           ) : (
@@ -162,9 +198,11 @@ export default function ComoFuncionaClient() {
     { pct: "30%", label: t("pag30finalLabel"), desc: t("pag30finalDesc"), c: "#D09060" },
   ];
 
+  const [h1Start, h1Em] = splitTitle(t("h1"), t("h1Em"));
+
   return (
     <>
-      <HowToSchema />
+      <HowToSchema locale={locale} />
 
       <div style={{ backgroundColor: "var(--cream)", overflowX: "clip" }}>
 
@@ -176,8 +214,7 @@ export default function ComoFuncionaClient() {
           <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
             <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700, display: "block" }}>{t("eyebrow")}</p>
             <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.05, color: "var(--cream)", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)" }}>
-              {t("h1").split(t("h1Em"))[0]}<br />
-              <em style={{ fontStyle: "italic", color: "var(--cream)" }}>{t("h1Em")}</em>
+              {h1Start}{h1Em && <><br /><em style={{ fontStyle: "italic", color: "var(--cream)" }}>{h1Em}</em></>}
             </h1>
             <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)" }}>
               {t("heroDesc")}

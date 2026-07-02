@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
+import { splitTitle } from "../_lib/splitTitle";
 
 const anim = {
   initial: { opacity: 0, y: 22 },
@@ -16,15 +17,17 @@ export default function MomentosEspeciaisClient() {
   const lista = t.raw("lista");
 
   const bookHref = locale === "en" ? "/en/book-preservation" : FORM_URL;
+  const [h1Start, h1Em] = splitTitle(t("h1"), t("h1Em"));
 
   return (
-    <main className="momento-page">
+    // <div> em vez de <main>: o layout já embrulha as páginas num <main>
+    // e landmarks <main> aninhados são inválidos para leitores de ecrã.
+    <div className="momento-page">
       <section className="momento-hero">
         <motion.div {...anim} className="momento-inner">
           <span className="momento-eyebrow">{t("eyebrow")}</span>
           <h1 className="momento-h1">
-            {t("h1").split(t("h1Em"))[0]}<br />
-            <em>{t("h1Em")}</em>
+            {h1Start}{h1Em && <><br /><em>{h1Em}</em></>}
           </h1>
           <p className="momento-desc">{t("heroDesc")}</p>
           <div className="momento-ctas">
@@ -92,6 +95,6 @@ export default function MomentosEspeciaisClient() {
           </div>
         </motion.div>
       </section>
-    </main>
+    </div>
   );
 }

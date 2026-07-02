@@ -1,6 +1,7 @@
 // app/recriacao/RecriacaoClient.jsx
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
@@ -179,17 +180,17 @@ export default function RecriacaoClient() {
 
           <div className="steps-wrapper">
             {passos.map((step, i) => (
-              <>
-                <div key={`step-${i}`} className="step-item">
+              <React.Fragment key={`step-${i}`}>
+                <div className="step-item">
                   <StepCard imageSrc={STEP_IMAGES[i]} stepLabel={t("stepLabel")} number={String(i + 1)} title={step.titulo} desc={step.desc} delay={i * 0.1} />
                 </div>
                 {i < passos.length - 1 && (
                   <>
-                    <StepArrowRight key={`arrow-right-${i}`} />
-                    <StepArrowDown key={`arrow-down-${i}`} />
+                    <StepArrowRight />
+                    <StepArrowDown />
                   </>
                 )}
-              </>
+              </React.Fragment>
             ))}
           </div>
         </div>
@@ -287,7 +288,10 @@ export default function RecriacaoClient() {
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={WA_PATH} /></svg>
               {t("ctaWA")}
             </a>
-            <a href={`mailto:${EMAIL}?subject=Or%C3%A7amento%20Recria%C3%A7%C3%A3o%20de%20Bouquet`} className="btn-outline-light">
+            <a
+              href={`mailto:${EMAIL}?subject=${encodeURIComponent(locale === "en" ? "Bouquet Recreation Quote" : "Orçamento Recriação de Bouquet")}`}
+              className="btn-outline-light"
+            >
               {t("ctaEmail")}
             </a>
           </div>

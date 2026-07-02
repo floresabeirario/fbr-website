@@ -12,7 +12,8 @@ export default function ValeApresenteClient() {
   const STEPS = t.raw("passos");
   const ofereceHref = locale === "en" ? "/en/gift-preservation" : "/oferecer-preservacao";
   return (
-    <main className="vp-page">
+    // <div> em vez de <main>: o layout já embrulha as páginas num <main>.
+    <div className="vp-page">
 
       {/* ── HERO ── */}
       <div className="vp-hero">
@@ -69,6 +70,6 @@ export default function ValeApresenteClient() {
         <ValeApresenteForm />
       </section>
 
-    </main>
+    </div>
   );
 }

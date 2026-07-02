@@ -38,6 +38,7 @@ const THEMES = {
   },
 };
 import Image from "next/image";
+import Link from "next/link";
 import { FORM_URL } from "./_lib/constants";
 import { waUrl } from "./_lib/wa";
 import HomeHero from "./HomeHero";
@@ -90,6 +91,10 @@ export default function HomeClient() {
   const locale = useLocale();
   const bouquetNoivaHref = locale === "en" ? "/en/preserve-wedding-bouquet" : "/preservar-bouquet-noiva";
   const recriacaoHref = locale === "en" ? "/en/bouquet-recreation" : "/recriacao";
+  const bookHref = locale === "en" ? "/en/book-preservation" : FORM_URL;
+  const sustentabilidadeHref = locale === "en" ? "/en/sustainability" : "/sustentabilidade";
+  const ofereceHref = locale === "en" ? "/en/gift-preservation" : "/oferecer-preservacao";
+  const contactosHref = locale === "en" ? "/en/contact" : "/contactos";
 
   const apccItems = [
     { icon: <IconReuse />, title: t("pensadoReutilizar"), desc: t("pensadoReutilizarDesc") },
@@ -180,7 +185,7 @@ export default function HomeClient() {
 
         {/* ════ 2. O QUE FAZEMOS + SLIDER ════ */}
         <section
-          aria-label="Serviços de preservação botânica"
+          aria-label={t("oQueFazemos")}
           data-bg="neutral"
           style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative" }}
         >
@@ -200,7 +205,7 @@ export default function HomeClient() {
 
         {/* ════ 4. TRACKING ════ */}
         <section
-          aria-label="Acompanhe a sua encomenda em tempo real"
+          aria-label={t("acompanheTitle")}
           data-bg="sky"
           style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative" }}
         >
@@ -222,8 +227,11 @@ export default function HomeClient() {
                       <div style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#2D4A40" }} />
                     </div>
                     <div style={{ borderRadius: "28px", overflow: "hidden", backgroundColor: "#0f1f1a", aspectRatio: "9/19.5" }}>
-                      <video autoPlay loop muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} aria-label="Vídeo de tracking da encomenda">
+                      <video autoPlay loop muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} aria-label={t("acompanheTitle")}>
+                        {/* WebM primeiro (mais leve); MP4 é o fallback para
+                            Safari/iOS antigos que não suportam WebM. */}
                         <source src="/videos/tracking.webm" type="video/webm" />
+                        <source src="/videos/tracking.mp4" type="video/mp4" />
                       </video>
                     </div>
                     <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }} aria-hidden="true">
@@ -263,7 +271,7 @@ export default function HomeClient() {
         </section>
 
         {/* ════ 5. GOOGLE REVIEWS ════ */}
-        <section aria-label="Avaliações de clientes" data-bg="lavender" style={{ padding: "clamp(64px,10vw,88px) 20px", background: "transparent", textAlign: "center" }}>
+        <section aria-label={t("clientesFelizes")} data-bg="lavender" style={{ padding: "clamp(64px,10vw,88px) 20px", background: "transparent", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "940px", margin: "0 auto" }}>
             <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--section-accent)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{t("clientesFelizes")}</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "var(--green-d)" }}>{t("oqueDizTitle")}</h2>
@@ -273,7 +281,7 @@ export default function HomeClient() {
         </section>
 
         {/* ════ 6. APCC ════ */}
-        <section aria-label="Parceria solidária com a APCC Coimbra"
+        <section aria-label={t("parceiriaSolidaria")}
           data-bg="leaf"
           style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative", overflow: "hidden" }}
         >
@@ -318,7 +326,7 @@ export default function HomeClient() {
                 >
                   <div aria-hidden="true" style={{ position: "absolute", inset: 0, transform: "translate(12px, 12px) rotate(2deg)", borderRadius: "18px", background: "rgba(61,107,94,0.15)", border: "1px solid rgba(61,107,94,0.2)" }} />
                   <div style={{ position: "relative", transform: "rotate(-1.5deg)", borderRadius: "18px", overflow: "hidden", border: "1px solid rgba(139,168,136,0.2)", aspectRatio: "3/4", boxShadow: "0 28px 56px rgba(0,0,0,0.4)" }}>
-                    <Image fill src="/oficinaapcc.webp" alt="Utentes da Oficina de Tecelagem de Almalaguês e Costura da APCC Coimbra a produzir as embalagens para a Flores à Beira-Rio" sizes="(max-width: 768px) 100vw, 340px" style={{ objectFit: "cover" }} />
+                    <Image fill src="/oficinaapcc.webp" alt={t("apccImgAlt")} sizes="(max-width: 768px) 100vw, 340px" style={{ objectFit: "cover" }} />
                     <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "45%", background: "linear-gradient(to top, rgba(12,25,41,0.9) 0%, transparent 100%)" }} aria-hidden="true" />
                     <div style={{ position: "absolute", bottom: "18px", left: "18px", right: "18px" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -333,9 +341,9 @@ export default function HomeClient() {
                     </div>
                   </div>
                 </a>
-                <a href="/sustentabilidade" className="apcc-link">
+                <Link href={sustentabilidadeHref} className="apcc-link">
                   {t("sustentabilidadeLink")}
-                </a>
+                </Link>
               </motion.div>
             </div>
           </div>
@@ -360,9 +368,9 @@ export default function HomeClient() {
                 <p style={{ color: "rgba(250,247,240,0.78)", lineHeight: 1.85, fontSize: "clamp(1rem,2vw,1.08rem)", margin: "0 0 34px" }}>
                   {t("presenteDesc")}
                 </p>
-                <a href="/oferecer-preservacao" className="gift-card-btn">
+                <Link href={ofereceHref} className="gift-card-btn">
                   {t("descobrirCartao")}
-                </a>
+                </Link>
               </motion.div>
             </div>
           </div>
@@ -386,9 +394,9 @@ export default function HomeClient() {
               <a href={waUrl(locale, "urgente")} target="_blank" rel="noopener noreferrer" className="cta-btn-wa" style={{ flex: "0 1 auto" }}>
                 <IconWA /> {t("eventoPassouCTA")}
               </a>
-              <a href={recriacaoHref} className="apcc-link">
+              <Link href={recriacaoHref} className="apcc-link">
                 {t("eventoPassouRecriacao")}
-              </a>
+              </Link>
             </div>
           </motion.div>
         </section>
@@ -417,7 +425,7 @@ export default function HomeClient() {
                 {t("maisAjudaDesc2")}
               </p>
               <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-                <a href="/contactos" className="btn-ghost">{t("contactos")}</a>
+                <Link href={contactosHref} className="btn-ghost">{t("contactos")}</Link>
                 <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer" className="cta-btn-wa">
                   <IconWA /> WhatsApp
                 </a>
@@ -439,8 +447,8 @@ export default function HomeClient() {
                 {t("noivasDesc")}
               </p>
               <div style={{ display: "flex", justifyContent: "center", gap: "12px", flexWrap: "wrap" }}>
-                <a href={FORM_URL} className="btn-noiva-ghost">{t("heroCTA")}</a>
-                <a href={bouquetNoivaHref} className="btn-noiva-ghost">{t("noivasSaberMais")}</a>
+                <Link href={bookHref} className="btn-noiva-ghost">{t("heroCTA")}</Link>
+                <Link href={bouquetNoivaHref} className="btn-noiva-ghost">{t("noivasSaberMais")}</Link>
               </div>
             </div>
           </motion.div>

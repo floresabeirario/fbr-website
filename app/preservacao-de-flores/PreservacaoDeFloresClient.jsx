@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
+import { splitTitle } from "../_lib/splitTitle";
 import PageHero from "@/components/PageHero";
 import SubCard, { SUBPAGES } from "./SubCard";
 import "./PreservacaoDeFloresClient.css";
@@ -39,6 +40,7 @@ export default function PreservacaoDeFloresClient() {
   const floresSHref = locale === "en" ? "/en/frame-dried-flowers" : "/emoldurar-flores-secas";
   const faqHref = locale === "en" ? "/en/faq" : "/perguntas-frequentes";
   const ocasioesHrefs = locale === "en" ? OCASIOES_HREFS_EN : OCASIOES_HREFS_PT;
+  const [h1Start, h1Em] = splitTitle(t("h1"), t("h1Em"));
 
   return (
     <>
@@ -62,8 +64,7 @@ export default function PreservacaoDeFloresClient() {
               {t("tagline")}
             </p>
             <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.03, color: "var(--cream)", margin: "0 0 clamp(1rem,2.5vw,1.6rem)" }}>
-              {t("h1").split(t("h1Em"))[0]}<br />
-              <em style={{ fontStyle: "italic", color: "var(--cream)" }}>{t("h1Em")}</em>
+              {h1Start}{h1Em && <><br /><em style={{ fontStyle: "italic", color: "var(--cream)" }}>{h1Em}</em></>}
             </h1>
             <p style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.88, maxWidth: "480px", color: "rgba(250,247,240,0.88)", margin: "0 auto clamp(1.8rem,3.5vw,2.8rem)", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
               {t("heroDesc")}

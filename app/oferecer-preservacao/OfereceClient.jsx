@@ -5,7 +5,6 @@ import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { FORM_URL } from "../_lib/constants";
 import PageHero from "@/components/PageHero";
 import "./OfereceClient.css";
 
@@ -48,7 +47,7 @@ const ESCURO   = "var(--dark)";
 // ─── Vale Slider ──────────────────────────────────────────────────────────────
 const VALE_SLIDES = ["/vale2.webp", "/vale1.webp"];
 
-function ValeSlider() {
+function ValeSlider({ alt }) {
   const [current, setCurrent] = useState(0);
   const timerRef = useRef(null);
 
@@ -78,7 +77,7 @@ function ValeSlider() {
           style={{ opacity: i === current ? 1 : 0 }}
           aria-hidden={i !== current}
         >
-          <Image fill src={src} alt="Cartão presente da Flores à Beira-Rio" sizes="(max-width: 768px) 100vw, 42vw" style={{ objectFit: "cover" }} />
+          <Image fill src={src} alt={alt} sizes="(max-width: 768px) 100vw, 42vw" style={{ objectFit: "cover" }} />
         </div>
       ))}
       <div className="vale-slider-dots" role="group" aria-label="Selecionar imagem">
@@ -108,6 +107,7 @@ export default function OfereceClient() {
   const condicoesCartao = t.raw("condicoes");
   const entrega = t.raw("entrega");
   const valeHref = locale === "en" ? "/en/gift-voucher" : "/vale-presente";
+  const precosHref = locale === "en" ? "/en/options-and-pricing" : "/opcoes-e-precos";
   return (
     <div style={{ backgroundColor: CREME, fontFamily: "'Google Sans', sans-serif", color: ESCURO, overflowX: "clip" }}>
 
@@ -143,7 +143,7 @@ export default function OfereceClient() {
           <div className="cartao-grid">
             <div className="cartao-foto-wrap">
               <div className="cartao-foto">
-                <ValeSlider />
+                <ValeSlider alt={t("valeAlt")} />
               </div>
             </div>
             <div style={{ flex: 1 }}>
@@ -274,7 +274,9 @@ export default function OfereceClient() {
           </p>
           <div className="cta-row-vale" style={{ marginBottom: "1.2rem" }}>
             <Link href={valeHref} className="btn-azul-vale">{t("ctaEncomendar")}</Link>
-            <a href={FORM_URL} className="btn-primary-vale">{t("verPrecos")}</a>
+            {/* Antes apontava para o formulário de reserva — o rótulo diz
+                "Ver preços", por isso leva à página de Opções e Preços. */}
+            <Link href={precosHref} className="btn-primary-vale">{t("verPrecos")}</Link>
           </div>
           <p style={{ fontSize: "0.8rem", color: "rgba(250,247,240,0.55)" }}>{t("apartirDe")}</p>
         </Reveal>

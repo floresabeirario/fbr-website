@@ -6,7 +6,8 @@ export default function PoliticaPrivacidadeClient() {
   const t = useTranslations("privacidade");
   const SECTIONS = t.raw("sections");
   return (
-    <main className="legal-page">
+    // <div> em vez de <main>: o layout já embrulha as páginas num <main>.
+    <div className="legal-page">
       <div className="legal-inner">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -25,6 +26,6 @@ export default function PoliticaPrivacidadeClient() {
           ))}
         </div>
       </div>
-    </main>
+    </div>
   );
 }

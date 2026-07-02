@@ -171,7 +171,7 @@ export default function Sustentabilidade() {
   const VALUES_TEXT = t.raw("values");
   const APCC_TOPICS = t.raw("apccTopics");
   const CTA_LINKS = t.raw("ctaLinks");
-  const FORM = FORM_URL;
+  const FORM = locale === "en" ? "/en/book-preservation" : FORM_URL;
 
   return (
     <>
@@ -213,7 +213,7 @@ export default function Sustentabilidade() {
 
         {/* FILOSOFIA */}
         <section
-          aria-label="A nossa filosofia de preservacao sustentavel"
+          aria-label={t("filosofiaEyebrow")}
           style={{
             padding: "clamp(56px,9vw,88px) clamp(20px,5vw,48px)",
             background: "linear-gradient(160deg, #EDF2E8 0%, #F5F9F3 40%, #FAF7F0 100%)",
@@ -252,7 +252,7 @@ export default function Sustentabilidade() {
 
         {/* APCC */}
         <section
-          aria-label="Embalagem artesanal em parceria com a Associacao de Paralisia Cerebral de Coimbra"
+          aria-label={t("apccH2")}
           style={{
             padding: "clamp(56px,9vw,88px) clamp(20px,5vw,48px)",
             background: "linear-gradient(150deg, #1E2D2A 0%, #243D33 40%, #2A4A3C 70%, #1E2D2A 100%)",
@@ -388,7 +388,7 @@ export default function Sustentabilidade() {
 
         {/* COMPARACAO */}
         <section
-          aria-label="Comparacao entre prensagem botanica, resina epoxi e gel de silica"
+          aria-label={t("comparacaoEyebrow")}
           style={{
             padding: "clamp(48px,7vw,76px) clamp(20px,5vw,48px)",
             background: "linear-gradient(180deg, #FAF7F0 0%, #F2F6EF 50%, #FAF7F0 100%)",
@@ -492,7 +492,7 @@ export default function Sustentabilidade() {
 
         {/* VALORES */}
         <section
-          aria-label="Os valores e materiais da Flores a Beira-Rio"
+          aria-label={t("valoresEyebrow")}
           style={{
             padding: "clamp(56px,9vw,88px) clamp(20px,5vw,48px)",
             background: "linear-gradient(170deg, #1E2D2A 0%, #243D33 50%, #1E2D2A 100%)",
@@ -572,7 +572,7 @@ export default function Sustentabilidade() {
 
         {/* CTA */}
         <section
-          aria-label="Comecar a preservar as tuas flores"
+          aria-label={t("ctaEyebrow")}
           style={{
             padding: "clamp(60px,10vw,100px) clamp(20px,5vw,48px)",
             background: "linear-gradient(150deg, #1E2D2A 0%, #243D33 50%, #2A4A3C 100%)",

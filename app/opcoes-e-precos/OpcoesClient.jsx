@@ -5,7 +5,12 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 
+import Link from "next/link";
 import { FORM_URL, TRACKING_URL } from "../_lib/constants";
+import {
+  PRECO_QUADRO_30x40, PRECO_QUADRO_40x50, PRECO_QUADRO_50x70,
+  PRECO_MINI_20x25, PRECO_ORNAMENTO, PRECO_PENDENTE,
+} from "../_lib/precos";
 import ExploreSquares from "@/components/ExploreSquares";
 
 const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
@@ -188,12 +193,12 @@ function PendantSVG({ svgWidth, light = false }) {
 
 // Visual-only frame config (sizes, prices, SVG params — no text)
 const framesVisual = [
-  { size: "30×40", unit: "cm", price: "300", vw: 180, vh: 240, svgWidth: "88px", flowers: [{ cx: 90, cy: 120, scale: 0.9, rotate: -8, opacity: 0.45 }] },
-  { size: "40×50", unit: "cm", price: "400", vw: 200, vh: 250, svgWidth: "118px", flowers: [{ cx: 82, cy: 118, scale: 0.95, rotate: -15, opacity: 0.48 }, { cx: 128, cy: 142, scale: 0.85, rotate: 12, opacity: 0.38 }] },
-  { size: "50×70", unit: "cm", price: "500", vw: 200, vh: 280, svgWidth: "148px", flowers: [{ cx: 100, cy: 90, scale: 1.0, rotate: -10, opacity: 0.5 }, { cx: 62, cy: 168, scale: 0.82, rotate: 18, opacity: 0.38 }, { cx: 148, cy: 188, scale: 0.76, rotate: -22, opacity: 0.32 }] },
-  { size: "20×25", unit: "cm", price: "90", addon: true, vw: 160, vh: 200, svgWidth: "62px", flowers: [{ cx: 80, cy: 100, scale: 0.72, rotate: 6, opacity: 0.42 }] },
-  { price: "35", addon: true, addonColor: "#6B1F2A", customSvg: "ornament", svgWidth: "72px", unit: "~8 cm" },
-  { price: "35", addon: true, addonColor: "#3A3050", customSvg: "pendant", svgWidth: "56px", unit: "~3 cm" },
+  { size: "30×40", unit: "cm", price: PRECO_QUADRO_30x40, vw: 180, vh: 240, svgWidth: "88px", flowers: [{ cx: 90, cy: 120, scale: 0.9, rotate: -8, opacity: 0.45 }] },
+  { size: "40×50", unit: "cm", price: PRECO_QUADRO_40x50, vw: 200, vh: 250, svgWidth: "118px", flowers: [{ cx: 82, cy: 118, scale: 0.95, rotate: -15, opacity: 0.48 }, { cx: 128, cy: 142, scale: 0.85, rotate: 12, opacity: 0.38 }] },
+  { size: "50×70", unit: "cm", price: PRECO_QUADRO_50x70, vw: 200, vh: 280, svgWidth: "148px", flowers: [{ cx: 100, cy: 90, scale: 1.0, rotate: -10, opacity: 0.5 }, { cx: 62, cy: 168, scale: 0.82, rotate: 18, opacity: 0.38 }, { cx: 148, cy: 188, scale: 0.76, rotate: -22, opacity: 0.32 }] },
+  { size: "20×25", unit: "cm", price: PRECO_MINI_20x25, addon: true, vw: 160, vh: 200, svgWidth: "62px", flowers: [{ cx: 80, cy: 100, scale: 0.72, rotate: 6, opacity: 0.42 }] },
+  { price: PRECO_ORNAMENTO, addon: true, addonColor: "#6B1F2A", customSvg: "ornament", svgWidth: "72px", unit: "~8 cm" },
+  { price: PRECO_PENDENTE, addon: true, addonColor: "#3A3050", customSvg: "pendant", svgWidth: "56px", unit: "~3 cm" },
 ];
 
 // Visual-only presentes config (images only)
@@ -232,6 +237,7 @@ export default function OpcoesClient() {
   const MOLDURAS_TEXT   = t.raw("molduras");
   const VIDRO_FEATURES  = t.raw("vidroFeatures");
 
+  const bookHref        = locale === "en" ? "/en/book-preservation"   : FORM_URL;
   const recriacaoHref   = locale === "en" ? "/en/bouquet-recreation"  : "/recriacao";
   const perguntasHref   = locale === "en" ? "/en/faq"                 : "/perguntas-frequentes";
   const contactosHref   = locale === "en" ? "/en/contact"             : "/contactos";
@@ -589,11 +595,11 @@ export default function OpcoesClient() {
               <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(250,247,240,0.65)", margin: "0 0 32px" }}>
                 {t("ctaDesc")}
               </p>
-              <a href={FORM_URL}
+              <Link href={bookHref}
                 style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "var(--cream)", color: "var(--green)", padding: "16px 48px", borderRadius: "100px", textDecoration: "none", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: GS, transition: "all 0.3s ease", minHeight: "54px" }}
                 className="hover-bg-warm">
                 {t("ctaCta")}
-              </a>
+              </Link>
             </div>
           </Reveal>
         </div>
