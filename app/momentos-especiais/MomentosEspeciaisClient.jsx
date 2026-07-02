@@ -47,6 +47,7 @@ export default function MomentosEspeciaisClient() {
           </h2>
           <p className="momento-content-p">{t("floresP1")}</p>
           <p className="momento-content-p">{t("floresP2")}</p>
+          <p className="momento-content-p">{t("floresP3")}</p>
         </motion.div>
       </section>
 

@@ -33,11 +33,12 @@ export default function sitemap() {
   // Add blog posts (dynamic MDX articles, locale-specific slugs)
   const ptPosts = getAllPosts("pt");
   const enPosts = getAllPosts("en");
+  // Posts sem contraparte no outro idioma entram só com o URL que existe
+  // (senão o sitemap apontava para /blog/<slug> ou /en/blog/<slug> a 404).
   for (const ptPost of ptPosts) {
-    const enSlug = ptPost.enSlug;
     routes.push({
       pt: `/blog/${ptPost.slug}`,
-      en: enSlug ? `/en/blog/${enSlug}` : `/en/blog/${ptPost.slug}`,
+      en: ptPost.enSlug ? `/en/blog/${ptPost.enSlug}` : null,
       priority: 0.6,
       changeFrequency: "yearly",
     });
@@ -47,7 +48,7 @@ export default function sitemap() {
   for (const enPost of enPosts) {
     if (!ptSlugsSet.has(enPost.slug)) {
       routes.push({
-        pt: `/blog/${enPost.ptSlug || enPost.slug}`,
+        pt: enPost.ptSlug ? `/blog/${enPost.ptSlug}` : null,
         en: `/en/blog/${enPost.slug}`,
         priority: 0.6,
         changeFrequency: "yearly",
@@ -58,29 +59,36 @@ export default function sitemap() {
   const entries = [];
 
   for (const route of routes) {
-    const altLanguages = {
-      "pt-PT":     `${base}${route.pt}`,
-      "en":        `${base}${route.en}`,
-      "x-default": `${base}${route.pt}`,
-    };
+    const altLanguages =
+      route.pt && route.en
+        ? {
+            "pt-PT":     `${base}${route.pt}`,
+            "en":        `${base}${route.en}`,
+            "x-default": `${base}${route.pt}`,
+          }
+        : undefined;
 
     // PT entry
-    entries.push({
-      url:             `${base}${route.pt}`,
-      lastModified:    new Date(),
-      changeFrequency: route.changeFrequency,
-      priority:        route.priority,
-      alternates:      { languages: altLanguages },
-    });
+    if (route.pt) {
+      entries.push({
+        url:             `${base}${route.pt}`,
+        lastModified:    new Date(),
+        changeFrequency: route.changeFrequency,
+        priority:        route.priority,
+        ...(altLanguages ? { alternates: { languages: altLanguages } } : {}),
+      });
+    }
 
     // EN entry
-    entries.push({
-      url:             `${base}${route.en}`,
-      lastModified:    new Date(),
-      changeFrequency: route.changeFrequency,
-      priority:        route.priority,
-      alternates:      { languages: altLanguages },
-    });
+    if (route.en) {
+      entries.push({
+        url:             `${base}${route.en}`,
+        lastModified:    new Date(),
+        changeFrequency: route.changeFrequency,
+        priority:        route.priority,
+        ...(altLanguages ? { alternates: { languages: altLanguages } } : {}),
+      });
+    }
   }
 
   return entries;
