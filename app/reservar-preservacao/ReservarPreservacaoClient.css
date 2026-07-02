@@ -29,7 +29,9 @@
 ═══════════════════════════════════════════════ */
 .rp-hero {
   position: relative;
-  height: clamp(480px, 68svh, 740px);
+  height: clamp(560px, 68svh, 740px);
+  /* espaço para a barra de anúncio (30px) + nav fixa por cima do hero */
+  padding-top: clamp(100px, 12svh, 128px);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -656,7 +658,7 @@ input[type="date"].pf-input {
 ═══════════════════════════════════════════════ */
 @media (max-width: 860px) {
   .rp-hero {
-    height: clamp(360px, 58svh, 560px);
+    height: clamp(480px, 62svh, 620px);
   }
 
   .rp-title {
