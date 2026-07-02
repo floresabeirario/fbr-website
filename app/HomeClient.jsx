@@ -89,6 +89,7 @@ export default function HomeClient() {
   const t = useTranslations("home");
   const locale = useLocale();
   const bouquetNoivaHref = locale === "en" ? "/en/preserve-wedding-bouquet" : "/preservar-bouquet-noiva";
+  const recriacaoHref = locale === "en" ? "/en/bouquet-recreation" : "/recriacao";
 
   const apccItems = [
     { icon: <IconReuse />, title: t("pensadoReutilizar"), desc: t("pensadoReutilizarDesc") },
@@ -365,6 +366,31 @@ export default function HomeClient() {
               </motion.div>
             </div>
           </div>
+        </section>
+
+        {/* ════ 7.5 O EVENTO JÁ PASSOU? ════ */}
+        <section
+          aria-label={t("eventoPassouTitle")}
+          data-bg="blush"
+          style={{ padding: "clamp(64px,9vw,88px) 20px", background: "transparent", textAlign: "center" }}
+        >
+          <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "640px", margin: "0 auto" }}>
+            <span className="eyebrow">{t("eventoPassouEyebrow")}</span>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", color: "var(--green-d)", margin: "0 0 16px", lineHeight: 1.1 }}>
+              {t("eventoPassouTitle")}
+            </h2>
+            <p style={{ color: "var(--mid)", fontSize: "clamp(0.98rem,2vw,1.08rem)", lineHeight: 1.85, margin: "0 0 30px" }}>
+              {t("eventoPassouDesc")}
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "18px" }}>
+              <a href={waUrl(locale, "urgente")} target="_blank" rel="noopener noreferrer" className="cta-btn-wa" style={{ flex: "0 1 auto" }}>
+                <IconWA /> {t("eventoPassouCTA")}
+              </a>
+              <a href={recriacaoHref} className="apcc-link">
+                {t("eventoPassouRecriacao")}
+              </a>
+            </div>
+          </motion.div>
         </section>
 
         {/* ════ 8. CTA SPLIT ════ */}

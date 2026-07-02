@@ -100,7 +100,8 @@
     },
     "recriacao": "Recriação de Bouquet",
     "faq": "FAQ",
-    "langLabel": "Versão em inglês"
+    "langLabel": "Versão em inglês",
+    "announce": "Servimos clientes em todo o país, com envio de flores fácil e seguro"
   },
   "footer": {
     "tagline": "Especialistas em Preservação de Flores · Coimbra, Portugal",
@@ -181,6 +182,11 @@
     "noivasTitle": "Vai casar em breve?",
     "noivasDesc": "Reserve a sua vaga com antecedência, as datas em época de casamentos esgotam rapidamente.",
     "noivasSaberMais": "Saber Mais",
+    "eventoPassouEyebrow": "Ainda vai a tempo",
+    "eventoPassouTitle": "O seu evento já passou?",
+    "eventoPassouDesc": "Contacte-nos na mesma. Se as flores forem mantidas em água, num local fresco, normalmente ainda conseguimos preservá-las nos primeiros dias após o casamento ou evento. E se já passou demasiado tempo, podemos recriar o bouquet com flores semelhantes a partir de uma fotografia.",
+    "eventoPassouCTA": "Falar connosco agora",
+    "eventoPassouRecriacao": "Conhecer a recriação de bouquet →",
     "sliderAntes": "Antes",
     "sliderDepois": "Depois",
     "sliderArraste": "Arraste para comparar"
@@ -619,20 +625,20 @@
   },
   "bouquetNoiva": {
     "meta": {
-      "title": "Preservar Bouquet de Noiva em Portugal | Quadro de Flores do Casamento",
-      "description": "O bouquet do seu casamento preservado em quadro de arte botânica. Recebemos bouquets de todo o Portugal, em mãos, por correio ou com recolha. A partir de 300€.",
-      "ogTitle": "Preservar Bouquet de Noiva em Portugal | Flores à Beira-Rio",
-      "ogDescription": "O bouquet do seu casamento preservado em quadro de arte botânica artesanal. Recebemos bouquets de todo o Portugal e Europa.",
+      "title": "Preservar Bouquet de Noiva em Portugal | Eternizar o Ramo do Casamento",
+      "description": "Eternizamos o bouquet (ramo) de noiva num quadro de arte botânica. Recebemos flores de todo o Portugal, em mãos, por correio ou com recolha. A partir de 300€.",
+      "ogTitle": "Preservar Bouquet ou Ramo de Noiva | Flores à Beira-Rio",
+      "ogDescription": "O ramo do seu casamento eternizado em quadro de arte botânica artesanal. Recebemos bouquets de todo o Portugal e Europa.",
       "ogImageAlt": "Bouquet de noiva preservado em quadro de arte botânica",
-      "keywords": "preservar bouquet noiva Portugal, preservar buquê de noiva Portugal, preservar bouquet noiva Coimbra, eternizar buquê de noiva, conservar buquê de noiva, bouquet casamento preservado Portugal, eternização de bouquet, eternização bouquet noiva, preservação de bouquet, preservação bouquet casamento, flores casamento quadro, flores prensadas casamento"
+      "keywords": "preservar bouquet noiva Portugal, preservar buquê de noiva Portugal, preservar ramo de noiva, eternizar ramo de noiva, conservar ramo de noiva, ramo de noiva preservado, preservar bouquet noiva Coimbra, eternizar buquê de noiva, conservar buquê de noiva, bouquet casamento preservado Portugal, eternização de bouquet, eternização bouquet noiva, preservação de bouquet, preservação bouquet casamento, flores casamento quadro, flores prensadas casamento"
     },
     "eyebrow": "Bouquet de Noiva",
     "h1": "Preservar o Bouquet de Noiva",
-    "heroDesc": "Transformamos o bouquet do seu casamento numa obra de arte botânica que dura décadas. Prensagem artesanal, vidro museu anti-UV e emolduramento feito à mão em Coimbra, com envio para todo o Portugal e Europa. Recebemos bouquets em mãos, por correio, ou com recolha no local do casamento pela nossa equipa.",
+    "heroDesc": "Eternizamos o bouquet do seu casamento numa obra de arte botânica que dura décadas. Prensagem artesanal, vidro museu anti-UV e emolduramento feito à mão em Coimbra, com envio para todo o Portugal e Europa. Recebemos bouquets em mãos, por correio, ou com recolha no local do casamento pela nossa equipa.",
     "eyebrow2": "Arte Botânica Artesanal",
     "contentTitle": "O bouquet que esteve presente nos seus votos",
     "contentEm": "nos seus votos",
-    "p1": "O bouquet de noiva é, para muitos casais, a peça mais simbólica do dia do casamento. Em vez de o ver murchar ao longo dos dias seguintes, pode transformá-lo num quadro de arte botânica que dura décadas, pronto a pendurar na parede de casa.",
+    "p1": "O bouquet de noiva (ou ramo de noiva, como muitas famílias lhe chamam) é, para muitos casais, a peça mais simbólica do dia do casamento. Em vez de o ver murchar ao longo dos dias seguintes, pode eternizá-lo num quadro de arte botânica que dura décadas, pronto a pendurar na parede de casa.",
     "p2": "O processo começa com a reserva da data, idealmente assim que souber quando é o casamento. Nos dias seguintes à cerimónia, entrega-nos o bouquet e nós tratamos de tudo: prensagem pétala a pétala, composição artística, aprovação por si, e emolduramento com vidro museu anti-UV. Pode também incluir na composição o convite do casamento, votos manuscritos, fitas, ou qualquer elemento com significado especial.",
     "ctaReservar": "Reservar Data",
     "ctaWA": "WhatsApp",
@@ -1972,7 +1978,11 @@
     "contactoDireto": "Contacto direto",
     "equipaTitle": "Quem somos",
     "equipaSub": "A equipa por detrás de cada peça",
-    "equipaDesc": "Somos uma equipa pequena baseada em Coimbra, unida pela paixão de transformar flores em memórias que duram para sempre.",
+    "equipaDesc": "Somos uma equipa familiar baseada em Coimbra, unida pela paixão de transformar flores em memórias que duram para sempre.",
+    "localTitle": "Onde estamos",
+    "localSub": "Um atelier em Coimbra, de portas para todo o país",
+    "localDesc1": "Trabalhamos a partir de Coimbra, num atelier dedicado à preservação botânica. Por ser um espaço de trabalho, com flores em prensa e peças delicadas em curso, não está aberto ao público.",
+    "localDesc2": "Recebemos as suas flores em Coimbra, venham elas de onde vierem: entregues em mãos (mediante marcação), enviadas por correio de qualquer ponto do país, ou recolhidas por nós no local do evento.",
     "explorarTitle": "Explorar serviços",
     "membros": [
       {

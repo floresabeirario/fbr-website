@@ -27,6 +27,26 @@ export const FAQ_DATA = [
   },
   {
     cat: "processo",
+    q: "O meu casamento ou evento já passou. Ainda vou a tempo de preservar as flores?",
+    plain:
+      "Sim, na maioria dos casos. Se as flores forem mantidas em água, num local fresco e longe do sol, normalmente conseguimos preservá-las se chegarem até nós nos primeiros 5 dias após o casamento ou evento. Contacte-nos por WhatsApp assim que possível para avaliarmos o estado das flores e combinarmos a entrega mais rápida. Se já tiver passado demasiado tempo, podemos recriar o bouquet com flores frescas semelhantes, a partir de uma fotografia.",
+    a: (
+      <>
+        Sim, na maioria dos casos. Se as flores forem mantidas <strong>em água, num local fresco</strong> e
+        longe do sol, normalmente conseguimos preservá-las se chegarem até nós nos{" "}
+        <strong>primeiros 5 dias</strong> após o casamento ou evento.
+        <br /><br />
+        Contacte-nos por WhatsApp <strong>assim que possível</strong> para avaliarmos o estado das
+        flores e combinarmos a entrega mais rápida.
+        <br /><br />
+        Se já tiver passado demasiado tempo, podemos sempre{" "}
+        <a href="/recriacao" className="faq-link">recriar o bouquet</a>{" "}
+        com flores frescas semelhantes, a partir de uma fotografia.
+      </>
+    ),
+  },
+  {
+    cat: "processo",
     q: "Quanto tempo demora a preservação?",
     plain:
       "O nosso tempo médio é de até 6 meses desde a recepção das flores até ao quadro emoldurado. Fazemos sempre o possível para ser mais rápidos, mas a prensagem é um processo delicado que não pode ser apressado. Nunca sacrificamos a qualidade em favor da rapidez. No caso de a encomenda incluir vários quadros, é possível que o prazo se estenda um pouco.",

@@ -35,9 +35,11 @@ function buildSchema(locale) {
       },
     ],
     sameAs: [SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK],
+    // Atelier de trabalho, sem loja aberta ao público
+    publicAccess: false,
     description: isEN
-      ? "Contact Flores à Beira-Rio for flower preservation inquiries. We preserve wedding bouquets, memorial flowers, and other special blooms across Europe."
-      : "Contacte a Flores à Beira-Rio para preservação de flores. Preservamos bouquets de noiva, flores de homenagem e outras flores especiais em toda a Europa.",
+      ? "Contact Flores à Beira-Rio for flower preservation inquiries. Family studio in Coimbra (working space, not open to the public) — we receive flowers by hand, by post or with pickup at your event. We preserve wedding bouquets, memorial flowers, and other special blooms across Europe."
+      : "Contacte a Flores à Beira-Rio para preservação de flores. Atelier familiar em Coimbra (espaço de trabalho, não aberto ao público) — recebemos flores em mãos, por correio ou com recolha no evento. Preservamos bouquets de noiva, flores de homenagem e outras flores especiais em toda a Europa.",
   };
 }
 

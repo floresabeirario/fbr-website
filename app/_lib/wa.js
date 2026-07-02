@@ -14,6 +14,7 @@ const WA_MESSAGES = {
     recriacao: "Olá! Gostaria de saber mais sobre a recriação do meu bouquet.",
     vale:      "Olá! Gostaria de saber mais sobre o vale oferta de preservação de flores.",
     luto:      "Olá! Gostaria de preservar flores de uma cerimónia de homenagem.",
+    urgente:   "Olá! O meu evento já passou e gostaria de preservar as flores. Ainda vou a tempo?",
   },
   en: {
     geral:     "Hello! I'd like to know more about preserving my flowers.",
@@ -21,6 +22,7 @@ const WA_MESSAGES = {
     recriacao: "Hello! I'd like to know more about recreating my bouquet.",
     vale:      "Hello! I'd like to know more about the flower preservation gift voucher.",
     luto:      "Hello! I'd like to preserve flowers from a memorial ceremony.",
+    urgente:   "Hello! My event has already taken place and I'd like to preserve the flowers. Is there still time?",
   },
 };
 

@@ -100,7 +100,8 @@
     },
     "recriacao": "Bouquet Recreation",
     "faq": "FAQ",
-    "langLabel": "Portuguese version"
+    "langLabel": "Portuguese version",
+    "announce": "Serving clients nationwide, with easy and safe flower shipping"
   },
   "footer": {
     "tagline": "Flower Preservation Specialists · Coimbra, Portugal",
@@ -181,6 +182,11 @@
     "noivasTitle": "Getting married soon?",
     "noivasDesc": "Book your slot in advance: wedding season dates fill up quickly.",
     "noivasSaberMais": "Learn More",
+    "eventoPassouEyebrow": "There is still time",
+    "eventoPassouTitle": "Already had your wedding or event?",
+    "eventoPassouDesc": "Contact us anyway. If the flowers are kept in water, somewhere cool, we can usually still preserve them in the first days after the wedding or event. And if too much time has passed, we can recreate the bouquet with similar flowers from a photograph.",
+    "eventoPassouCTA": "Talk to us now",
+    "eventoPassouRecriacao": "Discover bouquet recreation →",
     "sliderAntes": "Before",
     "sliderDepois": "After",
     "sliderArraste": "Drag to compare"
@@ -1972,7 +1978,11 @@
     "contactoDireto": "Direct contact",
     "equipaTitle": "Who we are",
     "equipaSub": "The team behind every piece",
-    "equipaDesc": "We are a small team based in Coimbra, united by a passion for transforming flowers into memories that last forever.",
+    "equipaDesc": "We are a family team based in Coimbra, united by a passion for transforming flowers into memories that last forever.",
+    "localTitle": "Where we are",
+    "localSub": "A studio in Coimbra, open to the whole country",
+    "localDesc1": "We work from Coimbra, in a studio dedicated to botanical preservation. As it is a working space, with flowers in press and delicate pieces in progress, it is not open to the public.",
+    "localDesc2": "We receive your flowers in Coimbra, wherever they come from: delivered by hand (by appointment), shipped by post from anywhere in the country, or collected by us at your event.",
     "explorarTitle": "Explore services",
     "membros": [
       {

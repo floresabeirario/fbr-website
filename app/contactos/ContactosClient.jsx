@@ -220,7 +220,28 @@ export default function ContactosClient() {
         </div>
       </section>
 
-      {/* ════ 3. NAVEGAÇÃO — 4 QUADRADOS ════ */}
+      {/* ════ 3. ONDE ESTAMOS ════ */}
+      <section
+        aria-label={t("localTitle")}
+        style={{ padding: "clamp(60px,9vw,90px) 24px", background: C.cream }}
+      >
+        <div style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
+          <Reveal>
+            <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmon, marginBottom: 14, fontFamily: GS }}>{t("localTitle")}</span>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,4.5vw,3rem)", fontWeight: 400, color: C.tealDeep, margin: "0 0 20px", lineHeight: 1.12 }}>
+              {t("localSub")}
+            </h2>
+            <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.05rem)", lineHeight: 1.85, color: "rgba(30,45,42,0.72)", margin: "0 0 16px" }}>
+              {t("localDesc1")}
+            </p>
+            <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.05rem)", lineHeight: 1.85, color: "rgba(30,45,42,0.72)", margin: 0 }}>
+              {t("localDesc2")}
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ════ 4. NAVEGAÇÃO — 4 QUADRADOS ════ */}
       <section aria-label={t("explorarTitle")}>
         <div className="nav-squares-grid">
           {[

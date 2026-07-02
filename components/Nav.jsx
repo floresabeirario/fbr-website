@@ -34,6 +34,10 @@ const PAGE_COLORS = {
 };
 const DEFAULT_CTA = { bg: "var(--green)", shadow: "rgba(61,107,94,0.32)" };
 
+// Altura da barra de anúncio no topo (px) — a nav desloca-se esta altura
+// enquanto a barra está visível; ao fazer scroll a barra sai e a nav volta a 0.
+const ANNOUNCE_H = 30;
+
 // ── Ícones do menu mobile ──────────────────────────────────────────────────
 const IconFlor6 = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -500,16 +504,40 @@ export default function NavClient() {
 
   return (
     <>
+      {/* ── BARRA DE ANÚNCIO — "servimos todo o país" ── */}
+      <div
+        role="note"
+        style={{
+          position: "fixed", top: 0, width: "100%", zIndex: 101,
+          height: `${ANNOUNCE_H}px`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          padding: "0 14px",
+          backgroundColor: "var(--dark)",
+          color: "var(--cream)",
+          transform: scrolled ? `translateY(-${ANNOUNCE_H}px)` : "translateY(0)",
+          transition: "transform 0.4s ease",
+        }}
+      >
+        <span style={{
+          fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
+          fontSize: "0.6rem", fontWeight: 600, letterSpacing: "1.6px",
+          textTransform: "uppercase", whiteSpace: "nowrap",
+          overflow: "hidden", textOverflow: "ellipsis",
+        }}>
+          {t("announce")}
+        </span>
+      </div>
+
       {/* ── BARRA DE NAVEGAÇÃO ── */}
       <nav
         role="navigation"
         aria-label={t("menuLabel")}
         data-scrolled={scrolled ? "true" : "false"}
         style={{
-          position: "fixed", top: 0, width: "100%", zIndex: 100,
+          position: "fixed", top: scrolled ? 0 : ANNOUNCE_H, width: "100%", zIndex: 100,
           backgroundColor: show ? "rgba(250,247,240,0.95)" : "transparent",
           backdropFilter: show ? "blur(10px)" : "none",
-          transition: "background-color 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease",
+          transition: "background-color 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease, top 0.4s ease",
           padding: show ? "14px 0" : "24px 0",
         }}
       >

@@ -33,6 +33,26 @@ export const FAQ_DATA_EN = [
   },
   {
     cat: "processo",
+    q: "My wedding or event has already taken place. Is there still time to preserve the flowers?",
+    plain:
+      "Yes, in most cases. If the flowers are kept in water, somewhere cool and away from the sun, we can usually preserve them as long as they reach us within the first 5 days after the wedding or event. Contact us on WhatsApp as soon as possible so we can assess the condition of the flowers and arrange the fastest delivery. If too much time has passed, we can recreate the bouquet using similar fresh flowers from a photograph.",
+    a: (
+      <>
+        Yes, in most cases. If the flowers are kept <strong>in water, somewhere cool</strong> and
+        away from the sun, we can usually preserve them as long as they reach us within the{" "}
+        <strong>first 5 days</strong> after the wedding or event.
+        <br /><br />
+        Contact us on WhatsApp <strong>as soon as possible</strong> so we can assess the condition
+        of the flowers and arrange the fastest delivery.
+        <br /><br />
+        If too much time has passed, we can always{" "}
+        <a href="/en/bouquet-recreation" className="faq-link">recreate the bouquet</a>{" "}
+        using similar fresh flowers from a photograph.
+      </>
+    ),
+  },
+  {
+    cat: "processo",
     q: "How long does the preservation process take?",
     plain:
       "Our average turnaround is up to 6 months from the time we receive the flowers to the finished framed piece. We always do our best to be faster, but pressing is a delicate process that cannot be rushed. We never sacrifice quality for speed. If the order includes multiple frames, the timeline may extend slightly.",
