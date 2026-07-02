@@ -24,7 +24,7 @@ export default function PerguntasFrequentesClient() {
 
   return (
     <>
-      <div style={{ backgroundColor: "var(--cream)" }}>
+      <div style={{ backgroundColor: "var(--cream)", overflowX: "clip" }}>
 
         {/* Hero */}
         <section

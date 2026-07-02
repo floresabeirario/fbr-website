@@ -424,6 +424,10 @@ button:focus-visible {
 .momento-page {
   background-color: var(--cream);
   min-height: 100vh;
+  /* Sem isto a página ganha scroll horizontal (widgets de terceiros, como o
+     Elfsight das reviews, esticam além do ecrã) e o logo fixo da nav parece
+     descentrado. As restantes páginas têm o mesmo clip no wrapper raiz. */
+  overflow-x: clip;
 }
 
 .momento-hero {
