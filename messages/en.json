@@ -184,7 +184,7 @@
     "noivasSaberMais": "Learn More",
     "eventoPassouEyebrow": "There is still time",
     "eventoPassouTitle": "Already had your wedding or event?",
-    "eventoPassouDesc": "Contact us anyway. If the flowers are kept in water, somewhere cool, we can usually still preserve them in the first days after the wedding or event. And if too much time has passed, we can recreate the bouquet with similar flowers from a photograph.",
+    "eventoPassouDesc": "Contact us anyway. If the flowers are kept in water, somewhere cool, we can usually still preserve them up to 6 days after the wedding or event, depending on the type of flowers. And if too much time has passed, we can recreate the bouquet with similar flowers from a photograph.",
     "eventoPassouCTA": "Talk to us now",
     "eventoPassouRecriacao": "Discover bouquet recreation →",
     "sliderAntes": "Before",
@@ -282,7 +282,7 @@
   "comoFunciona": {
     "meta": {
       "title": "How Flower Preservation Works: 5 Steps | Flores à Beira-Rio",
-      "description": "The 5 steps of artisan preservation: booking, hand-in within 5 days, pressing, composition approval, and shipping of the framed piece. Up to 6 months.",
+      "description": "The 5 steps of artisan preservation: booking, hand-in within 6 days, pressing, composition approval, and shipping of the framed piece. Up to 6 months.",
       "ogTitle": "How Flower Preservation Works: 5 Steps | Flores à Beira-Rio",
       "ogDescription": "The 5 steps of artisan preservation: booking, hand-in, pressing, approval and shipping of the framed piece. Up to 6 months.",
       "ogImageAlt": "Botanical flower preservation process, Flores à Beira-Rio",
@@ -330,7 +330,7 @@
       },
       {
         "titulo": "The flowers come to us",
-        "tag": "Within 5 days",
+        "tag": "Within 6 days",
         "corpo": "After the event, flowers must reach us as fresh as possible, ideally within 1 to 3 days, maximum 5. While you wait, keep the flowers in a vase with fresh water away from sun and heat. The 40% payment will be requested after we receive the flowers.",
         "nota": "",
         "opcoes": [
@@ -593,6 +593,7 @@
     "floresP1": "At Flores à Beira-Rio, we transform emotionally meaningful flowers into botanical art frames that last decades. Every petal is pressed individually and framed with anti-UV museum glass, in a frame handmade at our atelier in Coimbra.",
     "floresP2": "Prices from €300, with payment in three instalments. The process takes up to 6 months and we ship across Europe.",
     "floresP3": "Flowers reach us from every chapter of life: the wedding bouquet, the flowers from a baptism or the birth of a child, the small bouquet from a proposal, flowers from a milestone anniversary, and also memorial flowers, preserved as a serene memory of someone dearly missed. Your flowers can reach us by hand, by post from anywhere in the country, or with pickup at the venue. And if yours come from a moment not on this list, talk to us anyway: if they carry a story, we preserve them.",
+    "envioGuiaLink": "How to ship your flowers by post →",
     "saberMais": "Learn more →",
     "reserveTitle": "Book your spot",
     "reserveDesc": "Slots are limited, especially between May and September. Book as soon as you know the event date.",
@@ -651,8 +652,8 @@
     "ctaFAQ": "Frequently asked questions",
     "features": [
       {
-        "titulo": "Hand in the bouquet within 5 days",
-        "desc": "After the wedding, send us the bouquet as quickly as possible. Ideally 1 to 3 days; we accept up to 5 days after the ceremony. While you wait, keep it in a vase with fresh water, away from heat and sunlight."
+        "titulo": "Hand in the bouquet within 6 days",
+        "desc": "After the wedding, send us the bouquet as quickly as possible. Ideally 1 to 3 days; we accept up to 6 days after the ceremony. While you wait, keep it in a vase with fresh water, away from heat and sunlight."
       },
       {
         "titulo": "Approve the composition before sealing",
@@ -727,7 +728,7 @@
       },
       {
         "q": "What is the maximum time to hand in the bouquet after the wedding?",
-        "a": "We accept bouquets up to 5 days after the ceremony. Ideally within 1 to 3 days: the fresher the bouquet, the more compositional options are available."
+        "a": "We accept bouquets up to 6 days after the ceremony, depending on the type of flowers. Ideally within 1 to 3 days: the fresher the bouquet, the more compositional options are available."
       },
       {
         "q": "How should I keep the bouquet until I hand it in?",
@@ -792,7 +793,7 @@
         "desc": "We treat every order of this kind with special attention. We know what it represents and we work with the respect and discretion the circumstances require."
       },
       {
-        "titulo": "Send the flowers within 5 days",
+        "titulo": "Send the flowers within 6 days",
         "desc": "Ideally deliver the flowers within the first 1 to 3 days after the ceremony. If the deadline has passed, contact us to discuss options, including recreation with fresh flowers."
       },
       {
@@ -806,7 +807,7 @@
     "faqItems": [
       {
         "q": "When should I hand in the flowers after the ceremony?",
-        "a": "As soon as possible, within 5 days of the ceremony. The fresher the flowers, the better the pressing result. If more time has passed, please contact us: recreation with similar flowers is also possible."
+        "a": "As soon as possible, within 6 days of the ceremony. The fresher the flowers, the better the pressing result. If more time has passed, please contact us: recreation with similar flowers is also possible."
       },
       {
         "q": "What types of flowers can be preserved?",
@@ -864,7 +865,7 @@
     "faqItems": [
       {
         "q": "When should I hand in the flowers after the baptism or birth?",
-        "a": "As soon as possible, within 5 days of the celebration. The fresher the flowers, the better the pressing result."
+        "a": "As soon as possible, within 6 days of the celebration. The fresher the flowers, the better the pressing result."
       },
       {
         "q": "What types of flowers can be preserved?",
@@ -895,7 +896,7 @@
     "contentTitle": "Flowers that deserve to last more than a week",
     "contentEm": "more than a week",
     "p1": "Anniversary flowers last, on average, one week. The emotion they represent can last a lifetime. Through artisan botanical pressing, we transform those flowers into a frame that stays permanently at home.",
-    "p2": "Simply hand us the flowers in the days following the anniversary (up to 5 days, ideally 1 to 3). We handle the pressing, artistic composition, approval with you, and framing with anti-UV museum glass and a custom-made mount in Coimbra.",
+    "p2": "Simply hand us the flowers in the days following the anniversary (up to 6 days, ideally 1 to 3). We handle the pressing, artistic composition, approval with you, and framing with anti-UV museum glass and a custom-made mount in Coimbra.",
     "ctaFinalTitle": "Turn the flowers into a memory",
     "ctaFinalEm": "into a memory",
     "ctaFinalDesc": "Book your spot and make sure that anniversary lasts forever. Prices from €300, with payment in three instalments.",
@@ -922,7 +923,7 @@
     "faqItems": [
       {
         "q": "When should I hand in the flowers after the anniversary?",
-        "a": "As soon as possible, within 5 days of the anniversary. The fresher the flowers, the better the pressing result."
+        "a": "As soon as possible, within 6 days of the anniversary. The fresher the flowers, the better the pressing result."
       },
       {
         "q": "What types of flowers can be preserved?",
@@ -950,7 +951,7 @@
     "eyebrow2": "Before Everything Else",
     "contentTitle": "Where it all began",
     "p1": "There is a date before the wedding that is often forgotten: the proposal day. The flowers that were there that night deserve to be kept with the same care as the wedding bouquet.",
-    "p2": "Hand us the flowers in the days following the proposal (up to 5 days, ideally 1 to 3) and we transform them into a botanical art frame. Every petal is pressed individually, the composition is approved by you, and the result is framed with anti-UV museum glass and a custom-made mount in Coimbra.",
+    "p2": "Hand us the flowers in the days following the proposal (up to 6 days, ideally 1 to 3) and we transform them into a botanical art frame. Every petal is pressed individually, the composition is approved by you, and the result is framed with anti-UV museum glass and a custom-made mount in Coimbra.",
     "ctaReservar": "Book a Date",
     "ctaWA": "WhatsApp",
     "contentEm": "began",
@@ -980,7 +981,7 @@
     "faqItems": [
       {
         "q": "When should I hand in the flowers after the proposal?",
-        "a": "As soon as possible, within 5 days of the proposal. The fresher the flowers, the better the pressing result."
+        "a": "As soon as possible, within 6 days of the proposal. The fresher the flowers, the better the pressing result."
       },
       {
         "q": "Do you preserve any type of flowers?",
@@ -1984,6 +1985,7 @@
     "localSub": "A studio in Coimbra, open to the whole country",
     "localDesc1": "We work from Coimbra, in a studio dedicated to botanical preservation. As it is a working space, with flowers in press and delicate pieces in progress, it is not open to the public.",
     "localDesc2": "We receive your flowers in Coimbra, wherever they come from: delivered by hand (by appointment), shipped by post from anywhere in the country, or collected by us at your event.",
+    "localEnvioLink": "How to ship your flowers by post →",
     "explorarTitle": "Explore services",
     "membros": [
       {

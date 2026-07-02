@@ -55,13 +55,13 @@ function buildSchema(locale) {
       : "Processo artesanal para preservar as flores do pedido de casamento ou noivado num quadro botânico.",
     step: isEN
       ? [
-          { "@type": "HowToStep", position: 1, name: "Contact us within days of the proposal", text: "Get in touch as soon as possible, ideally within 1 to 3 days of the proposal (up to 5 days). The flowers are at their best for preservation." },
+          { "@type": "HowToStep", position: 1, name: "Contact us within days of the proposal", text: "Get in touch as soon as possible, ideally within 1 to 3 days of the proposal (up to 6 days). The flowers are at their best for preservation." },
           { "@type": "HowToStep", position: 2, name: "Hand in the flowers", text: "Drop them off in person in Coimbra, send them by express courier, or request collection (subject to availability). We receive flowers Monday to Sunday." },
           { "@type": "HowToStep", position: 3, name: "Approve the composition", text: "We send photographs of the composition by email. You have 72 hours to approve or request changes." },
           { "@type": "HowToStep", position: 4, name: "Receive the framed piece", text: "The framed artwork is shipped with insurance and specialist packaging, worldwide." },
         ]
       : [
-          { "@type": "HowToStep", position: 1, name: "Contactar nos primeiros dias após o pedido", text: "Entre em contacto assim que possível, idealmente nos primeiros 1 a 3 dias após o pedido (até 5 dias). As flores estão no ponto óptimo para preservação." },
+          { "@type": "HowToStep", position: 1, name: "Contactar nos primeiros dias após o pedido", text: "Entre em contacto assim que possível, idealmente nos primeiros 1 a 3 dias após o pedido (até 6 dias). As flores estão no ponto óptimo para preservação." },
           { "@type": "HowToStep", position: 2, name: "Entregar as flores", text: "Pode entregar em mãos em Coimbra, enviar por correio expresso, ou solicitar recolha (consulte disponibilidade). Recebemos de segunda a domingo." },
           { "@type": "HowToStep", position: 3, name: "Aprovar a composição", text: "Enviamos fotografias da composição por e-mail. Tem 72 horas para aprovar ou pedir alterações." },
           { "@type": "HowToStep", position: 4, name: "Receber o quadro em casa", text: "O quadro emoldurado é enviado com seguro e embalagem especializada para qualquer ponto do país." },
@@ -69,13 +69,13 @@ function buildSchema(locale) {
   };
 
   const faqPT = [
-    { q: "Quando devo entregar as flores depois do pedido?", a: "O mais cedo possível, até 5 dias após o pedido. Quanto mais frescas as flores, melhor o resultado da prensagem." },
+    { q: "Quando devo entregar as flores depois do pedido?", a: "O mais cedo possível, até 6 dias após o pedido. Quanto mais frescas as flores, melhor o resultado da prensagem." },
     { q: "Preservam todo o tipo de flores?", a: "Sim. Trabalhamos com todo o tipo de flores. Cada espécie reage de forma diferente à prensagem e adaptamos a técnica em conformidade." },
     { q: "Apenas fazem quadros?", a: "Não. Além do quadro principal, pode acrescentar à sua encomenda Ornamentos de Natal, quadros mais pequenos e Pendentes para Colar feitos com as mesmas flores. Veja todas as opções e preços em " + SITE_URL + "/opcoes-e-precos" },
   ];
 
   const faqEN = [
-    { q: "When should I hand in the flowers after the proposal?", a: "As soon as possible, within 5 days of the proposal. The fresher the flowers, the better the pressing result." },
+    { q: "When should I hand in the flowers after the proposal?", a: "As soon as possible, within 6 days of the proposal. The fresher the flowers, the better the pressing result." },
     { q: "Do you preserve any type of flowers?", a: "Yes. We work with all kinds of flowers. Each species reacts differently to pressing, and we adapt the technique accordingly." },
     { q: "Do you only make framed pieces?", a: "No. In addition to the main frame, you can add Christmas Ornaments, smaller frames, and Pendant Necklaces made from the same flowers to your order. See all options and prices at " + SITE_URL + "/en/options-and-pricing" },
   ];

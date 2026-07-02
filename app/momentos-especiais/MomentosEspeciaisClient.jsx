@@ -48,6 +48,12 @@ export default function MomentosEspeciaisClient() {
           <p className="momento-content-p">{t("floresP1")}</p>
           <p className="momento-content-p">{t("floresP2")}</p>
           <p className="momento-content-p">{t("floresP3")}</p>
+          <a
+            href={locale === "en" ? "/en/how-to-ship-your-flowers" : "/enviar-flores-por-correio"}
+            style={{ display: "inline-block", marginTop: 6, color: "var(--green)", fontWeight: 600, fontSize: "0.85rem", textDecoration: "none", borderBottom: "1px solid rgba(61,107,94,0.3)", paddingBottom: 2 }}
+          >
+            {t("envioGuiaLink")}
+          </a>
         </motion.div>
       </section>
 

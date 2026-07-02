@@ -84,7 +84,7 @@ export default function PerguntasFrequentesClient() {
                 fontSize: "clamp(2.4rem,6vw,5rem)",
                 color: "var(--cream)",
                 margin: "0 auto",
-                lineHeight: 1.02,
+                lineHeight: 1.12,
                 textShadow: "0 4px 32px rgba(0,0,0,0.3)",
                 maxWidth: "800px",
               }}>

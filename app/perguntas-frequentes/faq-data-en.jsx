@@ -7,7 +7,7 @@ export const FAQ_DATA_EN = [
     cat: "processo",
     q: "When should I book my bouquet preservation?",
     plain:
-      "The ideal time is as soon as you know your event date, there is no need to wait until it is approaching. By booking early, we can plan every detail of the flower delivery together, ensuring the process runs smoothly. Slots are limited, and during peak months some dates book out well in advance. If your event has already taken place, contact us as soon as possible. If more than 5 days have passed and the flowers are no longer in good condition, we can always recreate the bouquet using similar fresh flowers from a photograph.",
+      "The ideal time is as soon as you know your event date, there is no need to wait until it is approaching. By booking early, we can plan every detail of the flower delivery together, ensuring the process runs smoothly. Slots are limited, and during peak months some dates book out well in advance. If your event has already taken place, contact us as soon as possible. If more than 6 days have passed and the flowers are no longer in good condition, we can always recreate the bouquet using similar fresh flowers from a photograph.",
     a: (
       <>
         The ideal time is as soon as you know your event date, there is{" "}
@@ -19,7 +19,7 @@ export const FAQ_DATA_EN = [
         advance.
         <br /><br />
         If your event has already taken place,{" "}
-        <strong>contact us as soon as possible</strong>. If more than 5 days
+        <strong>contact us as soon as possible</strong>. If more than 6 days
         have passed and the flowers are no longer in good condition, we can
         always{" "}
         <a href="/en/bouquet-recreation" className="faq-link">
@@ -35,12 +35,13 @@ export const FAQ_DATA_EN = [
     cat: "processo",
     q: "My wedding or event has already taken place. Is there still time to preserve the flowers?",
     plain:
-      "Yes, in most cases. If the flowers are kept in water, somewhere cool and away from the sun, we can usually preserve them as long as they reach us within the first 5 days after the wedding or event. Contact us on WhatsApp as soon as possible so we can assess the condition of the flowers and arrange the fastest delivery. If too much time has passed, we can recreate the bouquet using similar fresh flowers from a photograph.",
+      "Yes, in most cases. If the flowers are kept in water, somewhere cool and away from the sun, we can usually preserve them as long as they reach us within the first 6 days after the wedding or event (the exact window depends on the type of flowers). Contact us on WhatsApp as soon as possible so we can assess the condition of the flowers and arrange the fastest delivery. If too much time has passed, we can recreate the bouquet using similar fresh flowers from a photograph.",
     a: (
       <>
         Yes, in most cases. If the flowers are kept <strong>in water, somewhere cool</strong> and
         away from the sun, we can usually preserve them as long as they reach us within the{" "}
-        <strong>first 5 days</strong> after the wedding or event.
+        <strong>first 6 days</strong> after the wedding or event (the exact
+        window depends on the type of flowers).
         <br /><br />
         Contact us on WhatsApp <strong>as soon as possible</strong> so we can assess the condition
         of the flowers and arrange the fastest delivery.
@@ -128,6 +129,8 @@ export const FAQ_DATA_EN = [
         <br /><br />
         We recommend shipping{" "}
         <strong>as soon as possible</strong> after the event.
+        <br /><br />
+        <a href="/en/how-to-ship-your-flowers" className="faq-link">See the guide to packing and shipping your flowers →</a>
       </>
     ),
   },
@@ -220,15 +223,15 @@ export const FAQ_DATA_EN = [
   },
   {
     cat: "flores",
-    q: "What if I can't deliver the flowers within 5 days?",
+    q: "What if I can't deliver the flowers within 6 days?",
     plain:
-      "Each situation is assessed on a case-by-case basis, so contact us as soon as possible. If more than 5 days have already passed, we may not be able to guarantee the viability of the preservation. In that case, we recommend our bouquet recreation service.",
+      "Each situation is assessed on a case-by-case basis, so contact us as soon as possible. If more than 6 days have already passed, we may not be able to guarantee the viability of the preservation. In that case, we recommend our bouquet recreation service.",
     a: (
       <>
         Each situation is assessed <strong>on a case-by-case basis</strong>,
         so contact us as soon as possible.
         <br /><br />
-        If more than 5 days have already passed, we may not be able to
+        If more than 6 days have already passed, we may not be able to
         guarantee the viability of the preservation. In that case, we recommend
         our{" "}
         <a href="/en/bouquet-recreation" className="faq-link">
@@ -277,12 +280,12 @@ export const FAQ_DATA_EN = [
     cat: "flores",
     q: "How long can the flowers wait before being delivered?",
     plain:
-      "We recommend 1 to 3 days after the event, and a maximum of 5 days. While waiting, keep them in a vase with fresh water, away from heat and direct sunlight.",
+      "We recommend 1 to 3 days after the event, and a maximum of 6 days. While waiting, keep them in a vase with fresh water, away from heat and direct sunlight.",
     a: (
       <>
         We recommend the flowers reach us{" "}
         <strong>preferably within 1 to 3 days</strong> of the event, and a
-        maximum of 5 days. The fresher they arrive, the better the final
+        maximum of 6 days. The fresher they arrive, the better the final
         result.
         <br /><br />
         While waiting, keep the flowers{" "}
@@ -331,6 +334,8 @@ export const FAQ_DATA_EN = [
         <br /><br />
         <strong>Collection at the venue</strong>: we travel to the location;
         subject to a quote and availability.
+        <br /><br />
+        <a href="/en/how-to-ship-your-flowers" className="faq-link">See the step-by-step guide to shipping your flowers →</a>
       </>
     ),
   },

@@ -23,7 +23,7 @@ const HowToSchema = () => (
         totalTime: "P6M",
         estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "300" },
         supply: [
-          { "@type": "HowToSupply", name: "Flores frescas (até 5 dias após o evento)" },
+          { "@type": "HowToSupply", name: "Flores frescas (até 6 dias após o evento)" },
           { "@type": "HowToSupply", name: "Fotografias do dia (opcional, para referência)" },
         ],
         tool: [{ "@type": "HowToTool", name: "Formulário de reserva online" }],

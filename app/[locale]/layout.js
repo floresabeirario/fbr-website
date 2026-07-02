@@ -9,6 +9,7 @@ import { SITE_URL } from "@/app/_lib/constants";
 import NavClient from "@/components/Nav";
 import FooterClient from "@/components/Footer";
 import MotionProvider from "@/app/MotionProvider";
+import { AltLocaleHrefProvider } from "@/app/_components/AltLocaleHref";
 import "@/app/globals.css";
 
 const googleSans = Google_Sans({
@@ -66,11 +67,13 @@ export default async function LocaleLayout({ children, params }) {
     <html lang={locale} className={googleSans.variable}>
       <body style={{ fontFamily: "var(--font-google-sans), sans-serif" }}>
         <NextIntlClientProvider>
-          <MotionProvider>
-            <NavClient />
-            <main>{children}</main>
-            <FooterClient />
-          </MotionProvider>
+          <AltLocaleHrefProvider>
+            <MotionProvider>
+              <NavClient />
+              <main>{children}</main>
+              <FooterClient />
+            </MotionProvider>
+          </AltLocaleHrefProvider>
         </NextIntlClientProvider>
       </body>
     </html>

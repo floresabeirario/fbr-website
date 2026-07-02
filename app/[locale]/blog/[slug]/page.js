@@ -5,6 +5,7 @@ import remarkGfm from "remark-gfm";
 import { getPostBySlug, getAllPosts, getRelatedPosts } from "@/app/_lib/blog";
 import ArticleClient from "@/app/blog/[slug]/ArticleClient";
 import { mdxComponents } from "@/app/blog/[slug]/MdxComponents";
+import { SetAltLocaleHref } from "@/app/_components/AltLocaleHref";
 import { SITE_URL } from "@/app/_lib/constants";
 import { buildBlogAlternates } from "@/app/_lib/metadata";
 
@@ -91,8 +92,20 @@ export default async function ArticlePage({ params }) {
 
   const related = getRelatedPosts(post.slug, post.category, post.tags, locale);
 
+  // URL deste artigo no outro idioma (slugs diferem entre PT/EN).
+  // Sem contraparte, o switcher da Nav leva à listagem do blog em vez de 404.
+  const altHref =
+    locale === "pt"
+      ? post.enSlug
+        ? `/en/blog/${post.enSlug}`
+        : "/en/blog"
+      : post.ptSlug
+        ? `/blog/${post.ptSlug}`
+        : "/blog";
+
   return (
     <>
+      <SetAltLocaleHref href={altHref} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBlogPostingSchema(post, locale, slug)) }}

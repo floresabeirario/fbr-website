@@ -32,11 +32,11 @@ function PostCard({ post, categoryLabels, index, t }) {
         <div className="post-card-body">
           <div className="post-card-meta">
             <span className="post-card-category">{categoryLabels[post.category] || post.category}</span>
-            <span className="post-card-time">{post.readTime} {t("minLeitura")}</span>
+            <span className="post-card-time">{formatDate(post.date)} · {post.readTime} {t("minLeitura")}</span>
           </div>
           <h2 className="post-card-title">{post.title}</h2>
           <p className="post-card-desc">{post.description}</p>
-          <span className="post-card-date">{formatDate(post.date)}</span>
+          <span className="post-card-read">{t("lerArtigo")} <span className="post-card-arrow" aria-hidden="true">→</span></span>
         </div>
       </a>
     </motion.article>

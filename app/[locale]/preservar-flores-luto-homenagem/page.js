@@ -55,13 +55,13 @@ function buildSchema(locale) {
       : "Processo artesanal para preservar as flores de uma cerimónia de homenagem num quadro botânico.",
     step: isEN
       ? [
-          { "@type": "HowToStep", position: 1, name: "Contact us within days of the ceremony", text: "Get in touch as soon as possible, ideally within 1 to 3 days of the ceremony (up to 5 days). The flowers are at their best for preservation." },
+          { "@type": "HowToStep", position: 1, name: "Contact us within days of the ceremony", text: "Get in touch as soon as possible, ideally within 1 to 3 days of the ceremony (up to 6 days). The flowers are at their best for preservation." },
           { "@type": "HowToStep", position: 2, name: "Hand in the flowers", text: "Drop them off in person in Coimbra, send them by express courier, or request collection (subject to availability). We receive flowers Monday to Sunday." },
           { "@type": "HowToStep", position: 3, name: "Approve the composition", text: "We send photographs of the composition by email. You have 72 hours to approve or request changes." },
           { "@type": "HowToStep", position: 4, name: "Receive the framed piece", text: "The framed artwork is shipped with insurance and specialist packaging, worldwide." },
         ]
       : [
-          { "@type": "HowToStep", position: 1, name: "Contactar nos primeiros dias após a cerimónia", text: "Entre em contacto assim que possível, idealmente nos primeiros 1 a 3 dias após a cerimónia (até 5 dias). As flores estão no ponto óptimo para preservação." },
+          { "@type": "HowToStep", position: 1, name: "Contactar nos primeiros dias após a cerimónia", text: "Entre em contacto assim que possível, idealmente nos primeiros 1 a 3 dias após a cerimónia (até 6 dias). As flores estão no ponto óptimo para preservação." },
           { "@type": "HowToStep", position: 2, name: "Entregar as flores", text: "Pode entregar em mãos em Coimbra, enviar por correio expresso, ou solicitar recolha (consulte disponibilidade). Recebemos de segunda a domingo." },
           { "@type": "HowToStep", position: 3, name: "Aprovar a composição", text: "Enviamos fotografias da composição por e-mail. Tem 72 horas para aprovar ou pedir alterações." },
           { "@type": "HowToStep", position: 4, name: "Receber o quadro em casa", text: "O quadro emoldurado é enviado com seguro e embalagem especializada para qualquer ponto do país." },
@@ -69,13 +69,13 @@ function buildSchema(locale) {
   };
 
   const faqPT = [
-    { q: "Quando devo entregar as flores depois da cerimónia?", a: "O mais cedo possível, até 5 dias após a cerimónia. Quanto mais frescas as flores, melhor o resultado da prensagem. Se já passou tempo, contacte-nos: a recriação com flores semelhantes é uma alternativa possível." },
+    { q: "Quando devo entregar as flores depois da cerimónia?", a: "O mais cedo possível, até 6 dias após a cerimónia. Quanto mais frescas as flores, melhor o resultado da prensagem. Se já passou tempo, contacte-nos: a recriação com flores semelhantes é uma alternativa possível." },
     { q: "Que tipo de flores se podem preservar?", a: "Qualquer tipo: coroas, ramos, ou flores enviadas pela família e amigos. Cada espécie reage de forma diferente à prensagem e adaptamos a técnica em conformidade." },
     { q: "Apenas fazem quadros, ou peças mais pequenas?", a: "Além do quadro principal, pode acrescentar à encomenda quadros mais pequenos e Pendentes para Colar feitos com as mesmas flores. Veja todas as opções e preços em " + SITE_URL + "/opcoes-e-precos" },
   ];
 
   const faqEN = [
-    { q: "When should I hand in the flowers after the ceremony?", a: "As soon as possible, within 5 days of the ceremony. The fresher the flowers, the better the pressing result. If more time has passed, please contact us: recreation with similar flowers is also possible." },
+    { q: "When should I hand in the flowers after the ceremony?", a: "As soon as possible, within 6 days of the ceremony. The fresher the flowers, the better the pressing result. If more time has passed, please contact us: recreation with similar flowers is also possible." },
     { q: "What types of flowers can be preserved?", a: "Any type: wreaths, bouquets, or flowers sent by family and friends. Each species reacts differently to pressing, and we adapt the technique accordingly." },
     { q: "Do you only make framed pieces, or smaller pieces too?", a: "In addition to the main frame, you can add smaller frames and Pendant Necklaces made from the same flowers to your order. See all options and prices at " + SITE_URL + "/en/options-and-pricing" },
   ];

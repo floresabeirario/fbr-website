@@ -6,7 +6,7 @@ export const FAQ_DATA = [
     cat: "processo",
     q: "Quando devo agendar a preservação do meu bouquet?",
     plain:
-      "O ideal é agendar assim que souber a data do evento, não precisa de esperar que o dia se aproxime. Com antecedência, conseguimos planear consigo todos os detalhes da entrega das flores, garantindo que o processo decorre com tranquilidade e cuidado. As vagas são limitadas e, em meses de maior procura, algumas datas esgotam com bastante antecedência. Se o evento já aconteceu, contacte-nos assim que possível. Caso tenham passado mais de 5 dias e as flores já não estejam em bom estado, podemos sempre recriar o bouquet com flores frescas semelhantes, a partir de uma fotografia.",
+      "O ideal é agendar assim que souber a data do evento, não precisa de esperar que o dia se aproxime. Com antecedência, conseguimos planear consigo todos os detalhes da entrega das flores, garantindo que o processo decorre com tranquilidade e cuidado. As vagas são limitadas e, em meses de maior procura, algumas datas esgotam com bastante antecedência. Se o evento já aconteceu, contacte-nos assim que possível. Caso tenham passado mais de 6 dias e as flores já não estejam em bom estado, podemos sempre recriar o bouquet com flores frescas semelhantes, a partir de uma fotografia.",
     a: (
       <>
         O ideal é agendar <strong>assim que souber a data do evento</strong>, não precisa de esperar
@@ -16,7 +16,7 @@ export const FAQ_DATA = [
         As vagas são limitadas e, em meses de maior procura, algumas datas esgotam com bastante antecedência.
         <br /><br />
         Se o evento já aconteceu, <strong>contacte-nos assim que possível</strong>.
-        Caso tenham passado mais de 5 dias e as flores já não estejam em bom estado,
+        Caso tenham passado mais de 6 dias e as flores já não estejam em bom estado,
         podemos sempre{" "}
         <a href="/recriacao" className="faq-link">recriar o bouquet</a>{" "}
         com flores frescas semelhantes, a partir de uma fotografia.
@@ -29,12 +29,13 @@ export const FAQ_DATA = [
     cat: "processo",
     q: "O meu casamento ou evento já passou. Ainda vou a tempo de preservar as flores?",
     plain:
-      "Sim, na maioria dos casos. Se as flores forem mantidas em água, num local fresco e longe do sol, normalmente conseguimos preservá-las se chegarem até nós nos primeiros 5 dias após o casamento ou evento. Contacte-nos por WhatsApp assim que possível para avaliarmos o estado das flores e combinarmos a entrega mais rápida. Se já tiver passado demasiado tempo, podemos recriar o bouquet com flores frescas semelhantes, a partir de uma fotografia.",
+      "Sim, na maioria dos casos. Se as flores forem mantidas em água, num local fresco e longe do sol, normalmente conseguimos preservá-las se chegarem até nós nos primeiros 6 dias após o casamento ou evento (o prazo exacto depende do tipo de flores). Contacte-nos por WhatsApp assim que possível para avaliarmos o estado das flores e combinarmos a entrega mais rápida. Se já tiver passado demasiado tempo, podemos recriar o bouquet com flores frescas semelhantes, a partir de uma fotografia.",
     a: (
       <>
         Sim, na maioria dos casos. Se as flores forem mantidas <strong>em água, num local fresco</strong> e
         longe do sol, normalmente conseguimos preservá-las se chegarem até nós nos{" "}
-        <strong>primeiros 5 dias</strong> após o casamento ou evento.
+        <strong>primeiros 6 dias</strong> após o casamento ou evento (o prazo
+        exacto depende do tipo de flores).
         <br /><br />
         Contacte-nos por WhatsApp <strong>assim que possível</strong> para avaliarmos o estado das
         flores e combinarmos a entrega mais rápida.
@@ -113,6 +114,8 @@ export const FAQ_DATA = [
         e os custos e responsabilidade do envio até ao nosso atelier são do remetente.
         <br /><br />
         Recomendamos que o envio seja feito <strong>o mais rápido possível</strong> após o evento.
+        <br /><br />
+        <a href="/enviar-flores-por-correio" className="faq-link">Ver o guia para embalar e enviar as flores →</a>
       </>
     ),
   },
@@ -189,14 +192,14 @@ export const FAQ_DATA = [
   },
   {
     cat: "flores",
-    q: "E se não conseguir entregar as flores dentro de 5 dias?",
+    q: "E se não conseguir entregar as flores dentro de 6 dias?",
     plain:
-      "Cada situação é avaliada caso a caso, por isso contacte-nos assim que possível. Se o prazo de 5 dias já tiver passado, é possível que não consigamos garantir a viabilidade da preservação. Nesse caso, recomendamos o nosso serviço de recriação de bouquet.",
+      "Cada situação é avaliada caso a caso, por isso contacte-nos assim que possível. Se o prazo de 6 dias já tiver passado, é possível que não consigamos garantir a viabilidade da preservação. Nesse caso, recomendamos o nosso serviço de recriação de bouquet.",
     a: (
       <>
         Cada situação é avaliada <strong>caso a caso</strong>, por isso contacte-nos assim que possível.
         <br /><br />
-        Se o prazo de 5 dias já tiver passado, é possível que não consigamos garantir a viabilidade
+        Se o prazo de 6 dias já tiver passado, é possível que não consigamos garantir a viabilidade
         da preservação. Nesse caso, recomendamos o nosso{" "}
         <a href="/recriacao" className="faq-link">serviço de recriação de bouquet</a>.
       </>
@@ -236,11 +239,11 @@ export const FAQ_DATA = [
     cat: "flores",
     q: "Quanto tempo as flores podem estar sem ser entregues?",
     plain:
-      "Recomendamos 1 a 3 dias após o evento, no máximo 5 dias. Enquanto não as entrega, guarde num vaso com água fresca, longe de calor e da luz solar.",
+      "Recomendamos 1 a 3 dias após o evento, no máximo 6 dias. Enquanto não as entrega, guarde num vaso com água fresca, longe de calor e da luz solar.",
     a: (
       <>
         Recomendamos que as flores cheguem até nós <strong>preferencialmente 1 a 3 dias</strong> após o evento,
-        no máximo 5 dias. Quanto mais frescas chegarem, melhor o resultado final.
+        no máximo 6 dias. Quanto mais frescas chegarem, melhor o resultado final.
         <br /><br />
         Enquanto não as entrega, guarde as flores <strong>num vaso com água fresca</strong>,
         longe de calor e da luz solar.
@@ -277,6 +280,8 @@ export const FAQ_DATA = [
         <strong>Envio por CTT</strong>, correio frágil e urgente, custos a cargo do cliente.
         <br /><br />
         <strong>Recolha no evento</strong>, deslocamo-nos ao local, sujeito a orçamento e disponibilidade.
+        <br /><br />
+        <a href="/enviar-flores-por-correio" className="faq-link">Ver o guia passo a passo para enviar as flores por correio →</a>
       </>
     ),
   },

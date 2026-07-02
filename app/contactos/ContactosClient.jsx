@@ -94,7 +94,7 @@ export default function ContactosClient() {
 
             <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="hero-text-col">
               <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmonLight, marginBottom: 16, fontFamily: GS }}>{t("eyebrow")}</span>
-              <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", color: C.cream, margin: "0 0 20px", lineHeight: 1.02 }}>
+              <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", color: C.cream, margin: "0 0 20px", lineHeight: 1.12 }}>
                 {t("h1")}
               </h1>
               <p style={{ color: "rgba(250,247,240,0.95)", fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.08rem)", lineHeight: 1.88, maxWidth: 480, margin: "0 auto 32px", textShadow: "0 1px 12px rgba(0,0,0,0.5)" }}>
@@ -237,6 +237,12 @@ export default function ContactosClient() {
             <p style={{ fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.05rem)", lineHeight: 1.85, color: "rgba(30,45,42,0.72)", margin: 0 }}>
               {t("localDesc2")}
             </p>
+            <a
+              href={locale === "en" ? "/en/how-to-ship-your-flowers" : "/enviar-flores-por-correio"}
+              style={{ display: "inline-block", marginTop: 20, color: "var(--green)", fontFamily: GS, fontWeight: 600, fontSize: "0.85rem", textDecoration: "none", borderBottom: "1px solid rgba(61,107,94,0.3)", paddingBottom: 2 }}
+            >
+              {t("localEnvioLink")}
+            </a>
           </Reveal>
         </div>
       </section>

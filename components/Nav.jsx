@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useParams, useRouter as useNextRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { FlagPT, FlagEN, IconWhatsApp } from "./Icons";
 import { usePathname as useIntlPathname, useRouter } from "@/navigation";
 import { FORM_URL } from "@/app/_lib/constants";
 import { waUrl } from "@/app/_lib/wa";
+import { useAltLocaleHref } from "@/app/_components/AltLocaleHref";
 
 // ── Cores do botão CTA por pathname (sem prefixo de locale) ────────────────
 const PAGE_COLORS = {
@@ -91,7 +92,10 @@ const IconBlog = () => (
 function LangDropdown({ scrolled, mobile = false }) {
   const locale = useLocale();
   const router = useRouter();
+  const nextRouter = useNextRouter();
   const pathname = useIntlPathname();
+  const params = useParams();
+  const alt = useAltLocaleHref();
   const t = useTranslations("nav");
   const [open, setOpen] = useState(false);
   const timerRef = useRef(null);
@@ -104,8 +108,22 @@ function LangDropdown({ scrolled, mobile = false }) {
   const textColor = scrolled ? "#1a1a1a" : "#fff";
 
   function switchLocale(next) {
-    router.replace(pathname, { locale: next });
     setOpen(false);
+    if (next === locale) return;
+    // Páginas com slugs diferentes por idioma (artigos do blog) registam o
+    // URL da contraparte via AltLocaleHref — navegar directo para ele.
+    if (alt?.altHref) {
+      nextRouter.push(alt.altHref);
+      return;
+    }
+    // Rotas dinâmicas: o pathname da next-intl é o TEMPLATE (/blog/[slug]);
+    // é preciso passar os params para substituir os placeholders.
+    if (pathname.includes("[")) {
+      const { locale: _ignored, ...rest } = params ?? {};
+      router.replace({ pathname, params: rest }, { locale: next });
+      return;
+    }
+    router.replace(pathname, { locale: next });
   }
 
   if (mobile) {
