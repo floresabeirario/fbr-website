@@ -293,6 +293,8 @@ export default function ReservarPreservacaoForm() {
       const json = await res.json();
       if (!res.ok) throw new Error(JSON.stringify(json));
       setStatus("success");
+      // Conversão: reserva enviada com sucesso. Aparece no painel do Umami.
+      window.umami?.track?.("reserva-enviada");
       setTimeout(() => successRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
     } catch (err) {
       console.error("[reservar-preservacao] submit error:", err);

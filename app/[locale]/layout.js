@@ -11,6 +11,8 @@ import FooterClient from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import MotionProvider from "@/app/MotionProvider";
 import { AltLocaleHrefProvider } from "@/app/_components/AltLocaleHref";
+import Analytics from "@/app/_components/Analytics";
+import TrackClicks from "@/app/_components/TrackClicks";
 import "@/app/globals.css";
 
 const googleSans = Google_Sans({
@@ -74,6 +76,8 @@ export default async function LocaleLayout({ children, params }) {
               <main>{children}</main>
               <FooterClient />
               <CookieConsent />
+              <Analytics />
+              <TrackClicks />
             </MotionProvider>
           </AltLocaleHrefProvider>
         </NextIntlClientProvider>
