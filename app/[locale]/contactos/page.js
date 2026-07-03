@@ -52,7 +52,6 @@ export async function generateMetadata({ params }) {
   return {
     title: t("title"),
     description: t("description"),
-    keywords: t("keywords"),
     openGraph: buildOpenGraph({
       title: t("ogTitle"),
       description: t("ogDescription"),

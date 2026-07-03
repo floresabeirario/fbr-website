@@ -376,7 +376,7 @@ export default function EmoldurarFloresSecasClient() {
                 </ul>
               </div>
               <div className="ultravue-img">
-                <Image src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" width={0} height={0} sizes="100vw" style={{ width: "100%", height: "auto", display: "block", borderRadius: "10px 10px 0 0" }} />
+                <Image src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" width={640} height={640} sizes="(max-width: 640px) 100vw, 340px" style={{ width: "100%", height: "auto", display: "block", borderRadius: "10px 10px 0 0" }} />
                 <div style={{ backgroundColor: C.creEsc, padding: "10px 14px", display: "flex", justifyContent: "space-between", borderRadius: "0 0 10px 10px" }}>
                   <span style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.6rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(15,30,26,0.35)", fontWeight: 500 }}>{t("vidroLabelNormal")}</span>
                   <span style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.6rem", letterSpacing: "1.5px", textTransform: "uppercase", color: C.azulClr, fontWeight: 700 }}>UltraVue®</span>

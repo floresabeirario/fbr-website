@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
-import Script from "next/script";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL, OPCOES_PRECOS_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
 import { splitTitle } from "../_lib/splitTitle";
+import ElfsightReviews from "@/components/ElfsightReviews";
 import BouquetNoivaFAQ from "./BouquetNoivaFAQ";
 
 const fadeUp = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } };
@@ -187,8 +187,7 @@ export default function BouquetNoivaClient() {
             <h2 className="bouquet-reviews-title">{t("reviewsTitle")}</h2>
           </div>
           <div className="bouquet-reviews-widget">
-            <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
-            <div className="elfsight-app-50e03463-0acc-415f-956d-af31053a03b6" data-elfsight-app-lazy />
+            <ElfsightReviews appId="50e03463-0acc-415f-956d-af31053a03b6" />
           </div>
         </div>
       </section>

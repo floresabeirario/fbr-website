@@ -47,16 +47,19 @@ const nextConfig = {
           // script-src 'unsafe-inline': necessário para hydration do Next.js e JSON-LD inline
           // style-src 'unsafe-inline': necessário para Framer Motion (estilos inline)
           // font-src 'self': Google Sans é auto-hospedado pelo Next.js em build
+          // font-src data:: widget Elfsight (reviews) embebe a fonte de ícones como base64
           // challenges.cloudflare.com: Turnstile (CAPTCHA) — carrega script + iframe
+          // *.umami.is: Umami (carrega o script e envia os dados de tráfego)
+          // *.clarity.ms + c.bing.com: Microsoft Clarity (heatmaps, gravações, sync)
           {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' elfsightcdn.com *.elfsightcdn.com https://challenges.cloudflare.com",
+              "script-src 'self' 'unsafe-inline' elfsightcdn.com *.elfsightcdn.com https://challenges.cloudflare.com https://*.umami.is https://*.clarity.ms",
               "style-src 'self' 'unsafe-inline' elfsightcdn.com *.elfsightcdn.com",
-              "font-src 'self' elfsightcdn.com *.elfsightcdn.com",
-              "img-src 'self' data: blob: elfsightcdn.com *.elfsightcdn.com *.googleusercontent.com",
-              "connect-src 'self' elfsightcdn.com *.elfsightcdn.com elfsight.com *.elfsight.com https://challenges.cloudflare.com",
+              "font-src 'self' data: elfsightcdn.com *.elfsightcdn.com",
+              "img-src 'self' data: blob: elfsightcdn.com *.elfsightcdn.com *.googleusercontent.com https://*.clarity.ms https://c.bing.com",
+              "connect-src 'self' elfsightcdn.com *.elfsightcdn.com elfsight.com *.elfsight.com https://challenges.cloudflare.com https://*.umami.is https://*.clarity.ms https://c.bing.com",
               "frame-src 'self' https://challenges.cloudflare.com",
               "object-src 'none'",
               "base-uri 'self'",

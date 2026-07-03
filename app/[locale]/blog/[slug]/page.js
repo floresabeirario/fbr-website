@@ -81,6 +81,8 @@ function buildBlogPostingSchema(post, locale, slug) {
     },
     url: postUrl,
     mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
+    // keywords aqui é propriedade schema.org do BlogPosting (dado estruturado
+    // válido) — não confundir com a meta tag keywords, essa sim removida.
     keywords: post.tags.join(", "),
   };
 }

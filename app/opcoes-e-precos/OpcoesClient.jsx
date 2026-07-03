@@ -575,7 +575,7 @@ export default function OpcoesClient() {
             </Reveal>
             <Reveal delay={0.1}>
               <div style={{ width: "clamp(200px, 28vw, 340px)", borderRadius: "10px", overflow: "hidden", boxShadow: "0 12px 40px rgba(26,26,26,0.12)", flexShrink: 0 }}>
-                <Image src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" width={0} height={0} sizes="100vw" style={{ width: "100%", height: "auto", display: "block" }} />
+                <Image src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" width={640} height={640} sizes="(max-width: 640px) 100vw, 340px" style={{ width: "100%", height: "auto", display: "block" }} />
                 <div style={{ backgroundColor: "#F2EDE4", padding: "12px 16px", display: "flex", justifyContent: "space-between" }}>
                   <span style={{ fontFamily: GS, fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", fontWeight: 500 }}>{t("vidroLabelNormal")}</span>
                   <span style={{ fontFamily: GS, fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: VERDE_CLARO, fontWeight: 700 }}>UltraVue®</span>
