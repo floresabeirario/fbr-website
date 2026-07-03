@@ -39,17 +39,22 @@ export default function CookieConsent() {
       style={{
         position: "fixed", bottom: "14px", left: "14px", zIndex: 150,
         maxWidth: "min(320px, calc(100vw - 28px))",
-        backgroundColor: "var(--dark)", color: "var(--cream)",
+        // Vidro translúcido cream (mesmo efeito da nav/cartão de contactos)
+        // em vez de bloco escuro sólido — integra-se sem estragar a estética.
+        backgroundColor: "rgba(250,247,240,0.72)",
+        backdropFilter: "blur(14px)",
+        WebkitBackdropFilter: "blur(14px)",
+        color: "var(--green-d)",
         borderRadius: "14px", padding: "10px 12px",
-        boxShadow: "0 8px 28px rgba(15,30,26,0.35)",
-        border: "1px solid rgba(250,247,240,0.12)",
+        boxShadow: "0 6px 24px rgba(15,30,26,0.14)",
+        border: "1px solid rgba(61,107,94,0.16)",
         fontFamily: FONT,
         display: "flex", alignItems: "center", gap: "10px",
       }}
     >
-      <p style={{ margin: 0, fontSize: "0.72rem", lineHeight: 1.5, color: "rgba(250,247,240,0.85)", flex: 1 }}>
+      <p style={{ margin: 0, fontSize: "0.72rem", lineHeight: 1.5, color: "rgba(30,45,42,0.72)", flex: 1 }}>
         {t.msg}{" "}
-        <Link href={t.privacyHref} style={{ color: "var(--green-l)", textDecoration: "underline", textUnderlineOffset: "2px", whiteSpace: "nowrap" }}>
+        <Link href={t.privacyHref} style={{ color: "var(--green)", textDecoration: "underline", textUnderlineOffset: "2px", whiteSpace: "nowrap", fontWeight: 500 }}>
           {t.privacy}
         </Link>
       </p>
