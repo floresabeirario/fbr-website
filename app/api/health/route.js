@@ -100,6 +100,35 @@ function checkResend() {
   return { ok: true };
 }
 
+// Frescura dos analytics: o cron do Clarity (/api/cron/clarity-snapshot) corre
+// a cada ~3 dias. Se o snapshot mais recente tiver mais de 4 dias, a recolha
+// parou (API/cron/BD partidos) — é assim que apanhamos o "quebrar silencioso"
+// em vez de só dar por isso meses depois, sem dados. Antes da 1ª recolha (0
+// linhas) não é alarme: é só ainda-sem-dados.
+async function checkAnalyticsFreshness(supabase) {
+  try {
+    const { data, error } = await supabase
+      .from("analytics_snapshots")
+      .select("captured_at")
+      .order("captured_at", { ascending: false })
+      .limit(1);
+    if (error)
+      return { ok: false, reason: `Tabela analytics_snapshots: ${error.message}` };
+    if (!data || data.length === 0)
+      return { ok: true, reason: "Ainda sem dados (à espera da 1ª recolha)" };
+    const last = new Date(data[0].captured_at);
+    const ageDays = (Date.now() - last.getTime()) / 86400000;
+    if (ageDays > 4)
+      return {
+        ok: false,
+        reason: `Última recolha há ${ageDays.toFixed(1)} dias — o cron do Clarity parou?`,
+      };
+    return { ok: true, lastAt: last.toISOString() };
+  } catch (err) {
+    return { ok: false, reason: `Verificação de frescura falhou: ${err.message}` };
+  }
+}
+
 export async function GET() {
   // Leitura testa o que um visitante anónimo vê (sites de status/voucher);
   // escrita testa o caminho REAL dos forms (service role com fallback anon
@@ -126,6 +155,9 @@ export async function GET() {
     ? await checkSupabaseWrite(forms)
     : { ok: false, reason: "Saltado — leitura ao Supabase falhou" };
   const resend = checkResend();
+  // Frescura dos analytics não entra no `ok` (que é sobre os formulários), mas
+  // vai no payload — o monitor semanal avisa por email se a recolha parar.
+  const analytics = await checkAnalyticsFreshness(forms);
 
   const ok = read.ok && write.ok && resend.ok;
 
@@ -135,6 +167,7 @@ export async function GET() {
       supabaseRead: read,
       supabaseWrite: write,
       resend,
+      analytics,
       checkedAt: new Date().toISOString(),
     },
     { status: ok ? 200 : 503 },

@@ -1,0 +1,13 @@
+-- db/analytics.sql
+-- ============================================================
+-- As tabelas de analytics (analytics_snapshots + analytics_monthly)
+-- vivem no MESMO Supabase que o fbr-admin (há só um projeto Supabase).
+--
+-- Por isso a migração autoritativa NÃO está aqui: está no repo do admin,
+-- como migração numerada, para não criar drift com o anti-drift do admin:
+--
+--     fbr-admin/supabase/migrations/087_analytics_snapshots.sql
+--
+-- Aplicação: Supabase Dashboard → SQL Editor → colar essa migração → Run.
+-- Este ficheiro fica só como pista para quem estiver do lado do site.
+-- ============================================================

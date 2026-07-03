@@ -37,7 +37,11 @@ export async function GET() {
     };
   }
 
-  if (health.ok) {
+  // A recolha de analytics (Clarity) não entra no health.ok dos formulários,
+  // mas também queremos ser avisados se parar em silêncio.
+  const analyticsStale = health.analytics?.ok === false;
+
+  if (health.ok && !analyticsStale) {
     console.log("[monitor-forms] Tudo OK:", health.checkedAt);
     return NextResponse.json({ ok: true, checkedAt: health.checkedAt });
   }
@@ -50,9 +54,10 @@ export async function GET() {
     if (!health.supabaseRead?.ok) problemas.push(`<li><strong>Base de dados (leitura)</strong>: ${health.supabaseRead?.reason ?? "erro desconhecido"}</li>`);
     if (!health.supabaseWrite?.ok) problemas.push(`<li><strong>Formulários (gravação de teste)</strong>: ${health.supabaseWrite?.reason ?? "erro desconhecido"}</li>`);
     if (!health.resend?.ok) problemas.push(`<li><strong>Resend (e-mail)</strong>: ${health.resend?.reason ?? "erro desconhecido"}</li>`);
+    if (analyticsStale) problemas.push(`<li><strong>Analytics (Clarity)</strong>: ${health.analytics?.reason ?? "a recolha parou"}</li>`);
 
     const html = `
-<h2 style="font-family:sans-serif;color:#c0392b;">Alerta: possível problema nos formulários</h2>
+<h2 style="font-family:sans-serif;color:#c0392b;">Alerta: possível problema no site (formulários ou analytics)</h2>
 <p style="font-family:sans-serif;">A verificação automática semanal detectou o seguinte:</p>
 <ul style="font-family:sans-serif;color:#c0392b;line-height:1.8;">
   ${problemas.join("\n  ")}

@@ -3,6 +3,10 @@
     {
       "path": "/api/cron/monitor-forms",
       "schedule": "0 6 * * 1"
+    },
+    {
+      "path": "/api/cron/clarity-snapshot",
+      "schedule": "0 7 */3 * *"
     }
   ]
 }
