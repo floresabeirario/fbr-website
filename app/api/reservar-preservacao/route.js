@@ -239,6 +239,30 @@ export async function POST(request) {
       }
     }
 
+    // ── Notificação push interna (admin PWA) ────────────────────────────────
+    // Avisa os admins no telemóvel de que entrou uma pré-reserva. Interno,
+    // best-effort — nunca faz o cliente esperar nem falha o pedido. Espelha
+    // o email acima. Depende de INTERNAL_NOTIFY_SECRET estar definido.
+    if (process.env.INTERNAL_NOTIFY_SECRET) {
+      const adminBase = process.env.ADMIN_URL || "https://admin.floresabeirario.pt";
+      try {
+        await fetch(`${adminBase}/api/internal/notify-order`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.INTERNAL_NOTIFY_SECRET}`,
+          },
+          body: JSON.stringify({
+            order_id: inserted.order_id,
+            client_name: data.nome,
+            event_type: data.tipoEvento,
+          }),
+        });
+      } catch (pushErr) {
+        console.error("[reservar-preservacao] push notify error:", pushErr);
+      }
+    }
+
     return NextResponse.json({ success: true, orderId: inserted.order_id });
   } catch (err) {
     console.error("Reservar preservacao route error:", err);
