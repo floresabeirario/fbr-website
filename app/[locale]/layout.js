@@ -8,6 +8,7 @@ import { routing } from "@/i18n/routing";
 import { SITE_URL } from "@/app/_lib/constants";
 import NavClient from "@/components/Nav";
 import FooterClient from "@/components/Footer";
+import CookieConsent from "@/components/CookieConsent";
 import MotionProvider from "@/app/MotionProvider";
 import { AltLocaleHrefProvider } from "@/app/_components/AltLocaleHref";
 import "@/app/globals.css";
@@ -72,6 +73,7 @@ export default async function LocaleLayout({ children, params }) {
               <NavClient />
               <main>{children}</main>
               <FooterClient />
+              <CookieConsent />
             </MotionProvider>
           </AltLocaleHrefProvider>
         </NextIntlClientProvider>
