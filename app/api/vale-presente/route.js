@@ -219,6 +219,29 @@ export async function POST(request) {
       }
     }
 
+    // ── Notificação push interna (admin PWA) ────────────────────────────────
+    // Avisa os admins no telemóvel de que entrou um vale. Interno,
+    // best-effort — nunca faz o cliente esperar nem falha o pedido.
+    if (process.env.INTERNAL_NOTIFY_SECRET) {
+      const adminBase = process.env.ADMIN_URL || "https://admin.floresabeirario.pt";
+      try {
+        await fetch(`${adminBase}/api/internal/notify-voucher`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.INTERNAL_NOTIFY_SECRET}`,
+          },
+          body: JSON.stringify({
+            code: inserted.code,
+            sender_name: data.nome,
+            value: data.valorVale,
+          }),
+        });
+      } catch (pushErr) {
+        console.error("[vale-presente] push notify error:", pushErr);
+      }
+    }
+
     return NextResponse.json({ success: true, code: inserted.code });
   } catch (err) {
     console.error("Vale presente route error:", err);
