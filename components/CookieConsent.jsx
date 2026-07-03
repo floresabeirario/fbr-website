@@ -37,24 +37,24 @@ export default function CookieConsent() {
       role="region"
       aria-label="Cookies"
       style={{
-        position: "fixed", bottom: "14px", left: "14px", zIndex: 150,
-        maxWidth: "min(320px, calc(100vw - 28px))",
-        // Vidro translúcido cream (mesmo efeito da nav/cartão de contactos)
-        // em vez de bloco escuro sólido — integra-se sem estragar a estética.
-        backgroundColor: "rgba(250,247,240,0.72)",
-        backdropFilter: "blur(14px)",
-        WebkitBackdropFilter: "blur(14px)",
-        color: "var(--green-d)",
-        borderRadius: "14px", padding: "10px 12px",
-        boxShadow: "0 6px 24px rgba(15,30,26,0.14)",
-        border: "1px solid rgba(61,107,94,0.16)",
+        position: "fixed", bottom: "12px", left: "12px", zIndex: 150,
+        maxWidth: "min(300px, calc(100vw - 24px))",
+        // Vidro escuro MUITO translúcido: funde-se com o rodapé escurecido do
+        // hero e nas páginas claras lê como parte da interface (a foto/fundo
+        // passa através). Sem sombra, borda quase invisível, OK em ghost.
+        backgroundColor: "rgba(15,30,26,0.34)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        color: "var(--cream)",
+        borderRadius: "100px", padding: "7px 8px 7px 14px",
+        border: "1px solid rgba(250,247,240,0.14)",
         fontFamily: FONT,
         display: "flex", alignItems: "center", gap: "10px",
       }}
     >
-      <p style={{ margin: 0, fontSize: "0.72rem", lineHeight: 1.5, color: "rgba(30,45,42,0.72)", flex: 1 }}>
+      <p style={{ margin: 0, fontSize: "0.68rem", lineHeight: 1.4, color: "rgba(250,247,240,0.78)", flex: 1 }}>
         {t.msg}{" "}
-        <Link href={t.privacyHref} style={{ color: "var(--green)", textDecoration: "underline", textUnderlineOffset: "2px", whiteSpace: "nowrap", fontWeight: 500 }}>
+        <Link href={t.privacyHref} style={{ color: "rgba(250,247,240,0.9)", textDecoration: "underline", textUnderlineOffset: "2px", whiteSpace: "nowrap" }}>
           {t.privacy}
         </Link>
       </p>
@@ -62,9 +62,9 @@ export default function CookieConsent() {
         type="button"
         onClick={() => setConsent("ok")}
         style={{
-          flexShrink: 0, backgroundColor: "var(--green)", color: "var(--cream)",
-          border: "none", borderRadius: "100px", padding: "7px 16px",
-          fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.8px",
+          flexShrink: 0, backgroundColor: "rgba(250,247,240,0.14)", color: "var(--cream)",
+          border: "1px solid rgba(250,247,240,0.28)", borderRadius: "100px", padding: "6px 14px",
+          fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.8px",
           textTransform: "uppercase", cursor: "pointer", fontFamily: FONT,
         }}
       >
