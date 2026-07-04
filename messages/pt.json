@@ -101,7 +101,13 @@
     "recriacao": "Recriação de Bouquet",
     "faq": "FAQ",
     "langLabel": "Versão em inglês",
-    "announce": "Servimos clientes em todo o país, com envio de flores fácil e seguro"
+    "announceLabel": "Novidades",
+    "announceItems": [
+      "Servimos clientes em todo o país, fácil e seguro para as suas flores",
+      "Ofereça preservação: vale-presente a partir de 300€",
+      "Fazemos recolha das suas flores",
+      "Um presente com significado: Ofereça eternização de flores através do nosso vale-presente"
+    ]
   },
   "footer": {
     "tagline": "Especialistas em Preservação de Flores · Coimbra, Portugal",

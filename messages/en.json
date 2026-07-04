@@ -101,7 +101,12 @@
     "recriacao": "Bouquet Recreation",
     "faq": "FAQ",
     "langLabel": "Portuguese version",
-    "announce": "Serving clients nationwide, with easy and safe flower shipping"
+    "announceLabel": "Announcements",
+    "announceItems": [
+      "Worldwide shipping for your finished frame",
+      "Gift preservation: vouchers from €300",
+      "A meaningful gift: offer flower preservation through our voucher"
+    ]
   },
   "footer": {
     "tagline": "Flower Preservation Specialists · Coimbra, Portugal",

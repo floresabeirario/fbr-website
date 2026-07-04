@@ -479,6 +479,7 @@ export default function NavClient() {
   const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations("nav");
+  const announceItems = t.raw("announceItems");
 
   const isHome = pathname === "/" || pathname === "/en";
 
@@ -541,28 +542,38 @@ export default function NavClient() {
 
   return (
     <>
-      {/* ── BARRA DE ANÚNCIO — "servimos todo o país" ── */}
+      {/* ── BARRA DE ANÚNCIO — marquee em loop contínuo ── */}
       <div
         role="note"
+        aria-label={t("announceLabel")}
+        className="announce-bar"
         style={{
           position: "fixed", top: 0, width: "100%", zIndex: 101,
           height: `${ANNOUNCE_H}px`,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          padding: "0 14px",
+          overflow: "hidden",
           backgroundColor: "var(--dark)",
           color: "var(--cream)",
           transform: scrolled ? `translateY(-${ANNOUNCE_H}px)` : "translateY(0)",
           transition: "transform 0.4s ease",
         }}
       >
-        <span style={{
-          fontFamily: "var(--font-google-sans), 'Google Sans', sans-serif",
-          fontSize: "0.6rem", fontWeight: 600, letterSpacing: "1.6px",
-          textTransform: "uppercase", whiteSpace: "nowrap",
-          overflow: "hidden", textOverflow: "ellipsis",
-        }}>
-          {t("announce")}
-        </span>
+        {/* Conteúdo duplicado para o loop ser contínuo (sem "salto"). A 2ª
+            cópia é aria-hidden para o leitor de ecrã não ler as frases 2×. */}
+        <div className="announce-track">
+          {[0, 1].map((copy) =>
+            announceItems.map((txt, i) => (
+              <React.Fragment key={`${copy}-${i}`}>
+                <span
+                  className={copy === 0 && i === 0 ? "announce-item announce-item--first" : "announce-item"}
+                  aria-hidden={copy === 1 ? "true" : undefined}
+                >
+                  {txt}
+                </span>
+                <span className="announce-sep" aria-hidden="true">•</span>
+              </React.Fragment>
+            ))
+          )}
+        </div>
       </div>
 
       {/* ── BARRA DE NAVEGAÇÃO ── */}
