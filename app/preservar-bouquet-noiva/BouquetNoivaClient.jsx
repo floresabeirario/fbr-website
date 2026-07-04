@@ -11,6 +11,20 @@ import BeforeAfterSlider from "../BeforeAfterSlider";
 
 const fadeUp = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } };
 
+// Torna status.floresabeirario.pt clicável quando aparece no texto de um passo
+function renderStepDesc(text) {
+  const url = "status.floresabeirario.pt";
+  if (!text.includes(url)) return text;
+  const [before, after] = text.split(url);
+  return (
+    <>
+      {before}
+      <a href={`https://${url}`} target="_blank" rel="noopener noreferrer" className="bouquet-inline-link">{url}</a>
+      {after}
+    </>
+  );
+}
+
 function CheckIcon() {
   return (
     <svg className="momento-feature-icon" width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -125,7 +139,7 @@ export default function BouquetNoivaClient() {
                 <span className="bouquet-timeline-num">{step.num}</span>
               </div>
               <h3 className="bouquet-timeline-title">{step.title}</h3>
-              <p className="bouquet-timeline-desc">{step.desc}</p>
+              <p className="bouquet-timeline-desc">{renderStepDesc(step.desc)}</p>
             </motion.li>
           ))}
         </ol>
