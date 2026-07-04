@@ -120,8 +120,9 @@ export default function BouquetNoivaClient() {
           transition={{ duration: 0.7 }}
           className="bouquet-postevent-inner"
         >
-          <span className="momento-eyebrow">{t("postEventEyebrow")}</span>
-          <h2 className="bouquet-postevent-title">{t("postEventTitle")}</h2>
+          <h2 className="bouquet-postevent-title">
+            {t("postEventTitle")} <em>{t("postEventTitleEm")}</em>
+          </h2>
           <p className="bouquet-postevent-desc">{t("postEventDesc")}</p>
           <div className="momento-ctas">
             <a href={waUrl(locale, "urgente")} target="_blank" rel="noopener noreferrer" className="btn-primary">{t("postEventCta")}</a>
