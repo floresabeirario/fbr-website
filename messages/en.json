@@ -640,7 +640,7 @@
     "h1": "Preserve the Wedding Bouquet",
     "heroDesc": "We transform your wedding bouquet into a botanical work of art that lasts decades. Artisan pressing and handmade framing in Coimbra, with shipping across Portugal and Europe.",
     "heroPrice": "From €300 · payment in 3 stages",
-    "heroDelivery": ["In person", "By post", "Collection at the venue"],
+    "heroDelivery": ["In person", "By post", "Collection of your choice"],
     "sliderAntes": "Before",
     "sliderDepois": "After",
     "sliderArraste": "Drag to compare",
@@ -728,7 +728,7 @@
       },
       {
         "q": "Do you receive bouquets from outside Coimbra? I'm in Porto / Lisbon / the Algarve.",
-        "a": "Yes. We receive bouquets from across mainland Portugal and the islands, and most of our clients are based outside Coimbra. The most convenient option is collection at your wedding venue by our team: we arrange the date and time with you and handle transport back to the studio. Alternatively, you can send the bouquet by express courier (CTT, MRW, DHL) with insurance. We regularly work with brides from Lisbon, Porto, Braga, the Algarve and Madeira."
+        "a": "Yes. We receive bouquets from across mainland Portugal and the islands, and most of our clients are based outside Coimbra. The most convenient option is collection at a location of your choice by our team: we arrange the date and time with you and handle transport back to the studio. Alternatively, you can send the bouquet by express courier (CTT, MRW, DHL) with insurance. We regularly work with brides from Lisbon, Porto, Braga, the Algarve and Madeira."
       },
       {
         "q": "Do you receive bouquets at the weekend, including Sunday?",
