@@ -792,17 +792,18 @@ button:focus-visible {
 
 @media (max-width: 600px) {
   .bouquet-hero-content {
-    padding-top: 80px;
-    padding-bottom: 28px;
+    padding-top: 72px;
+    padding-bottom: 24px;
   }
   .bouquet-hero-h1 {
-    font-size: clamp(1.9rem, 7vw, 2.8rem);
-    margin-bottom: 12px;
+    font-size: clamp(1.7rem, 8vw, 2.4rem);
+    margin-bottom: 10px;
+    line-height: 1.15;
   }
   .bouquet-hero-desc {
-    font-size: 0.85rem;
-    line-height: 1.65;
-    margin-bottom: 14px;
+    font-size: 0.8rem;
+    line-height: 1.55;
+    margin-bottom: 16px;
   }
   .bouquet-weekend-badge {
     flex-direction: column;
@@ -1333,9 +1334,24 @@ button:focus-visible {
   .bouquet-page {
     padding-bottom: 72px;
   }
-  /* No telemóvel o WhatsApp vive na barra fixa; tirá-lo do hero alivia a vista */
-  .bouquet-hero .btn-wa {
+  /* No telemóvel os CTAs vivem na barra fixa; tirá-los do hero alivia a vista
+     e evita o "Reservar Data" duplicado */
+  .bouquet-hero .momento-ctas {
     display: none;
+  }
+  .bouquet-hero-chips {
+    gap: 6px;
+    margin-bottom: 0;
+  }
+  .bouquet-hero-chip {
+    font-size: 0.56rem;
+    letter-spacing: 1px;
+    padding: 6px 13px;
+  }
+  .bouquet-hero-price {
+    margin-top: 18px;
+    font-size: 0.74rem;
+    letter-spacing: 0.5px;
   }
   .bouquet-sticky-cta {
     display: flex;
