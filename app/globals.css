@@ -1367,10 +1367,14 @@ button:focus-visible {
 }
 .bouquet-postevent-title {
   font-family: 'TAN-MEMORIES', serif;
-  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  font-size: clamp(1.9rem, 4.5vw, 2.9rem);
   color: var(--green-d);
-  margin: 10px 0 18px;
-  line-height: 1.1;
+  margin: 0 0 18px;
+  line-height: 1.12;
+}
+.bouquet-postevent-title em {
+  font-style: italic;
+  color: var(--terra);
 }
 .bouquet-postevent-desc {
   color: var(--mid);
