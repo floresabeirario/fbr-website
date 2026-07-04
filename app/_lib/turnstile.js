@@ -21,7 +21,17 @@ const VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
  */
 export async function verifyTurnstile(token, ip) {
   const secret = process.env.TURNSTILE_SECRET;
-  if (!secret) return true; // Turnstile desactivado
+  if (!secret) {
+    // Sem secret: em produção NÃO deixamos passar (fail-closed) — um form
+    // sem anti-bot é pior do que um form em baixo, e apanha logo o caso de
+    // a env var desaparecer num redeploy. Em desenvolvimento local deixa
+    // passar, para não obrigar a configurar Turnstile na máquina.
+    if (process.env.NODE_ENV === "production") {
+      console.error("[turnstile] TURNSTILE_SECRET em falta em produção — submissão rejeitada");
+      return false;
+    }
+    return true;
+  }
 
   if (!token) return false;
 

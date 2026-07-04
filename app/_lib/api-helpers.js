@@ -12,9 +12,12 @@ const ALLOWED_ORIGINS = new Set([
   "http://127.0.0.1:3000",
 ]);
 
-// Permite previews do Vercel (https://*.vercel.app) e branches deploy.
+// Permite previews DESTE projecto (fbr-website-*.vercel.app) e branch deploys.
+// Não basta terminar em .vercel.app: qualquer pessoa aloja um site grátis no
+// Vercel e usava os nossos forms como backend de spam. O prefixo do projecto
+// fecha essa porta sem quebrar os previews legítimos.
 function isVercelPreview(origin) {
-  return /^https:\/\/[a-z0-9-]+\.vercel\.app$/i.test(origin);
+  return /^https:\/\/fbr-website-[a-z0-9-]+\.vercel\.app$/i.test(origin);
 }
 
 export function isAllowedOrigin(originHeader, refererHeader) {
