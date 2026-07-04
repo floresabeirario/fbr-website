@@ -7,6 +7,7 @@ import { waUrl } from "../_lib/wa";
 import { splitTitle } from "../_lib/splitTitle";
 import ElfsightReviews from "@/components/ElfsightReviews";
 import BouquetNoivaFAQ from "./BouquetNoivaFAQ";
+import BeforeAfterSlider from "../BeforeAfterSlider";
 
 const fadeUp = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } };
 
@@ -42,7 +43,7 @@ export default function BouquetNoivaClient() {
   const [ctaFinalStart, ctaFinalEm] = splitTitle(t("ctaFinalTitle"), t("ctaFinalEm"));
 
   return (
-    <div className="momento-page">
+    <div className="momento-page bouquet-page">
 
       {/* ── Hero imagem ─────────────────────────────────────── */}
       <section className="bouquet-hero">
@@ -59,6 +60,11 @@ export default function BouquetNoivaClient() {
           <span className="bouquet-hero-eyebrow">{t("eyebrow")}</span>
           <h1 className="bouquet-hero-h1">{t("h1")}</h1>
           <p className="bouquet-hero-desc">{t("heroDesc")}</p>
+          <div className="bouquet-hero-chips">
+            {t.raw("heroDelivery").map((chip, i) => (
+              <span key={i} className="bouquet-hero-chip">{chip}</span>
+            ))}
+          </div>
           <div className="bouquet-weekend-badge" aria-label={t("weekendBadge")}>
             <CalendarIcon />
             <span>{t("weekendBadge")}</span>
@@ -67,6 +73,7 @@ export default function BouquetNoivaClient() {
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
             <a href={waUrl(locale, "noiva")} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
+          <p className="bouquet-hero-price">{t("heroPrice")}</p>
         </motion.div>
       </section>
 
@@ -95,13 +102,10 @@ export default function BouquetNoivaClient() {
               </a>
             </div>
           </div>
-          <Image
-            src="/antesedepois.png"
-            alt={t("beforeAfterAlt")}
-            width={1200}
-            height={700}
-            className="bouquet-before-after-img"
-            sizes="(max-width: 768px) 100vw, 55vw"
+          <BeforeAfterSlider
+            beforeLabel={t("sliderAntes")}
+            afterLabel={t("sliderDepois")}
+            dragLabel={t("sliderArraste")}
           />
         </motion.div>
       </section>
@@ -135,6 +139,15 @@ export default function BouquetNoivaClient() {
               <p className="bouquet-process-step-desc">{step.desc}</p>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* ── CTA a meio (reservar) ───────────────────────────── */}
+      <section className="bouquet-mid-cta">
+        <p className="bouquet-mid-cta-text">{t("midCtaText")}</p>
+        <div className="momento-ctas">
+          <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
+          <a href={waUrl(locale, "noiva")} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
         </div>
       </section>
 
@@ -191,7 +204,10 @@ export default function BouquetNoivaClient() {
           <span className="momento-eyebrow">{t("pricingEyebrow")}</span>
           <h2 className="bouquet-pricing-cta-title">{t("pricingCtaTitle")}</h2>
           <p className="momento-content-p">{t("pricingCtaDesc")}</p>
-          <a href={precosHref} className="btn-primary">{t("pricingCtaBtn")}</a>
+          <a href={bookHref} className="btn-primary">{t("pricingCtaBtn")}</a>
+          <div>
+            <a href={precosHref} className="bouquet-pricing-cta-link">{t("pricingCtaLink")}</a>
+          </div>
         </motion.div>
       </section>
 
@@ -222,6 +238,12 @@ export default function BouquetNoivaClient() {
           </div>
         </motion.div>
       </section>
+
+      {/* ── Barra fixa mobile ───────────────────────────────── */}
+      <div className="bouquet-sticky-cta">
+        <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
+        <a href={waUrl(locale, "noiva")} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
+      </div>
     </div>
   );
 }

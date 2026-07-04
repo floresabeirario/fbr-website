@@ -242,7 +242,7 @@
         "desc": "We send a photo of the composition before sealing. Nothing is final without your approval."
       },
       {
-        "titulo": "Payment in 3 instalments",
+        "titulo": "Payment in 3 stages",
         "desc": "30% on booking, 40% when flowers arrive, 30% before delivery. Easy on the budget."
       },
       {
@@ -367,7 +367,7 @@
       {
         "titulo": "The frame arrives home",
         "tag": "For life",
-        "corpo": "Before shipping or collection, the 3rd and final instalment of 30% will be requested. The frame includes care instructions to ensure its longevity.",
+        "corpo": "Before shipping or collection, the 3rd and final stage of 30% will be requested. The frame includes care instructions to ensure its longevity.",
         "nota": "",
         "opcoes": [
           {
@@ -593,7 +593,7 @@
     "ctaWA": "WhatsApp",
     "floresTitle": "Flowers that tell your story",
     "floresP1": "At Flores à Beira-Rio, we transform emotionally meaningful flowers into botanical art frames that last decades. Every petal is pressed individually and framed with anti-UV museum glass, in a frame handmade at our atelier in Coimbra.",
-    "floresP2": "Prices from €300, with payment in three instalments. The process takes up to 6 months and we ship across Europe.",
+    "floresP2": "Prices from €300, with payment in three stages. The process takes up to 6 months and we ship across Europe.",
     "floresP3": "Flowers reach us from every chapter of life: the wedding bouquet, the flowers from a baptism or the birth of a child, the small bouquet from a proposal, flowers from a milestone anniversary, and also memorial flowers, preserved as a serene memory of someone dearly missed. Your flowers can reach us by hand, by post from anywhere in the country, or with pickup at the venue. And if yours come from a moment not on this list, talk to us anyway: if they carry a story, we preserve them.",
     "envioGuiaLink": "How to ship your flowers by post →",
     "saberMais": "Learn more →",
@@ -638,7 +638,13 @@
     },
     "eyebrow": "Wedding Bouquet",
     "h1": "Preserve the Wedding Bouquet",
-    "heroDesc": "We transform your wedding bouquet into a botanical work of art that lasts decades. Artisan pressing, anti-UV museum glass and handmade framing in Coimbra, with shipping across Portugal and Europe. We receive bouquets in person, by post, or by collection at your wedding venue by our team.",
+    "heroDesc": "We transform your wedding bouquet into a botanical work of art that lasts decades. Artisan pressing and handmade framing in Coimbra, with shipping across Portugal and Europe.",
+    "heroPrice": "From €300 · payment in 3 stages",
+    "heroDelivery": ["In person", "By post", "Collection at the venue"],
+    "sliderAntes": "Before",
+    "sliderDepois": "After",
+    "sliderArraste": "Drag to compare",
+    "midCtaText": "Already know your wedding date? We'll hold your place.",
     "eyebrow2": "Artisan Botanical Art",
     "contentTitle": "The bouquet that was there for your vows",
     "contentEm": "for your vows",
@@ -648,7 +654,7 @@
     "ctaWA": "WhatsApp",
     "ctaFinalTitle": "Book before the big day",
     "ctaFinalEm": "the big day",
-    "ctaDesc": "Slots are limited, especially between May and September. We recommend booking as soon as you know the wedding date. Prices from €300, with payment in three instalments.",
+    "ctaDesc": "Slots are limited, especially between May and September. We recommend booking as soon as you know the wedding date. Prices from €300, with payment in three stages.",
     "ctaComoFunciona": "How it works",
     "ctaPrecos": "Options & pricing",
     "ctaFAQ": "Frequently asked questions",
@@ -695,7 +701,7 @@
       {
         "num": "02",
         "title": "Hand in the bouquet in the days following",
-        "desc": "After the ceremony, hand in the bouquet ideally within 1 to 3 days, up to a maximum of 5. We receive bouquets at the weekend, including Sunday. You don't need to wait until Monday."
+        "desc": "After the ceremony, hand in the bouquet ideally within 1 to 3 days, up to a maximum of 6. We receive bouquets at the weekend, including Sunday. You don't need to wait until Monday."
       },
       {
         "num": "03",
@@ -705,7 +711,7 @@
       {
         "num": "04",
         "title": "Receive the frame at home",
-        "desc": "The framed piece arrives carefully packaged, ready to hang. We ship across Europe."
+        "desc": "Pressing is delicate and cannot be rushed: your frame is ready in around 6 months, and you can follow every stage at status.floresabeirario.pt. It arrives home carefully packaged, ready to hang. We ship across Europe."
       }
     ],
     "weekendBadge": "We receive bouquets at the weekend, including Sunday",
@@ -746,7 +752,7 @@
       },
       {
         "q": "What are the prices and how does payment work?",
-        "a": "Prices start from €300. See the options and pricing page for all available formats and finishes. Payment is made in three instalments: 30% to book your date, 40% when you approve the composition, and 30% on delivery."
+        "a": "Prices start from €300. See the options and pricing page for all available formats and finishes. Payment is made in three stages: 30% to book your date, 40% when you approve the composition, and 30% on delivery."
       },
       {
         "q": "Do you ship outside Portugal?",
@@ -761,8 +767,9 @@
     "featuresPricingNote": "From €300 · See options & pricing →",
     "pricingEyebrow": "Investment",
     "pricingCtaTitle": "Options & pricing",
-    "pricingCtaDesc": "Before booking, please browse all available formats: sizes, finishes and prices. Essential reading to choose the right frame for your wedding.",
-    "pricingCtaBtn": "See options & pricing"
+    "pricingCtaDesc": "You don't need to decide the format now: you can book your date today and choose the size and finishes later, at your own pace. If you'd like to see everything first, browse all formats and prices.",
+    "pricingCtaBtn": "Book a Date",
+    "pricingCtaLink": "See options & pricing →"
   },
   "lutoHomenagem": {
     "meta": {
@@ -785,7 +792,7 @@
     "contentEm": "forever",
     "ctaFinalTitle": "Preserve the memory of a loved one",
     "ctaFinalEm": "of a loved one",
-    "ctaDesc": "Contact us when the time feels right. Prices from €300, with payment in three instalments. We ship across Europe.",
+    "ctaDesc": "Contact us when the time feels right. Prices from €300, with payment in three stages. We ship across Europe.",
     "linkComoFunciona": "How it works",
     "linkPrecos": "Options & pricing",
     "linkFAQ": "Frequently asked questions",
@@ -843,7 +850,7 @@
     "p2": "Through artisan botanical pressing, we transform those flowers into a handmade frame, mounted with anti-UV museum glass and a custom-made surround in Coimbra. Simply hand us the flowers in the days following the ceremony and we take care of everything, including shipping the finished frame to your address. It is also an original and lasting gift for godparents or family members who want to mark the occasion.",
     "ctaFinalTitle": "Preserve the start of the story",
     "ctaFinalEm": "of the story",
-    "ctaDesc": "Baptism and birth flowers don't have to live only in photographs. Prices from €300, with payment in three instalments.",
+    "ctaDesc": "Baptism and birth flowers don't have to live only in photographs. Prices from €300, with payment in three stages.",
     "linkComoFunciona": "How it works",
     "linkPrecos": "Options & pricing",
     "linkFAQ": "Frequently asked questions",
@@ -901,7 +908,7 @@
     "p2": "Simply hand us the flowers in the days following the anniversary (up to 6 days, ideally 1 to 3). We handle the pressing, artistic composition, approval with you, and framing with anti-UV museum glass and a custom-made mount in Coimbra.",
     "ctaFinalTitle": "Turn the flowers into a memory",
     "ctaFinalEm": "into a memory",
-    "ctaFinalDesc": "Book your spot and make sure that anniversary lasts forever. Prices from €300, with payment in three instalments.",
+    "ctaFinalDesc": "Book your spot and make sure that anniversary lasts forever. Prices from €300, with payment in three stages.",
     "linkComoFunciona": "How it works",
     "linkPrecos": "Options & pricing",
     "linkFAQ": "Frequently asked questions",
@@ -959,7 +966,7 @@
     "contentEm": "began",
     "ctaFinalTitle": "Preserve your first yes",
     "ctaFinalEm": "first yes",
-    "ctaDesc": "Proposal flowers deserve to be preserved before they dry. Prices from €300, with payment in three instalments.",
+    "ctaDesc": "Proposal flowers deserve to be preserved before they dry. Prices from €300, with payment in three stages.",
     "ctaBouquet": "Wedding bouquet",
     "linkComoFunciona": "How it works",
     "linkPrecos": "Options & pricing",
@@ -1465,9 +1472,9 @@
   "reservar": {
     "meta": {
       "title": "Book Flower Preservation | Flores à Beira-Rio",
-      "description": "Book your flower preservation. Fill in the form and receive confirmation within 72 hours. Payment in three instalments. Atelier in Coimbra, we ship across Europe.",
+      "description": "Book your flower preservation. Fill in the form and receive confirmation within 72 hours. Payment in three stages. Atelier in Coimbra, we ship across Europe.",
       "ogTitle": "Book Flower Preservation | Flores à Beira-Rio",
-      "ogDescription": "Book your flower preservation. Confirmation within 72 hours, payment in three instalments.",
+      "ogDescription": "Book your flower preservation. Confirmation within 72 hours, payment in three stages.",
       "ogImageAlt": "Flower preservation booking form, Flores à Beira-Rio",
       "keywords": "book flower preservation, schedule flower preservation, flower preservation booking, reserve botanical art"
     },
@@ -2154,7 +2161,7 @@
       },
       {
         "title": "6. Payments",
-        "content": "The service is paid in three instalments:\n1st: 30% at the time of booking (non-refundable).\n2nd: 40% upon receipt of the flowers.\n3rd: 30% before shipping or collection."
+        "content": "The service is paid in three stages:\n1st: 30% at the time of booking (non-refundable).\n2nd: 40% upon receipt of the flowers.\n3rd: 30% before shipping or collection."
       },
       {
         "title": "7. Delivery of the Finished Piece",

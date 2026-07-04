@@ -1203,6 +1203,95 @@ button:focus-visible {
   transform: translateY(-3px);
 }
 
+.bouquet-pricing-cta-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: rgba(250,247,240,0.82);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(250,247,240,0.4);
+  padding-bottom: 2px;
+  transition: color 0.25s, border-color 0.25s;
+}
+.bouquet-pricing-cta-link:hover {
+  color: #fff;
+  border-color: #fff;
+}
+
+/* Hero: chips de entrega + preço */
+.bouquet-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 24px;
+}
+.bouquet-hero-chip {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(250,247,240,0.9);
+  background: rgba(250,247,240,0.08);
+  border: 1px solid rgba(250,247,240,0.24);
+  border-radius: 100px;
+  padding: 7px 16px;
+  backdrop-filter: blur(8px);
+}
+.bouquet-hero-price {
+  margin: 20px 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(250,235,210,0.9);
+}
+
+/* CTA a meio da página (entre processo e garantias) */
+.bouquet-mid-cta {
+  text-align: center;
+  padding: clamp(8px, 2vw, 20px) 24px clamp(44px, 7vw, 68px);
+  background-color: var(--cream);
+}
+.bouquet-mid-cta-text {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+  color: var(--green-d);
+  margin: 0 0 22px;
+}
+
+/* Barra fixa mobile (só ≤768px) */
+.bouquet-sticky-cta {
+  display: none;
+}
+@media (max-width: 768px) {
+  .bouquet-page {
+    padding-bottom: 72px;
+  }
+  .bouquet-sticky-cta {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    gap: 10px;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(250,247,240,0.92);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(30,45,42,0.1);
+    box-shadow: 0 -4px 20px rgba(30,45,42,0.12);
+  }
+  .bouquet-sticky-cta a {
+    flex: 1;
+    min-height: 48px;
+    padding: 12px 8px;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+  }
+}
+
 /* ── Páginas legais (privacidade, termos) ─────────────── */
 .legal-page {
   padding-top: clamp(140px, 18vw, 200px);
