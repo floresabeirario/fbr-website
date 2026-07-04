@@ -242,7 +242,7 @@
         "desc": "Enviamos fotografia da composição antes de selar. Nada é definitivo sem o seu acordo."
       },
       {
-        "titulo": "Pagamento em 3 prestações",
+        "titulo": "Pagamento em 3 fases",
         "desc": "30% na reserva, 40% quando as flores chegam, 30% antes da entrega. Sem pesar no orçamento."
       },
       {
@@ -367,7 +367,7 @@
       {
         "titulo": "O quadro chega a casa",
         "tag": "A vida toda",
-        "corpo": "Antes do envio ou da recolha, será solicitado o pagamento da 3.ª e última prestação, 30% do valor total. O quadro inclui instruções de cuidados para garantir a sua durabilidade.",
+        "corpo": "Antes do envio ou da recolha, será solicitado o pagamento da 3.ª e última fase, 30% do valor total. O quadro inclui instruções de cuidados para garantir a sua durabilidade.",
         "nota": "",
         "opcoes": [
           {
@@ -593,7 +593,7 @@
     "ctaWA": "WhatsApp",
     "floresTitle": "Flores que contam a sua história",
     "floresP1": "Na Flores à Beira-Rio, transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Cada pétala é prensada individualmente e emoldurada com vidro museu anti-UV, num quadro feito à mão no nosso atelier em Coimbra.",
-    "floresP2": "Preços a partir de 300€, com pagamento em três prestações. O processo demora até 6 meses e enviamos para toda a Europa.",
+    "floresP2": "Preços a partir de 300€, com pagamento em três fases. O processo demora até 6 meses e enviamos para toda a Europa.",
     "floresP3": "Chegam-nos flores de todos os capítulos da vida: o ramo de noiva do casamento, as flores do batizado ou do nascimento de um filho, o raminho de um pedido de casamento, as flores de um aniversário redondo, e também as flores de uma homenagem fúnebre, preservadas como memória serena de quem partiu. As flores podem chegar até nós em mãos, por correio de qualquer ponto do país, ou com recolha no local do evento. E se as suas vêm de um momento que não está nesta lista, fale connosco na mesma: se têm história, nós preservamo-las.",
     "envioGuiaLink": "Como enviar as suas flores por correio →",
     "saberMais": "Saber mais →",
@@ -638,7 +638,13 @@
     },
     "eyebrow": "Bouquet de Noiva",
     "h1": "Preservar o Bouquet de Noiva",
-    "heroDesc": "Eternizamos o bouquet do seu casamento numa obra de arte botânica que dura décadas. Prensagem artesanal, vidro museu anti-UV e emolduramento feito à mão em Coimbra, com envio para todo o Portugal e Europa. Recebemos bouquets em mãos, por correio, ou com recolha no local do casamento pela nossa equipa.",
+    "heroDesc": "Eternizamos o bouquet do seu casamento numa obra de arte botânica que dura décadas. Prensagem artesanal e emolduramento feito à mão em Coimbra, com envio para todo o Portugal e Europa.",
+    "heroPrice": "A partir de 300€ · pagamento em 3 fases",
+    "heroDelivery": ["Em mãos", "Por correio", "Recolha no casamento"],
+    "sliderAntes": "Antes",
+    "sliderDepois": "Depois",
+    "sliderArraste": "Arraste para comparar",
+    "midCtaText": "Já sabe a data do casamento? Guardamos o seu lugar.",
     "eyebrow2": "Arte Botânica Artesanal",
     "contentTitle": "O bouquet que esteve presente nos seus votos",
     "contentEm": "nos seus votos",
@@ -648,7 +654,7 @@
     "ctaWA": "WhatsApp",
     "ctaFinalTitle": "Reserve antes do grande dia",
     "ctaFinalEm": "do grande dia",
-    "ctaDesc": "As vagas são limitadas, especialmente entre maio e setembro. Recomendamos reservar assim que souber a data do casamento. Preços a partir de 300€, com pagamento em três prestações.",
+    "ctaDesc": "As vagas são limitadas, especialmente entre maio e setembro. Recomendamos reservar assim que souber a data do casamento. Preços a partir de 300€, com pagamento em três fases.",
     "ctaComoFunciona": "Como funciona",
     "ctaPrecos": "Opções e preços",
     "ctaFAQ": "Perguntas frequentes",
@@ -667,7 +673,7 @@
       }
     ],
     "socialProofRating": "5,0 ★★★★★",
-    "socialProofCount": "7 avaliações verificadas no Google",
+    "socialProofCount": "Avaliações verificadas no Google",
     "beforeAfterEyebrow": "Antes e depois",
     "beforeAfterTitle": "Do bouquet fresco ao quadro botânico",
     "beforeAfterDesc": "Cada pétala é tratada individualmente, prensada e composta à mão. O resultado é uma obra que dura décadas, pronta a pendurar na parede de casa.",
@@ -695,7 +701,7 @@
       {
         "num": "02",
         "title": "Entregar o bouquet nos dias seguintes",
-        "desc": "Após a cerimónia, entregue o bouquet idealmente em 1 a 3 dias, até um máximo de 5. Recebemos ao fim de semana, incluindo ao domingo. Não tem de esperar pela segunda-feira."
+        "desc": "Após a cerimónia, entregue o bouquet idealmente em 1 a 3 dias, até um máximo de 6. Recebemos ao fim de semana, incluindo ao domingo. Não tem de esperar pela segunda-feira."
       },
       {
         "num": "03",
@@ -705,7 +711,7 @@
       {
         "num": "04",
         "title": "Receber o quadro em casa",
-        "desc": "O quadro emoldurado chega cuidadosamente embalado, pronto a pendurar. Enviamos para toda a Europa."
+        "desc": "A prensagem é delicada e não se apressa: o quadro fica pronto em cerca de 6 meses e pode acompanhar cada fase em status.floresabeirario.pt. Chega a casa cuidadosamente embalado, pronto a pendurar. Enviamos para toda a Europa."
       }
     ],
     "weekendBadge": "Recebemos ao fim de semana, incluindo ao domingo",
@@ -746,7 +752,7 @@
       },
       {
         "q": "Qual o preço e como funciona o pagamento?",
-        "a": "Os preços começam nos 300€. Consulte a página de opções e preços para ver todos os formatos e acabamentos disponíveis. O pagamento é feito em três prestações: 30% para reservar a data, 40% na aprovação da composição e 30% na entrega do quadro."
+        "a": "Os preços começam nos 300€. Consulte a página de opções e preços para ver todos os formatos e acabamentos disponíveis. O pagamento é feito em três fases: 30% para reservar a data, 40% na aprovação da composição e 30% na entrega do quadro."
       },
       {
         "q": "Enviam para fora de Portugal?",
@@ -761,8 +767,9 @@
     "featuresPricingNote": "A partir de 300€ · Ver opções e preços →",
     "pricingEyebrow": "Investimento",
     "pricingCtaTitle": "Opções e preços",
-    "pricingCtaDesc": "Antes de reservar, consulte todos os formatos disponíveis: tamanhos, acabamentos e preços. É uma leitura obrigatória para escolher o quadro certo para o seu casamento.",
-    "pricingCtaBtn": "Ver opções e preços"
+    "pricingCtaDesc": "Não precisa de decidir já o formato: pode reservar a data agora e escolher o tamanho e os acabamentos mais tarde, com calma. Se quiser ver tudo primeiro, consulte todos os formatos e preços.",
+    "pricingCtaBtn": "Reservar Data",
+    "pricingCtaLink": "Ver opções e preços →"
   },
   "lutoHomenagem": {
     "meta": {
@@ -785,7 +792,7 @@
     "contentEm": "fica para sempre",
     "ctaFinalTitle": "Preserve a memória de quem amou",
     "ctaFinalEm": "de quem amou",
-    "ctaDesc": "Contacte-nos quando for o momento certo. Preços a partir de 300€, com pagamento em três prestações. Enviamos para toda a Europa.",
+    "ctaDesc": "Contacte-nos quando for o momento certo. Preços a partir de 300€, com pagamento em três fases. Enviamos para toda a Europa.",
     "linkComoFunciona": "Como funciona",
     "linkPrecos": "Opções e preços",
     "linkFAQ": "Perguntas frequentes",
@@ -843,7 +850,7 @@
     "p2": "Através de prensagem botânica artesanal, transformamos essas flores num quadro feito à mão, emoldurado com vidro museu anti-UV e moldura feita à medida em Coimbra. Basta entregar-nos as flores nos dias seguintes à cerimónia e nós tratamos de tudo, incluindo o envio do quadro finalizado para a sua morada. É também uma oferta original e duradoura para padrinhos ou familiares que queiram marcar o momento.",
     "ctaFinalTitle": "Preserve o início da história",
     "ctaFinalEm": "da história",
-    "ctaDesc": "As flores do batizado ou do nascimento não precisam de ficar apenas nas fotografias. Preços a partir de 300€, com pagamento em três prestações.",
+    "ctaDesc": "As flores do batizado ou do nascimento não precisam de ficar apenas nas fotografias. Preços a partir de 300€, com pagamento em três fases.",
     "linkComoFunciona": "Como funciona",
     "linkPrecos": "Opções e preços",
     "linkFAQ": "Perguntas frequentes",
@@ -901,7 +908,7 @@
     "p2": "Basta entregar-nos as flores nos dias seguintes ao aniversário (até 6 dias, idealmente 1 a 3). Nós tratamos da prensagem, da composição artística, da aprovação consigo, e do emolduramento com vidro museu anti-UV e moldura feita à medida em Coimbra.",
     "ctaFinalTitle": "Transforme as flores numa memória",
     "ctaFinalEm": "numa memória",
-    "ctaFinalDesc": "Reserve a sua vaga e garanta que esse aniversário fica para sempre. Preços a partir de 300€, com pagamento em três prestações.",
+    "ctaFinalDesc": "Reserve a sua vaga e garanta que esse aniversário fica para sempre. Preços a partir de 300€, com pagamento em três fases.",
     "linkComoFunciona": "Como funciona",
     "linkPrecos": "Opções e preços",
     "linkFAQ": "Perguntas frequentes",
@@ -959,7 +966,7 @@
     "contentEm": "começou",
     "ctaFinalTitle": "Preserve o vosso primeiro sim",
     "ctaFinalEm": "primeiro sim",
-    "ctaDesc": "As flores do pedido merecem ser preservadas antes que sequem. Preços a partir de 300€, com pagamento em três prestações.",
+    "ctaDesc": "As flores do pedido merecem ser preservadas antes que sequem. Preços a partir de 300€, com pagamento em três fases.",
     "ctaBouquet": "Bouquet de noiva",
     "linkComoFunciona": "Como funciona",
     "linkPrecos": "Opções e preços",
@@ -1465,9 +1472,9 @@
   "reservar": {
     "meta": {
       "title": "Reservar Preservação de Flores | Flores à Beira-Rio",
-      "description": "Reserve a preservação das suas flores. Preencha o formulário e receba confirmação em 72 horas. Pagamento em três prestações. Atelier em Coimbra, enviamos para toda a Europa.",
+      "description": "Reserve a preservação das suas flores. Preencha o formulário e receba confirmação em 72 horas. Pagamento em três fases. Atelier em Coimbra, enviamos para toda a Europa.",
       "ogTitle": "Reservar Preservação de Flores | Flores à Beira-Rio",
-      "ogDescription": "Reserve a preservação das suas flores. Confirmação em 72 horas, pagamento em três prestações.",
+      "ogDescription": "Reserve a preservação das suas flores. Confirmação em 72 horas, pagamento em três fases.",
       "ogImageAlt": "Formulário de reserva de preservação de flores, Flores à Beira-Rio",
       "keywords": "reservar preservação flores, marcar data preservação flores, formulário reserva flores, agendar preservação botânica"
     },
@@ -2154,7 +2161,7 @@
       },
       {
         "title": "6. Pagamentos",
-        "content": "O serviço é pago em três prestações:\n1.ª: 30% no momento da reserva (não reembolsável).\n2.ª: 40% na receção das flores.\n3.ª: 30% antes do envio ou recolha."
+        "content": "O serviço é pago em três fases:\n1.ª: 30% no momento da reserva (não reembolsável).\n2.ª: 40% na receção das flores.\n3.ª: 30% antes do envio ou recolha."
       },
       {
         "title": "7. Entrega da Peça Final",

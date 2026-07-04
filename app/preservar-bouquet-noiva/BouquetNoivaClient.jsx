@@ -7,23 +7,29 @@ import { waUrl } from "../_lib/wa";
 import { splitTitle } from "../_lib/splitTitle";
 import ElfsightReviews from "@/components/ElfsightReviews";
 import BouquetNoivaFAQ from "./BouquetNoivaFAQ";
+import BeforeAfterSlider from "../BeforeAfterSlider";
 
 const fadeUp = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } };
+
+// Torna status.floresabeirario.pt clicável quando aparece no texto de um passo
+function renderStepDesc(text) {
+  const url = "status.floresabeirario.pt";
+  if (!text.includes(url)) return text;
+  const [before, after] = text.split(url);
+  return (
+    <>
+      {before}
+      <a href={`https://${url}`} target="_blank" rel="noopener noreferrer" className="bouquet-inline-link">{url}</a>
+      {after}
+    </>
+  );
+}
 
 function CheckIcon() {
   return (
     <svg className="momento-feature-icon" width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
       <circle cx="10" cy="10" r="10" fill="rgba(196,132,107,0.1)" />
       <path d="M6 10l3 3 5-5" stroke="var(--terra)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function CalendarIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="3" y="4" width="18" height="17" rx="2" stroke="currentColor" strokeWidth="1.7" />
-      <path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
     </svg>
   );
 }
@@ -42,7 +48,7 @@ export default function BouquetNoivaClient() {
   const [ctaFinalStart, ctaFinalEm] = splitTitle(t("ctaFinalTitle"), t("ctaFinalEm"));
 
   return (
-    <div className="momento-page">
+    <div className="momento-page bouquet-page">
 
       {/* ── Hero imagem ─────────────────────────────────────── */}
       <section className="bouquet-hero">
@@ -59,14 +65,16 @@ export default function BouquetNoivaClient() {
           <span className="bouquet-hero-eyebrow">{t("eyebrow")}</span>
           <h1 className="bouquet-hero-h1">{t("h1")}</h1>
           <p className="bouquet-hero-desc">{t("heroDesc")}</p>
-          <div className="bouquet-weekend-badge" aria-label={t("weekendBadge")}>
-            <CalendarIcon />
-            <span>{t("weekendBadge")}</span>
+          <div className="bouquet-hero-chips">
+            {t.raw("heroDelivery").map((chip, i) => (
+              <span key={i} className="bouquet-hero-chip">{chip}</span>
+            ))}
           </div>
           <div className="momento-ctas">
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
             <a href={waUrl(locale, "noiva")} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
+          <p className="bouquet-hero-price">{t("heroPrice")}</p>
         </motion.div>
       </section>
 
@@ -95,13 +103,10 @@ export default function BouquetNoivaClient() {
               </a>
             </div>
           </div>
-          <Image
-            src="/antesedepois.png"
-            alt={t("beforeAfterAlt")}
-            width={1200}
-            height={700}
-            className="bouquet-before-after-img"
-            sizes="(max-width: 768px) 100vw, 55vw"
+          <BeforeAfterSlider
+            beforeLabel={t("sliderAntes")}
+            afterLabel={t("sliderDepois")}
+            dragLabel={t("sliderArraste")}
           />
         </motion.div>
       </section>
@@ -120,37 +125,32 @@ export default function BouquetNoivaClient() {
             {processStart}{processEm && <em>{processEm}</em>}
           </h2>
         </motion.div>
-        <div className="bouquet-process-steps">
+        <ol className="bouquet-timeline">
           {processSteps.map((step, i) => (
-            <motion.div
+            <motion.li
               key={i}
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.65 }}
-              className="bouquet-process-step"
+              className="bouquet-timeline-item"
             >
-              <div className="bouquet-process-num" aria-hidden="true">{step.num}</div>
-              <h3 className="bouquet-process-step-title">{step.title}</h3>
-              <p className="bouquet-process-step-desc">{step.desc}</p>
-            </motion.div>
+              <div className="bouquet-timeline-marker" aria-hidden="true">
+                <span className="bouquet-timeline-num">{step.num}</span>
+              </div>
+              <h3 className="bouquet-timeline-title">{step.title}</h3>
+              <p className="bouquet-timeline-desc">{renderStepDesc(step.desc)}</p>
+            </motion.li>
           ))}
-        </div>
+        </ol>
       </section>
 
-      {/* ── Destaque fim de semana ──────────────────────────── */}
-      <section className="bouquet-weekend-section">
-        <div className="bouquet-weekend-inner">
-          <div className="bouquet-weekend-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="3" y="4" width="18" height="17" rx="2" stroke="var(--green)" strokeWidth="1.6" />
-              <path d="M3 9h18M8 2v4M16 2v4" stroke="var(--green)" strokeWidth="1.6" strokeLinecap="round" />
-            </svg>
-          </div>
-          <div>
-            <h3 className="bouquet-weekend-title">{t("weekendBadge")}</h3>
-            <p className="bouquet-weekend-desc">{t("weekendNote")}</p>
-          </div>
+      {/* ── CTA a meio (reservar) ───────────────────────────── */}
+      <section className="bouquet-mid-cta">
+        <p className="bouquet-mid-cta-text">{t("midCtaText")}</p>
+        <div className="momento-ctas">
+          <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
+          <a href={waUrl(locale, "noiva")} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
         </div>
       </section>
 
@@ -207,7 +207,10 @@ export default function BouquetNoivaClient() {
           <span className="momento-eyebrow">{t("pricingEyebrow")}</span>
           <h2 className="bouquet-pricing-cta-title">{t("pricingCtaTitle")}</h2>
           <p className="momento-content-p">{t("pricingCtaDesc")}</p>
-          <a href={precosHref} className="btn-primary">{t("pricingCtaBtn")}</a>
+          <a href={bookHref} className="btn-primary">{t("pricingCtaBtn")}</a>
+          <div>
+            <a href={precosHref} className="bouquet-pricing-cta-link">{t("pricingCtaLink")}</a>
+          </div>
         </motion.div>
       </section>
 
@@ -238,6 +241,12 @@ export default function BouquetNoivaClient() {
           </div>
         </motion.div>
       </section>
+
+      {/* ── Barra fixa mobile ───────────────────────────────── */}
+      <div className="bouquet-sticky-cta">
+        <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
+        <a href={waUrl(locale, "noiva")} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
+      </div>
     </div>
   );
 }
