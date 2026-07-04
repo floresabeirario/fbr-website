@@ -111,6 +111,25 @@ export default function BouquetNoivaClient() {
         </motion.div>
       </section>
 
+      {/* ── Já casou? (pós-evento) ──────────────────────────── */}
+      <section className="bouquet-postevent">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="bouquet-postevent-inner"
+        >
+          <span className="momento-eyebrow">{t("postEventEyebrow")}</span>
+          <h2 className="bouquet-postevent-title">{t("postEventTitle")}</h2>
+          <p className="bouquet-postevent-desc">{t("postEventDesc")}</p>
+          <div className="momento-ctas">
+            <a href={waUrl(locale, "urgente")} target="_blank" rel="noopener noreferrer" className="btn-primary">{t("postEventCta")}</a>
+          </div>
+          <a href={bookHref} className="bouquet-postevent-link">{t("postEventReservar")}</a>
+        </motion.div>
+      </section>
+
       {/* ── Processo ────────────────────────────────────────── */}
       <section className="bouquet-process">
         <motion.div
