@@ -20,15 +20,6 @@ function CheckIcon() {
   );
 }
 
-function CalendarIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="3" y="4" width="18" height="17" rx="2" stroke="currentColor" strokeWidth="1.7" />
-      <path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 export default function BouquetNoivaClient() {
   const t = useTranslations("bouquetNoiva");
   const locale = useLocale();
@@ -64,10 +55,6 @@ export default function BouquetNoivaClient() {
             {t.raw("heroDelivery").map((chip, i) => (
               <span key={i} className="bouquet-hero-chip">{chip}</span>
             ))}
-          </div>
-          <div className="bouquet-weekend-badge" aria-label={t("weekendBadge")}>
-            <CalendarIcon />
-            <span>{t("weekendBadge")}</span>
           </div>
           <div className="momento-ctas">
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
@@ -124,22 +111,24 @@ export default function BouquetNoivaClient() {
             {processStart}{processEm && <em>{processEm}</em>}
           </h2>
         </motion.div>
-        <div className="bouquet-process-steps">
+        <ol className="bouquet-timeline">
           {processSteps.map((step, i) => (
-            <motion.div
+            <motion.li
               key={i}
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.65 }}
-              className="bouquet-process-step"
+              className="bouquet-timeline-item"
             >
-              <div className="bouquet-process-num" aria-hidden="true">{step.num}</div>
-              <h3 className="bouquet-process-step-title">{step.title}</h3>
-              <p className="bouquet-process-step-desc">{step.desc}</p>
-            </motion.div>
+              <div className="bouquet-timeline-marker" aria-hidden="true">
+                <span className="bouquet-timeline-num">{step.num}</span>
+              </div>
+              <h3 className="bouquet-timeline-title">{step.title}</h3>
+              <p className="bouquet-timeline-desc">{step.desc}</p>
+            </motion.li>
           ))}
-        </div>
+        </ol>
       </section>
 
       {/* ── CTA a meio (reservar) ───────────────────────────── */}
