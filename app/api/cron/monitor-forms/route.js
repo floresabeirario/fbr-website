@@ -41,7 +41,12 @@ export async function GET() {
   // mas também queremos ser avisados se parar em silêncio.
   const analyticsStale = health.analytics?.ok === false;
 
-  if (health.ok && !analyticsStale) {
+  // Anti-spam: se a TURNSTILE_SECRET desaparecer, os forms passam a
+  // fail-closed (rejeitam tudo) — mas queremos saber logo, não descobrir
+  // pelos clientes. Corre no mesmo ambiente das rotas dos forms.
+  const turnstileMissing = !process.env.TURNSTILE_SECRET;
+
+  if (health.ok && !analyticsStale && !turnstileMissing) {
     console.log("[monitor-forms] Tudo OK:", health.checkedAt);
     return NextResponse.json({ ok: true, checkedAt: health.checkedAt });
   }
@@ -55,6 +60,7 @@ export async function GET() {
     if (!health.supabaseWrite?.ok) problemas.push(`<li><strong>Formulários (gravação de teste)</strong>: ${health.supabaseWrite?.reason ?? "erro desconhecido"}</li>`);
     if (!health.resend?.ok) problemas.push(`<li><strong>Resend (e-mail)</strong>: ${health.resend?.reason ?? "erro desconhecido"}</li>`);
     if (analyticsStale) problemas.push(`<li><strong>Analytics (Clarity)</strong>: ${health.analytics?.reason ?? "a recolha parou"}</li>`);
+    if (turnstileMissing) problemas.push(`<li><strong>Turnstile (anti-spam)</strong>: TURNSTILE_SECRET em falta na Vercel — os formulários estão a rejeitar submissões. Repor a variável no projecto fbr-website.</li>`);
 
     const html = `
 <h2 style="font-family:sans-serif;color:#c0392b;">Alerta: possível problema no site (formulários ou analytics)</h2>
