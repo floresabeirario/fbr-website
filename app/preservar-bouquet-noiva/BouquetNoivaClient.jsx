@@ -138,22 +138,6 @@ export default function BouquetNoivaClient() {
         </div>
       </section>
 
-      {/* ── Destaque fim de semana ──────────────────────────── */}
-      <section className="bouquet-weekend-section">
-        <div className="bouquet-weekend-inner">
-          <div className="bouquet-weekend-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="3" y="4" width="18" height="17" rx="2" stroke="var(--green)" strokeWidth="1.6" />
-              <path d="M3 9h18M8 2v4M16 2v4" stroke="var(--green)" strokeWidth="1.6" strokeLinecap="round" />
-            </svg>
-          </div>
-          <div>
-            <h3 className="bouquet-weekend-title">{t("weekendBadge")}</h3>
-            <p className="bouquet-weekend-desc">{t("weekendNote")}</p>
-          </div>
-        </div>
-      </section>
-
       {/* ── Garantias de qualidade ──────────────────────────── */}
       <section className="momento-features">
         <div className="momento-features-grid">
