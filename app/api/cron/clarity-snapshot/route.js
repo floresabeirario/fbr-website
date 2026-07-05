@@ -15,6 +15,11 @@
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { createFormsClient } from "@/app/_lib/supabase-server";
+import { EMAIL } from "@/app/_lib/constants";
+import {
+  compileMonthly,
+  renderMonthlyEmailHtml,
+} from "@/app/_lib/analytics-compile.mjs";
 
 export const maxDuration = 60;
 
@@ -96,5 +101,91 @@ export async function GET() {
 
   const capturedAt = new Date().toISOString();
   console.log("[clarity-snapshot] snapshot guardado:", capturedAt);
-  return NextResponse.json({ ok: true, capturedAt });
+
+  // 4. Uma vez por mês, na primeira recolha do mês novo, compilar o
+  //    relatório do mês anterior e enviá-lo por email. Nunca deixar isto
+  //    partir a recolha — daí o try/catch.
+  let monthly = null;
+  try {
+    monthly = await maybeCompilePreviousMonth(supabase);
+  } catch (err) {
+    console.error("[clarity-snapshot] falha na compilação mensal:", err.message);
+  }
+
+  return NextResponse.json({ ok: true, capturedAt, monthly });
+}
+
+// Nome do mês em português, ex.: "Julho de 2026".
+function monthLabelPT(firstOfMonth) {
+  const s = new Intl.DateTimeFormat("pt-PT", {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(firstOfMonth);
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+// Compila o relatório do MÊS ANTERIOR se ainda não estiver feito (a chave
+// primária month+source garante que só acontece uma vez). Idempotente: nas
+// recolhas seguintes do mesmo mês encontra a linha e sai.
+async function maybeCompilePreviousMonth(supabase) {
+  const now = new Date();
+  const startPrev = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 1, 1));
+  const startCurr = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
+  const monthKey = startPrev.toISOString().slice(0, 10); // YYYY-MM-01
+
+  const { data: existing, error: exErr } = await supabase
+    .from("analytics_monthly")
+    .select("month")
+    .eq("month", monthKey)
+    .eq("source", "clarity")
+    .maybeSingle();
+  if (exErr) throw new Error(exErr.message);
+  if (existing) return { skipped: "ja-compilado", month: monthKey };
+
+  const { data: snaps, error: snErr } = await supabase
+    .from("analytics_snapshots")
+    .select("data")
+    .eq("source", "clarity")
+    .gte("captured_at", startPrev.toISOString())
+    .lt("captured_at", startCurr.toISOString());
+  if (snErr) throw new Error(snErr.message);
+  if (!snaps || snaps.length === 0) return { skipped: "sem-dados", month: monthKey };
+
+  const summary = compileMonthly(snaps.map((s) => s.data));
+
+  const { error: upErr } = await supabase
+    .from("analytics_monthly")
+    .upsert(
+      { month: monthKey, source: "clarity", summary, compiled_at: new Date().toISOString() },
+      { onConflict: "month,source" },
+    );
+  if (upErr) throw new Error(upErr.message);
+
+  const label = monthLabelPT(startPrev);
+  if (process.env.RESEND_API_KEY) {
+    try {
+      await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: "Flores à Beira-Rio <noreply@floresabeirario.pt>",
+          to: [EMAIL],
+          subject: `Relatório de tráfego do site — ${label}`,
+          html: renderMonthlyEmailHtml(summary, label),
+        }),
+      });
+      console.log("[clarity-snapshot] relatório mensal enviado:", label);
+    } catch (mailErr) {
+      // O resumo já está guardado; falha de email não é fatal.
+      console.error("[clarity-snapshot] falha ao enviar relatório:", mailErr.message);
+    }
+  } else {
+    console.warn("[clarity-snapshot] RESEND_API_KEY em falta — relatório guardado mas não enviado.");
+  }
+
+  return { compiled: monthKey, snapshots: snaps.length, emailed: !!process.env.RESEND_API_KEY };
 }
