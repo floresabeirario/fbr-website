@@ -63,7 +63,6 @@ export default function ValeApresenteClient() {
         <div className="vp-form-lead">
           <h2 className="vp-form-lead-title">{t("formTitle")}</h2>
           <p className="vp-form-lead-sub">{t("formSub")}</p>
-          <p className="vp-form-lead-sub" style={{ marginTop: "10px", fontSize: "0.9em", opacity: 0.92 }}>{t("formSemCompromisso")}</p>
           <p style={{ marginTop: "14px", fontSize: "0.82rem", letterSpacing: "0.3px", color: "var(--gold)" }}>
             {t.rich("provaSocial", {
               g: (chunks) => <a href={SOCIAL_GOOGLE_BUSINESS} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>{chunks}</a>,
