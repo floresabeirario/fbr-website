@@ -680,6 +680,7 @@
     ],
     "socialProofRating": "5.0 ★★★★★",
     "socialProofCount": "Verified Google reviews",
+    "resinaCompara": "Comparing with resin preservation? <l>See the differences between the two methods</l>.",
     "beforeAfterEyebrow": "Before and after",
     "beforeAfterTitle": "From fresh bouquet to botanical frame",
     "beforeAfterDesc": "Every petal is treated individually, pressed and composed by hand. The result is a piece that lasts decades, ready to hang on the wall at home.",
@@ -1366,6 +1367,7 @@
     "comparacaoH2": "Pressing, resin",
     "comparacaoEm": "and silica",
     "comparacaoDesc": "The three most popular methods for preserving flowers forever. Here is why we choose pressing.",
+    "comparacaoArtigo": "Full comparison in our article: <l>Resin or botanical pressing?</l>",
     "methods": [
       {
         "tag": "What we do",
