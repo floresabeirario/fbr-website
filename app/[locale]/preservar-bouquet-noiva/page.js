@@ -1,6 +1,6 @@
 // app/[locale]/preservar-bouquet-noiva/page.js
 import { getTranslations } from "next-intl/server";
-import { buildOpenGraph, buildTwitterCard, buildAlternates } from "@/app/_lib/metadata";
+import { buildOpenGraph, buildTwitterCard, buildAlternates, buildBreadcrumbJsonLd } from "@/app/_lib/metadata";
 import { SITE_URL, PHONE, EMAIL } from "@/app/_lib/constants";
 import BouquetNoivaClient from "@/app/preservar-bouquet-noiva/BouquetNoivaClient";
 
@@ -105,9 +105,14 @@ function buildSchema(locale) {
     })),
   };
 
+  // Trilho Início > Momentos Especiais > página (sem @context: já vem do @graph)
+  const { "@context": _bcCtx, ...breadcrumb } = buildBreadcrumbJsonLd(isEN
+    ? [ { name: "Home", path: "/en" }, { name: "Special Moments", path: "/en/special-moments" }, { name: "Wedding Bouquet", path: "/en/preserve-wedding-bouquet" } ]
+    : [ { name: "Início", path: "/" }, { name: "Momentos Especiais", path: "/momentos-especiais" }, { name: "Bouquet de Noiva", path: "/preservar-bouquet-noiva" } ]);
+
   return {
     "@context": "https://schema.org",
-    "@graph": [service, howTo, faqPage],
+    "@graph": [service, howTo, faqPage, breadcrumb],
   };
 }
 

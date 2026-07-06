@@ -3,6 +3,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL } from "../_lib/constants";
@@ -43,12 +44,16 @@ export default function PerguntasFrequentesClient() {
             overflow: "hidden",
           }}
         >
-          <div style={{
-            position: "absolute", inset: 0,
-            backgroundImage: "url('/sandraclose.webp')",
-            backgroundSize: "cover",
-            backgroundPosition: "center 30%",
-          }} aria-hidden="true" />
+          <div style={{ position: "absolute", inset: 0 }} aria-hidden="true">
+            <Image
+              src="/sandraclose.webp"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              style={{ objectFit: "cover", objectPosition: "center 30%" }}
+            />
+          </div>
 
           <div style={{
             position: "absolute", inset: 0,

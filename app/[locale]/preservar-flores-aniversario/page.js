@@ -1,6 +1,6 @@
 // app/[locale]/preservar-flores-aniversario/page.js
 import { getTranslations } from "next-intl/server";
-import { buildOpenGraph, buildTwitterCard, buildAlternates } from "@/app/_lib/metadata";
+import { buildOpenGraph, buildTwitterCard, buildAlternates, buildBreadcrumbJsonLd } from "@/app/_lib/metadata";
 import { SITE_URL, PHONE, EMAIL } from "@/app/_lib/constants";
 import AniversarioClient from "@/app/preservar-flores-aniversario/AniversarioClient";
 
@@ -89,9 +89,14 @@ function buildSchema(locale) {
     })),
   };
 
+  // Trilho Início > Momentos Especiais > página (sem @context: já vem do @graph)
+  const { "@context": _bcCtx, ...breadcrumb } = buildBreadcrumbJsonLd(isEN
+    ? [ { name: "Home", path: "/en" }, { name: "Special Moments", path: "/en/special-moments" }, { name: "Anniversary Flowers", path: "/en/preserve-anniversary-flowers" } ]
+    : [ { name: "Início", path: "/" }, { name: "Momentos Especiais", path: "/momentos-especiais" }, { name: "Aniversário e Bodas", path: "/preservar-flores-aniversario" } ]);
+
   return {
     "@context": "https://schema.org",
-    "@graph": [service, howTo, faqPage],
+    "@graph": [service, howTo, faqPage, breadcrumb],
   };
 }
 

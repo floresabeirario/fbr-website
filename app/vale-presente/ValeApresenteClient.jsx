@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import ValeApresenteForm from "./ValeApresenteForm";
@@ -17,11 +18,16 @@ export default function ValeApresenteClient() {
 
       {/* ── HERO ── */}
       <div className="vp-hero">
-        <div
-          className="vp-hero-bg"
-          aria-hidden="true"
-          style={{ backgroundImage: "url('/vale1.webp')" }}
-        />
+        <div className="vp-hero-bg" aria-hidden="true">
+          <Image
+            src="/vale1.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "center 30%" }}
+          />
+        </div>
         <div className="vp-hero-overlay" aria-hidden="true" />
         <motion.div
           className="vp-hero-content"

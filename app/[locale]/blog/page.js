@@ -1,6 +1,6 @@
 // app/[locale]/blog/page.js
 import { getTranslations } from "next-intl/server";
-import { buildOpenGraph, buildTwitterCard, buildAlternates } from "@/app/_lib/metadata";
+import { buildOpenGraph, buildTwitterCard, buildAlternates, buildBreadcrumbJsonLd } from "@/app/_lib/metadata";
 import { SITE_URL } from "@/app/_lib/constants";
 import { getAllPosts, getCategories } from "@/app/_lib/blog";
 import BlogClient from "@/app/blog/BlogClient";
@@ -33,16 +33,48 @@ export async function generateMetadata({ params }) {
 
 export default async function BlogPage({ params }) {
   const { locale } = await params;
+  const isEN = locale === "en";
   const t = await getTranslations({ locale, namespace: "blog" });
   const posts      = getAllPosts(locale);
   const categories = getCategories(locale);
   const categoryLabels = t.raw("categorias");
 
+  const blogPath = isEN ? "/en/blog" : "/blog";
+  const schema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: t("meta.title"),
+      description: t("meta.description"),
+      url: `${SITE_URL}${blogPath}`,
+      inLanguage: isEN ? "en" : "pt-PT",
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: posts.map((p, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          url: `${SITE_URL}${blogPath}/${p.slug}`,
+          name: p.title,
+        })),
+      },
+    },
+    buildBreadcrumbJsonLd([
+      { name: isEN ? "Home" : "Início", path: isEN ? "/en" : "/" },
+      { name: "Blog", path: blogPath },
+    ]),
+  ];
+
   return (
-    <BlogClient
-      posts={posts}
-      categories={categories}
-      categoryLabels={categoryLabels}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <BlogClient
+        posts={posts}
+        categories={categories}
+        categoryLabels={categoryLabels}
+      />
+    </>
   );
 }

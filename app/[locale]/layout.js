@@ -69,6 +69,17 @@ export default async function LocaleLayout({ children, params }) {
   return (
     <html lang={locale} className={googleSans.variable}>
       <body style={{ fontFamily: "var(--font-google-sans), sans-serif" }}>
+        {/* Preload da fonte dos títulos (declarada via @font-face em globals.css,
+            que o browser só descobriria depois de processar o CSS). O React
+            eleva este <link> para o <head>. crossOrigin é obrigatório em
+            preloads de fontes, mesmo sendo o mesmo domínio. */}
+        <link
+          rel="preload"
+          href="/fonts/TAN-MEMORIES.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
         <NextIntlClientProvider>
           <AltLocaleHrefProvider>
             <MotionProvider>

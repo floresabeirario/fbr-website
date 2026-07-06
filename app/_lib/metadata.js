@@ -92,3 +92,22 @@ export function buildTwitterCard({ title, description, imagePath }) {
   }
   return tw;
 }
+
+/**
+ * Devolve um schema BreadcrumbList (JSON-LD) para o trilho de navegação
+ * que o Google pode mostrar no resultado de pesquisa.
+ * items: [{ name, path }] — path relativo já no idioma certo ("/en/..." em EN);
+ * o último item (a própria página) não leva "item", por convenção do schema.
+ */
+export function buildBreadcrumbJsonLd(items) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      ...(i < items.length - 1 ? { item: `${SITE_URL}${it.path}` } : {}),
+    })),
+  };
+}

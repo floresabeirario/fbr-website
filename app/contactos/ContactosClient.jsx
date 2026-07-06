@@ -78,15 +78,21 @@ export default function ContactosClient() {
         {/* Foto de fundo */}
         <div
           aria-hidden="true"
-          className="hero-bg"
           style={{
             position: "absolute", inset: 0,
-            backgroundImage: "url('/juliaquadro2.webp')",
-            backgroundSize: "cover",
-            backgroundPosition: "center center",
             filter: "brightness(0.78) saturate(0.95)",
           }}
-        />
+        >
+          <Image
+            src="/juliaquadro2.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="hero-bg"
+            style={{ objectFit: "cover", objectPosition: "center center" }}
+          />
+        </div>
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, rgba(10,22,20,0.45) 0%, rgba(10,22,20,0.30) 45%, rgba(10,22,20,0.60) 100%)" }} />
 
         <motion.div style={{ opacity: heroOpacity, y: heroY, position: "relative", zIndex: 2, width: "100%", maxWidth: "1100px", margin: "0 auto", padding: "clamp(140px,18vw,200px) 24px clamp(80px,12vw,120px)" }}>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import ReservarPreservacaoForm from "./ReservarPreservacaoForm";
@@ -16,11 +17,16 @@ export default function ReservarPreservacaoClient() {
 
       {/* ── HERO ── */}
       <div className="rp-hero">
-        <div
-          className="rp-hero-bg"
-          aria-hidden="true"
-          style={{ backgroundImage: "url('/moldurapreta.webp')" }}
-        />
+        <div className="rp-hero-bg" aria-hidden="true">
+          <Image
+            src="/moldurapreta.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "center center" }}
+          />
+        </div>
         <div className="rp-hero-overlay" aria-hidden="true" />
         <motion.div
           className="rp-hero-content"

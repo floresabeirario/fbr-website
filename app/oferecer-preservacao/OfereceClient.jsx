@@ -265,7 +265,9 @@ export default function OfereceClient() {
 
       {/* CTA FINAL */}
       <section style={{ padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", textAlign: "center", position: "relative", overflow: "hidden" }}>
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/sunset.webp')", backgroundSize: "cover", backgroundPosition: "center" }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0 }}>
+          <Image src="/sunset.webp" alt="" fill sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+        </div>
         <Reveal style={{ position: "relative", zIndex: 1 }}>
           <div aria-hidden="true" style={{ width: "44px", height: "1px", margin: "0 auto 2rem", background: `linear-gradient(to right, transparent, ${AZUL_CLR}, transparent)` }} />
           <Eyebrow light>{t("ctaFinalTitle")}</Eyebrow>
