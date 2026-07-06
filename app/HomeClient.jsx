@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { m, useInView } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import ElfsightReviews from "@/components/ElfsightReviews";
+import CasamentosReviews from "@/components/CasamentosReviews";
 
 // ─── Gradient themes (semantic keys used in data-bg) ─────────────────────────
 // Golden rule: light cream dominates 85-90%, deeper accent is a single whisper at the far edge.
@@ -282,11 +283,12 @@ export default function HomeClient() {
             <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--section-accent)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{t("clientesFelizes")}</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "var(--green-d)" }}>{t("oqueDizTitle")}</h2>
             <ElfsightReviews appId="65dc34c1-0003-4419-ab4e-11e52faa447f" />
-            <p style={{ marginTop: "22px", fontSize: "0.85rem", color: "var(--green-d)", opacity: 0.85 }}>
+            <p style={{ marginTop: "26px", fontSize: "0.85rem", color: "var(--green-d)", opacity: 0.85 }}>
               {t.rich("reviewsCasamentos", {
                 l: (chunks) => <a href={`${SOCIAL_CASAMENTOS}/opinioes`} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>{chunks}</a>,
               })}
             </p>
+            <CasamentosReviews />
           </m.div>
         </section>
 

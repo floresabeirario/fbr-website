@@ -7,6 +7,7 @@ import { FORM_URL, OPCOES_PRECOS_URL, SOCIAL_CASAMENTOS } from "../_lib/constant
 import { waUrl } from "../_lib/wa";
 import { splitTitle } from "../_lib/splitTitle";
 import ElfsightReviews from "@/components/ElfsightReviews";
+import CasamentosReviews from "@/components/CasamentosReviews";
 import BouquetNoivaFAQ from "./BouquetNoivaFAQ";
 import BeforeAfterSlider from "../BeforeAfterSlider";
 
@@ -224,6 +225,7 @@ export default function BouquetNoivaClient() {
                 l: (chunks) => <a href={`${SOCIAL_CASAMENTOS}/opinioes`} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>{chunks}</a>,
               })}
             </p>
+            <CasamentosReviews />
           </div>
         </div>
       </section>
