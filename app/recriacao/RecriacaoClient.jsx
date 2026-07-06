@@ -139,7 +139,7 @@ export default function RecriacaoClient() {
             {t("eyebrow")}
           </m.p>
           <m.h1
-            className="hero-enter hero-enter-3"
+            className="hero-enter"
             style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.05, margin: "0 0 clamp(1rem,2.5vw,1.6rem)", color: "var(--cream)" }}
           >
             {t("h1").split(" ").slice(0, -1).join(" ")}<br />
