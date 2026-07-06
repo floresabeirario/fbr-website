@@ -7,7 +7,7 @@ import ArticleClient from "@/app/blog/[slug]/ArticleClient";
 import { mdxComponents } from "@/app/blog/[slug]/MdxComponents";
 import { SetAltLocaleHref } from "@/app/_components/AltLocaleHref";
 import { SITE_URL } from "@/app/_lib/constants";
-import { buildBlogAlternates } from "@/app/_lib/metadata";
+import { buildBlogAlternates, buildBreadcrumbJsonLd } from "@/app/_lib/metadata";
 
 export async function generateStaticParams() {
   const ptPosts = getAllPosts("pt");
@@ -110,7 +110,14 @@ export default async function ArticlePage({ params }) {
       <SetAltLocaleHref href={altHref} />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBlogPostingSchema(post, locale, slug)) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([
+          buildBlogPostingSchema(post, locale, slug),
+          buildBreadcrumbJsonLd([
+            { name: locale === "en" ? "Home" : "Início", path: locale === "en" ? "/en" : "/" },
+            { name: "Blog", path: locale === "en" ? "/en/blog" : "/blog" },
+            { name: post.title, path: `${locale === "en" ? "/en" : ""}/blog/${slug}` },
+          ]),
+        ]) }}
       />
       <ArticleClient post={post} related={related}>
         <MDXRemote source={post.content} components={mdxComponents} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />

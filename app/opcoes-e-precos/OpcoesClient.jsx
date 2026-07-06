@@ -607,7 +607,9 @@ export default function OpcoesClient() {
 
       {/* ── CTA RECRIAÇÃO DO BOUQUET ── */}
       <section style={{ position: "relative", overflow: "hidden", padding: "clamp(60px,10vw,100px) 24px", textAlign: "center" }}>
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/ctaidosos.webp')", backgroundSize: "cover", backgroundPosition: "center" }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0 }}>
+          <Image src="/ctaidosos.webp" alt="" fill sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+        </div>
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, rgba(10,20,16,0.78) 0%, rgba(10,20,16,0.60) 100%)" }} />
         <div style={{ position: "relative", zIndex: 1, maxWidth: "640px", margin: "0 auto" }}>
           <Reveal>

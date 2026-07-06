@@ -359,7 +359,9 @@ export default function HomeClient() {
           data-bg="lavender"
           style={{ position: "relative", overflow: "hidden", minHeight: "560px", display: "flex", alignItems: "center" }}
         >
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/vale1.webp')", backgroundSize: "cover", backgroundPosition: "center" }} />
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0 }}>
+            <Image src="/vale1.webp" alt="" fill sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+          </div>
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(100deg, rgba(15,25,20,0.82) 0%, rgba(15,25,20,0.58) 55%, rgba(15,25,20,0.15) 100%)" }} />
           <div style={{ position: "relative", zIndex: 1, maxWidth: "1100px", margin: "0 auto", padding: "88px 20px", width: "100%" }}>
             <div style={{ maxWidth: "580px" }}>
@@ -414,7 +416,9 @@ export default function HomeClient() {
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
             style={{ padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
           >
-            <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/videochamada.webp')", backgroundSize: "cover", backgroundPosition: "center" }} />
+            <div aria-hidden="true" style={{ position: "absolute", inset: 0 }}>
+              <Image src="/videochamada.webp" alt="" fill sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+            </div>
             <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,25,20,0.45) 0%, rgba(15,25,20,0.72) 100%)" }} />
             <div style={{ maxWidth: "440px", margin: "0 auto", width: "100%", position: "relative", zIndex: 1 }}>
               <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.82)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>
@@ -443,7 +447,9 @@ export default function HomeClient() {
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.1 }}
             style={{ position: "relative", overflow: "hidden", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", minHeight: "480px", display: "flex", alignItems: "center", justifyContent: "center" }}
           >
-            <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "url('/noiva.webp')", backgroundSize: "cover", backgroundPosition: "center top", filter: "brightness(0.52)" }} />
+            <div aria-hidden="true" style={{ position: "absolute", inset: 0, filter: "brightness(0.52)" }}>
+              <Image src="/noiva.webp" alt="" fill sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: "cover", objectPosition: "center top" }} />
+            </div>
             <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.28) 0%, rgba(15,30,26,0.65) 100%)" }} />
             <div style={{ position: "relative", zIndex: 1, maxWidth: "440px", margin: "0 auto" }}>
               <span style={{ display: "block", fontSize: "0.72rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(250,247,240,0.75)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{t("paraNoivas")}</span>

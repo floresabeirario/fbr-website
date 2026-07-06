@@ -1,6 +1,6 @@
 // app/[locale]/enviar-flores-por-correio/page.js
 import { getTranslations } from "next-intl/server";
-import { buildOpenGraph, buildTwitterCard, buildAlternates } from "@/app/_lib/metadata";
+import { buildOpenGraph, buildTwitterCard, buildAlternates, buildBreadcrumbJsonLd } from "@/app/_lib/metadata";
 import { SITE_URL } from "@/app/_lib/constants";
 import EnviarFloresClient from "@/app/enviar-flores-por-correio/EnviarFloresClient";
 
@@ -32,6 +32,27 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function EnviarFloresPage() {
-  return <EnviarFloresClient />;
+export default async function EnviarFloresPage({ params }) {
+  const { locale } = await params;
+  const isEN = locale === "en";
+  const selfPath = isEN ? "/en/how-to-ship-your-flowers" : "/enviar-flores-por-correio";
+
+  // O HowTo desta página já vive no EnviarFloresClient (gerado dos passos
+  // reais do guia) — aqui só acrescentamos o trilho de navegação.
+  const schema = [
+    buildBreadcrumbJsonLd([
+      { name: isEN ? "Home" : "Início", path: isEN ? "/en" : "/" },
+      { name: isEN ? "How to Ship Your Flowers" : "Enviar Flores por Correio", path: selfPath },
+    ]),
+  ];
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <EnviarFloresClient />
+    </>
+  );
 }

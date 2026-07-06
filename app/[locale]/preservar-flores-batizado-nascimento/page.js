@@ -1,6 +1,6 @@
 // app/[locale]/preservar-flores-batizado-nascimento/page.js
 import { getTranslations } from "next-intl/server";
-import { buildOpenGraph, buildTwitterCard, buildAlternates } from "@/app/_lib/metadata";
+import { buildOpenGraph, buildTwitterCard, buildAlternates, buildBreadcrumbJsonLd } from "@/app/_lib/metadata";
 import { SITE_URL, PHONE, EMAIL } from "@/app/_lib/constants";
 import BatizadoNascimentoClient from "@/app/preservar-flores-batizado-nascimento/BatizadoNascimentoClient";
 
@@ -89,9 +89,14 @@ function buildSchema(locale) {
     })),
   };
 
+  // Trilho Início > Momentos Especiais > página (sem @context: já vem do @graph)
+  const { "@context": _bcCtx, ...breadcrumb } = buildBreadcrumbJsonLd(isEN
+    ? [ { name: "Home", path: "/en" }, { name: "Special Moments", path: "/en/special-moments" }, { name: "Baptism Flowers", path: "/en/preserve-baptism-flowers" } ]
+    : [ { name: "Início", path: "/" }, { name: "Momentos Especiais", path: "/momentos-especiais" }, { name: "Batizado e Nascimento", path: "/preservar-flores-batizado-nascimento" } ]);
+
   return {
     "@context": "https://schema.org",
-    "@graph": [service, howTo, faqPage],
+    "@graph": [service, howTo, faqPage, breadcrumb],
   };
 }
 
