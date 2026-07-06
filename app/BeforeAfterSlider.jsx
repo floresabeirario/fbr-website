@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 
 export default function BeforeAfterSlider({ beforeLabel = "Antes", afterLabel = "Depois", dragLabel = "Arraste para comparar" }) {
@@ -53,7 +53,7 @@ export default function BeforeAfterSlider({ beforeLabel = "Antes", afterLabel = 
   }, [onMouseMove, onMouseUp, onTouchMove, onTouchEnd]);
 
   return (
-    <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+    <m.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
       <div ref={containerRef}
         style={{ position: "relative", width: "100%", maxWidth: "760px", margin: "0 auto", aspectRatio: "4/3", borderRadius: "20px", overflow: "hidden", cursor: "ew-resize", userSelect: "none", WebkitUserSelect: "none", touchAction: "none", boxShadow: "0 24px 64px rgba(30,45,42,0.16)" }}
         onMouseDown={onMouseDown} onTouchStart={onTouchStart}
@@ -84,6 +84,6 @@ export default function BeforeAfterSlider({ beforeLabel = "Antes", afterLabel = 
           {dragLabel}
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }

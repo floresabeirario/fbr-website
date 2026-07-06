@@ -1,17 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { SITE_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
 import { splitTitle } from "../_lib/splitTitle";
-import imgMateriais from "@/public/Envio/1.png";
-import img2 from "@/public/Envio/2.png";
-import img3 from "@/public/Envio/3.png";
-import img4 from "@/public/Envio/4.png";
-import img5 from "@/public/Envio/5.png";
-import img6 from "@/public/Envio/6.png";
+import imgMateriais from "@/public/Envio/1.webp";
+import img2 from "@/public/Envio/2.webp";
+import img3 from "@/public/Envio/3.webp";
+import img4 from "@/public/Envio/4.webp";
+import img5 from "@/public/Envio/5.webp";
+import img6 from "@/public/Envio/6.webp";
 import "./EnviarFloresClient.css";
 
 const STEP_IMAGES = [img2, img3, img4, img5, img6];
@@ -83,7 +83,7 @@ export default function EnviarFloresClient() {
 
         {/* ── HEADER BAND ──────────────────────────────────────────── */}
         <header style={{ padding: "clamp(104px,16vw,150px) clamp(20px,5vw,48px) clamp(36px,6vw,56px)", textAlign: "center", background: "linear-gradient(180deg, #3A4528 0%, #2E3621 100%)" }}>
-          <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", margin: "0 auto" }}>
+          <m.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", margin: "0 auto" }}>
             <span className="eyebrow">{t("eyebrow")}</span>
             <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5.5vw,3.6rem)", lineHeight: 1.08, color: "var(--cream)", margin: "0 0 clamp(14px,2vw,20px)" }}>
               {h1Start}{h1Em && <em style={{ fontStyle: "italic", color: "var(--gold)" }}>{h1Em}</em>}
@@ -94,13 +94,13 @@ export default function EnviarFloresClient() {
             <p style={{ fontSize: "clamp(0.86rem,1.6vw,0.96rem)", lineHeight: 1.8, maxWidth: "540px", color: "rgba(250,247,240,0.62)", margin: "0 auto" }}>
               {t("introDesc")}
             </p>
-          </motion.div>
+          </m.div>
         </header>
 
         <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "clamp(36px,6vw,60px) clamp(20px,5vw,40px) 0" }}>
 
           {/* ── MATERIALS CHECKLIST ─────────────────────────────────── */}
-          <motion.section {...fadeUp} aria-label={t("materiaisTitle")} style={{ maxWidth: "720px", margin: "0 auto clamp(48px,8vw,72px)", backgroundColor: "var(--cream)", borderRadius: "18px", padding: "clamp(20px,4vw,32px)", border: "1px solid rgba(0,0,0,0.06)", boxShadow: "0 12px 32px rgba(0,0,0,0.28)" }}>
+          <m.section {...fadeUp} aria-label={t("materiaisTitle")} style={{ maxWidth: "720px", margin: "0 auto clamp(48px,8vw,72px)", backgroundColor: "var(--cream)", borderRadius: "18px", padding: "clamp(20px,4vw,32px)", border: "1px solid rgba(0,0,0,0.06)", boxShadow: "0 12px 32px rgba(0,0,0,0.28)" }}>
             <div className="ship-materials">
               <div className="ship-materials-img">
                 <Image src={imgMateriais} alt={t("materiaisAlt")} sizes="(max-width: 600px) 260px, 230px" />
@@ -114,16 +114,16 @@ export default function EnviarFloresClient() {
                 </ul>
               </div>
             </div>
-          </motion.section>
+          </m.section>
 
           {/* ── STEP CARDS ──────────────────────────────────────────── */}
           <section aria-label={t("passosTitle")} style={{ marginBottom: "clamp(48px,8vw,72px)" }}>
-            <motion.h2 {...fadeUp} style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem,3.6vw,2.3rem)", color: "var(--cream)", textAlign: "center", margin: "0 0 clamp(32px,6vw,52px)", lineHeight: 1.15 }}>
+            <m.h2 {...fadeUp} style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.5rem,3.6vw,2.3rem)", color: "var(--cream)", textAlign: "center", margin: "0 0 clamp(32px,6vw,52px)", lineHeight: 1.15 }}>
               {t("passosTitle")}
-            </motion.h2>
+            </m.h2>
             <div className="ship-cards">
               {passos.map((step, i) => (
-                <motion.article key={i} {...fadeUp} id={`passo-${i + 1}`} className="ship-card" aria-labelledby={`passo-${i + 1}-title`}>
+                <m.article key={i} {...fadeUp} id={`passo-${i + 1}`} className="ship-card" aria-labelledby={`passo-${i + 1}-title`}>
                   <div className="ship-card-img">
                     <span className="ship-card-num" aria-hidden="true">{step.n}</span>
                     <Image fill src={STEP_IMAGES[i]} alt={step.alt} sizes="(max-width: 680px) 100vw, 480px" />
@@ -137,25 +137,25 @@ export default function EnviarFloresClient() {
                       <p style={{ color: "#9A7B2E", fontSize: "clamp(0.8rem,1.5vw,0.86rem)", lineHeight: 1.6, fontStyle: "italic", margin: "12px 0 0" }}>{step.nota}</p>
                     )}
                   </div>
-                </motion.article>
+                </m.article>
               ))}
             </div>
           </section>
 
           {/* ── WHAT TO AVOID ───────────────────────────────────────── */}
-          <motion.section {...fadeUp} aria-label={t("naoTitle")} style={{ maxWidth: "720px", margin: "0 auto clamp(56px,9vw,84px)", backgroundColor: "rgba(184,149,74,0.08)", borderRadius: "16px", padding: "clamp(20px,4vw,30px)", border: "1px solid rgba(184,149,74,0.22)" }}>
+          <m.section {...fadeUp} aria-label={t("naoTitle")} style={{ maxWidth: "720px", margin: "0 auto clamp(56px,9vw,84px)", backgroundColor: "rgba(184,149,74,0.08)", borderRadius: "16px", padding: "clamp(20px,4vw,30px)", border: "1px solid rgba(184,149,74,0.22)" }}>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.3rem,3vw,1.7rem)", color: "var(--cream)", margin: "0 0 clamp(16px,3vw,22px)", lineHeight: 1.1 }}>{t("naoTitle")}</h2>
             <ul className="ship-avoid-list">
               {naoItens.map((item, i) => (
                 <li key={i} className="ship-avoid-item"><CrossIcon />{item}</li>
               ))}
             </ul>
-          </motion.section>
+          </m.section>
         </div>
 
         {/* ── MORADA + CTA ──────────────────────────────────────────── */}
         <section aria-label={t("ctaTitle")} style={{ padding: "clamp(52px,9vw,80px) clamp(20px,5vw,48px)", background: "linear-gradient(140deg, #3A4528 0%, #2E3621 55%, #262E1B 100%)", textAlign: "center" }}>
-          <motion.div {...fadeUp} style={{ maxWidth: "560px", margin: "0 auto" }}>
+          <m.div {...fadeUp} style={{ maxWidth: "560px", margin: "0 auto" }}>
             <div style={{ maxWidth: "500px", margin: "0 auto clamp(34px,6vw,48px)", padding: "clamp(20px,3.5vw,28px) clamp(22px,4vw,32px)", backgroundColor: "rgba(184,149,74,0.1)", border: "1px solid rgba(184,149,74,0.3)", borderRadius: "16px" }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ display: "block", margin: "0 auto 10px" }}>
                 <path d="M12 21.5s7-5.8 7-11.5a7 7 0 10-14 0c0 5.7 7 11.5 7 11.5z" stroke="var(--gold)" strokeWidth="1.5" strokeLinejoin="round" />
@@ -171,7 +171,7 @@ export default function EnviarFloresClient() {
               <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer" className="btn-wa"><WhatsAppIcon />{t("ctaWA")}</a>
             </div>
             <a href={comoFuncionaHref} className="text-link">{t("ctaComoFunciona")}</a>
-          </motion.div>
+          </m.div>
         </section>
 
       </div>

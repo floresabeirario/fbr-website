@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL } from "../_lib/constants";
@@ -54,7 +54,7 @@ export default function PreservacaoDeFloresClient() {
           gradient="linear-gradient(to top, rgba(35,15,5,0.82) 0%, rgba(35,15,5,0.55) 50%, rgba(35,15,5,0.18) 100%)"
           ariaLabel="Preservação de flores, arte botânica artesanal"
         >
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
@@ -80,7 +80,7 @@ export default function PreservacaoDeFloresClient() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </PageHero>
 
         {/* ══ INTRO TEXTO SEO ════════════════════════════════════════════════════ */}
@@ -89,7 +89,7 @@ export default function PreservacaoDeFloresClient() {
           style={{ padding: "clamp(56px,9vw,88px) clamp(20px,5vw,48px)", background: "linear-gradient(160deg, #F5EDE4 0%, #FAF7F0 60%)" }}
         >
           <div style={{ maxWidth: "780px", margin: "0 auto" }}>
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -104,7 +104,7 @@ export default function PreservacaoDeFloresClient() {
                 <p style={{ margin: "0 0 16px" }}>{t("oQueP2")}</p>
                 <p style={{ margin: 0 }}>{t("oQueP3")}</p>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </section>
 
@@ -114,7 +114,7 @@ export default function PreservacaoDeFloresClient() {
           style={{ padding: "clamp(56px,9vw,88px) clamp(20px,5vw,48px)", backgroundColor: "var(--cream)" }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -124,7 +124,7 @@ export default function PreservacaoDeFloresClient() {
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,4.5vw,3rem)", color: "var(--green-d)", margin: 0, lineHeight: 1.1 }}>
                 {t("tudoSaber")}
               </h2>
-            </motion.div>
+            </m.div>
 
             <div className="subpages-grid">
               {SUBPAGES.map((item, i) => (
@@ -142,7 +142,7 @@ export default function PreservacaoDeFloresClient() {
           <div aria-hidden="true" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "700px", height: "700px", background: "radial-gradient(circle, rgba(196,132,107,0.12) 0%, transparent 65%)", borderRadius: "50%", pointerEvents: "none" }} />
 
           <div style={{ maxWidth: "1000px", margin: "0 auto", position: "relative", zIndex: 1 }}>
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -152,11 +152,11 @@ export default function PreservacaoDeFloresClient() {
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,4.5vw,3rem)", color: "var(--cream)", margin: 0, lineHeight: 1.1 }}>
                 {t("paraCada")}
               </h2>
-            </motion.div>
+            </m.div>
 
             <div className="ocasioes-grid">
               {ocasioes.map((item, i) => (
-                <motion.div
+                <m.div
                   key={i}
                   initial={{ opacity: 0, y: 14 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -169,7 +169,7 @@ export default function PreservacaoDeFloresClient() {
                     <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1rem,2vw,1.2rem)", color: "var(--cream)", margin: "0 0 6px", lineHeight: 1.2 }}>{item.titulo}</h3>
                     <p style={{ color: "rgba(250,247,240,0.5)", fontSize: "0.82rem", lineHeight: 1.65, margin: 0, fontFamily: "Roboto, sans-serif" }}>{item.desc}</p>
                   </a>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
@@ -181,7 +181,7 @@ export default function PreservacaoDeFloresClient() {
           style={{ padding: "clamp(56px,9vw,88px) clamp(20px,5vw,48px)", background: "linear-gradient(180deg, #F5EDE0 0%, #FAF7F0 100%)" }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -191,11 +191,11 @@ export default function PreservacaoDeFloresClient() {
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,4.5vw,3rem)", color: "var(--green-d)", margin: 0, lineHeight: 1.1 }}>
                 {t("feitoParaDurar")}
               </h2>
-            </motion.div>
+            </m.div>
 
             <div className="motivos-grid">
               {motivos.map((item, i) => (
-                <motion.div
+                <m.div
                   key={i}
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -213,7 +213,7 @@ export default function PreservacaoDeFloresClient() {
                     <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(0.95rem,1.6vw,1.08rem)", color: "var(--green-d)", margin: "0 0 5px", lineHeight: 1.25 }}>{item.titulo}</h3>
                     <p style={{ color: "var(--mid)", fontSize: "0.84rem", lineHeight: 1.65, margin: 0, fontFamily: "Roboto, sans-serif" }}>{item.desc}</p>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
@@ -224,7 +224,7 @@ export default function PreservacaoDeFloresClient() {
           <div className="cta-graduation-bg">
             <Image fill src="/graduation.webp" alt="Rapariga com ramo de flores na cerimónia de licenciatura" sizes="100vw" style={{ objectFit: "cover", objectPosition: "center top" }} />
           </div>
-          <motion.div
+          <m.div
             className="cta-graduation-inner"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -259,7 +259,7 @@ export default function PreservacaoDeFloresClient() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </section>
       </div>
     </>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import ElfsightReviews from "@/components/ElfsightReviews";
 
@@ -194,14 +194,14 @@ export default function HomeClient() {
           style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative" }}
         >
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "48px" }}>
+            <m.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "48px" }}>
               <span className="eyebrow">{t("oQueFazemos")}</span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,5vw,3.5rem)", color: "var(--green-d)", margin: "0 0 16px", lineHeight: 1.1 }}>{t("heroTitle")}</h2>
               <p style={{ color: "var(--mid)", fontSize: "clamp(1rem,2vw,1.1rem)", lineHeight: 1.85, maxWidth: "600px", margin: "0 auto 48px" }}>
                 {t("heroDesc")}
               </p>
               <BeforeAfterSlider beforeLabel={t("sliderAntes")} afterLabel={t("sliderDepois")} dragLabel={t("sliderArraste")} />
-            </motion.div>
+            </m.div>
           </div>
         </section>
 
@@ -214,15 +214,15 @@ export default function HomeClient() {
           style={{ padding: "clamp(72px,10vw,96px) 20px clamp(80px,10vw,100px)", background: "transparent", position: "relative" }}
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-            <motion.div className="tracking-title" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} style={{ marginBottom: "32px" }}>
+            <m.div className="tracking-title" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} style={{ marginBottom: "32px" }}>
               <span className="eyebrow">{t("transparencia")}</span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "var(--green-d)", margin: "0 0 4px", lineHeight: 1.1 }}>
                 {t("acompanheTitle")}
               </h2>
-            </motion.div>
+            </m.div>
 
             <div className="tracking-grid">
-              <motion.div initial={{ opacity: 0, x: -28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+              <m.div initial={{ opacity: 0, x: -28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div className="phone-float" style={{ position: "relative", width: "clamp(200px, 38vw, 280px)", transform: "rotate(-2deg)" }}>
                   <div style={{ position: "absolute", bottom: "-24px", left: "50%", transform: "translateX(-50%)", width: "70%", height: "40px", background: "radial-gradient(ellipse, rgba(30,45,42,0.18) 0%, transparent 70%)", borderRadius: "50%", zIndex: 0 }} aria-hidden="true" />
                   <div style={{ position: "relative", zIndex: 1, backgroundColor: "var(--green-d)", borderRadius: "42px", padding: "14px 10px", boxShadow: "0 32px 80px rgba(30,45,42,0.35), 0 0 0 1px rgba(255,255,255,0.06)" }}>
@@ -245,9 +245,9 @@ export default function HomeClient() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
 
-              <motion.div initial={{ opacity: 0, x: 28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}>
+              <m.div initial={{ opacity: 0, x: 28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}>
                 <span className="eyebrow tracking-desktop-title">{t("transparencia")}</span>
                 <h2 className="tracking-desktop-title" style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", color: "var(--green-d)", margin: "0 0 20px", lineHeight: 1.1 }}>
                   {t("acompanheTitle")}
@@ -260,7 +260,7 @@ export default function HomeClient() {
                     { icon: <IconFlower />, title: t("recepcaoFlores"), desc: t("recepcaoFloresDesc") },
                     { icon: <IconFrame />, title: t("composicaoAprovada"), desc: t("composicaoAprovadaDesc") },
                   ].map((item, i) => (
-                    <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
+                    <m.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
                       style={{ display: "flex", alignItems: "flex-start", gap: "16px", padding: "18px 0", borderBottom: i === 0 ? "1px solid rgba(61,107,94,0.12)" : "none" }}
                     >
                       <div style={{ width: "44px", height: "44px", borderRadius: "12px", background: "rgba(255,255,255,0.45)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--section-accent)", flexShrink: 0, marginTop: "2px", border: "1px solid rgba(255,255,255,0.7)" }}>{item.icon}</div>
@@ -268,21 +268,21 @@ export default function HomeClient() {
                         <p style={{ margin: "0 0 4px", fontWeight: "700", color: "var(--green-d)", fontSize: "1rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
                         <p style={{ margin: 0, color: "var(--mid)", fontSize: "0.95rem", lineHeight: 1.65 }}>{item.desc}</p>
                       </div>
-                    </motion.div>
+                    </m.div>
                   ))}
                 </div>
-              </motion.div>
+              </m.div>
             </div>
           </div>
         </section>
 
         {/* ════ 5. GOOGLE REVIEWS ════ */}
         <section aria-label={t("clientesFelizes")} data-bg="lavender" style={{ padding: "clamp(64px,10vw,88px) 20px", background: "transparent", textAlign: "center" }}>
-          <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "940px", margin: "0 auto" }}>
+          <m.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "940px", margin: "0 auto" }}>
             <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--section-accent)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{t("clientesFelizes")}</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "var(--green-d)" }}>{t("oqueDizTitle")}</h2>
             <ElfsightReviews appId="65dc34c1-0003-4419-ab4e-11e52faa447f" />
-          </motion.div>
+          </m.div>
         </section>
 
         {/* ════ 6. APCC ════ */}
@@ -292,7 +292,7 @@ export default function HomeClient() {
         >
           <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
             <div className="apcc-grid">
-              <motion.div className="apcc-text" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+              <m.div className="apcc-text" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(139,168,136,0.12)", border: "1px solid rgba(139,168,136,0.25)", borderRadius: "100px", padding: "7px 16px", marginBottom: "20px" }}>
                   <span style={{ color: "var(--green-l)", fontSize: "0.75rem" }} aria-hidden="true">♥</span>
                   <span style={{ fontSize: "0.78rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "var(--green-l)", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{t("parceiriaSolidaria")}</span>
@@ -304,7 +304,7 @@ export default function HomeClient() {
                   {t("apccDesc")}
                 </p>
                 {apccItems.map((item, i) => (
-                  <motion.div key={i} initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.12 + i * 0.08, duration: 0.5 }}
+                  <m.div key={i} initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.12 + i * 0.08, duration: 0.5 }}
                     style={{ display: "flex", alignItems: "flex-start", gap: "14px", padding: "13px 0", borderBottom: i < 2 ? "1px solid rgba(139,168,136,0.1)" : "none" }}
                   >
                     <div style={{ width: "36px", height: "36px", borderRadius: "10px", background: "rgba(139,168,136,0.12)", border: "1px solid rgba(139,168,136,0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--green-l)", flexShrink: 0, marginTop: "2px" }}>
@@ -314,11 +314,11 @@ export default function HomeClient() {
                       <p style={{ margin: "0 0 2px", fontWeight: "700", color: "var(--green-d)", fontSize: "0.9rem", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{item.title}</p>
                       <p style={{ margin: 0, color: "rgba(30,45,42,0.58)", fontSize: "0.86rem", lineHeight: 1.6 }}>{item.desc}</p>
                     </div>
-                  </motion.div>
+                  </m.div>
                 ))}
-              </motion.div>
+              </m.div>
 
-              <motion.div className="apcc-visual" initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              <m.div className="apcc-visual" initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "20px" }}
               >
                 <a
@@ -349,7 +349,7 @@ export default function HomeClient() {
                 <Link href={sustentabilidadeHref} className="apcc-link">
                   {t("sustentabilidadeLink")}
                 </Link>
-              </motion.div>
+              </m.div>
             </div>
           </div>
         </section>
@@ -365,7 +365,7 @@ export default function HomeClient() {
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(100deg, rgba(15,25,20,0.82) 0%, rgba(15,25,20,0.58) 55%, rgba(15,25,20,0.15) 100%)" }} />
           <div style={{ position: "relative", zIndex: 1, maxWidth: "1100px", margin: "0 auto", padding: "88px 20px", width: "100%" }}>
             <div style={{ maxWidth: "580px" }}>
-              <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}>
+              <m.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(180,160,240,0.15)", border: "1px solid rgba(180,160,240,0.35)", borderRadius: "100px", padding: "6px 16px", marginBottom: "20px" }}>
                   <span style={{ fontSize: "0.72rem", fontWeight: "700", letterSpacing: "2.5px", textTransform: "uppercase", color: "#D4C4F0", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{t("presenteTitle")}</span>
                 </div>
@@ -378,7 +378,7 @@ export default function HomeClient() {
                 <Link href={ofereceHref} className="gift-card-btn">
                   {t("descobrirCartao")}
                 </Link>
-              </motion.div>
+              </m.div>
             </div>
           </div>
         </section>
@@ -389,7 +389,7 @@ export default function HomeClient() {
           data-bg="blush"
           style={{ padding: "clamp(64px,9vw,88px) 20px", background: "transparent", textAlign: "center" }}
         >
-          <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "640px", margin: "0 auto" }}>
+          <m.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ maxWidth: "640px", margin: "0 auto" }}>
             <span className="eyebrow">{t("eventoPassouEyebrow")}</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", color: "var(--green-d)", margin: "0 0 16px", lineHeight: 1.1 }}>
               {t("eventoPassouTitle")}
@@ -405,14 +405,14 @@ export default function HomeClient() {
                 {t("eventoPassouRecriacao")}
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </section>
 
         {/* ════ 8. CTA SPLIT ════ */}
         <div className="cta-split" data-bg="butter">
 
           {/* Apoio personalizado */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
             style={{ padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", minHeight: "480px" }}
           >
@@ -440,10 +440,10 @@ export default function HomeClient() {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Vai casar em breve */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.1 }}
             style={{ position: "relative", overflow: "hidden", padding: "clamp(64px,9vw,96px) clamp(32px,6vw,72px)", textAlign: "center", minHeight: "480px", display: "flex", alignItems: "center", justifyContent: "center" }}
           >
@@ -462,7 +462,7 @@ export default function HomeClient() {
                 <Link href={bouquetNoivaHref} className="btn-noiva-ghost">{t("noivasSaberMais")}</Link>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import "./ExploreSquares.css";
 
 export default function ExploreSquares({ items, ariaLabel }) {
@@ -9,7 +9,7 @@ export default function ExploreSquares({ items, ariaLabel }) {
     <section aria-label={ariaLabel}>
       <div className="explore-squares-grid">
         {items.map((item, i) => (
-          <motion.div
+          <m.div
             key={item.href}
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -30,7 +30,7 @@ export default function ExploreSquares({ items, ariaLabel }) {
                 <span className="explore-square-label">{item.label}</span>
               </div>
             </a>
-          </motion.div>
+          </m.div>
         ))}
       </div>
     </section>

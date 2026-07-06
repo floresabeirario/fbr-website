@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useLocale } from "next-intl";
 import { FAQ_DATA, CATEGORIES } from "./faq-data";
 import { FAQ_DATA_EN, CATEGORIES_EN } from "./faq-data-en";
@@ -35,7 +35,7 @@ function highlight(text, searchTerm) {
 
 // ─── Individual FAQ item ──────────────────────────────────────────────────────
 const FAQItem = ({ faq, isOpen, onToggle, searchTerm, accentColor, itemIndex }) => (
-  <motion.div
+  <m.div
     initial={{ opacity: 0, y: 10 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.3, delay: itemIndex * 0.045, ease: [0.16, 1, 0.3, 1] }}
@@ -62,7 +62,7 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm, accentColor, itemIndex }) 
         {highlight(faq.q, searchTerm)}
       </span>
 
-      <motion.div
+      <m.div
         animate={{ rotate: isOpen ? 45 : 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 24 }}
         style={{
@@ -80,12 +80,12 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm, accentColor, itemIndex }) 
           strokeWidth="2.4" strokeLinecap="round">
           <path d="M10 4V16M4 10H16" />
         </svg>
-      </motion.div>
+      </m.div>
     </button>
 
     <AnimatePresence initial={false}>
       {isOpen && (
-        <motion.div
+        <m.div
           key="body"
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "auto", opacity: 1 }}
@@ -100,10 +100,10 @@ const FAQItem = ({ faq, isOpen, onToggle, searchTerm, accentColor, itemIndex }) 
           }}>
             {faq.a}
           </div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
-  </motion.div>
+  </m.div>
 );
 
 // ─── Category accordion block ─────────────────────────────────────────────────
@@ -111,7 +111,7 @@ const CategoryBlock = ({ cat, faqs, faqItems, isOpen, onToggle, openFaqIndex, se
   const meta = CAT_META[cat.id] || { num: "0" + (sectionIndex + 1), color: ACCENT, bg: "rgba(139,58,107,0.07)", border: ACCENT_BORDER };
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -178,7 +178,7 @@ const CategoryBlock = ({ cat, faqs, faqItems, isOpen, onToggle, openFaqIndex, se
             {faqs.length} perguntas
           </span>
 
-          <motion.div
+          <m.div
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 26 }}
             style={{
@@ -195,14 +195,14 @@ const CategoryBlock = ({ cat, faqs, faqItems, isOpen, onToggle, openFaqIndex, se
               strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 7.5L10 12.5L15 7.5" />
             </svg>
-          </motion.div>
+          </m.div>
         </div>
       </button>
 
       {/* FAQ items panel */}
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.div
+          <m.div
             id={`cat-panel-${cat.id}`}
             key="panel"
             initial={{ height: 0, opacity: 0 }}
@@ -237,10 +237,10 @@ const CategoryBlock = ({ cat, faqs, faqItems, isOpen, onToggle, openFaqIndex, se
                 })}
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -307,7 +307,7 @@ export default function FaqAccordion() {
       {/* ── Search results ── */}
       {isSearching && (
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={search}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             transition={{ duration: 0.18 }}
@@ -356,7 +356,7 @@ export default function FaqAccordion() {
                 })}
               </div>
             )}
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       )}
 
@@ -381,7 +381,7 @@ export default function FaqAccordion() {
 
       {/* ── Related links ── */}
       {!isSearching && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -406,7 +406,7 @@ export default function FaqAccordion() {
               </a>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       )}
     </div>
   );

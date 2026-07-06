@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import ValeApresenteForm from "./ValeApresenteForm";
 import "./ValeApresenteClient.css";
@@ -29,7 +29,7 @@ export default function ValeApresenteClient() {
           />
         </div>
         <div className="vp-hero-overlay" aria-hidden="true" />
-        <motion.div
+        <m.div
           className="vp-hero-content"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -45,11 +45,11 @@ export default function ValeApresenteClient() {
           <Link href={ofereceHref} className="vp-info-link">
             {t("saberMais")} <span aria-hidden="true">→</span>
           </Link>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* ── PASSOS ── */}
-      <motion.div
+      <m.div
         className="vp-steps-bar"
         aria-label={t("comoFuncionaLabel")}
         initial={{ opacity: 0, y: 12 }}
@@ -65,7 +65,7 @@ export default function ValeApresenteClient() {
             </li>
           ))}
         </ol>
-      </motion.div>
+      </m.div>
 
       {/* ── FORMULÁRIO ── */}
       <section className="vp-form-wrap" aria-label={t("formTitle")}>

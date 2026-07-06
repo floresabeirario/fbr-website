@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { FORM_URL } from "./_lib/constants";
@@ -59,7 +59,7 @@ export default function HomeSteps() {
 
       {/* Header */}
       <div className="steps-header">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -73,13 +73,13 @@ export default function HomeSteps() {
           <p className="steps-subheading">
             {t("stepsSubheading")}
           </p>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Steps grid */}
       <div className="steps-grid" role="list">
         {steps.map((step, i) => (
-          <motion.article
+          <m.article
             key={i}
             role="listitem"
             className="step-card"
@@ -109,7 +109,7 @@ export default function HomeSteps() {
                 {step.linkLabel} <span aria-hidden="true">→</span>
               </Link>
             </div>
-          </motion.article>
+          </m.article>
         ))}
       </div>
     </section>

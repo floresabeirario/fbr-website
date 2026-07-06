@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL, SITE_URL } from "../_lib/constants";
@@ -108,7 +108,7 @@ const Step = ({ step, meta, index, reservarLabel, bookHref }) => {
         {step.n}
       </div>
 
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-8%" }}
@@ -159,7 +159,7 @@ const Step = ({ step, meta, index, reservarLabel, bookHref }) => {
             </div>
           )}
         </div>
-      </motion.div>
+      </m.div>
     </article>
   );
 };
@@ -212,7 +212,7 @@ export default function ComoFuncionaClient() {
           gradient="linear-gradient(to top, rgba(35,15,5,0.88) 0%, rgba(35,15,5,0.55) 45%, rgba(35,15,5,0.15) 100%)"
           ariaLabel={t("eyebrow")}
         >
-          <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
+          <m.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
             <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700, display: "block" }}>{t("eyebrow")}</p>
             <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.05, color: "var(--cream)", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)" }}>
               {h1Start}{h1Em && <><br /><em style={{ fontStyle: "italic", color: "var(--cream)" }}>{h1Em}</em></>}
@@ -223,7 +223,7 @@ export default function ComoFuncionaClient() {
             <div className="cta-row-hero">
               <a href={faqHref} className="btn-outline-hero">{t("ctaFAQ")}</a>
             </div>
-          </motion.div>
+          </m.div>
         </PageHero>
 
         {/* STEPS */}
@@ -238,13 +238,13 @@ export default function ComoFuncionaClient() {
         {/* O QUE ESTÁ INCLUÍDO */}
         <section aria-label={t("oQueInclui")} style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", background: "linear-gradient(180deg, #F5EDE0 0%, #FAF7F0 100%)" }}>
           <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}>
+            <m.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}>
               <span className="eyebrow">{t("semSurpresas")}</span>
               <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,3rem)", color: "var(--green-d)", margin: 0, lineHeight: 1.1 }}>{t("tudoIncluido")}</h2>
-            </motion.div>
+            </m.div>
             <div className="included-grid">
               {incluidos.map((item, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07, duration: 0.6 }} style={{ backgroundColor: "#fff", borderRadius: "14px", padding: "clamp(16px,2.5vw,22px)", border: "1px solid rgba(200,82,42,0.09)", boxShadow: "0 3px 14px rgba(160,60,20,0.05)", display: "flex", gap: "14px", alignItems: "flex-start" }}>
+                <m.div key={i} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07, duration: 0.6 }} style={{ backgroundColor: "#fff", borderRadius: "14px", padding: "clamp(16px,2.5vw,22px)", border: "1px solid rgba(200,82,42,0.09)", boxShadow: "0 3px 14px rgba(160,60,20,0.05)", display: "flex", gap: "14px", alignItems: "flex-start" }}>
                   <div style={{ flexShrink: 0, marginTop: "2px" }}>
                     <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                       <circle cx="10" cy="10" r="10" fill="rgba(200,82,42,0.1)" />
@@ -255,7 +255,7 @@ export default function ComoFuncionaClient() {
                     <p style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "0.98rem", color: "var(--green-d)", margin: "0 0 4px", lineHeight: 1.2 }}>{item.titulo}</p>
                     <p style={{ color: "var(--mid)", fontSize: "0.84rem", lineHeight: 1.65, margin: 0 }}>{item.desc}</p>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
             <div style={{ textAlign: "center", marginTop: "clamp(28px,4vw,40px)", fontSize: "0.88rem", color: "var(--mid)", lineHeight: 1.7 }}>
@@ -268,7 +268,7 @@ export default function ComoFuncionaClient() {
         {/* PAGAMENTO */}
         <section aria-label={t("pagamento3Title")} style={{ padding: "clamp(52px,8vw,84px) clamp(20px,5vw,48px)", background: "linear-gradient(135deg, #2D1A08 0%, #5C2E14 100%)" }}>
           <div style={{ maxWidth: "820px", margin: "0 auto" }}>
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
+            <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
               <div style={{ textAlign: "center", marginBottom: "clamp(28px,5vw,48px)" }}>
                 <span style={{ display: "block", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: "#F0C8A0", marginBottom: "12px", fontFamily: "Roboto, sans-serif" }}>{t("transparencia")}</span>
                 <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.7rem,4vw,2.8rem)", color: "var(--cream)", margin: "0 0 12px", lineHeight: 1.1 }}>{t("pagamento3Title")}</h2>
@@ -283,13 +283,13 @@ export default function ComoFuncionaClient() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </section>
 
         {/* CTA FINAL */}
         <section aria-label={t("reserveTitle")} style={{ padding: "clamp(60px,10vw,100px) clamp(20px,5vw,48px)", background: "linear-gradient(140deg, #F5EDE0 0%, #FAF7F0 55%, #F0E8D8 100%)", textAlign: "center" }}>
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }} style={{ maxWidth: "620px", margin: "0 auto" }}>
+          <m.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }} style={{ maxWidth: "620px", margin: "0 auto" }}>
             <div aria-hidden="true" style={{ width: "44px", height: "1px", margin: "0 auto 28px", background: "linear-gradient(to right, transparent, #C8522A, transparent)" }} />
             <span className="eyebrow">{t("prontoTitle")}</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5.5vw,3.5rem)", color: "var(--green-d)", margin: "0 0 16px", lineHeight: 1.1 }}>{t("reserveTitle")}</h2>
@@ -312,7 +312,7 @@ export default function ComoFuncionaClient() {
                 <a key={i} href={l.href} className="text-link">{l.label}</a>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </section>
 
         {/* ═══ EXPLORAR — 4 QUADRADOS ═══════════════════════════════════════ */}

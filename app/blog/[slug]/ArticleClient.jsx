@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { formatDate } from "@/app/_lib/utils";
@@ -51,7 +51,7 @@ export default function ArticleClient({ post, related, children }) {
         <div className="article-hero-overlay" />
 
         {/* Conteúdo sobre a imagem */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
@@ -82,7 +82,7 @@ export default function ArticleClient({ post, related, children }) {
               {post.description}
             </p>
           </div>
-        </motion.div>
+        </m.div>
       </section>
 
       {/* CONTEÚDO MDX */}
@@ -90,13 +90,13 @@ export default function ArticleClient({ post, related, children }) {
         aria-label={`Conteúdo do artigo: ${post.title}`}
         style={{ maxWidth: "720px", margin: "clamp(48px,7vw,72px) auto clamp(60px,8vw,96px)", padding: "0 clamp(20px,5vw,48px)" }}
       >
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.75 }}
         >
           {children}
-        </motion.div>
+        </m.div>
 
         {/* Tags */}
         {post.tags && post.tags.length > 0 && (
@@ -124,7 +124,7 @@ export default function ArticleClient({ post, related, children }) {
       {related && related.length > 0 && (
         <section aria-label="Artigos relacionados" className="related-section">
           <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -133,11 +133,11 @@ export default function ArticleClient({ post, related, children }) {
             >
               <span className="related-section-eyebrow">{t("continuaLer")}</span>
               <h2 className="related-section-title">{t("artigosRelacionados")}</h2>
-            </motion.div>
+            </m.div>
 
             <div className="related-grid">
               {related.map((p, i) => (
-                <motion.div
+                <m.div
                   key={p.slug}
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -145,7 +145,7 @@ export default function ArticleClient({ post, related, children }) {
                   transition={{ delay: i * 0.1, duration: 0.6 }}
                 >
                   <RelatedCard post={p} t={t} />
-                </motion.div>
+                </m.div>
               ))}
             </div>
 

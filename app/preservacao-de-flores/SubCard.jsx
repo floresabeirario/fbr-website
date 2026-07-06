@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 
 export const SUBPAGES = [
@@ -58,7 +58,7 @@ const Arrow = ({ color = "var(--cream)" }) => (
 
 export default function SubCard({ item, index }) {
   return (
-    <motion.article
+    <m.article
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-6%" }}
@@ -98,6 +98,6 @@ export default function SubCard({ item, index }) {
           </div>
         </div>
       </a>
-    </motion.article>
+    </m.article>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
@@ -13,7 +13,7 @@ function Reveal({ children, delay = 0, style, className }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -22,7 +22,7 @@ function Reveal({ children, delay = 0, style, className }) {
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -119,7 +119,7 @@ export default function OfereceClient() {
         gradient="linear-gradient(to top, rgba(10,20,16,0.88) 0%, rgba(10,20,16,0.55) 45%, rgba(10,20,16,0.15) 100%)"
         ariaLabel="Oferecer preservação de flores, Vale Oferta"
       >
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
@@ -135,7 +135,7 @@ export default function OfereceClient() {
           <div className="cta-row-vale" style={{ marginBottom: "1.4rem", justifyContent: "center" }}>
             <Link href={valeHref} className="btn-primary-vale">{t("ctaEncomendar")}</Link>
           </div>
-        </motion.div>
+        </m.div>
       </PageHero>
 
       {/* CARTÃO com slider vale */}

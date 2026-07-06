@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL, OPCOES_PRECOS_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
@@ -61,7 +61,7 @@ export default function BouquetNoivaClient() {
           sizes="100vw"
         />
         <div className="bouquet-hero-overlay" aria-hidden="true" />
-        <motion.div {...fadeUp} className="bouquet-hero-content">
+        <m.div {...fadeUp} className="bouquet-hero-content">
           <span className="bouquet-hero-eyebrow">{t("eyebrow")}</span>
           <h1 className="bouquet-hero-h1">{t("h1")}</h1>
           <p className="bouquet-hero-desc">{t("heroDesc")}</p>
@@ -75,7 +75,7 @@ export default function BouquetNoivaClient() {
             <a href={waUrl(locale, "noiva")} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
           <p className="bouquet-hero-price">{t("heroPrice")}</p>
-        </motion.div>
+        </m.div>
       </section>
 
       {/* ── Barra de prova social ───────────────────────────── */}
@@ -86,7 +86,7 @@ export default function BouquetNoivaClient() {
 
       {/* ── Antes e depois ─────────────────────────────────── */}
       <section className="bouquet-before-after">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -108,12 +108,12 @@ export default function BouquetNoivaClient() {
             afterLabel={t("sliderDepois")}
             dragLabel={t("sliderArraste")}
           />
-        </motion.div>
+        </m.div>
       </section>
 
       {/* ── Já casou? (pós-evento) ──────────────────────────── */}
       <section className="bouquet-postevent">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -128,12 +128,12 @@ export default function BouquetNoivaClient() {
             <a href={waUrl(locale, "urgente")} target="_blank" rel="noopener noreferrer" className="btn-primary">{t("postEventCta")}</a>
           </div>
           <a href={bookHref} className="bouquet-postevent-link">{t("postEventReservar")}</a>
-        </motion.div>
+        </m.div>
       </section>
 
       {/* ── Processo ────────────────────────────────────────── */}
       <section className="bouquet-process">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -144,10 +144,10 @@ export default function BouquetNoivaClient() {
           <h2 className="bouquet-process-title">
             {processStart}{processEm && <em>{processEm}</em>}
           </h2>
-        </motion.div>
+        </m.div>
         <ol className="bouquet-timeline">
           {processSteps.map((step, i) => (
-            <motion.li
+            <m.li
               key={i}
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -160,7 +160,7 @@ export default function BouquetNoivaClient() {
               </div>
               <h3 className="bouquet-timeline-title">{step.title}</h3>
               <p className="bouquet-timeline-desc">{renderStepDesc(step.desc)}</p>
-            </motion.li>
+            </m.li>
           ))}
         </ol>
       </section>
@@ -178,7 +178,7 @@ export default function BouquetNoivaClient() {
       <section className="momento-features">
         <div className="momento-features-grid">
           {features.map((f, i) => (
-            <motion.div
+            <m.div
               key={i}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -191,7 +191,7 @@ export default function BouquetNoivaClient() {
                 <h3 className="momento-feature-title">{f.titulo}</h3>
                 <p className="momento-feature-desc">{f.desc}</p>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
         <div className="bouquet-features-pricing-note">
@@ -217,7 +217,7 @@ export default function BouquetNoivaClient() {
 
       {/* ── CTA Opções e Preços ─────────────────────────────── */}
       <section className="bouquet-pricing-cta">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -231,12 +231,12 @@ export default function BouquetNoivaClient() {
           <div>
             <a href={precosHref} className="bouquet-pricing-cta-link">{t("pricingCtaLink")}</a>
           </div>
-        </motion.div>
+        </m.div>
       </section>
 
       {/* ── CTA final ───────────────────────────────────────── */}
       <section className="momento-final-cta">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -259,7 +259,7 @@ export default function BouquetNoivaClient() {
               <a key={l.href} href={l.href} className="momento-link">{l.label}</a>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </section>
 
       {/* ── Barra fixa mobile ───────────────────────────────── */}

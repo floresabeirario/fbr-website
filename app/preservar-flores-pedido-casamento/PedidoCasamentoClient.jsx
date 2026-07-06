@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
@@ -33,7 +33,7 @@ export default function PedidoCasamentoClient() {
   return (
     <div className="momento-page">
       <section className="momento-hero">
-        <motion.div {...anim} className="momento-inner">
+        <m.div {...anim} className="momento-inner">
           <span className="momento-eyebrow">{t("eyebrow")}</span>
           <h1 className="momento-h1">
             {h1Start}{h1Em && <><br /><em>{h1Em}</em></>}
@@ -43,11 +43,11 @@ export default function PedidoCasamentoClient() {
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
             <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
-        </motion.div>
+        </m.div>
       </section>
 
       <section className="momento-content momento-content--warm">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -60,13 +60,13 @@ export default function PedidoCasamentoClient() {
           </h2>
           <p className="momento-content-p">{t("p1")}</p>
           <p className="momento-content-p">{t("p2")}</p>
-        </motion.div>
+        </m.div>
       </section>
 
       <section className="momento-features">
         <div className="momento-features-grid">
           {features.map((f, i) => (
-            <motion.div
+            <m.div
               key={i}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -79,7 +79,7 @@ export default function PedidoCasamentoClient() {
                 <h3 className="momento-feature-title">{f.titulo}</h3>
                 <p className="momento-feature-desc">{f.desc}</p>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </section>
@@ -87,7 +87,7 @@ export default function PedidoCasamentoClient() {
       <MomentoFAQ namespace="pedidoCasamento" />
 
       <section className="momento-final-cta">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -110,7 +110,7 @@ export default function PedidoCasamentoClient() {
               <a key={l.href} href={l.href} className="momento-link">{l.label}</a>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </section>
     </div>
   );

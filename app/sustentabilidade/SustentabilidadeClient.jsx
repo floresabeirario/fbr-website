@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL } from "../_lib/constants";
@@ -186,7 +186,7 @@ export default function Sustentabilidade() {
           gradient="linear-gradient(to top, rgba(10,22,18,0.90) 0%, rgba(10,22,18,0.55) 45%, rgba(10,22,18,0.18) 100%)"
           ariaLabel={t("h1")}
         >
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
@@ -209,7 +209,7 @@ export default function Sustentabilidade() {
                 {t("heroDesc")}
               </p>
 
-            </motion.div>
+            </m.div>
         </PageHero>
 
         {/* FILOSOFIA */}
@@ -228,7 +228,7 @@ export default function Sustentabilidade() {
             borderRadius: "50%", pointerEvents: "none",
           }}/>
           <div style={{ maxWidth: "780px", margin: "0 auto", position: "relative", zIndex: 1 }}>
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -247,7 +247,7 @@ export default function Sustentabilidade() {
                 <p style={{ margin: "0 0 16px" }}>{t("filosofiaP1")}</p>
                 <p style={{ margin: 0 }}>{t("filosofiaP2")}</p>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </section>
 
@@ -272,7 +272,7 @@ export default function Sustentabilidade() {
           }}/>
           <div style={{ maxWidth: "1060px", margin: "0 auto", position: "relative", zIndex: 1 }}>
             <div className="apcc-inner">
-              <motion.div
+              <m.div
                 className="apcc-photo"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -326,9 +326,9 @@ export default function Sustentabilidade() {
                     </div>
                   </div>
                 </a>
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 className="apcc-copy"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -354,9 +354,9 @@ export default function Sustentabilidade() {
                 <p style={{ color: "rgba(250,247,240,0.7)", lineHeight: 1.85, fontSize: "clamp(0.9rem,1.8vw,0.98rem)", margin: 0 }}>
                   {t("apccDesc")}
                 </p>
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 className="apcc-topics"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -382,7 +382,7 @@ export default function Sustentabilidade() {
                     </div>
                   </div>
                 ))}
-              </motion.div>
+              </m.div>
             </div>
           </div>
         </section>
@@ -404,7 +404,7 @@ export default function Sustentabilidade() {
             borderRadius: "50%", pointerEvents: "none",
           }}/>
           <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -422,12 +422,12 @@ export default function Sustentabilidade() {
               <p style={{ color: "var(--mid)", fontSize: "clamp(0.88rem,1.7vw,0.96rem)", lineHeight: 1.75, maxWidth: "460px", margin: "0 auto" }}>
                 {t("comparacaoDesc")}
               </p>
-            </motion.div>
+            </m.div>
             <div className="compare-grid">
               {METHOD_VISUALS.map((mv, i) => {
                 const mt = METHODS_TEXT[i];
                 return (
-                  <motion.div
+                  <m.div
                     key={mv.id}
                     initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -484,7 +484,7 @@ export default function Sustentabilidade() {
                         lineHeight: 1.5, margin: 0, fontFamily: "Roboto, sans-serif", fontStyle: "italic",
                       }}>{mt.verdict}</p>
                     </div>
-                  </motion.div>
+                  </m.div>
                 );
               })}
             </div>
@@ -512,7 +512,7 @@ export default function Sustentabilidade() {
             backgroundImage: "repeating-linear-gradient(45deg, #3D6B5E 0px, #3D6B5E 1px, transparent 1px, transparent 50px)",
           }}/>
           <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -527,13 +527,13 @@ export default function Sustentabilidade() {
                 {t("valoresH2")}<br/>
                 <em style={{ fontStyle: "italic", color: "#5C8A6A" }}>{t("valoresEm")}</em>
               </h2>
-            </motion.div>
+            </m.div>
 
             <div className="values-grid-wrap">
               {VALUE_ICONS.map((v, i) => {
                 const vt = VALUES_TEXT[i];
                 return (
-                  <motion.div
+                  <m.div
                     key={i}
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -564,7 +564,7 @@ export default function Sustentabilidade() {
                       color: "var(--cream)", margin: "0 0 8px", lineHeight: 1.25,
                     }}>{vt.title}</h3>
                     <p style={{ color: "rgba(250,247,240,0.55)", fontSize: "0.83rem", lineHeight: 1.72, margin: 0 }}>{vt.desc}</p>
-                  </motion.div>
+                  </m.div>
                 );
               })}
             </div>
@@ -592,7 +592,7 @@ export default function Sustentabilidade() {
             background: "radial-gradient(circle, rgba(61,107,94,0.15) 0%, transparent 65%)",
             borderRadius: "50%", pointerEvents: "none",
           }}/>
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -630,7 +630,7 @@ export default function Sustentabilidade() {
                 >{l.label}</a>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </section>
 
       </div>

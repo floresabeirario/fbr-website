@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import "./PageHero.css";
 
 /**
@@ -59,12 +59,12 @@ export default function PageHero({
         <div className="page-hero-overlay" style={{ background: gradient }} />
       </div>
 
-      <motion.div
+      <m.div
         className="page-hero-text"
         style={{ opacity, y }}
       >
         {children}
-      </motion.div>
+      </m.div>
     </section>
   );
 }

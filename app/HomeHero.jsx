@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { FORM_URL } from "./_lib/constants";
@@ -42,7 +42,7 @@ export default function HomeHero() {
 
       <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.15) 0%, rgba(15,30,26,0.48) 60%, rgba(15,30,26,0.82) 100%)" }} />
 
-      <motion.div
+      <m.div
         style={{
           opacity,
           y,
@@ -61,35 +61,35 @@ export default function HomeHero() {
         {/* SEO: o h1 é a eyebrow com a keyword ("Especialistas em preservação
             de flores"); o nome da marca mantém exactamente o mesmo aspecto
             visual mas passa a <p>. O Google lê o tema da página no h1. */}
-        <motion.h1
+        <m.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25, duration: 0.8 }}
+          transition={{ delay: 0.1, duration: 0.6 }}
           style={{ fontSize: "clamp(0.65rem,1.2vw,0.82rem)", letterSpacing: "clamp(3px,1vw,5px)", textTransform: "uppercase", fontWeight: "700", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 clamp(10px,2vw,18px)", lineHeight: 1.4 }}
         >
           {t("heroEyebrow")}
-        </motion.h1>
+        </m.h1>
 
-        <motion.p
+        <m.p
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3.2rem, 11vw, 8rem)", lineHeight: 1.15, margin: 0 }}
         >
           Flores à<br /><span style={{ whiteSpace: "nowrap" }}>Beira&#8209;Rio</span>
-        </motion.p>
+        </m.p>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.8 }}
+          transition={{ delay: 0.35, duration: 0.6 }}
           style={{ position: "absolute", bottom: "clamp(44px,7vh,80px)", left: 0, right: 0, display: "flex", justifyContent: "center" }}
         >
           {/* "Reservar eternização de flores" — o "Reservar Data" já existe
               na nav em cima à esquerda; aqui o botão diz o que se reserva. */}
           <Link href={bookHref} className="hero-btn">{t("heroCTALong")}</Link>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

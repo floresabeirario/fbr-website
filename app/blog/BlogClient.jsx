@@ -2,19 +2,19 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { formatDate } from "@/app/_lib/utils";
 import "./BlogClient.css";
 
 // Link do Next com animação framer-motion (navegação client-side).
-const MotionLink = motion.create(Link);
+const MotionLink = m.create(Link);
 
 // ─── Card de artigo ───────────────────────────────────────────────────────────
 function PostCard({ post, categoryLabels, index, t, blogBase }) {
   return (
-    <motion.article
+    <m.article
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 12 }}
@@ -43,7 +43,7 @@ function PostCard({ post, categoryLabels, index, t, blogBase }) {
           <span className="post-card-read">{t("lerArtigo")} <span className="post-card-arrow" aria-hidden="true">→</span></span>
         </div>
       </Link>
-    </motion.article>
+    </m.article>
   );
 }
 
@@ -71,7 +71,7 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
         aria-label={t("h1")}
         style={{ paddingTop: "clamp(130px,18vw,190px)", paddingBottom: "clamp(40px,6vw,64px)", paddingLeft: "clamp(20px,5vw,48px)", paddingRight: "clamp(20px,5vw,48px)", backgroundColor: "var(--cream)" }}
       >
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -81,7 +81,7 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
           <span className="hero-eyebrow">{t("eyebrow")}</span>
           <h1 className="hero-title">{t("h1")}</h1>
           <p className="hero-desc">{t("heroDesc")}</p>
-        </motion.div>
+        </m.div>
       </section>
 
       {/* ARTIGO DESTAQUE */}
@@ -158,7 +158,7 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
           </div>
 
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={activeCategory}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -184,7 +184,7 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
                   ))}
                 </div>
               )}
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </div>
       </section>
