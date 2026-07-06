@@ -411,6 +411,7 @@
     "heroH1": "Preserve as flores",
     "heroH1em": "que contam a sua história",
     "heroDesc": "Cada quadro é uma peça única, feita à mão em Coimbra. Escolha o fundo, o tamanho e os detalhes que tornam a sua composição verdadeiramente sua.",
+    "provaSocial": "★★★★★ 5,0 nas avaliações no <g>Google</g> e no <c>casamentos.pt</c>",
     "fundosLabel": "Personalização",
     "fundosH2": "Tipos de Fundo",
     "sliderHint": "deslize para ver mais",
@@ -1497,7 +1498,11 @@
     "infoLink": "Como funciona o processo",
     "comoFuncionaLabel": "Como funciona a reserva",
     "formTitle": "Formulário de pré-reserva",
-    "formSub": "Para garantir a sua vaga, preencha o formulário com os dados do evento e as suas preferências. Nos próximos 3 dias úteis, receberá a confirmação do orçamento e as instruções para o pagamento do sinal.",
+    "formSub": "Para pedir a sua reserva, preencha o formulário com os dados do evento e as suas preferências. Nos próximos 3 dias úteis, receberá a confirmação do orçamento e as instruções para o pagamento do sinal.",
+    "formSemCompromisso": "O envio do formulário é gratuito e sem compromisso: a vaga fica garantida depois de receber o orçamento e pagar o sinal.",
+    "provaSocial": "★★★★★ 5,0 nas avaliações no <g>Google</g> e no <c>casamentos.pt</c>",
+    "duvidaPre": "Tem alguma dúvida antes de reservar?",
+    "duvidaCTA": "Fale connosco no WhatsApp",
     "passos": [
       {
         "n": "01",
@@ -1813,6 +1818,10 @@
     "saberMais": "Saber mais sobre como funciona",
     "formTitle": "Formulário de encomenda",
     "formSub": "A partir de 300€, válido por 2 anos a partir da data de compra. Entrega digital (gratuita) ou em cartão físico (9€ + portes).",
+    "formSemCompromisso": "O envio do formulário é gratuito e sem compromisso: o vale só se concretiza com o pagamento, depois da nossa confirmação por email.",
+    "provaSocial": "★★★★★ 5,0 nas avaliações no <g>Google</g> e no <c>casamentos.pt</c>",
+    "duvidaPre": "Tem alguma dúvida antes de oferecer?",
+    "duvidaCTA": "Fale connosco no WhatsApp",
     "comoFuncionaLabel": "Como funciona a encomenda",
     "passos": [
       {
