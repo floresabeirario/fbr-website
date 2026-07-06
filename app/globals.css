@@ -1577,3 +1577,22 @@ button:focus-visible {
   font-style: italic;
   font-display: swap;
 }
+
+/* ── Entrada do hero em CSS puro ─────────────────────────────
+   Substitui a animação framer-motion nos elementos above-the-fold:
+   o framer envia opacity:0 do servidor e só revela depois do JS
+   hidratar, o que atrasava o LCP (título do hero) vários segundos
+   em redes lentas. CSS corre logo ao primeiro paint. */
+@keyframes hero-enter-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero-enter {
+  animation: hero-enter-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero-enter-1 { animation-delay: 0.1s; }
+.hero-enter-2 { animation-delay: 0.2s; }
+.hero-enter-3 { animation-delay: 0.35s; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter { animation: none; opacity: 1; transform: none; }
+}

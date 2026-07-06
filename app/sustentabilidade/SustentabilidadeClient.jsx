@@ -187,9 +187,7 @@ export default function Sustentabilidade() {
           ariaLabel={t("h1")}
         >
           <m.div
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            className="hero-enter"
             style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}
           >
               <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700 }}>

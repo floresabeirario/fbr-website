@@ -133,13 +133,13 @@ export default function RecriacaoClient() {
       >
         <div style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
           <m.p
-            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.7 }}
+            className="hero-enter hero-enter-2"
             style={{ fontSize: "clamp(0.52rem,1.3vw,0.62rem)", letterSpacing: "4px", textTransform: "uppercase", fontWeight: "700", marginBottom: "16px", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif" }}
           >
             {t("eyebrow")}
           </m.p>
           <m.h1
-            initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="hero-enter hero-enter-3"
             style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.05, margin: "0 0 clamp(1rem,2.5vw,1.6rem)", color: "var(--cream)" }}
           >
             {t("h1").split(" ").slice(0, -1).join(" ")}<br />

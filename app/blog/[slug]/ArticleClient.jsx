@@ -52,9 +52,7 @@ export default function ArticleClient({ post, related, children }) {
 
         {/* Conteúdo sobre a imagem */}
         <m.div
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="hero-enter"
           style={{ position: "absolute", inset: 0, zIndex: 2, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "clamp(24px,5vw,60px) clamp(20px,5vw,48px)" }}
         >
           <div style={{ maxWidth: "800px" }}>

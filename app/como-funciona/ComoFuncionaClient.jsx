@@ -212,7 +212,7 @@ export default function ComoFuncionaClient() {
           gradient="linear-gradient(to top, rgba(35,15,5,0.88) 0%, rgba(35,15,5,0.55) 45%, rgba(35,15,5,0.15) 100%)"
           ariaLabel={t("eyebrow")}
         >
-          <m.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
+          <m.div className="hero-enter" style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
             <p style={{ fontSize: "0.58rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif", margin: "0 0 14px", fontWeight: 700, display: "block" }}>{t("eyebrow")}</p>
             <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.05, color: "var(--cream)", margin: "0 0 clamp(1.2rem,2.5vw,1.8rem)" }}>
               {h1Start}{h1Em && <><br /><em style={{ fontStyle: "italic", color: "var(--cream)" }}>{h1Em}</em></>}
