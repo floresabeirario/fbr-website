@@ -54,7 +54,7 @@ export default function BouquetNoivaClient() {
       <section className="bouquet-hero">
         <Image
           src="/quadroflores.webp"
-          alt=""
+          alt={t("meta.ogImageAlt")}
           fill
           priority
           className="bouquet-hero-img"

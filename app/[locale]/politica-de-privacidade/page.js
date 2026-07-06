@@ -27,6 +27,8 @@ export async function generateMetadata({ params }) {
       imagePath: `${SITE_URL}/og-homepage.jpg`,
     }),
     alternates: buildAlternates("/politica-de-privacidade", locale),
+    // Página legal: sem valor de pesquisa — não indexar
+    robots: { index: false, follow: true },
   };
 }
 

@@ -208,6 +208,7 @@ export default function ComoFuncionaClient() {
 
         <PageHero
           src="/fotoquadrocloseup2.webp"
+        imgFetchPriority="high"
           gradient="linear-gradient(to top, rgba(35,15,5,0.88) 0%, rgba(35,15,5,0.55) 45%, rgba(35,15,5,0.15) 100%)"
           ariaLabel={t("eyebrow")}
         >
