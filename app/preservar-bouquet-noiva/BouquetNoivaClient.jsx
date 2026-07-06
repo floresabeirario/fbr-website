@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { m } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL, OPCOES_PRECOS_URL } from "../_lib/constants";
@@ -82,6 +83,17 @@ export default function BouquetNoivaClient() {
         <span className="bouquet-proof-stars" aria-hidden="true">{t("socialProofRating")}</span>
         <span className="bouquet-proof-text">{t("socialProofCount")}</span>
       </div>
+
+      {/* Quem chega a comparar métodos encontra aqui a resposta */}
+      <p style={{ textAlign: "center", margin: "14px 20px 0", fontSize: "0.88rem", color: "var(--mid, #5C6152)" }}>
+        {t.rich("resinaCompara", {
+          l: (chunks) => (
+            <Link href={locale === "en" ? "/en/blog/resin-vs-botanical-pressing" : "/blog/resina-vs-prensagem-botanica"}>
+              {chunks}
+            </Link>
+          ),
+        })}
+      </p>
 
       {/* ── Antes e depois ─────────────────────────────────── */}
       <section className="bouquet-before-after">

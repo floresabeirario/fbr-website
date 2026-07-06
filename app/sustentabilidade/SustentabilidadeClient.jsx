@@ -2,6 +2,7 @@
 
 import { m } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL } from "../_lib/constants";
 import PageHero from "@/components/PageHero";
@@ -419,6 +420,15 @@ export default function Sustentabilidade() {
               </h2>
               <p style={{ color: "var(--mid)", fontSize: "clamp(0.88rem,1.7vw,0.96rem)", lineHeight: 1.75, maxWidth: "460px", margin: "0 auto" }}>
                 {t("comparacaoDesc")}
+              </p>
+              <p style={{ color: "var(--mid)", fontSize: "0.86rem", margin: "12px auto 0", maxWidth: "460px" }}>
+                {t.rich("comparacaoArtigo", {
+                  l: (chunks) => (
+                    <Link href={locale === "en" ? "/en/blog/resin-vs-botanical-pressing" : "/blog/resina-vs-prensagem-botanica"}>
+                      {chunks}
+                    </Link>
+                  ),
+                })}
               </p>
             </m.div>
             <div className="compare-grid">

@@ -681,6 +681,7 @@
     ],
     "socialProofRating": "5,0 ★★★★★",
     "socialProofCount": "Avaliações verificadas no Google",
+    "resinaCompara": "Está a comparar com preservação em resina? <l>Veja as diferenças entre os dois métodos</l>.",
     "beforeAfterEyebrow": "Antes e depois",
     "beforeAfterTitle": "Do bouquet fresco ao quadro botânico",
     "beforeAfterDesc": "Cada pétala é tratada individualmente, prensada e composta à mão. O resultado é uma obra que dura décadas, pronta a pendurar na parede de casa.",
@@ -1367,6 +1368,7 @@
     "comparacaoH2": "Prensagem, resina",
     "comparacaoEm": "e sílica",
     "comparacaoDesc": "Os três métodos mais populares para eternizar flores. Eis porque escolhemos a prensagem.",
+    "comparacaoArtigo": "Comparação completa no nosso artigo: <l>Resina ou prensagem botânica?</l>",
     "methods": [
       {
         "tag": "O que fazemos",
