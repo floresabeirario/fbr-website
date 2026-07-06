@@ -39,7 +39,7 @@ const THEMES = {
 };
 import Image from "next/image";
 import Link from "next/link";
-import { FORM_URL } from "./_lib/constants";
+import { FORM_URL, SOCIAL_CASAMENTOS } from "./_lib/constants";
 import { waUrl } from "./_lib/wa";
 import HomeHero from "./HomeHero";
 import HomeSteps from "./HomeSteps";
@@ -282,6 +282,11 @@ export default function HomeClient() {
             <span style={{ display: "block", fontSize: "0.875rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase", color: "var(--section-accent)", marginBottom: "14px", fontFamily: "'Google Sans', Roboto, sans-serif" }}>{t("clientesFelizes")}</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,4.5vw,3.2rem)", margin: "0 0 40px", lineHeight: 1.1, color: "var(--green-d)" }}>{t("oqueDizTitle")}</h2>
             <ElfsightReviews appId="65dc34c1-0003-4419-ab4e-11e52faa447f" />
+            <p style={{ marginTop: "22px", fontSize: "0.85rem", color: "var(--green-d)", opacity: 0.85 }}>
+              {t.rich("reviewsCasamentos", {
+                l: (chunks) => <a href={`${SOCIAL_CASAMENTOS}/opinioes`} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>{chunks}</a>,
+              })}
+            </p>
           </m.div>
         </section>
 

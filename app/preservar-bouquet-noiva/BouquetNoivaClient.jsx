@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { m } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
-import { FORM_URL, OPCOES_PRECOS_URL } from "../_lib/constants";
+import { FORM_URL, OPCOES_PRECOS_URL, SOCIAL_CASAMENTOS } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
 import { splitTitle } from "../_lib/splitTitle";
 import ElfsightReviews from "@/components/ElfsightReviews";
@@ -219,6 +219,11 @@ export default function BouquetNoivaClient() {
           </div>
           <div className="bouquet-reviews-widget">
             <ElfsightReviews appId="50e03463-0acc-415f-956d-af31053a03b6" />
+            <p style={{ marginTop: "18px", fontSize: "0.85rem", textAlign: "center", opacity: 0.85 }}>
+              {t.rich("reviewsCasamentos", {
+                l: (chunks) => <a href={`${SOCIAL_CASAMENTOS}/opinioes`} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>{chunks}</a>,
+              })}
+            </p>
           </div>
         </div>
       </section>
