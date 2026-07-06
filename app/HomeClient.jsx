@@ -233,11 +233,8 @@ export default function HomeClient() {
                     <div ref={videoBoxRef} style={{ borderRadius: "28px", overflow: "hidden", backgroundColor: "#0f1f1a", aspectRatio: "9/19.5" }}>
                       {videoNearView && (
                         <video autoPlay loop muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} aria-label={t("acompanheTitle")}>
-                          {/* WebM primeiro (mais leve); MP4 é o fallback para
-                              Safari/iOS antigos que não suportam WebM.
-                              NOTA: tracking.mp4 ainda não existe em public/videos/ —
-                              converter o .webm (ex.: CloudConvert, H.264) e colocá-lo lá
-                              para o fallback passar a funcionar. */}
+                          {/* WebM primeiro; MP4 (H.264, 30fps, ~370 KB) é o fallback
+                              para Safari/iOS antigos que não suportam WebM. */}
                           <source src="/videos/tracking.webm" type="video/webm" />
                           <source src="/videos/tracking.mp4" type="video/mp4" />
                         </video>
