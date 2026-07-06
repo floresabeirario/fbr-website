@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { m, useInView, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 
@@ -25,11 +25,11 @@ function Reveal({ children, delay = 0, style, className }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <motion.div ref={ref} variants={fadeUp} initial="hidden"
+    <m.div ref={ref} variants={fadeUp} initial="hidden"
       animate={inView ? "show" : "hidden"} transition={{ delay }}
       style={style} className={className}>
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -274,8 +274,8 @@ export default function OpcoesClient() {
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,20,16,0.92) 0%, rgba(10,20,16,0.55) 45%, rgba(10,20,16,0.15) 100%)" }} />
         </div>
 
-        <motion.div style={{ opacity: heroOpacity, y: heroY, position: "relative", zIndex: 2, width: "100%", padding: "clamp(80px,10vw,140px) clamp(24px,5vw,72px)" }}>
-          <motion.div
+        <m.div style={{ opacity: heroOpacity, y: heroY, position: "relative", zIndex: 2, width: "100%", padding: "clamp(80px,10vw,140px) clamp(24px,5vw,72px)" }}>
+          <m.div
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
@@ -291,8 +291,8 @@ export default function OpcoesClient() {
             <p style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto" }}>
               {t("heroDesc")}
             </p>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </section>
 
       {/* ── TIPOS DE FUNDO ── */}

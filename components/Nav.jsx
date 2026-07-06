@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname, useParams, useRouter as useNextRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { FlagPT, FlagEN, IconWhatsApp } from "./Icons";
 import { usePathname as useIntlPathname, useRouter } from "@/navigation";
@@ -13,7 +13,7 @@ import { useAltLocaleHref } from "@/app/_components/AltLocaleHref";
 
 // Link do Next com suporte a animações framer-motion (navegação client-side,
 // sem full page reload — antes os <a> recarregavam a página inteira).
-const MotionLink = motion.create(Link);
+const MotionLink = m.create(Link);
 
 // ── Cores do botão CTA por pathname (sem prefixo de locale) ────────────────
 const PAGE_COLORS = {
@@ -194,7 +194,7 @@ function LangDropdown({ scrolled, mobile = false }) {
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
@@ -239,7 +239,7 @@ function LangDropdown({ scrolled, mobile = false }) {
                 </button>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>
@@ -281,7 +281,7 @@ const DesktopDropdown = ({ menu, scrolled }) => {
         cursor: "pointer",
       }}>
         {menu.label}
-        <motion.svg
+        <m.svg
           width="10" height="10" viewBox="0 0 10 10" fill="none"
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.2 }}
@@ -289,12 +289,12 @@ const DesktopDropdown = ({ menu, scrolled }) => {
           aria-hidden="true"
         >
           <path d="M2 3.5L5 6.5L8 3.5" stroke={textColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </motion.svg>
+        </m.svg>
       </Link>
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
@@ -328,7 +328,7 @@ const DesktopDropdown = ({ menu, scrolled }) => {
                 </Link>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>
@@ -341,7 +341,7 @@ const MobileAccordion = ({ menu, onClose, delay, icon }) => {
   const t = useTranslations("nav");
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay, duration: 0.24 }}
@@ -369,7 +369,7 @@ const MobileAccordion = ({ menu, onClose, delay, icon }) => {
             {menu.label}
           </span>
         </span>
-        <motion.svg
+        <m.svg
           width="16" height="16" viewBox="0 0 16 16" fill="none"
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.22 }}
@@ -377,12 +377,12 @@ const MobileAccordion = ({ menu, onClose, delay, icon }) => {
           aria-hidden="true"
         >
           <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </motion.svg>
+        </m.svg>
       </button>
 
       <AnimatePresence initial={false}>
         {open && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -420,10 +420,10 @@ const MobileAccordion = ({ menu, onClose, delay, icon }) => {
               </Link>
             ))}
             <div style={{ height: "10px" }} />
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -674,7 +674,7 @@ export default function NavClient() {
       <AnimatePresence>
         {isOpen && (
           <>
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               transition={{ duration: 0.28 }}
               onClick={() => setIsOpen(false)}
@@ -684,7 +684,7 @@ export default function NavClient() {
               }}
               aria-hidden="true"
             />
-            <motion.div
+            <m.div
               initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
               transition={{ duration: 0.36, ease: [0.32, 0.72, 0, 1] }}
               role="dialog"
@@ -752,7 +752,7 @@ export default function NavClient() {
               </nav>
 
               {/* Rodapé */}
-              <motion.div
+              <m.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 transition={{ delay: 0.32 }}
                 style={{
@@ -795,8 +795,8 @@ export default function NavClient() {
                 <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>
                   <LangDropdown mobile />
                 </div>
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
           </>
         )}
       </AnimatePresence>

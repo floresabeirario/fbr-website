@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 function PlusIcon({ open }) {
@@ -27,7 +27,7 @@ export default function BouquetNoivaFAQ() {
   return (
     <section className="bouquet-faq">
       <div className="bouquet-faq-inner">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -39,7 +39,7 @@ export default function BouquetNoivaFAQ() {
             {t("faqTitle").split(t("faqEm"))[0]}
             <em>{t("faqEm")}</em>
           </h2>
-        </motion.div>
+        </m.div>
 
         <div className="bouquet-faq-list" role="list">
           {items.map((item, i) => (
@@ -54,7 +54,7 @@ export default function BouquetNoivaFAQ() {
               </button>
               <AnimatePresence initial={false}>
                 {open === i && (
-                  <motion.div
+                  <m.div
                     key="answer"
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
@@ -63,7 +63,7 @@ export default function BouquetNoivaFAQ() {
                     style={{ overflow: "hidden" }}
                   >
                     <p className="bouquet-faq-answer">{item.a}</p>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
             </div>

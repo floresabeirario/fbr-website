@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import ReservarPreservacaoForm from "./ReservarPreservacaoForm";
 import "./ReservarPreservacaoClient.css";
@@ -28,7 +28,7 @@ export default function ReservarPreservacaoClient() {
           />
         </div>
         <div className="rp-hero-overlay" aria-hidden="true" />
-        <motion.div
+        <m.div
           className="rp-hero-content"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -44,11 +44,11 @@ export default function ReservarPreservacaoClient() {
           <Link href={comoFuncionaHref} className="rp-info-link">
             {t("infoLink")} <span aria-hidden="true">→</span>
           </Link>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* ── PASSOS ── */}
-      <motion.div
+      <m.div
         className="rp-steps-bar"
         aria-label={t("comoFuncionaLabel")}
         initial={{ opacity: 0, y: 12 }}
@@ -64,7 +64,7 @@ export default function ReservarPreservacaoClient() {
             </li>
           ))}
         </ol>
-      </motion.div>
+      </m.div>
 
       {/* ── FORMULÁRIO ── */}
       <section className="rp-form-wrap" aria-label={t("formTitle")}>

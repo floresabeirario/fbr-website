@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
@@ -24,7 +24,7 @@ export default function MomentosEspeciaisClient() {
     // e landmarks <main> aninhados são inválidos para leitores de ecrã.
     <div className="momento-page">
       <section className="momento-hero">
-        <motion.div {...anim} className="momento-inner">
+        <m.div {...anim} className="momento-inner">
           <span className="momento-eyebrow">{t("eyebrow")}</span>
           <h1 className="momento-h1">
             {h1Start}{h1Em && <><br /><em>{h1Em}</em></>}
@@ -34,11 +34,11 @@ export default function MomentosEspeciaisClient() {
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
             <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
-        </motion.div>
+        </m.div>
       </section>
 
       <section className="momento-content momento-content--warm">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -57,13 +57,13 @@ export default function MomentosEspeciaisClient() {
           >
             {t("envioGuiaLink")}
           </a>
-        </motion.div>
+        </m.div>
       </section>
 
       <section className="momentos-hub-section">
         <div className="momentos-hub-grid">
           {lista.map((item, i) => (
-              <motion.a
+              <m.a
                 key={item.href}
                 href={item.href}
                 className="momentos-hub-card"
@@ -75,13 +75,13 @@ export default function MomentosEspeciaisClient() {
                 <h2 className="momentos-hub-card-title">{item.titulo}</h2>
                 <p className="momentos-hub-card-desc">{item.desc}</p>
                 <span className="momentos-hub-card-cta">{t("saberMais")}</span>
-              </motion.a>
+              </m.a>
           ))}
         </div>
       </section>
 
       <section className="momentos-hub-cta">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -93,7 +93,7 @@ export default function MomentosEspeciaisClient() {
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
             <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
-        </motion.div>
+        </m.div>
       </section>
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { m, useInView, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 
@@ -24,12 +24,12 @@ function Reveal({ children, delay = 0, y = 28, style, className }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
   return (
-    <motion.div ref={ref}
+    <m.div ref={ref}
       initial={{ opacity: 0, y }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay, ease: [0.25, 0.1, 0.25, 1] }}
       style={style} className={className}
-    >{children}</motion.div>
+    >{children}</m.div>
   );
 }
 
@@ -152,12 +152,12 @@ function FAQItem({ faq, i }) {
           justifyContent: "space-between", alignItems: "center", gap: "16px",
         }}>
           <span style={{ fontFamily: "'Google Sans', sans-serif", fontWeight: 500, color: C.escuro, fontSize: "0.95rem", lineHeight: 1.5 }}>{faq.q}</span>
-          <motion.span animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.25 }}
-            style={{ color: C.azul, fontSize: "1.4rem", flexShrink: 0, display: "inline-block", lineHeight: 1 }}>+</motion.span>
+          <m.span animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.25 }}
+            style={{ color: C.azul, fontSize: "1.4rem", flexShrink: 0, display: "inline-block", lineHeight: 1 }}>+</m.span>
         </button>
         <AnimatePresence>
           {open && (
-            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
+            <m.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }} style={{ overflow: "hidden" }}>
               <p style={{ color: C.sec, fontSize: "0.9rem", lineHeight: 1.9, padding: "0 0 22px", margin: 0, fontWeight: 300 }}>
                 {faq.a}
@@ -165,7 +165,7 @@ function FAQItem({ faq, i }) {
                   <>{" "}<a href={faq.aLinkHref} style={{ color: C.azul, fontWeight: 500, textDecoration: "underline", textUnderlineOffset: "2px" }}>{faq.aLinkLabel}</a>{faq.aAfter}</>
                 )}
               </p>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>
@@ -199,8 +199,8 @@ export default function EmoldurarFloresSecasClient() {
           <Image fill src="/quadrovidrosobrevidro.webp" alt="Quadro de flores secas emoldurado com vidro museu anti-UV" priority sizes="100vw" style={{ objectFit: "cover" }} />
         </div>
         <div className="hero-overlay" />
-        <motion.div className="hero-content" style={{ opacity: heroOpacity, y: heroY }}>
-          <motion.div
+        <m.div className="hero-content" style={{ opacity: heroOpacity, y: heroY }}>
+          <m.div
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -232,8 +232,8 @@ export default function EmoldurarFloresSecasClient() {
             <div className="cta-row" style={{ justifyContent: "center", marginBottom: "1.6rem" }}>
               <a href={contactosHref} className="btn-ghost-light">{t("heroCta")}</a>
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </section>
 
       {/* ══ 2. TRÊS OPÇÕES ════════════════════════════════════════════════════ */}

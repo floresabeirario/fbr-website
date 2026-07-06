@@ -4,7 +4,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
@@ -60,7 +60,7 @@ export default function PerguntasFrequentesClient() {
             background: "linear-gradient(to bottom, rgba(20,8,18,0.28) 0%, rgba(20,8,18,0.55) 55%, rgba(20,8,18,0.82) 100%)",
           }} aria-hidden="true" />
 
-          <motion.div
+          <m.div
             style={{
               opacity: heroOpacity,
               y: heroY,
@@ -71,7 +71,7 @@ export default function PerguntasFrequentesClient() {
               textAlign: "center",
             }}
           >
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -109,14 +109,14 @@ export default function PerguntasFrequentesClient() {
               }}>
                 {t("heroDesc")}
               </p>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </section>
 
         <FaqAccordion />
 
         {/* CTA final — largura total */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -178,7 +178,7 @@ export default function PerguntasFrequentesClient() {
               {t("ctaReservar")}
             </Link>
           </div>
-        </motion.div>
+        </m.div>
 
       </div>
     </>

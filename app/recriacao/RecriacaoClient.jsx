@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { EMAIL } from "../_lib/constants";
@@ -53,7 +53,7 @@ const StepArrowDown = () => (
 );
 
 const StepCard = ({ imageSrc, stepLabel, number, title, desc, delay }) => (
-  <motion.article
+  <m.article
     initial={{ opacity: 0, y: 28 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-5%" }}
@@ -80,11 +80,11 @@ const StepCard = ({ imageSrc, stepLabel, number, title, desc, delay }) => (
         </div>
       </div>
     </div>
-  </motion.article>
+  </m.article>
 );
 
 const UseCaseCard = ({ imageSrc, tag, title, desc, delay }) => (
-  <motion.article
+  <m.article
     initial={{ opacity: 0, y: 22 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
@@ -108,7 +108,7 @@ const UseCaseCard = ({ imageSrc, tag, title, desc, delay }) => (
     <div style={{ padding: "20px 20px 24px" }}>
       <p style={{ color: "#5A4A30", lineHeight: 1.78, fontSize: "0.9rem", margin: 0 }}>{desc}</p>
     </div>
-  </motion.article>
+  </m.article>
 );
 
 const WA_PATH = "M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z";
@@ -132,26 +132,26 @@ export default function RecriacaoClient() {
         ariaLabel={t("h1")}
       >
         <div style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}>
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.7 }}
             style={{ fontSize: "clamp(0.52rem,1.3vw,0.62rem)", letterSpacing: "4px", textTransform: "uppercase", fontWeight: "700", marginBottom: "16px", color: "rgba(250,247,240,0.88)", fontFamily: "'Google Sans', Roboto, sans-serif" }}
           >
             {t("eyebrow")}
-          </motion.p>
-          <motion.h1
+          </m.p>
+          <m.h1
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", lineHeight: 1.05, margin: "0 0 clamp(1rem,2.5vw,1.6rem)", color: "var(--cream)" }}
           >
             {t("h1").split(" ").slice(0, -1).join(" ")}<br />
             <em style={{ fontStyle: "italic", color: "var(--cream)" }}>{t("h1").split(" ").slice(-1)[0]}</em>
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }}
             style={{ fontSize: "clamp(0.93rem,1.8vw,1.08rem)", lineHeight: 1.85, maxWidth: "460px", margin: "0 auto clamp(1.8rem,3.5vw,2.6rem)", color: "rgba(250,247,240,0.88)", fontWeight: "300" }}
           >
             {t("heroDesc")}
-          </motion.p>
-          <motion.div
+          </m.p>
+          <m.div
             initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.7 }}
             style={{ display: "flex", justifyContent: "center" }}
           >
@@ -159,7 +159,7 @@ export default function RecriacaoClient() {
               <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={WA_PATH} /></svg>
               {t("ctaEnviarFotos")}
             </a>
-          </motion.div>
+          </m.div>
         </div>
       </PageHero>
 
@@ -172,12 +172,12 @@ export default function RecriacaoClient() {
           Processo
         </div>
         <div style={{ maxWidth: "1260px", margin: "0 auto", position: "relative" }}>
-          <motion.header initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "56px" }}>
+          <m.header initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "56px" }}>
             <span className="section-eyebrow">{t("ctaComoFunciona")}</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.9rem,5vw,3.2rem)", color: "#2A1E0A", margin: 0, lineHeight: 1.1 }}>
               {t("quatroPassos")}
             </h2>
-          </motion.header>
+          </m.header>
 
           <div className="steps-wrapper">
             {passos.map((step, i) => (
@@ -203,12 +203,12 @@ export default function RecriacaoClient() {
         style={{ padding: "36px 20px 76px", backgroundColor: "#FAF5EC" }}
       >
         <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-          <motion.header initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "28px" }}>
+          <m.header initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "28px" }}>
             <span className="section-eyebrow">{t("paraQuemTitle")}</span>
             <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,3rem)", color: "#2A1E0A", margin: 0, lineHeight: 1.1 }}>
               {t("memorias")}
             </h2>
-          </motion.header>
+          </m.header>
           <div className="cases-grid">
             {casosUso.map((c, i) => (
               <UseCaseCard key={i} imageSrc={USE_CASE_IMAGES[i]} tag={c.tag} title={c.titulo} desc={c.desc} delay={i * 0.1} />
@@ -226,7 +226,7 @@ export default function RecriacaoClient() {
           <BotanicalBloom style={{ width: "100%" }} />
         </div>
         <div style={{ maxWidth: "840px", margin: "0 auto" }}>
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          <m.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{ backgroundColor: "#fff", borderRadius: "24px", padding: "clamp(24px,5vw,48px) clamp(18px,4vw,42px)", boxShadow: "0 12px 48px rgba(30,20,5,0.08)", border: "1px solid rgba(139,105,20,0.1)", position: "relative", overflow: "hidden" }}>
             <div aria-hidden="true" style={{ position: "absolute", top: "-32px", right: "-32px", width: "120px", height: "120px", borderRadius: "50%", background: "radial-gradient(circle, rgba(196,164,74,0.12) 0%, transparent 70%)" }} />
             <div style={{ textAlign: "center", marginBottom: "26px" }}>
@@ -253,7 +253,7 @@ export default function RecriacaoClient() {
                 {t("verPrecos")}
               </a>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -273,7 +273,7 @@ export default function RecriacaoClient() {
           </div>
         ))}
 
-        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        <m.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           style={{ position: "relative", zIndex: 2, maxWidth: "660px", margin: "0 auto" }}>
           <p style={{ fontSize: "0.55rem", letterSpacing: "4px", textTransform: "uppercase", fontWeight: "700", color: "#C4A44A", marginBottom: "14px", fontFamily: "Roboto, sans-serif" }}>
             {t("recriarTitle")}
@@ -296,7 +296,7 @@ export default function RecriacaoClient() {
               {t("ctaEmail")}
             </a>
           </div>
-        </motion.div>
+        </m.div>
       </section>
 
     </div>

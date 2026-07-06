@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useParams, useRouter as useNextRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname as useIntlPathname, useRouter } from "@/navigation";
 import { IconInstagram, IconFacebook, IconWhatsApp, IconEmail, FlagPT, FlagEN } from "./Icons";
@@ -35,18 +35,18 @@ const FooterAccordion = ({ label, children }) => {
         }}>
           {label}
         </span>
-        <motion.svg
+        <m.svg
           width="12" height="12" viewBox="0 0 12 12" fill="none"
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.22, ease: "easeInOut" }}
           aria-hidden="true"
         >
           <path d="M2 4.5L6 8.5L10 4.5" stroke="rgba(250,247,240,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </motion.svg>
+        </m.svg>
       </button>
       <AnimatePresence initial={false}>
         {open && (
-          <motion.div
+          <m.div
             id={id}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
@@ -55,7 +55,7 @@ const FooterAccordion = ({ label, children }) => {
             style={{ overflow: "hidden" }}
           >
             <div style={{ paddingBottom: "14px" }}>{children}</div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

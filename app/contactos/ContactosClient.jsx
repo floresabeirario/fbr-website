@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { m, useInView, useScroll, useTransform } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { IconInstagram, IconFacebook, IconTikTok, IconWhatsApp, IconEmail, IconCasamentos } from "@/components/Icons";
@@ -28,7 +28,7 @@ function Reveal({ children, delay = 0, style, className }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y: 36 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 36 }}
@@ -37,7 +37,7 @@ function Reveal({ children, delay = 0, style, className }) {
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -95,10 +95,10 @@ export default function ContactosClient() {
         </div>
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, rgba(10,22,20,0.45) 0%, rgba(10,22,20,0.30) 45%, rgba(10,22,20,0.60) 100%)" }} />
 
-        <motion.div style={{ opacity: heroOpacity, y: heroY, position: "relative", zIndex: 2, width: "100%", maxWidth: "1100px", margin: "0 auto", padding: "clamp(140px,18vw,200px) 24px clamp(80px,12vw,120px)" }}>
+        <m.div style={{ opacity: heroOpacity, y: heroY, position: "relative", zIndex: 2, width: "100%", maxWidth: "1100px", margin: "0 auto", padding: "clamp(140px,18vw,200px) 24px clamp(80px,12vw,120px)" }}>
           <div className="contact-split" style={{ gap: "clamp(40px,6vw,80px)", alignItems: "center" }}>
 
-            <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="hero-text-col">
+            <m.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="hero-text-col">
               <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmonLight, marginBottom: 16, fontFamily: GS }}>{t("eyebrow")}</span>
               <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", color: C.cream, margin: "0 0 20px", lineHeight: 1.12 }}>
                 {t("h1")}
@@ -106,9 +106,9 @@ export default function ContactosClient() {
               <p style={{ color: "rgba(250,247,240,0.95)", fontFamily: GS, fontWeight: 300, fontSize: "clamp(0.95rem,2vw,1.08rem)", lineHeight: 1.88, maxWidth: 480, margin: "0 auto 32px", textShadow: "0 1px 12px rgba(0,0,0,0.5)" }}>
                 {t("heroDesc")}
               </p>
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -159,9 +159,9 @@ export default function ContactosClient() {
                   </a>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           </div>
-        </motion.div>
+        </m.div>
       </section>
 
       {/* ════ 2. EQUIPA ════ */}
