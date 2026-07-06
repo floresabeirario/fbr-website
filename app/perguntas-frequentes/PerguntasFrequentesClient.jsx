@@ -132,13 +132,13 @@ export default function PerguntasFrequentesClient() {
             {t("apoioTitle")}
           </span>
 
-          <h3 style={{
+          <h2 style={{
             fontFamily: "'TAN-MEMORIES', serif",
             fontSize: "clamp(1.6rem,4vw,2.6rem)",
             color: "var(--cream)", margin: "0 0 16px", lineHeight: 1.15,
           }}>
             {t("apoioSub")}
-          </h3>
+          </h2>
 
           <p style={{
             color: "rgba(250,247,240,0.8)", fontSize: "clamp(0.88rem,1.8vw,0.97rem)",

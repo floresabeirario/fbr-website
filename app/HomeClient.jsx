@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import ElfsightReviews from "@/components/ElfsightReviews";
 
@@ -104,6 +104,10 @@ export default function HomeClient() {
   const mainRef = useRef(null);
   const overlayARef = useRef(null);
   const overlayBRef = useRef(null);
+  // O vídeo (~1 MB) só é montado quando a secção se aproxima do viewport,
+  // para não disputar largura de banda com o conteúdo do primeiro ecrã.
+  const videoBoxRef = useRef(null);
+  const videoNearView = useInView(videoBoxRef, { once: true, margin: "0px 0px 600px 0px" });
 
   useEffect(() => {
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
@@ -226,13 +230,18 @@ export default function HomeClient() {
                       <div style={{ width: "60px", height: "6px", borderRadius: "10px", backgroundColor: "#2D4A40" }} />
                       <div style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#2D4A40" }} />
                     </div>
-                    <div style={{ borderRadius: "28px", overflow: "hidden", backgroundColor: "#0f1f1a", aspectRatio: "9/19.5" }}>
-                      <video autoPlay loop muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} aria-label={t("acompanheTitle")}>
-                        {/* WebM primeiro (mais leve); MP4 é o fallback para
-                            Safari/iOS antigos que não suportam WebM. */}
-                        <source src="/videos/tracking.webm" type="video/webm" />
-                        <source src="/videos/tracking.mp4" type="video/mp4" />
-                      </video>
+                    <div ref={videoBoxRef} style={{ borderRadius: "28px", overflow: "hidden", backgroundColor: "#0f1f1a", aspectRatio: "9/19.5" }}>
+                      {videoNearView && (
+                        <video autoPlay loop muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} aria-label={t("acompanheTitle")}>
+                          {/* WebM primeiro (mais leve); MP4 é o fallback para
+                              Safari/iOS antigos que não suportam WebM.
+                              NOTA: tracking.mp4 ainda não existe em public/videos/ —
+                              converter o .webm (ex.: CloudConvert, H.264) e colocá-lo lá
+                              para o fallback passar a funcionar. */}
+                          <source src="/videos/tracking.webm" type="video/webm" />
+                          <source src="/videos/tracking.mp4" type="video/mp4" />
+                        </video>
+                      )}
                     </div>
                     <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }} aria-hidden="true">
                       <div style={{ width: "36px", height: "4px", borderRadius: "10px", backgroundColor: "#2D4A40" }} />

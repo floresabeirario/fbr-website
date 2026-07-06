@@ -127,6 +127,7 @@ export default function RecriacaoClient() {
       {/* 1. HERO */}
       <PageHero
         src="/sandra2.webp"
+        imgFetchPriority="high"
         gradient="linear-gradient(to top, rgba(20,12,4,0.85) 0%, rgba(20,12,4,0.45) 50%, rgba(20,12,4,0.2) 100%)"
         ariaLabel={t("h1")}
       >

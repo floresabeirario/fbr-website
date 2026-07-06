@@ -26,8 +26,8 @@ export default function sitemap() {
     { pt: "/perguntas-frequentes",                    en: "/en/faq",                                   priority: 0.8,  changeFrequency: "monthly" },
     { pt: "/contactos",                               en: "/en/contact",                               priority: 0.7,  changeFrequency: "yearly"  },
     { pt: "/blog",                                    en: "/en/blog",                                  priority: 0.5,  changeFrequency: "weekly"  },
-    { pt: "/politica-de-privacidade",                 en: "/en/privacy-policy",                        priority: 0.3,  changeFrequency: "yearly"  },
-    { pt: "/termos-e-condicoes",                      en: "/en/terms-and-conditions",                  priority: 0.3,  changeFrequency: "yearly"  },
+    // politica-de-privacidade e termos-e-condicoes ficam fora do sitemap:
+    // são noindex (páginas legais sem valor de pesquisa) — ver page.js de cada uma.
   ];
 
   // Add blog posts (dynamic MDX articles, locale-specific slugs)

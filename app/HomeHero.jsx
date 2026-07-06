@@ -29,11 +29,11 @@ export default function HomeHero() {
       style={{ height: "100dvh", maxHeight: "100dvh", minHeight: "100dvh", position: "relative", overflow: "hidden" }}
     >
       {/* Hero: imagem em todos os dispositivos */}
-      <div style={{ position: "absolute", inset: 0 }} aria-hidden="true">
+      <div style={{ position: "absolute", inset: 0 }}>
         <Image
           fill
           src="/ritaherophoto.webp"
-          alt=""
+          alt={t("meta.ogImageAlt")}
           priority
           sizes="100vw"
           style={{ objectFit: "cover", objectPosition: "center" }}

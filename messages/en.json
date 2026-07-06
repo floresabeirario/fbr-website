@@ -1,7 +1,7 @@
 {
   "enviarCorreio": {
     "meta": {
-      "title": "How to Ship Your Flowers by Post | Flores à Beira-Rio",
+      "title": "How to Ship Your Flowers by Post",
       "description": "A step-by-step guide to safely packing and shipping your bouquet for preservation. Materials, hydrating the stems, and sending by insured fragile post.",
       "keywords": "ship wedding bouquet, pack flowers for preservation, send fresh flowers by post, flower preservation Portugal",
       "ogTitle": "How to Ship Your Flowers by Post",
@@ -120,11 +120,11 @@
   },
   "home": {
     "meta": {
-      "title": "Wedding Bouquet Preservation | Flores à Beira-Rio, Portugal",
+      "title": "Flower & Wedding Bouquet Preservation | Flores à Beira-Rio",
       "description": "We preserve wedding bouquets and flowers from baptisms, anniversaries, proposals and memorials in framed botanical art. Coimbra atelier, worldwide shipping.",
       "ogTitle": "Wedding Bouquet, Baptism & Memorial Flower Preservation | Flores à Beira-Rio",
       "ogDescription": "We preserve wedding bouquets and flowers from baptisms, anniversaries, proposals and memorials in framed botanical art. Coimbra atelier, worldwide shipping.",
-      "twitterTitle": "Wedding Bouquet Preservation | Flores à Beira-Rio, Portugal",
+      "twitterTitle": "Flower & Wedding Bouquet Preservation | Flores à Beira-Rio",
       "twitterDescription": "We preserve wedding bouquets and flowers from baptisms, anniversaries, proposals and memorials in framed botanical art. Worldwide shipping.",
       "ogImageAlt": "Pressed flower frame, Flores à Beira-Rio",
       "keywords": "flower preservation Portugal, flower preservation Coimbra, preserved flowers Portugal, botanical art frames, pressed flowers, wedding bouquet preservation"
@@ -200,7 +200,7 @@
   },
   "preservacao": {
     "meta": {
-      "title": "Flower Preservation in Portugal | Flores à Beira-Rio, Coimbra",
+      "title": "Flower Preservation in Portugal",
       "description": "Artisan botanical preservation atelier in Coimbra. Wedding bouquets, baptism, memorial and anniversary flowers into framed art. Worldwide shipping. From €300.",
       "ogTitle": "Flower Preservation in Portugal | Flores à Beira-Rio, Coimbra",
       "ogDescription": "Artisan botanical preservation atelier in Coimbra. Wedding bouquets, baptism, memorial, anniversary flowers into framed art. Worldwide shipping.",
@@ -288,7 +288,7 @@
   },
   "comoFunciona": {
     "meta": {
-      "title": "How Flower Preservation Works: 5 Steps | Flores à Beira-Rio",
+      "title": "How Flower Preservation Works: 5 Steps",
       "description": "The 5 steps of artisan preservation: booking, hand-in within 6 days, pressing, composition approval, and shipping of the framed piece. Up to 6 months.",
       "ogTitle": "How Flower Preservation Works: 5 Steps | Flores à Beira-Rio",
       "ogDescription": "The 5 steps of artisan preservation: booking, hand-in, pressing, approval and shipping of the framed piece. Up to 6 months.",
@@ -321,7 +321,7 @@
     "pag30finalDesc": "After the frame is complete and before we ship it.",
     "prontoTitle": "Ready to start?",
     "reserveTitle": "Book your spot today",
-    "reserveDesc": "Simply fill in the booking form. We reply within 72 hours with confirmation and all instructions for the next steps.",
+    "reserveDesc": "Simply fill in the booking form. We reply within 3 working days with confirmation and all instructions for the next steps.",
     "ctaFormulario": "Fill in the Booking Form",
     "ctaWA": "Chat on WhatsApp",
     "ctaVerPrecos": "See pricing",
@@ -331,7 +331,7 @@
       {
         "titulo": "Book your date",
         "tag": "Before the event",
-        "corpo": "We reply within 72 hours with confirmation and 30% deposit payment instructions. Payment must be made within 24 hours to secure the booking; otherwise the appointment will be cancelled. The deposit is non-refundable.",
+        "corpo": "We reply within 3 working days with confirmation and 30% deposit payment instructions. Payment must be made within 24 hours to secure the booking; otherwise the appointment will be cancelled. The deposit is non-refundable.",
         "nota": "Slots are limited, especially between May and September. The process starts well before the event: as soon as you know the date, secure your spot with the booking form.",
         "opcoes": []
       },
@@ -366,7 +366,7 @@
         "titulo": "Composition and approval",
         "tag": "Approval",
         "corpo": "We select the best-preserved flowers and begin creating your frame. When the composition is ready, you will receive an email with design photos.",
-        "nota": "You will have 72 hours to approve or request changes. After the frame is complete and before we ship it.",
+        "nota": "You will have 72 hours to approve or request changes.",
         "opcoes": []
       },
       {
@@ -573,7 +573,7 @@
     "recriacaoCta1": "See Bouquet Recreation",
     "recriacaoCta2": "Frequently Asked Questions",
     "meta": {
-      "title": "Flower Preservation Prices: €300-€500 | Flores à Beira-Rio",
+      "title": "Flower Preservation: Options & Prices",
       "description": "Three frame sizes (30×40, 40×50, 50×70 cm) priced from €300 to €500. Pendant necklaces, Christmas ornaments and mini frames available as add-ons.",
       "ogTitle": "Flower Preservation Prices: €300-€500 | Flores à Beira-Rio",
       "ogDescription": "Three frame sizes priced from €300 to €500. Pendant necklaces, Christmas ornaments and mini frames as add-ons.",
@@ -583,7 +583,7 @@
   },
   "momentos": {
     "meta": {
-      "title": "Preserve Wedding, Baptism, Memorial, Anniversary Flowers | Coimbra",
+      "title": "Preserve Wedding, Baptism & Memorial Flowers",
       "description": "Wedding, baptism, proposal, anniversary, memorial: we preserve the flowers from every moment that matters. Worldwide shipping from Coimbra. From €300.",
       "ogTitle": "Preserve Wedding, Baptism, Memorial, Anniversary Flowers | Coimbra",
       "ogDescription": "Wedding, baptism, proposal, anniversary, memorial: we preserve the flowers from every moment that matters. Worldwide shipping.",
@@ -634,7 +634,7 @@
   },
   "bouquetNoiva": {
     "meta": {
-      "title": "Preserve Wedding Bouquet, Worldwide Shipping | Flores à Beira-Rio",
+      "title": "Preserve Your Wedding Bouquet in Portugal",
       "description": "Your wedding bouquet preserved into framed botanical art. Artisan pressing, anti-UV museum glass, worldwide shipping from Coimbra, Portugal. From €300.",
       "ogTitle": "Preserve Wedding Bouquet, Worldwide Shipping | Flores à Beira-Rio",
       "ogDescription": "Your wedding bouquet preserved into framed botanical art. Artisan pressing, anti-UV museum glass, worldwide shipping from Coimbra. From €300.",
@@ -783,7 +783,7 @@
   },
   "lutoHomenagem": {
     "meta": {
-      "title": "Preserve Memorial & Funeral Flowers | Flores à Beira-Rio",
+      "title": "Preserve Memorial & Funeral Flowers",
       "description": "Preserve flowers from a memorial or funeral ceremony as framed botanical art. A lasting tribute, handmade with care in Coimbra. Worldwide shipping. From €300.",
       "ogTitle": "Preserve Memorial & Funeral Flowers | Flores à Beira-Rio",
       "ogDescription": "Preserve flowers from a memorial or funeral ceremony as framed botanical art. A lasting tribute, handmade with care. Worldwide shipping from Coimbra.",
@@ -841,7 +841,7 @@
   },
   "batizadoNascimento": {
     "meta": {
-      "title": "Preserve Baptism & Christening Flowers | Flores à Beira-Rio",
+      "title": "Preserve Baptism & Christening Flowers",
       "description": "Preserve baptism or birth flowers into framed botanical art. For yourself or to gift to godparents. Coimbra atelier, worldwide shipping. From €300.",
       "ogTitle": "Preserve Baptism & Christening Flowers | Flores à Beira-Rio",
       "ogDescription": "Preserve baptism or birth flowers into framed botanical art. For yourself or to gift to godparents. Worldwide shipping from Coimbra.",
@@ -899,7 +899,7 @@
   },
   "aniversario": {
     "meta": {
-      "title": "Preserve Anniversary Flowers | Flores à Beira-Rio",
+      "title": "Preserve Anniversary Flowers",
       "description": "Preserve flowers from a wedding anniversary, dating anniversary or any special date into framed botanical art. Coimbra atelier, worldwide shipping. From €300.",
       "ogTitle": "Preserve Anniversary Flowers | Flores à Beira-Rio",
       "ogDescription": "Preserve flowers from any anniversary into framed botanical art. Worldwide shipping from Coimbra.",
@@ -957,7 +957,7 @@
   },
   "pedidoCasamento": {
     "meta": {
-      "title": "Preserve Proposal & Engagement Flowers | Flores à Beira-Rio",
+      "title": "Preserve Proposal & Engagement Flowers",
       "description": "Preserve your proposal flowers into framed botanical art before they wilt. Artisan atelier in Coimbra, Portugal, with worldwide shipping. From €300.",
       "ogTitle": "Preserve Proposal & Engagement Flowers | Flores à Beira-Rio",
       "ogDescription": "Preserve your proposal flowers into framed botanical art before they wilt. Worldwide shipping from Coimbra, Portugal.",
@@ -1156,7 +1156,7 @@
       }
     ],
     "meta": {
-      "title": "Frame Dried Flowers: 3 Options | Flores à Beira-Rio",
+      "title": "Frame Dried Flowers: 3 Options",
       "description": "Frame your naturally dried bouquet. Three options available: original bouquet, gentle pressing or recreation. Museum anti-UV glass. Coimbra atelier.",
       "ogTitle": "Frame Dried Flowers: 3 Options | Flores à Beira-Rio",
       "ogDescription": "Three options to frame your dried bouquet: original, gentle pressing or recreation. Museum anti-UV glass. Coimbra atelier.",
@@ -1166,7 +1166,7 @@
   },
   "recriacao": {
     "meta": {
-      "title": "Wedding Bouquet Recreation | Flores à Beira-Rio, Coimbra",
+      "title": "Wedding Bouquet Recreation",
       "description": "Wedding bouquet not preserved in time? We recreate it with fresh flowers from a photograph, and immortalise it in botanical art. Coimbra atelier.",
       "ogTitle": "Wedding Bouquet Recreation | Flores à Beira-Rio, Coimbra",
       "ogDescription": "Wedding bouquet not preserved in time? We recreate it with fresh flowers from a photograph, and immortalise it in botanical art.",
@@ -1237,7 +1237,7 @@
   },
   "oferecer": {
     "meta": {
-      "title": "Flower Preservation Gift Voucher | Valid 2 Years | €300+",
+      "title": "Flower Preservation Gift Voucher",
       "description": "Give a memory that lasts forever. Voucher to preserve wedding, baptism, anniversary or memorial flowers. From €300, valid for 2 years from purchase.",
       "ogTitle": "Flower Preservation Gift Voucher | Valid 2 Years | €300+",
       "ogDescription": "Voucher to preserve wedding, baptism, anniversary or memorial flowers. From €300, valid for 2 years.",
@@ -1332,7 +1332,7 @@
   },
   "sustentabilidade": {
     "meta": {
-      "title": "Sustainability | Flores à Beira-Rio, Flower Preservation",
+      "title": "Sustainability in Flower Preservation",
       "description": "Learn about Flores à Beira-Rio's commitment to sustainability: natural pressing without resins, museum materials, artisan social packaging and partnership with APCC Coimbra.",
       "ogTitle": "Sustainability | Flores à Beira-Rio",
       "ogDescription": "Conscious botanical art: no resins, museum materials and artisan packaging through a social partnership.",
@@ -1481,10 +1481,10 @@
   },
   "reservar": {
     "meta": {
-      "title": "Book Flower Preservation | Flores à Beira-Rio",
-      "description": "Book your flower preservation. Fill in the form and receive confirmation within 72 hours. Payment in three stages. Atelier in Coimbra, we ship across Europe.",
+      "title": "Book Flower Preservation",
+      "description": "Book your flower preservation. Fill in the form and receive confirmation within 3 working days. Payment in three stages. Atelier in Coimbra, we ship across Europe.",
       "ogTitle": "Book Flower Preservation | Flores à Beira-Rio",
-      "ogDescription": "Book your flower preservation. Confirmation within 72 hours, payment in three stages.",
+      "ogDescription": "Book your flower preservation. Confirmation within 3 working days, payment in three stages.",
       "ogImageAlt": "Flower preservation booking form, Flores à Beira-Rio",
       "keywords": "book flower preservation, schedule flower preservation, flower preservation booking, reserve botanical art"
     },
@@ -1492,7 +1492,7 @@
     "h1": "Book the preservation of your flowers",
     "heroEm": "of your flowers",
     "heroBadge": "Made with dedication and care, by hand, in Coimbra.",
-    "heroSub": "Fill in the form to secure your spot in our flower preservation service, made with dedication and care, by hand, in Coimbra.",
+    "heroSub": "Fill in the form to secure your spot. Within 3 working days you will receive your quote confirmation and the next steps.",
     "infoLink": "How the process works",
     "comoFuncionaLabel": "How the booking works",
     "formTitle": "Pre-booking form",
@@ -1799,7 +1799,7 @@
   },
   "vale": {
     "meta": {
-      "title": "Gift Voucher | Flower Preservation | Flores à Beira-Rio",
+      "title": "Buy a Flower Preservation Gift Voucher",
       "description": "Order a flower preservation gift voucher. The perfect present for a wedding, baptism or anniversary. From €300, valid for 2 years from the purchase date.",
       "ogTitle": "Gift Voucher | Flores à Beira-Rio",
       "ogDescription": "Order a flower preservation gift voucher. From €300, valid for 2 years from the purchase date.",
@@ -1975,7 +1975,7 @@
   },
   "faq": {
     "meta": {
-      "title": "Flower Preservation FAQ: Honest Answers | Flores à Beira-Rio",
+      "title": "Flower Preservation FAQ: Honest Answers",
       "description": "How long does it take? How much does it cost? What can you include? How does shipping work? Honest answers to flower preservation questions, no small print.",
       "ogTitle": "Flower Preservation FAQ: Honest Answers | Flores à Beira-Rio",
       "ogDescription": "How long, how much, what can you include, how we ship. Honest answers to flower preservation questions.",
@@ -1993,7 +1993,7 @@
   },
   "contactos": {
     "meta": {
-      "title": "Contact Flores à Beira-Rio | WhatsApp & Email",
+      "title": "Contact Us: WhatsApp & Email",
       "description": "Contact us via WhatsApp or email. Available in Portuguese and English. Coimbra atelier, with worldwide shipping.",
       "ogTitle": "Contact Flores à Beira-Rio | WhatsApp & Email",
       "ogDescription": "Contact us via WhatsApp or email. Available in Portuguese and English.",
@@ -2054,7 +2054,7 @@
   },
   "blog": {
     "meta": {
-      "title": "Blog | Flores à Beira-Rio, Flower Preservation",
+      "title": "Flower Preservation Blog",
       "description": "Tips, guides and stories about botanical flower preservation. Learn how the process works, how to care for your frame and much more.",
       "ogTitle": "Blog | Flores à Beira-Rio",
       "ogDescription": "Tips, guides and stories about botanical flower preservation.",
@@ -2095,7 +2095,7 @@
   },
   "privacidade": {
     "meta": {
-      "title": "Privacy Policy | Flores à Beira-Rio",
+      "title": "Privacy Policy",
       "description": "Flores à Beira-Rio privacy policy. How we collect, use and protect your personal data. GDPR compliance.",
       "ogTitle": "Privacy Policy | Flores à Beira-Rio",
       "ogDescription": "How we collect, use and protect your data. GDPR compliance.",
@@ -2140,7 +2140,7 @@
   },
   "termos": {
     "meta": {
-      "title": "Terms and Conditions | Flores à Beira-Rio",
+      "title": "Terms and Conditions",
       "description": "Terms and conditions of the Flores à Beira-Rio flower preservation service. Please read before ordering.",
       "ogTitle": "Terms and Conditions | Flores à Beira-Rio",
       "ogDescription": "Terms and conditions of the Flores à Beira-Rio flower preservation service.",

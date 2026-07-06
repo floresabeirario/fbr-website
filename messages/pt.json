@@ -1,7 +1,7 @@
 {
   "enviarCorreio": {
     "meta": {
-      "title": "Como Enviar as Suas Flores por Correio | Flores à Beira-Rio",
+      "title": "Como Enviar as Suas Flores por Correio",
       "description": "Guia passo a passo para embalar e enviar em segurança o seu bouquet para preservação. Materiais, hidratação dos caules e envio por correio frágil com seguro.",
       "keywords": "enviar bouquet por correio, embalar flores para preservação, enviar flores frescas, preservação de flores Coimbra",
       "ogTitle": "Como Enviar as Suas Flores por Correio",
@@ -121,11 +121,11 @@
   },
   "home": {
     "meta": {
-      "title": "Preservar Bouquet de Noiva | Flores à Beira-Rio, Coimbra",
+      "title": "Preservação de Flores e Bouquets | Flores à Beira-Rio",
       "description": "Eternizamos o bouquet de noiva e flores de baptizados, aniversários, pedidos e homenagens em arte botânica artesanal. Em Coimbra, com envio nacional.",
       "ogTitle": "Preservar Bouquet de Noiva, Baptizado, Homenagem | Flores à Beira-Rio",
       "ogDescription": "Eternizamos o bouquet de noiva e flores de baptizados, aniversários, pedidos e homenagens em arte botânica artesanal. Em Coimbra, com envio nacional.",
-      "twitterTitle": "Preservar Bouquet de Noiva | Flores à Beira-Rio, Coimbra",
+      "twitterTitle": "Preservação de Flores e Bouquets | Flores à Beira-Rio",
       "twitterDescription": "Eternizamos o bouquet de noiva e flores de baptizados, aniversários, pedidos e homenagens em arte botânica artesanal.",
       "ogImageAlt": "Quadro de flores prensadas, Flores à Beira-Rio",
       "keywords": "preservação de flores Portugal, preservação de flores Coimbra, flores preservadas Portugal, quadros de flores, arte botânica, bouquet de noiva preservado, eternização de bouquet, preservação de bouquet"
@@ -201,7 +201,7 @@
   },
   "preservacao": {
     "meta": {
-      "title": "Preservação de Flores Artesanal em Coimbra | Flores à Beira-Rio",
+      "title": "Preservação de Flores em Coimbra",
       "description": "Atelier de preservação botânica artesanal em Coimbra. Bouquets de casamento, baptizado, homenagem ou aniversário em quadros de arte. A partir de 300€.",
       "ogTitle": "Preservação de Flores Artesanal em Coimbra | Flores à Beira-Rio",
       "ogDescription": "Atelier de preservação botânica artesanal em Coimbra. Bouquets de casamento, baptizado, homenagem ou aniversário em quadros de arte.",
@@ -289,7 +289,7 @@
   },
   "comoFunciona": {
     "meta": {
-      "title": "Como Funciona: Preservar Flores em 5 Passos | Flores à Beira-Rio",
+      "title": "Como Funciona a Preservação de Flores",
       "description": "Os 5 passos da preservação artesanal: reserva, entrega em 6 dias, prensagem, aprovação da composição e envio do quadro emoldurado. Até 6 meses.",
       "ogTitle": "Como Funciona: Preservar Flores em 5 Passos | Flores à Beira-Rio",
       "ogDescription": "Os 5 passos da preservação artesanal: reserva, entrega, prensagem, aprovação e envio do quadro emoldurado. Até 6 meses.",
@@ -322,7 +322,7 @@
     "pag30finalDesc": "Após o quadro estar emoldurado e antes de o enviarmos.",
     "prontoTitle": "Pronta para começar?",
     "reserveTitle": "Reserve a sua vaga hoje",
-    "reserveDesc": "Basta preencher o formulário de reserva. Respondemos em 72 horas com a confirmação e todas as instruções para os passos seguintes.",
+    "reserveDesc": "Basta preencher o formulário de reserva. Respondemos no prazo de 3 dias úteis com a confirmação e todas as instruções para os passos seguintes.",
     "ctaFormulario": "Preencher Formulário de Reserva",
     "ctaWA": "Falar pelo WhatsApp",
     "ctaVerPrecos": "Ver preços",
@@ -332,7 +332,7 @@
       {
         "titulo": "Reserve a sua data",
         "tag": "Antes do evento",
-        "corpo": "Respondemos em 72 horas com a confirmação e as instruções de pagamento do sinal de 30%. O pagamento deve ser efetuado no prazo de 24 horas para garantir a reserva; caso contrário, o agendamento será cancelado. O sinal não é reembolsável.",
+        "corpo": "Respondemos no prazo de 3 dias úteis com a confirmação e as instruções de pagamento do sinal de 30%. O pagamento deve ser efetuado no prazo de 24 horas para garantir a reserva; caso contrário, o agendamento será cancelado. O sinal não é reembolsável.",
         "nota": "As vagas são limitadas, especialmente entre Maio e Setembro. O processo começa muito antes do evento: assim que souber a data, garanta a sua vaga com o formulário de reserva.",
         "opcoes": []
       },
@@ -367,7 +367,7 @@
         "titulo": "Composição e aprovação",
         "tag": "Aprovação",
         "corpo": "Escolhemos as flores melhor preservadas e iniciamos a criação do seu quadro. Quando a composição estiver pronta, receberá um e-mail com imagens do design.",
-        "nota": "Terá 72 horas para aprovar ou solicitar alterações. Após o quadro estar emoldurado e antes de o enviarmos.",
+        "nota": "Terá 72 horas para aprovar ou solicitar alterações.",
         "opcoes": []
       },
       {
@@ -574,7 +574,7 @@
     "recriacaoCta1": "Ver Recriação do Bouquet",
     "recriacaoCta2": "Perguntas Frequentes",
     "meta": {
-      "title": "Preservar Flores: Opções e Preços (300€-500€) | Flores à Beira-Rio",
+      "title": "Preservar Flores: Opções e Preços",
       "description": "Três tamanhos de moldura (30×40, 40×50, 50×70 cm) com preços de 300€ a 500€. Pendentes, ornamentos de Natal e mini quadros disponíveis como complemento.",
       "ogTitle": "Preservar Flores: Opções e Preços (300€-500€) | Flores à Beira-Rio",
       "ogDescription": "Três tamanhos de moldura com preços de 300€ a 500€. Pendentes, ornamentos de Natal e mini quadros como complemento.",
@@ -584,7 +584,7 @@
   },
   "momentos": {
     "meta": {
-      "title": "Preservar Flores de Casamento, Baptizado, Homenagem | Coimbra",
+      "title": "Flores de Casamento, Baptizado e Homenagem",
       "description": "Casamento, baptizado, pedido, aniversário, homenagem: preservamos as flores de cada momento que importa em arte botânica. Coimbra. A partir de 300€.",
       "ogTitle": "Preservar Flores de Casamento, Baptizado, Homenagem | Coimbra",
       "ogDescription": "Casamento, baptizado, pedido, aniversário, homenagem: preservamos as flores de cada momento que importa em arte botânica.",
@@ -635,7 +635,7 @@
   },
   "bouquetNoiva": {
     "meta": {
-      "title": "Preservar Bouquet de Noiva em Portugal | Eternizar o Ramo do Casamento",
+      "title": "Preservar Bouquet de Noiva em Portugal",
       "description": "Eternizamos o bouquet (ramo) de noiva num quadro de arte botânica. Recebemos flores de todo o Portugal, em mãos, por correio ou com recolha. A partir de 300€.",
       "ogTitle": "Preservar Bouquet ou Ramo de Noiva | Flores à Beira-Rio",
       "ogDescription": "O ramo do seu casamento eternizado em quadro de arte botânica artesanal. Recebemos bouquets de todo o Portugal e Europa.",
@@ -784,7 +784,7 @@
   },
   "lutoHomenagem": {
     "meta": {
-      "title": "Preservar Flores de Homenagem e Luto | Flores à Beira-Rio",
+      "title": "Preservar Flores de Homenagem e Luto",
       "description": "Eternize as flores de uma cerimónia fúnebre em arte botânica artesanal. Uma homenagem permanente, feita com todo o respeito em Coimbra. A partir de 300€.",
       "ogTitle": "Preservar Flores de Homenagem e Luto | Flores à Beira-Rio",
       "ogDescription": "Eternize as flores de uma cerimónia fúnebre em arte botânica artesanal. Uma homenagem permanente, feita com todo o respeito.",
@@ -842,7 +842,7 @@
   },
   "batizadoNascimento": {
     "meta": {
-      "title": "Flores do Batizado num Quadro | Recordação para a Vida do Bebé",
+      "title": "Preservar Flores do Batizado num Quadro",
       "description": "Transforme as flores do batizado ou do nascimento numa recordação que acompanha o seu filho a vida inteira: um quadro de arte botânica artesanal. Também para oferecer aos padrinhos. A partir de 300€.",
       "ogTitle": "Flores do Batizado num Quadro | Recordação para a Vida",
       "ogDescription": "Transforme as flores do batizado ou do nascimento numa recordação que dura a vida inteira: um quadro de arte botânica artesanal. Também para oferecer aos padrinhos.",
@@ -900,7 +900,7 @@
   },
   "aniversario": {
     "meta": {
-      "title": "Preservar Flores de Aniversário e Bodas | Flores à Beira-Rio",
+      "title": "Preservar Flores de Aniversário e Bodas",
       "description": "Preserve as flores de um aniversário de casamento, namoro, bodas ou data especial num quadro de arte botânica artesanal em Coimbra. A partir de 300€.",
       "ogTitle": "Preservar Flores de Aniversário e Bodas | Flores à Beira-Rio",
       "ogDescription": "Preserve as flores de qualquer aniversário ou bodas em arte botânica artesanal. Feito à mão em Coimbra.",
@@ -958,7 +958,7 @@
   },
   "pedidoCasamento": {
     "meta": {
-      "title": "Preservar Flores do Pedido de Casamento e Noivado | Flores à Beira-Rio",
+      "title": "Preservar Flores do Pedido de Casamento",
       "description": "Eternize as flores do pedido de casamento num quadro de arte botânica, antes que sequem. Atelier artesanal em Coimbra, envio para todo o país. A partir de 300€.",
       "ogTitle": "Preservar Flores do Pedido de Casamento e Noivado | Flores à Beira-Rio",
       "ogDescription": "Eternize as flores do pedido de casamento num quadro de arte botânica, antes que sequem. Em Coimbra, com envio nacional.",
@@ -1157,7 +1157,7 @@
       }
     ],
     "meta": {
-      "title": "Emoldurar Flores Secas: 3 Opções | Flores à Beira-Rio",
+      "title": "Emoldurar Flores Secas: 3 Opções",
       "description": "Emoldure o seu ramo de flores naturalmente seco. Três opções disponíveis: ramo original, prensagem suave ou recriação. Vidro museu anti-UV. Coimbra.",
       "ogTitle": "Emoldurar Flores Secas: 3 Opções | Flores à Beira-Rio",
       "ogDescription": "Três opções para emoldurar o seu ramo seco: original, prensagem suave ou recriação. Vidro museu anti-UV. Coimbra.",
@@ -1167,7 +1167,7 @@
   },
   "recriacao": {
     "meta": {
-      "title": "Recriação de Bouquet de Noiva | Flores à Beira-Rio, Coimbra",
+      "title": "Recriação de Bouquet de Noiva",
       "description": "Bouquet de noiva não foi preservado a tempo? Recriamos com flores frescas a partir de uma fotografia, e eternizamos em arte botânica. Coimbra.",
       "ogTitle": "Recriação de Bouquet de Noiva | Flores à Beira-Rio, Coimbra",
       "ogDescription": "Bouquet de noiva não foi preservado a tempo? Recriamos com flores frescas a partir de uma fotografia, e eternizamos em arte botânica.",
@@ -1238,7 +1238,7 @@
   },
   "oferecer": {
     "meta": {
-      "title": "Vale Oferta para Preservar Flores | Válido 2 Anos | 300€+",
+      "title": "Vale Oferta para Preservar Flores",
       "description": "Ofereça uma memória que dura para sempre. Vale para preservar flores de casamento, baptizado, aniversário ou homenagem. A partir de 300€, válido 2 anos.",
       "ogTitle": "Vale Oferta para Preservar Flores | Válido 2 Anos | 300€+",
       "ogDescription": "Vale oferta para preservar flores de casamento, baptizado, aniversário ou homenagem. A partir de 300€, válido 2 anos.",
@@ -1333,7 +1333,7 @@
   },
   "sustentabilidade": {
     "meta": {
-      "title": "Sustentabilidade | Flores à Beira-Rio, Preservação de Flores",
+      "title": "Sustentabilidade na Preservação de Flores",
       "description": "Conheça o compromisso da Flores à Beira-Rio com a sustentabilidade: prensagem natural sem resinas, materiais museu, embalagem artesanal social e parceria com a APCC Coimbra.",
       "ogTitle": "Sustentabilidade | Flores à Beira-Rio",
       "ogDescription": "Arte botânica consciente: sem resinas, materiais museu e embalagem artesanal em parceria social.",
@@ -1482,10 +1482,10 @@
   },
   "reservar": {
     "meta": {
-      "title": "Reservar Preservação de Flores | Flores à Beira-Rio",
-      "description": "Reserve a preservação das suas flores. Preencha o formulário e receba confirmação em 72 horas. Pagamento em três fases. Atelier em Coimbra, enviamos para toda a Europa.",
+      "title": "Reservar Preservação de Flores",
+      "description": "Reserve a preservação das suas flores. Preencha o formulário e receba confirmação em 3 dias úteis. Pagamento em três fases. Atelier em Coimbra, enviamos para toda a Europa.",
       "ogTitle": "Reservar Preservação de Flores | Flores à Beira-Rio",
-      "ogDescription": "Reserve a preservação das suas flores. Confirmação em 72 horas, pagamento em três fases.",
+      "ogDescription": "Reserve a preservação das suas flores. Confirmação em 3 dias úteis, pagamento em três fases.",
       "ogImageAlt": "Formulário de reserva de preservação de flores, Flores à Beira-Rio",
       "keywords": "reservar preservação flores, marcar data preservação flores, formulário reserva flores, agendar preservação botânica"
     },
@@ -1493,7 +1493,7 @@
     "h1": "Reserve a preservação das suas flores",
     "heroEm": "das suas flores",
     "heroBadge": "Feito com dedicação e cuidado, à mão, em Coimbra.",
-    "heroSub": "Preencha o formulário para garantir a sua vaga no nosso serviço de preservação de flores, feito com dedicação e cuidado, à mão, em Coimbra.",
+    "heroSub": "Preencha o formulário para garantir a sua vaga. Em 3 dias úteis recebe a confirmação do orçamento e os passos seguintes.",
     "infoLink": "Como funciona o processo",
     "comoFuncionaLabel": "Como funciona a reserva",
     "formTitle": "Formulário de pré-reserva",
@@ -1800,7 +1800,7 @@
   },
   "vale": {
     "meta": {
-      "title": "Vale Presente | Ofereça Preservação de Flores | Flores à Beira-Rio",
+      "title": "Vale-Presente de Preservação de Flores",
       "description": "Encomende um vale presente para preservação de flores. O presente perfeito para casamento, batizado ou aniversário. A partir de 300€, válido por 2 anos a partir da data de compra.",
       "ogTitle": "Vale Presente | Flores à Beira-Rio",
       "ogDescription": "Encomende um vale presente de preservação de flores. A partir de 300€, válido por 2 anos a partir da data de compra.",
@@ -1976,7 +1976,7 @@
   },
   "faq": {
     "meta": {
-      "title": "Preservar Flores: Perguntas Frequentes | Flores à Beira-Rio",
+      "title": "Preservar Flores: Perguntas Frequentes",
       "description": "Quanto demora? Quanto custa? O que pode incluir no quadro? Como funciona o envio? Respostas claras à preservação artesanal de flores, sem letras miúdas.",
       "ogTitle": "Preservar Flores: Perguntas Frequentes | Flores à Beira-Rio",
       "ogDescription": "Quanto demora, quanto custa, o que pode incluir, como envio. Respostas claras à preservação artesanal de flores.",
@@ -1994,7 +1994,7 @@
   },
   "contactos": {
     "meta": {
-      "title": "Contactar Flores à Beira-Rio | WhatsApp, E-mail, Videochamada",
+      "title": "Contactos: WhatsApp, E-mail e Videochamada",
       "description": "Fale connosco por WhatsApp, e-mail ou videochamada gratuita. Atendimento em português e inglês. Atelier em Coimbra, com envio nacional e internacional.",
       "ogTitle": "Contactar Flores à Beira-Rio | WhatsApp, E-mail, Videochamada",
       "ogDescription": "Fale connosco por WhatsApp, e-mail ou videochamada gratuita. Atendimento em português e inglês.",
@@ -2055,7 +2055,7 @@
   },
   "blog": {
     "meta": {
-      "title": "Blog | Flores à Beira-Rio, Preservação de Flores",
+      "title": "Blog de Preservação de Flores",
       "description": "Dicas, guias e histórias sobre preservação botânica de flores. Saiba como funciona o processo, como cuidar do seu quadro e muito mais.",
       "ogTitle": "Blog | Flores à Beira-Rio",
       "ogDescription": "Dicas, guias e histórias sobre preservação botânica de flores.",
@@ -2096,7 +2096,7 @@
   },
   "privacidade": {
     "meta": {
-      "title": "Política de Privacidade | Flores à Beira-Rio",
+      "title": "Política de Privacidade",
       "description": "Política de privacidade da Flores à Beira-Rio. Como recolhemos, usamos e protegemos os seus dados pessoais. Conformidade RGPD.",
       "ogTitle": "Política de Privacidade | Flores à Beira-Rio",
       "ogDescription": "Como recolhemos, usamos e protegemos os seus dados. Conformidade RGPD.",
@@ -2141,7 +2141,7 @@
   },
   "termos": {
     "meta": {
-      "title": "Termos e Condições | Flores à Beira-Rio",
+      "title": "Termos e Condições",
       "description": "Termos e condições do serviço de preservação de flores da Flores à Beira-Rio. Leia antes de encomendar.",
       "ogTitle": "Termos e Condições | Flores à Beira-Rio",
       "ogDescription": "Termos e condições do serviço de preservação de flores da Flores à Beira-Rio.",
