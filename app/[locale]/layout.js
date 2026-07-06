@@ -75,9 +75,9 @@ export default async function LocaleLayout({ children, params }) {
             preloads de fontes, mesmo sendo o mesmo domínio. */}
         <link
           rel="preload"
-          href="/fonts/TAN-MEMORIES.otf"
+          href="/fonts/TAN-MEMORIES.woff2"
           as="font"
-          type="font/otf"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
         <NextIntlClientProvider>
