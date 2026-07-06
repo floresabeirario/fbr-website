@@ -410,6 +410,7 @@
     "heroH1": "Preserve the flowers",
     "heroH1em": "that tell your story",
     "heroDesc": "Each frame is a unique piece, handmade in Coimbra. Choose the background, size and details that make your composition truly yours.",
+    "provaSocial": "★★★★★ 5.0 in reviews on <g>Google</g> and <c>casamentos.pt</c>",
     "fundosLabel": "Personalisation",
     "fundosH2": "Background Types",
     "sliderHint": "swipe to see more",
@@ -1496,7 +1497,11 @@
     "infoLink": "How the process works",
     "comoFuncionaLabel": "How the booking works",
     "formTitle": "Pre-booking form",
-    "formSub": "To secure your spot, fill in the form with your event details and preferences. Within the next 3 working days, you will receive a quote confirmation and deposit payment instructions.",
+    "formSub": "To request your booking, fill in the form with your event details and preferences. Within the next 3 working days, you will receive a quote confirmation and deposit payment instructions.",
+    "formSemCompromisso": "Submitting the form is free and non-binding: your spot is secured once you receive the quote and pay the deposit.",
+    "provaSocial": "★★★★★ 5.0 in reviews on <g>Google</g> and <c>casamentos.pt</c>",
+    "duvidaPre": "Have a question before booking?",
+    "duvidaCTA": "Chat with us on WhatsApp",
     "passos": [
       {
         "n": "01",
@@ -1812,6 +1817,10 @@
     "saberMais": "Learn more about how it works",
     "formTitle": "Order form",
     "formSub": "From €300, valid for 2 years from the purchase date. Digital delivery (free) or physical card (€9 + postage).",
+    "formSemCompromisso": "Submitting the form is free and non-binding: the voucher is only finalised with payment, after our confirmation by email.",
+    "provaSocial": "★★★★★ 5.0 in reviews on <g>Google</g> and <c>casamentos.pt</c>",
+    "duvidaPre": "Have a question before gifting?",
+    "duvidaCTA": "Chat with us on WhatsApp",
     "comoFuncionaLabel": "How the order works",
     "passos": [
       {

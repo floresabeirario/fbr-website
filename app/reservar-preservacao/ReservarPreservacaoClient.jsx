@@ -5,6 +5,8 @@ import Image from "next/image";
 import { m } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import ReservarPreservacaoForm from "./ReservarPreservacaoForm";
+import { SOCIAL_GOOGLE_BUSINESS, SOCIAL_CASAMENTOS } from "@/app/_lib/constants";
+import { waUrl } from "@/app/_lib/wa";
 import "./ReservarPreservacaoClient.css";
 
 export default function ReservarPreservacaoClient() {
@@ -60,8 +62,21 @@ export default function ReservarPreservacaoClient() {
         <div className="rp-form-lead">
           <h2 className="rp-form-lead-title">{t("formTitle")}</h2>
           <p className="rp-form-lead-sub">{t("formSub")}</p>
+          <p className="rp-form-lead-sub" style={{ marginTop: "10px", fontSize: "0.9em", opacity: 0.92 }}>{t("formSemCompromisso")}</p>
+          <p style={{ marginTop: "14px", fontSize: "0.82rem", letterSpacing: "0.3px", color: "var(--gold)" }}>
+            {t.rich("provaSocial", {
+              g: (chunks) => <a href={SOCIAL_GOOGLE_BUSINESS} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>{chunks}</a>,
+              c: (chunks) => <a href={`${SOCIAL_CASAMENTOS}/opinioes`} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>{chunks}</a>,
+            })}
+          </p>
         </div>
         <ReservarPreservacaoForm />
+        <p style={{ textAlign: "center", marginTop: "28px", fontSize: "0.92rem" }}>
+          {t("duvidaPre")}{" "}
+          <a href={waUrl(locale, "duvida")} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>
+            {t("duvidaCTA")}
+          </a>
+        </p>
       </section>
 
     </main>

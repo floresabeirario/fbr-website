@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 
 import Link from "next/link";
-import { FORM_URL, TRACKING_URL } from "../_lib/constants";
+import { FORM_URL, TRACKING_URL, SOCIAL_GOOGLE_BUSINESS, SOCIAL_CASAMENTOS } from "../_lib/constants";
 import {
   PRECO_QUADRO_30x40, PRECO_QUADRO_40x50, PRECO_QUADRO_50x70,
   PRECO_MINI_20x25, PRECO_ORNAMENTO, PRECO_PENDENTE,
@@ -288,6 +288,12 @@ export default function OpcoesClient() {
             </h1>
             <p style={{ fontSize: "clamp(0.93rem, 1.8vw, 1.08rem)", lineHeight: 1.85, maxWidth: "460px", color: "rgba(250,247,240,0.88)", margin: "0 auto" }}>
               {t("heroDesc")}
+            </p>
+            <p style={{ marginTop: "18px", fontSize: "0.82rem", letterSpacing: "0.3px", color: "rgba(250,247,240,0.85)" }}>
+              {t.rich("provaSocial", {
+                g: (chunks) => <a href={SOCIAL_GOOGLE_BUSINESS} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>{chunks}</a>,
+                c: (chunks) => <a href={`${SOCIAL_CASAMENTOS}/opinioes`} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>{chunks}</a>,
+              })}
             </p>
           </m.div>
         </m.div>
