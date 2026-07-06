@@ -9,7 +9,6 @@ import ElfsightReviews from "@/components/ElfsightReviews";
 import BouquetNoivaFAQ from "./BouquetNoivaFAQ";
 import BeforeAfterSlider from "../BeforeAfterSlider";
 
-const fadeUp = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } };
 
 // Torna status.floresabeirario.pt clicável quando aparece no texto de um passo
 function renderStepDesc(text) {
@@ -61,7 +60,7 @@ export default function BouquetNoivaClient() {
           sizes="100vw"
         />
         <div className="bouquet-hero-overlay" aria-hidden="true" />
-        <m.div {...fadeUp} className="bouquet-hero-content">
+        <m.div className="bouquet-hero-content hero-enter">
           <span className="bouquet-hero-eyebrow">{t("eyebrow")}</span>
           <h1 className="bouquet-hero-h1">{t("h1")}</h1>
           <p className="bouquet-hero-desc">{t("heroDesc")}</p>

@@ -276,9 +276,7 @@ export default function OpcoesClient() {
 
         <m.div style={{ opacity: heroOpacity, y: heroY, position: "relative", zIndex: 2, width: "100%", padding: "clamp(80px,10vw,140px) clamp(24px,5vw,72px)" }}>
           <m.div
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            className="hero-enter"
             style={{ maxWidth: "640px", textAlign: "center", margin: "0 auto" }}
           >
             <p style={{ fontSize: "0.62rem", letterSpacing: "3.5px", textTransform: "uppercase", color: "rgba(250,247,240,0.9)", fontFamily: GS, margin: "0 0 14px", fontWeight: 700 }}>

@@ -201,9 +201,7 @@ export default function EmoldurarFloresSecasClient() {
         <div className="hero-overlay" />
         <m.div className="hero-content" style={{ opacity: heroOpacity, y: heroY }}>
           <m.div
-            initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="hero-enter"
             style={{ maxWidth: "640px", margin: "0 auto" }}
           >
             <p style={{

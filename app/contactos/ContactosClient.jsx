@@ -98,7 +98,7 @@ export default function ContactosClient() {
         <m.div style={{ opacity: heroOpacity, y: heroY, position: "relative", zIndex: 2, width: "100%", maxWidth: "1100px", margin: "0 auto", padding: "clamp(140px,18vw,200px) 24px clamp(80px,12vw,120px)" }}>
           <div className="contact-split" style={{ gap: "clamp(40px,6vw,80px)", alignItems: "center" }}>
 
-            <m.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="hero-text-col">
+            <m.div className="hero-text-col hero-enter">
               <span style={{ display: "inline-block", fontSize: "0.56rem", fontWeight: 700, letterSpacing: "3.5px", textTransform: "uppercase", color: C.salmonLight, marginBottom: 16, fontFamily: GS }}>{t("eyebrow")}</span>
               <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2.4rem,6vw,5rem)", color: C.cream, margin: "0 0 20px", lineHeight: 1.12 }}>
                 {t("h1")}
@@ -109,10 +109,7 @@ export default function ContactosClient() {
             </m.div>
 
             <m.div
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="contact-card"
+              className="contact-card hero-enter hero-enter-2"
               style={{
                 backgroundColor: "rgba(15,38,34,0.60)",
                 backdropFilter: "blur(22px)",

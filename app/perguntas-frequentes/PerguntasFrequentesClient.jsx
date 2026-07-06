@@ -71,11 +71,7 @@ export default function PerguntasFrequentesClient() {
               textAlign: "center",
             }}
           >
-            <m.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
+            <m.div className="hero-enter">
               <span style={{
                 display: "inline-block",
                 fontSize: "0.68rem", fontWeight: "700",

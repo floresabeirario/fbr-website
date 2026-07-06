@@ -83,7 +83,7 @@ export default function EnviarFloresClient() {
 
         {/* ── HEADER BAND ──────────────────────────────────────────── */}
         <header style={{ padding: "clamp(104px,16vw,150px) clamp(20px,5vw,48px) clamp(36px,6vw,56px)", textAlign: "center", background: "linear-gradient(180deg, #3A4528 0%, #2E3621 100%)" }}>
-          <m.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} style={{ maxWidth: "640px", margin: "0 auto" }}>
+          <m.div className="hero-enter" style={{ maxWidth: "640px", margin: "0 auto" }}>
             <span className="eyebrow">{t("eyebrow")}</span>
             <h1 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(2rem,5.5vw,3.6rem)", lineHeight: 1.08, color: "var(--cream)", margin: "0 0 clamp(14px,2vw,20px)" }}>
               {h1Start}{h1Em && <em style={{ fontStyle: "italic", color: "var(--gold)" }}>{h1Em}</em>}

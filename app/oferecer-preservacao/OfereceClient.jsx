@@ -120,9 +120,7 @@ export default function OfereceClient() {
         ariaLabel="Oferecer preservação de flores, Vale Oferta"
       >
         <m.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="hero-enter"
           style={{ maxWidth: "640px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}
         >
           <Eyebrow light>{t("eyebrow")}</Eyebrow>

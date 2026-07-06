@@ -28,12 +28,7 @@ export default function ReservarPreservacaoClient() {
           />
         </div>
         <div className="rp-hero-overlay" aria-hidden="true" />
-        <m.div
-          className="rp-hero-content"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <m.div className="rp-hero-content hero-enter">
           <span className="rp-eyebrow">{t("eyebrow")}</span>
           <h1 className="rp-title">
             {t("h1")}
@@ -48,13 +43,7 @@ export default function ReservarPreservacaoClient() {
       </div>
 
       {/* ── PASSOS ── */}
-      <m.div
-        className="rp-steps-bar"
-        aria-label={t("comoFuncionaLabel")}
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.25, duration: 0.7 }}
-      >
+      <m.div className="rp-steps-bar hero-enter hero-enter-3" aria-label={t("comoFuncionaLabel")}>
         <ol className="rp-steps">
           {STEPS.map((s, i) => (
             <li key={i} className="rp-step">

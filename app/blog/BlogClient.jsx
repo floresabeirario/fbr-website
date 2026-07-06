@@ -72,9 +72,7 @@ export default function BlogClient({ posts, categories, categoryLabels }) {
         style={{ paddingTop: "clamp(130px,18vw,190px)", paddingBottom: "clamp(40px,6vw,64px)", paddingLeft: "clamp(20px,5vw,48px)", paddingRight: "clamp(20px,5vw,48px)", backgroundColor: "var(--cream)" }}
       >
         <m.div
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="hero-enter"
           style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center" }}
         >
           <div aria-hidden="true" className="hero-ornament" />

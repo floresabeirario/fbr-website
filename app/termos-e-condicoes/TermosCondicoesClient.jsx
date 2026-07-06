@@ -9,10 +9,7 @@ export default function TermosCondicoesClient() {
     // <div> em vez de <main>: o layout já embrulha as páginas num <main>.
     <div className="legal-page">
       <div className="legal-inner">
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
+        <m.div className="hero-enter">
           <h1 className="legal-h1">{t("h1")}</h1>
           <p className="legal-intro">{t("intro")}</p>
         </m.div>

@@ -29,12 +29,7 @@ export default function ValeApresenteClient() {
           />
         </div>
         <div className="vp-hero-overlay" aria-hidden="true" />
-        <m.div
-          className="vp-hero-content"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <m.div className="vp-hero-content hero-enter">
           <span className="vp-eyebrow">{t("eyebrow")}</span>
           <h1 className="vp-title">
             {t("h1")}
@@ -49,13 +44,7 @@ export default function ValeApresenteClient() {
       </div>
 
       {/* ── PASSOS ── */}
-      <m.div
-        className="vp-steps-bar"
-        aria-label={t("comoFuncionaLabel")}
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.25, duration: 0.7 }}
-      >
+      <m.div className="vp-steps-bar hero-enter hero-enter-3" aria-label={t("comoFuncionaLabel")}>
         <ol className="vp-steps">
           {STEPS.map((s, i) => (
             <li key={i} className="vp-step">
