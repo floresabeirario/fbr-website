@@ -28,7 +28,7 @@ function buildSchema(locale) {
         worstRating: "1",
       },
     },
-    areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
+    areaServed: "Worldwide",
     serviceType: isEN ? "Bouquet Recreation and Preservation" : "Recriação e Preservação de Bouquet",
     offers: {
       "@type": "Offer",

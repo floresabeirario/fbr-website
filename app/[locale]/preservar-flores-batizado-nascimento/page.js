@@ -33,7 +33,7 @@ function buildSchema(locale) {
       ? "Artisan preservation of baptism and birth flowers into botanical art frames with museum anti-UV glass. Handmade in Coimbra, Portugal."
       : "Preservação artesanal de flores de batizado e nascimento em quadros de arte botânica com vidro museu anti-UV. Feito à mão em Coimbra.",
     provider,
-    areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
+    areaServed: "Worldwide",
     serviceType: isEN ? "Baptism Flower Preservation" : "Preservação de Flores de Batizado",
     offers: {
       "@type": "AggregateOffer",

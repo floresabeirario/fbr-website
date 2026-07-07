@@ -33,7 +33,7 @@ function buildSchema(locale) {
       ? "Artisan preservation of memorial and funeral flowers into botanical art frames with museum anti-UV glass. Handmade with care in Coimbra, Portugal."
       : "Preservação artesanal de flores de cerimónias fúnebres em quadros de arte botânica com vidro museu anti-UV. Feito com todo o respeito em Coimbra.",
     provider,
-    areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
+    areaServed: "Worldwide",
     serviceType: isEN ? "Memorial Flower Preservation" : "Preservação de Flores de Homenagem",
     offers: {
       "@type": "AggregateOffer",

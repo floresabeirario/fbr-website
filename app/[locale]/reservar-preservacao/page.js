@@ -34,7 +34,7 @@ function buildSchema(locale) {
       },
     },
     serviceType: isEN ? "Flower Preservation" : "Preservação de Flores",
-    areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
+    areaServed: "Worldwide",
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "EUR",
