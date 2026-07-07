@@ -561,14 +561,16 @@ export default function NavClient() {
             cópia é aria-hidden para o leitor de ecrã não ler as frases 2×. */}
         <div className="announce-track">
           {[0, 1].map((copy) =>
-            announceItems.map((txt, i) => (
+            announceItems.map((item, i) => (
               <React.Fragment key={`${copy}-${i}`}>
-                <span
+                <Link
+                  href={item.href}
                   className={copy === 0 && i === 0 ? "announce-item announce-item--first" : "announce-item"}
                   aria-hidden={copy === 1 ? "true" : undefined}
+                  tabIndex={copy === 1 ? -1 : undefined}
                 >
-                  {txt}
-                </span>
+                  {item.text}
+                </Link>
                 <span className="announce-sep" aria-hidden="true">•</span>
               </React.Fragment>
             ))

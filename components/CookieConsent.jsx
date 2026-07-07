@@ -10,13 +10,13 @@ import { useConsent, setConsent } from "@/app/_lib/consent";
 const TEXT = {
   pt: {
     msg: "Usamos cookies de terceiros.",
-    privacy: "Saber mais",
+    privacy: "Ler a política de privacidade",
     ok: "OK",
     privacyHref: "/politica-de-privacidade",
   },
   en: {
     msg: "We use third-party cookies.",
-    privacy: "Learn more",
+    privacy: "Read the privacy policy",
     ok: "OK",
     privacyHref: "/en/privacy-policy",
   },
