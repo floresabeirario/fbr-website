@@ -103,10 +103,10 @@
     "langLabel": "Versão em inglês",
     "announceLabel": "Novidades",
     "announceItems": [
-      "Servimos clientes em todo o país, fácil e seguro para as suas flores",
-      "Ofereça preservação: vale-presente a partir de 300€",
-      "Fazemos recolha das suas flores",
-      "Um presente com significado: Ofereça eternização de flores através do nosso vale-presente"
+      { "text": "Servimos clientes em todo o país, fácil e seguro para as suas flores", "href": "/enviar-flores-por-correio" },
+      { "text": "Ofereça preservação: vale-presente a partir de 300€", "href": "/oferecer-preservacao" },
+      { "text": "Fazemos recolha das suas flores", "href": "/como-funciona" },
+      { "text": "Um presente com significado: Ofereça eternização de flores através do nosso vale-presente", "href": "/oferecer-preservacao" }
     ]
   },
   "footer": {
@@ -190,7 +190,7 @@
     "paraNoivas": "Para noivas",
     "noivasTitle": "Vai casar em breve?",
     "noivasDesc": "Reserve a sua vaga com antecedência, as datas em época de casamentos esgotam rapidamente.",
-    "noivasSaberMais": "Saber Mais",
+    "noivasSaberMais": "Sobre a Preservação do Bouquet",
     "eventoPassouEyebrow": "Ainda vai a tempo",
     "eventoPassouTitle": "O seu evento já passou?",
     "eventoPassouDesc": "Contacte-nos na mesma. Se as flores forem mantidas em água, num local fresco, normalmente ainda conseguimos preservá-las até 6 dias após o casamento ou evento, dependendo do tipo de flores. E se já passou demasiado tempo, podemos recriar o bouquet com flores semelhantes a partir de uma fotografia.",
@@ -1502,7 +1502,7 @@
     "infoLink": "Como funciona o processo",
     "comoFuncionaLabel": "Como funciona a reserva",
     "formTitle": "Formulário de pré-reserva",
-    "formSub": "Para pedir a sua reserva, preencha o formulário com os dados do evento e as suas preferências. Nos próximos 3 dias úteis, receberá a confirmação do orçamento e as instruções para o pagamento do sinal.",
+    "formSub": "Para pedir a sua reserva, preencha o formulário com os dados do evento e as suas preferências. Nos próximos 3 dias úteis, receberá a confirmação do orçamento e as instruções para o pagamento do sinal.",
     "provaSocial": "★★★★★ 5,0 nas avaliações no <g>Google</g> e no <c>casamentos.pt</c>",
     "duvidaPre": "Tem alguma dúvida antes de reservar?",
     "duvidaCTA": "Fale connosco no WhatsApp",
@@ -1820,7 +1820,7 @@
     "heroDesc": "Preencha o formulário abaixo para encomendar o seu vale. Entramos em contacto para confirmar os detalhes e processar o pagamento.",
     "saberMais": "Saber mais sobre como funciona",
     "formTitle": "Formulário de encomenda",
-    "formSub": "A partir de 300€, válido por 2 anos a partir da data de compra. Entrega digital (gratuita) ou em cartão físico (9€ + portes).",
+    "formSub": "A partir de 300€, válido por 2 anos a partir da data de compra. Entrega digital (gratuita) ou em cartão físico (9€ + portes).",
     "provaSocial": "★★★★★ 5,0 nas avaliações no <g>Google</g> e no <c>casamentos.pt</c>",
     "duvidaPre": "Tem alguma dúvida antes de oferecer?",
     "duvidaCTA": "Fale connosco no WhatsApp",
@@ -2226,4 +2226,4 @@
     "opcoesPrecos": "Opções e Preços",
     "explorar": "Explorar serviços"
   }
-}
+}

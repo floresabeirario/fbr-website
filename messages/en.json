@@ -103,9 +103,9 @@
     "langLabel": "Portuguese version",
     "announceLabel": "Announcements",
     "announceItems": [
-      "Worldwide shipping for your finished frame",
-      "Gift preservation: vouchers from €300",
-      "A meaningful gift: offer flower preservation through our voucher"
+      { "text": "Worldwide shipping for your finished frame", "href": "/en/how-it-works" },
+      { "text": "Gift preservation: vouchers from €300", "href": "/en/gift-preservation" },
+      { "text": "A meaningful gift: offer flower preservation through our voucher", "href": "/en/gift-preservation" }
     ]
   },
   "footer": {
@@ -189,7 +189,7 @@
     "paraNoivas": "For brides",
     "noivasTitle": "Getting married soon?",
     "noivasDesc": "Book your slot in advance: wedding season dates fill up quickly.",
-    "noivasSaberMais": "Learn More",
+    "noivasSaberMais": "About Bouquet Preservation",
     "eventoPassouEyebrow": "There is still time",
     "eventoPassouTitle": "Already had your wedding or event?",
     "eventoPassouDesc": "Contact us anyway. If the flowers are kept in water, somewhere cool, we can usually still preserve them up to 6 days after the wedding or event, depending on the type of flowers. And if too much time has passed, we can recreate the bouquet with similar flowers from a photograph.",
@@ -1501,7 +1501,7 @@
     "infoLink": "How the process works",
     "comoFuncionaLabel": "How the booking works",
     "formTitle": "Pre-booking form",
-    "formSub": "To request your booking, fill in the form with your event details and preferences. Within the next 3 working days, you will receive a quote confirmation and deposit payment instructions.",
+    "formSub": "To request your booking, fill in the form with your event details and preferences. Within the next 3 working days, you will receive a quote confirmation and deposit payment instructions.",
     "provaSocial": "★★★★★ 5.0 in reviews on <g>Google</g> and <c>casamentos.pt</c>",
     "duvidaPre": "Have a question before booking?",
     "duvidaCTA": "Chat with us on WhatsApp",
@@ -1819,7 +1819,7 @@
     "heroDesc": "Fill in the form below to order your voucher. We will be in touch to confirm the details and process payment.",
     "saberMais": "Learn more about how it works",
     "formTitle": "Order form",
-    "formSub": "From €300, valid for 2 years from the purchase date. Digital delivery (free) or physical card (€9 + postage).",
+    "formSub": "From €300, valid for 2 years from the purchase date. Digital delivery (free) or physical card (€9 + postage).",
     "provaSocial": "★★★★★ 5.0 in reviews on <g>Google</g> and <c>casamentos.pt</c>",
     "duvidaPre": "Have a question before gifting?",
     "duvidaCTA": "Chat with us on WhatsApp",
@@ -2225,4 +2225,4 @@
     "opcoesPrecos": "Options & Pricing",
     "explorar": "Explore services"
   }
-}
+}
