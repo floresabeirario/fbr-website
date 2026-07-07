@@ -79,7 +79,7 @@ export default function HomeSteps() {
       {/* Steps grid */}
       <div className="steps-grid" role="list">
         {steps.map((step, i) => (
-          <m.article
+          <m.div
             key={i}
             role="listitem"
             className="step-card"
@@ -109,7 +109,7 @@ export default function HomeSteps() {
                 {step.linkLabel} <span aria-hidden="true">→</span>
               </Link>
             </div>
-          </m.article>
+          </m.div>
         ))}
       </div>
     </section>
