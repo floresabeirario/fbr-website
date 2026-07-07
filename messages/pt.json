@@ -601,7 +601,7 @@
     "ctaWA": "WhatsApp",
     "floresTitle": "Flores que contam a sua história",
     "floresP1": "Na Flores à Beira-Rio, transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Cada pétala é prensada individualmente e emoldurada com vidro museu anti-UV, num quadro feito à mão no nosso atelier em Coimbra.",
-    "floresP2": "Preços a partir de 300€, com pagamento em três fases. O processo demora até 6 meses e enviamos para toda a Europa.",
+    "floresP2": "Preços a partir de 300€, com pagamento em três fases. O processo demora até 6 meses e enviamos para todo o mundo.",
     "floresP3": "Chegam-nos flores de todos os capítulos da vida: o ramo de noiva do casamento, as flores do batizado ou do nascimento de um filho, o raminho de um pedido de casamento, as flores de um aniversário redondo, e também as flores de uma homenagem fúnebre, preservadas como memória serena de quem partiu. As flores podem chegar até nós em mãos, por correio de qualquer ponto do país, ou com recolha no local do evento. E se as suas vêm de um momento que não está nesta lista, fale connosco na mesma: se têm história, nós preservamo-las.",
     "envioGuiaLink": "Como enviar as suas flores por correio →",
     "saberMais": "Saber mais →",
@@ -646,7 +646,7 @@
     },
     "eyebrow": "Bouquet de Noiva",
     "h1": "Preservar o Bouquet de Noiva",
-    "heroDesc": "Eternizamos o bouquet do seu casamento numa obra de arte botânica que dura décadas. Prensagem artesanal e emolduramento feito à mão em Coimbra, com envio para todo o Portugal e Europa.",
+    "heroDesc": "Eternizamos o bouquet do seu casamento numa obra de arte botânica que dura décadas. Prensagem artesanal e emolduramento feito à mão em Coimbra, com envio para todo o mundo.",
     "heroPrice": "A partir de 300€ · pagamento em 3 fases",
     "heroDelivery": ["Em mãos", "Por correio", "Recolha em local à escolha"],
     "sliderAntes": "Antes",
@@ -725,7 +725,7 @@
       {
         "num": "04",
         "title": "Receber o quadro em casa",
-        "desc": "A prensagem é delicada e não se apressa: o quadro fica pronto em cerca de 6 meses e pode acompanhar cada fase em status.floresabeirario.pt. Chega a casa cuidadosamente embalado, pronto a pendurar. Enviamos para toda a Europa."
+        "desc": "A prensagem é delicada e não se apressa: o quadro fica pronto em cerca de 6 meses e pode acompanhar cada fase em status.floresabeirario.pt. Chega a casa cuidadosamente embalado, pronto a pendurar. Enviamos para todo o mundo."
       }
     ],
     "weekendBadge": "Recebemos ao fim de semana, incluindo ao domingo",
@@ -771,7 +771,7 @@
       },
       {
         "q": "Enviam para fora de Portugal?",
-        "a": "Sim. Enviamos para toda a Europa: Espanha, França, Reino Unido, Irlanda, Itália, Bélgica, Países Baixos, Alemanha, Áustria e Suíça, entre outros. Enviamos também para os Estados Unidos, Canadá e China. O envio é feito com seguro e embalagem especializada."
+        "a": "Sim. Enviamos para todo o mundo: Espanha, França, Reino Unido, Irlanda, Itália, Bélgica, Países Baixos, Alemanha, Áustria e Suíça, entre muitos outros, e também para os Estados Unidos, Canadá e China. O envio é feito com seguro e embalagem especializada."
       },
       {
         "q": "Aceitam buquês de noivas estrangeiras a casar em Portugal?",
@@ -807,7 +807,7 @@
     "contentEm": "fica para sempre",
     "ctaFinalTitle": "Preserve a memória de quem amou",
     "ctaFinalEm": "de quem amou",
-    "ctaDesc": "Contacte-nos quando for o momento certo. Preços a partir de 300€, com pagamento em três fases. Enviamos para toda a Europa.",
+    "ctaDesc": "Contacte-nos quando for o momento certo. Preços a partir de 300€, com pagamento em três fases. Enviamos para todo o mundo.",
     "linkComoFunciona": "Como funciona",
     "linkPrecos": "Opções e preços",
     "linkFAQ": "Perguntas frequentes",
@@ -1488,7 +1488,7 @@
   "reservar": {
     "meta": {
       "title": "Reservar Preservação de Flores",
-      "description": "Reserve a preservação das suas flores: confirmação em 3 dias úteis, pagamento em três fases. Atelier em Coimbra, enviamos para toda a Europa.",
+      "description": "Reserve a preservação das suas flores: confirmação em 3 dias úteis, pagamento em três fases. Atelier em Coimbra, enviamos para todo o mundo.",
       "ogTitle": "Reservar Preservação de Flores | Flores à Beira-Rio",
       "ogDescription": "Reserve a preservação das suas flores. Confirmação em 3 dias úteis, pagamento em três fases.",
       "ogImageAlt": "Formulário de reserva de preservação de flores, Flores à Beira-Rio",

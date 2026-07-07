@@ -32,8 +32,8 @@ function buildSchema(locale) {
       ? "Wedding Bouquet Preservation | Flores à Beira-Rio"
       : "Preservação de Bouquet de Noiva | Flores à Beira-Rio",
     description: isEN
-      ? "Artisan preservation of wedding bouquets into botanical art frames with museum anti-UV glass. Handmade in Coimbra, Portugal. We receive bouquets at the weekend. Ships across Europe."
-      : "Preservação artesanal de bouquets de noiva em quadros de arte botânica com vidro museu anti-UV. Feito à mão em Coimbra. Recebemos ao fim de semana. Enviamos para toda a Europa.",
+      ? "Artisan preservation of wedding bouquets into botanical art frames with museum anti-UV glass. Handmade in Coimbra, Portugal. We receive bouquets at the weekend. Ships worldwide."
+      : "Preservação artesanal de bouquets de noiva em quadros de arte botânica com vidro museu anti-UV. Feito à mão em Coimbra. Recebemos ao fim de semana. Enviamos para todo o mundo.",
     provider,
     areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
     serviceType: isEN ? "Wedding Bouquet Preservation" : "Preservação de Bouquet de Noiva",
@@ -66,7 +66,7 @@ function buildSchema(locale) {
           { "@type": "HowToStep", position: 1, name: "Reservar antes do casamento", text: "Reserve a data assim que souber quando é o casamento. As vagas são limitadas, especialmente entre maio e setembro." },
           { "@type": "HowToStep", position: 2, name: "Entregar o bouquet nos dias seguintes", text: "Entregue o bouquet idealmente em 1 a 3 dias após a cerimónia (até 6 dias). Recebemos ao fim de semana, incluindo ao domingo." },
           { "@type": "HowToStep", position: 3, name: "Aprovação da composição", text: "Enviamos fotografias da composição por e-mail. Tem 72 horas para aprovar ou pedir alterações." },
-          { "@type": "HowToStep", position: 4, name: "Receber o quadro em casa", text: "O quadro emoldurado é enviado cuidadosamente embalado para qualquer ponto da Europa." },
+          { "@type": "HowToStep", position: 4, name: "Receber o quadro em casa", text: "O quadro emoldurado é enviado cuidadosamente embalado para qualquer ponto do mundo." },
         ],
   };
 
@@ -79,7 +79,7 @@ function buildSchema(locale) {
     { q: "O que posso incluir no quadro além das flores?", a: "Pode incluir o convite do casamento, votos manuscritos, fitas, uma fotografia ou qualquer elemento com significado especial." },
     { q: "Quanto tempo demora o processo?", a: "O nosso tempo médio é de até 6 meses desde a recepção das flores até ao quadro emoldurado. A prensagem é um processo delicado que não pode ser apressado, e nunca sacrificamos a qualidade em favor da rapidez." },
     { q: "Qual o preço e como funciona o pagamento?", a: "Os preços começam nos 300€. Consulte a página de opções e preços para ver todos os formatos. O pagamento é feito em três prestações." },
-    { q: "Enviam para fora de Portugal?", a: "Sim. Enviamos para toda a Europa: Espanha, França, Reino Unido, Irlanda, Itália, Bélgica, Países Baixos, Alemanha, Áustria e Suíça, entre outros. Enviamos também para os Estados Unidos, Canadá e China. O envio é feito com seguro e embalagem especializada." },
+    { q: "Enviam para fora de Portugal?", a: "Sim. Enviamos para todo o mundo: Espanha, França, Reino Unido, Irlanda, Itália, Bélgica, Países Baixos, Alemanha, Áustria e Suíça, entre muitos outros, e também para os Estados Unidos, Canadá e China. O envio é feito com seguro e embalagem especializada." },
     { q: "Aceitam buquês de noivas estrangeiras a casar em Portugal?", a: "Sim. Recebemos buquês de noivas de qualquer nacionalidade que casem em Portugal, e enviamos o quadro emoldurado para o país onde residem. Trabalhamos regularmente com noivas brasileiras, espanholas, francesas, britânicas e irlandesas." },
   ];
 
@@ -92,7 +92,7 @@ function buildSchema(locale) {
     { q: "What else can I include in the frame?", a: "You can include the wedding invitation, handwritten vows, ribbons, a photograph, or any meaningful element." },
     { q: "How long does the process take?", a: "Our average turnaround is up to 6 months from when we receive the flowers to the finished framed piece. Pressing is a delicate process that cannot be rushed, and we never sacrifice quality for speed." },
     { q: "What are the prices and how does payment work?", a: "Prices start from €300. See the options and pricing page for all available formats. Payment is made in three instalments." },
-    { q: "Do you ship outside Portugal?", a: "Yes. We ship across Europe: Spain, France, United Kingdom, Ireland, Italy, Belgium, Netherlands, Germany, Austria and Switzerland, among others. We also ship to the United States, Canada and China. Shipping includes insurance and specialist packaging." },
+    { q: "Do you ship outside Portugal?", a: "Yes. We ship worldwide: Spain, France, United Kingdom, Ireland, Italy, Belgium, Netherlands, Germany, Austria and Switzerland among many others, and also the United States, Canada and China. Shipping includes insurance and specialist packaging." },
     { q: "Do you accept bouquets from international brides marrying in Portugal?", a: "Yes. We receive bouquets from brides of any nationality marrying in Portugal and ship the framed artwork to the bride's home country. We regularly work with Brazilian, Spanish, French, British and Irish brides." },
   ];
 
