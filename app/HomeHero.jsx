@@ -71,9 +71,10 @@ export default function HomeHero() {
           {t("heroEyebrow")}
         </h1>
 
-        {/* O título é o elemento LCP: sem delay de animação de propósito */}
+        {/* O título é o elemento LCP da página: fica SEM animação de entrada
+            de propósito (visível no primeiro paint); eyebrow e CTA animam
+            à volta dele e o efeito de conjunto mantém-se. */}
         <p
-          className="hero-enter"
           style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(3.2rem, 11vw, 8rem)", lineHeight: 1.15, margin: 0 }}
         >
           Flores à<br /><span style={{ whiteSpace: "nowrap" }}>Beira&#8209;Rio</span>
