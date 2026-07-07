@@ -24,7 +24,7 @@ function buildSchema(locale) {
         telephone: PHONE,
         contactType: "customer service",
         availableLanguage: ["Portuguese", "English"],
-        areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
+        areaServed: "Worldwide",
       },
       {
         "@type": "ContactPoint",

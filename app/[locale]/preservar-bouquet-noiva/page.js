@@ -35,7 +35,7 @@ function buildSchema(locale) {
       ? "Artisan preservation of wedding bouquets into botanical art frames with museum anti-UV glass. Handmade in Coimbra, Portugal. We receive bouquets at the weekend. Ships worldwide."
       : "Preservação artesanal de bouquets de noiva em quadros de arte botânica com vidro museu anti-UV. Feito à mão em Coimbra. Recebemos ao fim de semana. Enviamos para todo o mundo.",
     provider,
-    areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
+    areaServed: "Worldwide",
     serviceType: isEN ? "Wedding Bouquet Preservation" : "Preservação de Bouquet de Noiva",
     offers: {
       "@type": "AggregateOffer",

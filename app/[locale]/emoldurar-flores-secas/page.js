@@ -28,7 +28,7 @@ function buildSchema(locale) {
         worstRating: "1",
       },
     },
-    areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
+    areaServed: "Worldwide",
     serviceType: isEN ? "Dried Flower Framing" : "Emolduramento de Flores Secas",
     offers: {
       "@type": "AggregateOffer",

@@ -33,7 +33,7 @@ function buildSchema(locale) {
       ? "Artisan preservation of anniversary flowers into botanical art frames with museum anti-UV glass. Handmade in Coimbra, Portugal."
       : "Preservação artesanal de flores de aniversário em quadros de arte botânica com vidro museu anti-UV. Feito à mão em Coimbra.",
     provider,
-    areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
+    areaServed: "Worldwide",
     serviceType: isEN ? "Anniversary Flower Preservation" : "Preservação de Flores de Aniversário",
     offers: {
       "@type": "AggregateOffer",

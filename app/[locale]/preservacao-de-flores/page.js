@@ -31,7 +31,7 @@ function buildSchema(locale) {
       ? "Artisan botanical preservation of emotionally meaningful flowers. Wedding bouquets, baptism and memorial flowers transformed into frames with museum anti-UV glass. Atelier in Coimbra, with worldwide shipping."
       : "Preservação botânica artesanal de flores com valor emocional. Bouquets de casamento, flores de batizado e homenagem transformados em quadros de arte com vidro museu anti-UV. Atelier em Coimbra, com envio nacional e internacional.",
     provider,
-    areaServed: ["PT", "ES", "FR", "GB", "IE", "IT", "BE", "NL", "DE", "AT", "CH"],
+    areaServed: "Worldwide",
     serviceType: isEN ? "Flower Preservation" : "Preservação de Flores",
     offers: {
       "@type": "AggregateOffer",
