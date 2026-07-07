@@ -42,6 +42,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       type: "website",
       locale: locale === "en" ? "en_GB" : "pt_PT",
+      alternateLocale: locale === "en" ? "pt_PT" : "en_GB",
       url: SITE_URL,
       siteName: "Flores à Beira-Rio",
     },

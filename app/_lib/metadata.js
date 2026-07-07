@@ -74,7 +74,10 @@ export function buildBlogAlternates(ptSlug, enSlug, locale = "pt") {
  * imagePath: caminho relativo ("/imagem.webp") ou URL absoluta.
  */
 export function buildOpenGraph({ title, description, url, imagePath, imageAlt, type = "website", locale = "pt_PT" }) {
-  const og = { title, description, url, siteName: SITE_NAME, locale, type };
+  // og:locale:alternate — declara que a página existe no outro idioma, para que
+  // redes sociais e crawlers ofereçam a versão certa a quem partilha/lê.
+  const alternateLocale = locale.startsWith("en") ? "pt_PT" : "en_GB";
+  const og = { title, description, url, siteName: SITE_NAME, locale, alternateLocale, type };
   if (imagePath) {
     og.images = [{ url: imagePath, width: 1200, height: 630, alt: imageAlt ?? "" }];
   }
