@@ -1,0 +1,30 @@
+# ============================================================
+# CI — build do Next em cada push/PR (rede de segurança).
+# Padrão copiado do fbr-admin (docs/REPOS.md nesse repo).
+# Env vars dummy: nenhuma página estática toca serviços reais no
+# build; os forms/API são todos runtime.
+# ============================================================
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_URL: https://dummy-ci.supabase.co
+      SUPABASE_SERVICE_ROLE_KEY: dummy-so-o-build-passa
+      NEXT_PUBLIC_SUPABASE_URL: https://dummy-ci.supabase.co
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: dummy-so-o-build-passa
+      RESEND_API_KEY: dummy
+      TURNSTILE_SECRET: dummy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
