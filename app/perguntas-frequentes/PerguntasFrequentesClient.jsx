@@ -46,7 +46,7 @@ export default function PerguntasFrequentesClient() {
         >
           <div style={{ position: "absolute", inset: 0 }} aria-hidden="true">
             <Image
-              src="/sandraclose.webp"
+              src="/flores-preservadas-quadro-detalhe.webp"
               alt=""
               fill
               priority

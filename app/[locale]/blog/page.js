@@ -18,14 +18,14 @@ export async function generateMetadata({ params }) {
       title: t("ogTitle"),
       description: t("ogDescription"),
       url: canonicalPath,
-      imagePath: `${SITE_URL}/fotoquadro1.webp`,
+      imagePath: `${SITE_URL}/quadro-flores-prensadas-preservadas.webp`,
       imageAlt: t("ogImageAlt"),
       locale: ogLocale,
     }),
     twitter: buildTwitterCard({
       title: t("ogTitle"),
       description: t("ogDescription"),
-      imagePath: `${SITE_URL}/fotoquadro1.webp`,
+      imagePath: `${SITE_URL}/quadro-flores-prensadas-preservadas.webp`,
     }),
     alternates: buildAlternates("/blog", locale),
   };

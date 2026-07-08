@@ -203,24 +203,24 @@ const framesVisual = [
 
 // Visual-only presentes config (images only)
 const presentesVisual = [
-  { img: "/miniquadros.webp", alt: "Mini quadros 20x25cm de flores preservadas", badgeBg: "rgba(139,168,136,0.12)", badgeColor: VERDE_CLARO },
-  { img: "/ornamento1.webp",  alt: "Ornamento de natal com flores prensadas",    badgeBg: "rgba(107,31,42,0.1)",    badgeColor: "#6B1F2A" },
-  { img: "/pendente1.webp",   alt: "Pendente floral para colar",                 badgeBg: "rgba(58,48,80,0.1)",     badgeColor: "#3A3050" },
+  { img: "/mini-quadros-flores-preservadas.webp", alt: "Mini quadros 20x25cm de flores preservadas", badgeBg: "rgba(139,168,136,0.12)", badgeColor: VERDE_CLARO },
+  { img: "/ornamento-natal-flores-preservadas.webp",  alt: "Ornamento de natal com flores prensadas",    badgeBg: "rgba(107,31,42,0.1)",    badgeColor: "#6B1F2A" },
+  { img: "/pendente-colar-flores-preservadas.webp",   alt: "Pendente floral para colar",                 badgeBg: "rgba(58,48,80,0.1)",     badgeColor: "#3A3050" },
 ];
 
 // Visual-only molduras config (images only)
 const moldurasVisual = [
-  { img: "/molduranogueira.webp" },
-  { img: "/moldurabranca.webp" },
-  { img: "/moldurapreta.webp" },
+  { img: "/moldura-nogueira-flores-preservadas.webp" },
+  { img: "/moldura-branca-flores-preservadas.webp" },
+  { img: "/moldura-preta-flores-preservadas.webp" },
 ];
 
 // Visual-only fundos config (images only)
 const fundosVisual = [
-  { img: "/quadrovidrosobrevidro.webp", alt: "Quadro de flores prensadas em vidro sobre vidro com efeito transparente", tagSolid: true },
-  { img: "/quadrofoto.webp",            alt: "Quadro de flores prensadas com fotografia personalizada como fundo",      tagSolid: false },
-  { img: "/quadropreto.webp",           alt: "Quadro de flores prensadas com fundo preto ou colorido personalizado",    tagSolid: false },
-  { img: "/quadrobranco.webp",          alt: "Quadro de flores prensadas com fundo branco minimalista",                 tagSolid: false },
+  { img: "/quadro-flores-vidro-sobre-vidro.webp", alt: "Quadro de flores prensadas em vidro sobre vidro com efeito transparente", tagSolid: true },
+  { img: "/quadro-flores-fundo-fotografia.webp",            alt: "Quadro de flores prensadas com fotografia personalizada como fundo",      tagSolid: false },
+  { img: "/quadro-flores-fundo-preto.webp",           alt: "Quadro de flores prensadas com fundo preto ou colorido personalizado",    tagSolid: false },
+  { img: "/quadro-flores-fundo-branco.webp",          alt: "Quadro de flores prensadas com fundo branco minimalista",                 tagSolid: false },
 ];
 
 export default function OpcoesClient() {
@@ -246,8 +246,8 @@ export default function OpcoesClient() {
   const oferecerHref     = locale === "en" ? "/en/gift-preservation"        : "/oferecer-preservacao";
 
   const exploreItems = [
-    { href: bouquetNoivaHref,  label: tNav("preservacao.bouquetNoiva"),  img: "/quadroflores.webp" },
-    { href: comoFuncionaHref,  label: tNav("preservacao.comoFunciona"),  img: "/prensa.webp" },
+    { href: bouquetNoivaHref,  label: tNav("preservacao.bouquetNoiva"),  img: "/quadro-bouquet-noiva-preservado.webp" },
+    { href: comoFuncionaHref,  label: tNav("preservacao.comoFunciona"),  img: "/prensagem-flores-processo.webp" },
     { href: recriacaoHref,     label: tNav("recriacao"),                  img: "/recriacao-passo4-quadro.jpg" },
     { href: oferecerHref,      label: tNav("oferecer"),                   img: "/vale1.webp" },
   ];
@@ -258,13 +258,13 @@ export default function OpcoesClient() {
   const heroY       = useTransform(scrollYProgress, [0, 0.38], [0, 28]);
 
   return (
-    <div style={{ backgroundColor: "var(--cream)", color: "#1a1a1a", overflowX: "hidden" }}>
+    <div style={{ backgroundColor: "var(--cream)", color: "#1a1a1a", overflowX: "clip" }}>
 
       {/* ── HERO ── */}
       <section ref={heroRef} style={{ position: "relative", minHeight: "100svh", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <div style={{ position: "absolute", inset: 0 }}>
           <Image fill
-            src="/fotoquadro1.webp"
+            src="/quadro-flores-prensadas-preservadas.webp"
             alt=""
             aria-hidden="true"
             priority
@@ -309,7 +309,7 @@ export default function OpcoesClient() {
             </h2>
           </Reveal>
         </div>
-        <div style={{ overflowX: "hidden" }}>
+        <div style={{ overflowX: "clip" }}>
           <div className="fundos-track">
             {FUNDOS_TEXT.map((item, i) => (
               <div key={i} className="fundo-card-new">
@@ -579,7 +579,7 @@ export default function OpcoesClient() {
             </Reveal>
             <Reveal delay={0.1}>
               <div style={{ width: "clamp(200px, 28vw, 340px)", borderRadius: "10px", overflow: "hidden", boxShadow: "0 12px 40px rgba(26,26,26,0.12)", flexShrink: 0 }}>
-                <Image src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" width={640} height={640} sizes="(max-width: 640px) 100vw, 340px" style={{ width: "100%", height: "auto", display: "block" }} />
+                <Image src="/quadros-flores-preservadas-lado-a-lado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" width={640} height={640} sizes="(max-width: 640px) 100vw, 340px" style={{ width: "100%", height: "auto", display: "block" }} />
                 <div style={{ backgroundColor: "#F2EDE4", padding: "12px 16px", display: "flex", justifyContent: "space-between" }}>
                   <span style={{ fontFamily: GS, fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(26,26,26,0.38)", fontWeight: 500 }}>{t("vidroLabelNormal")}</span>
                   <span style={{ fontFamily: GS, fontSize: "0.62rem", letterSpacing: "1.5px", textTransform: "uppercase", color: VERDE_CLARO, fontWeight: 700 }}>UltraVue®</span>

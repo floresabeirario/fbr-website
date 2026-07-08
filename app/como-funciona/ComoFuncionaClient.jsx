@@ -77,10 +77,10 @@ const HowToSchema = ({ locale }) => {
 
 const STEP_IMAGES = [
   { img: "/reserva.webp",            imgAlt: "Calendário com data de evento marcada para reserva de preservação de flores", id: "passo-1", imgLink: true },
-  { img: "/ramojoana.webp",          imgAlt: "Flores frescas a ser entregues no atelier para preservação botânica",          id: "passo-2", imgLink: false },
-  { img: "/prensa.webp",             imgAlt: "Pétalas de flores a serem prensadas artesanalmente em papel botânico",          id: "passo-3", imgLink: false },
-  { img: "/detalhe.webp",            imgAlt: "Composição artística de flores prensadas dentro de moldura",                    id: "passo-4", imgLink: false },
-  { img: "/joanaceu.webp",           imgAlt: "Quadro botânico de flores prensadas emoldurado com vidro museu anti-UV",        id: "passo-5", imgLink: false },
+  { img: "/bouquet-noiva-fresco-para-preservar.webp",          imgAlt: "Flores frescas a ser entregues no atelier para preservação botânica",          id: "passo-2", imgLink: false },
+  { img: "/prensagem-flores-processo.webp",             imgAlt: "Pétalas de flores a serem prensadas artesanalmente em papel botânico",          id: "passo-3", imgLink: false },
+  { img: "/flores-prensadas-close-up.webp",            imgAlt: "Composição artística de flores prensadas dentro de moldura",                    id: "passo-4", imgLink: false },
+  { img: "/quadro-flores-preservadas-luz-natural.webp",           imgAlt: "Quadro botânico de flores prensadas emoldurado com vidro museu anti-UV",        id: "passo-5", imgLink: false },
 ];
 
 // ─── Componente Step ──────────────────────────────────────────────────────────
@@ -181,8 +181,8 @@ export default function ComoFuncionaClient() {
   const oferecerHref = locale === "en" ? "/en/gift-preservation" : "/oferecer-preservacao";
 
   const exploreItems = [
-    { href: bouquetNoivaHref, label: tNav("preservacao.bouquetNoiva"), img: "/quadroflores.webp" },
-    { href: precosHref,       label: tNav("preservacao.opcoes"),       img: "/molduranogueira.webp" },
+    { href: bouquetNoivaHref, label: tNav("preservacao.bouquetNoiva"), img: "/quadro-bouquet-noiva-preservado.webp" },
+    { href: precosHref,       label: tNav("preservacao.opcoes"),       img: "/moldura-nogueira-flores-preservadas.webp" },
     { href: oferecerHref,     label: tNav("oferecer"),                 img: "/vale1.webp" },
     { href: recriacaoHref,    label: tNav("recriacao"),                img: "/recriacao-passo4-quadro.jpg" },
   ];
@@ -207,7 +207,7 @@ export default function ComoFuncionaClient() {
       <div style={{ backgroundColor: "var(--cream)", overflowX: "clip" }}>
 
         <PageHero
-          src="/fotoquadrocloseup2.webp"
+          src="/quadro-flores-prensadas-detalhe.webp"
         imgFetchPriority="high"
           gradient="linear-gradient(to top, rgba(35,15,5,0.88) 0%, rgba(35,15,5,0.55) 45%, rgba(35,15,5,0.15) 100%)"
           ariaLabel={t("eyebrow")}

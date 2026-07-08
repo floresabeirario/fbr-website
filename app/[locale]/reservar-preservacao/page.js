@@ -75,14 +75,14 @@ export async function generateMetadata({ params }) {
       title: t("ogTitle"),
       description: t("ogDescription"),
       url: canonicalPath,
-      imagePath: `${SITE_URL}/moldurapreta.webp`,
+      imagePath: `${SITE_URL}/moldura-preta-flores-preservadas.webp`,
       imageAlt: t("ogImageAlt"),
       locale: ogLocale,
     }),
     twitter: buildTwitterCard({
       title: t("ogTitle"),
       description: t("ogDescription"),
-      imagePath: `${SITE_URL}/moldurapreta.webp`,
+      imagePath: `${SITE_URL}/moldura-preta-flores-preservadas.webp`,
     }),
     alternates: buildAlternates("/reservar-preservacao", locale),
   };

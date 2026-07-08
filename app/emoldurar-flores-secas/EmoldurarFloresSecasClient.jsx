@@ -196,7 +196,7 @@ export default function EmoldurarFloresSecasClient() {
       {/* ══ 1. HERO ═══════════════════════════════════════════════════════════ */}
       <section ref={heroRef} className="hero-wrap" aria-label={t("heroH1")}>
         <div className="hero-bg">
-          <Image fill src="/quadrovidrosobrevidro.webp" alt="Quadro de flores secas emoldurado com vidro museu anti-UV" priority sizes="100vw" style={{ objectFit: "cover" }} />
+          <Image fill src="/quadro-flores-vidro-sobre-vidro.webp" alt="Quadro de flores secas emoldurado com vidro museu anti-UV" priority sizes="100vw" style={{ objectFit: "cover" }} />
         </div>
         <div className="hero-overlay" />
         <m.div className="hero-content" style={{ opacity: heroOpacity, y: heroY }}>
@@ -278,7 +278,7 @@ export default function EmoldurarFloresSecasClient() {
       {/* ══ 3. FOTOGRAFIA — fundo com imagem ═════════════════════════════════ */}
       <section style={{ position: "relative", overflow: "hidden", minHeight: "380px", display: "flex", alignItems: "center" }}>
         <div style={{ position: "absolute", inset: 0 }}>
-          <Image fill src="/photowedding.webp" alt="Casamento" sizes="100vw" style={{ objectFit: "cover" }} />
+          <Image fill src="/flores-casamento-emolduradas-quadro.webp" alt="Casamento" sizes="100vw" style={{ objectFit: "cover" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,22,40,0.80) 0%, rgba(10,22,40,0.50) 55%, rgba(10,22,40,0.25) 100%)" }} />
         </div>
         <div style={{ position: "relative", zIndex: 1, padding: "clamp(64px,10vw,100px) clamp(20px,5vw,48px)", maxWidth: "600px", margin: "0 auto", textAlign: "center", width: "100%" }}>
@@ -374,7 +374,7 @@ export default function EmoldurarFloresSecasClient() {
                 </ul>
               </div>
               <div className="ultravue-img">
-                <Image src="/ladoalado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" width={640} height={640} sizes="(max-width: 640px) 100vw, 340px" style={{ width: "100%", height: "auto", display: "block", borderRadius: "10px 10px 0 0" }} />
+                <Image src="/quadros-flores-preservadas-lado-a-lado.webp" alt="Comparação entre vidro normal e vidro UltraVue anti-reflexo" width={640} height={640} sizes="(max-width: 640px) 100vw, 340px" style={{ width: "100%", height: "auto", display: "block", borderRadius: "10px 10px 0 0" }} />
                 <div style={{ backgroundColor: C.creEsc, padding: "10px 14px", display: "flex", justifyContent: "space-between", borderRadius: "0 0 10px 10px" }}>
                   <span style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.6rem", letterSpacing: "1.5px", textTransform: "uppercase", color: "rgba(15,30,26,0.35)", fontWeight: 500 }}>{t("vidroLabelNormal")}</span>
                   <span style={{ fontFamily: "'Google Sans', sans-serif", fontSize: "0.6rem", letterSpacing: "1.5px", textTransform: "uppercase", color: C.azulClr, fontWeight: 700 }}>UltraVue®</span>
@@ -495,10 +495,10 @@ export default function EmoldurarFloresSecasClient() {
       <section aria-label="Explorar serviços">
         <div className="nav-squares-grid">
           {[
-            { img: "/molduranogueira.webp" },
-            { img: "/ramo.webp" },
+            { img: "/moldura-nogueira-flores-preservadas.webp" },
+            { img: "/bouquet-noiva-flores-frescas.webp" },
             { img: "/vale1.webp" },
-            { img: "/fotoquadrocloseup2.webp" },
+            { img: "/quadro-flores-prensadas-detalhe.webp" },
           ].map((vis, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <a href={NAV_SQUARES[i].href} className="nav-square">

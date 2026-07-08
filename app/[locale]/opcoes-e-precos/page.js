@@ -66,7 +66,7 @@ function buildSchema(locale) {
           description: isEN
             ? "Small frame available as an add-on with the purchase of a larger frame."
             : "Moldura pequena disponível em conjunto com a compra de um quadro maior.",
-          image: `${SITE_URL}/miniquadros.webp`,
+          image: `${SITE_URL}/mini-quadros-flores-preservadas.webp`,
           brand: { "@type": "Brand", name: "Flores à Beira-Rio" },
           aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: "7", bestRating: "5", worstRating: "1" },
           offers: { "@type": "Offer", price: "90", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
@@ -82,7 +82,7 @@ function buildSchema(locale) {
           description: isEN
             ? "Christmas ornament with double lead-free soldered glass. Available as an add-on with the purchase of a larger frame."
             : "Ornamento de Natal com vidro duplo soldado sem chumbo. Disponível em conjunto com a compra de um quadro maior.",
-          image: `${SITE_URL}/ornamento1.webp`,
+          image: `${SITE_URL}/ornamento-natal-flores-preservadas.webp`,
           brand: { "@type": "Brand", name: "Flores à Beira-Rio" },
           aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: "7", bestRating: "5", worstRating: "1" },
           offers: { "@type": "Offer", price: "35", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
@@ -98,7 +98,7 @@ function buildSchema(locale) {
           description: isEN
             ? "Necklace pendant with double lead-free soldered glass. Available as an add-on with the purchase of a larger frame."
             : "Pendente com vidro duplo soldado sem chumbo. Disponível em conjunto com a compra de um quadro maior.",
-          image: `${SITE_URL}/pendente1.webp`,
+          image: `${SITE_URL}/pendente-colar-flores-preservadas.webp`,
           brand: { "@type": "Brand", name: "Flores à Beira-Rio" },
           aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: "7", bestRating: "5", worstRating: "1" },
           offers: { "@type": "Offer", price: "35", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
@@ -122,14 +122,14 @@ export async function generateMetadata({ params }) {
       title: t("ogTitle"),
       description: t("ogDescription"),
       url: canonicalPath,
-      imagePath: `${SITE_URL}/fotoquadro1.webp`,
+      imagePath: `${SITE_URL}/quadro-flores-prensadas-preservadas.webp`,
       imageAlt: t("ogImageAlt"),
       locale: ogLocale,
     }),
     twitter: buildTwitterCard({
       title: t("ogTitle"),
       description: t("ogDescription"),
-      imagePath: `${SITE_URL}/fotoquadro1.webp`,
+      imagePath: `${SITE_URL}/quadro-flores-prensadas-preservadas.webp`,
     }),
     alternates: buildAlternates("/opcoes-e-precos", locale),
   };

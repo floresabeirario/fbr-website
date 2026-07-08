@@ -156,9 +156,6 @@
     "presenteSubtitle": "Ofereça memórias que duram para sempre",
     "presenteDesc": "Ofereça a preservação das flores na forma do nosso cartão-oferta e deixe que os presenteados escolham a preservação ao seu gosto.",
     "descobrirCartao": "Descobrir o Cartão-Oferta",
-    "momentoTitle": "Um dia especial merece uma recordação especial",
-    "momentoDesc": "Transforme um momento efémero numa obra de arte feita à mão, para durar uma vida inteira.",
-    "prontoTitle": "Pronto para começar?",
     "sustentabilidadeLink": "Saiba mais sobre a origem dos nossos materiais e a nossa política de sustentabilidade →",
     "apccNome": "Associação de Paralisia Cerebral de Coimbra",
     "apccImgAlt": "Utentes da Oficina de Tecelagem de Almalaguês e Costura da APCC Coimbra a produzir as embalagens para a Flores à Beira-Rio",
@@ -340,7 +337,7 @@
       {
         "titulo": "As flores chegam até nós",
         "tag": "Até 6 dias após",
-        "corpo": "Depois do dia do evento, as flores têm de chegar até nós o mais frescas possível, preferencialmente em 1 a 3 dias, no máximo 5. Enquanto aguarda, mantenha as flores num vaso com água fresca longe do sol e do calor. O pagamento de 40% da encomenda será solicitado após recebermos as flores.",
+        "corpo": "Depois do dia do evento, as flores têm de chegar até nós o mais frescas possível, preferencialmente em 1 a 3 dias, no máximo 6. Enquanto aguarda, mantenha as flores num vaso com água fresca longe do sol e do calor. O pagamento de 40% da encomenda será solicitado após recebermos as flores.",
         "nota": "",
         "opcoes": [
           {
@@ -652,7 +649,7 @@
     "sliderAntes": "Antes",
     "sliderDepois": "Depois",
     "sliderArraste": "Arraste para comparar",
-    "midCtaText": "Já sabe a data do casamento? Guardamos o seu lugar.",
+    "midCtaText": "Já sabe a data do casamento? Garanta já a sua vaga.",
     "eyebrow2": "Arte Botânica Artesanal",
     "contentTitle": "O bouquet que esteve presente nos seus votos",
     "contentEm": "nos seus votos",
@@ -692,17 +689,6 @@
     "postEventDesc": "Se o casamento já aconteceu, não se preocupe. Enquanto o bouquet estiver fresco (idealmente 1 a 3 dias, até um máximo de 6 dias após a cerimónia) ainda o conseguimos preservar. Coloque-o num vaso com água fresca, longe do calor e do sol, e fale connosco hoje mesmo. Estamos disponíveis também ao fim de semana.",
     "postEventCta": "Falar connosco agora",
     "postEventReservar": "Ou reservar online",
-    "galleryEyebrow": "Portefólio",
-    "galleryTitle": "Trabalhos reais, noivas reais",
-    "galleryAlts": [
-      "Bouquet de noiva preservado em close-up",
-      "Composição botânica de bouquet de noiva",
-      "Casal no dia do casamento com bouquet",
-      "Composição de flores prensadas com vidro sobre vidro",
-      "Quadro de flores de casamento com moldura preta",
-      "Close-up de flores prensadas em composição botânica",
-      "Pôr do sol no dia do casamento"
-    ],
     "processEyebrow": "Como funciona",
     "processTitle": "O processo, passo a passo",
     "processEm": "passo a passo",
@@ -710,7 +696,7 @@
       {
         "num": "01",
         "title": "Reservar antes do casamento",
-        "desc": "As vagas são limitadas, especialmente entre maio e setembro. Reserve assim que souber a data, guardamos o seu lugar sem compromisso imediato."
+        "desc": "As vagas são limitadas, especialmente entre maio e setembro. Reserve assim que souber a data: a vaga fica garantida com o pagamento do sinal."
       },
       {
         "num": "02",
@@ -729,7 +715,6 @@
       }
     ],
     "weekendBadge": "Recebemos ao fim de semana, incluindo ao domingo",
-    "weekendNote": "Não tem de esperar pela segunda-feira para nos contactar ou para entregar o bouquet. Estamos disponíveis ao sábado e ao domingo, porque é quando os casamentos acontecem.",
     "reviewsEyebrow": "Avaliações reais",
     "reviewsTitle": "O que dizem os nossos clientes",
     "reviewsCasamentos": "Também no casamentos.pt: ★★★★★ 5,0 · <l>Ler as opiniões</l>",
@@ -767,7 +752,7 @@
       },
       {
         "q": "Qual o preço e como funciona o pagamento?",
-        "a": "Os preços começam nos 300€. Consulte a página de opções e preços para ver todos os formatos e acabamentos disponíveis. O pagamento é feito em três fases: 30% para reservar a data, 40% na aprovação da composição e 30% na entrega do quadro."
+        "a": "Os preços começam nos 300€. Consulte a página de opções e preços para ver todos os formatos e acabamentos disponíveis. O pagamento é feito em três fases: 30% para reservar a data, 40% na receção das flores e 30% na entrega do quadro."
       },
       {
         "q": "Enviam para fora de Portugal?",
@@ -798,6 +783,7 @@
     "eyebrow": "Homenagem e Luto",
     "h1": "Preservar Flores de Homenagem e Luto",
     "heroDesc": "Eternize as flores de uma cerimónia fúnebre como forma de homenagem duradoura. Um gesto de carinho permanente, preservado com todo o respeito e sensibilidade.",
+    "fotoAlt": "Quadro de flores brancas preservadas entre dois vidros, erguido contra o céu",
     "ctaWA": "Falar connosco",
     "eyebrow2": "Uma memória que permanece",
     "contentTitle": "Uma homenagem que fica para sempre",
@@ -856,6 +842,7 @@
     "eyebrow": "Batizado e Nascimento",
     "h1": "Preservar Flores de Batizado e Nascimento",
     "heroDesc": "As flores do batizado ou do nascimento merecem ser guardadas para sempre. Preservamos cada pétala em arte botânica que acompanha o seu filho ao longo da vida.",
+    "fotoAlt": "Quadro de flores brancas preservadas, uma composição delicada em tons claros",
     "ctaReservar": "Reservar Data",
     "ctaWA": "WhatsApp",
     "eyebrow2": "O início de tudo",
@@ -914,6 +901,7 @@
     "eyebrow": "Aniversário",
     "h1": "Preservar Flores de Aniversário",
     "heroDesc": "Guarde para sempre as flores de um aniversário de casamento, de namoro, ou de qualquer data que queira eternizar. Arte botânica emoldurada com vidro museu anti-UV, feita à mão em Coimbra.",
+    "fotoAlt": "Quadro de flores de aniversário preservadas, em tons vivos de coral e amarelo",
     "ctaReservar": "Reservar Data",
     "ctaWA": "WhatsApp",
     "eyebrow2": "Arte Botânica para Cada Data",
@@ -972,6 +960,7 @@
     "eyebrow": "Pedido de Casamento",
     "h1": "Preservar Flores do Pedido de Casamento",
     "heroDesc": "As flores do pedido de casamento marcam o início de uma história. Preserve esse momento numa obra de arte botânica feita à mão em Coimbra, com vidro museu anti-UV.",
+    "fotoAlt": "Composição de rosas preservadas em tons de rosa, com margaridas e eucalipto",
     "eyebrow2": "Antes de Tudo o Resto",
     "contentTitle": "Onde tudo começou",
     "p1": "Há uma data anterior ao casamento que muitas vezes se perde: o dia do pedido. As flores que estiveram presentes nessa noite merecem ser guardadas com o mesmo cuidado que o bouquet de noiva.",
@@ -1355,7 +1344,7 @@
     "apccLabel": "Parceria solidária",
     "apccH2": "A embalagem que",
     "apccEm": "conta uma história",
-    "apccDesc": "Parte da embalagem que protege o seu quadro é feita à mão pelos utentes da Oficina de Tecelagem de Almaláques e Costura da Associação de Paralisia Cerebral de Coimbra, sob a marca Mão Doida.",
+    "apccDesc": "Parte da embalagem que protege o seu quadro é feita à mão pelos utentes da Oficina de Tecelagem de Almalaguês e Costura da Associação de Paralisia Cerebral de Coimbra, sob a marca Mão Doida.",
     "apccTopics": [
       {
         "title": "Impacto direto e contínuo",
@@ -1467,7 +1456,7 @@
     "ctaEyebrow": "Pronto para preservar?",
     "ctaH2": "Reserve a sua data",
     "ctaEm": "e tratamos do resto",
-    "ctaDesc": "Preenche o formulário e entramos em contacto para combinar todos os detalhes. Tempo de entrega estimado: 4 a 6 semanas após recebermos as flores.",
+    "ctaDesc": "Preencha o formulário e entramos em contacto para combinar todos os detalhes. O processo artesanal demora até 6 meses após recebermos as flores.",
     "ctaReservar": "Reservar a Minha Data",
     "ctaComoFunciona": "Ver Como Funciona",
     "ctaLinks": [
@@ -1544,7 +1533,7 @@
     "telefoneHint": "Mesmo que prefira ser contactado/a por e-mail, pedimos um número de telemóvel como contacto alternativo. Utilizamo-lo apenas em situações urgentes, como um eventual atraso na recepção das flores.",
     "telefonePlaceholder": "912 345 678",
     "dataEventoLabel": "Data do evento",
-    "dataEventoHint": "Indique a data do casamento, batizado ou outro evento. As flores devem ser enviadas idealmente até 2 a 3 dias após o evento.",
+    "dataEventoHint": "Indique a data do casamento, batizado ou outro evento. As flores devem ser enviadas idealmente 1 a 3 dias após o evento.",
     "tipoEventoLabel": "Tipo de evento",
     "tipoEventoHint": "Para personalizarmos a comunicação consigo.",
     "tipoEventoOpcoes": [
@@ -2216,6 +2205,7 @@
     ]
   },
   "common": {
+    "provaSocial": "★★★★★ 5,0 nas avaliações no <g>Google</g> e no <c>casamentos.pt</c>",
     "reservarData": "Reservar Data",
     "whatsapp": "WhatsApp",
     "verPrecos": "Ver preços",

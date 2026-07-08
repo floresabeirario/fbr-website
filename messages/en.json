@@ -155,9 +155,6 @@
     "presenteSubtitle": "Give memories that last forever",
     "presenteDesc": "Gift our flower preservation in the form of a gift card and let your loved ones choose the preservation they love.",
     "descobrirCartao": "Discover the Gift Card",
-    "momentoTitle": "A special day deserves a special memento",
-    "momentoDesc": "Turn a fleeting moment into a handmade work of art, to last a lifetime.",
-    "prontoTitle": "Ready to start?",
     "sustentabilidadeLink": "Learn more about the origin of our materials and our sustainability policy →",
     "apccNome": "Cerebral Palsy Association of Coimbra",
     "apccImgAlt": "Members of the APCC Coimbra Weaving and Sewing Workshop producing the packaging for Flores à Beira-Rio",
@@ -339,7 +336,7 @@
       {
         "titulo": "The flowers come to us",
         "tag": "Within 6 days",
-        "corpo": "After the event, flowers must reach us as fresh as possible, ideally within 1 to 3 days, maximum 5. While you wait, keep the flowers in a vase with fresh water away from sun and heat. The 40% payment will be requested after we receive the flowers.",
+        "corpo": "After the event, flowers must reach us as fresh as possible, ideally within 1 to 3 days, maximum 6. While you wait, keep the flowers in a vase with fresh water away from sun and heat. The 40% payment will be requested after we receive the flowers.",
         "nota": "",
         "opcoes": [
           {
@@ -651,7 +648,7 @@
     "sliderAntes": "Before",
     "sliderDepois": "After",
     "sliderArraste": "Drag to compare",
-    "midCtaText": "Already know your wedding date? We'll hold your place.",
+    "midCtaText": "Already know your wedding date? Secure your slot now.",
     "eyebrow2": "Artisan Botanical Art",
     "contentTitle": "The bouquet that was there for your vows",
     "contentEm": "for your vows",
@@ -691,17 +688,6 @@
     "postEventDesc": "If your wedding has already taken place, don't worry. As long as the bouquet is still fresh (ideally 1 to 3 days, up to a maximum of 6 days after the ceremony) we can still preserve it. Place it in a vase with fresh water, away from heat and sunlight, and talk to us today. We are available at the weekend too.",
     "postEventCta": "Talk to us now",
     "postEventReservar": "Or book online",
-    "galleryEyebrow": "Portfolio",
-    "galleryTitle": "Real work, real brides",
-    "galleryAlts": [
-      "Wedding bouquet preserved in close-up",
-      "Botanical composition of wedding bouquet",
-      "Couple on their wedding day with bouquet",
-      "Pressed flower composition with glass over glass",
-      "Wedding flower frame with black moulding",
-      "Close-up of pressed flowers in botanical composition",
-      "Sunset on the wedding day"
-    ],
     "processEyebrow": "How it works",
     "processTitle": "The process, step by step",
     "processEm": "step by step",
@@ -709,7 +695,7 @@
       {
         "num": "01",
         "title": "Book before the wedding",
-        "desc": "Slots are limited, especially between May and September. Book as soon as you know the date, we hold your place with no immediate commitment."
+        "desc": "Slots are limited, especially between May and September. Book as soon as you know the date: your slot is secured once the deposit is paid."
       },
       {
         "num": "02",
@@ -728,7 +714,6 @@
       }
     ],
     "weekendBadge": "We receive bouquets at the weekend, including Sunday",
-    "weekendNote": "You don't need to wait until Monday to contact us or hand in the bouquet. We are available on Saturdays and Sundays, because that is when weddings happen.",
     "reviewsEyebrow": "Verified reviews",
     "reviewsTitle": "What our clients say",
     "reviewsCasamentos": "Also on casamentos.pt: ★★★★★ 5.0 · <l>Read the reviews</l>",
@@ -766,7 +751,7 @@
       },
       {
         "q": "What are the prices and how does payment work?",
-        "a": "Prices start from €300. See the options and pricing page for all available formats and finishes. Payment is made in three stages: 30% to book your date, 40% when you approve the composition, and 30% on delivery."
+        "a": "Prices start from €300. See the options and pricing page for all available formats and finishes. Payment is made in three stages: 30% to book your date, 40% when we receive the flowers, and 30% on delivery."
       },
       {
         "q": "Do you ship outside Portugal?",
@@ -796,6 +781,7 @@
     },
     "eyebrow": "Memorial & Tribute",
     "h1": "Preserve Memorial and Tribute Flowers",
+    "fotoAlt": "Frame of preserved white flowers between two panes of glass, held against the sky",
     "heroDesc": "Immortalise flowers from a funeral ceremony as a lasting tribute. A permanent gesture of love, preserved with full respect and sensitivity.",
     "ctaWA": "Talk to us",
     "eyebrow2": "A memory that endures",
@@ -854,6 +840,7 @@
     },
     "eyebrow": "Baptism & Birth",
     "h1": "Preserve Baptism and Birth Flowers",
+    "fotoAlt": "Preserved white flowers, a delicate composition in light tones",
     "heroDesc": "Baptism and birth flowers deserve to be kept forever. We preserve every petal in botanical art that accompanies your child throughout life.",
     "ctaReservar": "Book a Date",
     "ctaWA": "WhatsApp",
@@ -912,6 +899,7 @@
     },
     "eyebrow": "Anniversary",
     "h1": "Preserve Anniversary Flowers",
+    "fotoAlt": "Preserved anniversary flowers framed in vivid coral and yellow tones",
     "heroDesc": "Keep the flowers from a wedding anniversary, dating anniversary, or any date you want to immortalise. Botanical art framed with anti-UV museum glass, handmade in Coimbra.",
     "ctaReservar": "Book a Date",
     "ctaWA": "WhatsApp",
@@ -970,6 +958,7 @@
     },
     "eyebrow": "Marriage Proposal",
     "h1": "Preserve Marriage Proposal Flowers",
+    "fotoAlt": "Composition of preserved roses in pink tones, with daisies and eucalyptus",
     "heroDesc": "The proposal flowers mark the start of a story. Preserve that moment in a botanical work of art handmade in Coimbra, with anti-UV museum glass.",
     "eyebrow2": "Before Everything Else",
     "contentTitle": "Where it all began",
@@ -1466,7 +1455,7 @@
     "ctaEyebrow": "Ready to preserve?",
     "ctaH2": "Reserve your date",
     "ctaEm": "and we handle the rest",
-    "ctaDesc": "Fill in the form and we will get in touch to arrange all the details. Estimated delivery: 4 to 6 weeks after we receive the flowers.",
+    "ctaDesc": "Fill in the form and we will get in touch to arrange all the details. The artisanal process takes up to 6 months after we receive the flowers.",
     "ctaReservar": "Reserve My Date",
     "ctaComoFunciona": "How It Works",
     "ctaLinks": [
@@ -1543,7 +1532,7 @@
     "telefoneHint": "Even if you prefer to be contacted by email, we ask for a mobile number as a backup contact. We will only use it in urgent situations, such as a potential delay in receiving your flowers.",
     "telefonePlaceholder": "912 345 678",
     "dataEventoLabel": "Event date",
-    "dataEventoHint": "Enter the date of the wedding, baptism or other event. Flowers should ideally be sent within 2 to 3 days of the event.",
+    "dataEventoHint": "Enter the date of the wedding, baptism or other event. Flowers should ideally be sent within 1 to 3 days of the event.",
     "tipoEventoLabel": "Type of event",
     "tipoEventoHint": "So we can personalise our communication with you.",
     "tipoEventoOpcoes": [
@@ -2215,6 +2204,7 @@
     ]
   },
   "common": {
+    "provaSocial": "★★★★★ 5.0 in reviews on <g>Google</g> and <c>casamentos.pt</c>",
     "reservarData": "Book a Date",
     "whatsapp": "WhatsApp",
     "verPrecos": "See pricing",

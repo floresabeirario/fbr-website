@@ -93,14 +93,14 @@ export async function generateMetadata({ params }) {
       title: t("ogTitle"),
       description: t("ogDescription"),
       url: canonicalPath,
-      imagePath: `${SITE_URL}/joanaceu.webp`,
+      imagePath: `${SITE_URL}/quadro-flores-preservadas-luz-natural.webp`,
       imageAlt: t("ogImageAlt"),
       locale: ogLocale,
     }),
     twitter: buildTwitterCard({
       title: t("ogTitle"),
       description: t("ogDescription"),
-      imagePath: `${SITE_URL}/joanaceu.webp`,
+      imagePath: `${SITE_URL}/quadro-flores-preservadas-luz-natural.webp`,
     }),
     alternates: buildAlternates("/preservacao-de-flores", locale),
   };
