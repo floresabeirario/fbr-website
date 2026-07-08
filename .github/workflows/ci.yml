@@ -26,5 +26,8 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
+      # npm install (não ci): o package-lock foi gerado em Windows e não
+      # tem os binários opcionais de linux (swc/sharp) — npm ci falha no
+      # ubuntu. O Vercel também usa install, por isso a CI espelha o deploy.
+      - run: npm install --no-audit --no-fund
       - run: npm run build
