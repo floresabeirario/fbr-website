@@ -21,7 +21,7 @@ export default function ReservarPreservacaoClient() {
       <div className="rp-hero">
         <div className="rp-hero-bg" aria-hidden="true">
           <Image
-            src="/moldurapreta.webp"
+            src="/moldura-preta-flores-preservadas.webp"
             alt=""
             fill
             priority

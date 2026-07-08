@@ -49,7 +49,18 @@ export async function generateMetadata({ params }) {
     robots: {
       index: true,
       follow: true,
-      googleBot: { index: true, follow: true },
+      // max-image-preview:large — sem isto o Google mostra as fotos dos quadros
+      // em miniatura reduzida no separador Imagens; queremos preview grande.
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
     icons: {
       icon: [

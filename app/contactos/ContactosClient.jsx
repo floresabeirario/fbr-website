@@ -84,7 +84,7 @@ export default function ContactosClient() {
           }}
         >
           <Image
-            src="/juliaquadro2.webp"
+            src="/quadro-flores-casamento-preservadas.webp"
             alt=""
             fill
             priority
@@ -254,10 +254,10 @@ export default function ContactosClient() {
       <section aria-label={t("explorarTitle")}>
         <div className="nav-squares-grid">
           {[
-            { ...navSquares[0], img: "/molduranogueira.webp" },
-            { ...navSquares[1], img: "/ramo.webp" },
+            { ...navSquares[0], img: "/moldura-nogueira-flores-preservadas.webp" },
+            { ...navSquares[1], img: "/bouquet-noiva-flores-frescas.webp" },
             { ...navSquares[2], img: "/vale1.webp" },
-            { ...navSquares[3], img: "/fotoquadrocloseup2.webp" },
+            { ...navSquares[3], img: "/quadro-flores-prensadas-detalhe.webp" },
           ].map((item, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <a href={item.href} className="nav-square">

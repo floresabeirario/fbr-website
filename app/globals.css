@@ -688,6 +688,35 @@ button:focus-visible {
   margin-bottom: 0;
 }
 
+/* Prova social no hero das páginas de momentos */
+.momento-proof {
+  margin: 18px 0 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.3px;
+  color: var(--green-d);
+  opacity: 0.85;
+}
+
+/* Foto de um trabalho real no corpo das páginas de momentos */
+.momento-foto {
+  padding: 0 clamp(20px, 5vw, 48px) clamp(48px, 8vw, 72px);
+  background-color: var(--cream);
+}
+
+.momento-foto-inner {
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 44px rgba(30,45,42,0.14);
+}
+
+@media (max-width: 600px) {
+  .momento-foto-inner { aspect-ratio: 4 / 5; }
+}
+
 .momento-features {
   padding: clamp(40px, 7vw, 72px) clamp(20px, 5vw, 48px);
   background-color: var(--cream);
@@ -965,66 +994,6 @@ button:focus-visible {
 .bouquet-features-pricing-note a:hover,
 .bouquet-features-pricing-note a:focus-visible {
   border-bottom-color: var(--green);
-}
-
-/* Gallery */
-.bouquet-gallery {
-  padding: clamp(48px, 8vw, 80px) clamp(20px, 4vw, 40px);
-  background-color: var(--cream);
-}
-
-.bouquet-gallery-header {
-  text-align: center;
-  max-width: 540px;
-  margin: 0 auto clamp(32px, 5vw, 52px);
-}
-
-.bouquet-gallery-title {
-  font-family: 'TAN-MEMORIES', serif;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  color: var(--green-d);
-  margin: 10px 0 0;
-  line-height: 1.1;
-}
-
-.bouquet-gallery-grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 260px;
-  gap: 12px;
-}
-
-.bouquet-gallery-item {
-  position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  background: #e8e2da;
-}
-
-.bouquet-gallery-item:first-child {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-
-.bouquet-gallery-img {
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.bouquet-gallery-item:hover .bouquet-gallery-img {
-  transform: scale(1.05);
-}
-
-@media (max-width: 900px) {
-  .bouquet-gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .bouquet-gallery-item:first-child { grid-column: span 2; grid-row: span 1; }
-}
-
-@media (max-width: 600px) {
-  .bouquet-gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
-  .bouquet-gallery-item:first-child { grid-column: span 1; }
 }
 
 /* Process steps */
@@ -1425,6 +1394,13 @@ button:focus-visible {
   /* No telemóvel os CTAs vivem na barra fixa; tirá-los do hero alivia a vista
      e evita o "Reservar Data" duplicado */
   .bouquet-hero .momento-ctas {
+    display: none;
+  }
+  /* Páginas de momentos com barra fixa (mesma lógica do bouquet) */
+  .momento-page--sticky {
+    padding-bottom: 72px;
+  }
+  .momento-page--sticky .momento-hero .momento-ctas {
     display: none;
   }
   .bouquet-hero-chips {

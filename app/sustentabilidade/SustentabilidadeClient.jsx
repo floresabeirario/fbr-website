@@ -182,7 +182,7 @@ export default function Sustentabilidade() {
 
         {/* HERO — foto a ecra todo, texto na base */}
         <PageHero
-          src="/ines1.webp"
+          src="/bouquet-noiva-preservado-quadro.webp"
         imgFetchPriority="high"
           gradient="linear-gradient(to top, rgba(10,22,18,0.90) 0%, rgba(10,22,18,0.55) 45%, rgba(10,22,18,0.18) 100%)"
           ariaLabel={t("h1")}

@@ -48,7 +48,7 @@ export default function PreservacaoDeFloresClient() {
 
         {/* ══ HERO ══════════════════════════════════════════════════════════════ */}
         <PageHero
-          src="/joanaceu.webp"
+          src="/quadro-flores-preservadas-luz-natural.webp"
           imgAlt="Quadro de flores preservadas, Flores à Beira-Rio, Coimbra"
           imgFetchPriority="high"
           gradient="linear-gradient(to top, rgba(35,15,5,0.82) 0%, rgba(35,15,5,0.55) 50%, rgba(35,15,5,0.18) 100%)"
@@ -220,7 +220,7 @@ export default function PreservacaoDeFloresClient() {
         {/* ══ CTA FINAL com foto graduation ══════════════════════════════════════ */}
         <section className="cta-graduation" aria-label={t("preserve")}>
           <div className="cta-graduation-bg">
-            <Image fill src="/graduation.webp" alt="Rapariga com ramo de flores na cerimónia de licenciatura" sizes="100vw" style={{ objectFit: "cover", objectPosition: "center top" }} />
+            <Image fill src="/flores-formatura-preservadas-quadro.webp" alt="Rapariga com ramo de flores na cerimónia de licenciatura" sizes="100vw" style={{ objectFit: "cover", objectPosition: "center top" }} />
           </div>
           <m.div
             className="cta-graduation-inner"

@@ -54,7 +54,7 @@ export default function BouquetNoivaClient() {
       {/* ── Hero imagem ─────────────────────────────────────── */}
       <section className="bouquet-hero">
         <Image
-          src="/quadroflores.webp"
+          src="/quadro-bouquet-noiva-preservado.webp"
           alt={t("meta.ogImageAlt")}
           fill
           priority
@@ -66,6 +66,7 @@ export default function BouquetNoivaClient() {
           <span className="bouquet-hero-eyebrow">{t("eyebrow")}</span>
           <h1 className="bouquet-hero-h1">{t("h1")}</h1>
           <p className="bouquet-hero-desc">{t("heroDesc")}</p>
+          <span className="bouquet-weekend-badge">{t("weekendBadge")}</span>
           <div className="bouquet-hero-chips">
             {t.raw("heroDelivery").map((chip, i) => (
               <span key={i} className="bouquet-hero-chip">{chip}</span>

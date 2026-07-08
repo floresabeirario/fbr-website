@@ -5,6 +5,8 @@ import { FORM_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
 import { splitTitle } from "../_lib/splitTitle";
 import MomentoFAQ from "../_components/MomentoFAQ";
+import MomentoProofBar from "../_components/MomentoProofBar";
+import MomentoFoto from "../_components/MomentoFoto";
 
 const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } };
 
@@ -31,7 +33,7 @@ export default function BatizadoNascimentoClient() {
   const faqHref = locale === "en" ? "/en/faq" : "/perguntas-frequentes";
 
   return (
-    <div className="momento-page">
+    <div className="momento-page momento-page--sticky">
       <section className="momento-hero">
         <m.div {...anim} className="momento-inner">
           <span className="momento-eyebrow">{t("eyebrow")}</span>
@@ -43,6 +45,7 @@ export default function BatizadoNascimentoClient() {
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
             <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
+          <MomentoProofBar />
         </m.div>
       </section>
 
@@ -62,6 +65,8 @@ export default function BatizadoNascimentoClient() {
           <p className="momento-content-p">{t("p2")}</p>
         </m.div>
       </section>
+
+      <MomentoFoto src="/flores-prensadas-close-up.webp" alt={t("fotoAlt")} />
 
       <section className="momento-features">
         <div className="momento-features-grid">
@@ -112,6 +117,11 @@ export default function BatizadoNascimentoClient() {
           </div>
         </m.div>
       </section>
+
+      <div className="bouquet-sticky-cta">
+        <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
+        <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
+      </div>
     </div>
   );
 }
