@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { m, useInView, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
@@ -12,6 +12,7 @@ import {
   PRECO_MINI_20x25, PRECO_ORNAMENTO, PRECO_PENDENTE,
 } from "../_lib/precos";
 import ExploreSquares from "@/components/ExploreSquares";
+import ImageLightbox from "@/components/ImageLightbox";
 
 const GS = "var(--font-google-sans), 'Google Sans', sans-serif";
 const VERDE_CLARO = "var(--green-l)";
@@ -229,6 +230,8 @@ export default function OpcoesClient() {
   const tCommon = useTranslations("common");
   const locale = useLocale();
   useEffect(() => { window.scrollTo(0, 0); }, []);
+  // Foto de moldura ampliada no lightbox (índice em moldurasVisual; null = fechado)
+  const [molduraAberta, setMolduraAberta] = useState(null);
 
   const FUNDOS_TEXT     = t.raw("fundos");
   const PRESENTES_TEXT  = t.raw("presentes");
@@ -533,13 +536,20 @@ export default function OpcoesClient() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: "1px", backgroundColor: "rgba(26,26,26,0.07)", marginBottom: "40px" }}>
             {MOLDURAS_TEXT.map((item, i) => (
               <Reveal key={i} delay={i * 0.07}>
-                <div style={{ position: "relative", overflow: "hidden", minHeight: "260px" }}>
+                {/* Botão em vez de div: os dead clicks do Clarity mostraram que
+                    as pessoas já tocavam nas fotos à espera de as ampliar. */}
+                <button
+                  type="button"
+                  onClick={() => setMolduraAberta(i)}
+                  aria-label={`${tCommon("ampliar")}: ${item.title}`}
+                  style={{ position: "relative", overflow: "hidden", minHeight: "260px", display: "block", width: "100%", padding: 0, border: "none", backgroundColor: "transparent", cursor: "zoom-in", textAlign: "left" }}
+                >
                   <Image fill src={moldurasVisual[i].img} alt={item.title} sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover" }} />
                   <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(15,30,26,0.72) 0%, rgba(15,30,26,0.05) 45%, transparent 100%)" }} />
                   <div style={{ position: "relative", padding: "22px 22px 0", minHeight: "260px" }}>
                     <h3 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "1.05rem", fontWeight: 400, margin: 0, lineHeight: 1.2, color: "var(--cream)", textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}>{item.title}</h3>
                   </div>
-                </div>
+                </button>
               </Reveal>
             ))}
           </div>
@@ -642,6 +652,15 @@ export default function OpcoesClient() {
 
       {/* ═══ EXPLORAR — 4 QUADRADOS ═══════════════════════════════════════ */}
       <ExploreSquares items={exploreItems} ariaLabel={tCommon("explorar")} />
+
+      {molduraAberta !== null && (
+        <ImageLightbox
+          src={moldurasVisual[molduraAberta].img}
+          alt={MOLDURAS_TEXT[molduraAberta].title}
+          caption={MOLDURAS_TEXT[molduraAberta].title}
+          onClose={() => setMolduraAberta(null)}
+        />
+      )}
 
       <style jsx global>{`
         .fundos-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 16px; padding: 0 24px 4px; }
