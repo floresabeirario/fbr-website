@@ -566,6 +566,7 @@
     "ctaH3end": "para o seu quadro",
     "ctaDesc": "Materiais premium que preservam as suas flores durante décadas.",
     "ctaCta": "Reservar a Minha Data",
+    "ctaBlogLink": "Quanto custa preservar um bouquet de noiva? Leia o guia completo →",
     "recriacaoLabel": "Próximo passo",
     "recriacaoH2": "Descubra a",
     "recriacaoH2em": "Recriação do Bouquet",
@@ -573,7 +574,7 @@
     "recriacaoCta1": "Ver Recriação do Bouquet",
     "recriacaoCta2": "Perguntas Frequentes",
     "meta": {
-      "title": "Preservar Flores: Opções e Preços",
+      "title": "Preços da Preservação de Flores: 300€ a 500€",
       "description": "Três tamanhos de moldura (30×40, 40×50, 50×70 cm) com preços de 300€ a 500€. Pendentes, ornamentos de Natal e mini quadros disponíveis como complemento.",
       "ogTitle": "Preservar Flores: Opções e Preços (300€-500€) | Flores à Beira-Rio",
       "ogDescription": "Três tamanhos de moldura com preços de 300€ a 500€. Pendentes, ornamentos de Natal e mini quadros como complemento.",
@@ -583,7 +584,7 @@
   },
   "momentos": {
     "meta": {
-      "title": "Flores de Casamento, Baptizado e Homenagem",
+      "title": "Preservar Flores de Casamento, Baptizado e Homenagem",
       "description": "Casamento, baptizado, pedido, aniversário, homenagem: preservamos as flores de cada momento que importa em arte botânica. Coimbra. A partir de 300€.",
       "ogTitle": "Preservar Flores de Casamento, Baptizado, Homenagem | Coimbra",
       "ogDescription": "Casamento, baptizado, pedido, aniversário, homenagem: preservamos as flores de cada momento que importa em arte botânica.",
@@ -634,7 +635,7 @@
   },
   "bouquetNoiva": {
     "meta": {
-      "title": "Preservar Bouquet de Noiva em Portugal",
+      "title": "Preservar Bouquet de Noiva em Portugal: Eternize o Seu Ramo",
       "description": "Eternizamos o bouquet (ramo) de noiva num quadro de arte botânica. Recebemos flores de todo o Portugal, em mãos, por correio ou com recolha. A partir de 300€.",
       "ogTitle": "Preservar Bouquet ou Ramo de Noiva | Flores à Beira-Rio",
       "ogDescription": "O ramo do seu casamento eternizado em quadro de arte botânica artesanal. Recebemos bouquets de todo o Portugal e Europa.",
@@ -723,6 +724,10 @@
     "faqEm": "frequentes",
     "faqItems": [
       {
+        "q": "O que significa eternizar o bouquet de noiva?",
+        "a": "Eternizar (ou preservar) o bouquet de noiva é transformar as flores frescas do casamento numa peça que dura décadas. No nosso atelier fazemo-lo por prensagem botânica: cada flor é prensada e recomposta pétala a pétala, e a composição final é emoldurada com vidro museu anti-UV. O quadro guarda as flores verdadeiras do seu ramo, não uma réplica."
+      },
+      {
         "q": "Como posso entregar o bouquet?",
         "a": "Pode entregar em mãos em Coimbra, enviar por correio expresso, ou solicitar recolha num local por parte da nossa equipa (consulte disponibilidade). Recebemos de segunda a domingo, incluindo fins de semana."
       },
@@ -769,7 +774,8 @@
     "pricingCtaTitle": "Opções e preços",
     "pricingCtaDesc": "Não precisa de decidir já o formato: pode reservar a data agora e escolher o tamanho e os acabamentos mais tarde, com calma. Se quiser ver tudo primeiro, consulte todos os formatos e preços.",
     "pricingCtaBtn": "Reservar Data",
-    "pricingCtaLink": "Ver opções e preços →"
+    "pricingCtaLink": "Ver opções e preços →",
+    "pricingBlogLink": "Quanto custa preservar um bouquet? Leia o guia →"
   },
   "lutoHomenagem": {
     "meta": {

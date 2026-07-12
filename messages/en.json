@@ -565,6 +565,7 @@
     "ctaH3end": "for your frame",
     "ctaDesc": "Premium materials that preserve your flowers for decades.",
     "ctaCta": "Book My Date",
+    "ctaBlogLink": "How much does bouquet preservation cost? Read the full guide →",
     "recriacaoLabel": "Next step",
     "recriacaoH2": "Discover",
     "recriacaoH2em": "Bouquet Recreation",
@@ -572,7 +573,7 @@
     "recriacaoCta1": "See Bouquet Recreation",
     "recriacaoCta2": "Frequently Asked Questions",
     "meta": {
-      "title": "Flower Preservation: Options & Prices",
+      "title": "Flower Preservation Prices: €300 to €500",
       "description": "Three frame sizes (30×40, 40×50, 50×70 cm) priced from €300 to €500. Pendant necklaces, Christmas ornaments and mini frames available as add-ons.",
       "ogTitle": "Flower Preservation Prices: €300-€500 | Flores à Beira-Rio",
       "ogDescription": "Three frame sizes priced from €300 to €500. Pendant necklaces, Christmas ornaments and mini frames as add-ons.",
@@ -722,6 +723,10 @@
     "faqEm": "asked questions",
     "faqItems": [
       {
+        "q": "What does preserving a wedding bouquet actually mean?",
+        "a": "Preserving a wedding bouquet means turning the fresh flowers from your wedding into a piece that lasts for decades. At our studio we do it through botanical pressing: each flower is pressed and recomposed petal by petal, and the final composition is framed with anti-UV museum glass. The frame holds the real flowers from your bouquet, not a replica."
+      },
+      {
         "q": "How can I hand in the bouquet?",
         "a": "You can drop it off in person in Coimbra, send it by express courier, or request collection from a location by our team (subject to availability). We receive bouquets Monday to Sunday, including weekends."
       },
@@ -768,7 +773,8 @@
     "pricingCtaTitle": "Options & pricing",
     "pricingCtaDesc": "You don't need to decide the format now: you can book your date today and choose the size and finishes later, at your own pace. If you'd like to see everything first, browse all formats and prices.",
     "pricingCtaBtn": "Book a Date",
-    "pricingCtaLink": "See options & pricing →"
+    "pricingCtaLink": "See options & pricing →",
+    "pricingBlogLink": "How much does bouquet preservation cost? Read the guide →"
   },
   "lutoHomenagem": {
     "meta": {

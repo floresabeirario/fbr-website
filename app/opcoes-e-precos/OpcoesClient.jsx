@@ -614,6 +614,12 @@ export default function OpcoesClient() {
                 className="hover-bg-warm">
                 {t("ctaCta")}
               </Link>
+              <p style={{ margin: "24px 0 0" }}>
+                <Link href={locale === "en" ? "/en/blog/how-much-does-bouquet-preservation-cost" : "/blog/quanto-custa-preservar-bouquet-noiva"}
+                  style={{ fontFamily: GS, fontWeight: 300, fontSize: "0.85rem", color: "rgba(250,247,240,0.75)", textUnderlineOffset: "4px" }}>
+                  {t("ctaBlogLink")}
+                </Link>
+              </p>
             </div>
           </Reveal>
         </div>

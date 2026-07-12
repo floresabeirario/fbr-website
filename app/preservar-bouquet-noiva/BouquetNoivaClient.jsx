@@ -250,6 +250,11 @@ export default function BouquetNoivaClient() {
           <div>
             <a href={precosHref} className="bouquet-pricing-cta-link">{t("pricingCtaLink")}</a>
           </div>
+          <div>
+            <Link href={locale === "en" ? "/en/blog/how-much-does-bouquet-preservation-cost" : "/blog/quanto-custa-preservar-bouquet-noiva"} className="bouquet-pricing-cta-link">
+              {t("pricingBlogLink")}
+            </Link>
+          </div>
         </m.div>
       </section>
 

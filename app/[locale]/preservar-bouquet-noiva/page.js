@@ -71,6 +71,7 @@ function buildSchema(locale) {
   };
 
   const faqPT = [
+    { q: "O que significa eternizar o bouquet de noiva?", a: "Eternizar (ou preservar) o bouquet de noiva é transformar as flores frescas do casamento numa peça que dura décadas. No nosso atelier fazemo-lo por prensagem botânica: cada flor é prensada e recomposta pétala a pétala, e a composição final é emoldurada com vidro museu anti-UV. O quadro guarda as flores verdadeiras do seu ramo, não uma réplica." },
     { q: "Como posso entregar o bouquet?", a: "Pode entregar em mãos na nossa oficina em Coimbra, enviar por correio registado, ou solicitar recolha no local da cerimónia. Recebemos de segunda a domingo, incluindo fins de semana." },
     { q: "Recebem bouquets de fora de Coimbra? Estou no Porto / Lisboa / Algarve.", a: "Sim. Recebemos bouquets de todo o Portugal continental e ilhas, e a maioria dos nossos clientes está fora de Coimbra. A forma mais confortável é a recolha no local do casamento pela nossa equipa: combinamos data e hora consigo e tratamos do transporte até ao atelier. Em alternativa, pode enviar por correio expresso (CTT, MRW, DHL) com seguro. Trabalhamos regularmente com noivas de Lisboa, Porto, Braga, Algarve e Madeira." },
     { q: "Recebem bouquets ao fim de semana, incluindo ao domingo?", a: "Sim. Sabemos que a maioria dos casamentos acontece ao sábado ou ao domingo, por isso estamos disponíveis ao fim de semana. Não tem de esperar pela segunda-feira para nos contactar ou para fazer a entrega." },
@@ -84,6 +85,7 @@ function buildSchema(locale) {
   ];
 
   const faqEN = [
+    { q: "What does preserving a wedding bouquet actually mean?", a: "Preserving a wedding bouquet means turning the fresh flowers from your wedding into a piece that lasts for decades. At our studio we do it through botanical pressing: each flower is pressed and recomposed petal by petal, and the final composition is framed with anti-UV museum glass. The frame holds the real flowers from your bouquet, not a replica." },
     { q: "How can I hand in the bouquet?", a: "You can hand it in at our studio in Coimbra, send it by registered post, or request collection from your venue. We are open Monday to Sunday, including weekends." },
     { q: "Do you receive bouquets from outside Coimbra? I'm in Porto / Lisbon / the Algarve.", a: "Yes. We receive bouquets from across mainland Portugal and the islands, and most of our clients are based outside Coimbra. The most convenient option is collection at your wedding venue by our team: we arrange the date and time with you and handle transport back to the studio. Alternatively, you can send the bouquet by express courier (CTT, MRW, DHL) with insurance. We regularly work with brides from Lisbon, Porto, Braga, the Algarve and Madeira." },
     { q: "Do you receive bouquets at the weekend, including Sunday?", a: "Yes. We know most weddings take place on Saturdays or Sundays, so we are available at the weekend. You don't need to wait until Monday to contact us or hand in the bouquet." },
