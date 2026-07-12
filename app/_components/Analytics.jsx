@@ -28,6 +28,9 @@ export default function Analytics() {
         <Script
           src={UMAMI_SRC}
           data-website-id={UMAMI_ID}
+          // Web Vitals (LCP/INP/CLS/FCP/TTFB) são opt-in no Umami; sem isto
+          // as colunas vêm vazias no export e no separador Performance.
+          data-performance="true"
           strategy="afterInteractive"
         />
       ) : null}
