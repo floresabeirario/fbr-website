@@ -1,5 +1,5 @@
 // app/[locale]/blog/[slug]/page.js
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { getPostBySlug, getAllPosts, getRelatedPosts } from "@/app/_lib/blog";
@@ -21,14 +21,16 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug, locale } = await params;
   const post = getPostBySlug(slug, locale);
-  if (!post) return { title: locale === "en" ? "Article not found | Flores à Beira-Rio" : "Artigo não encontrado | Flores à Beira-Rio" };
+  // Sem sufixo "| Flores à Beira-Rio": o template do layout já o acrescenta
+  // (com ele aqui o título saía com a marca duplicada).
+  if (!post) return { title: locale === "en" ? "Article not found" : "Artigo não encontrado" };
 
   const ogLocale = locale === "en" ? "en_GB" : "pt_PT";
   const ptSlug = locale === "pt" ? slug : post.ptSlug;
   const enSlug = locale === "en" ? slug : post.enSlug;
 
   return {
-    title: `${post.title} | Flores à Beira-Rio`,
+    title: post.title,
     description: post.description,
     openGraph: {
       title: post.title,
@@ -90,7 +92,19 @@ function buildBlogPostingSchema(post, locale, slug) {
 export default async function ArticlePage({ params }) {
   const { slug, locale } = await params;
   const post = getPostBySlug(slug, locale);
-  if (!post) notFound();
+  if (!post) {
+    // Rede de segurança: o slug pode ser do OUTRO idioma (switcher da Nav
+    // clicado antes da hidratação, ou link externo errado — visto no Clarity:
+    // /en/blog/<slug-pt> a dar "Article not found"). Se o artigo existir no
+    // outro idioma, vai para a contraparte; sem contraparte, para a listagem.
+    const otherLocale = locale === "pt" ? "en" : "pt";
+    const otherPost = getPostBySlug(slug, otherLocale);
+    if (otherPost) {
+      if (locale === "en") redirect(otherPost.enSlug ? `/en/blog/${otherPost.enSlug}` : "/en/blog");
+      redirect(otherPost.ptSlug ? `/blog/${otherPost.ptSlug}` : "/blog");
+    }
+    notFound();
+  }
 
   const related = getRelatedPosts(post.slug, post.category, post.tags, locale);
 
