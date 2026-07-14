@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useRef, useId, isValidElement, cloneElement } from "react";
+import { useState, useEffect, useRef, useId, isValidElement, cloneElement } from "react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { SOCIAL_INSTAGRAM, EMAIL } from "../_lib/constants";
 import PhonePrefix from "../_components/PhonePrefix";
 import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget";
+import { phoneLengthError, normalizePhone, formatPhoneInput } from "../_lib/phone-validation";
+import { suggestEmail, cleanEmail } from "../_lib/email-suggest";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
@@ -117,7 +119,59 @@ export default function ReservarPreservacaoForm() {
 
   const [form, setForm] = useState(INIT);
   const [errors, setErrors] = useState({});
+  const [emailSugestao, setEmailSugestao] = useState(null);
+  const [valeNaoEncontrado, setValeNaoEncontrado] = useState(false);
+  const valeVerificadoRef = useRef("");
   const [status, setStatus] = useState("idle");
+
+  // Funil de abandono (Umami): 1 evento na 1ª interacção com cada secção.
+  // Comparar as contagens secção a secção (e com "reserva-enviada") mostra
+  // onde as pessoas desistem. Sem dados pessoais — só o nome da secção.
+  const seccoesVistas = useRef(new Set());
+  const marcaSeccao = (nome) => {
+    if (seccoesVistas.current.has(nome)) return;
+    seccoesVistas.current.add(nome);
+    window.umami?.track?.(`reserva-seccao-${nome}`);
+  };
+
+  // Quem vem do site do voucher traz ?vale=CODIGO no link ("Reservar agora"):
+  // pré-preenche o código e o "como conheceu", eliminando gralhas na origem.
+  // Corre uma vez após montar (o URL só existe no browser) e nunca pisa nada
+  // que a pessoa já tenha preenchido.
+  useEffect(() => {
+    const vale = new URLSearchParams(window.location.search).get("vale");
+    const codigo = (vale ?? "").trim().toUpperCase().slice(0, 12);
+    if (!codigo || !/^[A-Z0-9]+$/.test(codigo)) return;
+    setForm((f) => {
+      if (f.codigoValePresente.trim() || f.comoConheceu) return f;
+      return { ...f, codigoValePresente: codigo, comoConheceu: VALE_VALOR };
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Verifica se o código do vale existe (ao sair do campo). Só avisa com a
+  // certeza "não existe"; erros de rede/limite ficam em silêncio e nada bloqueia.
+  async function verificarVale(valor) {
+    const codigo = valor.trim().toUpperCase();
+    valeVerificadoRef.current = codigo;
+    if (!codigo) {
+      setValeNaoEncontrado(false);
+      return;
+    }
+    try {
+      const res = await fetch("/api/verificar-vale", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: codigo }),
+      });
+      const json = res.ok ? await res.json() : null;
+      // ignora respostas atrasadas de um código entretanto alterado
+      if (valeVerificadoRef.current !== codigo) return;
+      setValeNaoEncontrado(json?.existe === false);
+    } catch {
+      setValeNaoEncontrado(false);
+    }
+  }
   const [turnstileToken, setTurnstileToken] = useState(null);
   const successRef = useRef(null);
   const errorsSummaryRef = useRef(null);
@@ -219,7 +273,11 @@ export default function ReservarPreservacaoForm() {
     if (!form.email.trim())       e.email = t("erroCampoObrigatorio");
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = t("erroEmailInvalido");
     if (!form.telefone.trim())    e.telefone = t("erroCampoObrigatorio");
-    else if (!/^\+?[\d\s\-]{7,20}$/.test(form.telefone)) e.telefone = t("erroTelefoneInvalido");
+    else if (!/^\+?[\d\s\-()]{1,25}$/.test(form.telefone)) e.telefone = t("erroTelefoneInvalido");
+    else {
+      const lenErr = phoneLengthError(t, form.telefoneIndicativo, form.telefone);
+      if (lenErr) e.telefone = lenErr;
+    }
     if (!form.dataEvento)         e.dataEvento = t("erroCampoObrigatorio");
     else {
       const year = parseInt(form.dataEvento.split("-")[0], 10);
@@ -263,6 +321,8 @@ export default function ReservarPreservacaoForm() {
     const errs = validate();
     setErrors(errs);
     if (Object.keys(errs).length) {
+      // Que campos travam a submissão (só nomes de campos, sem dados pessoais)
+      window.umami?.track?.("reserva-submit-erros", { campos: Object.keys(errs).join(",").slice(0, 400) });
       requestAnimationFrame(() => {
         errorsSummaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
         errorsSummaryRef.current?.focus({ preventScroll: true });
@@ -283,9 +343,7 @@ export default function ReservarPreservacaoForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
-          telefone: form.telefone.trim()
-            ? `${form.telefoneIndicativo}${form.telefone.trim()}`
-            : "",
+          telefone: normalizePhone(form.telefoneIndicativo, form.telefone).full,
           locale,
           turnstileToken,
         }),
@@ -314,6 +372,19 @@ export default function ReservarPreservacaoForm() {
       <div className="pf-success" role="status" ref={successRef}>
         <div className="pf-success-icon" aria-hidden="true">✓</div>
         <h2 className="pf-success-title">{t("successTitle")}</h2>
+        <p className="pf-success-text">
+          {form.meioContacto === "WhatsApp"
+            ? t.rich("successContactoWhatsapp", {
+                numero: normalizePhone(form.telefoneIndicativo, form.telefone).display,
+                email: EMAIL,
+                b: (chunks) => <strong>{chunks}</strong>,
+              })
+            : t.rich("successContactoEmail", {
+                email: form.email.trim(),
+                emailFbr: EMAIL,
+                b: (chunks) => <strong>{chunks}</strong>,
+              })}
+        </p>
         <p className="pf-success-text">
           {t("successP1", { dias: 3, sinal: "sinal de 30%", horas })}
         </p>
@@ -364,7 +435,7 @@ export default function ReservarPreservacaoForm() {
       )}
 
       {/* ── DADOS PESSOAIS ── */}
-      <div className="pf-section" role="group" aria-labelledby="sec-pessoais">
+      <div className="pf-section" role="group" aria-labelledby="sec-pessoais" onFocus={() => marcaSeccao("pessoais")}>
         <h2 className="pf-section-title" id="sec-pessoais">{t("secDadosPessoais")}</h2>
 
         <Field name="nome" label={t("nomeLabel")} required error={errors.nome} hint={t("nomeHint")}>
@@ -381,19 +452,68 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         <Field name="email" label={t("emailLabel")} required error={errors.email} hint={t("emailHint")}>
-          <input type="email" {...inp("email")} placeholder={t("emailPlaceholder")} autoComplete="email" />
+          <div>
+            <input
+              type="email"
+              {...inp("email")}
+              onChange={(e) => { set("email", e.target.value); setEmailSugestao(null); }}
+              onBlur={() => {
+                const limpo = cleanEmail(form.email);
+                if (limpo !== form.email) set("email", limpo);
+                setEmailSugestao(suggestEmail(limpo));
+              }}
+              placeholder={t("emailPlaceholder")}
+              autoComplete="email"
+            />
+            {emailSugestao && (
+              <button
+                type="button"
+                className="pf-suggest-btn"
+                onClick={() => { set("email", emailSugestao); setEmailSugestao(null); }}
+              >
+                {t("emailSugestao", { sugestao: emailSugestao })}
+              </button>
+            )}
+          </div>
         </Field>
 
         <Field name="telefone" label={t("telefoneLabel")} required error={errors.telefone} hint={t("telefoneHint")}>
           <div className="pf-phone-wrap">
             <PhonePrefix
               value={form.telefoneIndicativo}
-              onChange={(code) => set("telefoneIndicativo", code)}
+              onChange={(code) => {
+                set("telefoneIndicativo", code);
+                if (form.telefone.trim()) {
+                  const lenErr = phoneLengthError(t, code, form.telefone);
+                  setErrors((prev) => {
+                    const n = { ...prev };
+                    if (lenErr) n.telefone = lenErr; else delete n.telefone;
+                    return n;
+                  });
+                }
+              }}
               btnClassName="pf-input pf-phone-prefix"
             />
             <input
               type="tel"
               {...inp("telefone")}
+              onChange={(e) => {
+                const el = e.target;
+                const r = formatPhoneInput(form.telefoneIndicativo, el.value, form.telefone, el.selectionStart);
+                set("telefone", r.value);
+                requestAnimationFrame(() => {
+                  try { el.setSelectionRange(r.caret, r.caret); } catch {}
+                });
+              }}
+              onBlur={() => {
+                if (!form.telefone.trim()) return;
+                const lenErr = phoneLengthError(t, form.telefoneIndicativo, form.telefone);
+                setErrors((prev) => {
+                  const n = { ...prev };
+                  if (lenErr) n.telefone = lenErr; else delete n.telefone;
+                  return n;
+                });
+              }}
               className={`pf-input pf-phone-number${errors.telefone ? " pf-input-err" : ""}`}
               placeholder={t("telefonePlaceholder")}
               autoComplete="tel-national"
@@ -403,7 +523,7 @@ export default function ReservarPreservacaoForm() {
       </div>
 
       {/* ── O EVENTO ── */}
-      <div className="pf-section" role="group" aria-labelledby="sec-evento">
+      <div className="pf-section" role="group" aria-labelledby="sec-evento" onFocus={() => marcaSeccao("evento")}>
         <h2 className="pf-section-title" id="sec-evento">{t("secEvento")}</h2>
 
         <Field name="dataEvento" label={t("dataEventoLabel")} required error={errors.dataEvento} hint={t("dataEventoHint")}>
@@ -435,7 +555,7 @@ export default function ReservarPreservacaoForm() {
       </div>
 
       {/* ── ENVIO E RECEPÇÃO ── */}
-      <div className="pf-section" role="group" aria-labelledby="sec-logistica">
+      <div className="pf-section" role="group" aria-labelledby="sec-logistica" onFocus={() => marcaSeccao("logistica")}>
         <h2 className="pf-section-title" id="sec-logistica">{t("secLogistica")}</h2>
 
         <Field
@@ -476,7 +596,7 @@ export default function ReservarPreservacaoForm() {
       </div>
 
       {/* ── O QUADRO ── */}
-      <div className="pf-section" role="group" aria-labelledby="sec-quadro">
+      <div className="pf-section" role="group" aria-labelledby="sec-quadro" onFocus={() => marcaSeccao("quadro")}>
         <h2 className="pf-section-title" id="sec-quadro">{t("secQuadro")}</h2>
 
         <Field
@@ -562,7 +682,7 @@ export default function ReservarPreservacaoForm() {
       </div>
 
       {/* ── EXTRAS OPCIONAIS ── */}
-      <div className="pf-section" role="group" aria-labelledby="sec-extras">
+      <div className="pf-section" role="group" aria-labelledby="sec-extras" onFocus={() => marcaSeccao("extras")}>
         <h2 className="pf-section-title" id="sec-extras">{t("secExtras")}</h2>
 
         <Field name="quadrosExtra" label={t("quadrosExtraLabel")} required error={errors.quadrosExtra} hint={t("quadrosExtraHint")}>
@@ -624,7 +744,7 @@ export default function ReservarPreservacaoForm() {
       </div>
 
       {/* ── OUTROS ── */}
-      <div className="pf-section" role="group" aria-labelledby="sec-outros">
+      <div className="pf-section" role="group" aria-labelledby="sec-outros" onFocus={() => marcaSeccao("outros")}>
         <h2 className="pf-section-title" id="sec-outros">{t("secOutros")}</h2>
 
         <Field name="comoConheceu" label={t("comoConheceuLabel")} required error={errors.comoConheceu}>
@@ -650,7 +770,24 @@ export default function ReservarPreservacaoForm() {
 
         {showCodigoVale && (
           <Field name="codigoValePresente" label={t("codigoValeLabel")} required error={errors.codigoValePresente} hint={t("codigoValeHint")}>
-            <input type="text" {...inp("codigoValePresente")} placeholder={t("codigoValePlaceholder")} autoComplete="off" maxLength={20} />
+            <div>
+              <input
+                type="text"
+                {...inp("codigoValePresente")}
+                onChange={(e) => { set("codigoValePresente", e.target.value); setValeNaoEncontrado(false); }}
+                onBlur={() => {
+                  const limpo = form.codigoValePresente.trim().toUpperCase().replace(/\s+/g, "");
+                  if (limpo !== form.codigoValePresente) set("codigoValePresente", limpo);
+                  verificarVale(limpo);
+                }}
+                placeholder={t("codigoValePlaceholder")}
+                autoComplete="off"
+                maxLength={20}
+              />
+              {valeNaoEncontrado && (
+                <p className="pf-error" role="status">{t("valeNaoEncontrado")}</p>
+              )}
+            </div>
           </Field>
         )}
 

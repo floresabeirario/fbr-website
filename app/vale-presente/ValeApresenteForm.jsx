@@ -4,8 +4,10 @@ import { useState, useRef, useId, isValidElement, cloneElement } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import PhonePrefix from "../_components/PhonePrefix";
-import { OPCOES_PRECOS_URL } from "../_lib/constants";
+import { OPCOES_PRECOS_URL, EMAIL } from "../_lib/constants";
 import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget";
+import { phoneLengthError, normalizePhone, formatPhoneInput } from "../_lib/phone-validation";
+import { suggestEmail, cleanEmail } from "../_lib/email-suggest";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
@@ -100,11 +102,22 @@ export default function ValeApresenteForm() {
 
   const [form, setForm] = useState(INIT);
   const [errors, setErrors] = useState({});
+  const [emailSugestao, setEmailSugestao] = useState(null);
+  const [emailDestSugestao, setEmailDestSugestao] = useState(null);
   const [status, setStatus] = useState("idle");
   const [submitError, setSubmitError] = useState("");
   const [turnstileToken, setTurnstileToken] = useState(null);
   const successRef = useRef(null);
   const errorsSummaryRef = useRef(null);
+
+  // Funil de abandono (Umami): 1 evento na 1ª interacção com cada secção
+  // (espelha o form de reserva). Sem dados pessoais — só o nome da secção.
+  const seccoesVistas = useRef(new Set());
+  const marcaSeccao = (nome) => {
+    if (seccoesVistas.current.has(nome)) return;
+    seccoesVistas.current.add(nome);
+    window.umami?.track?.(`vale-seccao-${nome}`);
+  };
 
   // Labels usados no resumo de erros clicável (espelha o form de reserva)
   const FIELD_LABEL_KEYS = {
@@ -177,8 +190,12 @@ export default function ValeApresenteForm() {
     if (!form.nome.trim())      e.nome = t("erroCampoObrigatorio");
     if (!form.meioContacto)     e.meioContacto = t("erroEscolhaContacto");
     if (showTelefone && !form.telefone.trim()) e.telefone = t("erroCampoObrigatorio");
-    else if (showTelefone && form.telefone.trim() && !/^\+?[\d\s\-]{7,20}$/.test(form.telefone))
+    else if (showTelefone && form.telefone.trim() && !/^\+?[\d\s\-()]{1,25}$/.test(form.telefone))
       e.telefone = t("erroTelefoneInvalido");
+    else if (showTelefone && form.telefone.trim()) {
+      const lenErr = phoneLengthError(t, form.telefoneIndicativo, form.telefone);
+      if (lenErr) e.telefone = lenErr;
+    }
     if (!form.email.trim())     e.email = t("erroCampoObrigatorio");
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = t("erroEmailInvalido");
     if (!form.nomeDestinatario.trim()) e.nomeDestinatario = t("erroCampoObrigatorio");
@@ -192,7 +209,11 @@ export default function ValeApresenteForm() {
     if (showContactoDestinatario) {
       if (form.contactoDestinatarioTipo === "whatsapp") {
         if (!form.contactoDestinatarioNumero.trim()) e.contactoDestinatario = t("erroCampoObrigatorio");
-        else if (!/^[\d\s\-]{5,20}$/.test(form.contactoDestinatarioNumero)) e.contactoDestinatario = t("erroTelefoneInvalido");
+        else if (!/^\+?[\d\s\-()]{1,25}$/.test(form.contactoDestinatarioNumero)) e.contactoDestinatario = t("erroTelefoneInvalido");
+        else {
+          const lenErr = phoneLengthError(t, form.contactoDestinatarioIndicativo, form.contactoDestinatarioNumero);
+          if (lenErr) e.contactoDestinatario = lenErr;
+        }
       } else {
         if (!form.contactoDestinatario.trim()) e.contactoDestinatario = t("erroCampoObrigatorio");
         else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.contactoDestinatario)) e.contactoDestinatario = t("erroEmailInvalido");
@@ -213,6 +234,8 @@ export default function ValeApresenteForm() {
     const errs = validate();
     setErrors(errs);
     if (Object.keys(errs).length) {
+      // Que campos travam a submissão (só nomes de campos, sem dados pessoais)
+      window.umami?.track?.("vale-submit-erros", { campos: Object.keys(errs).join(",").slice(0, 400) });
       requestAnimationFrame(() => {
         errorsSummaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
         errorsSummaryRef.current?.focus({ preventScroll: true });
@@ -230,13 +253,9 @@ export default function ValeApresenteForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
-          telefone: form.telefone.trim()
-            ? `${form.telefoneIndicativo}${form.telefone.trim()}`
-            : "",
+          telefone: normalizePhone(form.telefoneIndicativo, form.telefone).full,
           contactoDestinatario: form.contactoDestinatarioTipo === "whatsapp"
-            ? (form.contactoDestinatarioNumero.trim()
-              ? `${form.contactoDestinatarioIndicativo}${form.contactoDestinatarioNumero.trim()}`
-              : "")
+            ? normalizePhone(form.contactoDestinatarioIndicativo, form.contactoDestinatarioNumero).full
             : form.contactoDestinatario.trim(),
           locale,
           turnstileToken,
@@ -250,6 +269,8 @@ export default function ValeApresenteForm() {
         throw err;
       }
       setStatus("success");
+      // Conversão: pedido de vale enviado com sucesso. Aparece no painel do Umami.
+      window.umami?.track?.("vale-enviado");
       setTimeout(() => successRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
     } catch (err) {
       console.error("[vale-presente] submit error:", err);
@@ -274,6 +295,19 @@ export default function ValeApresenteForm() {
         <p className="vf-success-text">
           {t("successDesc", { contacto })}
         </p>
+        <p className="vf-success-text">
+          {form.meioContacto === "WhatsApp"
+            ? t.rich("successContactoWhatsapp", {
+                numero: normalizePhone(form.telefoneIndicativo, form.telefone).display,
+                email: EMAIL,
+                b: (chunks) => <strong>{chunks}</strong>,
+              })
+            : t.rich("successContactoEmail", {
+                email: form.email.trim(),
+                emailFbr: EMAIL,
+                b: (chunks) => <strong>{chunks}</strong>,
+              })}
+        </p>
       </div>
     );
   }
@@ -285,7 +319,7 @@ export default function ValeApresenteForm() {
       </p>
 
       {/* ── REMETENTE ── */}
-      <div className="vf-section" role="group" aria-labelledby="sec-remetente">
+      <div className="vf-section" role="group" aria-labelledby="sec-remetente" onFocus={() => marcaSeccao("remetente")}>
         <h2 className="vf-section-title" id="sec-remetente">{t("secRemetente")}</h2>
 
         <Field name="nome" label={t("nomeLabel")} required error={errors.nome}>
@@ -306,12 +340,39 @@ export default function ValeApresenteForm() {
             <div className="vf-phone-wrap">
               <PhonePrefix
                 value={form.telefoneIndicativo}
-                onChange={(code) => set("telefoneIndicativo", code)}
+                onChange={(code) => {
+                  set("telefoneIndicativo", code);
+                  if (form.telefone.trim()) {
+                    const lenErr = phoneLengthError(t, code, form.telefone);
+                    setErrors((prev) => {
+                      const n = { ...prev };
+                      if (lenErr) n.telefone = lenErr; else delete n.telefone;
+                      return n;
+                    });
+                  }
+                }}
                 btnClassName="vf-input vf-phone-prefix"
               />
               <input
                 type="tel"
                 {...inp("telefone")}
+                onChange={(e) => {
+                  const el = e.target;
+                  const r = formatPhoneInput(form.telefoneIndicativo, el.value, form.telefone, el.selectionStart);
+                  set("telefone", r.value);
+                  requestAnimationFrame(() => {
+                    try { el.setSelectionRange(r.caret, r.caret); } catch {}
+                  });
+                }}
+                onBlur={() => {
+                  if (!form.telefone.trim()) return;
+                  const lenErr = phoneLengthError(t, form.telefoneIndicativo, form.telefone);
+                  setErrors((prev) => {
+                    const n = { ...prev };
+                    if (lenErr) n.telefone = lenErr; else delete n.telefone;
+                    return n;
+                  });
+                }}
                 className={`vf-input vf-phone-number${errors.telefone ? " vf-input-err" : ""}`}
                 placeholder={t("telefonePlaceholder")}
                 autoComplete="tel-national"
@@ -327,12 +388,34 @@ export default function ValeApresenteForm() {
           error={errors.email}
           hint={showTelefone ? t("telefoneHint") : undefined}
         >
-          <input type="email" {...inp("email")} placeholder={t("emailPlaceholder")} autoComplete="email" />
+          <div>
+            <input
+              type="email"
+              {...inp("email")}
+              onChange={(e) => { set("email", e.target.value); setEmailSugestao(null); }}
+              onBlur={() => {
+                const limpo = cleanEmail(form.email);
+                if (limpo !== form.email) set("email", limpo);
+                setEmailSugestao(suggestEmail(limpo));
+              }}
+              placeholder={t("emailPlaceholder")}
+              autoComplete="email"
+            />
+            {emailSugestao && (
+              <button
+                type="button"
+                className="vf-suggest-btn"
+                onClick={() => { set("email", emailSugestao); setEmailSugestao(null); }}
+              >
+                {t("emailSugestao", { sugestao: emailSugestao })}
+              </button>
+            )}
+          </div>
         </Field>
       </div>
 
       {/* ── O VALE ── */}
-      <div className="vf-section" role="group" aria-labelledby="sec-vale">
+      <div className="vf-section" role="group" aria-labelledby="sec-vale" onFocus={() => marcaSeccao("vale")}>
         <h2 className="vf-section-title" id="sec-vale">{t("secVale")}</h2>
 
         <Field name="nomeDestinatario" label={t("destinatarioLabel")} required error={errors.nomeDestinatario} hint={t("destinatarioHint")}>
@@ -363,7 +446,7 @@ export default function ValeApresenteForm() {
       </div>
 
       {/* ── ENTREGA ── */}
-      <div className="vf-section" role="group" aria-labelledby="sec-entrega">
+      <div className="vf-section" role="group" aria-labelledby="sec-entrega" onFocus={() => marcaSeccao("entrega")}>
         <h2 className="vf-section-title" id="sec-entrega">{t("secEntrega")}</h2>
 
         <Field name="entrega" label={t("entreguaALabel")} required error={errors.entrega}>
@@ -424,23 +507,66 @@ export default function ValeApresenteForm() {
               </button>
             </div>
             {form.contactoDestinatarioTipo === "email" ? (
-              <input
-                type="email"
-                {...inp("contactoDestinatario")}
-                placeholder={t("emailDestinatarioPlaceholder")}
-                autoComplete="email"
-              />
+              <div>
+                <input
+                  type="email"
+                  {...inp("contactoDestinatario")}
+                  onChange={(e) => { set("contactoDestinatario", e.target.value); setEmailDestSugestao(null); }}
+                  onBlur={() => {
+                    const limpo = cleanEmail(form.contactoDestinatario);
+                    if (limpo !== form.contactoDestinatario) set("contactoDestinatario", limpo);
+                    setEmailDestSugestao(suggestEmail(limpo));
+                  }}
+                  placeholder={t("emailDestinatarioPlaceholder")}
+                  autoComplete="email"
+                />
+                {emailDestSugestao && (
+                  <button
+                    type="button"
+                    className="vf-suggest-btn"
+                    onClick={() => { set("contactoDestinatario", emailDestSugestao); setEmailDestSugestao(null); }}
+                  >
+                    {t("emailSugestao", { sugestao: emailDestSugestao })}
+                  </button>
+                )}
+              </div>
             ) : (
               <div className="vf-phone-wrap">
                 <PhonePrefix
                   value={form.contactoDestinatarioIndicativo}
-                  onChange={(code) => set("contactoDestinatarioIndicativo", code)}
+                  onChange={(code) => {
+                    set("contactoDestinatarioIndicativo", code);
+                    if (form.contactoDestinatarioNumero.trim()) {
+                      const lenErr = phoneLengthError(t, code, form.contactoDestinatarioNumero);
+                      setErrors((prev) => {
+                        const n = { ...prev };
+                        if (lenErr) n.contactoDestinatario = lenErr; else delete n.contactoDestinatario;
+                        return n;
+                      });
+                    }
+                  }}
                   btnClassName="vf-input vf-phone-prefix"
                 />
                 <input
                   type="tel"
                   value={form.contactoDestinatarioNumero}
-                  onChange={(e) => set("contactoDestinatarioNumero", e.target.value)}
+                  onChange={(e) => {
+                    const el = e.target;
+                    const r = formatPhoneInput(form.contactoDestinatarioIndicativo, el.value, form.contactoDestinatarioNumero, el.selectionStart);
+                    set("contactoDestinatarioNumero", r.value);
+                    requestAnimationFrame(() => {
+                      try { el.setSelectionRange(r.caret, r.caret); } catch {}
+                    });
+                  }}
+                  onBlur={() => {
+                    if (!form.contactoDestinatarioNumero.trim()) return;
+                    const lenErr = phoneLengthError(t, form.contactoDestinatarioIndicativo, form.contactoDestinatarioNumero);
+                    setErrors((prev) => {
+                      const n = { ...prev };
+                      if (lenErr) n.contactoDestinatario = lenErr; else delete n.contactoDestinatario;
+                      return n;
+                    });
+                  }}
                   className={`vf-input vf-phone-number${errors.contactoDestinatario ? " vf-input-err" : ""}`}
                   placeholder={t("destinatarioTelefonePlaceholder")}
                   autoComplete="tel-national"
@@ -458,7 +584,7 @@ export default function ValeApresenteForm() {
       </div>
 
       {/* ── OUTROS ── */}
-      <div className="vf-section" role="group" aria-labelledby="sec-outros">
+      <div className="vf-section" role="group" aria-labelledby="sec-outros" onFocus={() => marcaSeccao("outros")}>
         <h2 className="vf-section-title" id="sec-outros">{t("secOutros")}</h2>
 
         <Field label={t("comentariosLabel")} hint={t("comentariosHint")}>

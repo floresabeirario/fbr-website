@@ -345,6 +345,28 @@
   margin: 5px 0 0;
 }
 
+/* Sugestão de gralha no email ("Quis dizer …?") — clicável, nunca bloqueia */
+.pf-suggest-btn {
+  display: block;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 6px 0 0;
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.78rem;
+  color: #9A4A30;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.pf-suggest-btn:hover,
+.pf-suggest-btn:focus-visible {
+  color: var(--terra);
+  text-decoration-thickness: 2px;
+}
+
 select.pf-input {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235A4030' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
