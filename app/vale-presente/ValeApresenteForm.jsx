@@ -7,7 +7,7 @@ import PhonePrefix from "../_components/PhonePrefix";
 import { OPCOES_PRECOS_URL, EMAIL } from "../_lib/constants";
 import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget";
 import { phoneLengthError, normalizePhone, formatPhoneInput } from "../_lib/phone-validation";
-import { suggestEmail } from "../_lib/email-suggest";
+import { suggestEmail, cleanEmail } from "../_lib/email-suggest";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
@@ -380,7 +380,11 @@ export default function ValeApresenteForm() {
               type="email"
               {...inp("email")}
               onChange={(e) => { set("email", e.target.value); setEmailSugestao(null); }}
-              onBlur={() => setEmailSugestao(suggestEmail(form.email))}
+              onBlur={() => {
+                const limpo = cleanEmail(form.email);
+                if (limpo !== form.email) set("email", limpo);
+                setEmailSugestao(suggestEmail(limpo));
+              }}
               placeholder={t("emailPlaceholder")}
               autoComplete="email"
             />
@@ -495,7 +499,11 @@ export default function ValeApresenteForm() {
                   type="email"
                   {...inp("contactoDestinatario")}
                   onChange={(e) => { set("contactoDestinatario", e.target.value); setEmailDestSugestao(null); }}
-                  onBlur={() => setEmailDestSugestao(suggestEmail(form.contactoDestinatario))}
+                  onBlur={() => {
+                    const limpo = cleanEmail(form.contactoDestinatario);
+                    if (limpo !== form.contactoDestinatario) set("contactoDestinatario", limpo);
+                    setEmailDestSugestao(suggestEmail(limpo));
+                  }}
                   placeholder={t("emailDestinatarioPlaceholder")}
                   autoComplete="email"
                 />

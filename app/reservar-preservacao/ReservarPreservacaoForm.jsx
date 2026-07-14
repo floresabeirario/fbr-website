@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useRef, useId, isValidElement, cloneElement } from "react";
+import { useState, useEffect, useRef, useId, isValidElement, cloneElement } from "react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { SOCIAL_INSTAGRAM, EMAIL } from "../_lib/constants";
 import PhonePrefix from "../_components/PhonePrefix";
 import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget";
 import { phoneLengthError, normalizePhone, formatPhoneInput } from "../_lib/phone-validation";
-import { suggestEmail } from "../_lib/email-suggest";
+import { suggestEmail, cleanEmail } from "../_lib/email-suggest";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
@@ -120,7 +120,48 @@ export default function ReservarPreservacaoForm() {
   const [form, setForm] = useState(INIT);
   const [errors, setErrors] = useState({});
   const [emailSugestao, setEmailSugestao] = useState(null);
+  const [valeNaoEncontrado, setValeNaoEncontrado] = useState(false);
+  const valeVerificadoRef = useRef("");
   const [status, setStatus] = useState("idle");
+
+  // Quem vem do site do voucher traz ?vale=CODIGO no link ("Reservar agora"):
+  // pré-preenche o código e o "como conheceu", eliminando gralhas na origem.
+  // Corre uma vez após montar (o URL só existe no browser) e nunca pisa nada
+  // que a pessoa já tenha preenchido.
+  useEffect(() => {
+    const vale = new URLSearchParams(window.location.search).get("vale");
+    const codigo = (vale ?? "").trim().toUpperCase().slice(0, 12);
+    if (!codigo || !/^[A-Z0-9]+$/.test(codigo)) return;
+    setForm((f) => {
+      if (f.codigoValePresente.trim() || f.comoConheceu) return f;
+      return { ...f, codigoValePresente: codigo, comoConheceu: VALE_VALOR };
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Verifica se o código do vale existe (ao sair do campo). Só avisa com a
+  // certeza "não existe"; erros de rede/limite ficam em silêncio e nada bloqueia.
+  async function verificarVale(valor) {
+    const codigo = valor.trim().toUpperCase();
+    valeVerificadoRef.current = codigo;
+    if (!codigo) {
+      setValeNaoEncontrado(false);
+      return;
+    }
+    try {
+      const res = await fetch("/api/verificar-vale", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: codigo }),
+      });
+      const json = res.ok ? await res.json() : null;
+      // ignora respostas atrasadas de um código entretanto alterado
+      if (valeVerificadoRef.current !== codigo) return;
+      setValeNaoEncontrado(json?.existe === false);
+    } catch {
+      setValeNaoEncontrado(false);
+    }
+  }
   const [turnstileToken, setTurnstileToken] = useState(null);
   const successRef = useRef(null);
   const errorsSummaryRef = useRef(null);
@@ -404,7 +445,11 @@ export default function ReservarPreservacaoForm() {
               type="email"
               {...inp("email")}
               onChange={(e) => { set("email", e.target.value); setEmailSugestao(null); }}
-              onBlur={() => setEmailSugestao(suggestEmail(form.email))}
+              onBlur={() => {
+                const limpo = cleanEmail(form.email);
+                if (limpo !== form.email) set("email", limpo);
+                setEmailSugestao(suggestEmail(limpo));
+              }}
               placeholder={t("emailPlaceholder")}
               autoComplete="email"
             />
@@ -713,7 +758,24 @@ export default function ReservarPreservacaoForm() {
 
         {showCodigoVale && (
           <Field name="codigoValePresente" label={t("codigoValeLabel")} required error={errors.codigoValePresente} hint={t("codigoValeHint")}>
-            <input type="text" {...inp("codigoValePresente")} placeholder={t("codigoValePlaceholder")} autoComplete="off" maxLength={20} />
+            <div>
+              <input
+                type="text"
+                {...inp("codigoValePresente")}
+                onChange={(e) => { set("codigoValePresente", e.target.value); setValeNaoEncontrado(false); }}
+                onBlur={() => {
+                  const limpo = form.codigoValePresente.trim().toUpperCase().replace(/\s+/g, "");
+                  if (limpo !== form.codigoValePresente) set("codigoValePresente", limpo);
+                  verificarVale(limpo);
+                }}
+                placeholder={t("codigoValePlaceholder")}
+                autoComplete="off"
+                maxLength={20}
+              />
+              {valeNaoEncontrado && (
+                <p className="pf-error" role="status">{t("valeNaoEncontrado")}</p>
+              )}
+            </div>
           </Field>
         )}
 

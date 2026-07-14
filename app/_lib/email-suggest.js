@@ -78,6 +78,15 @@ function distancia(a, b) {
 }
 
 /**
+ * Limpeza silenciosa ao sair do campo: remove espaços (incluindo no meio,
+ * que num email são sempre acidentais) e pontuação pendurada no fim
+ * ("maria@gmail.com." → "maria@gmail.com").
+ */
+export function cleanEmail(value) {
+  return String(value ?? "").replace(/\s+/g, "").replace(/[.,;]+$/, "");
+}
+
+/**
  * Devolve o email corrigido ("maria@gmail.com") quando o domínio parece uma
  * gralha de um domínio conhecido, ou null quando não há nada a sugerir
  * (email inválido, domínio já conhecido, ou demasiado diferente de todos).

@@ -250,8 +250,16 @@ export function formatPhoneInput(indicativo, rawValue, prevValue, caret) {
  */
 export function phoneLengthError(t, indicativo, raw) {
   const r = checkPhoneLength(indicativo, raw);
-  if (r.ok) return null;
-  return r.min === r.max
-    ? t("erroTelefoneDigitos", { code: indicativo, n: r.min, digitos: r.digits })
-    : t("erroTelefoneDigitosIntervalo", { code: indicativo, min: r.min, max: r.max, digitos: r.digits });
+  if (!r.ok) {
+    return r.min === r.max
+      ? t("erroTelefoneDigitos", { code: indicativo, n: r.min, digitos: r.digits })
+      : t("erroTelefoneDigitosIntervalo", { code: indicativo, min: r.min, max: r.max, digitos: r.digits });
+  }
+  // Plano de numeração PT (ANACOM): números de contacto começam por
+  // 9 (telemóvel), 2 (fixo geográfico) ou 30 (VoIP nómada, raro).
+  // A mensagem só fala dos dois comuns.
+  if (indicativo === "+351" && !/^[239]/.test(nationalDigits(indicativo, raw))) {
+    return t("erroTelefonePrimeiroDigito");
+  }
+  return null;
 }
