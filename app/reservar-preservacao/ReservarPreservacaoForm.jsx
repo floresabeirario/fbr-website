@@ -6,7 +6,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { SOCIAL_INSTAGRAM, EMAIL } from "../_lib/constants";
 import PhonePrefix from "../_components/PhonePrefix";
 import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget";
-import { phoneLengthError, normalizePhone } from "../_lib/phone-validation";
+import { phoneLengthError, normalizePhone, formatPhoneInput } from "../_lib/phone-validation";
 import { suggestEmail } from "../_lib/email-suggest";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
@@ -440,6 +440,14 @@ export default function ReservarPreservacaoForm() {
             <input
               type="tel"
               {...inp("telefone")}
+              onChange={(e) => {
+                const el = e.target;
+                const r = formatPhoneInput(form.telefoneIndicativo, el.value, form.telefone, el.selectionStart);
+                set("telefone", r.value);
+                requestAnimationFrame(() => {
+                  try { el.setSelectionRange(r.caret, r.caret); } catch {}
+                });
+              }}
               onBlur={() => {
                 if (!form.telefone.trim()) return;
                 const lenErr = phoneLengthError(t, form.telefoneIndicativo, form.telefone);
@@ -454,11 +462,6 @@ export default function ReservarPreservacaoForm() {
               autoComplete="tel-national"
             />
           </div>
-          {normalizePhone(form.telefoneIndicativo, form.telefone).display && (
-            <p className="pf-phone-preview">
-              {t("telefonePreview", { numero: normalizePhone(form.telefoneIndicativo, form.telefone).display })}
-            </p>
-          )}
         </Field>
       </div>
 

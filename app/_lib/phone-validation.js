@@ -168,6 +168,17 @@ export function checkPhoneLength(indicativo, raw) {
   };
 }
 
+// Agrupa algarismos em blocos de 3 para leitura ("912 345 678").
+// Grupo final de 1 algarismo lê-se mal — junta-se ao anterior (ex.: 10 → 3+3+4).
+function groupDigits(digits) {
+  const groups = digits.match(/.{1,3}/g) ?? [];
+  if (groups.length > 1 && groups[groups.length - 1].length === 1) {
+    const last = groups.pop();
+    groups[groups.length - 1] += last;
+  }
+  return groups.join(" ");
+}
+
 /**
  * Número completo normalizado a partir do que o cliente escreveu.
  * `full` é o que se guarda ("+351912345678"); `display` é o mesmo número
@@ -176,16 +187,60 @@ export function checkPhoneLength(indicativo, raw) {
 export function normalizePhone(indicativo, raw) {
   const digits = nationalDigits(indicativo, raw);
   if (!digits) return { full: "", display: "" };
-  const groups = digits.match(/.{1,3}/g) ?? [];
-  // Grupo final de 1 algarismo lê-se mal — junta-se ao anterior (ex.: 10 → 3+3+4)
-  if (groups.length > 1 && groups[groups.length - 1].length === 1) {
-    const last = groups.pop();
-    groups[groups.length - 1] += last;
-  }
   return {
     full: `${indicativo}${digits}`,
-    display: `${indicativo} ${groups.join(" ")}`,
+    display: `${indicativo} ${groupDigits(digits)}`,
   };
+}
+
+/**
+ * Auto-formatação do campo enquanto o cliente escreve: só algarismos,
+ * agrupados com espaços ("912 345 678"). Se colar o número com o indicativo
+ * repetido ("+351 912…" ou "00351 912…"), o indicativo é removido logo.
+ * Devolve o texto novo e a posição do cursor (para não saltar ao editar
+ * a meio); um backspace sobre um espaço apaga também o algarismo anterior,
+ * para não ficar preso no separador.
+ *
+ * @returns {{ value: string, caret: number }}
+ */
+export function formatPhoneInput(indicativo, rawValue, prevValue, caret) {
+  const raw = String(rawValue ?? "");
+  const prev = String(prevValue ?? "");
+  const at = typeof caret === "number" ? caret : raw.length;
+  let digitsBefore = raw.slice(0, at).replace(/\D/g, "").length;
+
+  let digits = raw.replace(/\D/g, "");
+  const trimmed = raw.trim();
+  const cc = String(indicativo ?? "").replace(/\D/g, "");
+  let removedLead = 0;
+  if (trimmed.startsWith("00")) {
+    digits = digits.slice(2);
+    removedLead = 2;
+  }
+  if ((trimmed.startsWith("+") || trimmed.startsWith("00")) && cc && digits.startsWith(cc)) {
+    digits = digits.slice(cc.length);
+    removedLead += cc.length;
+  }
+  digitsBefore = Math.max(0, digitsBefore - removedLead);
+
+  // Backspace/delete que só apagou um espaço: os algarismos ficaram iguais
+  // mas o texto encolheu — apaga-se também o algarismo antes do cursor.
+  if (digits === prev.replace(/\D/g, "") && raw.length < prev.length && digitsBefore > 0) {
+    digits = digits.slice(0, digitsBefore - 1) + digits.slice(digitsBefore);
+    digitsBefore -= 1;
+  }
+
+  digits = digits.slice(0, 15); // máximo E.164
+  if (digitsBefore > digits.length) digitsBefore = digits.length;
+
+  const value = groupDigits(digits);
+  let pos = 0;
+  let seen = 0;
+  while (pos < value.length && seen < digitsBefore) {
+    if (value[pos] >= "0" && value[pos] <= "9") seen++;
+    pos++;
+  }
+  return { value, caret: pos };
 }
 
 /**

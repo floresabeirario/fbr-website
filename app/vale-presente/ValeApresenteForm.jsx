@@ -6,7 +6,7 @@ import Link from "next/link";
 import PhonePrefix from "../_components/PhonePrefix";
 import { OPCOES_PRECOS_URL, EMAIL } from "../_lib/constants";
 import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget";
-import { phoneLengthError, normalizePhone } from "../_lib/phone-validation";
+import { phoneLengthError, normalizePhone, formatPhoneInput } from "../_lib/phone-validation";
 import { suggestEmail } from "../_lib/email-suggest";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
@@ -343,6 +343,14 @@ export default function ValeApresenteForm() {
               <input
                 type="tel"
                 {...inp("telefone")}
+                onChange={(e) => {
+                  const el = e.target;
+                  const r = formatPhoneInput(form.telefoneIndicativo, el.value, form.telefone, el.selectionStart);
+                  set("telefone", r.value);
+                  requestAnimationFrame(() => {
+                    try { el.setSelectionRange(r.caret, r.caret); } catch {}
+                  });
+                }}
                 onBlur={() => {
                   if (!form.telefone.trim()) return;
                   const lenErr = phoneLengthError(t, form.telefoneIndicativo, form.telefone);
@@ -357,11 +365,6 @@ export default function ValeApresenteForm() {
                 autoComplete="tel-national"
               />
             </div>
-            {normalizePhone(form.telefoneIndicativo, form.telefone).display && (
-              <p className="vf-phone-preview">
-                {t("telefonePreview", { numero: normalizePhone(form.telefoneIndicativo, form.telefone).display })}
-              </p>
-            )}
           </Field>
         )}
 
@@ -526,7 +529,14 @@ export default function ValeApresenteForm() {
                 <input
                   type="tel"
                   value={form.contactoDestinatarioNumero}
-                  onChange={(e) => set("contactoDestinatarioNumero", e.target.value)}
+                  onChange={(e) => {
+                    const el = e.target;
+                    const r = formatPhoneInput(form.contactoDestinatarioIndicativo, el.value, form.contactoDestinatarioNumero, el.selectionStart);
+                    set("contactoDestinatarioNumero", r.value);
+                    requestAnimationFrame(() => {
+                      try { el.setSelectionRange(r.caret, r.caret); } catch {}
+                    });
+                  }}
                   onBlur={() => {
                     if (!form.contactoDestinatarioNumero.trim()) return;
                     const lenErr = phoneLengthError(t, form.contactoDestinatarioIndicativo, form.contactoDestinatarioNumero);
@@ -541,12 +551,6 @@ export default function ValeApresenteForm() {
                   autoComplete="tel-national"
                 />
               </div>
-            )}
-            {form.contactoDestinatarioTipo === "whatsapp"
-              && normalizePhone(form.contactoDestinatarioIndicativo, form.contactoDestinatarioNumero).display && (
-              <p className="vf-phone-preview">
-                {t("telefonePreview", { numero: normalizePhone(form.contactoDestinatarioIndicativo, form.contactoDestinatarioNumero).display })}
-              </p>
             )}
           </Field>
         )}

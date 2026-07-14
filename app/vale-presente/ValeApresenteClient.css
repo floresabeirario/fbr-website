@@ -340,15 +340,6 @@
   margin: 5px 0 0;
 }
 
-/* Pré-visualização do número completo (indicativo + número normalizado) */
-.vf-phone-preview {
-  font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.74rem;
-  font-weight: 300;
-  color: #7A8098;
-  margin: 6px 0 0;
-}
-
 /* Sugestão de gralha no email ("Quis dizer …?") — clicável, nunca bloqueia */
 .vf-suggest-btn {
   display: block;
