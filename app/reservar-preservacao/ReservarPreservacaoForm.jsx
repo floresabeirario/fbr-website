@@ -124,6 +124,16 @@ export default function ReservarPreservacaoForm() {
   const valeVerificadoRef = useRef("");
   const [status, setStatus] = useState("idle");
 
+  // Funil de abandono (Umami): 1 evento na 1ª interacção com cada secção.
+  // Comparar as contagens secção a secção (e com "reserva-enviada") mostra
+  // onde as pessoas desistem. Sem dados pessoais — só o nome da secção.
+  const seccoesVistas = useRef(new Set());
+  const marcaSeccao = (nome) => {
+    if (seccoesVistas.current.has(nome)) return;
+    seccoesVistas.current.add(nome);
+    window.umami?.track?.(`reserva-seccao-${nome}`);
+  };
+
   // Quem vem do site do voucher traz ?vale=CODIGO no link ("Reservar agora"):
   // pré-preenche o código e o "como conheceu", eliminando gralhas na origem.
   // Corre uma vez após montar (o URL só existe no browser) e nunca pisa nada
@@ -311,6 +321,8 @@ export default function ReservarPreservacaoForm() {
     const errs = validate();
     setErrors(errs);
     if (Object.keys(errs).length) {
+      // Que campos travam a submissão (só nomes de campos, sem dados pessoais)
+      window.umami?.track?.("reserva-submit-erros", { campos: Object.keys(errs).join(",").slice(0, 400) });
       requestAnimationFrame(() => {
         errorsSummaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
         errorsSummaryRef.current?.focus({ preventScroll: true });
@@ -423,7 +435,7 @@ export default function ReservarPreservacaoForm() {
       )}
 
       {/* ── DADOS PESSOAIS ── */}
-      <div className="pf-section" role="group" aria-labelledby="sec-pessoais">
+      <div className="pf-section" role="group" aria-labelledby="sec-pessoais" onFocus={() => marcaSeccao("pessoais")}>
         <h2 className="pf-section-title" id="sec-pessoais">{t("secDadosPessoais")}</h2>
 
         <Field name="nome" label={t("nomeLabel")} required error={errors.nome} hint={t("nomeHint")}>
@@ -511,7 +523,7 @@ export default function ReservarPreservacaoForm() {
       </div>
 
       {/* ── O EVENTO ── */}
-      <div className="pf-section" role="group" aria-labelledby="sec-evento">
+      <div className="pf-section" role="group" aria-labelledby="sec-evento" onFocus={() => marcaSeccao("evento")}>
         <h2 className="pf-section-title" id="sec-evento">{t("secEvento")}</h2>
 
         <Field name="dataEvento" label={t("dataEventoLabel")} required error={errors.dataEvento} hint={t("dataEventoHint")}>
@@ -543,7 +555,7 @@ export default function ReservarPreservacaoForm() {
       </div>
 
       {/* ── ENVIO E RECEPÇÃO ── */}
-      <div className="pf-section" role="group" aria-labelledby="sec-logistica">
+      <div className="pf-section" role="group" aria-labelledby="sec-logistica" onFocus={() => marcaSeccao("logistica")}>
         <h2 className="pf-section-title" id="sec-logistica">{t("secLogistica")}</h2>
 
         <Field
@@ -584,7 +596,7 @@ export default function ReservarPreservacaoForm() {
       </div>
 
       {/* ── O QUADRO ── */}
-      <div className="pf-section" role="group" aria-labelledby="sec-quadro">
+      <div className="pf-section" role="group" aria-labelledby="sec-quadro" onFocus={() => marcaSeccao("quadro")}>
         <h2 className="pf-section-title" id="sec-quadro">{t("secQuadro")}</h2>
 
         <Field
@@ -670,7 +682,7 @@ export default function ReservarPreservacaoForm() {
       </div>
 
       {/* ── EXTRAS OPCIONAIS ── */}
-      <div className="pf-section" role="group" aria-labelledby="sec-extras">
+      <div className="pf-section" role="group" aria-labelledby="sec-extras" onFocus={() => marcaSeccao("extras")}>
         <h2 className="pf-section-title" id="sec-extras">{t("secExtras")}</h2>
 
         <Field name="quadrosExtra" label={t("quadrosExtraLabel")} required error={errors.quadrosExtra} hint={t("quadrosExtraHint")}>
@@ -732,7 +744,7 @@ export default function ReservarPreservacaoForm() {
       </div>
 
       {/* ── OUTROS ── */}
-      <div className="pf-section" role="group" aria-labelledby="sec-outros">
+      <div className="pf-section" role="group" aria-labelledby="sec-outros" onFocus={() => marcaSeccao("outros")}>
         <h2 className="pf-section-title" id="sec-outros">{t("secOutros")}</h2>
 
         <Field name="comoConheceu" label={t("comoConheceuLabel")} required error={errors.comoConheceu}>

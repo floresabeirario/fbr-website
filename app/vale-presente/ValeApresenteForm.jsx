@@ -110,6 +110,15 @@ export default function ValeApresenteForm() {
   const successRef = useRef(null);
   const errorsSummaryRef = useRef(null);
 
+  // Funil de abandono (Umami): 1 evento na 1ª interacção com cada secção
+  // (espelha o form de reserva). Sem dados pessoais — só o nome da secção.
+  const seccoesVistas = useRef(new Set());
+  const marcaSeccao = (nome) => {
+    if (seccoesVistas.current.has(nome)) return;
+    seccoesVistas.current.add(nome);
+    window.umami?.track?.(`vale-seccao-${nome}`);
+  };
+
   // Labels usados no resumo de erros clicável (espelha o form de reserva)
   const FIELD_LABEL_KEYS = {
     nome: "nomeLabel",
@@ -225,6 +234,8 @@ export default function ValeApresenteForm() {
     const errs = validate();
     setErrors(errs);
     if (Object.keys(errs).length) {
+      // Que campos travam a submissão (só nomes de campos, sem dados pessoais)
+      window.umami?.track?.("vale-submit-erros", { campos: Object.keys(errs).join(",").slice(0, 400) });
       requestAnimationFrame(() => {
         errorsSummaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
         errorsSummaryRef.current?.focus({ preventScroll: true });
@@ -258,6 +269,8 @@ export default function ValeApresenteForm() {
         throw err;
       }
       setStatus("success");
+      // Conversão: pedido de vale enviado com sucesso. Aparece no painel do Umami.
+      window.umami?.track?.("vale-enviado");
       setTimeout(() => successRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
     } catch (err) {
       console.error("[vale-presente] submit error:", err);
@@ -306,7 +319,7 @@ export default function ValeApresenteForm() {
       </p>
 
       {/* ── REMETENTE ── */}
-      <div className="vf-section" role="group" aria-labelledby="sec-remetente">
+      <div className="vf-section" role="group" aria-labelledby="sec-remetente" onFocus={() => marcaSeccao("remetente")}>
         <h2 className="vf-section-title" id="sec-remetente">{t("secRemetente")}</h2>
 
         <Field name="nome" label={t("nomeLabel")} required error={errors.nome}>
@@ -402,7 +415,7 @@ export default function ValeApresenteForm() {
       </div>
 
       {/* ── O VALE ── */}
-      <div className="vf-section" role="group" aria-labelledby="sec-vale">
+      <div className="vf-section" role="group" aria-labelledby="sec-vale" onFocus={() => marcaSeccao("vale")}>
         <h2 className="vf-section-title" id="sec-vale">{t("secVale")}</h2>
 
         <Field name="nomeDestinatario" label={t("destinatarioLabel")} required error={errors.nomeDestinatario} hint={t("destinatarioHint")}>
@@ -433,7 +446,7 @@ export default function ValeApresenteForm() {
       </div>
 
       {/* ── ENTREGA ── */}
-      <div className="vf-section" role="group" aria-labelledby="sec-entrega">
+      <div className="vf-section" role="group" aria-labelledby="sec-entrega" onFocus={() => marcaSeccao("entrega")}>
         <h2 className="vf-section-title" id="sec-entrega">{t("secEntrega")}</h2>
 
         <Field name="entrega" label={t("entreguaALabel")} required error={errors.entrega}>
@@ -571,7 +584,7 @@ export default function ValeApresenteForm() {
       </div>
 
       {/* ── OUTROS ── */}
-      <div className="vf-section" role="group" aria-labelledby="sec-outros">
+      <div className="vf-section" role="group" aria-labelledby="sec-outros" onFocus={() => marcaSeccao("outros")}>
         <h2 className="vf-section-title" id="sec-outros">{t("secOutros")}</h2>
 
         <Field label={t("comentariosLabel")} hint={t("comentariosHint")}>
