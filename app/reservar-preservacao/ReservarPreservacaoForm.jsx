@@ -6,6 +6,8 @@ import { useTranslations, useLocale } from "next-intl";
 import { SOCIAL_INSTAGRAM, EMAIL } from "../_lib/constants";
 import PhonePrefix from "../_components/PhonePrefix";
 import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget";
+import { phoneLengthError, normalizePhone } from "../_lib/phone-validation";
+import { suggestEmail } from "../_lib/email-suggest";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
@@ -117,6 +119,7 @@ export default function ReservarPreservacaoForm() {
 
   const [form, setForm] = useState(INIT);
   const [errors, setErrors] = useState({});
+  const [emailSugestao, setEmailSugestao] = useState(null);
   const [status, setStatus] = useState("idle");
   const [turnstileToken, setTurnstileToken] = useState(null);
   const successRef = useRef(null);
@@ -219,7 +222,11 @@ export default function ReservarPreservacaoForm() {
     if (!form.email.trim())       e.email = t("erroCampoObrigatorio");
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = t("erroEmailInvalido");
     if (!form.telefone.trim())    e.telefone = t("erroCampoObrigatorio");
-    else if (!/^\+?[\d\s\-]{7,20}$/.test(form.telefone)) e.telefone = t("erroTelefoneInvalido");
+    else if (!/^\+?[\d\s\-()]{1,25}$/.test(form.telefone)) e.telefone = t("erroTelefoneInvalido");
+    else {
+      const lenErr = phoneLengthError(t, form.telefoneIndicativo, form.telefone);
+      if (lenErr) e.telefone = lenErr;
+    }
     if (!form.dataEvento)         e.dataEvento = t("erroCampoObrigatorio");
     else {
       const year = parseInt(form.dataEvento.split("-")[0], 10);
@@ -283,9 +290,7 @@ export default function ReservarPreservacaoForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
-          telefone: form.telefone.trim()
-            ? `${form.telefoneIndicativo}${form.telefone.trim()}`
-            : "",
+          telefone: normalizePhone(form.telefoneIndicativo, form.telefone).full,
           locale,
           turnstileToken,
         }),
@@ -314,6 +319,19 @@ export default function ReservarPreservacaoForm() {
       <div className="pf-success" role="status" ref={successRef}>
         <div className="pf-success-icon" aria-hidden="true">✓</div>
         <h2 className="pf-success-title">{t("successTitle")}</h2>
+        <p className="pf-success-text">
+          {form.meioContacto === "WhatsApp"
+            ? t.rich("successContactoWhatsapp", {
+                numero: normalizePhone(form.telefoneIndicativo, form.telefone).display,
+                email: EMAIL,
+                b: (chunks) => <strong>{chunks}</strong>,
+              })
+            : t.rich("successContactoEmail", {
+                email: form.email.trim(),
+                emailFbr: EMAIL,
+                b: (chunks) => <strong>{chunks}</strong>,
+              })}
+        </p>
         <p className="pf-success-text">
           {t("successP1", { dias: 3, sinal: "sinal de 30%", horas })}
         </p>
@@ -381,24 +399,66 @@ export default function ReservarPreservacaoForm() {
         </Field>
 
         <Field name="email" label={t("emailLabel")} required error={errors.email} hint={t("emailHint")}>
-          <input type="email" {...inp("email")} placeholder={t("emailPlaceholder")} autoComplete="email" />
+          <div>
+            <input
+              type="email"
+              {...inp("email")}
+              onChange={(e) => { set("email", e.target.value); setEmailSugestao(null); }}
+              onBlur={() => setEmailSugestao(suggestEmail(form.email))}
+              placeholder={t("emailPlaceholder")}
+              autoComplete="email"
+            />
+            {emailSugestao && (
+              <button
+                type="button"
+                className="pf-suggest-btn"
+                onClick={() => { set("email", emailSugestao); setEmailSugestao(null); }}
+              >
+                {t("emailSugestao", { sugestao: emailSugestao })}
+              </button>
+            )}
+          </div>
         </Field>
 
         <Field name="telefone" label={t("telefoneLabel")} required error={errors.telefone} hint={t("telefoneHint")}>
           <div className="pf-phone-wrap">
             <PhonePrefix
               value={form.telefoneIndicativo}
-              onChange={(code) => set("telefoneIndicativo", code)}
+              onChange={(code) => {
+                set("telefoneIndicativo", code);
+                if (form.telefone.trim()) {
+                  const lenErr = phoneLengthError(t, code, form.telefone);
+                  setErrors((prev) => {
+                    const n = { ...prev };
+                    if (lenErr) n.telefone = lenErr; else delete n.telefone;
+                    return n;
+                  });
+                }
+              }}
               btnClassName="pf-input pf-phone-prefix"
             />
             <input
               type="tel"
               {...inp("telefone")}
+              onBlur={() => {
+                if (!form.telefone.trim()) return;
+                const lenErr = phoneLengthError(t, form.telefoneIndicativo, form.telefone);
+                setErrors((prev) => {
+                  const n = { ...prev };
+                  if (lenErr) n.telefone = lenErr; else delete n.telefone;
+                  return n;
+                });
+              }}
               className={`pf-input pf-phone-number${errors.telefone ? " pf-input-err" : ""}`}
               placeholder={t("telefonePlaceholder")}
               autoComplete="tel-national"
             />
           </div>
+          {normalizePhone(form.telefoneIndicativo, form.telefone).display && (
+            <p className="pf-phone-preview">
+              {t("telefonePreview", { numero: normalizePhone(form.telefoneIndicativo, form.telefone).display })}
+            </p>
+          )}
         </Field>
       </div>
 

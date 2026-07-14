@@ -340,6 +340,36 @@
   margin: 5px 0 0;
 }
 
+/* Pré-visualização do número completo (indicativo + número normalizado) */
+.vf-phone-preview {
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.74rem;
+  font-weight: 300;
+  color: #7A8098;
+  margin: 6px 0 0;
+}
+
+/* Sugestão de gralha no email ("Quis dizer …?") — clicável, nunca bloqueia */
+.vf-suggest-btn {
+  display: block;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 6px 0 0;
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.78rem;
+  color: var(--terra);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.vf-suggest-btn:hover,
+.vf-suggest-btn:focus-visible {
+  text-decoration-thickness: 2px;
+}
+
 select.vf-input {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23A8A4C0' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
