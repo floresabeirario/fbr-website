@@ -1583,7 +1583,7 @@
     "localEventoHint": "City or venue where the event took place (or will take place).",
     "localEventoPlaceholder": "E.g.: Quinta das Lágrimas, Coimbra",
     "tipoFloresLabel": "Type of flowers in the arrangement",
-    "tipoFloresHint": "Indicate the types of flowers (roses, orchids, wildflowers, etc.) and the type of arrangement (bouquet, boutonnière, centrepiece, crown, etc.). If you don't have this information yet, leave it blank.",
+    "tipoFloresHint": "Indicate the types of flowers (roses, orchids, wildflowers, etc.) and the type of arrangement (bouquet, boutonnière, centrepiece, crown, etc.).",
     "tipoFloresPlaceholder": "E.g.: orchids, sunflowers, daisies. Bridal bouquet.",
     "enviarFloresLabel": "How do you intend to send us the flowers?",
     "receberQuadroLabel": "How would you prefer to receive the finished frame?",

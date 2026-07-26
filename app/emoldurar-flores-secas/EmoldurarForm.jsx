@@ -16,7 +16,7 @@
 import { useState, useRef, useId, isValidElement, cloneElement } from "react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { SOCIAL_INSTAGRAM, EMAIL } from "../_lib/constants";
+import { EMAIL } from "../_lib/constants";
 import PhonePrefix from "../_components/PhonePrefix";
 import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget";
 import { phoneLengthError, normalizePhone, formatPhoneInput } from "../_lib/phone-validation";
@@ -593,15 +593,13 @@ export default function EmoldurarForm() {
           </select>
         </Field>
 
+        {/* TODO (Maria, lembrar mais tarde): re-adicionar link para exemplos de
+            fundos no Instagram quando houver mais publicações lá. */}
         <Field
           name="tipoFundo"
           label={t("fundoLabel")}
           required
           error={errors.tipoFundo}
-          hint={<>
-            {locale === "en" ? "See background examples on our " : "Veja exemplos de fundos no nosso "}
-            <a href={SOCIAL_INSTAGRAM} className="pf-link" target="_blank" rel="noopener noreferrer">{t("fundoHintInstagram")}</a>.
-          </>}
         >
           <select {...inp("tipoFundo")}>
             <option value="">{t("escolha")}</option>

@@ -1587,7 +1587,7 @@
     "localEventoHint": "Cidade ou local onde o evento aconteceu (ou vai acontecer).",
     "localEventoPlaceholder": "Ex.: Quinta das Lágrimas, Coimbra",
     "tipoFloresLabel": "Tipo de flores no arranjo",
-    "tipoFloresHint": "Indique o tipo de flores (rosas, orquídeas, flores do campo, etc.) e o tipo de arranjo (bouquet, flores de lapela, centro de mesa, coroa, etc.). Se ainda não tiver esta informação, deixe em branco.",
+    "tipoFloresHint": "Indique o tipo de flores (rosas, orquídeas, flores do campo, etc.) e o tipo de arranjo (bouquet, flores de lapela, centro de mesa, coroa, etc.).",
     "tipoFloresPlaceholder": "Ex.: orquídeas, girassóis, malmequeres. Bouquet de noiva.",
     "enviarFloresLabel": "Como pretende enviar as flores para nós?",
     "receberQuadroLabel": "Como prefere receber o quadro finalizado?",
@@ -2301,7 +2301,7 @@
     "tipoFloresLabel": "Que flores são?",
     "tipoFloresHint": "Descreva o ramo: tipo de flores, cores e tamanho aproximado.",
     "tipoFloresPlaceholder": "Ex.: rosas vermelhas e eucalipto, ramo médio.",
-    "estadoLabel": "Estado actual das flores",
+    "estadoLabel": "Estado atual das flores",
     "estadoHint": "Ajuda-nos a perceber a melhor abordagem e a preparar o orçamento.",
     "estadoOpcoes": [
       {
