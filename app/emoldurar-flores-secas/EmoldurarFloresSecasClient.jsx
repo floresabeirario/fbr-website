@@ -450,6 +450,14 @@ export default function EmoldurarFloresSecasClient() {
               {t("precosNota")}
             </p>
           </Reveal>
+
+          <Reveal delay={0.45}>
+            <div style={{ textAlign: "center", marginTop: "clamp(2.5rem,5vw,3.5rem)" }}>
+              <a href={reservarHref} className="btn-solid-light">
+                {locale === "en" ? "Book dried-flower framing" : "Reservar emolduramento de flores secas"}
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -491,6 +499,23 @@ export default function EmoldurarFloresSecasClient() {
           </Reveal>
           {FAQS.map((faq, i) => <FAQItem key={i} faq={faq} i={i} />)}
         </div>
+      </section>
+
+      {/* ══ 8.5 CTA FINAL ═════════════════════════════════════════════════════ */}
+      <section style={{ backgroundColor: C.creEsc, padding: "clamp(72px,11vw,110px) clamp(20px,5vw,48px)", textAlign: "center" }} aria-label={locale === "en" ? "Book" : "Reservar"}>
+        <Reveal>
+          <div style={{ maxWidth: "560px", margin: "0 auto" }}>
+            <h2 style={{ fontFamily: "'TAN-MEMORIES', serif", fontSize: "clamp(1.8rem,4.5vw,2.8rem)", color: C.escuro, margin: "0 0 clamp(0.9rem,2vw,1.3rem)", lineHeight: 1.1 }}>
+              {locale === "en" ? "Ready to frame your flowers?" : "Pronta para emoldurar as suas flores?"}
+            </h2>
+            <p style={{ fontFamily: "'Google Sans', sans-serif", color: C.sec, fontSize: "0.9rem", lineHeight: 1.7, fontWeight: 300, margin: "0 auto clamp(1.8rem,3.5vw,2.4rem)" }}>
+              {locale === "en" ? "Tell us about your flowers and we'll confirm the details and a quote with you." : "Conte-nos sobre as suas flores e confirmamos consigo os detalhes e um orçamento."}
+            </p>
+            <a href={reservarHref} className="hover-lift-shadow" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: C.escuro, color: C.creme, padding: "15px 34px", borderRadius: "100px", textDecoration: "none", fontWeight: 600, fontSize: "0.76rem", letterSpacing: "1.4px", textTransform: "uppercase", fontFamily: "'Google Sans', sans-serif" }}>
+              {locale === "en" ? "Book dried-flower framing" : "Reservar emolduramento de flores secas"}
+            </a>
+          </div>
+        </Reveal>
       </section>
 
       {/* ══ 9. NAVEGAÇÃO — 4 QUADRADOS ════════════════════════════════════════ */}
