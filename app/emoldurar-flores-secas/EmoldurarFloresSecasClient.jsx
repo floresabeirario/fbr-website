@@ -450,6 +450,14 @@ export default function EmoldurarFloresSecasClient() {
               {t("precosNota")}
             </p>
           </Reveal>
+
+          <Reveal delay={0.45}>
+            <div style={{ textAlign: "center", marginTop: "clamp(2.5rem,5vw,3.5rem)" }}>
+              <a href={reservarHref} className="btn-solid-light">
+                {locale === "en" ? "Book dried-flower framing" : "Reservar emolduramento de flores secas"}
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
