@@ -21,12 +21,12 @@ export default function EmoldurarReservarClient() {
   const servicoHref = locale === "en" ? "/en/frame-dried-flowers" : "/emoldurar-flores-secas";
 
   return (
-    <main className="rp-page">
+    <main className="rp-page emoldurar-theme">
       {/* ── HERO ── */}
       <div className="rp-hero">
         <div className="rp-hero-bg" aria-hidden="true">
           <Image
-            src="/moldura-preta-flores-preservadas.webp"
+            src="/quadro-flores-vidro-sobre-vidro.webp"
             alt=""
             fill
             priority

@@ -34,7 +34,6 @@ const INIT = {
   telefone: "",
   tipoEvento: "",
   nomeNoivos: "",
-  localEvento: "",
   tipoFlores: "",
   estadoFlores: "",
   abordagem: "",
@@ -115,8 +114,9 @@ export default function EmoldurarForm() {
   const estadoOpcoes        = te.raw("estadoOpcoes");
   const abordagemOpcoes     = te.raw("abordagemOpcoes");
 
-  const ELEM_NENHUM = elementosOpcoes[0].valor;
-  const ELEM_OUTRO  = elementosOpcoes[elementosOpcoes.length - 1].valor;
+  // Identificar por valor (não por posição) — "sem extras" passou para último.
+  const ELEM_NENHUM = elementosOpcoes.find((o) => o.valor === "Não pretendo incluir extras")?.valor ?? elementosOpcoes[0].valor;
+  const ELEM_OUTRO  = elementosOpcoes.find((o) => o.valor.startsWith("Outro"))?.valor ?? elementosOpcoes[elementosOpcoes.length - 1].valor;
 
   const QUADROS_SIM    = quadrosExtraOpcoes[1].valor;
   const ORNAMENTOS_SIM = ornamentosOpcoes[1].valor;
@@ -126,8 +126,8 @@ export default function EmoldurarForm() {
   const VALE_VALOR     = comoConheceuOpcoes.find((o) => o.valor === "Ofereceram-me um Vale-Presente para preservação")?.valor ?? "Ofereceram-me um Vale-Presente para preservação";
   const CASAMENTO_VALOR = tipoEventoOpcoes.find((o) => o.valor === "Casamento")?.valor ?? "Casamento";
 
-  const comoFuncionaHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
-  const opcoesHref       = locale === "en" ? "/en/options-and-pricing" : "/opcoes-e-precos";
+  // Só a página do próprio serviço é relevante aqui. As páginas "Como
+  // Funciona" e "Opções e Preços" são da preservação de flores frescas.
   const servicoHref      = locale === "en" ? "/en/frame-dried-flowers" : "/emoldurar-flores-secas";
   const termosHref       = locale === "en" ? "/en/terms-and-conditions" : "/termos-e-condicoes";
 
@@ -470,12 +470,8 @@ export default function EmoldurarForm() {
           </Field>
         )}
 
-        <Field label={t("localEventoLabel")} error={errors.localEvento} hint={t("localEventoHint")}>
-          <input type="text" {...inp("localEvento")} placeholder={t("localEventoPlaceholder")} autoComplete="off" />
-        </Field>
-
-        <Field label={te("tipoFloresLabel")} hint={te("tipoFloresHint")}>
-          <textarea {...inp("tipoFlores")} rows={3} placeholder={te("tipoFloresPlaceholder")} />
+        <Field label={t("tipoFloresLabel")} hint={t("tipoFloresHint")}>
+          <textarea {...inp("tipoFlores")} rows={4} placeholder={t("tipoFloresPlaceholder")} />
         </Field>
 
         <Field name="estadoFlores" label={te("estadoLabel")} required error={errors.estadoFlores} hint={te("estadoHint")}>
@@ -550,8 +546,8 @@ export default function EmoldurarForm() {
           required
           error={errors.comoEnviarFlores}
           hint={locale === "en"
-            ? <>If in doubt, see our <Link href={comoFuncionaHref} className="pf-link" target="_blank" rel="noopener noreferrer">How It Works</Link> page.</>
-            : <>Em caso de dúvida, consulte a nossa página <Link href={comoFuncionaHref} className="pf-link" target="_blank" rel="noopener noreferrer">Como Funciona</Link>.</>
+            ? "After confirmation, we'll send you specific instructions for sending your flowers."
+            : "Após a confirmação, enviamos instruções específicas para o envio das suas flores."
           }
         >
           <select {...inp("comoEnviarFlores")}>
@@ -581,7 +577,16 @@ export default function EmoldurarForm() {
       <div className="pf-section" role="group" aria-labelledby="sec-quadro">
         <h2 className="pf-section-title" id="sec-quadro">{t("secQuadro")}</h2>
 
-        <Field name="tamanhoMoldura" label={t("tamanhoLabel")} required error={errors.tamanhoMoldura} hint={te("tamanhoHint")}>
+        <Field
+          name="tamanhoMoldura"
+          label={t("tamanhoLabel")}
+          required
+          error={errors.tamanhoMoldura}
+          hint={<>
+            {te("tamanhoHint")}{" "}
+            <Link href={servicoHref} className="pf-link" target="_blank" rel="noopener noreferrer">{te("tamanhoHintLink")}</Link>.
+          </>}
+        >
           <select {...inp("tamanhoMoldura")}>
             <option value="">{t("escolha")}</option>
             {tamanhoOpcoes.map((o) => <option key={o.valor} value={o.valor}>{o.label}</option>)}
@@ -594,11 +599,7 @@ export default function EmoldurarForm() {
           required
           error={errors.tipoFundo}
           hint={<>
-            {locale === "en" ? "Visit our " : "Consulte a nossa página "}
-            <Link href={opcoesHref} className="pf-link" target="_blank" rel="noopener noreferrer">
-              {locale === "en" ? "Options & Pricing" : "Opções e Preços"}
-            </Link>{" "}
-            {t("fundoHintSuffix")}{" "}
+            {locale === "en" ? "See background examples on our " : "Veja exemplos de fundos no nosso "}
             <a href={SOCIAL_INSTAGRAM} className="pf-link" target="_blank" rel="noopener noreferrer">{t("fundoHintInstagram")}</a>.
           </>}
         >

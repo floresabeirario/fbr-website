@@ -103,10 +103,22 @@
     "langLabel": "Versão em inglês",
     "announceLabel": "Novidades",
     "announceItems": [
-      { "text": "Servimos clientes em todo o país, fácil e seguro para as suas flores", "href": "/enviar-flores-por-correio" },
-      { "text": "Ofereça preservação: vale-presente a partir de 300€", "href": "/oferecer-preservacao" },
-      { "text": "Fazemos recolha das suas flores", "href": "/como-funciona" },
-      { "text": "Um presente com significado: Ofereça eternização de flores através do nosso vale-presente", "href": "/oferecer-preservacao" }
+      {
+        "text": "Servimos clientes em todo o país, fácil e seguro para as suas flores",
+        "href": "/enviar-flores-por-correio"
+      },
+      {
+        "text": "Ofereça preservação: vale-presente a partir de 300€",
+        "href": "/oferecer-preservacao"
+      },
+      {
+        "text": "Fazemos recolha das suas flores",
+        "href": "/como-funciona"
+      },
+      {
+        "text": "Um presente com significado: Ofereça eternização de flores através do nosso vale-presente",
+        "href": "/oferecer-preservacao"
+      }
     ]
   },
   "footer": {
@@ -646,7 +658,11 @@
     "h1": "Preservar o Bouquet de Noiva",
     "heroDesc": "Eternizamos o bouquet do seu casamento numa obra de arte botânica que dura décadas. Prensagem artesanal e emolduramento feito à mão em Coimbra, com envio para todo o mundo.",
     "heroPrice": "A partir de 300€ · pagamento em 3 fases",
-    "heroDelivery": ["Em mãos", "Por correio", "Recolha em local à escolha"],
+    "heroDelivery": [
+      "Em mãos",
+      "Por correio",
+      "Recolha em local à escolha"
+    ],
     "sliderAntes": "Antes",
     "sliderDepois": "Depois",
     "sliderArraste": "Arraste para comparar",
@@ -1543,11 +1559,26 @@
     "tipoEventoLabel": "Tipo de evento",
     "tipoEventoHint": "Para personalizarmos a comunicação consigo.",
     "tipoEventoOpcoes": [
-      { "valor": "Casamento",            "label": "Casamento" },
-      { "valor": "Batizado",             "label": "Batizado" },
-      { "valor": "Funeral",              "label": "Funeral" },
-      { "valor": "Pedido de Casamento",  "label": "Pedido de Casamento" },
-      { "valor": "Outro",                "label": "Outro" }
+      {
+        "valor": "Casamento",
+        "label": "Casamento"
+      },
+      {
+        "valor": "Batizado",
+        "label": "Batizado"
+      },
+      {
+        "valor": "Funeral",
+        "label": "Funeral"
+      },
+      {
+        "valor": "Pedido de Casamento",
+        "label": "Pedido de Casamento"
+      },
+      {
+        "valor": "Outro",
+        "label": "Outro"
+      }
     ],
     "nomeNoivosLabel": "Nome dos noivos",
     "nomeNoivosHint": "Para podermos personalizar a embalagem da peça final.",
@@ -1675,15 +1706,42 @@
       }
     ],
     "elementosOpcoes": [
-      { "valor": "Não pretendo incluir extras", "label": "Não pretendo incluir extras" },
-      { "valor": "Votos manuscritos", "label": "Votos manuscritos" },
-      { "valor": "Convite do casamento", "label": "Convite do casamento" },
-      { "valor": "Fitas, tecidos ou rendas", "label": "Fitas, tecidos ou rendas" },
-      { "valor": "Fotografia", "label": "Fotografia" },
-      { "valor": "Joia ou medalha", "label": "Joia ou medalha" },
-      { "valor": "Coleira de animal", "label": "Coleira de animal" },
-      { "valor": "Cartas ou bilhetes", "label": "Cartas ou bilhetes" },
-      { "valor": "Outro (especifique abaixo)", "label": "Outro (especifique abaixo)" }
+      {
+        "valor": "Votos manuscritos",
+        "label": "Votos manuscritos"
+      },
+      {
+        "valor": "Convite do casamento",
+        "label": "Convite do casamento"
+      },
+      {
+        "valor": "Fitas, tecidos ou rendas",
+        "label": "Fitas, tecidos ou rendas"
+      },
+      {
+        "valor": "Fotografia",
+        "label": "Fotografia"
+      },
+      {
+        "valor": "Joia ou medalha",
+        "label": "Joia ou medalha"
+      },
+      {
+        "valor": "Coleira de animal",
+        "label": "Coleira de animal"
+      },
+      {
+        "valor": "Cartas ou bilhetes",
+        "label": "Cartas ou bilhetes"
+      },
+      {
+        "valor": "Outro (especifique abaixo)",
+        "label": "Outro (especifique abaixo)"
+      },
+      {
+        "valor": "Não pretendo incluir extras",
+        "label": "Não pretendo incluir extras"
+      }
     ],
     "quadrosExtraOpcoes": [
       {
@@ -2263,36 +2321,37 @@
         "label": "Prefiro que avaliem vocês"
       }
     ],
-    "fotosLabel": "Fotos do ramo",
-    "fotosHint": "Opcional, mas ajuda muito. Até {max} fotos (JPG, PNG, WEBP ou HEIC), 10 MB cada.",
+    "fotosLabel": "Fotos das suas flores",
+    "fotosHint": "Opcional, mas ajuda-nos imenso a avaliar. Até {max} fotos (JPG, PNG, WEBP ou HEIC), 10 MB cada.",
     "fotosRemover": "Remover foto",
     "fotosErroMax": "Pode anexar no máximo {max} fotos.",
     "fotosErroTipo": "Só aceitamos imagens (JPG, PNG, WEBP ou HEIC).",
     "fotosErroTamanho": "Cada foto pode ter no máximo 10 MB.",
-    "abordagemLabel": "Qual a abordagem que prefere?",
-    "abordagemHint": "Explicamos cada opção na página do serviço.",
+    "abordagemLabel": "Como gostaria que trabalhássemos as suas flores?",
+    "abordagemHint": "As suas flores já estão secas. Escolha a opção que prefere, ou peça o nosso conselho.",
     "abordagemHintLink": "Ver as opções",
     "abordagemOpcoes": [
       {
         "valor": "Emoldurar o ramo original seco",
-        "label": "Emoldurar o ramo original seco"
+        "label": "Emoldurar as flores originais, tal como estão"
       },
       {
         "valor": "Recriar o ramo com flores frescas",
-        "label": "Recriar o ramo com flores frescas"
+        "label": "Recriar o arranjo com flores novas e preservá-las"
       },
       {
         "valor": "Combinação das duas",
-        "label": "Combinação das duas"
+        "label": "Combinar as flores originais com algumas novas"
       },
       {
         "valor": "Não sei, prefiro aconselhamento",
-        "label": "Não sei, prefiro aconselhamento"
+        "label": "Não sei, gostaria do vosso aconselhamento"
       }
     ],
     "tamanhoHint": "Preços deste serviço: 30×40 = 200€, 40×50 = 270€, 50×70 = 360€.",
-    "ornamentosSalvaguarda": "Consoante as suas flores, poderá não ser possível moldá-las à espessura de um ornamento. Se escolher esta opção, confirmamos consigo se é viável.",
-    "pendentesSalvaguarda": "Consoante as suas flores, poderá não ser possível moldá-las à espessura de um pendente. Se escolher esta opção, confirmamos consigo se é viável."
+    "ornamentosSalvaguarda": "Consoante as suas flores, poderá não ser possível moldá-las à espessura de um ornamento. Se escolher esta opção, confirmaremos consigo se é viável.",
+    "pendentesSalvaguarda": "Consoante as suas flores, poderá não ser possível moldá-las à espessura de um pendente. Se escolher esta opção, confirmaremos consigo se é viável.",
+    "tamanhoHintLink": "Ver a página deste serviço"
   },
   "reservarEmoldurar": {
     "eyebrow": "Emoldurar flores já secas",

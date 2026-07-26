@@ -1,5 +1,35 @@
-/* Acrescentos ao form de reserva para o upload de fotos do ramo.
-   As classes pf-* base vêm de ReservarPreservacaoClient.css. */
+/* Acrescentos ao form de "emoldurar flores secas".
+   As classes base (rp- e pf-) vêm de ReservarPreservacaoClient.css; aqui só
+   re-tingimos para o tom AZUL do serviço (distinto do dourado da reserva de
+   preservação, para não induzir em erro) + estilos do upload de fotos. */
+
+/* ── Tema azul (scoped em .emoldurar-theme) ─────────────────── */
+.rp-page.emoldurar-theme {
+  /* dourado/âmbar → azul-cinza frio */
+  --gold: #4E7189;
+  background: linear-gradient(
+    170deg,
+    #F5F8FA 0%,
+    #E9F0F4 38%,
+    #DBE7EE 70%,
+    #CBDCE6 100%
+  );
+}
+.emoldurar-theme .rp-step-n { color: rgba(78, 113, 137, 0.85); }
+.emoldurar-theme .rp-form-lead-title { color: #23384A; }
+.emoldurar-theme .rp-form-lead-sub { color: #3F5A6B; }
+.emoldurar-theme .pf-link,
+.emoldurar-theme .rp-form-link { color: #3A6076; }
+.emoldurar-theme .pf-btn {
+  background: linear-gradient(135deg, #3A5566 0%, #1F2E3A 100%);
+  box-shadow: 0 4px 16px rgba(31, 46, 58, 0.42), 0 1px 4px rgba(31, 46, 58, 0.24);
+}
+.emoldurar-theme .pf-btn:hover {
+  box-shadow: 0 8px 28px rgba(31, 46, 58, 0.48), 0 2px 8px rgba(31, 46, 58, 0.28);
+}
+.emoldurar-theme .pf-btn:focus-visible { outline-color: #6E93A8; }
+
+
 
 .pf-file-input {
   display: block;

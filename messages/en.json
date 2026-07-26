@@ -103,9 +103,18 @@
     "langLabel": "Portuguese version",
     "announceLabel": "Announcements",
     "announceItems": [
-      { "text": "Worldwide shipping for your finished frame", "href": "/en/how-it-works" },
-      { "text": "Gift preservation: vouchers from €300", "href": "/en/gift-preservation" },
-      { "text": "A meaningful gift: offer flower preservation through our voucher", "href": "/en/gift-preservation" }
+      {
+        "text": "Worldwide shipping for your finished frame",
+        "href": "/en/how-it-works"
+      },
+      {
+        "text": "Gift preservation: vouchers from €300",
+        "href": "/en/gift-preservation"
+      },
+      {
+        "text": "A meaningful gift: offer flower preservation through our voucher",
+        "href": "/en/gift-preservation"
+      }
     ]
   },
   "footer": {
@@ -645,7 +654,11 @@
     "h1": "Preserve the Wedding Bouquet",
     "heroDesc": "We transform your wedding bouquet into a botanical work of art that lasts decades. Artisan pressing and handmade framing in Coimbra, with shipping across Portugal and Europe.",
     "heroPrice": "From €300 · payment in 3 stages",
-    "heroDelivery": ["In person", "By post", "Collection of your choice"],
+    "heroDelivery": [
+      "In person",
+      "By post",
+      "Collection of your choice"
+    ],
     "sliderAntes": "Before",
     "sliderDepois": "After",
     "sliderArraste": "Drag to compare",
@@ -1542,11 +1555,26 @@
     "tipoEventoLabel": "Type of event",
     "tipoEventoHint": "So we can personalise our communication with you.",
     "tipoEventoOpcoes": [
-      { "valor": "Casamento",            "label": "Wedding" },
-      { "valor": "Batizado",             "label": "Baptism" },
-      { "valor": "Funeral",              "label": "Funeral" },
-      { "valor": "Pedido de Casamento",  "label": "Marriage proposal" },
-      { "valor": "Outro",                "label": "Other" }
+      {
+        "valor": "Casamento",
+        "label": "Wedding"
+      },
+      {
+        "valor": "Batizado",
+        "label": "Baptism"
+      },
+      {
+        "valor": "Funeral",
+        "label": "Funeral"
+      },
+      {
+        "valor": "Pedido de Casamento",
+        "label": "Marriage proposal"
+      },
+      {
+        "valor": "Outro",
+        "label": "Other"
+      }
     ],
     "nomeNoivosLabel": "Names of the couple",
     "nomeNoivosHint": "So we can personalise the packaging of the final piece.",
@@ -1674,15 +1702,42 @@
       }
     ],
     "elementosOpcoes": [
-      { "valor": "Não pretendo incluir extras", "label": "I do not wish to include extras" },
-      { "valor": "Votos manuscritos", "label": "Handwritten vows" },
-      { "valor": "Convite do casamento", "label": "Wedding invitation" },
-      { "valor": "Fitas, tecidos ou rendas", "label": "Ribbons, fabric or lace" },
-      { "valor": "Fotografia", "label": "Photograph" },
-      { "valor": "Joia ou medalha", "label": "Jewellery or medal" },
-      { "valor": "Coleira de animal", "label": "Pet collar" },
-      { "valor": "Cartas ou bilhetes", "label": "Letters or notes" },
-      { "valor": "Outro (especifique abaixo)", "label": "Other (specify below)" }
+      {
+        "valor": "Votos manuscritos",
+        "label": "Handwritten vows"
+      },
+      {
+        "valor": "Convite do casamento",
+        "label": "Wedding invitation"
+      },
+      {
+        "valor": "Fitas, tecidos ou rendas",
+        "label": "Ribbons, fabric or lace"
+      },
+      {
+        "valor": "Fotografia",
+        "label": "Photograph"
+      },
+      {
+        "valor": "Joia ou medalha",
+        "label": "Jewellery or medal"
+      },
+      {
+        "valor": "Coleira de animal",
+        "label": "Pet collar"
+      },
+      {
+        "valor": "Cartas ou bilhetes",
+        "label": "Letters or notes"
+      },
+      {
+        "valor": "Outro (especifique abaixo)",
+        "label": "Other (specify below)"
+      },
+      {
+        "valor": "Não pretendo incluir extras",
+        "label": "I do not wish to include extras"
+      }
     ],
     "quadrosExtraOpcoes": [
       {
@@ -2262,36 +2317,37 @@
         "label": "I'd rather you assess them"
       }
     ],
-    "fotosLabel": "Photos of the bouquet",
-    "fotosHint": "Optional, but it helps a lot. Up to {max} photos (JPG, PNG, WEBP or HEIC), 10 MB each.",
+    "fotosLabel": "Photos of your flowers",
+    "fotosHint": "Optional, but it helps us assess a lot. Up to {max} photos (JPG, PNG, WEBP or HEIC), 10 MB each.",
     "fotosRemover": "Remove photo",
     "fotosErroMax": "You can attach at most {max} photos.",
     "fotosErroTipo": "We only accept images (JPG, PNG, WEBP or HEIC).",
     "fotosErroTamanho": "Each photo can be at most 10 MB.",
-    "abordagemLabel": "Which approach do you prefer?",
-    "abordagemHint": "We explain each option on the service page.",
+    "abordagemLabel": "How would you like us to work with your flowers?",
+    "abordagemHint": "Your flowers are already dry. Choose the option you prefer, or ask for our advice.",
     "abordagemHintLink": "See the options",
     "abordagemOpcoes": [
       {
         "valor": "Emoldurar o ramo original seco",
-        "label": "Frame the original dried bouquet"
+        "label": "Frame the original flowers, just as they are"
       },
       {
         "valor": "Recriar o ramo com flores frescas",
-        "label": "Recreate the bouquet with fresh flowers"
+        "label": "Recreate the arrangement with new flowers and preserve them"
       },
       {
         "valor": "Combinação das duas",
-        "label": "A combination of both"
+        "label": "Combine the original flowers with some new ones"
       },
       {
         "valor": "Não sei, prefiro aconselhamento",
-        "label": "I'm not sure, I'd like advice"
+        "label": "I am not sure, I would like your advice"
       }
     ],
     "tamanhoHint": "Pricing for this service: 30×40 = €200, 40×50 = €270, 50×70 = €360.",
     "ornamentosSalvaguarda": "Depending on your flowers, it may not be possible to shape them to the thickness of an ornament. If you choose this option, we'll confirm with you whether it's feasible.",
-    "pendentesSalvaguarda": "Depending on your flowers, it may not be possible to shape them to the thickness of a pendant. If you choose this option, we'll confirm with you whether it's feasible."
+    "pendentesSalvaguarda": "Depending on your flowers, it may not be possible to shape them to the thickness of a pendant. If you choose this option, we'll confirm with you whether it's feasible.",
+    "tamanhoHintLink": "See the dried-flower framing page"
   },
   "reservarEmoldurar": {
     "eyebrow": "Frame already-dried flowers",

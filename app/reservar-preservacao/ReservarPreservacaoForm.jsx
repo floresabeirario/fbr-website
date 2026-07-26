@@ -99,9 +99,10 @@ export default function ReservarPreservacaoForm() {
   const fundoOpcoes         = t.raw("fundoOpcoes");
   const tipoEventoOpcoes    = t.raw("tipoEventoOpcoes");
 
-  // O primeiro elemento é o exclusivo "sem extras"; o último é "Outro"
-  const ELEM_NENHUM = elementosOpcoes[0].valor;
-  const ELEM_OUTRO  = elementosOpcoes[elementosOpcoes.length - 1].valor;
+  // "sem extras" (exclusivo) e "Outro" identificados por valor, não por
+  // posição — "sem extras" passou a aparecer em último na lista.
+  const ELEM_NENHUM = elementosOpcoes.find((o) => o.valor === "Não pretendo incluir extras")?.valor ?? elementosOpcoes[0].valor;
+  const ELEM_OUTRO  = elementosOpcoes.find((o) => o.valor.startsWith("Outro"))?.valor ?? elementosOpcoes[elementosOpcoes.length - 1].valor;
 
   // Valores internos usados para lógica condicional (iguais em PT e EN)
   const QUADROS_SIM    = quadrosExtraOpcoes[1].valor;
