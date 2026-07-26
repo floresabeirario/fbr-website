@@ -1587,7 +1587,7 @@
     "localEventoHint": "Cidade ou local onde o evento aconteceu (ou vai acontecer).",
     "localEventoPlaceholder": "Ex.: Quinta das Lágrimas, Coimbra",
     "tipoFloresLabel": "Tipo de flores no arranjo",
-    "tipoFloresHint": "Indique o tipo de flores (rosas, orquídeas, flores do campo, etc.) e o tipo de arranjo (bouquet, flores de lapela, centro de mesa, coroa, etc.).",
+    "tipoFloresHint": "Indique o tipo de flores (rosas, orquídeas, flores do campo, etc.) e o tipo de arranjo (bouquet, flores de lapela, centro de mesa, coroa, etc.). Se ainda não tiver esta informação, deixe em branco.",
     "tipoFloresPlaceholder": "Ex.: orquídeas, girassóis, malmequeres. Bouquet de noiva.",
     "enviarFloresLabel": "Como pretende enviar as flores para nós?",
     "receberQuadroLabel": "Como prefere receber o quadro finalizado?",
@@ -2298,9 +2298,9 @@
     "secFlores": "As suas flores",
     "secAbordagem": "A abordagem",
     "tipoEventoHint": "De que ocasião são as flores?",
-    "tipoFloresLabel": "Que flores são?",
-    "tipoFloresHint": "Descreva o ramo: tipo de flores, cores e tamanho aproximado.",
-    "tipoFloresPlaceholder": "Ex.: rosas vermelhas e eucalipto, ramo médio.",
+    "tipoFloresLabel": "Tipo de flores no arranjo",
+    "tipoFloresHint": "Indique o tipo de flores (rosas, orquídeas, flores do campo, etc.) e o tipo de arranjo (bouquet, flores de lapela, centro de mesa, coroa, etc.).",
+    "tipoFloresPlaceholder": "Ex.: orquídeas, girassóis, malmequeres. Bouquet de noiva.",
     "estadoLabel": "Estado atual das flores",
     "estadoHint": "Ajuda-nos a perceber a melhor abordagem e a preparar o orçamento.",
     "estadoOpcoes": [
@@ -2322,36 +2322,36 @@
       }
     ],
     "fotosLabel": "Fotos das suas flores",
-    "fotosHint": "Opcional, mas ajuda-nos imenso a avaliar. Até {max} fotos (JPG, PNG, WEBP ou HEIC), 10 MB cada.",
+    "fotosHint": "Opcional. Ajudam-nos a perceber melhor a situação e a aconselhar. Até {max} fotos (JPG, PNG, WEBP ou HEIC), 10 MB cada.",
     "fotosRemover": "Remover foto",
     "fotosErroMax": "Pode anexar no máximo {max} fotos.",
     "fotosErroTipo": "Só aceitamos imagens (JPG, PNG, WEBP ou HEIC).",
     "fotosErroTamanho": "Cada foto pode ter no máximo 10 MB.",
     "abordagemLabel": "Como gostaria que trabalhássemos as suas flores?",
-    "abordagemHint": "As suas flores já estão secas. Escolha a opção que prefere, ou peça o nosso conselho.",
+    "abordagemHint": "Escolha a opção que prefere, ou peça o nosso conselho.",
     "abordagemHintLink": "Ver as opções",
     "abordagemOpcoes": [
       {
         "valor": "Emoldurar o ramo original seco",
-        "label": "Emoldurar as flores originais, tal como estão"
+        "label": "Emoldurar as flores secas originais"
       },
       {
         "valor": "Recriar o ramo com flores frescas",
-        "label": "Recriar o arranjo com flores novas e preservá-las"
+        "label": "Recriar todo o arranjo com flores frescas e preservá-las"
       },
       {
         "valor": "Combinação das duas",
-        "label": "Combinar as flores originais com algumas novas"
+        "label": "Combinar: manter as flores secas originais e substituir as danificadas por flores frescas preservadas"
       },
       {
         "valor": "Não sei, prefiro aconselhamento",
         "label": "Não sei, gostaria do vosso aconselhamento"
       }
     ],
-    "tamanhoHint": "Preços deste serviço: 30×40 = 200€, 40×50 = 270€, 50×70 = 360€.",
+    "tamanhoHint": "Consulte as opções e preços do emolduramento de flores já secas na página",
     "ornamentosSalvaguarda": "Consoante as suas flores, poderá não ser possível moldá-las à espessura de um ornamento. Se escolher esta opção, confirmaremos consigo se é viável.",
     "pendentesSalvaguarda": "Consoante as suas flores, poderá não ser possível moldá-las à espessura de um pendente. Se escolher esta opção, confirmaremos consigo se é viável.",
-    "tamanhoHintLink": "Ver a página deste serviço"
+    "tamanhoHintLink": "Emoldurar Flores Secas"
   },
   "reservarEmoldurar": {
     "eyebrow": "Emoldurar flores já secas",

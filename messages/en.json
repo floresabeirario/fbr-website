@@ -1583,7 +1583,7 @@
     "localEventoHint": "City or venue where the event took place (or will take place).",
     "localEventoPlaceholder": "E.g.: Quinta das Lágrimas, Coimbra",
     "tipoFloresLabel": "Type of flowers in the arrangement",
-    "tipoFloresHint": "Indicate the types of flowers (roses, orchids, wildflowers, etc.) and the type of arrangement (bouquet, boutonnière, centrepiece, crown, etc.).",
+    "tipoFloresHint": "Indicate the types of flowers (roses, orchids, wildflowers, etc.) and the type of arrangement (bouquet, boutonnière, centrepiece, crown, etc.). If you don’t have this information yet, leave it blank.",
     "tipoFloresPlaceholder": "E.g.: orchids, sunflowers, daisies. Bridal bouquet.",
     "enviarFloresLabel": "How do you intend to send us the flowers?",
     "receberQuadroLabel": "How would you prefer to receive the finished frame?",
@@ -2294,9 +2294,9 @@
     "secFlores": "Your flowers",
     "secAbordagem": "The approach",
     "tipoEventoHint": "What occasion are the flowers from?",
-    "tipoFloresLabel": "What flowers are they?",
-    "tipoFloresHint": "Describe the bouquet: type of flowers, colours and approximate size.",
-    "tipoFloresPlaceholder": "E.g. red roses and eucalyptus, medium bouquet.",
+    "tipoFloresLabel": "Type of flowers in the arrangement",
+    "tipoFloresHint": "Indicate the types of flowers (roses, orchids, wildflowers, etc.) and the type of arrangement (bouquet, boutonnière, centrepiece, crown, etc.).",
+    "tipoFloresPlaceholder": "E.g.: orchids, sunflowers, daisies. Bridal bouquet.",
     "estadoLabel": "Current condition of the flowers",
     "estadoHint": "It helps us understand the best approach and prepare the quote.",
     "estadoOpcoes": [
@@ -2318,36 +2318,36 @@
       }
     ],
     "fotosLabel": "Photos of your flowers",
-    "fotosHint": "Optional, but it helps us assess a lot. Up to {max} photos (JPG, PNG, WEBP or HEIC), 10 MB each.",
+    "fotosHint": "Optional. They help us understand the situation and advise you better. Up to {max} photos (JPG, PNG, WEBP or HEIC), 10 MB each.",
     "fotosRemover": "Remove photo",
     "fotosErroMax": "You can attach at most {max} photos.",
     "fotosErroTipo": "We only accept images (JPG, PNG, WEBP or HEIC).",
     "fotosErroTamanho": "Each photo can be at most 10 MB.",
     "abordagemLabel": "How would you like us to work with your flowers?",
-    "abordagemHint": "Your flowers are already dry. Choose the option you prefer, or ask for our advice.",
+    "abordagemHint": "Choose the option you prefer, or ask for our advice.",
     "abordagemHintLink": "See the options",
     "abordagemOpcoes": [
       {
         "valor": "Emoldurar o ramo original seco",
-        "label": "Frame the original flowers, just as they are"
+        "label": "Frame the original dried flowers"
       },
       {
         "valor": "Recriar o ramo com flores frescas",
-        "label": "Recreate the arrangement with new flowers and preserve them"
+        "label": "Recreate the whole arrangement with fresh flowers and preserve them"
       },
       {
         "valor": "Combinação das duas",
-        "label": "Combine the original flowers with some new ones"
+        "label": "Combine: keep the original dried flowers and replace the damaged ones with preserved fresh flowers"
       },
       {
         "valor": "Não sei, prefiro aconselhamento",
         "label": "I am not sure, I would like your advice"
       }
     ],
-    "tamanhoHint": "Pricing for this service: 30×40 = €200, 40×50 = €270, 50×70 = €360.",
+    "tamanhoHint": "See the options and pricing for framing already-dried flowers on our page",
     "ornamentosSalvaguarda": "Depending on your flowers, it may not be possible to shape them to the thickness of an ornament. If you choose this option, we'll confirm with you whether it's feasible.",
     "pendentesSalvaguarda": "Depending on your flowers, it may not be possible to shape them to the thickness of a pendant. If you choose this option, we'll confirm with you whether it's feasible.",
-    "tamanhoHintLink": "See the dried-flower framing page"
+    "tamanhoHintLink": "Frame Dried Flowers"
   },
   "reservarEmoldurar": {
     "eyebrow": "Frame already-dried flowers",

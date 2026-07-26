@@ -470,8 +470,8 @@ export default function EmoldurarForm() {
           </Field>
         )}
 
-        <Field label={t("tipoFloresLabel")} hint={t("tipoFloresHint")}>
-          <textarea {...inp("tipoFlores")} rows={4} placeholder={t("tipoFloresPlaceholder")} />
+        <Field label={te("tipoFloresLabel")} hint={te("tipoFloresHint")}>
+          <textarea {...inp("tipoFlores")} rows={4} placeholder={te("tipoFloresPlaceholder")} />
         </Field>
 
         <Field name="estadoFlores" label={te("estadoLabel")} required error={errors.estadoFlores} hint={te("estadoHint")}>
