@@ -704,7 +704,7 @@ export default function EmoldurarForm() {
           </Field>
         )}
 
-        <Field label={t("notasLabel")} hint={t("notasHint")}>
+        <Field label={t("notasLabel")} hint={te("notasHint")}>
           <textarea {...inp("notasAdicionais")} rows={4} placeholder={t("notasPlaceholder")} />
         </Field>
 

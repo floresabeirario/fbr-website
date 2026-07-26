@@ -2351,7 +2351,8 @@
     "tamanhoHint": "Consulte as opções e preços do emolduramento de flores já secas na página",
     "ornamentosSalvaguarda": "Consoante as suas flores, poderá não ser possível moldá-las à espessura de um ornamento. Se escolher esta opção, confirmaremos consigo se é viável.",
     "pendentesSalvaguarda": "Consoante as suas flores, poderá não ser possível moldá-las à espessura de um pendente. Se escolher esta opção, confirmaremos consigo se é viável.",
-    "tamanhoHintLink": "Emoldurar Flores Secas"
+    "tamanhoHintLink": "Emoldurar Flores Secas",
+    "notasHint": "Se tiver preferências de design, indique aqui. Enviamos-lhe sempre uma foto com a disposição das flores sem estarem coladas, para que possa pedir os ajustes que sentir necessários antes da finalização definitiva do quadro."
   },
   "reservarEmoldurar": {
     "eyebrow": "Emoldurar flores já secas",
