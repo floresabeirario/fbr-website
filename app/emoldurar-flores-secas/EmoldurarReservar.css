@@ -1,0 +1,80 @@
+/* Acrescentos ao form de reserva para o upload de fotos do ramo.
+   As classes pf-* base vêm de ReservarPreservacaoClient.css. */
+
+.pf-file-input {
+  display: block;
+  width: 100%;
+  font-size: 0.9rem;
+  color: var(--ink, #3d2b1f);
+  cursor: pointer;
+}
+.pf-file-input::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 14px;
+  border: 1px solid var(--line, #e6ddcf);
+  border-radius: 10px;
+  background: var(--cream, #faf6ef);
+  color: var(--ink, #3d2b1f);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.pf-file-input::file-selector-button:hover {
+  background: #f0e8da;
+}
+.pf-file-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pf-foto-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pf-foto-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border: 1px solid var(--line, #e6ddcf);
+  border-radius: 10px;
+  background: var(--cream, #faf6ef);
+}
+.pf-foto-thumb {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.pf-foto-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.85rem;
+  color: var(--ink, #3d2b1f);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pf-foto-remove {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #9a8c78;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.pf-foto-remove:hover {
+  color: #b23b3b;
+  background: rgba(178, 59, 59, 0.08);
+}

@@ -184,6 +184,7 @@ export default function EmoldurarFloresSecasClient() {
   const NAV_SQUARES = t.raw("navSquares");
 
   const contactosHref = locale === "en" ? "/en/contact" : "/contactos";
+  const reservarHref = locale === "en" ? "/en/book-dried-flower-framing" : "/reservar-emoldurar-flores-secas";
 
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -228,6 +229,7 @@ export default function EmoldurarFloresSecasClient() {
               {t("heroDesc")}
             </p>
             <div className="cta-row" style={{ justifyContent: "center", marginBottom: "1.6rem" }}>
+              <a href={reservarHref} className="btn-solid-light">{locale === "en" ? "Book now" : "Reservar agora"}</a>
               <a href={contactosHref} className="btn-ghost-light">{t("heroCta")}</a>
             </div>
           </m.div>

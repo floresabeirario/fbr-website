@@ -2235,5 +2235,99 @@
     "opcoesPrecos": "Opções e Preços",
     "explorar": "Explorar serviços",
     "ampliar": "Ampliar"
+  },
+  "formEmoldurar": {
+    "secFlores": "As suas flores",
+    "secAbordagem": "A abordagem",
+    "tipoEventoHint": "De que ocasião são as flores?",
+    "tipoFloresLabel": "Que flores são?",
+    "tipoFloresHint": "Descreva o ramo: tipo de flores, cores e tamanho aproximado.",
+    "tipoFloresPlaceholder": "Ex.: rosas vermelhas e eucalipto, ramo médio.",
+    "estadoLabel": "Estado actual das flores",
+    "estadoHint": "Ajuda-nos a perceber a melhor abordagem e a preparar o orçamento.",
+    "estadoOpcoes": [
+      {
+        "valor": "Em bom estado, mantêm a forma e a cor",
+        "label": "Em bom estado, mantêm a forma e a cor"
+      },
+      {
+        "valor": "Com algumas partes frágeis, partidas ou desbotadas",
+        "label": "Com algumas partes frágeis, partidas ou desbotadas"
+      },
+      {
+        "valor": "Bastante danificadas ou desfeitas",
+        "label": "Bastante danificadas ou desfeitas"
+      },
+      {
+        "valor": "Prefiro que avaliem vocês",
+        "label": "Prefiro que avaliem vocês"
+      }
+    ],
+    "fotosLabel": "Fotos do ramo",
+    "fotosHint": "Opcional, mas ajuda muito. Até {max} fotos (JPG, PNG, WEBP ou HEIC), 10 MB cada.",
+    "fotosRemover": "Remover foto",
+    "fotosErroMax": "Pode anexar no máximo {max} fotos.",
+    "fotosErroTipo": "Só aceitamos imagens (JPG, PNG, WEBP ou HEIC).",
+    "fotosErroTamanho": "Cada foto pode ter no máximo 10 MB.",
+    "abordagemLabel": "Qual a abordagem que prefere?",
+    "abordagemHint": "Explicamos cada opção na página do serviço.",
+    "abordagemHintLink": "Ver as opções",
+    "abordagemOpcoes": [
+      {
+        "valor": "Emoldurar o ramo original seco",
+        "label": "Emoldurar o ramo original seco"
+      },
+      {
+        "valor": "Recriar o ramo com flores frescas",
+        "label": "Recriar o ramo com flores frescas"
+      },
+      {
+        "valor": "Combinação das duas",
+        "label": "Combinação das duas"
+      },
+      {
+        "valor": "Não sei, prefiro aconselhamento",
+        "label": "Não sei, prefiro aconselhamento"
+      }
+    ],
+    "tamanhoHint": "Preços deste serviço: 30×40 = 200€, 40×50 = 270€, 50×70 = 360€.",
+    "ornamentosSalvaguarda": "Consoante as suas flores, poderá não ser possível moldá-las à espessura de um ornamento. Se escolher esta opção, confirmamos consigo se é viável.",
+    "pendentesSalvaguarda": "Consoante as suas flores, poderá não ser possível moldá-las à espessura de um pendente. Se escolher esta opção, confirmamos consigo se é viável."
+  },
+  "reservarEmoldurar": {
+    "eyebrow": "Emoldurar flores já secas",
+    "h1": "Emoldure as suas flores já secas",
+    "heroSub": "Transforme um ramo que já secou numa peça de arte botânica, feita para durar.",
+    "infoLink": "Saber como funciona este serviço",
+    "comoFuncionaLabel": "Como funciona",
+    "formTitle": "O seu pedido",
+    "formSub": "Preencha os campos abaixo. Confirmamos os detalhes e o orçamento consigo antes de avançar.",
+    "provaSocial": "★★★★★ 5,0 nas avaliações no <g>Google</g> e no <c>casamentos.pt</c>",
+    "duvidaPre": "Tem alguma dúvida antes de avançar?",
+    "duvidaCTA": "Fale connosco no WhatsApp",
+    "passos": [
+      {
+        "n": "01",
+        "titulo": "Preenchimento",
+        "texto": "Preencha o formulário com os detalhes das flores e as suas preferências. Demora apenas alguns minutos."
+      },
+      {
+        "n": "02",
+        "titulo": "Confirmação e orçamento",
+        "texto": "Nos próximos 3 dias úteis, receberá o valor do serviço e os dados para o pagamento do sinal."
+      },
+      {
+        "n": "03",
+        "titulo": "Pagamento do sinal",
+        "texto": "O sinal de 30% deve ser pago em 24 horas. Só após o pagamento o pedido fica confirmado."
+      }
+    ],
+    "meta": {
+      "title": "Emoldurar Flores Já Secas",
+      "description": "Emoldure flores que já estão secas em arte botânica: emoldurar o ramo original, recriá-lo ou combinar os dois. Atelier em Coimbra, enviamos para todo o mundo.",
+      "ogTitle": "Emoldurar Flores Já Secas | Flores à Beira-Rio",
+      "ogDescription": "Emoldure flores que já estão secas em arte botânica. Feito à mão em Coimbra.",
+      "ogImageAlt": "Formulário para emoldurar flores já secas, Flores à Beira-Rio"
+    }
   }
-}
+}

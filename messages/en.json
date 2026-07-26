@@ -2234,5 +2234,99 @@
     "opcoesPrecos": "Options & Pricing",
     "explorar": "Explore services",
     "ampliar": "Enlarge"
+  },
+  "formEmoldurar": {
+    "secFlores": "Your flowers",
+    "secAbordagem": "The approach",
+    "tipoEventoHint": "What occasion are the flowers from?",
+    "tipoFloresLabel": "What flowers are they?",
+    "tipoFloresHint": "Describe the bouquet: type of flowers, colours and approximate size.",
+    "tipoFloresPlaceholder": "E.g. red roses and eucalyptus, medium bouquet.",
+    "estadoLabel": "Current condition of the flowers",
+    "estadoHint": "It helps us understand the best approach and prepare the quote.",
+    "estadoOpcoes": [
+      {
+        "valor": "Em bom estado, mantêm a forma e a cor",
+        "label": "In good condition, they keep their shape and colour"
+      },
+      {
+        "valor": "Com algumas partes frágeis, partidas ou desbotadas",
+        "label": "Some parts are fragile, broken or faded"
+      },
+      {
+        "valor": "Bastante danificadas ou desfeitas",
+        "label": "Quite damaged or falling apart"
+      },
+      {
+        "valor": "Prefiro que avaliem vocês",
+        "label": "I'd rather you assess them"
+      }
+    ],
+    "fotosLabel": "Photos of the bouquet",
+    "fotosHint": "Optional, but it helps a lot. Up to {max} photos (JPG, PNG, WEBP or HEIC), 10 MB each.",
+    "fotosRemover": "Remove photo",
+    "fotosErroMax": "You can attach at most {max} photos.",
+    "fotosErroTipo": "We only accept images (JPG, PNG, WEBP or HEIC).",
+    "fotosErroTamanho": "Each photo can be at most 10 MB.",
+    "abordagemLabel": "Which approach do you prefer?",
+    "abordagemHint": "We explain each option on the service page.",
+    "abordagemHintLink": "See the options",
+    "abordagemOpcoes": [
+      {
+        "valor": "Emoldurar o ramo original seco",
+        "label": "Frame the original dried bouquet"
+      },
+      {
+        "valor": "Recriar o ramo com flores frescas",
+        "label": "Recreate the bouquet with fresh flowers"
+      },
+      {
+        "valor": "Combinação das duas",
+        "label": "A combination of both"
+      },
+      {
+        "valor": "Não sei, prefiro aconselhamento",
+        "label": "I'm not sure, I'd like advice"
+      }
+    ],
+    "tamanhoHint": "Pricing for this service: 30×40 = €200, 40×50 = €270, 50×70 = €360.",
+    "ornamentosSalvaguarda": "Depending on your flowers, it may not be possible to shape them to the thickness of an ornament. If you choose this option, we'll confirm with you whether it's feasible.",
+    "pendentesSalvaguarda": "Depending on your flowers, it may not be possible to shape them to the thickness of a pendant. If you choose this option, we'll confirm with you whether it's feasible."
+  },
+  "reservarEmoldurar": {
+    "eyebrow": "Frame already-dried flowers",
+    "h1": "Frame your already-dried flowers",
+    "heroSub": "Turn a bouquet that has already dried into a piece of botanical art, made to last.",
+    "infoLink": "Learn how this service works",
+    "comoFuncionaLabel": "How it works",
+    "formTitle": "Your request",
+    "formSub": "Fill in the fields below. We'll confirm the details and the quote with you before moving forward.",
+    "provaSocial": "★★★★★ 5.0 in reviews on <g>Google</g> and <c>casamentos.pt</c>",
+    "duvidaPre": "Have a question before you start?",
+    "duvidaCTA": "Talk to us on WhatsApp",
+    "passos": [
+      {
+        "n": "01",
+        "titulo": "Fill in the form",
+        "texto": "Fill in the form with your flower details and preferences. It takes just a few minutes."
+      },
+      {
+        "n": "02",
+        "titulo": "Confirmation and quote",
+        "texto": "Within the next 3 working days, you will receive the service cost and deposit payment details."
+      },
+      {
+        "n": "03",
+        "titulo": "Deposit payment",
+        "texto": "The 30% deposit must be paid within 24 hours. The request is only confirmed after payment."
+      }
+    ],
+    "meta": {
+      "title": "Frame Already-Dried Flowers",
+      "description": "Frame flowers that are already dried into botanical art: frame the original bouquet, recreate it, or combine both. Studio in Coimbra, we ship worldwide.",
+      "ogTitle": "Frame Already-Dried Flowers | Flores à Beira-Rio",
+      "ogDescription": "Frame flowers that are already dried into botanical art. Handmade in Coimbra.",
+      "ogImageAlt": "Form to frame already-dried flowers, Flores à Beira-Rio"
+    }
   }
-}
+}
