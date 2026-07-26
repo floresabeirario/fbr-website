@@ -26,7 +26,7 @@ export default function EmoldurarReservarClient() {
       <div className="rp-hero">
         <div className="rp-hero-bg" aria-hidden="true">
           <Image
-            src="/quadro-flores-vidro-sobre-vidro.webp"
+            src="/casamento.webp"
             alt=""
             fill
             priority
