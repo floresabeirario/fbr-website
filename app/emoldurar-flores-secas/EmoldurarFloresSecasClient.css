@@ -7,6 +7,16 @@
 }
 .btn-ghost-light:hover { border-color: rgba(250,247,240,0.75); transform: translateY(-3px); }
 
+/* Variante sólida (CTA primário: reservar) — mesmo formato, fundo cheio */
+.btn-solid-light {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: #FAF7F0; color: #2A3F4D; padding: 15px 32px; border-radius: 100px;
+  text-decoration: none; font-weight: 600; font-size: 0.76rem; letter-spacing: 1.4px;
+  text-transform: uppercase; font-family: 'Google Sans', sans-serif;
+  border: 1.5px solid #FAF7F0; transition: all 0.3s ease;
+}
+.btn-solid-light:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+
 .cta-row { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
 @media (min-width: 480px) { .cta-row { flex-direction: row; justify-content: center; align-items: center; } }
 

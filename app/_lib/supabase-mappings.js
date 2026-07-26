@@ -76,6 +76,23 @@ const TIPO_EVENTO = {
   "Outro":               "outro",
 };
 
+// ── Emoldurar Flores Secas ──────────────────────────────────
+// A abordagem escolhida (as 3 opções da página do serviço + "não sei").
+const DRIED_APPROACH = {
+  "Emoldurar o ramo original seco":         "ramo_original",
+  "Recriar o ramo com flores frescas":      "recriacao",
+  "Combinação das duas":                    "combinacao",
+  "Não sei, prefiro aconselhamento":        "nao_sei",
+};
+
+// Estado actual das flores já secas.
+const DRIED_CONDITION = {
+  "Em bom estado, mantêm a forma e a cor":                 "bom_estado",
+  "Com algumas partes frágeis, partidas ou desbotadas":    "frageis",
+  "Bastante danificadas ou desfeitas":                     "danificadas",
+  "Prefiro que avaliem vocês":                             "avaliar",
+};
+
 // ── Vale-Presente ───────────────────────────────────────────
 
 const VALE_MEIO_CONTACTO = MEIO_CONTACTO;
@@ -235,6 +252,119 @@ export function mapReservaToOrder(data, { ip } = {}) {
     // Os campos administrativos (status, payment_status, contacted,
     // manually_no_response, etc.) ficam ao seu DEFAULT da BD —
     // a policy `orders_public_insert` exige isto.
+  };
+
+  return { payload, errors };
+}
+
+/**
+ * Constrói o payload para INSERT em `orders` a partir do form de
+ * "Emoldurar Flores Secas". Variante da preservação (service_type =
+ * 'emoldurar_secas') — partilha a maioria dos campos, sem data de evento,
+ * com abordagem/estado próprios e fotos do ramo (já carregadas no Storage;
+ * `clientPhotos` = [{ path, name }]).
+ */
+export function mapEmoldurarToOrder(data, { ip, clientPhotos = [] } = {}) {
+  const errors = [];
+
+  const phone = (data.telefone || "").trim() || null;
+  const email = (data.email || "").trim() || null;
+
+  const contact_preference     = lookup(MEIO_CONTACTO,         data.meioContacto);
+  const event_type             = lookup(TIPO_EVENTO,           data.tipoEvento);
+  const flower_delivery_method = lookup(COMO_ENVIAR_FLORES,    data.comoEnviarFlores);
+  const frame_delivery_method  = lookup(COMO_RECEBER_QUADRO,   data.comoReceberQuadro);
+  const frame_size             = lookup(TAMANHO_MOLDURA,       data.tamanhoMoldura);
+  const frame_background       = lookup(TIPO_FUNDO,            data.tipoFundo);
+  const extra_small_frames     = lookup(SIM_NAO_INFO,          data.quadrosExtra);
+  const christmas_ornaments    = lookup(SIM_NAO_INFO,          data.ornamentosNatal);
+  const necklace_pendants      = lookup(SIM_NAO_INFO,          data.pendentes);
+  const how_found_fbr          = lookup(COMO_CONHECEU_RESERVA, data.comoConheceu);
+  const dried_approach         = lookup(DRIED_APPROACH,        data.abordagem);
+  const dried_condition        = lookup(DRIED_CONDITION,       data.estadoFlores);
+
+  if (data.meioContacto      && !contact_preference)     errors.push("meioContacto");
+  if (data.tipoEvento        && !event_type)             errors.push("tipoEvento");
+  if (data.comoEnviarFlores  && !flower_delivery_method) errors.push("comoEnviarFlores");
+  if (data.comoReceberQuadro && !frame_delivery_method)  errors.push("comoReceberQuadro");
+  if (data.tamanhoMoldura    && !frame_size)             errors.push("tamanhoMoldura");
+  if (data.tipoFundo         && !frame_background)       errors.push("tipoFundo");
+  if (data.quadrosExtra      && !extra_small_frames)     errors.push("quadrosExtra");
+  if (data.ornamentosNatal   && !christmas_ornaments)    errors.push("ornamentosNatal");
+  if (data.pendentes         && !necklace_pendants)      errors.push("pendentes");
+  if (data.comoConheceu      && !how_found_fbr)          errors.push("comoConheceu");
+  if (data.abordagem         && !dried_approach)         errors.push("abordagem");
+  if (data.estadoFlores      && !dried_condition)        errors.push("estadoFlores");
+
+  const toIntOrNull = (v) => {
+    if (v === undefined || v === null || v === "") return null;
+    const n = Number(v);
+    return Number.isFinite(n) && n > 0 ? Math.trunc(n) : null;
+  };
+
+  let how_found_fbr_other = null;
+  if (how_found_fbr === "florista") {
+    how_found_fbr_other = (data.nomeFlorista || "").trim() || null;
+    if (!how_found_fbr_other) errors.push("nomeFlorista");
+  } else if (how_found_fbr === "outro") {
+    how_found_fbr_other = (data.comoConheceuOutro || "").trim() || null;
+  }
+
+  const gift_voucher_code =
+    how_found_fbr === "vale_presente"
+      ? (data.codigoValePresente || "").trim().toUpperCase() || null
+      : null;
+  if (how_found_fbr === "vale_presente" && !gift_voucher_code) {
+    errors.push("codigoValePresente");
+  }
+
+  const couple_names =
+    event_type === "casamento"
+      ? (data.nomeNoivos || "").trim() || null
+      : null;
+
+  const extras_options = Array.isArray(data.elementosExtra)
+    ? data.elementosExtra.filter((s) => typeof s === "string" && s.trim())
+    : [];
+  const extras_in_frame = {
+    options: extras_options,
+    notes:   (data.elementosExtraOutro || "").trim(),
+  };
+
+  const payload = {
+    service_type:      "emoldurar_secas",
+    client_name:       (data.nome || "").trim(),
+    contact_preference,
+    email,
+    phone,
+    // Sem data de evento neste serviço (as flores já estão secas).
+    event_type,
+    couple_names,
+    event_location:    (data.localEvento || "").trim() || null,
+    flower_type:       (data.tipoFlores || "").trim() || null,
+    dried_approach,
+    dried_condition,
+    client_photos:     Array.isArray(clientPhotos) ? clientPhotos : [],
+    flower_delivery_method,
+    frame_delivery_method,
+    frame_size,
+    frame_background,
+    extras_in_frame,
+    extra_small_frames,
+    extra_small_frames_qty:    toIntOrNull(data.quantosQuadros),
+    christmas_ornaments,
+    christmas_ornaments_qty:   toIntOrNull(data.quantosOrnamentos),
+    necklace_pendants,
+    necklace_pendants_qty:     toIntOrNull(data.quantosPendentes),
+    how_found_fbr,
+    how_found_fbr_other,
+    gift_voucher_code,
+    additional_notes:   (data.notasAdicionais || "").trim() || null,
+    form_language:      data.locale === "en" ? "en" : "pt",
+
+    consent_at:         new Date().toISOString(),
+    consent_version:    "1.0-explicit",
+    consent_ip:         ip || null,
   };
 
   return { payload, errors };

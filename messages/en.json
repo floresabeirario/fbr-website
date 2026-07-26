@@ -103,9 +103,18 @@
     "langLabel": "Portuguese version",
     "announceLabel": "Announcements",
     "announceItems": [
-      { "text": "Worldwide shipping for your finished frame", "href": "/en/how-it-works" },
-      { "text": "Gift preservation: vouchers from €300", "href": "/en/gift-preservation" },
-      { "text": "A meaningful gift: offer flower preservation through our voucher", "href": "/en/gift-preservation" }
+      {
+        "text": "Worldwide shipping for your finished frame",
+        "href": "/en/how-it-works"
+      },
+      {
+        "text": "Gift preservation: vouchers from €300",
+        "href": "/en/gift-preservation"
+      },
+      {
+        "text": "A meaningful gift: offer flower preservation through our voucher",
+        "href": "/en/gift-preservation"
+      }
     ]
   },
   "footer": {
@@ -645,7 +654,11 @@
     "h1": "Preserve the Wedding Bouquet",
     "heroDesc": "We transform your wedding bouquet into a botanical work of art that lasts decades. Artisan pressing and handmade framing in Coimbra, with shipping across Portugal and Europe.",
     "heroPrice": "From €300 · payment in 3 stages",
-    "heroDelivery": ["In person", "By post", "Collection of your choice"],
+    "heroDelivery": [
+      "In person",
+      "By post",
+      "Collection of your choice"
+    ],
     "sliderAntes": "Before",
     "sliderDepois": "After",
     "sliderArraste": "Drag to compare",
@@ -1542,11 +1555,26 @@
     "tipoEventoLabel": "Type of event",
     "tipoEventoHint": "So we can personalise our communication with you.",
     "tipoEventoOpcoes": [
-      { "valor": "Casamento",            "label": "Wedding" },
-      { "valor": "Batizado",             "label": "Baptism" },
-      { "valor": "Funeral",              "label": "Funeral" },
-      { "valor": "Pedido de Casamento",  "label": "Marriage proposal" },
-      { "valor": "Outro",                "label": "Other" }
+      {
+        "valor": "Casamento",
+        "label": "Wedding"
+      },
+      {
+        "valor": "Batizado",
+        "label": "Baptism"
+      },
+      {
+        "valor": "Funeral",
+        "label": "Funeral"
+      },
+      {
+        "valor": "Pedido de Casamento",
+        "label": "Marriage proposal"
+      },
+      {
+        "valor": "Outro",
+        "label": "Other"
+      }
     ],
     "nomeNoivosLabel": "Names of the couple",
     "nomeNoivosHint": "So we can personalise the packaging of the final piece.",
@@ -1555,7 +1583,7 @@
     "localEventoHint": "City or venue where the event took place (or will take place).",
     "localEventoPlaceholder": "E.g.: Quinta das Lágrimas, Coimbra",
     "tipoFloresLabel": "Type of flowers in the arrangement",
-    "tipoFloresHint": "Indicate the types of flowers (roses, orchids, wildflowers, etc.) and the type of arrangement (bouquet, boutonnière, centrepiece, crown, etc.). If you don't have this information yet, leave it blank.",
+    "tipoFloresHint": "Indicate the types of flowers (roses, orchids, wildflowers, etc.) and the type of arrangement (bouquet, boutonnière, centrepiece, crown, etc.). If you don’t have this information yet, leave it blank.",
     "tipoFloresPlaceholder": "E.g.: orchids, sunflowers, daisies. Bridal bouquet.",
     "enviarFloresLabel": "How do you intend to send us the flowers?",
     "receberQuadroLabel": "How would you prefer to receive the finished frame?",
@@ -1674,15 +1702,42 @@
       }
     ],
     "elementosOpcoes": [
-      { "valor": "Não pretendo incluir extras", "label": "I do not wish to include extras" },
-      { "valor": "Votos manuscritos", "label": "Handwritten vows" },
-      { "valor": "Convite do casamento", "label": "Wedding invitation" },
-      { "valor": "Fitas, tecidos ou rendas", "label": "Ribbons, fabric or lace" },
-      { "valor": "Fotografia", "label": "Photograph" },
-      { "valor": "Joia ou medalha", "label": "Jewellery or medal" },
-      { "valor": "Coleira de animal", "label": "Pet collar" },
-      { "valor": "Cartas ou bilhetes", "label": "Letters or notes" },
-      { "valor": "Outro (especifique abaixo)", "label": "Other (specify below)" }
+      {
+        "valor": "Votos manuscritos",
+        "label": "Handwritten vows"
+      },
+      {
+        "valor": "Convite do casamento",
+        "label": "Wedding invitation"
+      },
+      {
+        "valor": "Fitas, tecidos ou rendas",
+        "label": "Ribbons, fabric or lace"
+      },
+      {
+        "valor": "Fotografia",
+        "label": "Photograph"
+      },
+      {
+        "valor": "Joia ou medalha",
+        "label": "Jewellery or medal"
+      },
+      {
+        "valor": "Coleira de animal",
+        "label": "Pet collar"
+      },
+      {
+        "valor": "Cartas ou bilhetes",
+        "label": "Letters or notes"
+      },
+      {
+        "valor": "Outro (especifique abaixo)",
+        "label": "Other (specify below)"
+      },
+      {
+        "valor": "Não pretendo incluir extras",
+        "label": "I do not wish to include extras"
+      }
     ],
     "quadrosExtraOpcoes": [
       {
@@ -2234,5 +2289,101 @@
     "opcoesPrecos": "Options & Pricing",
     "explorar": "Explore services",
     "ampliar": "Enlarge"
+  },
+  "formEmoldurar": {
+    "secFlores": "Your flowers",
+    "secAbordagem": "The approach",
+    "tipoEventoHint": "What occasion are the flowers from?",
+    "tipoFloresLabel": "Type of flowers in the arrangement",
+    "tipoFloresHint": "Indicate the types of flowers (roses, orchids, wildflowers, etc.) and the type of arrangement (bouquet, boutonnière, centrepiece, crown, etc.).",
+    "tipoFloresPlaceholder": "E.g.: orchids, sunflowers, daisies. Bridal bouquet.",
+    "estadoLabel": "Current condition of the flowers",
+    "estadoHint": "It helps us understand the best approach and prepare the quote.",
+    "estadoOpcoes": [
+      {
+        "valor": "Em bom estado, mantêm a forma e a cor",
+        "label": "In good condition, they keep their shape and colour"
+      },
+      {
+        "valor": "Com algumas partes frágeis, partidas ou desbotadas",
+        "label": "Some parts are fragile, broken or faded"
+      },
+      {
+        "valor": "Bastante danificadas ou desfeitas",
+        "label": "Quite damaged or falling apart"
+      },
+      {
+        "valor": "Prefiro que avaliem vocês",
+        "label": "I'd rather you assess them"
+      }
+    ],
+    "fotosLabel": "Photos of your flowers",
+    "fotosHint": "Optional. They help us understand the situation and advise you better. Up to {max} photos (JPG, PNG, WEBP or HEIC), 10 MB each.",
+    "fotosRemover": "Remove photo",
+    "fotosErroMax": "You can attach at most {max} photos.",
+    "fotosErroTipo": "We only accept images (JPG, PNG, WEBP or HEIC).",
+    "fotosErroTamanho": "Each photo can be at most 10 MB.",
+    "abordagemLabel": "How would you like us to work with your flowers?",
+    "abordagemHint": "Choose the option you prefer, or ask for our advice.",
+    "abordagemHintLink": "See the options",
+    "abordagemOpcoes": [
+      {
+        "valor": "Emoldurar o ramo original seco",
+        "label": "Frame the original dried flowers"
+      },
+      {
+        "valor": "Recriar o ramo com flores frescas",
+        "label": "Recreate the whole arrangement with fresh flowers and preserve them"
+      },
+      {
+        "valor": "Combinação das duas",
+        "label": "Combine: keep the original dried flowers and replace the damaged ones with preserved fresh flowers"
+      },
+      {
+        "valor": "Não sei, prefiro aconselhamento",
+        "label": "I am not sure, I would like your advice"
+      }
+    ],
+    "tamanhoHint": "See the options and pricing for framing already-dried flowers on our page",
+    "ornamentosSalvaguarda": "Depending on your flowers, it may not be possible to shape them to the thickness of an ornament. If you choose this option, we'll confirm with you whether it's feasible.",
+    "pendentesSalvaguarda": "Depending on your flowers, it may not be possible to shape them to the thickness of a pendant. If you choose this option, we'll confirm with you whether it's feasible.",
+    "tamanhoHintLink": "Frame Dried Flowers",
+    "notasHint": "If you have any design preferences, please indicate them here. We’ll always send you a photo of the flower arrangement before they are glued, so you can request any adjustments you wish before the final finishing of the frame."
+  },
+  "reservarEmoldurar": {
+    "eyebrow": "Frame already-dried flowers",
+    "h1": "Frame your already-dried flowers",
+    "heroSub": "Turn a bouquet that has already dried into a piece of botanical art, made to last.",
+    "infoLink": "Learn how this service works",
+    "comoFuncionaLabel": "How it works",
+    "formTitle": "Your request",
+    "formSub": "Fill in the fields below. We'll confirm the details and the quote with you before moving forward.",
+    "provaSocial": "★★★★★ 5.0 in reviews on <g>Google</g> and <c>casamentos.pt</c>",
+    "duvidaPre": "Have a question before you start?",
+    "duvidaCTA": "Talk to us on WhatsApp",
+    "passos": [
+      {
+        "n": "01",
+        "titulo": "Fill in the form",
+        "texto": "Fill in the form with your flower details and preferences. It takes just a few minutes."
+      },
+      {
+        "n": "02",
+        "titulo": "Confirmation and quote",
+        "texto": "Within the next 3 working days, you will receive the service cost and deposit payment details."
+      },
+      {
+        "n": "03",
+        "titulo": "Deposit payment",
+        "texto": "The 30% deposit must be paid within 24 hours. The request is only confirmed after payment."
+      }
+    ],
+    "meta": {
+      "title": "Frame Already-Dried Flowers",
+      "description": "Frame flowers that are already dried into botanical art: frame the original bouquet, recreate it, or combine both. Studio in Coimbra, we ship worldwide.",
+      "ogTitle": "Frame Already-Dried Flowers | Flores à Beira-Rio",
+      "ogDescription": "Frame flowers that are already dried into botanical art. Handmade in Coimbra.",
+      "ogImageAlt": "Form to frame already-dried flowers, Flores à Beira-Rio"
+    }
   }
-}
+}

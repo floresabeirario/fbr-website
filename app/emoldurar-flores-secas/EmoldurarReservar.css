@@ -1,0 +1,136 @@
+/* Acrescentos ao form de "emoldurar flores secas".
+   As classes base (rp- e pf-) vêm de ReservarPreservacaoClient.css; aqui só
+   re-tingimos para o tom AZUL do serviço (distinto do dourado da reserva de
+   preservação, para não induzir em erro) + estilos do upload de fotos. */
+
+/* ── Tema verde-sálvia (scoped em .emoldurar-theme) ──────────
+   Distinto do dourado da reserva de preservação E do azul do vale-presente. */
+.rp-page.emoldurar-theme {
+  /* dourado/âmbar → verde-sálvia botânico */
+  --gold: #5E7D68;
+  background: linear-gradient(
+    170deg,
+    #F5F9F5 0%,
+    #E9F1EB 38%,
+    #DBE8DE 70%,
+    #CBDDCF 100%
+  );
+}
+.emoldurar-theme .rp-step-n { color: rgba(94, 125, 104, 0.85); }
+.emoldurar-theme .rp-form-lead-title { color: #2A4232; }
+.emoldurar-theme .rp-form-lead-sub { color: #3F5A48; }
+.emoldurar-theme .pf-link,
+.emoldurar-theme .rp-form-link { color: #3D6650; }
+.emoldurar-theme .pf-btn {
+  background: linear-gradient(135deg, #3D5A48 0%, #22382C 100%);
+  box-shadow: 0 4px 16px rgba(34, 56, 44, 0.42), 0 1px 4px rgba(34, 56, 44, 0.24);
+}
+.emoldurar-theme .pf-btn:hover {
+  box-shadow: 0 8px 28px rgba(34, 56, 44, 0.48), 0 2px 8px rgba(34, 56, 44, 0.28);
+}
+.emoldurar-theme .pf-btn:focus-visible { outline-color: #6E8C7A; }
+
+/* Campos: creme quente → off-white esverdeado */
+.emoldurar-theme .pf-input {
+  background: #F4F8F4;
+  border-color: #C6D6C8;
+  color: #1C2A20;
+}
+.emoldurar-theme .pf-input::placeholder { color: #93AC98; }
+.emoldurar-theme .pf-input:hover { border-color: #A9C3AE; background: #fff; }
+.emoldurar-theme .pf-input:focus-visible {
+  border-color: #3D5A48;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(61, 90, 72, 0.13);
+}
+.emoldurar-theme .pf-checkbox { accent-color: #3D5A48; }
+.emoldurar-theme .pf-req { color: #6E8C7A; }
+
+/* Upload de fotos a condizer com o verde */
+.emoldurar-theme .pf-file-input::file-selector-button {
+  background: #EAF1EC;
+  border-color: #C6D6C8;
+  color: #2A4232;
+}
+.emoldurar-theme .pf-file-input::file-selector-button:hover { background: #DFEAE1; }
+.emoldurar-theme .pf-foto-item { background: #EFF5F0; border-color: #C6D6C8; }
+
+
+
+.pf-file-input {
+  display: block;
+  width: 100%;
+  font-size: 0.9rem;
+  color: var(--ink, #3d2b1f);
+  cursor: pointer;
+}
+.pf-file-input::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 14px;
+  border: 1px solid var(--line, #e6ddcf);
+  border-radius: 10px;
+  background: var(--cream, #faf6ef);
+  color: var(--ink, #3d2b1f);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.pf-file-input::file-selector-button:hover {
+  background: #f0e8da;
+}
+.pf-file-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pf-foto-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pf-foto-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border: 1px solid var(--line, #e6ddcf);
+  border-radius: 10px;
+  background: var(--cream, #faf6ef);
+}
+.pf-foto-thumb {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.pf-foto-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.85rem;
+  color: var(--ink, #3d2b1f);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pf-foto-remove {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #9a8c78;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.pf-foto-remove:hover {
+  color: #b23b3b;
+  background: rgba(178, 59, 59, 0.08);
+}
