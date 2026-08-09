@@ -121,6 +121,23 @@
   border-color: rgba(255, 255, 255, 0.52);
 }
 
+.vp-hero-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* Link do vale de exemplo: mesmo estilo, sublinhado dourado para o destacar */
+.vp-info-link-alt {
+  color: rgba(255, 255, 255, 0.82);
+  border-color: rgba(212, 175, 90, 0.55);
+}
+
+.vp-info-link-alt:hover {
+  border-color: rgba(212, 175, 90, 0.9);
+}
+
 /* ═══════════════════════════════════════════════
    BARRA DE PASSOS — azul-ardósia do envelope
 ═══════════════════════════════════════════════ */

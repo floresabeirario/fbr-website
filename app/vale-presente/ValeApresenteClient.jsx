@@ -14,6 +14,11 @@ export default function ValeApresenteClient() {
   const locale = useLocale();
   const STEPS = t.raw("passos");
   const ofereceHref = locale === "en" ? "/en/gift-preservation" : "/oferecer-preservacao";
+  // Vale de demonstração: mostra o cartão digital real com dados fictícios de
+  // um casal (o código EXEMPLO é tratado no site voucher.floresabeirario.pt).
+  const exemploHref = locale === "en"
+    ? "https://voucher.floresabeirario.pt/EXEMPLO?lang=en"
+    : "https://voucher.floresabeirario.pt/EXEMPLO";
   return (
     // <div> em vez de <main>: o layout já embrulha as páginas num <main>.
     <div className="vp-page">
@@ -39,9 +44,19 @@ export default function ValeApresenteClient() {
           <p className="vp-sub">
             {t("heroDesc")}
           </p>
-          <Link href={ofereceHref} className="vp-info-link">
-            {t("saberMais")} <span aria-hidden="true">→</span>
-          </Link>
+          <div className="vp-hero-links">
+            <Link href={ofereceHref} className="vp-info-link">
+              {t("saberMais")} <span aria-hidden="true">→</span>
+            </Link>
+            <a
+              href={exemploHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="vp-info-link vp-info-link-alt"
+            >
+              {t("verExemplo")}
+            </a>
+          </div>
         </m.div>
       </div>
 
