@@ -676,6 +676,7 @@
     "ctaComoFunciona": "How it works",
     "ctaPrecos": "Options & pricing",
     "ctaFAQ": "Frequently asked questions",
+    "linkPreservacao": "Flower preservation",
     "features": [
       {
         "titulo": "Hand in the bouquet within 6 days",
@@ -815,6 +816,7 @@
     "linkComoFunciona": "How it works",
     "linkPrecos": "Options & pricing",
     "linkFAQ": "Frequently asked questions",
+    "linkPreservacao": "Flower preservation",
     "features": [
       {
         "titulo": "With the utmost care",
@@ -874,6 +876,7 @@
     "linkComoFunciona": "How it works",
     "linkPrecos": "Options & pricing",
     "linkFAQ": "Frequently asked questions",
+    "linkPreservacao": "Flower preservation",
     "features": [
       {
         "titulo": "Ceremony or maternity flowers",
@@ -933,6 +936,7 @@
     "linkComoFunciona": "How it works",
     "linkPrecos": "Options & pricing",
     "linkFAQ": "Frequently asked questions",
+    "linkPreservacao": "Flower preservation",
     "features": [
       {
         "titulo": "For any anniversary",
@@ -990,6 +994,7 @@
     "ctaFinalEm": "first yes",
     "ctaDesc": "Proposal flowers deserve to be preserved before they dry. Prices from €300, with payment in three stages.",
     "ctaBouquet": "Wedding bouquet",
+    "linkPreservacao": "Flower preservation",
     "linkComoFunciona": "How it works",
     "linkPrecos": "Options & pricing",
     "features": [
@@ -1264,6 +1269,7 @@
     "cartaoTitulo": "Flower preservation gift voucher",
     "valeAlt": "Flores à Beira-Rio gift card",
     "cartaoCredito": "Illustrated by artist @damais_cenas, from Coimbra",
+    "verExemplo": "See an example of the digital voucher →",
     "momentosTitulo": "Special occasions",
     "momentosSubtitulo": "For every life moment",
     "momentosDesc": "A gift that goes far beyond flowers.",

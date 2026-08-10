@@ -108,6 +108,11 @@ export default function OfereceClient() {
   const entrega = t.raw("entrega");
   const valeHref = locale === "en" ? "/en/gift-voucher" : "/vale-presente";
   const precosHref = locale === "en" ? "/en/options-and-pricing" : "/opcoes-e-precos";
+  // Vale de demonstração no site do voucher (cartão digital real, dados
+  // fictícios de um casal). O código EXEMPLO é tratado em voucher.*.
+  const exemploHref = locale === "en"
+    ? "https://voucher.floresabeirario.pt/EXEMPLO?lang=en"
+    : "https://voucher.floresabeirario.pt/EXEMPLO";
   return (
     <div style={{ backgroundColor: CREME, fontFamily: "'Google Sans', sans-serif", color: ESCURO, overflowX: "clip" }}>
 
@@ -174,6 +179,16 @@ export default function OfereceClient() {
                   </div>
                 ))}
               </div>
+
+              <a
+                href={exemploHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover-border-full"
+                style={{ display: "inline-flex", alignItems: "center", marginTop: "1.6rem", fontSize: "0.82rem", fontWeight: 600, color: AZUL, textDecoration: "none", letterSpacing: "0.03em", borderBottom: `1px solid ${AZUL}55`, paddingBottom: "2px" }}
+              >
+                {t("verExemplo")}
+              </a>
             </div>
           </div>
         </Reveal>

@@ -45,6 +45,7 @@ export default function BouquetNoivaClient() {
   const precosHref = locale === "en" ? "/en/options-and-pricing" : OPCOES_PRECOS_URL;
   const comoHref   = locale === "en" ? "/en/how-it-works"        : "/como-funciona";
   const faqHref    = locale === "en" ? "/en/faq"                 : "/perguntas-frequentes";
+  const preservacaoHref = locale === "en" ? "/en/flower-preservation" : "/preservacao-de-flores";
   const [processStart, processEm] = splitTitle(t("processTitle"), t("processEm"));
   const [ctaFinalStart, ctaFinalEm] = splitTitle(t("ctaFinalTitle"), t("ctaFinalEm"));
 
@@ -276,9 +277,10 @@ export default function BouquetNoivaClient() {
           </div>
           <div className="momento-links">
             {[
-              { href: comoHref,   label: t("ctaComoFunciona") },
-              { href: precosHref, label: t("ctaPrecos") },
-              { href: faqHref,    label: t("ctaFAQ") },
+              { href: comoHref,        label: t("ctaComoFunciona") },
+              { href: precosHref,      label: t("ctaPrecos") },
+              { href: faqHref,         label: t("ctaFAQ") },
+              { href: preservacaoHref, label: t("linkPreservacao") },
             ].map((l) => (
               <a key={l.href} href={l.href} className="momento-link">{l.label}</a>
             ))}
