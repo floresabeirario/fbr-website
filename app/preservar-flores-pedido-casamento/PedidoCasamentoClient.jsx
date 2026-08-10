@@ -31,6 +31,7 @@ export default function PedidoCasamentoClient() {
   const comoHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
   const precosHref = locale === "en" ? "/en/options-and-pricing" : "/opcoes-e-precos";
   const bouquetHref = locale === "en" ? "/en/preserve-wedding-bouquet" : "/preservar-bouquet-noiva";
+  const preservacaoHref = locale === "en" ? "/en/flower-preservation" : "/preservacao-de-flores";
 
   return (
     <div className="momento-page momento-page--sticky">
@@ -108,9 +109,10 @@ export default function PedidoCasamentoClient() {
           </div>
           <div className="momento-links">
             {[
-              { href: comoHref,   label: t("linkComoFunciona") },
-              { href: precosHref, label: t("linkPrecos") },
-              { href: bouquetHref, label: t("ctaBouquet") },
+              { href: comoHref,        label: t("linkComoFunciona") },
+              { href: precosHref,      label: t("linkPrecos") },
+              { href: bouquetHref,     label: t("ctaBouquet") },
+              { href: preservacaoHref, label: t("linkPreservacao") },
             ].map((l) => (
               <a key={l.href} href={l.href} className="momento-link">{l.label}</a>
             ))}
