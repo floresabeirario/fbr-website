@@ -506,6 +506,13 @@ input[type="date"].pf-input {
   color: #7A5838;
 }
 
+/* O .pf-fieldset-group zera a margem que o .pf-group dá, e sem ela a
+   margem negativa do "Ainda não sei" acima ficava por cima dos campos
+   das horas. Repõe-se o mesmo espaçamento dos outros campos. */
+.pf-subblock .pf-fieldset-group {
+  margin-bottom: 16px;
+}
+
 /* ── Janela horária (das … às …) ── */
 .pf-hora-wrap {
   display: flex;

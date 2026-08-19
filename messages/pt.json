@@ -1603,7 +1603,7 @@
     "receberQuadroLabel": "Como prefere receber o quadro finalizado?",
     "recolhaTitulo": "Detalhes da recolha",
     "recolhaIntro1": "Estes dados permitem-nos apresentar um valor exacto para a recolha. Habitualmente recolhemos as flores nos dias seguintes ao evento, na morada, dia e hora que nos indicar. Em alternativa, podemos recolhê-las no próprio local do evento, no final da celebração.",
-    "recolhaIntro2": "O preenchimento é opcional, mas recomendamos que indique o que já souber: quanto mais completa for a informação, mais preciso será o orçamento. Se algum destes pontos ainda não estiver definido, assinale \"Ainda não sei\" e combinaremos consigo mais tarde.",
+    "recolhaIntro2": "Se algum destes pontos ainda não estiver definido, assinale \"Ainda não sei\" e combinaremos consigo mais tarde.",
     "recolhaDataLabel": "Dia pretendido para a recolha",
     "recolhaDataNaoSei": "Ainda não sei o dia",
     "recolhaMoradaLabel": "Morada da recolha",

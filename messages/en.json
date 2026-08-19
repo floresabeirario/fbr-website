@@ -1595,7 +1595,7 @@
     "receberQuadroLabel": "How would you prefer to receive the finished frame?",
     "recolhaTitulo": "Collection details",
     "recolhaIntro1": "This information allows us to give you an accurate quote for the collection. We usually collect the flowers in the days following the event, at the address, day and time you tell us. Alternatively, we can collect them at the event venue itself, at the end of the celebration.",
-    "recolhaIntro2": "These fields are optional, but we recommend filling in whatever you already know: the more complete the information, the more accurate the quote will be. If any of these details are not yet settled, tick \"I don't know yet\" and we will arrange it with you later.",
+    "recolhaIntro2": "If any of these details are not yet settled, tick \"I don't know yet\" and we will arrange it with you later.",
     "recolhaDataLabel": "Preferred collection day",
     "recolhaDataNaoSei": "I don't know the day yet",
     "recolhaMoradaLabel": "Collection address",
