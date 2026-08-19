@@ -51,11 +51,15 @@ function loadMaps(language) {
   return mapsPromise;
 }
 
-export default function PickupMap({ lat, lng, locale = "pt", label }) {
+const ZOOM_INICIAL = 16;
+
+export default function PickupMap({ lat, lng, locale = "pt", label, textoRecentrar }) {
   const divRef = useRef(null);
   const mapRef = useRef(null);
   const markerRef = useRef(null);
   const [falhou, setFalhou] = useState(false);
+  // O botão de recentrar só faz sentido depois de a pessoa mexer no mapa.
+  const [saiuDoSitio, setSaiuDoSitio] = useState(false);
   // Se a Google deixar de aceitar o marcador clássico, desenhamos um
   // pino nosso no centro em vez de ficar um mapa sem indicação.
   const [pinoProprio, setPinoProprio] = useState(false);
@@ -75,7 +79,7 @@ export default function PickupMap({ lat, lng, locale = "pt", label }) {
         if (!mapRef.current) {
           mapRef.current = new maps.Map(divRef.current, {
             center: posicao,
-            zoom: 16,
+            zoom: ZOOM_INICIAL,
             // "cooperative": no telemóvel só arrasta com dois dedos e no
             // computador só faz zoom com Ctrl. Sem isto, o mapa rouba o
             // scroll da página e a pessoa fica presa a meio do formulário.
@@ -85,8 +89,21 @@ export default function PickupMap({ lat, lng, locale = "pt", label }) {
             fullscreenControl: false,
             zoomControl: true,
           });
+          // "idle" dispara sempre que o mapa assenta depois de mexido.
+          // Só mostramos o botão quando ela já se afastou do pino, para
+          // não pôr mais um controlo por cima do mapa sem necessidade.
+          mapRef.current.addListener("idle", () => {
+            const c = mapRef.current?.getCenter();
+            if (!c) return;
+            const longe =
+              Math.abs(c.lat() - lat) > 0.0006 ||
+              Math.abs(c.lng() - lng) > 0.0006 ||
+              mapRef.current.getZoom() !== ZOOM_INICIAL;
+            setSaiuDoSitio(longe);
+          });
         } else {
           mapRef.current.setCenter(posicao);
+          mapRef.current.setZoom(ZOOM_INICIAL);
         }
 
         try {
@@ -120,6 +137,20 @@ export default function PickupMap({ lat, lng, locale = "pt", label }) {
     <div className="pf-mapa">
       <div ref={divRef} className="pf-mapa-tela" role="img" aria-label={label} />
       {pinoProprio && <span className="pf-mapa-pino" aria-hidden="true" />}
+      {saiuDoSitio && (
+        // type="button" é essencial: dentro de um <form>, um botão sem
+        // tipo submete a reserva.
+        <button
+          type="button"
+          className="pf-mapa-recentrar"
+          onClick={() => {
+            mapRef.current?.setCenter({ lat, lng });
+            mapRef.current?.setZoom(ZOOM_INICIAL);
+          }}
+        >
+          {textoRecentrar}
+        </button>
+      )}
     </div>
   );
 }

@@ -688,6 +688,38 @@ input[type="date"].pf-input {
   pointer-events: none;
 }
 
+/* Botão "Voltar à morada" — aparece só depois de a pessoa mexer no
+   mapa. Canto superior esquerdo: é o único livre (a Google ocupa o
+   logótipo em baixo à esquerda, os termos e o zoom à direita, e o
+   controlo de deslocação em cima à direita). */
+.pf-mapa-recentrar {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  min-height: 36px;
+  padding: 8px 12px;
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #2A1E10;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #DEC8A0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(42, 30, 16, 0.18);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.pf-mapa-recentrar:hover {
+  background: #FAF6EE;
+}
+
+.pf-mapa-recentrar:focus-visible {
+  outline: 2px solid #5A4030;
+  outline-offset: 2px;
+}
+
 .pf-mapa-nota {
   margin-top: 6px;
   margin-bottom: 0;

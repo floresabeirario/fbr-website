@@ -1611,6 +1611,7 @@
     "recolhaMoradaPlaceholder": "Ex.: Quinta da Bouça, Rua ...",
     "recolhaMoradaNaoSei": "Ainda não sei a morada",
     "recolhaMapaNota": "Confirme no mapa que é este o local. Se não for, escreva de novo e escolha outra sugestão.",
+    "recolhaMapaRecentrar": "Voltar à morada",
     "recolhaHoraLabel": "Hora pretendida para a recolha",
     "recolhaHoraHint": "Se preferir, indique um intervalo de horas em que lhe seja conveniente.",
     "recolhaHoraDe": "Entre as",

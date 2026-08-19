@@ -716,6 +716,7 @@ export default function ReservarPreservacaoForm() {
                   lng={recolhaCoords.lng}
                   locale={locale}
                   label={form.recolhaMorada}
+                  textoRecentrar={t("recolhaMapaRecentrar")}
                 />
                 <p className="pf-hint pf-mapa-nota">{t("recolhaMapaNota")}</p>
               </>
