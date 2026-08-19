@@ -51,15 +51,23 @@ const nextConfig = {
           // challenges.cloudflare.com: Turnstile (CAPTCHA) — carrega script + iframe
           // *.umami.is: Umami (carrega o script e envia os dados de tráfego)
           // *.clarity.ms + c.bing.com: Microsoft Clarity (heatmaps, gravações, sync)
+          // maps.googleapis.com + maps.gstatic.com: mapa de confirmação da morada
+          //   de recolha no form de reserva. Só entra em cena depois de a cliente
+          //   escolher uma sugestão de morada; sem estas entradas o browser bloqueia
+          //   o script e o mapa nunca aparece (erro invisível para o build e para
+          //   testes por linha de comandos — só um browser aplica a CSP).
+          //   fonts.googleapis.com fica DE FORA de propósito: o Maps tenta buscar a
+          //   Roboto e é bloqueado, o que só muda a fonte dos controlos do mapa.
+          //   Continuamos sem servir fontes da Google, que é a decisão de RGPD do site.
           {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' elfsightcdn.com *.elfsightcdn.com https://challenges.cloudflare.com https://*.umami.is https://*.clarity.ms",
+              "script-src 'self' 'unsafe-inline' elfsightcdn.com *.elfsightcdn.com https://challenges.cloudflare.com https://*.umami.is https://*.clarity.ms https://maps.googleapis.com",
               "style-src 'self' 'unsafe-inline' elfsightcdn.com *.elfsightcdn.com",
               "font-src 'self' data: elfsightcdn.com *.elfsightcdn.com",
-              "img-src 'self' data: blob: elfsightcdn.com *.elfsightcdn.com *.googleusercontent.com https://*.clarity.ms https://c.bing.com",
-              "connect-src 'self' elfsightcdn.com *.elfsightcdn.com elfsight.com *.elfsight.com https://challenges.cloudflare.com https://*.umami.is https://*.clarity.ms https://c.bing.com",
+              "img-src 'self' data: blob: elfsightcdn.com *.elfsightcdn.com *.googleusercontent.com https://*.clarity.ms https://c.bing.com https://maps.googleapis.com https://maps.gstatic.com https://*.googleapis.com https://*.gstatic.com",
+              "connect-src 'self' elfsightcdn.com *.elfsightcdn.com elfsight.com *.elfsight.com https://challenges.cloudflare.com https://*.umami.is https://*.clarity.ms https://c.bing.com https://maps.googleapis.com",
               "frame-src 'self' https://challenges.cloudflare.com",
               "object-src 'none'",
               "base-uri 'self'",
