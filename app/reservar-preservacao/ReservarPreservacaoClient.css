@@ -545,6 +545,19 @@ input[type="date"].pf-input {
   cursor: pointer;
 }
 
+/* Telemóvel: os pares empilham-se, e como "Entre as" é mais largo do
+   que "e as" os campos ficavam a começar em sítios diferentes. Largura
+   mínima igual nas duas palavras alinha-os um debaixo do outro.
+   Desktop não entra aqui: lá cabe tudo na mesma linha. */
+@media (max-width: 520px) {
+  .pf-hora-par {
+    flex: 1 1 100%;
+  }
+  .pf-hora-sep {
+    min-width: 4.6rem;
+  }
+}
+
 .pf-hora-sep {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
   font-size: 0.85rem;
