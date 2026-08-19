@@ -1603,6 +1603,7 @@
     "recolhaMoradaPlaceholder": "E.g.: Quinta da Bouça, Rua ...",
     "recolhaMoradaNaoSei": "I don't know the address yet",
     "recolhaMapaNota": "Check on the map that this is the right place. If it isn't, type again and pick another suggestion.",
+    "recolhaMapaRecentrar": "Back to the address",
     "recolhaHoraLabel": "Preferred collection time",
     "recolhaHoraHint": "If you prefer, give us a time range that suits you.",
     "recolhaHoraDe": "Between",
@@ -1658,7 +1659,7 @@
       },
       {
         "valor": "Recolha no local por parte da Flores à Beira-Rio - mediante orçamento e disponibilidade",
-        "label": "Collection at the venue by Flores à Beira-Rio (subject to quote and availability)"
+        "label": "Collection by Flores à Beira-Rio (subject to quote and availability)"
       },
       {
         "valor": "Ainda não sei",
