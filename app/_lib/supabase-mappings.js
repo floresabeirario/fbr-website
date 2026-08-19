@@ -133,6 +133,67 @@ function lookup(map, value) {
   return map[value] ?? null;
 }
 
+// ── Detalhes da recolha no local ────────────────────────────
+// O formulário público pergunta morada/dia/janela horária a quem
+// escolhe "Recolha no local". Escrevem nas colunas pickup_* que o
+// workbench do admin já mostra (nenhuma coluna nova é precisa).
+//
+// Cada campo tem um "Ainda não sei" no formulário. As colunas de data
+// e hora são DATE/TIME e não guardam texto, por isso o que a cliente
+// não sabe fica registado em `pickup_notes` — assim a Maria distingue
+// "ainda não sabe" de "não respondeu", que para orçamentar é diferente.
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+const HHMM     = /^\d{2}:\d{2}$/;
+
+function mapPickupDetails(data, flowerDeliveryMethod) {
+  // Fora da recolha no local, todos os campos ficam a null: trocar de
+  // opção no formulário nunca deixa dados órfãos na encomenda.
+  if (flowerDeliveryMethod !== "recolha_evento") {
+    return {
+      pickup_address:   null,
+      pickup_date:      null,
+      pickup_time_from: null,
+      pickup_time_to:   null,
+      pickup_notes:     null,
+    };
+  }
+
+  const naoSabe = (flag) => data[flag] === true;
+
+  const address = naoSabe("recolhaMoradaNaoSei")
+    ? null
+    : (data.recolhaMorada || "").trim() || null;
+
+  const rawDate = naoSabe("recolhaDataNaoSei") ? "" : (data.recolhaData || "");
+  const date = ISO_DATE.test(rawDate) ? rawDate : null;
+
+  const rawFrom = naoSabe("recolhaHoraNaoSei") ? "" : (data.recolhaHoraDe || "");
+  const rawTo   = naoSabe("recolhaHoraNaoSei") ? "" : (data.recolhaHoraAte || "");
+  const from = HHMM.test(rawFrom) ? rawFrom : null;
+  const to   = HHMM.test(rawTo)   ? rawTo   : null;
+
+  // Notas: primeiro o que ficou por saber, depois o texto da cliente.
+  const porSaber = [];
+  if (naoSabe("recolhaDataNaoSei"))   porSaber.push("o dia");
+  if (naoSabe("recolhaMoradaNaoSei")) porSaber.push("a morada");
+  if (naoSabe("recolhaHoraNaoSei"))   porSaber.push("a hora");
+
+  const linhas = [];
+  if (porSaber.length) {
+    linhas.push(`A cliente ainda não sabe ${porSaber.join(", ")}.`);
+  }
+  const notas = (data.recolhaNotas || "").trim();
+  if (notas) linhas.push(notas);
+
+  return {
+    pickup_address:   address,
+    pickup_date:      date,
+    pickup_time_from: from,
+    pickup_time_to:   to,
+    pickup_notes:     linhas.length ? linhas.join("\n") : null,
+  };
+}
+
 /**
  * Constrói o payload para INSERT em `orders` a partir do body do form
  * de Reserva de Preservação. Devolve `{ payload, errors }` onde
@@ -228,6 +289,7 @@ export function mapReservaToOrder(data, { ip } = {}) {
     event_location:    (data.localEvento || "").trim() || null,
     flower_type:       (data.tipoFlores || "").trim() || null,
     flower_delivery_method,
+    ...mapPickupDetails(data, flower_delivery_method),
     frame_delivery_method,
     frame_size,
     frame_background,

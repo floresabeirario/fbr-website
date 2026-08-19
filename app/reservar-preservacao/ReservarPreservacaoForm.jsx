@@ -8,6 +8,8 @@ import PhonePrefix from "../_components/PhonePrefix";
 import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget";
 import { phoneLengthError, normalizePhone, formatPhoneInput } from "../_lib/phone-validation";
 import { suggestEmail, cleanEmail } from "../_lib/email-suggest";
+import AddressAutocomplete from "../_components/AddressAutocomplete";
+import PickupMap from "../_components/PickupMap";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
@@ -23,6 +25,17 @@ const INIT = {
   localEvento: "",
   tipoFlores: "",
   comoEnviarFlores: "",
+  // Recolha no local — só aparecem quando escolhe essa opção de envio.
+  // Todos opcionais: cada um tem um "Ainda não sei" para distinguir
+  // "não sabe" de "saltou o campo".
+  recolhaData: "",
+  recolhaDataNaoSei: false,
+  recolhaMorada: "",
+  recolhaMoradaNaoSei: false,
+  recolhaHoraDe: "",
+  recolhaHoraAte: "",
+  recolhaHoraNaoSei: false,
+  recolhaNotas: "",
   comoReceberQuadro: "",
   tamanhoMoldura: "",
   tipoFundo: "",
@@ -112,6 +125,9 @@ export default function ReservarPreservacaoForm() {
   const OUTRO_VALOR    = comoConheceuOpcoes.find((o) => o.valor === "Outro (especificar abaixo)")?.valor ?? "Outro (especificar abaixo)";
   const VALE_VALOR     = comoConheceuOpcoes.find((o) => o.valor === "Ofereceram-me um Vale-Presente para preservação")?.valor ?? "Ofereceram-me um Vale-Presente para preservação";
   const CASAMENTO_VALOR = tipoEventoOpcoes.find((o) => o.valor === "Casamento")?.valor ?? "Casamento";
+  // Identificado por padrão e não por posição — o texto da opção já mudou
+  // uma vez e a posição na lista não é garantida.
+  const RECOLHA_VALOR   = comoEnviarOpcoes.find((o) => /recolha no local/i.test(o.valor))?.valor ?? "";
 
   // Hrefs localizados para links internos nos hints
   const comoFuncionaHref = locale === "en" ? "/en/how-it-works" : "/como-funciona";
@@ -173,6 +189,34 @@ export default function ReservarPreservacaoForm() {
       setValeNaoEncontrado(false);
     }
   }
+  // Mapa de confirmação da morada de recolha. Fica fora do `form`
+  // porque não é submetido — serve só para ela reconhecer o local.
+  const [recolhaCoords, setRecolhaCoords] = useState(null);
+  const [moradaEscolhida, setMoradaEscolhida] = useState("");
+  const ultimoPlaceIdRef = useRef("");
+
+  // Só há coordenadas para quem escolheu mesmo uma sugestão. Se depois
+  // editar o texto à mão, o mapa desaparece sozinho (deixa de haver
+  // garantia de que corresponde ao que está escrito).
+  async function escolherLugar(sugestao) {
+    setMoradaEscolhida(sugestao.full.trim());
+    setRecolhaCoords(null);
+    ultimoPlaceIdRef.current = sugestao.placeId;
+    try {
+      const res = await fetch("/api/place-details", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ placeId: sugestao.placeId, locale }),
+      });
+      const json = res.ok ? await res.json() : null;
+      // Ignora respostas atrasadas de uma morada entretanto trocada.
+      if (ultimoPlaceIdRef.current !== sugestao.placeId) return;
+      if (json?.location) setRecolhaCoords(json.location);
+    } catch {
+      // Sem mapa. A morada continua preenchida e nada bloqueia.
+    }
+  }
+
   const [turnstileToken, setTurnstileToken] = useState(null);
   const successRef = useRef(null);
   const errorsSummaryRef = useRef(null);
@@ -186,6 +230,8 @@ export default function ReservarPreservacaoForm() {
     tipoEvento: "tipoEventoLabel",
     nomeNoivos: "nomeNoivosLabel",
     comoEnviarFlores: "enviarFloresLabel",
+    recolhaData: "recolhaDataLabel",
+    recolhaHora: "recolhaHoraLabel",
     comoReceberQuadro: "receberQuadroLabel",
     tamanhoMoldura: "tamanhoLabel",
     tipoFundo: "fundoLabel",
@@ -219,6 +265,25 @@ export default function ReservarPreservacaoForm() {
       if (key === "ornamentosNatal" && val !== ORNAMENTOS_SIM) next.quantosOrnamentos = "";
       if (key === "pendentes"       && val !== PENDENTES_SIM)  next.quantosPendentes  = "";
       if (key === "tipoEvento"      && val !== CASAMENTO_VALOR) next.nomeNoivos       = "";
+      // Trocar o método de envio limpa os detalhes da recolha — nunca
+      // enviamos dados de uma opção que já não está escolhida.
+      if (key === "comoEnviarFlores" && val !== RECOLHA_VALOR) {
+        next.recolhaData         = "";
+        next.recolhaDataNaoSei   = false;
+        next.recolhaMorada       = "";
+        next.recolhaMoradaNaoSei = false;
+        next.recolhaHoraDe       = "";
+        next.recolhaHoraAte      = "";
+        next.recolhaHoraNaoSei   = false;
+        next.recolhaNotas        = "";
+      }
+      // "Ainda não sei" esvazia o campo a que pertence.
+      if (key === "recolhaDataNaoSei"   && val) next.recolhaData   = "";
+      if (key === "recolhaMoradaNaoSei" && val) next.recolhaMorada = "";
+      if (key === "recolhaHoraNaoSei"   && val) {
+        next.recolhaHoraDe  = "";
+        next.recolhaHoraAte = "";
+      }
       if (key === "comoConheceu") {
         next.comoConheceuOutro = "";
         next.nomeFlorista = "";
@@ -227,6 +292,9 @@ export default function ReservarPreservacaoForm() {
       return next;
     });
     if (errors[key]) setErrors((e) => { const n = { ...e }; delete n[key]; return n; });
+    // Assinalar "Ainda não sei" resolve por si o erro do campo respectivo.
+    if (key === "recolhaDataNaoSei" && val) setErrors((e) => { const n = { ...e }; delete n.recolhaData; return n; });
+    if (key === "recolhaHoraNaoSei" && val) setErrors((e) => { const n = { ...e }; delete n.recolhaHora; return n; });
   };
 
   const toggleElemento = (opcao) => {
@@ -266,6 +334,10 @@ export default function ReservarPreservacaoForm() {
   const showCodigoVale        = form.comoConheceu    === VALE_VALOR;
   const showNomeNoivos        = form.tipoEvento      === CASAMENTO_VALOR;
   const showElementosExtraOutro = form.elementosExtra.includes(ELEM_OUTRO);
+  const showRecolha           = Boolean(RECOLHA_VALOR) && form.comoEnviarFlores === RECOLHA_VALOR;
+  const mostraMapa            = Boolean(recolhaCoords)
+    && !form.recolhaMoradaNaoSei
+    && form.recolhaMorada.trim() === moradaEscolhida;
 
   function validate() {
     const e = {};
@@ -287,6 +359,16 @@ export default function ReservarPreservacaoForm() {
     if (!form.tipoEvento)         e.tipoEvento = t("erroCampoObrigatorio");
     if (showNomeNoivos && !form.nomeNoivos.trim()) e.nomeNoivos = t("erroCampoObrigatorio");
     if (!form.comoEnviarFlores)   e.comoEnviarFlores = t("erroCampoObrigatorio");
+    // Recolha: nenhum campo é obrigatório. Validamos apenas coerência do
+    // que foi preenchido, para não recebermos datas impossíveis.
+    if (showRecolha) {
+      if (form.recolhaData && form.dataEvento && form.recolhaData < form.dataEvento) {
+        e.recolhaData = t("erroRecolhaDataAntesEvento");
+      }
+      if (form.recolhaHoraDe && form.recolhaHoraAte && form.recolhaHoraAte <= form.recolhaHoraDe) {
+        e.recolhaHora = t("erroRecolhaHoraInvertida");
+      }
+    }
     if (!form.comoReceberQuadro)  e.comoReceberQuadro = t("erroCampoObrigatorio");
     if (!form.tamanhoMoldura)     e.tamanhoMoldura = t("erroCampoObrigatorio");
     if (!form.tipoFundo)          e.tipoFundo = t("erroCampoObrigatorio");
@@ -576,6 +658,127 @@ export default function ReservarPreservacaoForm() {
             ))}
           </select>
         </Field>
+
+        {/* Detalhes da recolha — só para quem escolhe "Recolha no local".
+            Tudo opcional: cada campo tem "Ainda não sei" para separar
+            "não sabe" de "saltou", o que a Maria precisa de distinguir
+            para orçamentar. Alimentam os campos pickup_* do admin. */}
+        {showRecolha && (
+          <div className="pf-subblock">
+            <h3 className="pf-subblock-title">{t("recolhaTitulo")}</h3>
+            <p className="pf-hint">{t("recolhaIntro1")}</p>
+            <p className="pf-hint">{t("recolhaIntro2")}</p>
+
+            <Field name="recolhaData" label={t("recolhaDataLabel")} error={errors.recolhaData}>
+              <input
+                type="date"
+                value={form.recolhaData}
+                onChange={(e) => set("recolhaData", e.target.value)}
+                className={`pf-input${errors.recolhaData ? " pf-input-err" : ""}`}
+                // Nunca antes do evento: as flores só existem a partir daí.
+                min={form.dataEvento || "2020-01-01"}
+                max="2099-12-31"
+                disabled={form.recolhaDataNaoSei}
+              />
+            </Field>
+            <label className="pf-check-label pf-naosei">
+              <input
+                type="checkbox"
+                className="pf-checkbox"
+                checked={form.recolhaDataNaoSei}
+                onChange={(e) => set("recolhaDataNaoSei", e.target.checked)}
+              />
+              <span>{t("recolhaDataNaoSei")}</span>
+            </label>
+
+            <Field
+              name="recolhaMorada"
+              label={t("recolhaMoradaLabel")}
+              hint={form.recolhaMoradaNaoSei ? undefined : t("recolhaMoradaHint")}
+            >
+              <AddressAutocomplete
+                value={form.recolhaMorada}
+                onChange={(v) => set("recolhaMorada", v)}
+                onSelectPlace={escolherLugar}
+                locale={locale}
+                placeholder={t("recolhaMoradaPlaceholder")}
+                ariaLabel={t("recolhaMoradaLabel")}
+                disabled={form.recolhaMoradaNaoSei}
+              />
+            </Field>
+
+            {/* Mapa de confirmação. Derivado, sem efeitos: basta o texto
+                deixar de coincidir com a sugestão escolhida para sumir. */}
+            {mostraMapa && (
+              <>
+                <PickupMap
+                  lat={recolhaCoords.lat}
+                  lng={recolhaCoords.lng}
+                  locale={locale}
+                  label={form.recolhaMorada}
+                />
+                <p className="pf-hint pf-mapa-nota">{t("recolhaMapaNota")}</p>
+              </>
+            )}
+            <label className="pf-check-label pf-naosei">
+              <input
+                type="checkbox"
+                className="pf-checkbox"
+                checked={form.recolhaMoradaNaoSei}
+                onChange={(e) => set("recolhaMoradaNaoSei", e.target.checked)}
+              />
+              <span>{t("recolhaMoradaNaoSei")}</span>
+            </label>
+
+            <Field
+              name="recolhaHora"
+              label={t("recolhaHoraLabel")}
+              hint={form.recolhaHoraNaoSei ? undefined : t("recolhaHoraHint")}
+              error={errors.recolhaHora}
+              as="fieldset"
+            >
+              <div className="pf-hora-wrap">
+                <span className="pf-hora-sep">{t("recolhaHoraDe")}</span>
+                <input
+                  type="time"
+                  aria-label={`${t("recolhaHoraLabel")} — ${t("recolhaHoraDe")}`}
+                  value={form.recolhaHoraDe}
+                  onChange={(e) => set("recolhaHoraDe", e.target.value)}
+                  className={`pf-input pf-hora${errors.recolhaHora ? " pf-input-err" : ""}`}
+                  disabled={form.recolhaHoraNaoSei}
+                />
+                <span className="pf-hora-sep">{t("recolhaHoraAte")}</span>
+                <input
+                  type="time"
+                  aria-label={`${t("recolhaHoraLabel")} — ${t("recolhaHoraAte")}`}
+                  value={form.recolhaHoraAte}
+                  onChange={(e) => set("recolhaHoraAte", e.target.value)}
+                  className={`pf-input pf-hora${errors.recolhaHora ? " pf-input-err" : ""}`}
+                  disabled={form.recolhaHoraNaoSei}
+                />
+              </div>
+            </Field>
+            <label className="pf-check-label pf-naosei">
+              <input
+                type="checkbox"
+                className="pf-checkbox"
+                checked={form.recolhaHoraNaoSei}
+                onChange={(e) => set("recolhaHoraNaoSei", e.target.checked)}
+              />
+              <span>{t("recolhaHoraNaoSei")}</span>
+            </label>
+
+            <Field name="recolhaNotas" label={t("recolhaNotasLabel")} hint={t("recolhaNotasHint")}>
+              <textarea
+                value={form.recolhaNotas}
+                onChange={(e) => set("recolhaNotas", e.target.value)}
+                className="pf-input"
+                rows={3}
+                placeholder={t("recolhaNotasPlaceholder")}
+              />
+            </Field>
+          </div>
+        )}
 
         <Field
           name="comoReceberQuadro"

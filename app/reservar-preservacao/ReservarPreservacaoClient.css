@@ -469,6 +469,199 @@ input[type="date"].pf-input {
   cursor: pointer;
 }
 
+/* ── Sub-bloco condicional (detalhes da recolha) ──
+   Recuado e com fundo próprio para se ler como um "dentro de" da
+   pergunta anterior, e não como uma secção nova do formulário. */
+.pf-subblock {
+  margin: 4px 0 18px;
+  padding: clamp(14px, 3vw, 18px);
+  background: rgba(222, 200, 160, 0.13);
+  border: 1px solid rgba(222, 200, 160, 0.55);
+  border-radius: 12px;
+}
+
+.pf-subblock-title {
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #5A4030;
+  margin: 0 0 10px;
+}
+
+.pf-subblock .pf-hint {
+  margin-bottom: 10px;
+}
+
+.pf-subblock .pf-hint:last-of-type {
+  margin-bottom: 18px;
+}
+
+/* Caixa "Ainda não sei" — pertence ao campo imediatamente acima, por
+   isso encosta-se a ele e afasta-se do campo seguinte. */
+.pf-naosei {
+  margin: -8px 0 16px;
+  font-size: 0.82rem;
+  color: #7A5838;
+}
+
+/* ── Janela horária (das … às …) ── */
+.pf-hora-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pf-hora {
+  width: auto;
+  flex: 1 1 110px;
+  min-width: 110px;
+  cursor: pointer;
+}
+
+.pf-hora-sep {
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.85rem;
+  color: #7A5838;
+  flex-shrink: 0;
+}
+
+/* Campo desactivado por "Ainda não sei" — continua legível, mas
+   claramente fora de jogo. */
+.pf-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(222, 200, 160, 0.12);
+}
+
+/* ── Morada com sugestões do Google Maps ── */
+.pf-addr {
+  position: relative;
+}
+
+.pf-addr-spinner {
+  position: absolute;
+  right: 14px;
+  top: 16px;
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(90, 64, 48, 0.22);
+  border-top-color: #5A4030;
+  border-radius: 50%;
+  animation: pf-addr-spin 0.7s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes pf-addr-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-addr-spinner { animation-duration: 2.4s; }
+}
+
+.pf-addr-lista {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 264px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1.5px solid #DEC8A0;
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(42, 30, 16, 0.14);
+  -webkit-overflow-scrolling: touch;
+}
+
+.pf-addr-opcao {
+  display: block;
+  width: 100%;
+  /* Alvo de toque confortável no telemóvel (>= 44px de altura). */
+  padding: 11px 14px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(222, 200, 160, 0.4);
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+}
+
+.pf-addr-lista li:last-child .pf-addr-opcao {
+  border-bottom: none;
+}
+
+.pf-addr-opcao:hover,
+.pf-addr-opcao-activa {
+  background: #FAF6EE;
+}
+
+.pf-addr-principal {
+  display: block;
+  font-size: 0.9rem;
+  color: #1C1008;
+  line-height: 1.35;
+}
+
+.pf-addr-secundario {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 300;
+  color: #7A5838;
+  margin-top: 2px;
+  line-height: 1.35;
+}
+
+/* ── Mapa de confirmação da morada de recolha ── */
+.pf-mapa {
+  position: relative;
+  margin-top: 10px;
+  border: 1.5px solid #DEC8A0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #FAF6EE;
+}
+
+.pf-mapa-tela {
+  width: 100%;
+  /* Alto que baste para reconhecer a rua, sem empurrar o resto do
+     formulário para fora do ecrã no telemóvel. */
+  height: 190px;
+}
+
+/* Pino desenhado por nós — só entra em cena se a Google deixar de
+   aceitar o marcador clássico (ver comentário em PickupMap.jsx). */
+.pf-mapa-pino {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: #9A4A30;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85);
+  pointer-events: none;
+}
+
+.pf-mapa-nota {
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+@media (min-width: 700px) {
+  .pf-mapa-tela {
+    height: 230px;
+  }
+}
+
 /* ── Termos ── */
 .pf-termos-label {
   font-size: 0.88rem;
