@@ -49,6 +49,8 @@ const MAX_LENGTHS = {
   comoConheceuOutro:   1000,
   nomeFlorista:        300,
   codigoValePresente:  20,
+  recolhaMorada:       300,
+  recolhaNotas:        1000,
 };
 
 export async function POST(request) {
@@ -183,6 +185,31 @@ export async function POST(request) {
 
       const idiomaLabel = data.locale === "en" ? "Inglês" : "Português";
 
+      // Detalhes da recolha no local — só aparecem no email quando é essa
+      // a opção de envio. "Ainda não sabe" é informação útil, por isso
+      // mostra-se em vez de um traço.
+      const isRecolha = /recolha no local/i.test(data.comoEnviarFlores || "");
+      const naoSabe = "<em>ainda não sabe</em>";
+      const recolhaDia = data.recolhaDataNaoSei
+        ? naoSabe
+        : e(formatDatePT(data.recolhaData) || data.recolhaData);
+      const recolhaMorada = data.recolhaMoradaNaoSei ? naoSabe : e(data.recolhaMorada);
+      const recolhaHora = data.recolhaHoraNaoSei
+        ? naoSabe
+        : (data.recolhaHoraDe || data.recolhaHoraAte)
+          ? `${e(data.recolhaHoraDe || "?")} às ${e(data.recolhaHoraAte || "?")}`
+          : "—";
+      const linhasRecolha = isRecolha
+        ? [
+            `<tr><td><strong>Recolha: dia</strong></td><td>${recolhaDia}</td></tr>`,
+            `<tr><td><strong>Recolha: morada</strong></td><td>${recolhaMorada}</td></tr>`,
+            `<tr><td><strong>Recolha: hora</strong></td><td>${recolhaHora}</td></tr>`,
+            data.recolhaNotas
+              ? `<tr><td><strong>Recolha: notas</strong></td><td>${e(data.recolhaNotas)}</td></tr>`
+              : "",
+          ]
+        : [];
+
       const linhas = [
         `<tr><td><strong>ID</strong></td><td><code>${escapeHtml(inserted.order_id)}</code></td></tr>`,
         `<tr><td><strong>Idioma da reserva</strong></td><td>${idiomaLabel}</td></tr>`,
@@ -196,6 +223,7 @@ export async function POST(request) {
         `<tr><td><strong>Local do evento</strong></td><td>${e(data.localEvento)}</td></tr>`,
         `<tr><td><strong>Tipo de flores</strong></td><td>${e(data.tipoFlores)}</td></tr>`,
         `<tr><td><strong>Como enviar flores</strong></td><td>${e(data.comoEnviarFlores)}</td></tr>`,
+        ...linhasRecolha,
         `<tr><td><strong>Como receber quadro</strong></td><td>${e(data.comoReceberQuadro)}</td></tr>`,
         `<tr><td><strong>Tamanho da moldura</strong></td><td>${e(data.tamanhoMoldura)}</td></tr>`,
         `<tr><td><strong>Tipo de fundo</strong></td><td>${e(data.tipoFundo)}</td></tr>`,
