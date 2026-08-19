@@ -737,25 +737,32 @@ export default function ReservarPreservacaoForm() {
               error={errors.recolhaHora}
               as="fieldset"
             >
+              {/* Cada "palavra + campo" é um par que quebra em conjunto.
+                  Sem isto, no telemóvel o "e as" ficava órfão no fim de
+                  uma linha e o segundo campo caía sozinho na seguinte. */}
               <div className="pf-hora-wrap">
-                <span className="pf-hora-sep">{t("recolhaHoraDe")}</span>
-                <input
-                  type="time"
-                  aria-label={`${t("recolhaHoraLabel")} — ${t("recolhaHoraDe")}`}
-                  value={form.recolhaHoraDe}
-                  onChange={(e) => set("recolhaHoraDe", e.target.value)}
-                  className={`pf-input pf-hora${errors.recolhaHora ? " pf-input-err" : ""}`}
-                  disabled={form.recolhaHoraNaoSei}
-                />
-                <span className="pf-hora-sep">{t("recolhaHoraAte")}</span>
-                <input
-                  type="time"
-                  aria-label={`${t("recolhaHoraLabel")} — ${t("recolhaHoraAte")}`}
-                  value={form.recolhaHoraAte}
-                  onChange={(e) => set("recolhaHoraAte", e.target.value)}
-                  className={`pf-input pf-hora${errors.recolhaHora ? " pf-input-err" : ""}`}
-                  disabled={form.recolhaHoraNaoSei}
-                />
+                <span className="pf-hora-par">
+                  <span className="pf-hora-sep">{t("recolhaHoraDe")}</span>
+                  <input
+                    type="time"
+                    aria-label={`${t("recolhaHoraLabel")} ${t("recolhaHoraDe")}`}
+                    value={form.recolhaHoraDe}
+                    onChange={(e) => set("recolhaHoraDe", e.target.value)}
+                    className={`pf-input pf-hora${errors.recolhaHora ? " pf-input-err" : ""}`}
+                    disabled={form.recolhaHoraNaoSei}
+                  />
+                </span>
+                <span className="pf-hora-par">
+                  <span className="pf-hora-sep">{t("recolhaHoraAte")}</span>
+                  <input
+                    type="time"
+                    aria-label={`${t("recolhaHoraLabel")} ${t("recolhaHoraAte")}`}
+                    value={form.recolhaHoraAte}
+                    onChange={(e) => set("recolhaHoraAte", e.target.value)}
+                    className={`pf-input pf-hora${errors.recolhaHora ? " pf-input-err" : ""}`}
+                    disabled={form.recolhaHoraNaoSei}
+                  />
+                </span>
               </div>
             </Field>
             <label className="pf-check-label pf-naosei">

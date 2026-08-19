@@ -513,18 +513,35 @@ input[type="date"].pf-input {
   margin-bottom: 16px;
 }
 
-/* ── Janela horária (das … às …) ── */
+/* O <legend> traz padding lateral por defeito do browser, o que deixava
+   "Hora pretendida" uns pixéis à direita das outras etiquetas do bloco.
+   Limitado ao sub-bloco para não mexer nos grupos já existentes. */
+.pf-subblock .pf-legend {
+  padding-inline: 0;
+}
+
+/* ── Janela horária (das … às …) ──
+   A unidade que quebra de linha é o par "palavra + campo", nunca o
+   campo sozinho: no telemóvel o "e as" ficava pendurado no fim de uma
+   linha com o campo respectivo na linha de baixo. */
 .pf-hora-wrap {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  gap: 8px 10px;
+}
+
+.pf-hora-par {
+  display: flex;
+  align-items: center;
   gap: 8px;
+  flex: 1 1 auto;
 }
 
 .pf-hora {
   width: auto;
-  flex: 1 1 110px;
-  min-width: 110px;
+  flex: 1 1 96px;
+  min-width: 96px;
   cursor: pointer;
 }
 
