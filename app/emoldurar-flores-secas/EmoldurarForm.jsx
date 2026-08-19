@@ -607,7 +607,7 @@ export default function EmoldurarForm() {
           </select>
         </Field>
 
-        <Field name="elementosExtra" label={t("elementosLabel")} required error={errors.elementosExtra} hint={t("elementosHint")} as="fieldset">
+        <Field name="elementosExtra" label={t("elementosLabel")} required error={errors.elementosExtra} hint={t.rich("elementosHint", { b: (chunks) => <strong>{chunks}</strong> })} as="fieldset">
           <div className="pf-checkgroup">
             {elementosOpcoes.map((opcao) => (
               <label key={opcao.valor} className="pf-check-label">

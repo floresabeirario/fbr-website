@@ -862,7 +862,8 @@ export default function ReservarPreservacaoForm() {
           label={t("elementosLabel")}
           required
           error={errors.elementosExtra}
-          hint={t("elementosHint")}
+          // A frase do custo vai a negrito: é a pergunta que mais fazem.
+          hint={t.rich("elementosHint", { b: (chunks) => <strong>{chunks}</strong> })}
           as="fieldset"
         >
           <div className="pf-checkgroup">
