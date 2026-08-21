@@ -297,6 +297,15 @@
   line-height: 1.65;
 }
 
+/* Destaque dentro de uma dica (por ex. "não tem qualquer custo
+   adicional", que é das perguntas mais repetidas). Contra um texto de
+   peso 300 e castanho claro, só o negrito não chegava: escurecer a cor
+   é o que faz a frase saltar à vista. */
+.pf-hint strong {
+  font-weight: 600;
+  color: #4A2E18;
+}
+
 .pf-input {
   display: block;
   width: 100%;
