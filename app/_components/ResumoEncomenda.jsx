@@ -11,13 +11,20 @@
 // cliente podem mudar tudo), por isso o resumo diz "estimativa" e a nota
 // final explica quando chega a confirmação.
 //
+// 2.ª ronda (mesmo dia): barra fixa no fundo do telemóvel com o total a
+// mudar em tempo real (95% das reservas são no telemóvel); plano de
+// pagamentos com as percentagens à frente e um subtítulo em cada fase;
+// previsão de entrega num só parágrafo.
+//
 // O cálculo é o mesmo que a API grava na encomenda (app/_lib/orcamento.js),
 // que por sua vez espelha o do admin. Este componente só traduz as linhas
 // e acrescenta as linhas informativas (envio, elementos, "a decidir").
 // ============================================================
 
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import "./ResumoEncomenda.css";
+import { useConsent } from "../_lib/consent";
 import {
   TAMANHO_MOLDURA,
   TIPO_FUNDO,
@@ -65,6 +72,76 @@ export function formToPricingInput(form, serviceType) {
   };
 }
 
+/**
+ * Barra fixa do telemóvel. Aparece depois de a pessoa chegar à secção
+ * "O quadro" (onde começam as escolhas com preço) e esconde-se quando o
+ * resumo já está no ecrã. Sobe para cima do banner de cookies enquanto
+ * ele estiver visível, para nunca o tapar nem ser tapada.
+ */
+function BarraTotal({ resumoRef, activa, texto, valor, sub }) {
+  const consent = useConsent();
+  const [quadroVisto, setQuadroVisto] = useState(false);
+  const [resumoNoEcra, setResumoNoEcra] = useState(false);
+  const [alturaBanner, setAlturaBanner] = useState(0);
+
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return undefined;
+    const quadro = document.getElementById("sec-quadro")?.closest(".pf-section");
+    const resumo = resumoRef.current?.closest(".pf-section") ?? resumoRef.current;
+    const obs = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.target === quadro && e.isIntersecting) setQuadroVisto(true);
+        if (e.target === resumo) setResumoNoEcra(e.isIntersecting);
+      }
+    }, { threshold: 0.05 });
+    if (quadro) obs.observe(quadro);
+    if (resumo) obs.observe(resumo);
+    return () => obs.disconnect();
+  }, [resumoRef]);
+
+  useEffect(() => {
+    if (consent !== "unset") {
+      const raf = requestAnimationFrame(() => setAlturaBanner(0));
+      return () => cancelAnimationFrame(raf);
+    }
+    const banner = document.querySelector("[data-cookie-banner]");
+    if (!banner || typeof ResizeObserver === "undefined") return undefined;
+    const ro = new ResizeObserver(() => {
+      // 12px de margem inferior do banner + 8px de folga.
+      setAlturaBanner(Math.ceil(banner.getBoundingClientRect().height) + 20);
+    });
+    ro.observe(banner);
+    return () => ro.disconnect();
+  }, [consent]);
+
+  const mostrar = activa && quadroVisto && !resumoNoEcra;
+
+  const irAoResumo = () => {
+    const alvo = resumoRef.current?.closest(".pf-section") ?? resumoRef.current;
+    alvo?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  return (
+    <button
+      type="button"
+      className={`re-barra${mostrar ? " re-barra-on" : ""}`}
+      style={alturaBanner ? { bottom: alturaBanner } : undefined}
+      onClick={irAoResumo}
+      aria-hidden={!mostrar}
+      tabIndex={mostrar ? 0 : -1}
+    >
+      <span className="re-barra-texto">
+        <span className="re-barra-label">{texto.total}</span>
+        <span className="re-barra-ver">{texto.ver}</span>
+      </span>
+      <span className="re-barra-valor">
+        <span className="re-muda" key={valor}>{valor}</span>
+        {sub && <small>{sub}</small>}
+      </span>
+    </button>
+  );
+}
+
 export default function ResumoEncomenda({
   form,
   precos,
@@ -74,6 +151,7 @@ export default function ResumoEncomenda({
 }) {
   const t = useTranslations("formReserva.resumo");
   const tf = useTranslations("formReserva");
+  const rootRef = useRef(null);
 
   const secas = serviceType === "emoldurar_secas";
   const input = formToPricingInput(form, serviceType);
@@ -195,7 +273,8 @@ export default function ResumoEncomenda({
   if (receber === "ctt") linhas.push({ k: "receber", label: t("receberQuadroCtt"), ...nota(t("custosSeuCargo")) });
 
   // ── Previsão de entrega ───────────────────────────────────────────
-  let previsao = null;
+  const b = (c) => <b>{c}</b>;
+  let previsao;
   if (secas) {
     const abordagem = lookupEnum(DRIED_APPROACH, form.abordagem);
     if (abordagem === "ramo_original") previsao = t("previsaoSemData", { meses: 3 });
@@ -203,69 +282,86 @@ export default function ResumoEncomenda({
     else previsao = t("previsaoIntervalo", { min: 3, max: 6 });
   } else {
     const mes = formatMesAno(mesPrevisaoEntrega(dataEvento), locale);
-    previsao = mes ? { mes } : t("previsaoSemData", { meses: 6 });
+    previsao = mes ? t.rich("previsaoComData", { mes, meses: 6, b }) : t("previsaoSemData", { meses: 6 });
   }
 
   const distante = !secas && eventoDistante(dataEvento);
-
-  if (!temEscolhas) {
-    return (
-      <>
-        <p className="re-vazio">{t("vazio")}</p>
-        <p className="re-nota">{t("nota")}{distante ? " " + t("notaDistante") : ""}</p>
-      </>
-    );
-  }
-
   const total = snap?.total ?? 0;
   const fases = fasesPagamento(total);
+  const totalTxt = formatEuro(total);
+
+  const notaBloco = (
+    <section className="re-bloco re-bloco-nota">
+      <h3 className="re-bloco-titulo">{t("notaTitulo")}</h3>
+      <p className="re-texto">{t.rich("nota", { b })}</p>
+      {distante && <p className="re-texto">{t("notaDistante")}</p>}
+    </section>
+  );
 
   return (
-    <div aria-live="polite">
-      <ul className="re-linhas">
-        {linhas.map((l, i) => (
-          <li key={`${l.k}-${i}`} className="re-linha">
-            <span className="re-etiqueta">{l.label}</span>
-            <span className={`re-valor${l.nota ? " re-valor-nota" : ""}`}>{l.value}</span>
-          </li>
-        ))}
-      </ul>
-
-      {snap && (
+    <div ref={rootRef} aria-live="polite">
+      {!temEscolhas ? (
         <>
-          <div className="re-total">
-            <span>{snap.provisional ? t("totalAPartirDe") : t("total")}</span>
-            <span className="re-valor">{formatEuro(total)}</span>
-          </div>
-
-          <p className="re-subtitulo">{t("pagamentoTitulo")}</p>
-          <ol className="re-fases">
-            {[t(secas ? "fase1Secas" : "fase1"), t("fase2"), t("fase3")].map((texto, i) => (
-              <li key={i} className="re-fase">
-                <span className="re-fase-n" aria-hidden="true">{i + 1}</span>
-                <span className="re-fase-texto">{texto}</span>
-                <span className="re-fase-pct">{Math.round(FASES_PAGAMENTO[i] * 100)}%</span>
-                <span className="re-valor">{formatEuro(fases[i])}</span>
+          <p className="re-vazio">{t("vazio")}</p>
+          {notaBloco}
+        </>
+      ) : (
+        <>
+          <ul className="re-linhas">
+            {linhas.map((l, i) => (
+              <li key={`${l.k}-${i}`} className="re-linha">
+                <span className="re-etiqueta">{l.label}</span>
+                <span className={`re-valor${l.nota ? " re-valor-nota" : ""}`}>{l.value}</span>
               </li>
             ))}
-          </ol>
+          </ul>
+
+          {snap && (
+            <>
+              <div className="re-total">
+                <span>{snap.provisional ? t("totalAPartirDe") : t("total")}</span>
+                <span className="re-valor"><span className="re-muda" key={total}>{totalTxt}</span></span>
+              </div>
+
+              <section className="re-bloco">
+                <h3 className="re-bloco-titulo">{t("pagamentoTitulo")}</h3>
+                <p className="re-bloco-intro">{t("pagamentoIntro")}</p>
+                <ol className="re-fases">
+                  {[
+                    { titulo: t(secas ? "fase1TituloSecas" : "fase1Titulo"), sub: t("fase1Sub") },
+                    { titulo: t("fase2Titulo"), sub: t("fase2Sub") },
+                    { titulo: t("fase3Titulo"), sub: t("fase3Sub") },
+                  ].map((f, i) => (
+                    <li key={i} className="re-fase">
+                      <span className="re-pct">{Math.round(FASES_PAGAMENTO[i] * 100)}%</span>
+                      <span className="re-fase-corpo">
+                        <span className="re-fase-titulo">{f.titulo}</span>
+                        <span className="re-fase-sub">{f.sub}</span>
+                      </span>
+                      <span className="re-valor">{formatEuro(fases[i])}</span>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            </>
+          )}
+
+          <section className="re-bloco">
+            <h3 className="re-bloco-titulo">{t("previsaoTitulo")}</h3>
+            <p className="re-texto">{previsao} {t("previsaoArtesanal")}</p>
+          </section>
+
+          {notaBloco}
         </>
       )}
 
-      <p className="re-subtitulo">{t("previsaoTitulo")}</p>
-      <p className="re-previsao">
-        {typeof previsao === "string" ? (
-          previsao
-        ) : (
-          <>
-            <strong>{t("previsaoData", { mes: previsao.mes })}</strong>
-            <span className="re-previsao-nota">{t("previsaoNota", { meses: 6 })}</span>
-          </>
-        )}
-      </p>
-
-      <p className="re-nota">{t.rich("nota", { b: (c) => <strong>{c}</strong> })}</p>
-      {distante && <p className="re-nota">{t("notaDistante")}</p>}
+      <BarraTotal
+        resumoRef={rootRef}
+        activa={temEscolhas && Boolean(snap)}
+        texto={{ total: t("barraTotal"), ver: t("barraVer") }}
+        valor={totalTxt}
+        sub={snap?.provisional ? t("totalAPartirDe") : null}
+      />
     </div>
   );
 }

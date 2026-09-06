@@ -1,8 +1,8 @@
 /* ── Resumo da encomenda (formulários de reserva) ──
    Vive dentro de uma .pf-section, por isso herda o cartão branco, o
    padding e o título. Aqui só está o que é próprio do resumo: as linhas
-   etiqueta/valor, o total, as fases de pagamento e as notas.
-   Mobile-first: uma coluna, valores sempre alinhados à direita. */
+   etiqueta/valor, o total, o plano de pagamentos, a previsão, a nota e a
+   barra fixa do telemóvel. Mobile-first: uma coluna, euros à direita. */
 
 .re-vazio {
   margin: 0;
@@ -13,10 +13,8 @@
   color: #7A5838;
 }
 
+/* ── Linhas ── */
 .re-linhas {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -42,7 +40,6 @@
 .re-etiqueta {
   flex: 1 1 auto;
   min-width: 0;
-  font-weight: 400;
 }
 
 .re-valor {
@@ -53,8 +50,8 @@
   white-space: nowrap;
 }
 
-/* Valores que não são um número: "incluído", "a confirmar", "custos a
-   seu cargo". Mais leves, para o olho ir aos euros. */
+/* Valores que não são um número ("incluído", "a confirmar"): mais
+   leves, para o olho ir aos euros. */
 .re-valor-nota {
   font-weight: 300;
   color: #7A5838;
@@ -62,6 +59,7 @@
   max-width: 46%;
 }
 
+/* ── Total ── */
 .re-total {
   display: flex;
   justify-content: space-between;
@@ -77,34 +75,51 @@
 }
 
 .re-total .re-valor {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
 }
 
-.re-subtitulo {
-  font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #1C1008;
-  margin: 22px 0 6px;
+/* ── Blocos (plano de pagamentos, previsão, nota) ──
+   Todos com a mesma estrutura: rótulo pequeno em maiúsculas + conteúdo,
+   separados por um fio. Nada de caixas dentro de caixas. */
+.re-bloco {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(90, 64, 40, 0.12);
 }
 
+.re-bloco-titulo {
+  margin: 0 0 6px;
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8A6C3C;
+}
+
+.re-bloco-intro {
+  margin: 0 0 8px;
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.86rem;
+  color: #2A1E10;
+}
+
+/* ── Plano de pagamentos ── */
 .re-fases {
   margin: 0;
   padding: 0;
   list-style: none;
-  counter-reset: fase;
 }
 
 .re-fase {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  padding: 8px 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  column-gap: 12px;
+  align-items: start;
+  padding: 10px 0;
   border-bottom: 1px dashed rgba(90, 64, 40, 0.14);
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.84rem;
-  line-height: 1.45;
   color: #2A1E10;
 }
 
@@ -112,82 +127,181 @@
   border-bottom: 0;
 }
 
-.re-fase-n {
-  flex: 0 0 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: #F3EBDD;
-  color: #6A3A18;
-  font-size: 0.72rem;
-  font-weight: 600;
+.re-pct {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transform: translateY(-2px);
+  min-width: 46px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #F3EBDD;
+  color: #6A3A18;
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  margin-top: 1px;
 }
 
-.re-fase-texto {
-  flex: 1 1 auto;
+.re-fase-corpo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   min-width: 0;
 }
 
-.re-fase-pct {
-  flex: 0 0 auto;
-  font-size: 0.74rem;
+.re-fase-titulo {
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.re-fase-sub {
+  font-size: 0.76rem;
+  font-weight: 300;
+  line-height: 1.45;
   color: #7A5838;
-  font-variant-numeric: tabular-nums;
 }
 
 .re-fase .re-valor {
-  flex: 0 0 auto;
-  min-width: 72px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding-top: 2px;
 }
 
-.re-previsao {
-  margin: 4px 0 0;
+/* ── Previsão e nota ── */
+.re-texto {
+  margin: 0;
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.86rem;
-  line-height: 1.5;
+  font-size: 0.88rem;
+  line-height: 1.6;
   color: #2A1E10;
 }
 
-.re-previsao strong {
-  font-weight: 600;
-}
-
-.re-previsao-nota {
-  display: block;
-  margin-top: 2px;
-  font-size: 0.76rem;
-  font-weight: 300;
-  color: #7A5838;
-}
-
-.re-nota {
-  margin: 18px 0 0;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: #FAF6EE;
-  border: 1px solid rgba(90, 64, 40, 0.10);
-  font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.78rem;
-  font-weight: 300;
-  line-height: 1.6;
-  color: #5A4028;
-}
-
-.re-nota + .re-nota {
+.re-texto + .re-texto {
   margin-top: 8px;
 }
 
-.re-nota strong {
+.re-texto strong,
+.re-texto b {
+  font-weight: 600;
+}
+
+.re-bloco-nota .re-texto {
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: #5A4028;
+}
+
+.re-bloco-nota .re-texto b {
   font-weight: 600;
   color: #2A1E10;
+}
+
+/* Realce breve quando o valor muda (total e barra). Remontamos o
+   elemento com key={total}, por isso a animação corre a cada mudança. */
+@keyframes re-realce {
+  0%   { color: #B8954A; transform: translateY(-2px); }
+  100% { color: inherit; transform: none; }
+}
+
+.re-muda {
+  display: inline-block;
+  animation: re-realce 0.55s ease-out;
+}
+
+/* ── Barra fixa do telemóvel ──
+   95% das reservas são feitas no telemóvel. A barra mostra o total à
+   medida que a pessoa escolhe, sem ter de ir ao fundo; toca-se e vai
+   ao resumo. Só existe abaixo de 860px, só depois de a pessoa chegar à
+   secção "O quadro", e esconde-se quando o resumo já está no ecrã. */
+.re-barra {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .re-barra {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 18px calc(12px + env(safe-area-inset-bottom));
+    border: 0;
+    border-top: 1px solid rgba(42, 30, 16, 0.12);
+    background: rgba(250, 247, 240, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 -4px 20px rgba(42, 30, 16, 0.12);
+    font-family: var(--font-google-sans), "Google Sans", sans-serif;
+    color: #1C1008;
+    text-align: left;
+    cursor: pointer;
+    transform: translateY(110%);
+    transition: transform 0.25s ease;
+  }
+
+  .re-barra-on {
+    transform: translateY(0);
+  }
+
+  .re-barra:focus-visible {
+    outline: 3px solid #D4B060;
+    outline-offset: -3px;
+  }
+
+  .re-barra-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+  }
+
+  .re-barra-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #5A4028;
+  }
+
+  .re-barra-ver {
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: #6A3A18;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .re-barra-valor {
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .re-barra-valor small {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 400;
+    color: #7A5838;
+    text-align: right;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .re-barra { transition: none; }
+  .re-muda { animation: none; }
 }
 
 @media (max-width: 420px) {
   .re-linha,
-  .re-fase {
+  .re-fase-titulo {
     font-size: 0.82rem;
   }
 
@@ -197,9 +311,9 @@
 }
 
 /* Caixa dos Termos, que passou a viver dentro da secção do resumo:
-   separada por um traço para ler o total antes de aceitar. */
+   separada por um fio para ler o total antes de aceitar. */
 .pf-resumo-termos {
   margin-top: 22px;
   padding-top: 18px;
-  border-top: 1px solid rgba(90, 64, 40, 0.10);
+  border-top: 1px solid rgba(90, 64, 40, 0.12);
 }

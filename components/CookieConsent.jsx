@@ -35,6 +35,7 @@ export default function CookieConsent() {
   return (
     <div
       role="region"
+      data-cookie-banner=""
       aria-label="Cookies"
       style={{
         position: "fixed", bottom: "12px", left: "12px", zIndex: 150,
