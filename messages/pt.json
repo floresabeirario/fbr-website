@@ -1984,9 +1984,37 @@
       "previsaoArtesanal": "É um processo artesanal que não se apressa, por isso o prazo pode alongar-se.",
       "notaTitulo": "Nota",
       "barraTotal": "Total estimado",
-      "barraVer": "Ver resumo"
+      "barraVer": "Ver resumo",
+      "valeLinha": "Vale-presente {codigo}",
+      "aPagar": "A pagar",
+      "aPagarAPartirDe": "A pagar, a partir de",
+      "valeCobre": "O vale cobre o valor estimado. Qualquer extra acrescentado depois é pago à parte.",
+      "barraAPagar": "A pagar"
     },
-    "successPrioridade": "Como o seu evento é daqui a 6 meses ou mais, a nossa resposta pode demorar mais do que 3 dias úteis: respondemos por ordem de proximidade da data do evento. O seu pedido fica registado na mesma."
+    "successPrioridade": "Como o seu evento é daqui a 6 meses ou mais, a nossa resposta pode demorar mais do que 3 dias úteis: respondemos por ordem de proximidade da data do evento. O seu pedido fica registado na mesma.",
+    "exemplos": {
+      "verExemplo": "Ver exemplo",
+      "fechar": "Fechar",
+      "minisTitulo": "Quadros extra 20×25 cm",
+      "minisDesc": "Uma moldura pequena com flores do seu bouquet. Ideal para oferecer aos pais, padrinhos, irmãos ou amigos que viveram o dia consigo.",
+      "ornamentosTitulo": "Ornamento de Natal",
+      "ornamentosDesc": "Um ornamento para a árvore com flores do seu bouquet. Um pedaço do seu dia especial no Natal de quem gosta, ano após ano.",
+      "pendentesTitulo": "Pendente para colar",
+      "pendentesDesc": "Uma flor do seu bouquet para usar sempre perto do coração. Uma memória que se transforma em jóia."
+    },
+    "rascunhoTitulo": "Recuperámos o que tinha começado a preencher.",
+    "rascunhoTexto": "O pedido ainda não foi enviado. Reveja as respostas e carregue em \"Submeter pré-reserva\" no fim da página.",
+    "rascunhoLimpar": "Começar de novo",
+    "valeEncontrado": "Vale de {valor} encontrado, válido até {validade}. O valor é descontado no resumo.",
+    "valeExpirado": "Este vale expirou em {validade}. Fale connosco antes de reservar.",
+    "tipoEventoOutroLabel": "Qual?",
+    "tipoEventoOutroPlaceholder": "Ex.: aniversário, formatura, homenagem",
+    "successResumoTitulo": "O seu pedido",
+    "successProximosTitulo": "Próximos passos",
+    "successPasso1": "Aguarde a nossa mensagem com a confirmação do orçamento, nos próximos 3 dias úteis.",
+    "successPasso2": "Pague o sinal de 30% em 24 horas depois da nossa mensagem. Só aí a vaga fica garantida.",
+    "successPasso3": "Depois do evento, mantenha as flores em água fresca, longe do sol, e faça-as chegar até nós em 1 a 3 dias, no máximo 6.",
+    "successPasso3Secas": "Aguarde a nossa confirmação antes de enviar as flores. Enviamos as instruções de embalagem com a mensagem."
   },
   "vale": {
     "meta": {

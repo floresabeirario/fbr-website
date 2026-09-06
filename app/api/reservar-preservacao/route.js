@@ -47,6 +47,7 @@ const MAX_LENGTHS = {
   tipoFlores:          1000,
   elementosExtraOutro: 500,
   notasAdicionais:     2000,
+  tipoEventoOutro:     200,
   comoConheceuOutro:   1000,
   nomeFlorista:        300,
   codigoValePresente:  20,

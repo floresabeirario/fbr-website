@@ -100,6 +100,17 @@ function lookup(map, value) {
   return map[value] ?? null;
 }
 
+// Tipo de evento "Outro" tem um campo "Qual?" no formulário. `orders` não
+// tem coluna para isso, por isso vai à cabeça das notas, onde a Maria o
+// vê logo no workbench. Nunca inventa texto para os outros tipos.
+function notasComEvento(data, event_type) {
+  const notas = (data.notasAdicionais || "").trim();
+  const qual = event_type === "outro" ? (data.tipoEventoOutro || "").trim() : "";
+  if (!qual) return notas || null;
+  const linha = `Tipo de evento: ${qual}`;
+  return notas ? `${linha}\n\n${notas}` : linha;
+}
+
 // ── Detalhes da recolha no local ────────────────────────────
 // O formulário público pergunta morada/dia/janela horária a quem
 // escolhe "Recolha no local". Escrevem nas colunas pickup_* que o
@@ -280,7 +291,7 @@ export function mapReservaToOrder(data, { ip } = {}) {
     how_found_fbr,
     how_found_fbr_other,
     gift_voucher_code,
-    additional_notes:   (data.notasAdicionais || "").trim() || null,
+    additional_notes:   notasComEvento(data, event_type),
     form_language:      data.locale === "en" ? "en" : "pt",
 
     // RGPD
@@ -408,7 +419,7 @@ export function mapEmoldurarToOrder(data, { ip, clientPhotos = [] } = {}) {
     how_found_fbr,
     how_found_fbr_other,
     gift_voucher_code,
-    additional_notes:   (data.notasAdicionais || "").trim() || null,
+    additional_notes:   notasComEvento(data, event_type),
     form_language:      data.locale === "en" ? "en" : "pt",
 
     consent_at:         new Date().toISOString(),

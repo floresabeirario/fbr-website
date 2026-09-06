@@ -58,7 +58,21 @@ export async function POST(request) {
       return NextResponse.json({ existe: null });
     }
 
-    return NextResponse.json({ existe: Array.isArray(data) && data.length > 0 });
+    const vale = Array.isArray(data) && data.length > 0 ? data[0] : null;
+    if (!vale) return NextResponse.json({ existe: false });
+
+    // Desde 06/09/2026 devolve também o valor e se expirou: o resumo do
+    // formulário desconta o vale ao total, para a pessoa não ver um sinal
+    // que não vai pagar. Quem tem o código já tem estes dados (estão no
+    // site do voucher); nome e mensagem continuam a NÃO sair daqui.
+    const hoje = new Date().toISOString().slice(0, 10);
+    const valor = Number(vale.amount);
+    return NextResponse.json({
+      existe: true,
+      valor: Number.isFinite(valor) ? valor : null,
+      expirado: Boolean(vale.expiry_date && vale.expiry_date < hoje),
+      validade: vale.expiry_date ?? null,
+    });
   } catch (err) {
     console.error("[verificar-vale] error:", err);
     return NextResponse.json({ existe: null });

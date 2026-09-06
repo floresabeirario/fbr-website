@@ -340,3 +340,19 @@
   padding-top: 18px;
   border-top: 1px solid rgba(90, 64, 40, 0.12);
 }
+
+/* Vale-presente: linha verde a descontar e "A pagar" por baixo do total */
+.re-linha-vale {
+  margin-top: 8px;
+  border-bottom: 0;
+}
+
+.re-linha-vale .re-valor {
+  color: #3D6B5E;
+}
+
+.re-apagar {
+  margin-top: 0;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(90, 64, 40, 0.3);
+}

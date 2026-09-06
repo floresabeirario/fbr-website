@@ -23,6 +23,9 @@ import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget"
 import { phoneLengthError, normalizePhone, formatPhoneInput } from "../_lib/phone-validation";
 import { suggestEmail, cleanEmail } from "../_lib/email-suggest";
 import { PRECOS_FALLBACK } from "../_lib/precos-valores";
+import ExemploModal from "../_components/ExemploModal";
+import { useRascunho } from "../_lib/use-rascunho";
+import { formatEuro, formatDataCurta } from "../_lib/orcamento";
 import ResumoEncomenda from "../_components/ResumoEncomenda";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
@@ -36,6 +39,7 @@ const INIT = {
   telefoneIndicativo: "+351",
   telefone: "",
   tipoEvento: "",
+  tipoEventoOutro: "",
   nomeNoivos: "",
   tipoFlores: "",
   estadoFlores: "",
@@ -138,9 +142,49 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
   const termosHref       = locale === "en" ? "/en/terms-and-conditions" : "/termos-e-condicoes";
 
   const [form, setForm] = useState(INIT);
+  // Modal "Ver exemplo" dos extras (minis, ornamentos, pendentes).
+  const [exemplo, setExemplo] = useState(null);
+  // Vale-presente verificado: { valor, expirado, validade } ou null.
+  const [valeInfo, setValeInfo] = useState(null);
+  // Rascunho guardado no telemóvel (recupera ao voltar; apaga ao enviar).
+  const rascunho = useRascunho("fbr-rascunho-secas", form, setForm, INIT);
+  const botaoExemplo = (tipo) => (
+    <button type="button" className="pf-info-btn" onClick={() => setExemplo(tipo)}>
+      <span className="pf-info-icon" aria-hidden="true">i</span>
+      {t("exemplos.verExemplo")}
+    </button>
+  );
   const marcaSeccao = () => {};
   const [fotos, setFotos] = useState([]); // { file, url }
   const [errors, setErrors] = useState({});
+
+  // Verifica se o código do vale existe (ao sair do campo). Só avisa com a
+  // certeza "não existe"; erros de rede/limite ficam em silêncio e nada bloqueia.
+  // Quando existe, guarda o valor para o resumo o descontar.
+  const [valeNaoEncontrado, setValeNaoEncontrado] = useState(false);
+  const valeVerificadoRef = useRef("");
+  async function verificarVale(valor) {
+    const codigo = valor.trim().toUpperCase();
+    valeVerificadoRef.current = codigo;
+    if (!codigo) {
+      setValeNaoEncontrado(false);
+      setValeInfo(null);
+      return;
+    }
+    try {
+      const res = await fetch("/api/verificar-vale", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: codigo }),
+      });
+      const json = res.ok ? await res.json() : null;
+      if (valeVerificadoRef.current !== codigo) return;
+      setValeNaoEncontrado(json?.existe === false);
+      setValeInfo(json?.existe ? { valor: json.valor, expirado: json.expirado, validade: json.validade } : null);
+    } catch {
+      setValeNaoEncontrado(false);
+    }
+  }
   // Modal "Ver a diferença" do vidro museu (mesma imagem e mesmo CSS do
   // formulário de preservação, que este ficheiro já importa).
   const [vidroModalAberto, setVidroModalAberto] = useState(false);
@@ -160,7 +204,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
   const fieldLabel = (key) => {
     const reservaKeys = {
       nome: "nomeLabel", meioContacto: "contactoLabel", email: "emailLabel",
-      telefone: "telefoneLabel", tipoEvento: "tipoEventoLabel", nomeNoivos: "nomeNoivosLabel",
+      telefone: "telefoneLabel", tipoEvento: "tipoEventoLabel", tipoEventoOutro: "tipoEventoOutroLabel", nomeNoivos: "nomeNoivosLabel",
       comoEnviarFlores: "enviarFloresLabel", comoReceberQuadro: "receberQuadroLabel",
       tamanhoMoldura: "tamanhoLabel", tipoFundo: "fundoLabel", vidroMuseu: "vidroMuseuLabel", vidroMuseuMini: "vidroMuseuMiniLabel", elementosExtra: "elementosLabel",
       elementosExtraOutro: "elementosOutroLabel", quadrosExtra: "quadrosExtraLabel",
@@ -190,6 +234,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
       if (key === "ornamentosNatal" && val !== ORNAMENTOS_SIM) next.quantosOrnamentos = "";
       if (key === "pendentes"       && val !== PENDENTES_SIM)  next.quantosPendentes  = "";
       if (key === "tipoEvento"      && val !== CASAMENTO_VALOR) next.nomeNoivos        = "";
+      if (key === "tipoEvento"      && val !== "Outro")           next.tipoEventoOutro  = "";
       if (key === "comoConheceu") {
         next.comoConheceuOutro = "";
         next.nomeFlorista = "";
@@ -256,7 +301,9 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
   const showComoConheceuOutro = form.comoConheceu    === OUTRO_VALOR;
   const showNomeFlorista      = form.comoConheceu    === FLORISTA_VALOR;
   const showCodigoVale        = form.comoConheceu    === VALE_VALOR;
+  const valeAplicavel = showCodigoVale && valeInfo && Number.isFinite(valeInfo.valor) && !valeInfo.expirado ? valeInfo.valor : null;
   const showNomeNoivos        = form.tipoEvento      === CASAMENTO_VALOR;
+  const showTipoEventoOutro   = form.tipoEvento      === "Outro";
   const showElementosExtraOutro = form.elementosExtra.includes(ELEM_OUTRO);
 
   function validate() {
@@ -273,6 +320,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
     }
     if (!form.tipoEvento)         e.tipoEvento = t("erroCampoObrigatorio");
     if (showNomeNoivos && !form.nomeNoivos.trim()) e.nomeNoivos = t("erroCampoObrigatorio");
+    if (showTipoEventoOutro && !form.tipoEventoOutro.trim()) e.tipoEventoOutro = t("erroCampoObrigatorio");
     if (!form.estadoFlores)       e.estadoFlores = t("erroCampoObrigatorio");
     if (!form.abordagem)          e.abordagem = t("erroCampoObrigatorio");
     if (!form.comoEnviarFlores)   e.comoEnviarFlores = t("erroCampoObrigatorio");
@@ -339,6 +387,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
       const res = await fetch("/api/emoldurar-flores-secas", { method: "POST", body: fd });
       const json = await res.json();
       if (!res.ok) throw new Error(JSON.stringify(json));
+      rascunho.apagar();
       setStatus("success");
       window.umami?.track?.("emoldurar-enviado");
       setTimeout(() => successRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
@@ -370,6 +419,28 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
         </p>
         <p className="pf-success-text">{t("successP1", { dias: 3, sinal: "sinal de 30%", horas })}</p>
         <p className="pf-success-text">{t("successP2")}</p>
+
+        <div className="pf-success-resumo">
+          <h3 className="pf-success-subtitulo">{t("successResumoTitulo")}</h3>
+          <ResumoEncomenda
+            form={form}
+            precos={precos}
+            locale={locale}
+            serviceType="emoldurar_secas"
+            dataEvento={""}
+            vale={valeAplicavel}
+            codigoVale={form.codigoValePresente}
+            semBarra
+          />
+        </div>
+        <div className="pf-success-passos">
+          <h3 className="pf-success-subtitulo">{t("successProximosTitulo")}</h3>
+          <ol>
+            <li>{t("successPasso1")}</li>
+            <li>{t("successPasso2")}</li>
+            <li>{t("successPasso3Secas")}</li>
+          </ol>
+        </div>
         <p className="pf-success-closing">
           {t("successClosing")}
           <br />
@@ -385,6 +456,16 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
       <p className="pf-intro">
         {t("camposObrigatorios")} <span aria-hidden="true" className="pf-req">*</span> {locale === "en" ? "are required." : "são obrigatórios."}
       </p>
+
+      {rascunho.recuperado && (
+        <div className="pf-rascunho" role="status">
+          <p className="pf-rascunho-texto">
+            <strong>{t("rascunhoTitulo")}</strong>
+            {t("rascunhoTexto")}
+          </p>
+          <button type="button" className="pf-rascunho-btn" onClick={rascunho.limpar}>{t("rascunhoLimpar")}</button>
+        </div>
+      )}
 
       {Object.keys(errors).length > 0 && (
         <div className="pf-errors-summary" role="alert" tabIndex={-1} ref={errorsSummaryRef}>
@@ -483,6 +564,12 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
             {tipoEventoOpcoes.map((o) => <option key={o.valor} value={o.valor}>{o.label}</option>)}
           </select>
         </Field>
+
+        {showTipoEventoOutro && (
+          <Field name="tipoEventoOutro" label={t("tipoEventoOutroLabel")} required error={errors.tipoEventoOutro}>
+            <input type="text" {...inp("tipoEventoOutro")} placeholder={t("tipoEventoOutroPlaceholder")} maxLength={200} />
+          </Field>
+        )}
 
         {showNomeNoivos && (
           <Field name="nomeNoivos" label={t("nomeNoivosLabel")} required error={errors.nomeNoivos} hint={t("nomeNoivosHint")}>
@@ -682,7 +769,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
       <div className="pf-section" role="group" aria-labelledby="sec-extras">
         <h2 className="pf-section-title" id="sec-extras">{t("secExtras")}</h2>
 
-        <Field name="quadrosExtra" label={t("quadrosExtraLabel")} required error={errors.quadrosExtra} hint={t("quadrosExtraHint", { mini20x25: precos.mini20x25 })}>
+        <Field name="quadrosExtra" label={t("quadrosExtraLabel")} required error={errors.quadrosExtra} hint={<>{t("quadrosExtraHint", { mini20x25: precos.mini20x25 })} {botaoExemplo("minis")}</>}>
           <select {...inp("quadrosExtra")}>
             <option value="">{t("escolha")}</option>
             {quadrosExtraOpcoes.map((o) => <option key={o.valor} value={o.valor}>{o.label}</option>)}
@@ -712,7 +799,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
           </Field>
         )}
 
-        <Field name="ornamentosNatal" label={t("ornamentosLabel")} required error={errors.ornamentosNatal} hint={te("ornamentosSalvaguarda")}>
+        <Field name="ornamentosNatal" label={t("ornamentosLabel")} required error={errors.ornamentosNatal} hint={<>{te("ornamentosSalvaguarda")} {botaoExemplo("ornamentos")}</>}>
           <select {...inp("ornamentosNatal")}>
             <option value="">{t("escolha")}</option>
             {ornamentosOpcoes.map((o) => <option key={o.valor} value={o.valor}>{o.label}</option>)}
@@ -725,7 +812,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
           </Field>
         )}
 
-        <Field name="pendentes" label={t("pendentesLabel")} required error={errors.pendentes} hint={te("pendentesSalvaguarda")}>
+        <Field name="pendentes" label={t("pendentesLabel")} required error={errors.pendentes} hint={<>{te("pendentesSalvaguarda")} {botaoExemplo("pendentes")}</>}>
           <select {...inp("pendentes")}>
             <option value="">{t("escolha")}</option>
             {pendentesOpcoes.map((o) => <option key={o.valor} value={o.valor}>{o.label}</option>)}
@@ -764,7 +851,32 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
 
         {showCodigoVale && (
           <Field name="codigoValePresente" label={t("codigoValeLabel")} required error={errors.codigoValePresente} hint={t("codigoValeHint")}>
-            <input type="text" {...inp("codigoValePresente")} placeholder={t("codigoValePlaceholder")} autoComplete="off" maxLength={20} />
+            <div>
+              <input
+                type="text"
+                {...inp("codigoValePresente")}
+                onChange={(e) => { set("codigoValePresente", e.target.value); setValeNaoEncontrado(false); setValeInfo(null); }}
+                onBlur={() => {
+                  const limpo = form.codigoValePresente.trim().toUpperCase().replace(/\s+/g, "");
+                  if (limpo !== form.codigoValePresente) set("codigoValePresente", limpo);
+                  verificarVale(limpo);
+                }}
+                placeholder={t("codigoValePlaceholder")}
+                autoComplete="off"
+                maxLength={20}
+              />
+              {valeNaoEncontrado && (
+                <p className="pf-error" role="status">{t("valeNaoEncontrado")}</p>
+              )}
+              {valeInfo && valeInfo.valor != null && (
+                <p className={valeInfo.expirado ? "pf-error" : "pf-vale-ok"} role="status">
+                  {t(valeInfo.expirado ? "valeExpirado" : "valeEncontrado", {
+                    valor: formatEuro(valeInfo.valor),
+                    validade: formatDataCurta(valeInfo.validade, locale),
+                  })}
+                </p>
+              )}
+            </div>
           </Field>
         )}
 
@@ -786,6 +898,8 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
           locale={locale}
           serviceType="emoldurar_secas"
           dataEvento={""}
+          vale={valeAplicavel}
+          codigoVale={form.codigoValePresente}
         />
         <div className="pf-resumo-termos">
         <div className="pf-group" data-field="termosCondicoes">
@@ -826,6 +940,14 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
         {status === "loading" ? t("submitLoading") : t("submitBtn")}
       </button>
     </form>
+
+    <ExemploModal
+      tipo={exemplo}
+      onFechar={() => setExemplo(null)}
+      titulo={exemplo ? t(`exemplos.${exemplo}Titulo`) : ""}
+      desc={exemplo ? t(`exemplos.${exemplo}Desc`) : ""}
+      fechar={t("exemplos.fechar")}
+    />
 
     {vidroModalAberto && (
       <div

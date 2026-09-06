@@ -222,6 +222,14 @@ export function formatEuro(n) {
   return `${txt}€`;
 }
 
+// "2028-09-06" → "06/09/2028" (formato do site para datas; sem fuso, é
+// uma DATE simples). Devolve "" para entradas inválidas.
+export function formatDataCurta(iso) {
+  if (!iso || !/^\d{4}-\d{2}-\d{2}/.test(String(iso))) return "";
+  const [y, m, d] = String(iso).slice(0, 10).split("-");
+  return `${d}/${m}/${y}`;
+}
+
 // ── Previsão de entrega ─────────────────────────────────────────────
 //
 // Preservação: cerca de 6 meses depois de as flores chegarem, que é

@@ -1976,9 +1976,37 @@
       "previsaoArtesanal": "It is an artisanal process that cannot be rushed, so the timeline may extend.",
       "notaTitulo": "Note",
       "barraTotal": "Estimated total",
-      "barraVer": "View summary"
+      "barraVer": "View summary",
+      "valeLinha": "Gift voucher {codigo}",
+      "aPagar": "To pay",
+      "aPagarAPartirDe": "To pay, from",
+      "valeCobre": "The voucher covers the estimated amount. Any extra added later is paid separately.",
+      "barraAPagar": "To pay"
     },
-    "successPrioridade": "As your event is 6 months or more away, our reply may take longer than 3 working days: we reply in order of how close the event date is. Your request is registered all the same."
+    "successPrioridade": "As your event is 6 months or more away, our reply may take longer than 3 working days: we reply in order of how close the event date is. Your request is registered all the same.",
+    "exemplos": {
+      "verExemplo": "See example",
+      "fechar": "Close",
+      "minisTitulo": "Extra 20×25 cm frames",
+      "minisDesc": "A small frame with flowers from your bouquet. Ideal as a gift for parents, godparents, siblings or friends who shared the day with you.",
+      "ornamentosTitulo": "Christmas ornament",
+      "ornamentosDesc": "A tree ornament with flowers from your bouquet. A piece of your special day at Christmas, year after year.",
+      "pendentesTitulo": "Necklace pendant",
+      "pendentesDesc": "A flower from your bouquet to wear close to your heart. A memory turned into jewellery."
+    },
+    "rascunhoTitulo": "We restored what you had started filling in.",
+    "rascunhoTexto": "Your request has not been sent yet. Review your answers and press \"Submit pre-booking\" at the bottom of the page.",
+    "rascunhoLimpar": "Start over",
+    "valeEncontrado": "Voucher worth {valor} found, valid until {validade}. The amount is deducted in the summary.",
+    "valeExpirado": "This voucher expired on {validade}. Please contact us before booking.",
+    "tipoEventoOutroLabel": "Which?",
+    "tipoEventoOutroPlaceholder": "E.g. birthday, graduation, memorial",
+    "successResumoTitulo": "Your request",
+    "successProximosTitulo": "Next steps",
+    "successPasso1": "Wait for our message confirming the quote, within the next 3 working days.",
+    "successPasso2": "Pay the 30% deposit within 24 hours of our message. Only then is your place secured.",
+    "successPasso3": "After the event, keep the flowers in fresh water, away from the sun, and get them to us within 1 to 3 days, 6 at most.",
+    "successPasso3Secas": "Wait for our confirmation before sending the flowers. We send packaging instructions with our message."
   },
   "vale": {
     "meta": {

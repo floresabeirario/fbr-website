@@ -148,6 +148,12 @@ export default function ResumoEncomenda({
   locale,
   serviceType = "preservacao",
   dataEvento = "",
+  // Vale-presente válido (valor em €) e o seu código: desconta-se ao
+  // total e as fases calculam-se sobre o que falta pagar.
+  vale = null,
+  codigoVale = "",
+  // No ecrã de sucesso o resumo repete-se sem a barra fixa.
+  semBarra = false,
 }) {
   const t = useTranslations("formReserva.resumo");
   const tf = useTranslations("formReserva");
@@ -285,10 +291,15 @@ export default function ResumoEncomenda({
     previsao = mes ? t.rich("previsaoComData", { mes, meses: 6, b }) : t("previsaoSemData", { meses: 6 });
   }
 
-  const distante = !secas && eventoDistante(dataEvento);
+  // No ecrã de sucesso (semBarra) a frase da prioridade já aparece por
+  // cima, no texto de confirmação; não a repetimos dentro do resumo.
+  const distante = !secas && !semBarra && eventoDistante(dataEvento);
   const total = snap?.total ?? 0;
-  const fases = fasesPagamento(total);
+  const temVale = Number.isFinite(vale) && vale > 0;
+  const aPagar = temVale ? Math.max(0, total - vale) : total;
+  const fases = fasesPagamento(aPagar);
   const totalTxt = formatEuro(total);
+  const aPagarTxt = formatEuro(aPagar);
 
   const notaBloco = (
     <section className="re-bloco re-bloco-nota">
@@ -323,12 +334,29 @@ export default function ResumoEncomenda({
                 <span className="re-valor"><span className="re-muda" key={total}>{totalTxt}</span></span>
               </div>
 
+              {temVale && (
+                <>
+                  <div className="re-linha re-linha-vale">
+                    <span className="re-etiqueta">{t("valeLinha", { codigo: codigoVale })}</span>
+                    <span className="re-valor">−{formatEuro(vale)}</span>
+                  </div>
+                  <div className="re-total re-apagar">
+                    <span>{snap.provisional ? t("aPagarAPartirDe") : t("aPagar")}</span>
+                    <span className="re-valor"><span className="re-muda" key={aPagar}>{aPagarTxt}</span></span>
+                  </div>
+                </>
+              )}
+
               {/* A nota "é uma estimativa" vem logo a seguir ao total, que é
                   o número que a pessoa lê primeiro (pedido da Maria). */}
               {notaBloco}
 
               <section className="re-bloco">
                 <h3 className="re-bloco-titulo">{t("pagamentoTitulo")}</h3>
+                {temVale && aPagar === 0 ? (
+                  <p className="re-texto">{t("valeCobre")}</p>
+                ) : (
+                <>
                 <p className="re-bloco-intro">{t("pagamentoIntro")}</p>
                 <ol className="re-fases">
                   {[
@@ -346,6 +374,8 @@ export default function ResumoEncomenda({
                     </li>
                   ))}
                 </ol>
+                </>
+                )}
               </section>
             </>
           )}
@@ -360,13 +390,15 @@ export default function ResumoEncomenda({
         </>
       )}
 
-      <BarraTotal
-        resumoRef={rootRef}
-        activa={temEscolhas && Boolean(snap)}
-        texto={{ total: t("barraTotal"), ver: t("barraVer") }}
-        valor={totalTxt}
-        sub={snap?.provisional ? t("totalAPartirDe") : null}
-      />
+      {!semBarra && (
+        <BarraTotal
+          resumoRef={rootRef}
+          activa={temEscolhas && Boolean(snap)}
+          texto={{ total: temVale ? t("barraAPagar") : t("barraTotal"), ver: t("barraVer") }}
+          valor={temVale ? aPagarTxt : totalTxt}
+          sub={snap?.provisional ? t("totalAPartirDe") : null}
+        />
+      )}
     </div>
   );
 }
