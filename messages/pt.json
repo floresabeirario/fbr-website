@@ -1339,7 +1339,9 @@
       "Valor mínimo de {quadro30x40}€, correspondente à nossa moldura mais pequena",
       "Válido por 2 anos a partir da data de compra",
       "Não é reembolsável",
-      "Válido exclusivamente para os serviços da Flores à Beira-Rio"
+      "Válido exclusivamente para os serviços da Flores à Beira-Rio",
+      "Se o orçamento da preservação for superior ao vale, a diferença paga-se de uma só vez na confirmação da reserva. Se for inferior, o crédito que sobra pode ser usado em extras dessa encomenda, mas não é devolvido em dinheiro.",
+      "O vale funciona como crédito. As escolhas da preservação, como o tamanho, o fundo, os extras e a aprovação da composição, são da pessoa presenteada, quando fizer a sua reserva de preservação. Se preferir tratar de tudo como surpresa, faça você a reserva de preservação com o código do vale: nesse caso, as decisões são suas."
     ],
     "entrega": [
       {
@@ -2446,7 +2448,7 @@
       },
       {
         "title": "15. Vales-presente",
-        "content": "Os vales-presente são válidos por 2 anos a contar da data de emissão e destinam-se a ser usados numa encomenda de preservação, emolduramento ou recriação. O valor do vale é descontado no orçamento. Se o orçamento for superior, o beneficiário paga a diferença de uma só vez, na confirmação da reserva, em vez das três fases. Se for inferior, o remanescente pode ser usado em extras dessa encomenda, mas não é devolvido em dinheiro. Um vale não é reembolsável nem convertível em dinheiro, e o vale expirado não é prorrogado.\nO envio físico do vale tem o custo indicado no site. A reserva feita com vale segue os mesmos Termos, incluindo o pedido de reserva e a prioridade pela data do evento."
+        "content": "Os vales-presente são válidos por 2 anos a contar da data de emissão e destinam-se a ser usados numa encomenda de preservação, emolduramento ou recriação. O valor do vale é descontado no orçamento. Se o orçamento for superior, o beneficiário paga a diferença de uma só vez, na confirmação da reserva, em vez das três fases. Se for inferior, o remanescente pode ser usado em extras dessa encomenda, mas não é devolvido em dinheiro. Um vale não é reembolsável nem convertível em dinheiro, e o vale expirado não é prorrogado.\nO vale é um crédito: as escolhas da preservação (tamanho, fundo, extras, aprovação da composição) são de quem faz a reserva de preservação com o código do vale, normalmente a pessoa presenteada. Se quem ofereceu o vale preferir tratar de tudo como surpresa, é essa pessoa que faz a reserva de preservação e passa a ser o cliente.\nO envio físico do vale tem o custo indicado no site. A reserva feita com vale segue os mesmos Termos, incluindo o pedido de reserva e a prioridade pela data do evento."
       },
       {
         "title": "16. Cuidados com a peça",

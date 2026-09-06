@@ -1331,7 +1331,9 @@
       "Minimum value of €{quadro30x40}, equivalent to our smallest frame",
       "Valid for 2 years from the purchase date",
       "Non-refundable",
-      "Valid exclusively for Flores à Beira-Rio services"
+      "Valid exclusively for Flores à Beira-Rio services",
+      "If the preservation quote is higher than the voucher, the difference is paid in one go when the booking is confirmed. If it is lower, the remaining credit may go towards extras in that order but is not refunded in cash.",
+      "The voucher works as credit. The preservation choices, such as size, background, extras and composition approval, belong to the recipient when they make their preservation booking. If you would rather handle everything as a surprise, make the preservation booking yourself with the voucher code: in that case, the decisions are yours."
     ],
     "entrega": [
       {
@@ -2438,7 +2440,7 @@
       },
       {
         "title": "15. Gift vouchers",
-        "content": "Gift vouchers are valid for 2 years from the date of issue and are intended for a preservation, framing or recreation order. The voucher amount is deducted from the quote. If the quote is higher, the beneficiary pays the difference in one go, when the booking is confirmed, instead of the three stages. If it is lower, the remainder may go towards extras in that order but is not refunded in cash. A voucher is not refundable or convertible into cash, and an expired voucher is not extended.\nPhysical delivery of the voucher has the cost stated on the website. A booking made with a voucher follows the same Terms, including the booking request and the priority by event date."
+        "content": "Gift vouchers are valid for 2 years from the date of issue and are intended for a preservation, framing or recreation order. The voucher amount is deducted from the quote. If the quote is higher, the beneficiary pays the difference in one go, when the booking is confirmed, instead of the three stages. If it is lower, the remainder may go towards extras in that order but is not refunded in cash. A voucher is not refundable or convertible into cash, and an expired voucher is not extended.\nThe voucher is credit: the preservation choices (size, background, extras, composition approval) belong to whoever makes the preservation booking with the voucher code, normally the recipient. If the person who gave the voucher prefers to handle everything as a surprise, that person makes the preservation booking and becomes the client.\nPhysical delivery of the voucher has the cost stated on the website. A booking made with a voucher follows the same Terms, including the booking request and the priority by event date."
       },
       {
         "title": "16. Caring for the piece",
