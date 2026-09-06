@@ -54,10 +54,10 @@ export const buildFaqData = (p = PRECOS_FALLBACK) => [
     cat: "processo",
     q: "Quanto tempo demora a preservação?",
     plain:
-      "O nosso tempo médio é de até 6 meses desde a recepção das flores até ao quadro emoldurado. Fazemos sempre o possível para ser mais rápidos, mas a prensagem é um processo delicado que não pode ser apressado. Nunca sacrificamos a qualidade em favor da rapidez. No caso de a encomenda incluir vários quadros, é possível que o prazo se estenda um pouco.",
+      "O nosso tempo médio é de cerca de 6 meses desde a recepção das flores até ao quadro emoldurado. Fazemos sempre o possível para ser mais rápidos, mas a prensagem é um processo delicado que não pode ser apressado. Nunca sacrificamos a qualidade em favor da rapidez. No caso de a encomenda incluir vários quadros, é possível que o prazo se estenda um pouco.",
     a: (
       <>
-        O nosso tempo médio é de <strong>até 6 meses</strong> desde a recepção das flores até ao quadro emoldurado.
+        O nosso tempo médio é de <strong>cerca de 6 meses</strong> desde a recepção das flores até ao quadro emoldurado.
         Fazemos sempre o possível para ser mais rápidos, mas a prensagem é um processo delicado que não pode ser apressado.
         <strong> Nunca sacrificamos a qualidade em favor da rapidez.</strong>
         <br /><br />

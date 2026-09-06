@@ -300,9 +300,9 @@
   "comoFunciona": {
     "meta": {
       "title": "Como Funciona a Preservação de Flores",
-      "description": "Os 5 passos da preservação artesanal: reserva, entrega em 6 dias, prensagem, aprovação da composição e envio do quadro emoldurado. Até 6 meses.",
+      "description": "Os 5 passos da preservação artesanal: reserva, entrega em 6 dias, prensagem, aprovação da composição e envio do quadro emoldurado. Cerca de 6 meses.",
       "ogTitle": "Como Funciona: Preservar Flores em 5 Passos | Flores à Beira-Rio",
-      "ogDescription": "Os 5 passos da preservação artesanal: reserva, entrega, prensagem, aprovação e envio do quadro emoldurado. Até 6 meses.",
+      "ogDescription": "Os 5 passos da preservação artesanal: reserva, entrega, prensagem, aprovação e envio do quadro emoldurado. Cerca de 6 meses.",
       "ogImageAlt": "Processo de preservação botânica de flores, Flores à Beira-Rio",
       "keywords": "como funciona preservação de flores, processo preservação botânica, passos preservar bouquet, quanto tempo demora preservação flores, prazo preservar flores, processo prensagem bouquet"
     },
@@ -368,7 +368,7 @@
       },
       {
         "titulo": "Prensagem pétala a pétala",
-        "tag": "Até 6 meses",
+        "tag": "Cerca de 6 meses",
         "corpo": "É aqui que acontece a magia e também a parte que não pode ser apressada. Cada pétala, folha e raminho é prensado individualmente em condições controladas de temperatura e humidade.",
         "nota": "Após estarem preservadas, as flores são também congeladas para eliminar qualquer inseto que possa ainda estar presente.",
         "opcoes": []
@@ -611,7 +611,7 @@
     "ctaWA": "WhatsApp",
     "floresTitle": "Flores que contam a sua história",
     "floresP1": "Na Flores à Beira-Rio, transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Cada pétala é prensada individualmente e emoldurada num quadro feito à mão no nosso atelier em Coimbra, com a opção de vidro museu anti-UV.",
-    "floresP2": "Preços a partir de {quadro30x40}€, com pagamento em três fases. O processo demora até 6 meses e enviamos para todo o mundo.",
+    "floresP2": "Preços a partir de {quadro30x40}€, com pagamento em três fases. O processo demora cerca de 6 meses e enviamos para todo o mundo.",
     "floresP3": "Chegam-nos flores de todos os capítulos da vida: o ramo de noiva do casamento, as flores do batizado ou do nascimento de um filho, o raminho de um pedido de casamento, as flores de um aniversário redondo, e também as flores de uma homenagem fúnebre, preservadas como memória serena de quem partiu. As flores podem chegar até nós em mãos, por correio de qualquer ponto do país, ou com recolha no local do evento. E se as suas vêm de um momento que não está nesta lista, fale connosco na mesma: se têm história, nós preservamo-las.",
     "envioGuiaLink": "Como enviar as suas flores por correio →",
     "saberMais": "Saber mais →",
@@ -774,7 +774,7 @@
       },
       {
         "q": "Quanto tempo demora o processo?",
-        "a": "O nosso tempo médio é de até 6 meses desde a recepção das flores até ao quadro emoldurado. A prensagem é um processo delicado que não pode ser apressado, e nunca sacrificamos a qualidade em favor da rapidez. Quando a composição estiver pronta, recebe fotografias por email e tem 72 horas para aprovar ou pedir alterações."
+        "a": "O nosso tempo médio é de cerca de 6 meses desde a recepção das flores até ao quadro emoldurado. A prensagem é um processo delicado que não pode ser apressado, e nunca sacrificamos a qualidade em favor da rapidez. Quando a composição estiver pronta, recebe fotografias por email e tem 72 horas para aprovar ou pedir alterações."
       },
       {
         "q": "Qual o preço e como funciona o pagamento?",
@@ -1054,7 +1054,7 @@
         "titulo": "Emoldurar ramo original seco",
         "desc": "Se secou as suas flores ao ar, ou o seu ramo já era composto de flores secas, podemos emoldurá-lo. Quer em forma de bouquet, quer desconstruído numa composição com as flores à volta de uma fotografia, por exemplo.",
         "detalhe": "Moldura profunda com 4,5 cm de altura útil.",
-        "time": "até 3 meses"
+        "time": "cerca de 3 meses"
       },
       {
         "n": "Opção 2",
@@ -1062,7 +1062,7 @@
         "titulo": "Recriação do bouquet",
         "desc": "Caso já não tenha as suas flores ou se já não estão em bom estado, recriamos o ramo com flores frescas e eternizamo-lo num quadro emoldurado. As cores são preservadas e ficam mais próximas do dia original. Composição bidimensional, moldura pouco funda.",
         "detalhe": "Visita a nossa página da recriação para mais detalhes.",
-        "time": "até 6 meses",
+        "time": "cerca de 6 meses",
         "linkLabel": "Saber mais sobre recriação",
         "linkHref": "/recriacao"
       },
@@ -1072,7 +1072,7 @@
         "titulo": "Combinação mista",
         "desc": "Se ainda tem flores originais do dia especial, mas algumas não ficaram bem depois de secas, esta é a solução perfeita para si: aproveitamos as flores originais que ainda estão bem e substituímos as restantes. O quadro combina elementos do ramo original com réplicas de flores prensadas numa composição equilibrada.",
         "detalhe": "Aplicam-se os preços de preservação de flores.",
-        "time": "até 6 meses",
+        "time": "cerca de 6 meses",
         "linkLabel": "Ver preços de preservação",
         "linkHref": "/opcoes-e-precos"
       }
@@ -1488,7 +1488,7 @@
     "ctaEyebrow": "Pronto para preservar?",
     "ctaH2": "Reserve a sua data",
     "ctaEm": "e tratamos do resto",
-    "ctaDesc": "Preencha o formulário e entramos em contacto para combinar todos os detalhes. O processo artesanal demora até 6 meses após recebermos as flores.",
+    "ctaDesc": "Preencha o formulário e entramos em contacto para combinar todos os detalhes. O processo artesanal demora cerca de 6 meses após recebermos as flores.",
     "ctaReservar": "Reservar a Minha Data",
     "ctaComoFunciona": "Ver Como Funciona",
     "ctaLinks": [
@@ -1523,7 +1523,7 @@
     "infoLink": "Como funciona o processo",
     "comoFuncionaLabel": "Como funciona a reserva",
     "formTitle": "Formulário de pré-reserva",
-    "formSub": "Para pedir a sua reserva, preencha o formulário com os dados do evento e as suas preferências. Nos próximos 3 dias úteis, receberá a confirmação do orçamento e as instruções para o pagamento do sinal.",
+    "formSub": "Para pedir a sua reserva, preencha o formulário com os dados do evento e as suas preferências. Nos próximos 3 dias úteis, receberá a confirmação do orçamento e as instruções para o pagamento do sinal. Se o evento for daqui a 6 meses ou mais, pode demorar um pouco mais: respondemos primeiro a quem tem a data mais próxima.",
     "provaSocial": "★★★★★ 5,0 nas avaliações no <g>Google</g> e no <c>casamentos.pt</c>",
     "duvidaPre": "Tem alguma dúvida antes de reservar?",
     "duvidaCTA": "Fale connosco no WhatsApp",
@@ -1536,7 +1536,7 @@
       {
         "n": "02",
         "titulo": "Confirmação e orçamento",
-        "texto": "Nos próximos 3 dias úteis, receberá o valor total do serviço e os dados para pagamento do sinal."
+        "texto": "Nos próximos 3 dias úteis, receberá o valor total do serviço e os dados para pagamento do sinal. Se o evento for daqui a 6 meses ou mais, pode demorar um pouco mais: respondemos por ordem de proximidade da data."
       },
       {
         "n": "03",
@@ -1918,7 +1918,113 @@
     "successP2": "A sua reserva só fica confirmada após o pagamento do sinal. Caso não receba a nossa mensagem dentro do prazo, entre em contacto connosco.",
     "successClosing": "Estamos muito felizes por poder preservar as suas flores e memórias.",
     "successAssinatura": "Com carinho, Flores à Beira-Rio",
-    "camposObrigatorios": "Campos assinalados com"
+    "camposObrigatorios": "Campos assinalados com",
+    "resumo": {
+      "titulo": "Resumo da sua encomenda",
+      "vazio": "À medida que escolher o tamanho, o fundo e os extras, o resumo aparece aqui com o valor de cada escolha.",
+      "quadro": "Quadro {tamanho} cm",
+      "quadroSecas": "Quadro {tamanho} cm (flores secas)",
+      "quadroPorDefinir": "Quadro (tamanho por escolher)",
+      "aPartirDe": "a partir de {valor}",
+      "fundoFotografia": "Fundo fotografia (impressão profissional)",
+      "fundoIncluido": "Fundo {fundo}",
+      "fundoADefinir": "Fundo: a definir consigo",
+      "fundoNomes": {
+        "transparente": "transparente (vidro sobre vidro)",
+        "preto": "preto",
+        "branco": "branco",
+        "cor": "de cor"
+      },
+      "aDefinir": "a definir",
+      "vidroMuseu": "Vidro museu anti-UV ({tamanho})",
+      "vidroPorDecidir": "Vidro museu anti-UV (ainda por decidir)",
+      "seEscolher": "+{valor} se escolher",
+      "seEscolherPorQuadro": "+{valor} por quadro se escolher",
+      "minis": "{n, plural, one {# quadro extra 20×25 cm} other {# quadros extra 20×25 cm}} ({n} × {unit})",
+      "minisSemQty": "Quadros extra 20×25 cm ({unit} cada)",
+      "minisInfo": "Quadros extra 20×25 cm",
+      "fotoMinis": "Fotografia nos quadros extra ({n} × {unit})",
+      "vidroMinis": "Vidro museu nos quadros extra ({n} × {unit})",
+      "vidroMinisPorDecidir": "Vidro museu nos quadros extra (ainda por decidir)",
+      "ornamentos": "{n, plural, one {# ornamento de Natal} other {# ornamentos de Natal}} ({n} × {unit})",
+      "ornamentosSemQty": "Ornamentos de Natal ({unit} cada)",
+      "ornamentosInfo": "Ornamentos de Natal",
+      "pendentes": "{n, plural, one {# pendente para colar} other {# pendentes para colar}} ({n} × {unit})",
+      "pendentesSemQty": "Pendentes para colar ({unit} cada)",
+      "pendentesInfo": "Pendentes para colar",
+      "indiqueQuantidade": "indique a quantidade",
+      "aConfirmar": "a confirmar ({unit} cada)",
+      "elementos": "Elementos no quadro: {lista}",
+      "incluido": "incluído",
+      "semCusto": "sem custo",
+      "custosSeuCargo": "custos a seu cargo",
+      "orcamentoAParte": "orçamento à parte, consoante a distância",
+      "envioFloresMaos": "Entrega das flores em mãos, em Coimbra",
+      "envioFloresCtt": "Envio das flores por CTT ou transportadora",
+      "envioFloresRecolha": "Recolha das flores no local",
+      "receberQuadroMaos": "Levantamento do quadro em Coimbra",
+      "receberQuadroCtt": "Envio do quadro por CTT ou transportadora",
+      "total": "Total estimado",
+      "totalAPartirDe": "Total estimado, a partir de",
+      "pagamentoTitulo": "Plano de pagamentos",
+      "previsaoTitulo": "Previsão de entrega",
+      "previsaoSemData": "Cerca de {meses} meses depois de recebermos as flores.",
+      "previsaoIntervalo": "Cerca de {min} a {max} meses depois de recebermos as flores, consoante a abordagem.",
+      "nota": "<b>Este valor é uma estimativa.</b> Nos próximos 3 dias úteis confirmamos o orçamento final por mensagem, depois de lermos as suas notas e pedidos especiais.",
+      "notaDistante": "Como o seu evento é daqui a 6 meses ou mais, a nossa resposta pode demorar mais do que 3 dias úteis: respondemos por ordem de proximidade da data do evento. O seu pedido fica registado na mesma.",
+      "pagamentoIntro": "O valor total divide-se em três pagamentos:",
+      "fase1Titulo": "Sinal para reservar a data",
+      "fase1TituloSecas": "Sinal para confirmar o pedido",
+      "fase1Sub": "A pagar em 24 horas, depois de confirmarmos o orçamento",
+      "fase2Titulo": "Quando as flores chegam ao atelier",
+      "fase2Sub": "Pedimos nesse dia, a pagar em 5 dias",
+      "fase3Titulo": "Antes da entrega do quadro",
+      "fase3Sub": "Antes do envio ou do levantamento em Coimbra",
+      "previsaoComData": "<b>Por volta de {mes}</b>, cerca de {meses} meses depois de recebermos as flores.",
+      "previsaoArtesanal": "É um processo artesanal que não se apressa, por isso o prazo pode alongar-se.",
+      "notaTitulo": "Nota",
+      "barraTotal": "Total estimado",
+      "barraVer": "Ver resumo",
+      "valeLinha": "Vale-presente {codigo}",
+      "aPagar": "A pagar",
+      "aPagarAPartirDe": "A pagar, a partir de",
+      "valeCobre": "O vale cobre o valor estimado. Qualquer extra acrescentado depois é pago à parte.",
+      "barraAPagar": "A pagar",
+      "valeCredito": "Ainda tem {credito} de crédito por usar.",
+      "valeSugestao": "Pode acrescentar, por exemplo, {lista}. Basta escolher em cima e o resumo actualiza-se.",
+      "valeCreditoPequeno": "Pode usá-lo em extras nesta encomenda, ou fica disponível para o que decidir connosco.",
+      "valeUnicoIntro": "Com vale-presente, o restante paga-se de uma só vez:",
+      "valeUnicoTitulo": "Restante a pagar",
+      "valeUnicoSub": "Em 24 horas depois de confirmarmos o orçamento",
+      "sugOrnamento": "um ornamento de Natal ({preco})",
+      "sugPendente": "um pendente para colar ({preco})",
+      "sugMini": "um quadro extra 20×25 cm ({preco})",
+      "ou": "ou"
+    },
+    "successPrioridade": "Como o seu evento é daqui a 6 meses ou mais, a nossa resposta pode demorar mais do que 3 dias úteis: respondemos por ordem de proximidade da data do evento. O seu pedido fica registado na mesma.",
+    "exemplos": {
+      "verExemplo": "Ver exemplo",
+      "fechar": "Fechar",
+      "minisTitulo": "Quadros extra 20×25 cm",
+      "minisDesc": "Uma moldura pequena com flores do seu bouquet. Ideal para oferecer aos pais, padrinhos, irmãos ou amigos que viveram o dia consigo.",
+      "ornamentosTitulo": "Ornamento de Natal",
+      "ornamentosDesc": "Um ornamento para a árvore com flores do seu bouquet. Um pedaço do seu dia especial no Natal de quem gosta, ano após ano.",
+      "pendentesTitulo": "Pendente para colar",
+      "pendentesDesc": "Uma flor do seu bouquet para usar sempre perto do coração. Uma memória que se transforma em jóia."
+    },
+    "rascunhoTitulo": "Recuperámos o que tinha começado a preencher.",
+    "rascunhoTexto": "O pedido ainda não foi enviado. Reveja as respostas e carregue em \"Submeter pré-reserva\" no fim da página.",
+    "rascunhoLimpar": "Começar de novo",
+    "valeEncontrado": "Vale de {valor} encontrado, válido até {validade}. O valor é descontado no resumo.",
+    "valeExpirado": "Este vale expirou em {validade}. Fale connosco antes de reservar.",
+    "tipoEventoOutroLabel": "Qual?",
+    "tipoEventoOutroPlaceholder": "Ex.: aniversário, formatura, homenagem",
+    "successResumoTitulo": "O seu pedido",
+    "successProximosTitulo": "Próximos passos",
+    "successPasso1": "Aguarde a nossa mensagem com a confirmação do orçamento, nos próximos 3 dias úteis.",
+    "successPasso2": "Pague o sinal de 30% em 24 horas depois da nossa mensagem. Só aí a vaga fica garantida.",
+    "successPasso3": "Depois do evento, mantenha as flores em água fresca, longe do sol, e faça-as chegar até nós em 1 a 3 dias, no máximo 6.",
+    "successPasso3Secas": "Aguarde a nossa confirmação antes de enviar as flores. Enviamos as instruções de embalagem com a mensagem."
   },
   "vale": {
     "meta": {
@@ -2280,59 +2386,99 @@
       "ogImageAlt": "Termos e condições, Flores à Beira-Rio"
     },
     "h1": "Termos e Condições",
-    "intro": "Ao contratar os serviços da Flores à Beira-Rio, o cliente declara ter lido, compreendido e aceite os presentes Termos e Condições.",
+    "intro": "Ao pedir uma reserva à Flores à Beira-Rio, o cliente declara ter lido, compreendido e aceite os presentes Termos e Condições. A versão aceite é a que estiver publicada na data do pedido. Estes Termos aplicam-se aos serviços de preservação de flores frescas, emolduramento de flores secas e recriação de bouquets, e aos vales-presente. Versão 2.0.",
     "sections": [
       {
-        "title": "1. Natureza do Serviço",
-        "content": "A Flores à Beira-Rio dedica-se à preservação artesanal de flores naturais através de técnicas de prensagem e secagem, transformando flores com valor emocional ou simbólico em quadros personalizados. Todas as peças são únicas e feitas à mão. A natureza deste processo implica variabilidade no resultado final, que o cliente aceita no momento da contratação."
+        "title": "1. Natureza do serviço",
+        "content": "A Flores à Beira-Rio dedica-se à preservação artesanal de flores naturais através de prensagem e secagem, transformando flores com valor emocional ou simbólico em quadros e peças personalizadas. Oferece três serviços: preservação de flores frescas, emolduramento de flores já secas e recriação de bouquets com flores frescas a partir de fotografias.\nTodas as peças são únicas e feitas à mão em Coimbra. Não há duas iguais. A natureza deste processo implica variabilidade no resultado final, que o cliente aceita ao contratar. Pequenas irregularidades, texturas e variações fazem parte do carácter de uma peça artesanal e não são consideradas defeitos."
       },
       {
-        "title": "2. Alterações Naturais nas Flores",
-        "content": "Ao serem prensadas ou secas, as flores podem alterar significativamente de cor, forma ou textura. Alguns tons (vermelhos, púrpuras, rosas fortes e brancas) tendem a escurecer, amarelar ou desvanecer. Estas alterações são naturais e não são consideradas defeitos nem motivos para reembolso."
+        "title": "2. Pedido de reserva, resposta e confirmação",
+        "content": "O preenchimento do formulário no site é um pedido de reserva, não uma reserva confirmada. As vagas são limitadas, sobretudo entre Maio e Setembro.\nRespondemos normalmente no prazo de 3 dias úteis, com a confirmação do orçamento e as instruções de pagamento do sinal. Damos prioridade aos pedidos pela proximidade da data do evento: quem tem flores para preservar esta semana é atendido antes de quem reserva para daqui a um ano. Por isso, se o evento for daqui a 6 meses ou mais, a resposta pode demorar mais do que 3 dias úteis. O pedido fica registado na mesma.\nA reserva só fica confirmada com o pagamento do sinal, que deve ser feito no prazo de 24 horas após a nossa mensagem. Sem pagamento nesse prazo, a vaga volta a ficar disponível para outros clientes, sem prejuízo de o cliente poder voltar a pedir a reserva mais tarde, sujeito a disponibilidade."
       },
       {
-        "title": "3. Envio e Condições das Flores",
-        "content": "As flores são preservadas no estado em que chegam ao nosso estúdio. O cliente deve enviá-las no prazo recomendado (1 a 3 dias após o evento). Não nos responsabilizamos por danos causados durante o transporte ou atrasos nos CTT."
+        "title": "3. Orçamento",
+        "content": "O resumo apresentado no formulário é uma estimativa calculada a partir das escolhas do cliente e da tabela de preços em vigor na data do pedido. O orçamento definitivo é confirmado por nós, por mensagem, depois de lermos as notas e os pedidos especiais do cliente. Só esse orçamento confirmado vincula as partes.\nOs preços em vigor na data do pedido mantêm-se para essa encomenda, mesmo que a tabela seja actualizada depois.\nQuando o tamanho do quadro, o fundo ou os extras ficam por decidir na reserva, o orçamento é provisório e usa o quadro mais pequeno como referência. Ajusta-se quando as escolhas forem feitas, normalmente na fase de composição, e a diferença é pedida na fase de pagamento seguinte.\nNão estão incluídos no orçamento: o envio das flores para o atelier, a recolha das flores no local do evento (orçamentada à parte, consoante a distância) e o envio do quadro final para a morada do cliente."
       },
       {
-        "title": "4. Instruções e Preferências",
-        "content": "Pedidos específicos sobre o design devem ser enviados em formato físico dentro da embalagem ou por e-mail antes da receção das flores. A inclusão de todos os elementos não é garantida, dependendo da viabilidade técnica."
+        "title": "4. Pagamentos",
+        "content": "O serviço é pago em três fases, por transferência bancária ou MB WAY:\n1.ª fase, 30%, na reserva. Garante a vaga na data do evento. Não é reembolsável.\n2.ª fase, 40%, quando as flores chegam ao atelier. É pedida nesse momento e deve ser paga no prazo de 5 dias. A prensagem começa de imediato, porque as flores não podem esperar.\n3.ª fase, 30%, mais eventuais acertos, antes do envio ou do levantamento do quadro. A peça só sai do atelier depois do pagamento integral.\nCada pagamento é acompanhado de factura ou recibo. O cliente que pretenda o documento com número de contribuinte deve indicá-lo antes do pagamento respectivo."
       },
       {
-        "title": "5. Molduras e Composição Final",
-        "content": "As molduras são feitas à mão com materiais de qualidade museológica. O cliente terá 72 horas para aprovar o design final através de fotografias. Uma vez selada, a moldura não pode ser alterada."
+        "title": "5. Prazo de execução",
+        "content": "Um quadro de preservação fica pronto, em média, cerca de 6 meses depois de as flores chegarem ao atelier. O emolduramento de flores já secas demora cerca de 3 meses quando se usa o ramo original e cerca de 6 meses quando há recriação com flores frescas.\nTrata-se de um processo artesanal, feito à mão e sem máquinas: a prensagem, a secagem e a composição dependem do tipo de flores, da estação do ano e do volume de trabalho do atelier. Por isso o prazo é indicativo e pode alongar-se. Encomendas com várias peças (quadros extra, ornamentos, pendentes) podem demorar mais.\nO cliente acompanha cada fase em status.floresabeirario.pt e é avisado se houver um atraso relevante. O prazo indicativo não é uma data garantida e o seu alongamento não confere direito a reembolso, desconto ou indemnização."
       },
       {
-        "title": "6. Pagamentos",
-        "content": "O serviço é pago em três fases:\n1.ª: 30% no momento da reserva (não reembolsável).\n2.ª: 40% na receção das flores.\n3.ª: 30% antes do envio ou recolha."
+        "title": "6. Entrega das flores no atelier",
+        "content": "As flores devem chegar ao atelier o mais frescas possível: de preferência 1 a 3 dias depois do evento e no máximo 6 dias. Até lá, devem ficar num vaso com água fresca, longe do sol e do calor, sem frigorífico e sem congelador.\nO cliente pode entregar em mãos em Coimbra, enviar por CTT ou transportadora (custos e escolha do serviço a cargo do cliente, com as instruções de embalagem que enviamos) ou pedir recolha no local do evento, mediante orçamento e disponibilidade.\nO transporte até ao atelier é por conta e risco do cliente. Não respondemos por danos, atrasos ou extravios durante o envio, nem por flores que chegam murchas, com bolor ou fora do prazo recomendado.\nAs flores são preservadas sempre no estado em que chegam. Se chegarem em decomposição, com bolor ou de outra forma sem condições de preservação, avisamos o cliente com fotografias. Aproveitamos do bouquet original tudo o que for possível. Se o cliente assim decidir, compramos flores de substituição semelhantes, e esse custo é a cargo do cliente.\nSe não for possível aproveitar nada e o cliente não quiser flores de substituição, o sinal não é devolvido, porque a vaga ficou reservada e o estado das flores à chegada é da responsabilidade do cliente. O sinal pode, no entanto, ser usado numa nova encomenda no prazo de 24 meses."
       },
       {
-        "title": "7. Entrega da Peça Final",
-        "content": "A peça pode ser enviada por CTT com rastreamento ou recolhida em Coimbra. O envio só é efetuado após o pagamento integral."
+        "title": "7. Alterações naturais nas flores",
+        "content": "Ao serem prensadas ou secas, as flores mudam de cor, forma e textura. Vermelhos e bordôs tendem a escurecer, brancos a ficar creme ou amarelados, rosas e roxos a perder intensidade, verdes a acastanhar. Podem surgir zonas translúcidas ou manchas por pisaduras que a flor já trazia. Nem todas as flores suportam a prensagem: flores muito carnudas, suculentas e algumas tropicais podem não sobreviver ao processo.\nNão fazemos correcção de cor: as flores ficam com a cor que a natureza lhes dá depois de secas. Com os anos, mesmo com vidro anti-UV, as cores continuam a evoluir lentamente. Tudo isto é natural, faz parte do que é uma flor preservada e não constitui defeito nem motivo de reembolso."
       },
       {
-        "title": "8. Danos e Reclamações",
-        "content": "Caso a moldura chegue danificada, o cliente deve contactar-nos no prazo de 7 dias e conservar a embalagem original para avaliação."
+        "title": "8. Selecção das flores e elementos adicionais",
+        "content": "Nem todas as flores de um bouquet cabem num quadro ou sobrevivem em condições de ser usadas. Seleccionamos as que melhor servem a composição, tendo em conta o estado, a espessura, o tamanho do quadro e o equilíbrio do conjunto. O cliente pode indicar flores que gostaria de ver incluídas, sem garantia de que seja possível.\nOs elementos adicionais que o cliente queira ver no quadro (convite, votos, fitas, fotografia, jóias, cartas) devem chegar junto com as flores, num saco fechado, com uma lista do que envia. Não têm custo adicional. A sua inclusão depende da viabilidade técnica e do espaço disponível. Elementos com valor material (jóias, medalhas) viajam por conta e risco do cliente.\nAs flores e os elementos não utilizados não são devolvidos, salvo pedido escrito do cliente no momento da entrega das flores. Nesse caso, ficam guardados até à entrega da peça final."
       },
       {
-        "title": "9. Cancelamentos e Reembolsos",
-        "content": "O sinal de 30% não é reembolsável em caso de cancelamento pelo cliente. Se o evento for reagendado, o sinal pode ser transferido mediante disponibilidade."
+        "title": "9. Composição, aprovação e alterações",
+        "content": "Antes de colar e selar, enviamos ao cliente fotografias da composição com as flores dispostas sobre o fundo escolhido. O cliente tem 72 horas para aprovar ou pedir ajustes.\nEstão incluídos os ajustes razoáveis à disposição das flores (mover, trocar ou retirar elementos). Pedidos que impliquem refazer a composição de raiz, mudar o fundo ou o tamanho do quadro depois de aprovados, ou várias rondas de alterações, podem ter custo adicional e alongar o prazo, o que comunicamos antes de avançar. A composição final pode diferir ligeiramente das fotografias, porque as flores assentam de forma diferente ao serem coladas e seladas.\nSe não houver resposta em 72 horas, voltamos a contactar o cliente. Se ao fim de 30 dias continuar sem resposta, avançamos com a composição proposta, para não bloquear o atelier nem deixar as flores expostas. Uma vez selada, a peça não pode ser alterada."
       },
       {
-        "title": "10. Cuidados com a Peça",
-        "content": "Evite luz solar direta, humidade (casas de banho/cozinhas) e fontes de calor extremo para garantir a durabilidade da moldura."
+        "title": "10. Molduras, vidro e materiais",
+        "content": "As molduras são feitas à mão, com madeira e materiais de qualidade de conservação. Por serem naturais e feitas em pequenas séries, a cor e o veio da madeira podem variar ligeiramente entre peças e em relação às fotografias do site. Se um material escolhido deixar de estar disponível, propomos uma alternativa equivalente antes de avançar.\nO vidro museu anti-UV é uma opção paga, escolhida pelo cliente na reserva ou até à fase de composição. Sem essa opção, o quadro leva vidro normal. Nenhum vidro impede totalmente a evolução natural das cores ao longo dos anos."
       },
       {
-        "title": "11. Política de Privacidade",
-        "content": "O tratamento de dados é feito em conformidade com o RGPD. Pode consultar os detalhes na nossa página de Política de Privacidade."
+        "title": "11. Entrega da peça final",
+        "content": "A peça pode ser levantada em mãos em Coimbra ou enviada por CTT ou transportadora, com rastreio, para a morada indicada pelo cliente. Os custos de envio são a cargo do cliente e são comunicados antes da 3.ª fase de pagamento. Enviamos para todo o mundo; taxas alfandegárias fora da União Europeia são a cargo do destinatário.\nEmbalamos cada peça com cuidado e a experiência de muitos envios. A partir do momento em que a peça é entregue ao transportador, o risco de perda ou dano passa para o cliente, nos termos da lei. A pedido do cliente, e com custo adicional, o envio pode ser feito com seguro.\nA peça só é enviada ou entregue depois do pagamento integral. Uma peça pronta cujo pagamento final ou levantamento não aconteça no prazo de 6 meses após o nosso aviso fica à disposição da Flores à Beira-Rio, sem direito a reembolso dos valores pagos."
       },
       {
-        "title": "12. Direitos de Autor",
-        "content": "Todos os conteúdos do site são propriedade exclusiva da Flores à Beira-Rio. Reservamos o direito de utilizar imagens dos trabalhos para portefólio e marketing."
+        "title": "12. Danos, reclamações e garantia",
+        "content": "Se a peça chegar danificada, o cliente deve contactar-nos no prazo de 7 dias após a recepção, com fotografias da peça e da embalagem, e conservar a embalagem original para a avaliação do transportador. Resolvemos cada caso individualmente: reparação, substituição da moldura ou do vidro, ou outra solução acordada.\nAs peças beneficiam da garantia legal dos bens de consumo quanto a defeitos de fabrico da moldura, do vidro e da selagem. As alterações naturais das flores descritas na cláusula 7, o desgaste normal e os danos por má conservação (sol directo, humidade, calor, quedas) não estão abrangidos."
       },
       {
-        "title": "13. Disposições Finais",
-        "content": "A Flores à Beira-Rio reserva-se o direito de atualizar estes Termos e Condições a qualquer momento."
+        "title": "13. Cancelamentos, reagendamentos e reembolsos",
+        "content": "Pelo cliente, antes de as flores chegarem: o sinal (1.ª fase) não é reembolsável, porque reserva uma vaga que deixou de estar disponível para outros. Se o evento for adiado, o sinal pode ser transferido uma vez para a nova data, até 24 meses depois da data original, sujeito a disponibilidade.\nPelo cliente, depois de as flores chegarem: as fases já pagas não são reembolsáveis, porque o trabalho e os materiais já foram aplicados. O que ainda não foi pago não é exigido, salvo custos já suportados com materiais específicos do cliente (moldura encomendada, impressão de fotografia).\nPela Flores à Beira-Rio: se não conseguirmos realizar o serviço por motivo nosso, devolvemos integralmente os valores pagos. Se as flores chegarem sem condições de preservação, aplica-se a cláusula 6."
+      },
+      {
+        "title": "14. Direito de livre resolução",
+        "content": "Os quadros e peças da Flores à Beira-Rio são feitos por medida, com as flores e as escolhas de cada cliente. Por isso, nos termos do artigo 17.º, n.º 1, alínea c), do Decreto-Lei n.º 24/2014, não se aplica o direito de livre resolução de 14 dias previsto para as compras à distância. Ao pagar o sinal, o cliente reconhece que o serviço é personalizado e que este direito não se aplica."
+      },
+      {
+        "title": "15. Vales-presente",
+        "content": "Os vales-presente são válidos por 2 anos a contar da data de emissão e destinam-se a ser usados numa encomenda de preservação, emolduramento ou recriação. O valor do vale é descontado no orçamento. Se o orçamento for superior, o beneficiário paga a diferença de uma só vez, na confirmação da reserva, em vez das três fases. Se for inferior, o remanescente pode ser usado em extras dessa encomenda, mas não é devolvido em dinheiro. Um vale não é reembolsável nem convertível em dinheiro, e o vale expirado não é prorrogado.\nO envio físico do vale tem o custo indicado no site. A reserva feita com vale segue os mesmos Termos, incluindo o pedido de reserva e a prioridade pela data do evento."
+      },
+      {
+        "title": "16. Cuidados com a peça",
+        "content": "Para durar décadas, a peça deve ficar longe de luz solar directa, de humidade (casas de banho, cozinhas, paredes frias) e de fontes de calor. Limpa-se o vidro com um pano macio e seco, sem produtos químicos nem pulverizadores. A peça entrega-se com instruções de cuidados, que fazem parte destes Termos."
+      },
+      {
+        "title": "17. Fotografias, portefólio e direitos de autor",
+        "content": "As peças que criamos e as fotografias que delas fazemos, durante e no fim do processo, são obra e propriedade da Flores à Beira-Rio. Podemos usá-las no site, nas redes sociais, em exposições e em materiais de divulgação, sem identificar o cliente: sem nome, data ou local do evento. Se a peça incluir elementos que identifiquem pessoas, como um retrato ou nomes, esses elementos não são publicados sem autorização do cliente.\nTodo o conteúdo do site, incluindo textos, fotografias e composições, é propriedade da Flores à Beira-Rio e não pode ser reproduzido sem autorização."
+      },
+      {
+        "title": "18. Dados pessoais",
+        "content": "Tratamos os dados pessoais do cliente para executar a encomenda, comunicar sobre ela, facturar e cumprir obrigações legais, em conformidade com o RGPD. Os detalhes (dados recolhidos, prazos de conservação, direitos do titular e contactos) estão na Política de Privacidade, que faz parte destes Termos. As encomendas concluídas são conservadas durante 10 anos por obrigação fiscal."
+      },
+      {
+        "title": "19. Responsabilidade",
+        "content": "O cliente reconhece que as flores são insubstituíveis e que nenhuma compensação pode repor o seu valor emocional. Por isso, e sem prejuízo dos direitos que a lei atribui ao consumidor e que não podem ser afastados, a responsabilidade da Flores à Beira-Rio por qualquer facto relacionado com a encomenda fica limitada ao valor efectivamente pago pelo cliente por essa encomenda.\nNão respondemos por danos causados por terceiros (transportadoras, fornecedores de impressão) nem pelos que resultem de informação incorrecta dada pelo cliente (morada, contactos, datas)."
+      },
+      {
+        "title": "20. Força maior",
+        "content": "Nenhuma das partes responde por incumprimento ou atraso causado por acontecimentos fora do seu controlo razoável: incêndios, inundações, tempestades, falhas prolongadas de energia, greves de transportes, epidemias, doença grave ou outros factos imprevisíveis. Nesses casos, os prazos suspendem-se pelo tempo do impedimento e as partes procuram de boa fé uma solução, incluindo o reagendamento."
+      },
+      {
+        "title": "21. Comunicação",
+        "content": "Comunicamos pelo meio escolhido no formulário (WhatsApp ou e-mail) e respondemos em dias úteis. Os pedidos com efeito na encomenda (alterações de escolhas, cancelamentos, reagendamentos, mudanças de morada) devem ser feitos por escrito, para ficarem registados. As mensagens enviadas para o contacto indicado pelo cliente consideram-se recebidas."
+      },
+      {
+        "title": "22. Lei aplicável e resolução de litígios",
+        "content": "Estes Termos regem-se pela lei portuguesa. Em caso de litígio de consumo, o cliente pode recorrer à entidade de resolução alternativa de litígios competente para Coimbra, o Centro de Arbitragem de Conflitos de Consumo do Distrito de Coimbra (CACCDC, www.centrodearbitragemdecoimbra.com), ou a outra entidade da lista do Portal do Consumidor (www.consumidor.gov.pt)."
+      },
+      {
+        "title": "23. Alterações a estes Termos",
+        "content": "Podemos actualizar estes Termos a qualquer momento. Cada versão tem número e data. A cada encomenda aplica-se a versão em vigor na data do pedido de reserva, que fica registada juntamente com o pedido.\nVersão 2.0, Setembro de 2026."
       }
     ]
   },

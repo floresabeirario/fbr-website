@@ -1142,3 +1142,94 @@ input[type="date"].pf-input {
   outline: 2px solid #DEC8A0;
   outline-offset: 2px;
 }
+
+/* ── Rascunho recuperado (formulário guardado no telemóvel) ──
+   Aviso bem visível: o receio é a pessoa pensar que já enviou. */
+.pf-rascunho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid #DEC8A0;
+  border-left: 4px solid #B8954A;
+  background: #FBF4E4;
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+}
+
+.pf-rascunho-texto {
+  flex: 1 1 260px;
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #2A1E10;
+}
+
+.pf-rascunho-texto strong {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.pf-rascunho-btn {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 1px solid #DEC8A0;
+  border-radius: 980px;
+  background: #FFFFFF;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2A1E10;
+  cursor: pointer;
+}
+
+.pf-rascunho-btn:hover { background: #F3EBDD; }
+.pf-rascunho-btn:focus-visible { outline: 3px solid #D4B060; outline-offset: 2px; }
+
+/* Vale-presente encontrado / expirado (abaixo do campo do código) */
+.pf-vale-ok {
+  margin: 8px 0 0;
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #2F5A4C;
+}
+
+/* Ecrã de sucesso: resumo do pedido + próximos passos */
+.pf-success-subtitulo {
+  margin: 28px 0 10px;
+  font-family: "TAN-MEMORIES", serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #2A1E10;
+  text-align: left;
+}
+
+.pf-success-resumo {
+  text-align: left;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: #FFFFFF;
+  border: 1px solid rgba(90, 64, 40, 0.10);
+}
+
+.pf-success-resumo .pf-success-subtitulo { margin-top: 0; }
+
+.pf-success-passos { text-align: left; }
+
+.pf-success-passos ol {
+  margin: 0;
+  padding-left: 22px;
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #2A1E10;
+}
+
+.pf-success-passos li { margin: 6px 0; padding-left: 4px; }
+.pf-success-passos li::marker { color: #B8954A; font-weight: 700; }

@@ -60,10 +60,10 @@ export const buildFaqDataEn = (p = PRECOS_FALLBACK) => [
     cat: "processo",
     q: "How long does the preservation process take?",
     plain:
-      "Our average turnaround is up to 6 months from the time we receive the flowers to the finished framed piece. We always do our best to be faster, but pressing is a delicate process that cannot be rushed. We never sacrifice quality for speed. If the order includes multiple frames, the timeline may extend slightly.",
+      "Our average turnaround is around 6 months from the time we receive the flowers to the finished framed piece. We always do our best to be faster, but pressing is a delicate process that cannot be rushed. We never sacrifice quality for speed. If the order includes multiple frames, the timeline may extend slightly.",
     a: (
       <>
-        Our average turnaround is <strong>up to 6 months</strong> from the
+        Our average turnaround is <strong>around 6 months</strong> from the
         time we receive the flowers to the finished framed piece. We always do
         our best to be faster, but pressing is a delicate process that cannot
         be rushed.{" "}

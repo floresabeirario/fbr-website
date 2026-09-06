@@ -17,32 +17,14 @@
 //     props a partir do server component da página.
 //
 // ⚠️ Ao acrescentar um preço novo ao site: juntar a chave a PRICE_KEYS e
-// um valor a PRECOS_FALLBACK. Sem isso o site não o conhece.
+// um valor a PRECOS_FALLBACK (ambos em precos-valores.js, que é puro e
+// pode ir para o browser). Sem isso o site não o conhece.
 // ============================================================
 
 import { createFormsClient } from "./supabase-server";
-import { PRECOS_FALLBACK } from "./precos-valores";
+import { PRECOS_FALLBACK, PRICE_KEYS } from "./precos-valores";
 
-export { PRECOS_FALLBACK };
-
-// Chave usada no site → (categoria, key) em pricing_items.
-const PRICE_KEYS = {
-  quadro30x40: ["base_frame", "30x40"],
-  quadro40x50: ["base_frame", "40x50"],
-  quadro50x70: ["base_frame", "50x70"],
-  mini20x25: ["extra", "mini_frame"],
-  ornamento: ["extra", "christmas_ornament"],
-  pendente: ["extra", "necklace_pendant"],
-
-  secas30x40: ["base_frame", "secas_30x40"],
-  secas40x50: ["base_frame", "secas_40x50"],
-  secas50x70: ["base_frame", "secas_50x70"],
-
-  vidro30x40: ["glass_supplement", "museum_glass_30x40"],
-  vidro40x50: ["glass_supplement", "museum_glass_40x50"],
-  vidro50x70: ["glass_supplement", "museum_glass_50x70"],
-  vidro20x25: ["glass_supplement", "museum_glass_20x25"],
-};
+export { PRECOS_FALLBACK, PRICE_KEYS };
 
 // "300.00" → "300" · "12.50" → "12,50" (formato europeu, sem cêntimos
 // quando são zero, que é como os preços aparecem no site).
