@@ -108,7 +108,7 @@
         "href": "/en/how-it-works"
       },
       {
-        "text": "Gift preservation: vouchers from €300",
+        "text": "Gift preservation: vouchers from €{quadro30x40}",
         "href": "/en/gift-preservation"
       },
       {
@@ -208,7 +208,7 @@
   "preservacao": {
     "meta": {
       "title": "Flower Preservation in Portugal",
-      "description": "Artisan botanical preservation atelier in Coimbra. Wedding bouquets, baptism, memorial and anniversary flowers into framed art. Worldwide shipping. From €300.",
+      "description": "Artisan botanical preservation atelier in Coimbra. Wedding bouquets, baptism, memorial and anniversary flowers into framed art. Worldwide shipping. From €{quadro30x40}.",
       "ogTitle": "Flower Preservation in Portugal | Flores à Beira-Rio, Coimbra",
       "ogDescription": "Artisan botanical preservation atelier in Coimbra. Wedding bouquets, baptism, memorial, anniversary flowers into framed art. Worldwide shipping.",
       "ogImageAlt": "Pressed flower frame in wooden mount, Flores à Beira-Rio",
@@ -217,7 +217,7 @@
     "eyebrow": "Artisan Botanical Art · Coimbra",
     "h1": "Flower Preservation",
     "h1Em": "Preservation",
-    "heroDesc": "We transform emotionally meaningful flowers into botanical art frames that last decades. Wedding bouquets, baptism flowers, memorial tributes, each piece is unique, handmade and professionally framed with museum glass. We receive flowers in person in Coimbra, by post, or with collection at your venue.",
+    "heroDesc": "We transform emotionally meaningful flowers into botanical art frames that last decades. Wedding bouquets, baptism flowers, memorial tributes, each piece is unique, handmade and professionally framed, with the option of anti-UV museum glass. We receive flowers in person in Coimbra, by post, or with collection at your venue.",
     "ctaPrecos": "Pricing",
     "ctaComoFunciona": "How it works",
     "ctaFloresSedcas": "Already-dried flowers",
@@ -225,7 +225,7 @@
     "oQueTitle": "What is flower preservation?",
     "oQueP1": "Flower preservation is the process of transforming fresh flowers with emotional value into a botanical work of art that lasts forever.",
     "oQueP2": "At Flores à Beira-Rio, we exclusively use artisan botanical pressing, the most natural and sustainable method. Each petal is treated individually, without resins, without synthetic chemicals, and with museum-grade conservation materials.",
-    "oQueP3": "The result is a frame with UltraVue® museum glass, ready to hang on your wall and last a lifetime.",
+    "oQueP3": "The result is a made-to-measure frame, with the option of UltraVue® museum glass, ready to hang on your wall and last a lifetime.",
     "explorar": "Explore in detail",
     "tudoSaber": "Everything you need to know",
     "queTipo": "What types of flowers we preserve",
@@ -242,8 +242,8 @@
     "ctaFAQ": "Frequently asked questions",
     "motivos": [
       {
-        "titulo": "Anti-UV museum glass",
-        "desc": "UltraVue® UV70, the same glass used in museums. Eliminates reflections and protects colours for decades."
+        "titulo": "Anti-UV museum glass (option)",
+        "desc": "UltraVue® UV70, the same glass used in museums. Eliminates reflections and protects colours for decades. You can add it to any frame."
       },
       {
         "titulo": "100% handcrafted",
@@ -315,7 +315,7 @@
     "oQueInclui": "What's included",
     "semSurpresas": "No surprises",
     "tudoIncluido": "Everything included in the price",
-    "tudoIncluidoDesc": "Prices start at €300, including framing and museum glass.",
+    "tudoIncluidoDesc": "Prices start at €{quadro30x40}, including framing and a made-to-measure frame. Anti-UV museum glass is optional, at a cost that depends on the size of the frame.",
     "verPrecos": "See all sizes and pricing",
     "transparencia": "Full transparency",
     "pagamento3Title": "Payment in three stages",
@@ -395,8 +395,8 @@
     ],
     "incluidos": [
       {
-        "titulo": "Anti-UV museum glass",
-        "desc": "The same glass used in museums. Blocks UV rays that fade colours."
+        "titulo": "Custom-made frame",
+        "desc": "Made in Coimbra to measure for each composition, in three finishes to choose from."
       },
       {
         "titulo": "Approval before sealing",
@@ -531,9 +531,9 @@
         "sizeLabel": "Pendant Necklace"
       }
     ],
-    "ultravueNote": "All frames are glazed with",
+    "ultravueNote": "You can choose for your frame our",
     "ultravueStrong": "museum UltraVue® glass",
-    "ultravueEnd": "virtually invisible, with UV70 protection",
+    "ultravueEnd": "which is virtually invisible, with UV70 protection",
     "outroFormato": "Do you need a different format or a different composition?",
     "falarConnosco": "Talk to us",
     "jaEncomendou": "Already ordered? Track the status of your piece in real time.",
@@ -558,7 +558,7 @@
     "phNote": "All frames use",
     "phStrong": "pH-neutral card and glue,",
     "phEnd": "the same materials used in museums and archives to preserve works over decades.",
-    "vidroLabel": "Museum glass",
+    "vidroLabel": "Museum glass (option)",
     "vidroH3": "UltraVue® UV70",
     "vidroH3em": "truly remarkable clarity",
     "vidroFeatures": [
@@ -582,10 +582,10 @@
     "recriacaoCta1": "See Bouquet Recreation",
     "recriacaoCta2": "Frequently Asked Questions",
     "meta": {
-      "title": "Flower Preservation Prices: €300 to €500",
-      "description": "Three frame sizes (30×40, 40×50, 50×70 cm) priced from €300 to €500. Pendant necklaces, Christmas ornaments and mini frames available as add-ons.",
-      "ogTitle": "Flower Preservation Prices: €300-€500 | Flores à Beira-Rio",
-      "ogDescription": "Three frame sizes priced from €300 to €500. Pendant necklaces, Christmas ornaments and mini frames as add-ons.",
+      "title": "Flower Preservation Prices: €{quadro30x40} to €{quadro50x70}",
+      "description": "Three frame sizes (30×40, 40×50, 50×70 cm) priced from €{quadro30x40} to €{quadro50x70}. Pendant necklaces, Christmas ornaments and mini frames available as add-ons.",
+      "ogTitle": "Flower Preservation Prices: €{quadro30x40}-€{quadro50x70} | Flores à Beira-Rio",
+      "ogDescription": "Three frame sizes priced from €{quadro30x40} to €{quadro50x70}. Pendant necklaces, Christmas ornaments and mini frames as add-ons.",
       "ogImageAlt": "Preserved flower frame pricing options, Flores à Beira-Rio",
       "keywords": "flower preservation price, how much does bouquet preservation cost, preserved flower frame options, botanical frame sizes, cost of flower preservation, wedding bouquet preservation cost"
     }
@@ -593,7 +593,7 @@
   "momentos": {
     "meta": {
       "title": "Preserve Wedding, Baptism & Memorial Flowers",
-      "description": "Wedding, baptism, proposal, anniversary, memorial: we preserve the flowers from every moment that matters. Worldwide shipping from Coimbra. From €300.",
+      "description": "Wedding, baptism, proposal, anniversary, memorial: we preserve the flowers from every moment that matters. Worldwide shipping from Coimbra. From €{quadro30x40}.",
       "ogTitle": "Preserve Wedding, Baptism, Memorial, Anniversary Flowers | Coimbra",
       "ogDescription": "Wedding, baptism, proposal, anniversary, memorial: we preserve the flowers from every moment that matters. Worldwide shipping.",
       "ogImageAlt": "Special occasions preserved in botanical art, Flores à Beira-Rio",
@@ -606,8 +606,8 @@
     "ctaReservar": "Book a Date",
     "ctaWA": "WhatsApp",
     "floresTitle": "Flowers that tell your story",
-    "floresP1": "At Flores à Beira-Rio, we transform emotionally meaningful flowers into botanical art frames that last decades. Every petal is pressed individually and framed with anti-UV museum glass, in a frame handmade at our atelier in Coimbra.",
-    "floresP2": "Prices from €300, with payment in three stages. The process takes up to 6 months and we ship worldwide.",
+    "floresP1": "At Flores à Beira-Rio, we transform emotionally meaningful flowers into botanical art frames that last decades. Every petal is pressed individually and framed by hand at our atelier in Coimbra, with the option of anti-UV museum glass.",
+    "floresP2": "Prices from €{quadro30x40}, with payment in three stages. The process takes up to 6 months and we ship worldwide.",
     "floresP3": "Flowers reach us from every chapter of life: the wedding bouquet, the flowers from a baptism or the birth of a child, the small bouquet from a proposal, flowers from a milestone anniversary, and also memorial flowers, preserved as a serene memory of someone dearly missed. Your flowers can reach us by hand, by post from anywhere in the country, or with pickup at the venue. And if yours come from a moment not on this list, talk to us anyway: if they carry a story, we preserve them.",
     "envioGuiaLink": "How to ship your flowers by post →",
     "saberMais": "Learn more →",
@@ -644,16 +644,16 @@
   "bouquetNoiva": {
     "meta": {
       "title": "Preserve Your Wedding Bouquet in Portugal",
-      "description": "Your wedding bouquet preserved into framed botanical art. Artisan pressing, anti-UV museum glass, worldwide shipping from Coimbra, Portugal. From €300.",
+      "description": "Your wedding bouquet preserved into framed botanical art. Artisan pressing, optional anti-UV museum glass, worldwide shipping from Coimbra, Portugal. From €{quadro30x40}.",
       "ogTitle": "Preserve Wedding Bouquet, Worldwide Shipping | Flores à Beira-Rio",
-      "ogDescription": "Your wedding bouquet preserved into framed botanical art. Artisan pressing, anti-UV museum glass, worldwide shipping from Coimbra. From €300.",
+      "ogDescription": "Your wedding bouquet preserved into framed botanical art. Artisan pressing, optional anti-UV museum glass, worldwide shipping from Coimbra. From €{quadro30x40}.",
       "ogImageAlt": "Wedding bouquet preserved in botanical art frame",
       "keywords": "preserve wedding bouquet Portugal, preserve wedding bouquet Coimbra, bouquet preservation Portugal, bouquet preservation Coimbra, wedding flowers preserved Portugal, bridal bouquet frame, pressed wedding flowers"
     },
     "eyebrow": "Wedding Bouquet",
     "h1": "Preserve the Wedding Bouquet",
     "heroDesc": "We transform your wedding bouquet into a botanical work of art that lasts decades. Artisan pressing and handmade framing in Coimbra, with shipping across Portugal and Europe.",
-    "heroPrice": "From €300 · payment in 3 stages",
+    "heroPrice": "From €{quadro30x40} · payment in 3 stages",
     "heroDelivery": [
       "In person",
       "By post",
@@ -667,12 +667,12 @@
     "contentTitle": "The bouquet that was there for your vows",
     "contentEm": "for your vows",
     "p1": "The wedding bouquet is, for many couples, the most symbolic piece of the wedding day. Instead of watching it wilt over the following days, you can transform it into a botanical art frame that lasts decades, ready to hang on the wall at home.",
-    "p2": "The process starts with booking the date, ideally as soon as you know when the wedding is. In the days following the ceremony, you hand us the bouquet and we take care of everything: petal-by-petal pressing, artistic composition, approval by you, and framing with anti-UV museum glass. You can also include the wedding invitation, handwritten vows, ribbons, or any meaningful element in the composition.",
+    "p2": "The process starts with booking the date, ideally as soon as you know when the wedding is. In the days following the ceremony, you hand us the bouquet and we take care of everything: petal-by-petal pressing, artistic composition, approval by you, and framing, with the option of anti-UV museum glass. You can also include the wedding invitation, handwritten vows, ribbons, or any meaningful element in the composition.",
     "ctaReservar": "Book a Date",
     "ctaWA": "WhatsApp",
     "ctaFinalTitle": "Book before the big day",
     "ctaFinalEm": "the big day",
-    "ctaDesc": "Slots are limited, especially between May and September. We recommend booking as soon as you know the wedding date. Prices from €300, with payment in three stages.",
+    "ctaDesc": "Slots are limited, especially between May and September. We recommend booking as soon as you know the wedding date. Prices from €{quadro30x40}, with payment in three stages.",
     "ctaComoFunciona": "How it works",
     "ctaPrecos": "Options & pricing",
     "ctaFAQ": "Frequently asked questions",
@@ -688,7 +688,7 @@
       },
       {
         "titulo": "Museum quality that lasts decades",
-        "desc": "UltraVue® anti-UV glass, acid-free card and adhesive, frame made to measure in Coimbra. The same materials used in museums and professional archives."
+        "desc": "Acid-free card and adhesive, frame made to measure in Coimbra and, if you wish, UltraVue® anti-UV glass. The same materials used in museums and professional archives."
       }
     ],
     "socialProofRating": "5.0 ★★★★★",
@@ -738,7 +738,7 @@
     "faqItems": [
       {
         "q": "What does preserving a wedding bouquet actually mean?",
-        "a": "Preserving a wedding bouquet means turning the fresh flowers from your wedding into a piece that lasts for decades. At our studio we do it through botanical pressing: each flower is pressed and recomposed petal by petal, and the final composition is framed with anti-UV museum glass. The frame holds the real flowers from your bouquet, not a replica."
+        "a": "Preserving a wedding bouquet means turning the fresh flowers from your wedding into a piece that lasts for decades. At our studio we do it through botanical pressing: each flower is pressed and recomposed petal by petal, and the final composition is framed, and can be glazed with anti-UV museum glass. The frame holds the real flowers from your bouquet, not a replica."
       },
       {
         "q": "How can I hand in the bouquet?",
@@ -770,7 +770,7 @@
       },
       {
         "q": "What are the prices and how does payment work?",
-        "a": "Prices start from €300. See the options and pricing page for all available formats and finishes. Payment is made in three stages: 30% to book your date, 40% when we receive the flowers, and 30% on delivery."
+        "a": "Prices start from €{quadro30x40}. See the options and pricing page for all available formats and finishes. Payment is made in three stages: 30% to book your date, 40% when we receive the flowers, and 30% on delivery."
       },
       {
         "q": "Do you ship outside Portugal?",
@@ -782,7 +782,7 @@
       }
     ],
     "pricingNote": "See all options & prices →",
-    "featuresPricingNote": "From €300 · See options & pricing →",
+    "featuresPricingNote": "From €{quadro30x40} · See options & pricing →",
     "pricingEyebrow": "Investment",
     "pricingCtaTitle": "Options & pricing",
     "pricingCtaDesc": "You don't need to decide the format now: you can book your date today and choose the size and finishes later, at your own pace. If you'd like to see everything first, browse all formats and prices.",
@@ -793,7 +793,7 @@
   "lutoHomenagem": {
     "meta": {
       "title": "Preserve Memorial & Funeral Flowers",
-      "description": "Preserve flowers from a memorial or funeral ceremony as framed botanical art. A lasting tribute, handmade with care in Coimbra. Worldwide shipping. From €300.",
+      "description": "Preserve flowers from a memorial or funeral ceremony as framed botanical art. A lasting tribute, handmade with care in Coimbra. Worldwide shipping. From €{quadro30x40}.",
       "ogTitle": "Preserve Memorial & Funeral Flowers | Flores à Beira-Rio",
       "ogDescription": "Preserve flowers from a memorial or funeral ceremony as framed botanical art. A lasting tribute, handmade with care. Worldwide shipping from Coimbra.",
       "ogImageAlt": "Memorial flowers preserved in botanical art frame",
@@ -807,12 +807,12 @@
     "eyebrow2": "A memory that endures",
     "contentTitle": "A tribute that lasts forever",
     "p1": "Flowers present at a farewell ceremony carry deep meaning. Preserving them is a way to keep the memory of the departed alive, transforming them into a piece of botanical art that can remain at home as a silent and permanent tribute.",
-    "p2": "Every petal is treated individually by artisan pressing and framed with anti-UV museum glass and a custom-made mount in Coimbra. You can also include a photograph, a card or any element that holds meaning for you.",
+    "p2": "Every petal is treated individually by artisan pressing and framed with a custom-made mount in Coimbra, with the option of anti-UV museum glass. You can also include a photograph, a card or any element that holds meaning for you.",
     "ctaReservar": "Book a Date",
     "contentEm": "forever",
     "ctaFinalTitle": "Preserve the memory of a loved one",
     "ctaFinalEm": "of a loved one",
-    "ctaDesc": "Contact us when the time feels right. Prices from €300, with payment in three stages. We ship worldwide.",
+    "ctaDesc": "Contact us when the time feels right. Prices from €{quadro30x40}, with payment in three stages. We ship worldwide.",
     "linkComoFunciona": "How it works",
     "linkPrecos": "Options & pricing",
     "linkFAQ": "Frequently asked questions",
@@ -853,7 +853,7 @@
   "batizadoNascimento": {
     "meta": {
       "title": "Preserve Baptism & Christening Flowers",
-      "description": "Preserve baptism or birth flowers into framed botanical art. For yourself or to gift to godparents. Coimbra atelier, worldwide shipping. From €300.",
+      "description": "Preserve baptism or birth flowers into framed botanical art. For yourself or to gift to godparents. Coimbra atelier, worldwide shipping. From €{quadro30x40}.",
       "ogTitle": "Preserve Baptism & Christening Flowers | Flores à Beira-Rio",
       "ogDescription": "Preserve baptism or birth flowers into framed botanical art. For yourself or to gift to godparents. Worldwide shipping from Coimbra.",
       "ogImageAlt": "Baptism flowers preserved in botanical art frame",
@@ -869,10 +869,10 @@
     "contentTitle": "The first bouquet of a whole life",
     "contentEm": "of a whole life",
     "p1": "The birth of a child or the baptism day are moments that mark the very beginning. The flowers that accompanied them carry the emotion of those first days and deserve more than a week in a vase.",
-    "p2": "Through artisan botanical pressing, we transform those flowers into a handmade frame, mounted with anti-UV museum glass and a custom-made surround in Coimbra. Simply hand us the flowers in the days following the ceremony and we take care of everything, including shipping the finished frame to your address. It is also an original and lasting gift for godparents or family members who want to mark the occasion.",
+    "p2": "Through artisan botanical pressing, we transform those flowers into a handmade frame, with a custom-made surround in Coimbra and the option of anti-UV museum glass. Simply hand us the flowers in the days following the ceremony and we take care of everything, including shipping the finished frame to your address. It is also an original and lasting gift for godparents or family members who want to mark the occasion.",
     "ctaFinalTitle": "Preserve the start of the story",
     "ctaFinalEm": "of the story",
-    "ctaDesc": "Baptism and birth flowers don't have to live only in photographs. Prices from €300, with payment in three stages.",
+    "ctaDesc": "Baptism and birth flowers don't have to live only in photographs. Prices from €{quadro30x40}, with payment in three stages.",
     "linkComoFunciona": "How it works",
     "linkPrecos": "Options & pricing",
     "linkFAQ": "Frequently asked questions",
@@ -913,7 +913,7 @@
   "aniversario": {
     "meta": {
       "title": "Preserve Anniversary Flowers",
-      "description": "Preserve flowers from a wedding anniversary, dating anniversary or any special date into framed botanical art. Coimbra atelier, worldwide shipping. From €300.",
+      "description": "Preserve flowers from a wedding anniversary, dating anniversary or any special date into framed botanical art. Coimbra atelier, worldwide shipping. From €{quadro30x40}.",
       "ogTitle": "Preserve Anniversary Flowers | Flores à Beira-Rio",
       "ogDescription": "Preserve flowers from any anniversary into framed botanical art. Worldwide shipping from Coimbra.",
       "ogImageAlt": "Anniversary flowers preserved in botanical art frame",
@@ -922,17 +922,17 @@
     "eyebrow": "Anniversary",
     "h1": "Preserve Anniversary Flowers",
     "fotoAlt": "Preserved anniversary flowers framed in vivid coral and yellow tones",
-    "heroDesc": "Keep the flowers from a wedding anniversary, dating anniversary, or any date you want to immortalise. Botanical art framed with anti-UV museum glass, handmade in Coimbra.",
+    "heroDesc": "Keep the flowers from a wedding anniversary, dating anniversary, or any date you want to immortalise. Botanical art handmade in Coimbra, with the option of anti-UV museum glass.",
     "ctaReservar": "Book a Date",
     "ctaWA": "WhatsApp",
     "eyebrow2": "Botanical Art for Every Date",
     "contentTitle": "Flowers that deserve to last more than a week",
     "contentEm": "more than a week",
     "p1": "Anniversary flowers last, on average, one week. The emotion they represent can last a lifetime. Through artisan botanical pressing, we transform those flowers into a frame that stays permanently at home.",
-    "p2": "Simply hand us the flowers in the days following the anniversary (up to 6 days, ideally 1 to 3). We handle the pressing, artistic composition, approval with you, and framing with anti-UV museum glass and a custom-made mount in Coimbra.",
+    "p2": "Simply hand us the flowers in the days following the anniversary (up to 6 days, ideally 1 to 3). We handle the pressing, artistic composition, approval with you, and framing with a custom-made mount in Coimbra, with the option of anti-UV museum glass.",
     "ctaFinalTitle": "Turn the flowers into a memory",
     "ctaFinalEm": "into a memory",
-    "ctaFinalDesc": "Book your spot and make sure that anniversary lasts forever. Prices from €300, with payment in three stages.",
+    "ctaFinalDesc": "Book your spot and make sure that anniversary lasts forever. Prices from €{quadro30x40}, with payment in three stages.",
     "linkComoFunciona": "How it works",
     "linkPrecos": "Options & pricing",
     "linkFAQ": "Frequently asked questions",
@@ -973,7 +973,7 @@
   "pedidoCasamento": {
     "meta": {
       "title": "Preserve Proposal & Engagement Flowers",
-      "description": "Preserve your proposal flowers into framed botanical art before they wilt. Artisan atelier in Coimbra, Portugal, with worldwide shipping. From €300.",
+      "description": "Preserve your proposal flowers into framed botanical art before they wilt. Artisan atelier in Coimbra, Portugal, with worldwide shipping. From €{quadro30x40}.",
       "ogTitle": "Preserve Proposal & Engagement Flowers | Flores à Beira-Rio",
       "ogDescription": "Preserve your proposal flowers into framed botanical art before they wilt. Worldwide shipping from Coimbra, Portugal.",
       "ogImageAlt": "Proposal flowers preserved in botanical art frame",
@@ -982,17 +982,17 @@
     "eyebrow": "Marriage Proposal",
     "h1": "Preserve Marriage Proposal Flowers",
     "fotoAlt": "Composition of preserved roses in pink tones, with daisies and eucalyptus",
-    "heroDesc": "The proposal flowers mark the start of a story. Preserve that moment in a botanical work of art handmade in Coimbra, with anti-UV museum glass.",
+    "heroDesc": "The proposal flowers mark the start of a story. Preserve that moment in a botanical work of art handmade in Coimbra, with the option of anti-UV museum glass.",
     "eyebrow2": "Before Everything Else",
     "contentTitle": "Where it all began",
     "p1": "There is a date before the wedding that is often forgotten: the proposal day. The flowers that were there that night deserve to be kept with the same care as the wedding bouquet.",
-    "p2": "Hand us the flowers in the days following the proposal (up to 6 days, ideally 1 to 3) and we transform them into a botanical art frame. Every petal is pressed individually, the composition is approved by you, and the result is framed with anti-UV museum glass and a custom-made mount in Coimbra.",
+    "p2": "Hand us the flowers in the days following the proposal (up to 6 days, ideally 1 to 3) and we transform them into a botanical art frame. Every petal is pressed individually, the composition is approved by you, and the result is framed with a custom-made mount in Coimbra, with the option of anti-UV museum glass.",
     "ctaReservar": "Book a Date",
     "ctaWA": "WhatsApp",
     "contentEm": "began",
     "ctaFinalTitle": "Preserve your first yes",
     "ctaFinalEm": "first yes",
-    "ctaDesc": "Proposal flowers deserve to be preserved before they dry. Prices from €300, with payment in three stages.",
+    "ctaDesc": "Proposal flowers deserve to be preserved before they dry. Prices from €{quadro30x40}, with payment in three stages.",
     "ctaBouquet": "Wedding bouquet",
     "linkPreservacao": "Flower preservation",
     "linkComoFunciona": "How it works",
@@ -1091,7 +1091,7 @@
     ],
     "materiaisEyebrow": "Museum quality",
     "materiaisH2": "Materials & Quality",
-    "vidroEyebrow": "Museum glass",
+    "vidroEyebrow": "Museum glass (option)",
     "vidroH3": "UltraVue® UV70",
     "vidroH3em": "truly remarkable clarity",
     "vidroFeatures": [
@@ -1102,7 +1102,7 @@
       "Durable and easy-to-clean surface"
     ],
     "vidroLabelNormal": "Normal",
-    "precosNota2": "Includes museum anti-UV glass, custom frame and artistic composition",
+    "precosNota2": "Includes a custom-made frame and artistic composition design. Anti-UV museum glass optional",
     "precosEyebrow": "Framing dried flowers",
     "precosH2": "Sizes and prices",
     "precosDesc": "Prices for framing dried flowers. These prices do not include our preservation services. If your flowers are fresh and need to be preserved, visit the",
@@ -1110,7 +1110,7 @@
     "precosDescLinkHref": "/en/options-and-pricing",
     "precosLabelTamanho": "Size",
     "precosLabelPreco": "Price",
-    "precosNota": "All frames include museum anti-UV glass, a custom-made frame and artistic composition design.",
+    "precosNota": "All frames include a custom-made frame and artistic composition design. Anti-UV museum glass can be added for €{vidro30x40} (30×40), €{vidro40x50} (40×50) or €{vidro50x70} (50×70).",
     "pagamentoEyebrow": "No surprises",
     "pagamentoH2": "Payment in 3 stages",
     "pagamento": [
@@ -1205,7 +1205,7 @@
     "floresFrescas": "Fresh Flowers",
     "floresFrescasDesc": "Quoted by our partner florist based on the original bouquet's flowers. Variable cost depending on the composition.",
     "preservacaoMoldura": "Preservation & Framing",
-    "preservacaoMolduraDesc": "Same as our base preservation pricing, from €300. Anti-reflective museum glass and UV protection included.",
+    "preservacaoMolduraDesc": "Same as our base preservation pricing, from €{quadro30x40}. Anti-reflective museum glass with UV protection available as an option.",
     "verPrecos": "See all sizes and pricing",
     "recriarTitle": "Let's recreate your memory",
     "recriarSub": "Your wedding bouquet deserves a second life.",
@@ -1231,7 +1231,7 @@
       {
         "n": "04",
         "titulo": "The Work of Art",
-        "desc": "We send a photo of the composition for prior approval. Only then is the frame mounted with anti-reflective museum glass and UV protection."
+        "desc": "We send a photo of the composition for prior approval. Only then is the frame mounted, with the option of anti-reflective museum glass and UV protection."
       }
     ],
     "casosUso": [
@@ -1255,9 +1255,9 @@
   "oferecer": {
     "meta": {
       "title": "Flower Preservation Gift Voucher",
-      "description": "Give a memory that lasts forever. Voucher to preserve wedding, baptism, anniversary or memorial flowers. From €300, valid for 2 years from purchase.",
-      "ogTitle": "Flower Preservation Gift Voucher | Valid 2 Years | €300+",
-      "ogDescription": "Voucher to preserve wedding, baptism, anniversary or memorial flowers. From €300, valid for 2 years.",
+      "description": "Give a memory that lasts forever. Voucher to preserve wedding, baptism, anniversary or memorial flowers. From €{quadro30x40}, valid for 2 years from purchase.",
+      "ogTitle": "Flower Preservation Gift Voucher | Valid 2 Years | €{quadro30x40}+",
+      "ogDescription": "Voucher to preserve wedding, baptism, anniversary or memorial flowers. From €{quadro30x40}, valid for 2 years.",
       "ogImageAlt": "Flower preservation gift voucher, Flores à Beira-Rio",
       "keywords": "flower preservation gift voucher, gift card preserved flowers, original wedding gift, anniversary gift idea flowers, bridal gift voucher, godparent gift voucher"
     },
@@ -1282,7 +1282,7 @@
     "ctaFinalTitle": "Ready to give?",
     "ctaFinalSub": "A special day deserves a special memento",
     "ctaFinalDesc": "Turn a fleeting moment into a handmade work of art, to last a lifetime.",
-    "apartirDe": "From €300 · Valid for 2 years",
+    "apartirDe": "From €{quadro30x40} · Valid for 2 years",
     "ocasioes": [
       {
         "titulo": "Wedding",
@@ -1312,7 +1312,7 @@
     "passos": [
       {
         "titulo": "Choose the value",
-        "desc": "The voucher can be any value you wish, with a minimum of €300. You can customise the amount to suit the service you want to give.",
+        "desc": "The voucher can be any value you wish, with a minimum of €{quadro30x40}. You can customise the amount to suit the service you want to give.",
         "linkHref": "/en/options-and-pricing",
         "linkLabel": "See pricing"
       },
@@ -1328,7 +1328,7 @@
       }
     ],
     "condicoes": [
-      "Minimum value of €300, equivalent to our smallest frame",
+      "Minimum value of €{quadro30x40}, equivalent to our smallest frame",
       "Valid for 2 years from the purchase date",
       "Non-refundable",
       "Valid exclusively for Flores à Beira-Rio services"
@@ -1470,7 +1470,7 @@
       },
       {
         "title": "Museum UltraVue® UV70 glass",
-        "desc": "The same glass used in museums and galleries. Filters 70% of UV rays and eliminates glare, keeping colours vibrant for decades."
+        "desc": "The same glass used in museums and galleries, available as an option on any frame. Filters 70% of UV rays and eliminates glare, keeping colours vibrant for decades."
       },
       {
         "title": "The plastic we still use",
@@ -1619,12 +1619,21 @@
     "fundoHintSuffix": "to see each option and visit our",
     "fundoHintInstagram": "Instagram",
     "fundoHintSuffix2": "If you're not sure, you don't need to decide yet.",
+    "vidroMuseuLabel": "Would you like anti-UV museum glass on your frame?",
+    "vidroMuseuHint": "UltraVue® museum glass is the same glass used in museums: it virtually eliminates reflections and filters up to 70% of UV rays, protecting the colours of the flowers for decades. It is optional and carries an additional cost that depends on the frame size: {vidro30x40}€ for 30x40, {vidro40x50}€ for 40x50 and {vidro50x70}€ for 50x70. Without this option the frame comes with standard glass and the price stays the same.",
+    "vidroMuseuVerDiferenca": "See the difference",
+    "vidroMuseuModalTitulo": "Standard glass and museum glass, side by side",
+    "vidroMuseuModalDesc": "On the left a frame with standard glass, on the right the same frame with UltraVue® museum glass. The difference is mostly in the reflections: museum glass has almost none, so you see the flowers instead of seeing yourself.",
+    "vidroMuseuModalFechar": "Close",
+    "vidroMuseuLabelNormal": "Standard",
+    "vidroMuseuMiniLabel": "And on the small frames, would you like anti-UV museum glass?",
+    "vidroMuseuMiniHint": "You can choose differently from the main frame. On the 20x25 cm frames, museum glass costs {vidro20x25}€ per frame.",
     "elementosLabel": "Would you like to include any extra element in your frame?",
     "elementosHint": "<b>There is no additional cost.</b> You can add items with symbolic or emotional value. If you select any option, please hand the elements over with the flowers.",
     "elementosOutroLabel": "Specify the extra element",
     "elementosOutroPlaceholder": "Describe the element you wish to include.",
     "quadrosExtraLabel": "In addition to the main frame, would you like to add extra frames in a smaller size?",
-    "quadrosExtraHint": "Ideal as gifts for parents, godparents, siblings or friends. Each extra frame is priced at €90 (20×25 cm).",
+    "quadrosExtraHint": "Ideal as gifts for parents, godparents, siblings or friends. Each extra frame is priced at €{mini20x25} (20×25 cm).",
     "quantosQuadrosLabel": "How many extra small frames would you like to add?",
     "quantosQuadrosPlaceholder": "E.g.: 2",
     "ornamentosLabel": "In addition to the main frame, would you like to add Christmas ornaments?",
@@ -1726,6 +1735,20 @@
       {
         "valor": "Ainda não sei",
         "label": "Not sure yet"
+      }
+    ],
+    "vidroMuseuOpcoes": [
+      {
+        "valor": "Sim, com vidro museu anti-UV",
+        "label": "Yes, with anti-UV museum glass (additional cost)"
+      },
+      {
+        "valor": "Não, vidro normal",
+        "label": "No, I prefer standard glass"
+      },
+      {
+        "valor": "Ainda não sei",
+        "label": "I don't know yet"
       }
     ],
     "elementosOpcoes": [
@@ -1892,9 +1915,9 @@
   "vale": {
     "meta": {
       "title": "Buy a Flower Preservation Gift Voucher",
-      "description": "Order a flower preservation gift voucher. The perfect present for a wedding, baptism or anniversary. From €300, valid for 2 years from the purchase date.",
+      "description": "Order a flower preservation gift voucher. The perfect present for a wedding, baptism or anniversary. From €{quadro30x40}, valid for 2 years from the purchase date.",
       "ogTitle": "Gift Voucher | Flores à Beira-Rio",
-      "ogDescription": "Order a flower preservation gift voucher. From €300, valid for 2 years from the purchase date.",
+      "ogDescription": "Order a flower preservation gift voucher. From €{quadro30x40}, valid for 2 years from the purchase date.",
       "ogImageAlt": "Flower preservation gift voucher, Flores à Beira-Rio",
       "keywords": "flower preservation gift voucher, order gift card flowers, wedding gift preserved flowers, botanical art gift"
     },
@@ -1904,7 +1927,7 @@
     "saberMais": "Learn more about how it works",
     "verExemplo": "See an example of the digital voucher →",
     "formTitle": "Order form",
-    "formSub": "From €300, valid for 2 years from the purchase date. Digital delivery (free) or physical card (€9 + postage).",
+    "formSub": "From €{quadro30x40}, valid for 2 years from the purchase date. Digital delivery (free) or physical card (€9 + postage).",
     "provaSocial": "★★★★★ 5.0 in reviews on <g>Google</g> and <c>casamentos.pt</c>",
     "duvidaPre": "Have a question before gifting?",
     "duvidaCTA": "Chat with us on WhatsApp",
@@ -1948,7 +1971,7 @@
     "mensagemPlaceholder": "E.g.: For Sarah: May your flowers last as long as the memory of this special day.",
     "valorLabel": "Voucher value (€)",
     "valorPlaceholder": "300",
-    "valorHint": "Minimum value: €300, corresponding to the smallest frame. See our",
+    "valorHint": "Minimum value: €{quadro30x40}, corresponding to the smallest frame. See our",
     "valorHintLinkText": "Options and Prices",
     "valorHintSuffix": "page to choose the right frame size.",
     "entreguaALabel": "I want the voucher delivered to",
@@ -2057,7 +2080,7 @@
     "erroTelefonePrimeiroDigito": "Portuguese numbers start with 9 (mobile) or 2 (landline). Please double-check the number.",
     "emailSugestao": "Did you mean {sugestao}?",
     "erroEmailInvalido": "Invalid email address.",
-    "erroValorMin": "The minimum value is €300.",
+    "erroValorMin": "The minimum value is €{quadro30x40}.",
     "erroValorInvalido": "The value entered is not valid.",
     "erroDataInvalida": "Invalid date. Please check the year entered.",
     "erroFormulario": "Some fields are incomplete or contain errors. Please review the form above before submitting.",

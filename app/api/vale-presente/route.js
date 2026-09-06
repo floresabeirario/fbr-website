@@ -32,6 +32,7 @@ import {
 import { EMAIL } from "@/app/_lib/constants";
 import { mapValeToVoucher } from "@/app/_lib/supabase-mappings";
 import { verifyTurnstile } from "@/app/_lib/turnstile";
+import { getPrecos } from "@/app/_lib/precos";
 
 const isRateLimited = createRateLimiter();
 
@@ -112,8 +113,12 @@ export async function POST(request) {
     }
 
     if (data.valorVale !== undefined && data.valorVale !== "") {
+      // O mínimo do vale é o preço do quadro mais pequeno (Finanças), não
+      // um 300 preso no código: sobe sozinho quando esse preço subir.
+      const { quadro30x40 } = await getPrecos();
+      const minimo = Number(quadro30x40) || 300;
       const val = Number(data.valorVale);
-      if (isNaN(val) || val < 300 || val > 100_000) {
+      if (isNaN(val) || val < minimo || val > 100_000) {
         return NextResponse.json(
           { error: "Valor do vale inválido." },
           { status: 400 }

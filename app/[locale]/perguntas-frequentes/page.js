@@ -2,12 +2,13 @@
 import { getTranslations } from "next-intl/server";
 import { buildOpenGraph, buildTwitterCard, buildAlternates } from "@/app/_lib/metadata";
 import { SITE_URL } from "@/app/_lib/constants";
-import { FAQ_DATA } from "@/app/perguntas-frequentes/faq-data";
-import { FAQ_DATA_EN } from "@/app/perguntas-frequentes/faq-data-en";
+import { buildFaqData } from "@/app/perguntas-frequentes/faq-data";
+import { buildFaqDataEn } from "@/app/perguntas-frequentes/faq-data-en";
+import { getPrecos } from "@/app/_lib/precos";
 import PerguntasFrequentesClient from "@/app/perguntas-frequentes/PerguntasFrequentesClient";
 
-function buildFaqSchema(locale) {
-  const faqData = locale === "en" ? FAQ_DATA_EN : FAQ_DATA;
+function buildFaqSchema(locale, precos) {
+  const faqData = locale === "en" ? buildFaqDataEn(precos) : buildFaqData(precos);
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -47,13 +48,14 @@ export async function generateMetadata({ params }) {
 
 export default async function PerguntasFrequentesPage({ params }) {
   const { locale } = await params;
+  const precos = await getPrecos();
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqSchema(locale)) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqSchema(locale, precos)) }}
       />
-      <PerguntasFrequentesClient />
+      <PerguntasFrequentesClient precos={precos} />
     </>
   );
 }

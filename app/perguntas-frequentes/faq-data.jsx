@@ -1,7 +1,11 @@
 // Dados das FAQ — importados por FaqAccordion.jsx e PerguntasFrequentesClient.jsx
 import { TRACKING_URL } from "../_lib/constants";
+import { PRECOS_FALLBACK } from "../_lib/precos-valores";
 
-export const FAQ_DATA = [
+// Função e não constante: as respostas de preço usam os valores da
+// tabela de Finanças, que só se sabem em runtime (ver _lib/precos.js).
+// `FAQ_DATA` mantém-se exportada com o fallback para quem não passa preços.
+export const buildFaqData = (p = PRECOS_FALLBACK) => [
   {
     cat: "processo",
     q: "Quando devo agendar a preservação do meu bouquet?",
@@ -215,8 +219,8 @@ export const FAQ_DATA = [
         A resina é um <strong>plástico de origem petroquímica</strong>: não é biodegradável,
         não é reciclável e o seu processo de cura liberta compostos voláteis nocivos.
         <br /><br />
-        A nossa preservação é <strong>100% natural</strong>: prensagem artesanal, moldura de madeira
-        e vidro museu, sem químicos, sem plástico.
+        A nossa preservação é <strong>100% natural</strong>: prensagem artesanal e moldura de
+        madeira, sem químicos, sem plástico.
       </>
     ),
   },
@@ -307,11 +311,13 @@ export const FAQ_DATA = [
     cat: "pagamentos",
     q: "Quanto custa a preservação?",
     plain:
-      "Os preços começam nos 300€ e incluem sempre o emolduramento com vidro museu anti-reflexo e proteção UV. Todos os componentes do quadro têm qualidade museu.",
+      `Os preços começam nos ${p.quadro30x40}€ e incluem sempre o emolduramento e a moldura feita à medida. O vidro museu anti-reflexo com proteção UV é opcional: ${p.vidro30x40}€ no 30x40, ${p.vidro40x50}€ no 40x50 e ${p.vidro50x70}€ no 50x70. Todos os restantes componentes do quadro têm qualidade museu.`,
     a: (
       <>
-        Os preços <strong>começam nos 300€</strong> e incluem sempre o emolduramento com vidro museu
-        anti-reflexo e proteção UV. Todos os componentes do quadro têm qualidade museu.
+        Os preços <strong>começam nos {p.quadro30x40}€</strong> e incluem sempre o emolduramento e a
+        moldura feita à medida. O <strong>vidro museu anti-reflexo com proteção UV é opcional</strong>:
+        {p.vidro30x40}€ no 30x40, {p.vidro40x50}€ no 40x50 e {p.vidro50x70}€ no 50x70. Todos os
+        restantes componentes do quadro têm qualidade museu.
         <br /><br />
         Conheça mais sobre os nossos materiais na{" "}
         <a href="/opcoes-e-precos" className="faq-link">página opções e preços</a>{" "}
@@ -376,6 +382,8 @@ export const FAQ_DATA = [
     ),
   },
 ];
+
+export const FAQ_DATA = buildFaqData();
 
 export const CATEGORIES = [
   { id: "todas",      label: "Todas",      count: FAQ_DATA.length },

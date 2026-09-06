@@ -4,7 +4,8 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { getPostBySlug, getAllPosts, getRelatedPosts } from "@/app/_lib/blog";
 import ArticleClient from "@/app/blog/[slug]/ArticleClient";
-import { mdxComponents } from "@/app/blog/[slug]/MdxComponents";
+import { buildMdxComponents } from "@/app/blog/[slug]/MdxComponents";
+import { getPrecos } from "@/app/_lib/precos";
 import { SetAltLocaleHref } from "@/app/_components/AltLocaleHref";
 import { SITE_URL } from "@/app/_lib/constants";
 import { buildBlogAlternates, buildBreadcrumbJsonLd } from "@/app/_lib/metadata";
@@ -91,6 +92,7 @@ function buildBlogPostingSchema(post, locale, slug) {
 
 export default async function ArticlePage({ params }) {
   const { slug, locale } = await params;
+  const precos = await getPrecos();
   const post = getPostBySlug(slug, locale);
   if (!post) {
     // Rede de segurança: o slug pode ser do OUTRO idioma (switcher da Nav
@@ -134,7 +136,7 @@ export default async function ArticlePage({ params }) {
         ]) }}
       />
       <ArticleClient post={post} related={related}>
-        <MDXRemote source={post.content} components={mdxComponents} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
+        <MDXRemote source={post.content} components={buildMdxComponents(precos)} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
       </ArticleClient>
     </>
   );

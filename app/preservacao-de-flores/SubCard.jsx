@@ -8,7 +8,7 @@ export const SUBPAGES = [
     href: "/opcoes-e-precos",
     tag: "Tamanhos e valores",
     title: "Opções e Preços",
-    desc: "Quadros a partir de 300€. Três tamanhos, quatro tipos de fundo e extras personalizados. Vidro museu UltraVue® anti-UV incluído em todas as peças.",
+    desc: "Quadros a partir de 300€. Três tamanhos, quatro tipos de fundo e extras personalizados. Vidro museu UltraVue® anti-UV disponível como opção.",
     img: "/quadro-flores-prensadas-preservadas.webp",
     imgAlt: "Quadro de flores prensadas com vidro museu, Opções e Preços",
     cta: "Ver tamanhos e preços",

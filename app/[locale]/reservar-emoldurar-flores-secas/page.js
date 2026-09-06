@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { buildOpenGraph, buildTwitterCard, buildAlternates } from "@/app/_lib/metadata";
 import { SITE_URL, PHONE, EMAIL } from "@/app/_lib/constants";
 import EmoldurarReservarClient from "@/app/emoldurar-flores-secas/EmoldurarReservarClient";
+import { getPrecos } from "@/app/_lib/precos";
 
 function buildSchema(locale) {
   const isEN = locale === "en";
@@ -69,13 +70,14 @@ export async function generateMetadata({ params }) {
 
 export default async function ReservarEmoldurarPage({ params }) {
   const { locale } = await params;
+  const precos = await getPrecos();
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(locale)) }}
       />
-      <EmoldurarReservarClient />
+      <EmoldurarReservarClient precos={precos} />
     </>
   );
 }

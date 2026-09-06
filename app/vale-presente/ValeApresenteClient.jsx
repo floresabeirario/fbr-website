@@ -8,8 +8,10 @@ import ValeApresenteForm from "./ValeApresenteForm";
 import { SOCIAL_GOOGLE_BUSINESS, SOCIAL_CASAMENTOS } from "@/app/_lib/constants";
 import { waUrl } from "@/app/_lib/wa";
 import "./ValeApresenteClient.css";
+import { usePrecos } from "../_components/PrecosProvider";
 
 export default function ValeApresenteClient() {
+  const precos = usePrecos();
   const t = useTranslations("vale");
   const locale = useLocale();
   const STEPS = t.raw("passos");
@@ -77,7 +79,7 @@ export default function ValeApresenteClient() {
       <section className="vp-form-wrap" aria-label={t("formTitle")}>
         <div className="vp-form-lead">
           <h2 className="vp-form-lead-title">{t("formTitle")}</h2>
-          <p className="vp-form-lead-sub">{t("formSub")}</p>
+          <p className="vp-form-lead-sub">{t("formSub", { quadro30x40: precos.quadro30x40 })}</p>
           <p style={{ marginTop: "14px", fontSize: "0.82rem", letterSpacing: "0.3px", color: "var(--gold)" }}>
             {t.rich("provaSocial", {
               g: (chunks) => <a href={SOCIAL_GOOGLE_BUSINESS} target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>{chunks}</a>,

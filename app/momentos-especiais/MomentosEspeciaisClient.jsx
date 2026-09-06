@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
 import { splitTitle } from "../_lib/splitTitle";
+import { usePrecos } from "../_components/PrecosProvider";
 
 const anim = {
   initial: { opacity: 0, y: 22 },
@@ -12,6 +13,7 @@ const anim = {
 };
 
 export default function MomentosEspeciaisClient() {
+  const precos = usePrecos();
   const t = useTranslations("momentos");
   const locale = useLocale();
   const lista = t.raw("lista");
@@ -49,7 +51,7 @@ export default function MomentosEspeciaisClient() {
             {t("floresTitle")}
           </h2>
           <p className="momento-content-p">{t("floresP1")}</p>
-          <p className="momento-content-p">{t("floresP2")}</p>
+          <p className="momento-content-p">{t("floresP2", { quadro30x40: precos.quadro30x40 })}</p>
           <p className="momento-content-p">{t("floresP3")}</p>
           <a
             href={locale === "en" ? "/en/how-to-ship-your-flowers" : "/enviar-flores-por-correio"}

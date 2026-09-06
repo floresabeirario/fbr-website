@@ -13,14 +13,16 @@
 //   • sem a opção "recolha no local" (as flores já estão secas);
 //   • salvaguarda nos ornamentos/pendentes (flores rígidas podem não moldar).
 
-import { useState, useRef, useId, isValidElement, cloneElement } from "react";
+import { useState, useEffect, useRef, useId, isValidElement, cloneElement } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { EMAIL } from "../_lib/constants";
 import PhonePrefix from "../_components/PhonePrefix";
 import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget";
 import { phoneLengthError, normalizePhone, formatPhoneInput } from "../_lib/phone-validation";
 import { suggestEmail, cleanEmail } from "../_lib/email-suggest";
+import { PRECOS_FALLBACK } from "../_lib/precos-valores";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 const MAX_FOTOS = 5;
@@ -41,6 +43,8 @@ const INIT = {
   comoReceberQuadro: "",
   tamanhoMoldura: "",
   tipoFundo: "",
+  vidroMuseu: "",
+  vidroMuseuMini: "",
   elementosExtra: [],
   elementosExtraOutro: "",
   quadrosExtra: "",
@@ -94,7 +98,7 @@ function Field({ label, required, hint, error, children, as: Tag, name }) {
   );
 }
 
-export default function EmoldurarForm() {
+export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
   const t = useTranslations("formReserva");
   const te = useTranslations("formEmoldurar");
   const locale = useLocale();
@@ -108,6 +112,7 @@ export default function EmoldurarForm() {
   const comoReceberOpcoes   = t.raw("comoReceberOpcoes");
   const tamanhoOpcoes       = t.raw("tamanhoOpcoes");
   const fundoOpcoes         = t.raw("fundoOpcoes");
+  const vidroMuseuOpcoes    = t.raw("vidroMuseuOpcoes");
   const tipoEventoOpcoes    = t.raw("tipoEventoOpcoes");
   // Sem a opção "recolha no local" — as flores já estão secas.
   const comoEnviarOpcoes    = t.raw("comoEnviarOpcoes").filter((o) => !/recolha no local/i.test(o.valor));
@@ -134,6 +139,15 @@ export default function EmoldurarForm() {
   const [form, setForm] = useState(INIT);
   const [fotos, setFotos] = useState([]); // { file, url }
   const [errors, setErrors] = useState({});
+  // Modal "Ver a diferença" do vidro museu (mesma imagem e mesmo CSS do
+  // formulário de preservação, que este ficheiro já importa).
+  const [vidroModalAberto, setVidroModalAberto] = useState(false);
+  useEffect(() => {
+    if (!vidroModalAberto) return;
+    const onKey = (ev) => { if (ev.key === "Escape") setVidroModalAberto(false); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [vidroModalAberto]);
   const [emailSugestao, setEmailSugestao] = useState(null);
   const [status, setStatus] = useState("idle");
   const [turnstileToken, setTurnstileToken] = useState(null);
@@ -146,7 +160,7 @@ export default function EmoldurarForm() {
       nome: "nomeLabel", meioContacto: "contactoLabel", email: "emailLabel",
       telefone: "telefoneLabel", tipoEvento: "tipoEventoLabel", nomeNoivos: "nomeNoivosLabel",
       comoEnviarFlores: "enviarFloresLabel", comoReceberQuadro: "receberQuadroLabel",
-      tamanhoMoldura: "tamanhoLabel", tipoFundo: "fundoLabel", elementosExtra: "elementosLabel",
+      tamanhoMoldura: "tamanhoLabel", tipoFundo: "fundoLabel", vidroMuseu: "vidroMuseuLabel", vidroMuseuMini: "vidroMuseuMiniLabel", elementosExtra: "elementosLabel",
       elementosExtraOutro: "elementosOutroLabel", quadrosExtra: "quadrosExtraLabel",
       quantosQuadros: "quantosQuadrosLabel", ornamentosNatal: "ornamentosLabel",
       quantosOrnamentos: "quantosOrnamentosLabel", pendentes: "pendentesLabel",
@@ -263,6 +277,9 @@ export default function EmoldurarForm() {
     if (!form.comoReceberQuadro)  e.comoReceberQuadro = t("erroCampoObrigatorio");
     if (!form.tamanhoMoldura)     e.tamanhoMoldura = t("erroCampoObrigatorio");
     if (!form.tipoFundo)          e.tipoFundo = t("erroCampoObrigatorio");
+    if (!form.vidroMuseu)         e.vidroMuseu = t("erroCampoObrigatorio");
+    // Só obrigatório quando há mini-quadros: o vidro deles é escolha à parte.
+    if (showQuantosQuadros && !form.vidroMuseuMini) e.vidroMuseuMini = t("erroCampoObrigatorio");
     if (!form.elementosExtra.length) e.elementosExtra = t("erroSelecioneOpcao");
     if (!form.quadrosExtra)       e.quadrosExtra = t("erroCampoObrigatorio");
     if (showQuantosQuadros) {
@@ -361,6 +378,7 @@ export default function EmoldurarForm() {
   }
 
   return (
+    <>
     <form className="preservacao-form" onSubmit={handleSubmit} noValidate>
       <p className="pf-intro">
         {t("camposObrigatorios")} <span aria-hidden="true" className="pf-req">*</span> {locale === "en" ? "are required." : "são obrigatórios."}
@@ -607,6 +625,33 @@ export default function EmoldurarForm() {
           </select>
         </Field>
 
+        <Field
+          name="vidroMuseu"
+          label={t("vidroMuseuLabel")}
+          required
+          error={errors.vidroMuseu}
+          hint={<>
+            {t("vidroMuseuHint", {
+              vidro30x40: precos.vidro30x40,
+              vidro40x50: precos.vidro40x50,
+              vidro50x70: precos.vidro50x70,
+            })}{" "}
+            <button
+              type="button"
+              className="pf-info-btn"
+              onClick={() => setVidroModalAberto(true)}
+            >
+              <span className="pf-info-icon" aria-hidden="true">i</span>
+              {t("vidroMuseuVerDiferenca")}
+            </button>
+          </>}
+        >
+          <select {...inp("vidroMuseu")}>
+            <option value="">{t("escolha")}</option>
+            {vidroMuseuOpcoes.map((o) => <option key={o.valor} value={o.valor}>{o.label}</option>)}
+          </select>
+        </Field>
+
         <Field name="elementosExtra" label={t("elementosLabel")} required error={errors.elementosExtra} hint={t.rich("elementosHint", { b: (chunks) => <strong>{chunks}</strong> })} as="fieldset">
           <div className="pf-checkgroup">
             {elementosOpcoes.map((opcao) => (
@@ -635,7 +680,7 @@ export default function EmoldurarForm() {
       <div className="pf-section" role="group" aria-labelledby="sec-extras">
         <h2 className="pf-section-title" id="sec-extras">{t("secExtras")}</h2>
 
-        <Field name="quadrosExtra" label={t("quadrosExtraLabel")} required error={errors.quadrosExtra} hint={t("quadrosExtraHint")}>
+        <Field name="quadrosExtra" label={t("quadrosExtraLabel")} required error={errors.quadrosExtra} hint={t("quadrosExtraHint", { mini20x25: precos.mini20x25 })}>
           <select {...inp("quadrosExtra")}>
             <option value="">{t("escolha")}</option>
             {quadrosExtraOpcoes.map((o) => <option key={o.valor} value={o.valor}>{o.label}</option>)}
@@ -645,6 +690,23 @@ export default function EmoldurarForm() {
         {showQuantosQuadros && (
           <Field name="quantosQuadros" label={t("quantosQuadrosLabel")} required error={errors.quantosQuadros}>
             <input type="number" min={1} value={form.quantosQuadros} onChange={(e) => set("quantosQuadros", e.target.value)} className={`pf-input${errors.quantosQuadros ? " pf-input-err" : ""}`} placeholder={t("quantosQuadrosPlaceholder")} />
+          </Field>
+        )}
+
+        {showQuantosQuadros && (
+          <Field
+            name="vidroMuseuMini"
+            label={t("vidroMuseuMiniLabel")}
+            required
+            error={errors.vidroMuseuMini}
+            hint={t("vidroMuseuMiniHint", { vidro20x25: precos.vidro20x25 })}
+          >
+            <select {...inp("vidroMuseuMini")}>
+              <option value="">{t("escolha")}</option>
+              {vidroMuseuOpcoes.map((o) => (
+                <option key={o.valor} value={o.valor}>{o.label}</option>
+              ))}
+            </select>
           </Field>
         )}
 
@@ -745,5 +807,44 @@ export default function EmoldurarForm() {
         {status === "loading" ? t("submitLoading") : t("submitBtn")}
       </button>
     </form>
+
+    {vidroModalAberto && (
+      <div
+        className="pf-modal-overlay"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="vidro-modal-titulo-secas"
+        onClick={() => setVidroModalAberto(false)}
+      >
+        <div className="pf-modal" onClick={(ev) => ev.stopPropagation()}>
+          <h2 className="pf-modal-titulo" id="vidro-modal-titulo-secas">
+            {t("vidroMuseuModalTitulo")}
+          </h2>
+          <div className="pf-modal-img">
+            <Image
+              src="/quadros-flores-preservadas-lado-a-lado.webp"
+              alt={t("vidroMuseuModalDesc")}
+              width={640}
+              height={640}
+              sizes="(max-width: 640px) 90vw, 460px"
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+            <div className="pf-modal-legenda">
+              <span>{t("vidroMuseuLabelNormal")}</span>
+              <strong>UltraVue®</strong>
+            </div>
+          </div>
+          <p className="pf-modal-desc">{t("vidroMuseuModalDesc")}</p>
+          <button
+            type="button"
+            className="pf-modal-fechar"
+            onClick={() => setVidroModalAberto(false)}
+          >
+            {t("vidroMuseuModalFechar")}
+          </button>
+        </div>
+      </div>
+    )}
+    </>
   );
 }

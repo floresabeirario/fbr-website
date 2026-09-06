@@ -1,6 +1,8 @@
 // app/blog/[slug]/MdxComponents.js
 // Componentes MDX personalizados — usados pelo MDXRemote no Server Component
 
+import { PRECOS_FALLBACK } from "../../_lib/precos-valores";
+
 export const mdxComponents = {
   h2: (props) => (
     <h2
@@ -129,3 +131,13 @@ export const mdxComponents = {
     />
   ),
 };
+
+// <Preco item="quadro30x40" /> nos artigos MDX → "300" (só o número, para
+// o texto à volta pôr o € onde quiser). Os valores vêm da tabela de
+// Finanças pela página do artigo; sem eles cai no último valor conhecido.
+// Existe para os artigos que falam de preços não ficarem com números
+// escritos à mão, que envelhecem sem ninguém dar por isso.
+export const buildMdxComponents = (precos = PRECOS_FALLBACK) => ({
+  ...mdxComponents,
+  Preco: ({ item }) => <>{precos[item] ?? PRECOS_FALLBACK[item] ?? ""}</>,
+});

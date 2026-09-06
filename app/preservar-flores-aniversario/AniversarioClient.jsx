@@ -7,6 +7,7 @@ import { splitTitle } from "../_lib/splitTitle";
 import MomentoFAQ from "../_components/MomentoFAQ";
 import MomentoProofBar from "../_components/MomentoProofBar";
 import MomentoFoto from "../_components/MomentoFoto";
+import { usePrecos } from "../_components/PrecosProvider";
 
 const anim = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } };
 
@@ -20,6 +21,7 @@ function CheckIcon() {
 }
 
 export default function AniversarioClient() {
+  const precos = usePrecos();
   const t = useTranslations("aniversario");
   const locale = useLocale();
   const features = t.raw("features");
@@ -102,7 +104,7 @@ export default function AniversarioClient() {
           <h2 className="momento-final-cta-h2">
             {ctaStart}{ctaEm && <><br /><em>{ctaEm}</em></>}
           </h2>
-          <p className="momento-final-cta-p">{t("ctaFinalDesc")}</p>
+          <p className="momento-final-cta-p">{t("ctaFinalDesc", { quadro30x40: precos.quadro30x40 })}</p>
           <div className="momento-ctas">
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
             <a href={waUrl(locale)} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>

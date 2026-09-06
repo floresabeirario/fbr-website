@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { buildOpenGraph, buildTwitterCard, buildAlternates, buildBreadcrumbJsonLd } from "@/app/_lib/metadata";
 import { SITE_URL, PHONE, EMAIL } from "@/app/_lib/constants";
 import BouquetNoivaClient from "@/app/preservar-bouquet-noiva/BouquetNoivaClient";
+import { getPrecos } from "@/app/_lib/precos";
 
 function buildSchema(locale) {
   const isEN = locale === "en";
@@ -122,6 +123,7 @@ function buildSchema(locale) {
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "bouquetNoiva.meta" });
+  const precosMeta = await getPrecos();
   const ogLocale = locale === "en" ? "en_GB" : "pt_PT";
   const canonicalPath = locale === "en"
     ? `${SITE_URL}/en/preserve-wedding-bouquet`
@@ -129,10 +131,10 @@ export async function generateMetadata({ params }) {
 
   return {
     title: t("title"),
-    description: t("description"),
+    description: t("description", { quadro30x40: precosMeta.quadro30x40 }),
     openGraph: buildOpenGraph({
       title: t("ogTitle"),
-      description: t("ogDescription"),
+      description: t("ogDescription", { quadro30x40: precosMeta.quadro30x40 }),
       url: canonicalPath,
       imagePath: `${SITE_URL}/og-homepage.jpg`,
       imageAlt: t("ogImageAlt"),
@@ -140,7 +142,7 @@ export async function generateMetadata({ params }) {
     }),
     twitter: buildTwitterCard({
       title: t("ogTitle"),
-      description: t("ogDescription"),
+      description: t("ogDescription", { quadro30x40: precosMeta.quadro30x40 }),
       imagePath: `${SITE_URL}/og-homepage.jpg`,
     }),
     alternates: buildAlternates("/preservar-bouquet-noiva", locale),

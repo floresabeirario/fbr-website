@@ -6,7 +6,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL, SITE_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
 import { splitTitle } from "../_lib/splitTitle";
-import { PRECO_QUADRO_30x40 } from "../_lib/precos";
+import { PRECOS_FALLBACK } from "../_lib/precos-valores";
 import PageHero from "@/components/PageHero";
 import ExploreSquares from "@/components/ExploreSquares";
 import "./ComoFuncionaClient.css";
@@ -19,7 +19,7 @@ const HOWTO_TEXT = {
     path: "/como-funciona",
     name: "Como funciona a preservação de flores de momentos especiais",
     description:
-      "Processo artesanal completo de preservação botânica de flores desde a reserva até ao quadro emoldurado com vidro museu anti-UV, pronto a pendurar em casa.",
+      "Processo artesanal completo de preservação botânica de flores desde a reserva até ao quadro emoldurado, com a opção de vidro museu anti-UV, pronto a pendurar em casa.",
     supplies: ["Flores frescas (até 6 dias após o evento)", "Fotografias do dia (opcional, para referência)"],
     tool: "Formulário de reserva online",
     steps: [
@@ -27,14 +27,14 @@ const HOWTO_TEXT = {
       { name: "Entregar as flores", text: "Entregue em mãos no atelier (Ceira, Coimbra), envie por CTT correio frágil urgente, ou solicite recolha no local do evento. Preferencialmente até 3 dias após o evento." },
       { name: "Prensagem e secagem artesanal", text: "Cada pétala é prensada e seca individualmente com técnicas de botânica artesanal, sem químicos agressivos, sem plásticos." },
       { name: "Composição e aprovação", text: "Criamos a composição artística e enviamos fotografia para aprovação. Pode pedir ajustes antes de selarmos a moldura definitivamente." },
-      { name: "Emolduramento e entrega do quadro", text: "O quadro é emoldurado com vidro museu anti-reflexo com proteção UV e enviado por CTT com rastreio, ou levantado no atelier em Coimbra." },
+      { name: "Emolduramento e entrega do quadro", text: "O quadro é emoldurado com moldura feita à medida, e com vidro museu anti-reflexo com proteção UV se assim escolher, e enviado por CTT com rastreio, ou levantado no atelier em Coimbra." },
     ],
   },
   en: {
     path: "/en/how-it-works",
     name: "How flower preservation for special occasions works",
     description:
-      "The complete artisanal botanical preservation process, from booking to the finished frame with anti-UV museum glass, ready to hang at home.",
+      "The complete artisanal botanical preservation process, from booking to the finished frame, with the option of anti-UV museum glass, ready to hang at home.",
     supplies: ["Fresh flowers (up to 6 days after the event)", "Photos of the day (optional, for reference)"],
     tool: "Online booking form",
     steps: [
@@ -42,12 +42,12 @@ const HOWTO_TEXT = {
       { name: "Deliver the flowers", text: "Hand-deliver to the atelier (Ceira, Coimbra), send by urgent fragile courier, or request collection at the event venue. Preferably within 3 days of the event." },
       { name: "Artisanal pressing and drying", text: "Each petal is pressed and dried individually using artisanal botanical techniques, with no harsh chemicals and no plastics." },
       { name: "Composition and approval", text: "We create the artistic composition and send you a photo for approval. You can request adjustments before we seal the frame permanently." },
-      { name: "Framing and delivery", text: "The frame is finished with anti-reflective museum glass with UV protection and shipped with tracking, or collected at the atelier in Coimbra." },
+      { name: "Framing and delivery", text: "The frame is finished with a custom-made surround, and anti-reflective museum glass with UV protection if you choose it, then shipped with tracking, or collected at the atelier in Coimbra." },
     ],
   },
 };
 
-const HowToSchema = ({ locale }) => {
+const HowToSchema = ({ locale, precos }) => {
   const c = HOWTO_TEXT[locale] ?? HOWTO_TEXT.pt;
   return (
     <script
@@ -59,7 +59,7 @@ const HowToSchema = ({ locale }) => {
           name: c.name,
           description: c.description,
           totalTime: "P6M",
-          estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: PRECO_QUADRO_30x40 },
+          estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: precos.quadro30x40 },
           supply: c.supplies.map((name) => ({ "@type": "HowToSupply", name })),
           tool: [{ "@type": "HowToTool", name: c.tool }],
           step: c.steps.map((s, i) => ({
@@ -165,7 +165,7 @@ const Step = ({ step, meta, index, reservarLabel, bookHref }) => {
 };
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
-export default function ComoFuncionaClient() {
+export default function ComoFuncionaClient({ precos = PRECOS_FALLBACK }) {
   const t = useTranslations("comoFunciona");
   const tNav = useTranslations("nav");
   const tCommon = useTranslations("common");
@@ -202,7 +202,7 @@ export default function ComoFuncionaClient() {
 
   return (
     <>
-      <HowToSchema locale={locale} />
+      <HowToSchema locale={locale} precos={precos} />
 
       <div style={{ backgroundColor: "var(--cream)", overflowX: "clip" }}>
 
@@ -259,7 +259,7 @@ export default function ComoFuncionaClient() {
               ))}
             </div>
             <div style={{ textAlign: "center", marginTop: "clamp(28px,4vw,40px)", fontSize: "0.88rem", color: "var(--mid)", lineHeight: 1.7 }}>
-              {t("tudoIncluidoDesc")}{" "}
+              {t("tudoIncluidoDesc", { quadro30x40: precos.quadro30x40 })}{" "}
               <a href={precosHref} className="text-link">{t("verPrecos")}</a>
             </div>
           </div>
