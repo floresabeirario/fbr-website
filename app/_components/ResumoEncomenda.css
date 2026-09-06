@@ -187,15 +187,38 @@
   font-weight: 600;
 }
 
+/* A nota "é uma estimativa" fica logo a seguir ao total e tem de ser
+   lida por toda a gente: destaque em caixa dourada com fio à esquerda,
+   texto ao tamanho das linhas e a primeira frase a negrito. É o único
+   bloco com fundo dentro do resumo, de propósito. */
+.re-bloco-nota {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-top: 0;
+  border-left: 3px solid #B8954A;
+  border-radius: 0 12px 12px 0;
+  background: #FBF4E4;
+}
+
+.re-bloco-nota .re-bloco-titulo {
+  color: #8A6C3C;
+  margin-bottom: 4px;
+}
+
 .re-bloco-nota .re-texto {
-  font-size: 0.82rem;
-  font-weight: 300;
-  color: #5A4028;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: #2A1E10;
 }
 
 .re-bloco-nota .re-texto b {
-  font-weight: 600;
-  color: #2A1E10;
+  font-weight: 700;
+  color: #1C1008;
+}
+
+.re-bloco-nota + .re-bloco {
+  margin-top: 26px;
 }
 
 /* Realce breve quando o valor muda (total e barra). Remontamos o
