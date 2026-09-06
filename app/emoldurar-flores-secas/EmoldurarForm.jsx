@@ -25,6 +25,7 @@ import { suggestEmail, cleanEmail } from "../_lib/email-suggest";
 import { PRECOS_FALLBACK } from "../_lib/precos-valores";
 import ExemploModal from "../_components/ExemploModal";
 import { useRascunho } from "../_lib/use-rascunho";
+import AvisoRascunho from "../_components/AvisoRascunho";
 import { formatEuro, formatDataCurta } from "../_lib/orcamento";
 import ResumoEncomenda from "../_components/ResumoEncomenda";
 
@@ -458,13 +459,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
       </p>
 
       {rascunho.recuperado && (
-        <div className="pf-rascunho" role="status">
-          <p className="pf-rascunho-texto">
-            <strong>{t("rascunhoTitulo")}</strong>
-            {t("rascunhoTexto")}
-          </p>
-          <button type="button" className="pf-rascunho-btn" onClick={rascunho.limpar}>{t("rascunhoLimpar")}</button>
-        </div>
+        <AvisoRascunho onManter={rascunho.manter} onLimpar={rascunho.limpar} />
       )}
 
       {Object.keys(errors).length > 0 && (

@@ -14,6 +14,7 @@ import PickupMap from "../_components/PickupMap";
 import { PRECOS_FALLBACK } from "../_lib/precos-valores";
 import ExemploModal from "../_components/ExemploModal";
 import { useRascunho } from "../_lib/use-rascunho";
+import AvisoRascunho from "../_components/AvisoRascunho";
 import { formatEuro, formatDataCurta } from "../_lib/orcamento";
 import ResumoEncomenda from "../_components/ResumoEncomenda";
 import { eventoDistante } from "../_lib/orcamento";
@@ -562,13 +563,7 @@ export default function ReservarPreservacaoForm({ precos = PRECOS_FALLBACK }) {
       </p>
 
       {rascunho.recuperado && (
-        <div className="pf-rascunho" role="status">
-          <p className="pf-rascunho-texto">
-            <strong>{t("rascunhoTitulo")}</strong>
-            {t("rascunhoTexto")}
-          </p>
-          <button type="button" className="pf-rascunho-btn" onClick={rascunho.limpar}>{t("rascunhoLimpar")}</button>
-        </div>
+        <AvisoRascunho onManter={rascunho.manter} onLimpar={rascunho.limpar} />
       )}
 
       {Object.keys(errors).length > 0 && (

@@ -1191,6 +1191,45 @@ input[type="date"].pf-input {
 .pf-rascunho-btn:hover { background: #F3EBDD; }
 .pf-rascunho-btn:focus-visible { outline: 3px solid #D4B060; outline-offset: 2px; }
 
+/* Dois botões: continuar (destacado, à esquerda) e começar de novo. */
+.pf-rascunho-accoes {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pf-rascunho-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.pf-rascunho-btn-manter {
+  border-color: #B8954A;
+  background: #B8954A;
+  color: #FFFFFF;
+}
+
+.pf-rascunho-btn-manter:hover { background: #A8863F; }
+
+.pf-rascunho-btn-apagar {
+  border-color: #C4846B;
+  color: #9A4A30;
+}
+
+.pf-rascunho-btn-apagar:hover { background: #F7EAE4; }
+
+/* No telemóvel os dois botões ocupam a largura toda, um por linha, para
+   não haver dúvidas sobre onde se está a carregar. */
+@media (max-width: 520px) {
+  .pf-rascunho-accoes { width: 100%; }
+  .pf-rascunho-accoes .pf-rascunho-btn {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+}
+
 /* Vale-presente encontrado / expirado (abaixo do campo do código) */
 .pf-vale-ok {
   margin: 8px 0 0;
