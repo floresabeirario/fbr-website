@@ -285,7 +285,7 @@ export function mapReservaToOrder(data, { ip } = {}) {
 
     // RGPD
     consent_at:         new Date().toISOString(),
-    consent_version:    "1.0-explicit",
+    consent_version:    "2.0",
     consent_ip:         ip || null,
 
     // Os campos administrativos (status, payment_status, contacted,
@@ -412,7 +412,7 @@ export function mapEmoldurarToOrder(data, { ip, clientPhotos = [] } = {}) {
     form_language:      data.locale === "en" ? "en" : "pt",
 
     consent_at:         new Date().toISOString(),
-    consent_version:    "1.0-explicit",
+    consent_version:    "2.0",
     consent_ip:         ip || null,
   };
 
