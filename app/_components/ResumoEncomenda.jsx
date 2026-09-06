@@ -323,6 +323,10 @@ export default function ResumoEncomenda({
                 <span className="re-valor"><span className="re-muda" key={total}>{totalTxt}</span></span>
               </div>
 
+              {/* A nota "é uma estimativa" vem logo a seguir ao total, que é
+                  o número que a pessoa lê primeiro (pedido da Maria). */}
+              {notaBloco}
+
               <section className="re-bloco">
                 <h3 className="re-bloco-titulo">{t("pagamentoTitulo")}</h3>
                 <p className="re-bloco-intro">{t("pagamentoIntro")}</p>
@@ -351,7 +355,8 @@ export default function ResumoEncomenda({
             <p className="re-texto">{previsao} {t("previsaoArtesanal")}</p>
           </section>
 
-          {notaBloco}
+          {/* Sem orçamento calculável (tabela de preços vazia) a nota fica aqui. */}
+          {!snap && notaBloco}
         </>
       )}
 
