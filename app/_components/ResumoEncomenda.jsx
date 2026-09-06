@@ -11,10 +11,10 @@
 // cliente podem mudar tudo), por isso o resumo diz "estimativa" e a nota
 // final explica quando chega a confirmação.
 //
-// 2.ª ronda (mesmo dia): barra fixa no fundo do telemóvel com o total a
-// mudar em tempo real (95% das reservas são no telemóvel); plano de
-// pagamentos com as percentagens à frente e um subtítulo em cada fase;
-// previsão de entrega num só parágrafo.
+// 2.ª ronda (mesmo dia): barra flutuante com o total a mudar em tempo real
+// (faixa no telemóvel, onde são 95% das reservas; cartão centrado no PC,
+// porque o formulário é longo); plano de pagamentos com as percentagens à
+// frente e um subtítulo em cada fase; previsão de entrega num só parágrafo.
 //
 // O cálculo é o mesmo que a API grava na encomenda (app/_lib/orcamento.js),
 // que por sua vez espelha o do admin. Este componente só traduz as linhas
@@ -73,7 +73,8 @@ export function formToPricingInput(form, serviceType) {
 }
 
 /**
- * Barra fixa do telemóvel. Aparece depois de a pessoa chegar à secção
+ * Barra flutuante com o total (faixa no telemóvel, cartão centrado no PC;
+ * a diferença é só CSS). Aparece depois de a pessoa chegar à secção
  * "O quadro" (onde começam as escolhas com preço) e esconde-se quando o
  * resumo já está no ecrã. Sobe para cima do banner de cookies enquanto
  * ele estiver visível, para nunca o tapar nem ser tapada.

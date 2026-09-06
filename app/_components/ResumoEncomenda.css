@@ -233,87 +233,105 @@
   animation: re-realce 0.55s ease-out;
 }
 
-/* ── Barra fixa do telemóvel ──
-   95% das reservas são feitas no telemóvel. A barra mostra o total à
-   medida que a pessoa escolhe, sem ter de ir ao fundo; toca-se e vai
-   ao resumo. Só existe abaixo de 860px, só depois de a pessoa chegar à
-   secção "O quadro", e esconde-se quando o resumo já está no ecrã. */
+/* ── Barra flutuante com o total ──
+   O formulário é longo e o fundo não está à mão. A barra mostra o total
+   à medida que a pessoa escolhe; toca-se e vai ao resumo. Aparece depois
+   de a pessoa chegar à secção "O quadro" e esconde-se quando o resumo já
+   está no ecrã. No telemóvel é uma faixa de ponta a ponta; no computador
+   é um cartão flutuante centrado, com a largura da coluna do formulário
+   (pedido da Maria: também no PC, porque o fundo é longe). */
 .re-barra {
-  display: none;
+  display: flex;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 18px calc(12px + env(safe-area-inset-bottom));
+  border: 0;
+  border-top: 1px solid rgba(42, 30, 16, 0.12);
+  background: rgba(250, 247, 240, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 -4px 20px rgba(42, 30, 16, 0.12);
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  color: #1C1008;
+  text-align: left;
+  cursor: pointer;
+  transform: translateY(110%);
+  transition: transform 0.25s ease;
 }
 
-@media (max-width: 860px) {
+.re-barra-on {
+  transform: translateY(0);
+}
+
+.re-barra:focus-visible {
+  outline: 3px solid #D4B060;
+  outline-offset: -3px;
+}
+
+.re-barra-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.re-barra-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #5A4028;
+}
+
+.re-barra-ver {
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: #6A3A18;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.re-barra-valor {
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.re-barra-valor small {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: #7A5838;
+  text-align: right;
+}
+
+@media (min-width: 861px) {
   .re-barra {
-    display: flex;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 90;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    width: 100%;
-    padding: 12px 18px calc(12px + env(safe-area-inset-bottom));
-    border: 0;
-    border-top: 1px solid rgba(42, 30, 16, 0.12);
-    background: rgba(250, 247, 240, 0.94);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 -4px 20px rgba(42, 30, 16, 0.12);
-    font-family: var(--font-google-sans), "Google Sans", sans-serif;
-    color: #1C1008;
-    text-align: left;
-    cursor: pointer;
-    transform: translateY(110%);
-    transition: transform 0.25s ease;
+    left: 50%;
+    right: auto;
+    bottom: 20px;
+    width: min(640px, calc(100vw - 48px));
+    padding: 14px 22px;
+    border: 1px solid rgba(42, 30, 16, 0.14);
+    border-radius: 16px;
+    box-shadow: 0 10px 32px rgba(42, 30, 16, 0.18), 0 2px 6px rgba(42, 30, 16, 0.10);
+    transform: translate(-50%, 140%);
   }
 
   .re-barra-on {
-    transform: translateY(0);
+    transform: translate(-50%, 0);
   }
 
-  .re-barra:focus-visible {
-    outline: 3px solid #D4B060;
-    outline-offset: -3px;
-  }
-
-  .re-barra-texto {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    min-width: 0;
-  }
-
-  .re-barra-label {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #5A4028;
-  }
-
-  .re-barra-ver {
-    font-size: 0.74rem;
-    font-weight: 500;
-    color: #6A3A18;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  .re-barra-valor {
-    font-size: 1.3rem;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-
-  .re-barra-valor small {
-    display: block;
-    font-size: 0.68rem;
-    font-weight: 400;
-    color: #7A5838;
-    text-align: right;
+  .re-barra:hover {
+    background: rgba(255, 253, 248, 0.98);
   }
 }
 
