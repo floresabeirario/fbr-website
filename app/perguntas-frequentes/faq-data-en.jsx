@@ -1,8 +1,12 @@
 // FAQ data — English version
 // Links use /en/ prefix (localePrefix: "as-needed", EN is non-default locale)
 import { TRACKING_URL } from "../_lib/constants";
+import { PRECOS_FALLBACK } from "../_lib/precos-valores";
 
-export const FAQ_DATA_EN = [
+// Função e não constante: as respostas de preço usam os valores da
+// tabela de Finanças, que só se sabem em runtime (ver _lib/precos.js).
+// `FAQ_DATA_EN` mantém-se exportada com o fallback para quem não passa preços.
+export const buildFaqDataEn = (p = PRECOS_FALLBACK) => [
   {
     cat: "processo",
     q: "When should I book my bouquet preservation?",
@@ -364,12 +368,13 @@ export const FAQ_DATA_EN = [
     cat: "pagamentos",
     q: "How much does the preservation cost?",
     plain:
-      "Prices start from €300 and always include framing with anti-reflective UV-protective museum glass. All frame components are museum quality.",
+      `Prices start from €${p.quadro30x40} and always include the framing and a custom-made frame. Anti-reflective UV-protective museum glass is optional: €${p.vidro30x40} for 30x40, €${p.vidro40x50} for 40x50 and €${p.vidro50x70} for 50x70. All other frame components are museum quality.`,
     a: (
       <>
-        Prices <strong>start from €300</strong> and always include framing with
-        anti-reflective UV-protective museum glass. All frame components are
-        museum quality.
+        Prices <strong>start from €{p.quadro30x40}</strong> and always include the framing and a
+        custom-made frame. <strong>Anti-reflective UV-protective museum glass is
+        optional</strong>: €{p.vidro30x40} for 30x40, €{p.vidro40x50} for 40x50 and
+        €{p.vidro50x70} for 50x70. All other frame components are museum quality.
         <br /><br />
         Learn more about our materials on the{" "}
         <a href="/en/options-and-pricing" className="faq-link">
@@ -442,6 +447,8 @@ export const FAQ_DATA_EN = [
     ),
   },
 ];
+
+export const FAQ_DATA_EN = buildFaqDataEn();
 
 export const CATEGORIES_EN = [
   { id: "todas",      label: "All",       count: FAQ_DATA_EN.length },

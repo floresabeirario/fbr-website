@@ -1003,3 +1003,142 @@ input[type="date"].pf-input {
     padding: 15px 24px;
   }
 }
+
+/* ── Botão "i" das dicas + modal de comparação ──
+   Usado no campo do vidro museu: a diferença entre vidro normal e vidro
+   museu vê se numa fotografia, não se explica por escrito. O botão vive
+   dentro da .pf-hint, por isso herda o tamanho pequeno do texto da dica. */
+.pf-info-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 4px 0;
+  /* Alvo de toque confortável no telemóvel sem empurrar o texto à volta. */
+  min-height: 32px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  color: #6A3A18;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.pf-info-btn:hover {
+  color: #2A1E10;
+}
+
+.pf-info-btn:focus-visible {
+  outline: 2px solid #DEC8A0;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.pf-info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  font-size: 0.62rem;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pf-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 30, 26, 0.62);
+  overflow-y: auto;
+}
+
+.pf-modal {
+  background: var(--cream, #FAF7F0);
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 460px;
+  /* O painel nunca passa da altura do ecrã: em telemóveis baixos a
+     imagem mais o texto não cabem, e o scroll fica dentro do modal. */
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(15, 30, 26, 0.3);
+}
+
+.pf-modal-titulo {
+  font-family: "TAN-MEMORIES", serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 0 16px;
+  color: #2A1E10;
+}
+
+.pf-modal-img {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(26, 26, 26, 0.12);
+}
+
+.pf-modal-legenda {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #F2EDE4;
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(26, 26, 26, 0.38);
+}
+
+.pf-modal-legenda strong {
+  color: #4F7A5B;
+  font-weight: 700;
+}
+
+.pf-modal-desc {
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: #5A4530;
+  margin: 16px 0 20px;
+}
+
+.pf-modal-fechar {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 13px 24px;
+  border: 1px solid #DEC8A0;
+  border-radius: 100px;
+  background: none;
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #6A3A18;
+  cursor: pointer;
+}
+
+.pf-modal-fechar:hover {
+  background: #F2EDE4;
+}
+
+.pf-modal-fechar:focus-visible {
+  outline: 2px solid #DEC8A0;
+  outline-offset: 2px;
+}

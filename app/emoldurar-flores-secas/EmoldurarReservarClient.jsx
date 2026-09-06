@@ -13,8 +13,9 @@ import { SOCIAL_GOOGLE_BUSINESS, SOCIAL_CASAMENTOS } from "@/app/_lib/constants"
 import { waUrl } from "@/app/_lib/wa";
 import "../reservar-preservacao/ReservarPreservacaoClient.css";
 import "./EmoldurarReservar.css";
+import { PRECOS_FALLBACK } from "../_lib/precos-valores";
 
-export default function EmoldurarReservarClient() {
+export default function EmoldurarReservarClient({ precos = PRECOS_FALLBACK }) {
   const t = useTranslations("reservarEmoldurar");
   const locale = useLocale();
   const STEPS = t.raw("passos");
@@ -70,7 +71,7 @@ export default function EmoldurarReservarClient() {
             })}
           </p>
         </div>
-        <EmoldurarForm />
+        <EmoldurarForm precos={precos} />
         <p style={{ textAlign: "center", marginTop: "28px", fontSize: "0.92rem" }}>
           {t("duvidaPre")}{" "}
           <a href={waUrl(locale, "duvida")} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>

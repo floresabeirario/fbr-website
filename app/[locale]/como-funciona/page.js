@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { buildOpenGraph, buildTwitterCard, buildAlternates, buildBreadcrumbJsonLd } from "@/app/_lib/metadata";
 import { SITE_URL } from "@/app/_lib/constants";
 import ComoFuncionaClient from "@/app/como-funciona/ComoFuncionaClient";
+import { getPrecos } from "@/app/_lib/precos";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -32,6 +33,7 @@ export async function generateMetadata({ params }) {
 
 export default async function ComoFuncionaPage({ params }) {
   const { locale } = await params;
+  const precos = await getPrecos();
   const isEN = locale === "en";
   const selfPath = isEN ? "/en/how-it-works" : "/como-funciona";
 
@@ -50,7 +52,7 @@ export default async function ComoFuncionaPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <ComoFuncionaClient />
+      <ComoFuncionaClient precos={precos} />
     </>
   );
 }

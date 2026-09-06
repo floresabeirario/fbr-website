@@ -3,8 +3,9 @@
 import { useState, useMemo } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { useLocale } from "next-intl";
-import { FAQ_DATA, CATEGORIES } from "./faq-data";
-import { FAQ_DATA_EN, CATEGORIES_EN } from "./faq-data-en";
+import { buildFaqData, CATEGORIES } from "./faq-data";
+import { buildFaqDataEn, CATEGORIES_EN } from "./faq-data-en";
+import { PRECOS_FALLBACK } from "../_lib/precos-valores";
 
 // ─── Accent colours per category — paleta da página: plum + terracotta + gold ─
 const CAT_META = {
@@ -245,9 +246,9 @@ const CategoryBlock = ({ cat, faqs, faqItems, isOpen, onToggle, openFaqIndex, se
 };
 
 // ─── Main component ───────────────────────────────────────────────────────────
-export default function FaqAccordion() {
+export default function FaqAccordion({ precos = PRECOS_FALLBACK }) {
   const locale = useLocale();
-  const FAQ_ITEMS = locale === "en" ? FAQ_DATA_EN : FAQ_DATA;
+  const FAQ_ITEMS = locale === "en" ? buildFaqDataEn(precos) : buildFaqData(precos);
   const CATS      = locale === "en" ? CATEGORIES_EN : CATEGORIES;
 
   const [openFaqIndex, setOpenFaqIndex]   = useState(null);

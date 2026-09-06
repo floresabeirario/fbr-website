@@ -225,6 +225,8 @@ export async function POST(request) {
         `<tr><td><strong>Como receber quadro</strong></td><td>${e(data.comoReceberQuadro)}</td></tr>`,
         `<tr><td><strong>Tamanho da moldura</strong></td><td>${e(data.tamanhoMoldura)}</td></tr>`,
         `<tr><td><strong>Tipo de fundo</strong></td><td>${e(data.tipoFundo)}</td></tr>`,
+        `<tr><td><strong>Vidro museu</strong></td><td>${e(data.vidroMuseu)}</td></tr>`,
+        data.vidroMuseuMini ? `<tr><td><strong>Vidro museu (quadros pequenos)</strong></td><td>${e(data.vidroMuseuMini)}</td></tr>` : "",
         `<tr><td><strong>Elementos extra</strong></td><td>${e(data.elementosExtra)}</td></tr>`,
         `<tr><td><strong>Como conheceu</strong></td><td>${e(data.comoConheceu)}</td></tr>`,
         data.notasAdicionais ? `<tr><td><strong>Notas</strong></td><td>${e(data.notasAdicionais)}</td></tr>` : "",

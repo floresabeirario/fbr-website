@@ -108,7 +108,7 @@
         "href": "/enviar-flores-por-correio"
       },
       {
-        "text": "Ofereça preservação: vale-presente a partir de 300€",
+        "text": "Ofereça preservação: vale-presente a partir de {quadro30x40}€",
         "href": "/oferecer-preservacao"
       },
       {
@@ -212,7 +212,7 @@
   "preservacao": {
     "meta": {
       "title": "Preservação de Flores em Coimbra",
-      "description": "Atelier de preservação botânica artesanal em Coimbra. Bouquets de casamento, baptizado, homenagem ou aniversário em quadros de arte. A partir de 300€.",
+      "description": "Atelier de preservação botânica artesanal em Coimbra. Bouquets de casamento, baptizado, homenagem ou aniversário em quadros de arte. A partir de {quadro30x40}€.",
       "ogTitle": "Preservação de Flores Artesanal em Coimbra | Flores à Beira-Rio",
       "ogDescription": "Atelier de preservação botânica artesanal em Coimbra. Bouquets de casamento, baptizado, homenagem ou aniversário em quadros de arte.",
       "ogImageAlt": "Quadro de flores prensadas em moldura de madeira, Flores à Beira-Rio",
@@ -221,7 +221,7 @@
     "eyebrow": "Arte Botânica Artesanal · Coimbra",
     "h1": "Preservação de Flores",
     "h1Em": "Flores",
-    "heroDesc": "Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Bouquets de casamento, flores de batizado, homenagens, cada peça é única, feita à mão e emoldurada profissionalmente com vidro museu. Recebemos flores em mãos em Coimbra, por correio ou com recolha no local do evento.",
+    "heroDesc": "Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Bouquets de casamento, flores de batizado, homenagens, cada peça é única, feita à mão e emoldurada profissionalmente, com a opção de vidro museu anti-UV. Recebemos flores em mãos em Coimbra, por correio ou com recolha no local do evento.",
     "ctaPrecos": "Preços",
     "ctaComoFunciona": "Como funciona",
     "ctaFloresSedcas": "Flores já secas",
@@ -229,7 +229,7 @@
     "oQueTitle": "O que é a preservação de flores?",
     "oQueP1": "A preservação de flores é o processo de transformar flores frescas com valor emocional numa obra de arte botânica que dura para sempre.",
     "oQueP2": "Na Flores à Beira-Rio, usamos exclusivamente prensagem botânica artesanal, o método mais natural e mais sustentável. Cada pétala é tratada individualmente, sem resinas, sem químicos sintéticos, e com materiais de conservação museu.",
-    "oQueP3": "O resultado é um quadro emoldurado com vidro museu UltraVue® pronto a pendurar na parede de casa e a durar toda uma vida.",
+    "oQueP3": "O resultado é um quadro feito à medida, com a opção de vidro museu UltraVue®, pronto a pendurar na parede de casa e a durar toda uma vida.",
     "explorar": "Explore em detalhe",
     "tudoSaber": "Tudo o que precisa de saber",
     "queTipo": "Que tipo de flores preservamos",
@@ -246,8 +246,8 @@
     "ctaFAQ": "Perguntas frequentes",
     "motivos": [
       {
-        "titulo": "Vidro museu anti-UV",
-        "desc": "UltraVue® UV70, o mesmo vidro usado em museus. Elimina reflexos e protege as cores durante décadas."
+        "titulo": "Vidro museu anti-UV (opção)",
+        "desc": "UltraVue® UV70, o mesmo vidro usado em museus. Elimina reflexos e protege as cores durante décadas. Pode acrescentá-lo a qualquer quadro."
       },
       {
         "titulo": "100% artesanal",
@@ -319,7 +319,7 @@
     "oQueInclui": "O que está incluído",
     "semSurpresas": "Sem surpresas",
     "tudoIncluido": "Tudo incluído no preço",
-    "tudoIncluidoDesc": "Os preços começam em 300€, incluindo emolduramento e vidro museu.",
+    "tudoIncluidoDesc": "Os preços começam em {quadro30x40}€, incluindo o emolduramento e a moldura feita à medida. O vidro museu anti-UV é opcional, com um custo que varia consoante o tamanho do quadro.",
     "verPrecos": "Ver todos os preços e tamanhos",
     "transparencia": "Transparência total",
     "pagamento3Title": "Pagamento em três momentos",
@@ -399,8 +399,8 @@
     ],
     "incluidos": [
       {
-        "titulo": "Vidro museu anti-UV",
-        "desc": "O mesmo vidro usado em museus. Bloqueia os raios que desbotam as cores."
+        "titulo": "Moldura feita à medida",
+        "desc": "Feita em Coimbra à medida de cada composição, em três acabamentos à escolha."
       },
       {
         "titulo": "Aprovação antes de selar",
@@ -535,7 +535,7 @@
         "sizeLabel": "Pendente para Colar"
       }
     ],
-    "ultravueNote": "Todos os quadros são emoldurados com",
+    "ultravueNote": "Pode escolher para o seu quadro o",
     "ultravueStrong": "vidro museu UltraVue®",
     "ultravueEnd": "praticamente invisível, com proteção UV70",
     "outroFormato": "Pretende outro formato ou uma composição diferente?",
@@ -562,7 +562,7 @@
     "phNote": "Todos os quadros utilizam",
     "phStrong": "cartão e cola de pH neutro,",
     "phEnd": "os mesmos materiais usados em museus e arquivos para preservar obras ao longo de décadas.",
-    "vidroLabel": "Vidro museu",
+    "vidroLabel": "Vidro museu (opção)",
     "vidroH3": "UltraVue® UV70",
     "vidroH3em": "clareza verdadeiramente incrível",
     "vidroFeatures": [
@@ -586,10 +586,10 @@
     "recriacaoCta1": "Ver Recriação do Bouquet",
     "recriacaoCta2": "Perguntas Frequentes",
     "meta": {
-      "title": "Preços da Preservação de Flores: 300€ a 500€",
-      "description": "Três tamanhos de moldura (30×40, 40×50, 50×70 cm) com preços de 300€ a 500€. Pendentes, ornamentos de Natal e mini quadros disponíveis como complemento.",
-      "ogTitle": "Preservar Flores: Opções e Preços (300€-500€) | Flores à Beira-Rio",
-      "ogDescription": "Três tamanhos de moldura com preços de 300€ a 500€. Pendentes, ornamentos de Natal e mini quadros como complemento.",
+      "title": "Preços da Preservação de Flores: {quadro30x40}€ a {quadro50x70}€",
+      "description": "Três tamanhos de moldura (30×40, 40×50, 50×70 cm) com preços de {quadro30x40}€ a {quadro50x70}€. Pendentes, ornamentos de Natal e mini quadros disponíveis como complemento.",
+      "ogTitle": "Preservar Flores: Opções e Preços ({quadro30x40}€-{quadro50x70}€) | Flores à Beira-Rio",
+      "ogDescription": "Três tamanhos de moldura com preços de {quadro30x40}€ a {quadro50x70}€. Pendentes, ornamentos de Natal e mini quadros como complemento.",
       "ogImageAlt": "Opções e preços molduras flores preservadas, Flores à Beira-Rio",
       "keywords": "preços preservação de flores, quanto custa preservar bouquet, opções molduras flores, tamanhos quadros flores preservadas, preço preservar flores casamento, preservar bouquet 300 euros"
     }
@@ -597,7 +597,7 @@
   "momentos": {
     "meta": {
       "title": "Preservar Flores de Casamento, Baptizado e Homenagem",
-      "description": "Casamento, baptizado, pedido, aniversário, homenagem: preservamos as flores de cada momento que importa em arte botânica. Coimbra. A partir de 300€.",
+      "description": "Casamento, baptizado, pedido, aniversário, homenagem: preservamos as flores de cada momento que importa em arte botânica. Coimbra. A partir de {quadro30x40}€.",
       "ogTitle": "Preservar Flores de Casamento, Baptizado, Homenagem | Coimbra",
       "ogDescription": "Casamento, baptizado, pedido, aniversário, homenagem: preservamos as flores de cada momento que importa em arte botânica.",
       "ogImageAlt": "Momentos especiais preservados em arte botânica, Flores à Beira-Rio",
@@ -610,8 +610,8 @@
     "ctaReservar": "Reservar Data",
     "ctaWA": "WhatsApp",
     "floresTitle": "Flores que contam a sua história",
-    "floresP1": "Na Flores à Beira-Rio, transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Cada pétala é prensada individualmente e emoldurada com vidro museu anti-UV, num quadro feito à mão no nosso atelier em Coimbra.",
-    "floresP2": "Preços a partir de 300€, com pagamento em três fases. O processo demora até 6 meses e enviamos para todo o mundo.",
+    "floresP1": "Na Flores à Beira-Rio, transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Cada pétala é prensada individualmente e emoldurada num quadro feito à mão no nosso atelier em Coimbra, com a opção de vidro museu anti-UV.",
+    "floresP2": "Preços a partir de {quadro30x40}€, com pagamento em três fases. O processo demora até 6 meses e enviamos para todo o mundo.",
     "floresP3": "Chegam-nos flores de todos os capítulos da vida: o ramo de noiva do casamento, as flores do batizado ou do nascimento de um filho, o raminho de um pedido de casamento, as flores de um aniversário redondo, e também as flores de uma homenagem fúnebre, preservadas como memória serena de quem partiu. As flores podem chegar até nós em mãos, por correio de qualquer ponto do país, ou com recolha no local do evento. E se as suas vêm de um momento que não está nesta lista, fale connosco na mesma: se têm história, nós preservamo-las.",
     "envioGuiaLink": "Como enviar as suas flores por correio →",
     "saberMais": "Saber mais →",
@@ -648,7 +648,7 @@
   "bouquetNoiva": {
     "meta": {
       "title": "Preservar Bouquet de Noiva em Portugal: Eternize o Seu Ramo",
-      "description": "Eternizamos o bouquet (ramo) de noiva num quadro de arte botânica. Recebemos flores de todo o Portugal, em mãos, por correio ou com recolha. A partir de 300€.",
+      "description": "Eternizamos o bouquet (ramo) de noiva num quadro de arte botânica. Recebemos flores de todo o Portugal, em mãos, por correio ou com recolha. A partir de {quadro30x40}€.",
       "ogTitle": "Preservar Bouquet ou Ramo de Noiva | Flores à Beira-Rio",
       "ogDescription": "O ramo do seu casamento eternizado em quadro de arte botânica artesanal. Recebemos bouquets de todo o Portugal e Europa.",
       "ogImageAlt": "Bouquet de noiva preservado em quadro de arte botânica",
@@ -657,7 +657,7 @@
     "eyebrow": "Bouquet de Noiva",
     "h1": "Preservar o Bouquet de Noiva",
     "heroDesc": "Eternizamos o bouquet do seu casamento numa obra de arte botânica que dura décadas. Prensagem artesanal e emolduramento feito à mão em Coimbra, com envio para todo o mundo.",
-    "heroPrice": "A partir de 300€ · pagamento em 3 fases",
+    "heroPrice": "A partir de {quadro30x40}€ · pagamento em 3 fases",
     "heroDelivery": [
       "Em mãos",
       "Por correio",
@@ -671,12 +671,12 @@
     "contentTitle": "O bouquet que esteve presente nos seus votos",
     "contentEm": "nos seus votos",
     "p1": "O bouquet de noiva (também escrito buquê, ou ramo de noiva, como muitas famílias lhe chamam) é, para muitos casais, a peça mais simbólica do dia do casamento. Preservar, eternizar ou conservar o buquê é a mesma ideia: em vez de o ver murchar ao longo dos dias seguintes, transforma-se numa obra de arte botânica que dura décadas, pronta a pendurar na parede de casa.",
-    "p2": "O processo começa com a reserva da data, idealmente assim que souber quando é o casamento. Nos dias seguintes à cerimónia, entrega-nos o bouquet e nós tratamos de tudo: prensagem pétala a pétala, composição artística, aprovação por si, e emolduramento com vidro museu anti-UV. Pode também incluir na composição o convite do casamento, votos manuscritos, fitas, ou qualquer elemento com significado especial.",
+    "p2": "O processo começa com a reserva da data, idealmente assim que souber quando é o casamento. Nos dias seguintes à cerimónia, entrega-nos o bouquet e nós tratamos de tudo: prensagem pétala a pétala, composição artística, aprovação por si, e emolduramento, com a opção de vidro museu anti-UV. Pode também incluir na composição o convite do casamento, votos manuscritos, fitas, ou qualquer elemento com significado especial.",
     "ctaReservar": "Reservar Data",
     "ctaWA": "WhatsApp",
     "ctaFinalTitle": "Reserve antes do grande dia",
     "ctaFinalEm": "do grande dia",
-    "ctaDesc": "As vagas são limitadas, especialmente entre maio e setembro. Recomendamos reservar assim que souber a data do casamento. Preços a partir de 300€, com pagamento em três fases.",
+    "ctaDesc": "As vagas são limitadas, especialmente entre maio e setembro. Recomendamos reservar assim que souber a data do casamento. Preços a partir de {quadro30x40}€, com pagamento em três fases.",
     "ctaComoFunciona": "Como funciona",
     "ctaPrecos": "Opções e preços",
     "ctaFAQ": "Perguntas frequentes",
@@ -692,7 +692,7 @@
       },
       {
         "titulo": "Qualidade museu que dura décadas",
-        "desc": "Vidro UltraVue® anti-UV, cartão e cola de pH neutro, moldura feita à medida em Coimbra. Os mesmos materiais usados em museus e arquivos profissionais."
+        "desc": "Cartão e cola de pH neutro, moldura feita à medida em Coimbra e, se quiser, vidro UltraVue® anti-UV. Os mesmos materiais usados em museus e arquivos profissionais."
       }
     ],
     "socialProofRating": "5,0 ★★★★★",
@@ -742,11 +742,11 @@
     "faqItems": [
       {
         "q": "O que significa eternizar o bouquet de noiva?",
-        "a": "Eternizar (ou preservar) o bouquet de noiva é transformar as flores frescas do casamento numa peça que dura décadas. No nosso atelier fazemo-lo por prensagem botânica: cada flor é prensada e recomposta pétala a pétala, e a composição final é emoldurada com vidro museu anti-UV. O quadro guarda as flores verdadeiras do seu ramo, não uma réplica."
+        "a": "Eternizar (ou preservar) o bouquet de noiva é transformar as flores frescas do casamento numa peça que dura décadas. No nosso atelier fazemo-lo por prensagem botânica: cada flor é prensada e recomposta pétala a pétala, e a composição final é emoldurada, podendo levar vidro museu anti-UV. O quadro guarda as flores verdadeiras do seu ramo, não uma réplica."
       },
       {
         "q": "Preservar, eternizar ou conservar o buquê de noiva: é tudo o mesmo?",
-        "a": "Sim. Preservar, eternizar e conservar o buquê (ou bouquet) de noiva referem-se todos à mesma ideia: guardar para sempre as flores verdadeiras do seu casamento. Seja um buquê de noiva, um ramo de noiva ou o buquê de casamento, o processo é o mesmo: prensagem botânica pétala a pétala e emolduramento com vidro museu anti-UV. A única coisa que muda é a palavra que cada pessoa usa."
+        "a": "Sim. Preservar, eternizar e conservar o buquê (ou bouquet) de noiva referem-se todos à mesma ideia: guardar para sempre as flores verdadeiras do seu casamento. Seja um buquê de noiva, um ramo de noiva ou o buquê de casamento, o processo é o mesmo: prensagem botânica pétala a pétala e emolduramento, com a opção de vidro museu anti-UV. A única coisa que muda é a palavra que cada pessoa usa."
       },
       {
         "q": "Como posso entregar o bouquet?",
@@ -778,7 +778,7 @@
       },
       {
         "q": "Qual o preço e como funciona o pagamento?",
-        "a": "Os preços começam nos 300€. Consulte a página de opções e preços para ver todos os formatos e acabamentos disponíveis. O pagamento é feito em três fases: 30% para reservar a data, 40% na receção das flores e 30% na entrega do quadro."
+        "a": "Os preços começam nos {quadro30x40}€. Consulte a página de opções e preços para ver todos os formatos e acabamentos disponíveis. O pagamento é feito em três fases: 30% para reservar a data, 40% na receção das flores e 30% na entrega do quadro."
       },
       {
         "q": "Enviam para fora de Portugal?",
@@ -790,7 +790,7 @@
       }
     ],
     "pricingNote": "Ver todas as opções e preços →",
-    "featuresPricingNote": "A partir de 300€ · Ver opções e preços →",
+    "featuresPricingNote": "A partir de {quadro30x40}€ · Ver opções e preços →",
     "pricingEyebrow": "Investimento",
     "pricingCtaTitle": "Opções e preços",
     "pricingCtaDesc": "Não precisa de decidir já o formato: pode reservar a data agora e escolher o tamanho e os acabamentos mais tarde, com calma. Se quiser ver tudo primeiro, consulte todos os formatos e preços.",
@@ -801,7 +801,7 @@
   "lutoHomenagem": {
     "meta": {
       "title": "Preservar Flores de Homenagem e Luto",
-      "description": "Eternize as flores de uma cerimónia fúnebre em arte botânica artesanal. Uma homenagem permanente, feita com todo o respeito em Coimbra. A partir de 300€.",
+      "description": "Eternize as flores de uma cerimónia fúnebre em arte botânica artesanal. Uma homenagem permanente, feita com todo o respeito em Coimbra. A partir de {quadro30x40}€.",
       "ogTitle": "Preservar Flores de Homenagem e Luto | Flores à Beira-Rio",
       "ogDescription": "Eternize as flores de uma cerimónia fúnebre em arte botânica artesanal. Uma homenagem permanente, feita com todo o respeito.",
       "ogImageAlt": "Flores de homenagem preservadas em quadro de arte botânica",
@@ -815,12 +815,12 @@
     "eyebrow2": "Uma memória que permanece",
     "contentTitle": "Uma homenagem que fica para sempre",
     "p1": "As flores que estiveram presentes numa cerimónia de despedida carregam um significado profundo. Preservá-las é uma forma de manter viva a memória de quem partiu, transformando-as numa peça de arte botânica que pode permanecer em casa como homenagem silenciosa e permanente.",
-    "p2": "Cada pétala é tratada individualmente por prensagem artesanal e emoldurada com vidro museu anti-UV e moldura feita à medida em Coimbra. Pode também incluir na composição uma fotografia, um cartão ou qualquer elemento que tenha significado para si.",
+    "p2": "Cada pétala é tratada individualmente por prensagem artesanal e emoldurada com moldura feita à medida em Coimbra, com a opção de vidro museu anti-UV. Pode também incluir na composição uma fotografia, um cartão ou qualquer elemento que tenha significado para si.",
     "ctaReservar": "Reservar Data",
     "contentEm": "fica para sempre",
     "ctaFinalTitle": "Preserve a memória de quem amou",
     "ctaFinalEm": "de quem amou",
-    "ctaDesc": "Contacte-nos quando for o momento certo. Preços a partir de 300€, com pagamento em três fases. Enviamos para todo o mundo.",
+    "ctaDesc": "Contacte-nos quando for o momento certo. Preços a partir de {quadro30x40}€, com pagamento em três fases. Enviamos para todo o mundo.",
     "linkComoFunciona": "Como funciona",
     "linkPrecos": "Opções e preços",
     "linkFAQ": "Perguntas frequentes",
@@ -861,7 +861,7 @@
   "batizadoNascimento": {
     "meta": {
       "title": "Preservar Flores do Batizado num Quadro",
-      "description": "As flores do batizado ou do nascimento num quadro de arte botânica que acompanha o seu filho a vida inteira. Ideal para oferecer aos padrinhos. Desde 300€.",
+      "description": "As flores do batizado ou do nascimento num quadro de arte botânica que acompanha o seu filho a vida inteira. Ideal para oferecer aos padrinhos. Desde {quadro30x40}€.",
       "ogTitle": "Flores do Batizado num Quadro | Recordação para a Vida",
       "ogDescription": "Transforme as flores do batizado ou do nascimento numa recordação que dura a vida inteira: um quadro de arte botânica artesanal. Também para oferecer aos padrinhos.",
       "ogImageAlt": "Flores de batizado preservadas em quadro de arte botânica",
@@ -877,10 +877,10 @@
     "contentTitle": "O primeiro ramo de uma vida inteira",
     "contentEm": "de uma vida inteira",
     "p1": "O nascimento de um filho ou o dia do batizado são momentos que marcam o início de tudo. As flores que os acompanharam carregam a emoção desses primeiros dias e merecem mais do que uma semana num vaso.",
-    "p2": "Através de prensagem botânica artesanal, transformamos essas flores num quadro feito à mão, emoldurado com vidro museu anti-UV e moldura feita à medida em Coimbra. Basta entregar-nos as flores nos dias seguintes à cerimónia e nós tratamos de tudo, incluindo o envio do quadro finalizado para a sua morada. É também uma oferta original e duradoura para padrinhos ou familiares que queiram marcar o momento.",
+    "p2": "Através de prensagem botânica artesanal, transformamos essas flores num quadro feito à mão, com moldura feita à medida em Coimbra e a opção de vidro museu anti-UV. Basta entregar-nos as flores nos dias seguintes à cerimónia e nós tratamos de tudo, incluindo o envio do quadro finalizado para a sua morada. É também uma oferta original e duradoura para padrinhos ou familiares que queiram marcar o momento.",
     "ctaFinalTitle": "Preserve o início da história",
     "ctaFinalEm": "da história",
-    "ctaDesc": "As flores do batizado ou do nascimento não precisam de ficar apenas nas fotografias. Preços a partir de 300€, com pagamento em três fases.",
+    "ctaDesc": "As flores do batizado ou do nascimento não precisam de ficar apenas nas fotografias. Preços a partir de {quadro30x40}€, com pagamento em três fases.",
     "linkComoFunciona": "Como funciona",
     "linkPrecos": "Opções e preços",
     "linkFAQ": "Perguntas frequentes",
@@ -921,7 +921,7 @@
   "aniversario": {
     "meta": {
       "title": "Preservar Flores de Aniversário e Bodas",
-      "description": "Preserve as flores de um aniversário de casamento, namoro, bodas ou data especial num quadro de arte botânica artesanal em Coimbra. A partir de 300€.",
+      "description": "Preserve as flores de um aniversário de casamento, namoro, bodas ou data especial num quadro de arte botânica artesanal em Coimbra. A partir de {quadro30x40}€.",
       "ogTitle": "Preservar Flores de Aniversário e Bodas | Flores à Beira-Rio",
       "ogDescription": "Preserve as flores de qualquer aniversário ou bodas em arte botânica artesanal. Feito à mão em Coimbra.",
       "ogImageAlt": "Flores de aniversário preservadas em quadro de arte botânica",
@@ -929,7 +929,7 @@
     },
     "eyebrow": "Aniversário",
     "h1": "Preservar Flores de Aniversário",
-    "heroDesc": "Guarde para sempre as flores de um aniversário de casamento, de namoro, ou de qualquer data que queira eternizar. Arte botânica emoldurada com vidro museu anti-UV, feita à mão em Coimbra.",
+    "heroDesc": "Guarde para sempre as flores de um aniversário de casamento, de namoro, ou de qualquer data que queira eternizar. Arte botânica feita à mão em Coimbra, com a opção de vidro museu anti-UV.",
     "fotoAlt": "Quadro de flores de aniversário preservadas, em tons vivos de coral e amarelo",
     "ctaReservar": "Reservar Data",
     "ctaWA": "WhatsApp",
@@ -937,10 +937,10 @@
     "contentTitle": "Flores que merecem durar mais do que uma semana",
     "contentEm": "mais do que uma semana",
     "p1": "As flores de aniversário duram, em média, uma semana. A emoção que representam pode durar toda uma vida. Através de prensagem botânica artesanal, transformamos essas flores num quadro que fica permanentemente em casa.",
-    "p2": "Basta entregar-nos as flores nos dias seguintes ao aniversário (até 6 dias, idealmente 1 a 3). Nós tratamos da prensagem, da composição artística, da aprovação consigo, e do emolduramento com vidro museu anti-UV e moldura feita à medida em Coimbra.",
+    "p2": "Basta entregar-nos as flores nos dias seguintes ao aniversário (até 6 dias, idealmente 1 a 3). Nós tratamos da prensagem, da composição artística, da aprovação consigo, e do emolduramento com moldura feita à medida em Coimbra, com a opção de vidro museu anti-UV.",
     "ctaFinalTitle": "Transforme as flores numa memória",
     "ctaFinalEm": "numa memória",
-    "ctaFinalDesc": "Reserve a sua vaga e garanta que esse aniversário fica para sempre. Preços a partir de 300€, com pagamento em três fases.",
+    "ctaFinalDesc": "Reserve a sua vaga e garanta que esse aniversário fica para sempre. Preços a partir de {quadro30x40}€, com pagamento em três fases.",
     "linkComoFunciona": "Como funciona",
     "linkPrecos": "Opções e preços",
     "linkFAQ": "Perguntas frequentes",
@@ -981,7 +981,7 @@
   "pedidoCasamento": {
     "meta": {
       "title": "Preservar Flores do Pedido de Casamento",
-      "description": "Eternize as flores do pedido de casamento num quadro de arte botânica, antes que sequem. Atelier artesanal em Coimbra, envio para todo o país. A partir de 300€.",
+      "description": "Eternize as flores do pedido de casamento num quadro de arte botânica, antes que sequem. Atelier artesanal em Coimbra, envio para todo o país. A partir de {quadro30x40}€.",
       "ogTitle": "Preservar Flores do Pedido de Casamento e Noivado | Flores à Beira-Rio",
       "ogDescription": "Eternize as flores do pedido de casamento num quadro de arte botânica, antes que sequem. Em Coimbra, com envio nacional.",
       "ogImageAlt": "Flores de pedido de casamento preservadas em quadro de arte botânica",
@@ -989,18 +989,18 @@
     },
     "eyebrow": "Pedido de Casamento",
     "h1": "Preservar Flores do Pedido de Casamento",
-    "heroDesc": "As flores do pedido de casamento marcam o início de uma história. Preserve esse momento numa obra de arte botânica feita à mão em Coimbra, com vidro museu anti-UV.",
+    "heroDesc": "As flores do pedido de casamento marcam o início de uma história. Preserve esse momento numa obra de arte botânica feita à mão em Coimbra, com a opção de vidro museu anti-UV.",
     "fotoAlt": "Composição de rosas preservadas em tons de rosa, com margaridas e eucalipto",
     "eyebrow2": "Antes de Tudo o Resto",
     "contentTitle": "Onde tudo começou",
     "p1": "Há uma data anterior ao casamento que muitas vezes se perde: o dia do pedido. As flores que estiveram presentes nessa noite merecem ser guardadas com o mesmo cuidado que o bouquet de noiva.",
-    "p2": "Entregue-nos as flores nos dias seguintes ao pedido (até 6 dias, idealmente 1 a 3) e nós transformamo-las num quadro de arte botânica. Cada pétala é prensada individualmente, a composição é aprovada por si, e o resultado é emoldurado com vidro museu anti-UV e moldura feita à medida em Coimbra.",
+    "p2": "Entregue-nos as flores nos dias seguintes ao pedido (até 6 dias, idealmente 1 a 3) e nós transformamo-las num quadro de arte botânica. Cada pétala é prensada individualmente, a composição é aprovada por si, e o resultado é emoldurado com moldura feita à medida em Coimbra, com a opção de vidro museu anti-UV.",
     "ctaReservar": "Reservar Data",
     "ctaWA": "WhatsApp",
     "contentEm": "começou",
     "ctaFinalTitle": "Preserve o vosso primeiro sim",
     "ctaFinalEm": "primeiro sim",
-    "ctaDesc": "As flores do pedido merecem ser preservadas antes que sequem. Preços a partir de 300€, com pagamento em três fases.",
+    "ctaDesc": "As flores do pedido merecem ser preservadas antes que sequem. Preços a partir de {quadro30x40}€, com pagamento em três fases.",
     "ctaBouquet": "Bouquet de noiva",
     "linkPreservacao": "Preservação de flores",
     "linkComoFunciona": "Como funciona",
@@ -1090,7 +1090,7 @@
       },
       {
         "titulo": "Criamos a composição",
-        "desc": "Trabalhamos a composição das flores. Após aprovação do design por si, o quadro é emoldurado, sempre com moldura feita à medida, com vidro museu anti-UV."
+        "desc": "Trabalhamos a composição das flores. Após aprovação do design por si, o quadro é emoldurado, sempre com moldura feita à medida e, se assim escolher, com vidro museu anti-UV."
       },
       {
         "titulo": "Entregamos o quadro",
@@ -1099,7 +1099,7 @@
     ],
     "materiaisEyebrow": "Qualidade museológica",
     "materiaisH2": "Materiais & Qualidade",
-    "vidroEyebrow": "Vidro museu",
+    "vidroEyebrow": "Vidro museu (opção)",
     "vidroH3": "UltraVue® UV70",
     "vidroH3em": "clareza verdadeiramente incrível",
     "vidroFeatures": [
@@ -1110,7 +1110,7 @@
       "Superfície duradoura e de fácil limpeza"
     ],
     "vidroLabelNormal": "Normal",
-    "precosNota2": "Inclui vidro museu anti-UV, moldura à medida e composição artística",
+    "precosNota2": "Inclui moldura à medida e composição artística. Vidro museu anti-UV opcional",
     "precosEyebrow": "Emoldurar flores já secas",
     "precosH2": "Tamanhos e preços",
     "precosDesc": "Preços para emoldurar flores já secas. Estes preços não incluem os nossos serviços de preservação. Caso as suas flores estejam frescas e precisem de ser preservadas, visite a",
@@ -1118,7 +1118,7 @@
     "precosDescLinkHref": "/opcoes-e-precos",
     "precosLabelTamanho": "Tamanho",
     "precosLabelPreco": "Preço",
-    "precosNota": "Todos os quadros incluem vidro museu anti-UV, moldura feita à medida e design artístico da composição.",
+    "precosNota": "Todos os quadros incluem moldura feita à medida e design artístico da composição. O vidro museu anti-UV pode ser acrescentado por {vidro30x40}€ (30×40), {vidro40x50}€ (40×50) ou {vidro50x70}€ (50×70).",
     "pagamentoEyebrow": "Sem surpresas",
     "pagamentoH2": "Pagamento em 3 fases",
     "pagamento": [
@@ -1182,9 +1182,9 @@
     ],
     "meta": {
       "title": "Emoldurar Flores Secas: 3 Opções",
-      "description": "Emoldure o seu ramo de flores naturalmente seco. Três opções disponíveis: ramo original, prensagem suave ou recriação. Vidro museu anti-UV. Coimbra.",
+      "description": "Emoldure o seu ramo de flores naturalmente seco. Três opções disponíveis: ramo original, prensagem suave ou recriação. Vidro museu anti-UV opcional. Coimbra.",
       "ogTitle": "Emoldurar Flores Secas: 3 Opções | Flores à Beira-Rio",
-      "ogDescription": "Três opções para emoldurar o seu ramo seco: original, prensagem suave ou recriação. Vidro museu anti-UV. Coimbra.",
+      "ogDescription": "Três opções para emoldurar o seu ramo seco: original, prensagem suave ou recriação. Vidro museu anti-UV opcional. Coimbra.",
       "ogImageAlt": "Flores secas emolduradas com vidro museu anti-UV, Flores à Beira-Rio",
       "keywords": "emoldurar flores secas, moldura flores secas, quadro ramo seco, flores naturalmente secas emolduradas, ramo seco quadro, emoldurar bouquet seco, moldura bouquet desidratado"
     }
@@ -1213,7 +1213,7 @@
     "floresFrescas": "Flores Frescas",
     "floresFrescasDesc": "Orçamentado pela florista parceira com base nas flores do bouquet original. Valor variável conforme a composição.",
     "preservacaoMoldura": "Preservação e Moldura",
-    "preservacaoMolduraDesc": "Igual ao preçário base da preservação de flores, a partir de 300€. Vidro museu anti-reflexo e proteção UV incluídos.",
+    "preservacaoMolduraDesc": "Igual ao preçário base da preservação de flores, a partir de {quadro30x40}€. Vidro museu anti-reflexo com proteção UV disponível como opção.",
     "verPrecos": "Ver todos os preços e tamanhos",
     "recriarTitle": "Vamos recriar a sua memória",
     "recriarSub": "O seu bouquet de noiva merece uma segunda vida.",
@@ -1239,7 +1239,7 @@
       {
         "n": "04",
         "titulo": "A Obra de Arte",
-        "desc": "Enviamos fotografia da composição para aprovação prévia. Só depois o quadro é emoldurado com vidro museu anti-reflexo e proteção UV."
+        "desc": "Enviamos fotografia da composição para aprovação prévia. Só depois o quadro é emoldurado, com a opção de vidro museu anti-reflexo e proteção UV."
       }
     ],
     "casosUso": [
@@ -1263,9 +1263,9 @@
   "oferecer": {
     "meta": {
       "title": "Vale Oferta para Preservar Flores",
-      "description": "Ofereça uma memória que dura para sempre. Vale para preservar flores de casamento, baptizado, aniversário ou homenagem. A partir de 300€, válido 2 anos.",
-      "ogTitle": "Vale Oferta para Preservar Flores | Válido 2 Anos | 300€+",
-      "ogDescription": "Vale oferta para preservar flores de casamento, baptizado, aniversário ou homenagem. A partir de 300€, válido 2 anos.",
+      "description": "Ofereça uma memória que dura para sempre. Vale para preservar flores de casamento, baptizado, aniversário ou homenagem. A partir de {quadro30x40}€, válido 2 anos.",
+      "ogTitle": "Vale Oferta para Preservar Flores | Válido 2 Anos | {quadro30x40}€+",
+      "ogDescription": "Vale oferta para preservar flores de casamento, baptizado, aniversário ou homenagem. A partir de {quadro30x40}€, válido 2 anos.",
       "ogImageAlt": "Vale oferta de preservação de flores, Flores à Beira-Rio",
       "keywords": "vale oferta preservação flores, presente flores preservadas, oferta original casamento, presente bodas prata ouro, oferta noiva preservação, prenda casamento preservar flores"
     },
@@ -1290,7 +1290,7 @@
     "ctaFinalTitle": "Pronto para oferecer?",
     "ctaFinalSub": "Um dia especial merece uma recordação especial",
     "ctaFinalDesc": "Transforme um momento efémero numa obra de arte feita à mão, para durar uma vida inteira.",
-    "apartirDe": "A partir de 300€ · Válido por 2 anos",
+    "apartirDe": "A partir de {quadro30x40}€ · Válido por 2 anos",
     "ocasioes": [
       {
         "titulo": "Casamento",
@@ -1320,7 +1320,7 @@
     "passos": [
       {
         "titulo": "Escolha o valor",
-        "desc": "O vale pode ter o valor que quiser, com um mínimo de 300€. Pode personalizar o valor para se adaptar ao serviço que deseja oferecer.",
+        "desc": "O vale pode ter o valor que quiser, com um mínimo de {quadro30x40}€. Pode personalizar o valor para se adaptar ao serviço que deseja oferecer.",
         "linkHref": "/opcoes-e-precos",
         "linkLabel": "Ver preços"
       },
@@ -1336,7 +1336,7 @@
       }
     ],
     "condicoes": [
-      "Valor mínimo de 300€, correspondente à nossa moldura mais pequena",
+      "Valor mínimo de {quadro30x40}€, correspondente à nossa moldura mais pequena",
       "Válido por 2 anos a partir da data de compra",
       "Não é reembolsável",
       "Válido exclusivamente para os serviços da Flores à Beira-Rio"
@@ -1478,7 +1478,7 @@
       },
       {
         "title": "Vidro Museu UltraVue® UV70",
-        "desc": "O mesmo vidro utilizado em museus e galerias. Filtra 70% dos raios UV e elimina reflexos, garantindo que as cores se mantêm vivas durante décadas."
+        "desc": "O mesmo vidro utilizado em museus e galerias, disponível como opção em qualquer quadro. Filtra 70% dos raios UV e elimina reflexos, garantindo que as cores se mantêm vivas durante décadas."
       },
       {
         "title": "O plástico que ainda usamos",
@@ -1627,12 +1627,21 @@
     "fundoHintSuffix": "para conhecer cada opção e visite o nosso",
     "fundoHintInstagram": "Instagram",
     "fundoHintSuffix2": "Se não tiver a certeza, não precisa de decidir já.",
+    "vidroMuseuLabel": "Quer vidro museu anti-UV no seu quadro?",
+    "vidroMuseuHint": "O vidro museu UltraVue® é o mesmo que se usa em museus: praticamente elimina os reflexos e filtra até 70% dos raios UV, protegendo as cores das flores durante décadas. É opcional e tem um custo adicional que varia com o tamanho do quadro: {vidro30x40}€ no 30x40, {vidro40x50}€ no 40x50 e {vidro50x70}€ no 50x70. Sem esta opção o quadro leva vidro normal e o preço mantém se igual.",
+    "vidroMuseuVerDiferenca": "Ver a diferença",
+    "vidroMuseuModalTitulo": "Vidro normal e vidro museu, lado a lado",
+    "vidroMuseuModalDesc": "À esquerda um quadro com vidro normal, à direita o mesmo quadro com vidro museu UltraVue®. A diferença está sobretudo nos reflexos: o vidro museu quase não os tem, e por isso vê as flores em vez de se ver a si.",
+    "vidroMuseuModalFechar": "Fechar",
+    "vidroMuseuLabelNormal": "Normal",
+    "vidroMuseuMiniLabel": "E nos quadros pequenos, quer vidro museu anti-UV?",
+    "vidroMuseuMiniHint": "Pode escolher de forma diferente do quadro principal. Nos quadros de 20x25 cm o vidro museu custa {vidro20x25}€ por cada quadro.",
     "elementosLabel": "Gostaria de incluir algum elemento extra no seu quadro?",
     "elementosHint": "<b>Não tem qualquer custo adicional.</b> Pode adicionar itens com valor simbólico ou emocional. Se seleccionar alguma opção, deve entregar os elementos juntamente com as flores.",
     "elementosOutroLabel": "Especifique o elemento extra",
     "elementosOutroPlaceholder": "Descreva o elemento que pretende incluir.",
     "quadrosExtraLabel": "Além do quadro principal, gostaria de acrescentar quadros extra em formato mais pequeno?",
-    "quadrosExtraHint": "Ideais para oferecer a pais, padrinhos, irmãos ou amigos. Cada quadro extra tem o preço de 90€ (20×25 cm).",
+    "quadrosExtraHint": "Ideais para oferecer a pais, padrinhos, irmãos ou amigos. Cada quadro extra tem o preço de {mini20x25}€ (20×25 cm).",
     "quantosQuadrosLabel": "Quantos quadros extra em formato pequeno gostaria de adicionar?",
     "quantosQuadrosPlaceholder": "Ex.: 2",
     "ornamentosLabel": "Além do quadro principal, gostaria de acrescentar ornamentos de Natal?",
@@ -1730,6 +1739,20 @@
       {
         "valor": "Gostaria que fossem vocês a escolher",
         "label": "Gostaria que fossem vocês a escolher"
+      },
+      {
+        "valor": "Ainda não sei",
+        "label": "Ainda não sei"
+      }
+    ],
+    "vidroMuseuOpcoes": [
+      {
+        "valor": "Sim, com vidro museu anti-UV",
+        "label": "Sim, com vidro museu anti-UV (custo adicional)"
+      },
+      {
+        "valor": "Não, vidro normal",
+        "label": "Não, prefiro vidro normal"
       },
       {
         "valor": "Ainda não sei",
@@ -1900,9 +1923,9 @@
   "vale": {
     "meta": {
       "title": "Vale-Presente de Preservação de Flores",
-      "description": "Vale-presente de preservação de flores: o presente perfeito para casamento, batizado ou aniversário. Desde 300€, válido por 2 anos.",
+      "description": "Vale-presente de preservação de flores: o presente perfeito para casamento, batizado ou aniversário. Desde {quadro30x40}€, válido por 2 anos.",
       "ogTitle": "Vale Presente | Flores à Beira-Rio",
-      "ogDescription": "Encomende um vale presente de preservação de flores. A partir de 300€, válido por 2 anos a partir da data de compra.",
+      "ogDescription": "Encomende um vale presente de preservação de flores. A partir de {quadro30x40}€, válido por 2 anos a partir da data de compra.",
       "ogImageAlt": "Vale presente de preservação de flores, Flores à Beira-Rio",
       "keywords": "vale presente preservação flores, cartão oferta flores, encomendar vale flores, presente casamento flores preservadas"
     },
@@ -1912,7 +1935,7 @@
     "saberMais": "Saber mais sobre como funciona",
     "verExemplo": "Ver um exemplo do vale digital →",
     "formTitle": "Formulário de encomenda",
-    "formSub": "A partir de 300€, válido por 2 anos a partir da data de compra. Entrega digital (gratuita) ou em cartão físico (9€ + portes).",
+    "formSub": "A partir de {quadro30x40}€, válido por 2 anos a partir da data de compra. Entrega digital (gratuita) ou em cartão físico (9€ + portes).",
     "provaSocial": "★★★★★ 5,0 nas avaliações no <g>Google</g> e no <c>casamentos.pt</c>",
     "duvidaPre": "Tem alguma dúvida antes de oferecer?",
     "duvidaCTA": "Fale connosco no WhatsApp",
@@ -1956,7 +1979,7 @@
     "mensagemPlaceholder": "Ex: Para a Inês: Que as tuas flores durem tanto quanto a memória deste dia especial.",
     "valorLabel": "Valor do vale (€)",
     "valorPlaceholder": "300",
-    "valorHint": "Valor mínimo: 300€, correspondentes ao quadro mais pequeno. Consulte a nossa página",
+    "valorHint": "Valor mínimo: {quadro30x40}€, correspondentes ao quadro mais pequeno. Consulte a nossa página",
     "valorHintLinkText": "Opções e Preços",
     "valorHintSuffix": "para conhecer os tamanhos dos quadros.",
     "entreguaALabel": "Quero que o vale seja entregue a",
@@ -2065,7 +2088,7 @@
     "erroTelefonePrimeiroDigito": "Os números portugueses começam por 9 (telemóvel) ou 2 (fixo). Verifique o número, por favor.",
     "emailSugestao": "Quis dizer {sugestao}?",
     "erroEmailInvalido": "E-mail inválido.",
-    "erroValorMin": "O valor mínimo é 300€.",
+    "erroValorMin": "O valor mínimo é {quadro30x40}€.",
     "erroValorInvalido": "O valor introduzido não é válido.",
     "erroDataInvalida": "Data inválida. Verifique o ano introduzido.",
     "erroFormulario": "Existem campos por preencher ou com erros. Por favor, verifique o formulário acima antes de submeter.",

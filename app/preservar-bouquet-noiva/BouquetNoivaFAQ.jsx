@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { usePrecos } from "../_components/PrecosProvider";
 
 function PlusIcon({ open }) {
   return (
@@ -21,7 +22,16 @@ function PlusIcon({ open }) {
 
 export default function BouquetNoivaFAQ() {
   const t = useTranslations("bouquetNoiva");
-  const items = t.raw("faqItems");
+  const precos = usePrecos();
+  // `t.raw` devolve o texto cru: os placeholders de preço não passam pelo
+  // ICU do next-intl, por isso substituem-se aqui. Sem isto o cliente veria
+  // "{quadro30x40}€" na resposta sobre preços.
+  const items = t.raw("faqItems").map((it) => ({
+    ...it,
+    a: typeof it.a === "string"
+      ? it.a.replace(/\{(\w+)\}/g, (m, k) => precos[k] ?? m)
+      : it.a,
+  }));
   const [open, setOpen] = useState(null);
 
   return (

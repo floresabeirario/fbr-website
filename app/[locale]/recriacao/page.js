@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { buildOpenGraph, buildTwitterCard, buildAlternates } from "@/app/_lib/metadata";
 import { SITE_URL, PHONE, EMAIL } from "@/app/_lib/constants";
 import RecriacaoClient from "@/app/recriacao/RecriacaoClient";
+import { getPrecos } from "@/app/_lib/precos";
 
 function buildSchema(locale) {
   const isEN = locale === "en";
@@ -70,13 +71,14 @@ export async function generateMetadata({ params }) {
 
 export default async function RecriacaoPage({ params }) {
   const { locale } = await params;
+  const precos = await getPrecos();
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(locale)) }}
       />
-      <RecriacaoClient />
+      <RecriacaoClient precos={precos} />
     </>
   );
 }

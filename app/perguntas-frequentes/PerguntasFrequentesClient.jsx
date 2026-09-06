@@ -8,15 +8,16 @@ import { m, useScroll, useTransform } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { FORM_URL } from "../_lib/constants";
 import { waUrl } from "../_lib/wa";
-import { FAQ_DATA } from "./faq-data";
-import { FAQ_DATA_EN } from "./faq-data-en";
+import { buildFaqData } from "./faq-data";
+import { buildFaqDataEn } from "./faq-data-en";
 import FaqAccordion from "./FaqAccordion";
 import "./PerguntasFrequentesClient.css";
+import { PRECOS_FALLBACK } from "../_lib/precos-valores";
 
-export default function PerguntasFrequentesClient() {
+export default function PerguntasFrequentesClient({ precos = PRECOS_FALLBACK }) {
   const t = useTranslations("faq");
   const locale = useLocale();
-  const faqData = locale === "en" ? FAQ_DATA_EN : FAQ_DATA;
+  const faqData = locale === "en" ? buildFaqDataEn(precos) : buildFaqData(precos);
   // Antes: mensagem WhatsApp fixa em PT e formulário PT mesmo na página EN.
   const WA   = waUrl(locale, "duvida");
   const FORM = locale === "en" ? "/en/book-preservation" : FORM_URL;
@@ -109,7 +110,7 @@ export default function PerguntasFrequentesClient() {
           </m.div>
         </section>
 
-        <FaqAccordion />
+        <FaqAccordion precos={precos} />
 
         {/* CTA final — largura total */}
         <m.div

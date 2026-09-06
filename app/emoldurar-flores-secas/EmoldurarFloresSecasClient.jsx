@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 
 import { TRACKING_URL } from "../_lib/constants";
-import { PRECO_EMOLDURAR_30x40, PRECO_EMOLDURAR_40x50, PRECO_EMOLDURAR_50x70 } from "../_lib/precos";
+import { PRECOS_FALLBACK } from "../_lib/precos-valores";
 import "./EmoldurarFloresSecasClient.css";
 
 const C = {
@@ -135,10 +135,12 @@ const OPCOES_VISUAL = [
   { cor: C.azulClr, svg: "op2" },
 ];
 
-const precos = [
-  { size: "30 × 40 cm", price: `${PRECO_EMOLDURAR_30x40}€`, svgW: "80px" },
-  { size: "40 × 50 cm", price: `${PRECO_EMOLDURAR_40x50}€`, svgW: "96px" },
-  { size: "50 × 70 cm", price: `${PRECO_EMOLDURAR_50x70}€`, svgW: "112px" },
+// Função e não constante: os preços vêm da tabela de Finanças por props
+// (ver getPrecos em _lib/precos.js), por isso só se sabem em runtime.
+const buildPrecos = (p) => [
+  { size: "30 × 40 cm", price: `${p.secas30x40}€`, svgW: "80px" },
+  { size: "40 × 50 cm", price: `${p.secas40x50}€`, svgW: "96px" },
+  { size: "50 × 70 cm", price: `${p.secas50x70}€`, svgW: "112px" },
 ];
 
 function FAQItem({ faq, i }) {
@@ -173,7 +175,8 @@ function FAQItem({ faq, i }) {
   );
 }
 
-export default function EmoldurarFloresSecasClient() {
+export default function EmoldurarFloresSecasClient({ precos: precosProp = PRECOS_FALLBACK }) {
+  const precos = buildPrecos(precosProp);
   const t = useTranslations("emoldurar");
   const locale = useLocale();
   const OPCOES_TEXT = t.raw("opcoes");
@@ -447,7 +450,11 @@ export default function EmoldurarFloresSecasClient() {
 
           <Reveal delay={0.35}>
             <p style={{ fontFamily: "'Google Sans', sans-serif", color: "rgba(250,247,240,0.35)", fontSize: "0.75rem", lineHeight: 1.7, margin: "1.8rem 0 0", fontWeight: 300 }}>
-              {t("precosNota")}
+              {t("precosNota", {
+                vidro30x40: precosProp.vidro30x40,
+                vidro40x50: precosProp.vidro40x50,
+                vidro50x70: precosProp.vidro50x70,
+              })}
             </p>
           </Reveal>
 

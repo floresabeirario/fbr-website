@@ -10,6 +10,7 @@ import { usePathname as useIntlPathname, useRouter } from "@/navigation";
 import { FORM_URL } from "@/app/_lib/constants";
 import { waUrl } from "@/app/_lib/wa";
 import { useAltLocaleHref } from "@/app/_components/AltLocaleHref";
+import { usePrecos } from "../app/_components/PrecosProvider";
 
 // Link do Next com suporte a animações framer-motion (navegação client-side,
 // sem full page reload — antes os <a> recarregavam a página inteira).
@@ -474,12 +475,17 @@ function NavCTA({ shouldShowScrolled, pathname, isHome }) {
 
 // ── Componente principal ───────────────────────────────────────────────────
 export default function NavClient() {
+  const precos = usePrecos();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations("nav");
-  const announceItems = t.raw("announceItems");
+  // `t.raw` devolve o texto cru: os placeholders de preço não passam pelo
+  // ICU do next-intl e sairiam como "{quadro30x40}€". Substituem-se aqui.
+  const comPrecos = (v) =>
+    typeof v === "string" ? v.replace(/\{(\w+)\}/g, (m, k) => precos[k] ?? m) : v;
+  const announceItems = t.raw("announceItems").map((x) => ({ ...x, text: comPrecos(x.text) }));
 
   const isHome = pathname === "/" || pathname === "/en";
 

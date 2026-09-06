@@ -2,6 +2,8 @@
 // Locale-aware layout — html lang, providers, Nav, Footer
 import { Google_Sans } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getPrecos } from "@/app/_lib/precos";
+import { PrecosProvider } from "@/app/_components/PrecosProvider";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -78,6 +80,11 @@ export default async function LocaleLayout({ children, params }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
 
+  // Preços da tabela de Finanças, lidos uma vez por pedido e postos à
+  // disposição de toda a árvore (ver PrecosProvider). Evita passá-los à
+  // mão por cada página só para uma frase dizer "a partir de 300€".
+  const precos = await getPrecos();
+
   return (
     <html lang={locale} className={googleSans.variable}>
       <body style={{ fontFamily: "var(--font-google-sans), sans-serif" }}>
@@ -93,6 +100,7 @@ export default async function LocaleLayout({ children, params }) {
           crossOrigin="anonymous"
         />
         <NextIntlClientProvider>
+          <PrecosProvider precos={precos}>
           <AltLocaleHrefProvider>
             <MotionProvider>
               <NavClient />
@@ -103,6 +111,7 @@ export default async function LocaleLayout({ children, params }) {
               <TrackClicks />
             </MotionProvider>
           </AltLocaleHrefProvider>
+          </PrecosProvider>
         </NextIntlClientProvider>
       </body>
     </html>

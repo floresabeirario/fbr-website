@@ -10,6 +10,7 @@ import ElfsightReviews from "@/components/ElfsightReviews";
 import CasamentosReviews from "@/components/CasamentosReviews";
 import BouquetNoivaFAQ from "./BouquetNoivaFAQ";
 import BeforeAfterSlider from "../BeforeAfterSlider";
+import { usePrecos } from "../_components/PrecosProvider";
 
 
 // Torna status.floresabeirario.pt clicável quando aparece no texto de um passo
@@ -36,6 +37,7 @@ function CheckIcon() {
 }
 
 export default function BouquetNoivaClient() {
+  const precos = usePrecos();
   const t = useTranslations("bouquetNoiva");
   const locale = useLocale();
   const features = t.raw("features");
@@ -77,7 +79,7 @@ export default function BouquetNoivaClient() {
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
             <a href={waUrl(locale, "noiva")} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>
           </div>
-          <p className="bouquet-hero-price">{t("heroPrice")}</p>
+          <p className="bouquet-hero-price">{t("heroPrice", { quadro30x40: precos.quadro30x40 })}</p>
         </m.div>
       </section>
 
@@ -209,7 +211,7 @@ export default function BouquetNoivaClient() {
           ))}
         </div>
         <div className="bouquet-features-pricing-note">
-          <a href={precosHref}>{t("featuresPricingNote")}</a>
+          <a href={precosHref}>{t("featuresPricingNote", { quadro30x40: precos.quadro30x40 })}</a>
         </div>
       </section>
 
@@ -270,7 +272,7 @@ export default function BouquetNoivaClient() {
           <h2 className="momento-final-cta-h2">
             {ctaFinalStart}{ctaFinalEm && <em>{ctaFinalEm}</em>}
           </h2>
-          <p className="momento-final-cta-p">{t("ctaDesc")}</p>
+          <p className="momento-final-cta-p">{t("ctaDesc", { quadro30x40: precos.quadro30x40 })}</p>
           <div className="momento-ctas">
             <a href={bookHref} className="btn-primary">{t("ctaReservar")}</a>
             <a href={waUrl(locale, "noiva")} target="_blank" rel="noopener noreferrer" className="btn-wa">{t("ctaWA")}</a>

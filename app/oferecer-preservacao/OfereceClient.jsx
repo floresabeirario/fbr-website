@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import PageHero from "@/components/PageHero";
 import "./OfereceClient.css";
+import { usePrecos } from "../_components/PrecosProvider";
 
 // ─── Reveal ───────────────────────────────────────────────────────────────────
 function Reveal({ children, delay = 0, style, className }) {
@@ -100,11 +101,16 @@ const ENTREGA_ICONS = ["✉️", "📦", "📍"];
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function OfereceClient() {
+  const precos = usePrecos();
   const t = useTranslations("oferecer");
   const locale = useLocale();
   const ocasioes = t.raw("ocasioes");
-  const passos = t.raw("passos");
-  const condicoesCartao = t.raw("condicoes");
+  // `t.raw` devolve o texto cru: os placeholders de preço não passam pelo
+  // ICU do next-intl e sairiam como "{quadro30x40}€". Substituem-se aqui.
+  const comPrecos = (v) =>
+    typeof v === "string" ? v.replace(/\{(\w+)\}/g, (m, k) => precos[k] ?? m) : v;
+  const passos = t.raw("passos").map((x) => ({ ...x, desc: comPrecos(x.desc) }));
+  const condicoesCartao = t.raw("condicoes").map(comPrecos);
   const entrega = t.raw("entrega");
   const valeHref = locale === "en" ? "/en/gift-voucher" : "/vale-presente";
   const precosHref = locale === "en" ? "/en/options-and-pricing" : "/opcoes-e-precos";
@@ -294,7 +300,7 @@ export default function OfereceClient() {
                 "Ver preços", por isso leva à página de Opções e Preços. */}
             <Link href={precosHref} className="btn-primary-vale">{t("verPrecos")}</Link>
           </div>
-          <p style={{ fontSize: "0.8rem", color: "rgba(250,247,240,0.55)" }}>{t("apartirDe")}</p>
+          <p style={{ fontSize: "0.8rem", color: "rgba(250,247,240,0.55)" }}>{t("apartirDe", { quadro30x40: precos.quadro30x40 })}</p>
         </Reveal>
       </section>
     </div>

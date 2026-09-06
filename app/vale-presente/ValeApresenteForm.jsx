@@ -8,6 +8,7 @@ import { OPCOES_PRECOS_URL, EMAIL } from "../_lib/constants";
 import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget";
 import { phoneLengthError, normalizePhone, formatPhoneInput } from "../_lib/phone-validation";
 import { suggestEmail, cleanEmail } from "../_lib/email-suggest";
+import { usePrecos } from "../_components/PrecosProvider";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
@@ -78,6 +79,9 @@ function Field({ label, required, hint, error, children, as: Tag, name }) {
 }
 
 export default function ValeApresenteForm() {
+  const precos = usePrecos();
+  // Mínimo do vale = quadro mais pequeno da preservação (decisão Maria 26/08/2026).
+  const minVale = Number(precos.quadro30x40) || 300;
   const t = useTranslations("formVale");
   const locale = useLocale();
 
@@ -200,7 +204,7 @@ export default function ValeApresenteForm() {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = t("erroEmailInvalido");
     if (!form.nomeDestinatario.trim()) e.nomeDestinatario = t("erroCampoObrigatorio");
     if (!form.valorVale)        e.valorVale = t("erroCampoObrigatorio");
-    else if (Number(form.valorVale) < 300)       e.valorVale = t("erroValorMin");
+    else if (Number(form.valorVale) < minVale)   e.valorVale = t("erroValorMin", { quadro30x40: precos.quadro30x40 });
     else if (Number(form.valorVale) > 100_000)   e.valorVale = t("erroValorInvalido");
     if (!form.entrega)          e.entrega = t("erroCampoObrigatorio");
     if (!form.tipoVale)         e.tipoVale = t("erroCampoObrigatorio");
@@ -433,7 +437,7 @@ export default function ValeApresenteForm() {
           error={errors.valorVale}
           hint={
             <>
-              {t("valorHint")}{" "}
+              {t("valorHint", { quadro30x40: precos.quadro30x40 })}{" "}
               <Link href={precosHref} className="vf-hint-link">
                 {t("valorHintLinkText")}
               </Link>{" "}
@@ -441,7 +445,7 @@ export default function ValeApresenteForm() {
             </>
           }
         >
-          <input type="number" {...inp("valorVale")} min={300} max={100000} step={1} placeholder={t("valorPlaceholder")} />
+          <input type="number" {...inp("valorVale")} min={minVale} max={100000} step={1} placeholder={t("valorPlaceholder")} />
         </Field>
       </div>
 

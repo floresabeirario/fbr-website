@@ -47,6 +47,16 @@ const TIPO_FUNDO = {
   "Ainda não sei":                                     "nao_sei",
 };
 
+// Vidro museu (mig 104 do admin). O estado 'incluido' NÃO existe aqui de
+// propósito: é exclusivo das encomendas anteriores a 26/08/2026, que
+// levaram o vidro dentro do preço-base. Um pedido novo só pode dizer
+// sim/nao/nao_sei.
+const VIDRO_MUSEU = {
+  "Sim, com vidro museu anti-UV":   "sim",
+  "Não, vidro normal":              "nao",
+  "Ainda não sei":                  "nao_sei",
+};
+
 const SIM_NAO_INFO = {
   "Não, apenas o quadro principal":              "nao",
   "Sim, quero acrescentar quadros extra":        "sim",
@@ -216,6 +226,8 @@ export function mapReservaToOrder(data, { ip } = {}) {
   const frame_delivery_method  = lookup(COMO_RECEBER_QUADRO,   data.comoReceberQuadro);
   const frame_size             = lookup(TAMANHO_MOLDURA,       data.tamanhoMoldura);
   const frame_background       = lookup(TIPO_FUNDO,            data.tipoFundo);
+  const museum_glass           = lookup(VIDRO_MUSEU,           data.vidroMuseu);
+  const museum_glass_mini      = lookup(VIDRO_MUSEU,           data.vidroMuseuMini);
   const extra_small_frames     = lookup(SIM_NAO_INFO,          data.quadrosExtra);
   const christmas_ornaments    = lookup(SIM_NAO_INFO,          data.ornamentosNatal);
   const necklace_pendants      = lookup(SIM_NAO_INFO,          data.pendentes);
@@ -227,6 +239,8 @@ export function mapReservaToOrder(data, { ip } = {}) {
   if (data.comoReceberQuadro && !frame_delivery_method)  errors.push("comoReceberQuadro");
   if (data.tamanhoMoldura    && !frame_size)             errors.push("tamanhoMoldura");
   if (data.tipoFundo         && !frame_background)       errors.push("tipoFundo");
+  if (data.vidroMuseu        && !museum_glass)           errors.push("vidroMuseu");
+  if (data.vidroMuseuMini    && !museum_glass_mini)      errors.push("vidroMuseuMini");
   if (data.quadrosExtra      && !extra_small_frames)     errors.push("quadrosExtra");
   if (data.ornamentosNatal   && !christmas_ornaments)    errors.push("ornamentosNatal");
   if (data.pendentes         && !necklace_pendants)      errors.push("pendentes");
@@ -293,6 +307,12 @@ export function mapReservaToOrder(data, { ip } = {}) {
     frame_delivery_method,
     frame_size,
     frame_background,
+    // Sem escolha (campo por preencher) → 'nao_sei': nunca cobra
+    // suplemento, e a Maria decide com o cliente na fase de design.
+    museum_glass:      museum_glass || "nao_sei",
+    // Escolha própria dos mini-quadros; o campo só aparece no formulário
+    // quando o cliente pede minis, por isso vem vazio no caso normal.
+    museum_glass_mini: museum_glass_mini || "nao_sei",
     extras_in_frame,
     extra_small_frames,
     extra_small_frames_qty:    toIntOrNull(data.quantosQuadros),
@@ -338,6 +358,8 @@ export function mapEmoldurarToOrder(data, { ip, clientPhotos = [] } = {}) {
   const frame_delivery_method  = lookup(COMO_RECEBER_QUADRO,   data.comoReceberQuadro);
   const frame_size             = lookup(TAMANHO_MOLDURA,       data.tamanhoMoldura);
   const frame_background       = lookup(TIPO_FUNDO,            data.tipoFundo);
+  const museum_glass           = lookup(VIDRO_MUSEU,           data.vidroMuseu);
+  const museum_glass_mini      = lookup(VIDRO_MUSEU,           data.vidroMuseuMini);
   const extra_small_frames     = lookup(SIM_NAO_INFO,          data.quadrosExtra);
   const christmas_ornaments    = lookup(SIM_NAO_INFO,          data.ornamentosNatal);
   const necklace_pendants      = lookup(SIM_NAO_INFO,          data.pendentes);
@@ -351,6 +373,8 @@ export function mapEmoldurarToOrder(data, { ip, clientPhotos = [] } = {}) {
   if (data.comoReceberQuadro && !frame_delivery_method)  errors.push("comoReceberQuadro");
   if (data.tamanhoMoldura    && !frame_size)             errors.push("tamanhoMoldura");
   if (data.tipoFundo         && !frame_background)       errors.push("tipoFundo");
+  if (data.vidroMuseu        && !museum_glass)           errors.push("vidroMuseu");
+  if (data.vidroMuseuMini    && !museum_glass_mini)      errors.push("vidroMuseuMini");
   if (data.quadrosExtra      && !extra_small_frames)     errors.push("quadrosExtra");
   if (data.ornamentosNatal   && !christmas_ornaments)    errors.push("ornamentosNatal");
   if (data.pendentes         && !necklace_pendants)      errors.push("pendentes");
@@ -411,6 +435,12 @@ export function mapEmoldurarToOrder(data, { ip, clientPhotos = [] } = {}) {
     frame_delivery_method,
     frame_size,
     frame_background,
+    // Sem escolha (campo por preencher) → 'nao_sei': nunca cobra
+    // suplemento, e a Maria decide com o cliente na fase de design.
+    museum_glass:      museum_glass || "nao_sei",
+    // Escolha própria dos mini-quadros; o campo só aparece no formulário
+    // quando o cliente pede minis, por isso vem vazio no caso normal.
+    museum_glass_mini: museum_glass_mini || "nao_sei",
     extras_in_frame,
     extra_small_frames,
     extra_small_frames_qty:    toIntOrNull(data.quantosQuadros),

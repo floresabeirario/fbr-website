@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { buildOpenGraph, buildTwitterCard, buildAlternates, buildBreadcrumbJsonLd } from "@/app/_lib/metadata";
 import { SITE_URL, PHONE, EMAIL } from "@/app/_lib/constants";
 import AniversarioClient from "@/app/preservar-flores-aniversario/AniversarioClient";
+import { getPrecos } from "@/app/_lib/precos";
 
 function buildSchema(locale) {
   const isEN = locale === "en";
@@ -103,12 +104,13 @@ function buildSchema(locale) {
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "aniversario.meta" });
+  const precosMeta = await getPrecos();
   const ogLocale = locale === "en" ? "en_GB" : "pt_PT";
   const canonicalPath = locale === "en" ? `${SITE_URL}/en/preserve-anniversary-flowers` : `${SITE_URL}/preservar-flores-aniversario`;
 
   return {
     title: t("title"),
-    description: t("description"),
+    description: t("description", { quadro30x40: precosMeta.quadro30x40 }),
     openGraph: buildOpenGraph({
       title: t("ogTitle"),
       description: t("ogDescription"),
