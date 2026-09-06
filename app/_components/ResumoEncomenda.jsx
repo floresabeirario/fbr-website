@@ -117,9 +117,17 @@ function BarraTotal({ resumoRef, activa, texto, valor, sub }) {
 
   const mostrar = activa && quadroVisto && !resumoNoEcra;
 
+  // A nav do site é fixa no topo, por isso um scroll "ao topo da secção"
+  // deixava o título "Resumo da sua encomenda" escondido por baixo dela.
+  // Medimos a nav no momento do clique e descontamos essa altura.
   const irAoResumo = () => {
     const alvo = resumoRef.current?.closest(".pf-section") ?? resumoRef.current;
-    alvo?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (!alvo) return;
+    const nav = document.querySelector('nav[role="navigation"]');
+    const r = nav?.getBoundingClientRect();
+    const folga = Math.max(r?.bottom ?? 0, r?.height ?? 0) + 12;
+    const topo = alvo.getBoundingClientRect().top + window.scrollY - folga;
+    window.scrollTo({ top: Math.max(0, topo), behavior: "smooth" });
   };
 
   return (
