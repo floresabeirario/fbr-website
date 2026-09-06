@@ -1981,7 +1981,17 @@
       "aPagar": "To pay",
       "aPagarAPartirDe": "To pay, from",
       "valeCobre": "The voucher covers the estimated amount. Any extra added later is paid separately.",
-      "barraAPagar": "To pay"
+      "barraAPagar": "To pay",
+      "valeCredito": "You still have {credito} of credit to use.",
+      "valeSugestao": "You could add, for example, {lista}. Just choose above and the summary updates.",
+      "valeCreditoPequeno": "It can go towards extras in this order, or stay available for whatever we agree together.",
+      "valeUnicoIntro": "With a gift voucher, the remainder is paid in one go:",
+      "valeUnicoTitulo": "Remainder to pay",
+      "valeUnicoSub": "Within 24 hours after we confirm the quote",
+      "sugOrnamento": "a Christmas ornament ({preco})",
+      "sugPendente": "a necklace pendant ({preco})",
+      "sugMini": "an extra 20×25 cm frame ({preco})",
+      "ou": "or"
     },
     "successPrioridade": "As your event is 6 months or more away, our reply may take longer than 3 working days: we reply in order of how close the event date is. Your request is registered all the same.",
     "exemplos": {
@@ -2428,7 +2438,7 @@
       },
       {
         "title": "15. Gift vouchers",
-        "content": "Gift vouchers are valid for 2 years from the date of issue and are intended for a preservation, framing or recreation order. The voucher amount is deducted from the quote; if the quote is higher, the beneficiary pays the difference; if it is lower, the remainder is not refunded in cash. A voucher is not refundable or convertible into cash, and an expired voucher is not extended.\nPhysical delivery of the voucher has the cost stated on the website. A booking made with a voucher follows the same Terms, including the booking request and the priority by event date."
+        "content": "Gift vouchers are valid for 2 years from the date of issue and are intended for a preservation, framing or recreation order. The voucher amount is deducted from the quote. If the quote is higher, the beneficiary pays the difference in one go, when the booking is confirmed, instead of the three stages. If it is lower, the remainder may go towards extras in that order but is not refunded in cash. A voucher is not refundable or convertible into cash, and an expired voucher is not extended.\nPhysical delivery of the voucher has the cost stated on the website. A booking made with a voucher follows the same Terms, including the booking request and the priority by event date."
       },
       {
         "title": "16. Caring for the piece",

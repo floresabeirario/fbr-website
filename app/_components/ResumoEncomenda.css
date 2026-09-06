@@ -356,3 +356,8 @@
   padding-top: 10px;
   border-top: 1px dashed rgba(90, 64, 40, 0.3);
 }
+
+/* Com vale-presente o restante paga-se de uma vez: uma linha sem badge */
+.re-fase-unica {
+  grid-template-columns: minmax(0, 1fr) auto;
+}

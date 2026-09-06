@@ -301,6 +301,21 @@ export default function ResumoEncomenda({
   const totalTxt = formatEuro(total);
   const aPagarTxt = formatEuro(aPagar);
 
+  // Crédito do vale que sobra e o que cabe nele (só extras que existem
+  // nos dois serviços; preços reais da tabela).
+  const credito = temVale ? Math.max(0, vale - total) : 0;
+  const sugestoes = credito > 0
+    ? [
+        { k: "sugOrnamento", preco: precoNumero(precos.ornamento) },
+        { k: "sugPendente", preco: precoNumero(precos.pendente) },
+        { k: "sugMini", preco: precoNumero(precos.mini20x25) },
+      ]
+        .filter((x) => x.preco > 0 && x.preco <= credito)
+        .map((x) => t(x.k, { preco: formatEuro(x.preco) }))
+    : [];
+  const listaOu = (itens) =>
+    itens.length <= 1 ? itens.join("") : `${itens.slice(0, -1).join(", ")} ${t("ou")} ${itens[itens.length - 1]}`;
+
   const notaBloco = (
     <section className="re-bloco re-bloco-nota">
       <h3 className="re-bloco-titulo">{t("notaTitulo")}</h3>
@@ -354,7 +369,32 @@ export default function ResumoEncomenda({
               <section className="re-bloco">
                 <h3 className="re-bloco-titulo">{t("pagamentoTitulo")}</h3>
                 {temVale && aPagar === 0 ? (
-                  <p className="re-texto">{t("valeCobre")}</p>
+                  // O vale cobre tudo. Se sobrar crédito, dizemos quanto e o que
+                  // cabe nele (ideia da Maria: transformar a sobra numa sugestão).
+                  <>
+                    {credito > 0 ? (
+                      <>
+                        <p className="re-texto"><b>{t("valeCredito", { credito: formatEuro(credito) })}</b></p>
+                        <p className="re-texto">{sugestoes.length ? t("valeSugestao", { lista: listaOu(sugestoes) }) : t("valeCreditoPequeno")}</p>
+                      </>
+                    ) : (
+                      <p className="re-texto">{t("valeCobre")}</p>
+                    )}
+                  </>
+                ) : temVale ? (
+                  // Com vale, o restante paga-se de uma só vez (decisão Maria 06/09).
+                  <>
+                    <p className="re-bloco-intro">{t("valeUnicoIntro")}</p>
+                    <ol className="re-fases">
+                      <li className="re-fase re-fase-unica">
+                        <span className="re-fase-corpo">
+                          <span className="re-fase-titulo">{t("valeUnicoTitulo")}</span>
+                          <span className="re-fase-sub">{t("valeUnicoSub")}</span>
+                        </span>
+                        <span className="re-valor">{aPagarTxt}</span>
+                      </li>
+                    </ol>
+                  </>
                 ) : (
                 <>
                 <p className="re-bloco-intro">{t("pagamentoIntro")}</p>
