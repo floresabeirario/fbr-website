@@ -26,6 +26,7 @@ import {
 } from "@/app/_lib/api-helpers";
 import { EMAIL } from "@/app/_lib/constants";
 import { mapEmoldurarToOrder } from "@/app/_lib/supabase-mappings";
+import { camposOrcamento } from "@/app/_lib/orcamento-server";
 import { verifyTurnstile } from "@/app/_lib/turnstile";
 
 const isRateLimited = createRateLimiter();
@@ -184,6 +185,10 @@ export async function POST(request) {
       }
       return NextResponse.json({ error: `Valores inválidos em: ${errors.join(", ")}` }, { status: 400 });
     }
+
+    // Orçamento estimado (o mesmo que o resumo do formulário mostrou):
+    // grava budget + pricing_snapshot para o admin abrir já com o valor.
+    Object.assign(payload, await camposOrcamento(supabase, payload));
 
     const { data: inserted, error: dbError } = await supabase
       .from("orders")

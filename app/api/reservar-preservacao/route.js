@@ -33,6 +33,7 @@ import {
 import { EMAIL } from "@/app/_lib/constants";
 import { mapReservaToOrder } from "@/app/_lib/supabase-mappings";
 import { verifyTurnstile } from "@/app/_lib/turnstile";
+import { camposOrcamento } from "@/app/_lib/orcamento-server";
 
 const isRateLimited = createRateLimiter();
 
@@ -162,6 +163,10 @@ export async function POST(request) {
     }
 
     const supabase = createFormsClient();
+
+    // Orçamento estimado (o mesmo que o resumo do formulário mostrou):
+    // grava budget + pricing_snapshot para o admin abrir já com o valor.
+    Object.assign(payload, await camposOrcamento(supabase, payload));
 
     const { data: inserted, error: dbError } = await supabase
       .from("orders")

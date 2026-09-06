@@ -296,9 +296,9 @@
   "comoFunciona": {
     "meta": {
       "title": "How Flower Preservation Works: 5 Steps",
-      "description": "The 5 steps of artisan preservation: booking, hand-in within 6 days, pressing, composition approval, and shipping of the framed piece. Up to 6 months.",
+      "description": "The 5 steps of artisan preservation: booking, hand-in within 6 days, pressing, composition approval, and shipping of the framed piece. Around 6 months.",
       "ogTitle": "How Flower Preservation Works: 5 Steps | Flores à Beira-Rio",
-      "ogDescription": "The 5 steps of artisan preservation: booking, hand-in, pressing, approval and shipping of the framed piece. Up to 6 months.",
+      "ogDescription": "The 5 steps of artisan preservation: booking, hand-in, pressing, approval and shipping of the framed piece. Around 6 months.",
       "ogImageAlt": "Botanical flower preservation process, Flores à Beira-Rio",
       "keywords": "how flower preservation works, flower preservation process, botanical pressing steps, how long does flower preservation take, flower preservation timeline, wedding bouquet preservation process"
     },
@@ -364,7 +364,7 @@
       },
       {
         "titulo": "Petal-by-petal pressing",
-        "tag": "Up to 6 months",
+        "tag": "Around 6 months",
         "corpo": "This is where the magic happens and the part that cannot be rushed. Every petal, leaf and sprig is pressed individually under controlled temperature and humidity conditions.",
         "nota": "After preservation, the flowers are also frozen to eliminate any insects that may still be present.",
         "opcoes": []
@@ -607,7 +607,7 @@
     "ctaWA": "WhatsApp",
     "floresTitle": "Flowers that tell your story",
     "floresP1": "At Flores à Beira-Rio, we transform emotionally meaningful flowers into botanical art frames that last decades. Every petal is pressed individually and framed by hand at our atelier in Coimbra, with the option of anti-UV museum glass.",
-    "floresP2": "Prices from €{quadro30x40}, with payment in three stages. The process takes up to 6 months and we ship worldwide.",
+    "floresP2": "Prices from €{quadro30x40}, with payment in three stages. The process takes around 6 months and we ship worldwide.",
     "floresP3": "Flowers reach us from every chapter of life: the wedding bouquet, the flowers from a baptism or the birth of a child, the small bouquet from a proposal, flowers from a milestone anniversary, and also memorial flowers, preserved as a serene memory of someone dearly missed. Your flowers can reach us by hand, by post from anywhere in the country, or with pickup at the venue. And if yours come from a moment not on this list, talk to us anyway: if they carry a story, we preserve them.",
     "envioGuiaLink": "How to ship your flowers by post →",
     "saberMais": "Learn more →",
@@ -766,7 +766,7 @@
       },
       {
         "q": "How long does the process take?",
-        "a": "Our average turnaround is up to 6 months from when we receive the flowers to the finished framed piece. Pressing is a delicate process that cannot be rushed, and we never sacrifice quality for speed. When the composition is ready, you will receive photos by email and have 72 hours to approve or request changes."
+        "a": "Our average turnaround is around 6 months from when we receive the flowers to the finished framed piece. Pressing is a delicate process that cannot be rushed, and we never sacrifice quality for speed. When the composition is ready, you will receive photos by email and have 72 hours to approve or request changes."
       },
       {
         "q": "What are the prices and how does payment work?",
@@ -1046,7 +1046,7 @@
         "titulo": "Frame the original dried bouquet",
         "desc": "If you dried your flowers naturally, or your bouquet was originally made of dried flowers, we can frame it. Either as a bouquet or deconstructed into a composition with the flowers surrounding a photograph, for example.",
         "detalhe": "Deep frame with 4.5 cm of useful height.",
-        "time": "up to 3 months"
+        "time": "around 3 months"
       },
       {
         "n": "Option 2",
@@ -1054,7 +1054,7 @@
         "titulo": "Bouquet recreation",
         "desc": "If you no longer have your flowers or they are no longer in good condition, we recreate the bouquet with fresh flowers and preserve it in a framed piece. The colours are preserved and closer to the original day. Two-dimensional composition, shallow frame.",
         "detalhe": "Visit our recreation page for more details.",
-        "time": "up to 6 months",
+        "time": "around 6 months",
         "linkLabel": "Learn more about recreation",
         "linkHref": "/en/bouquet-recreation"
       },
@@ -1064,7 +1064,7 @@
         "titulo": "Mixed combination",
         "desc": "If you still have some original flowers from the special day, but some did not dry well, this is the perfect solution: we use the original flowers that are still in good condition and replace the rest. The frame combines elements from the original bouquet with pressed flower replicas in a balanced composition.",
         "detalhe": "Preservation flower prices apply.",
-        "time": "up to 6 months",
+        "time": "around 6 months",
         "linkLabel": "See preservation prices",
         "linkHref": "/en/options-and-pricing"
       }
@@ -1480,7 +1480,7 @@
     "ctaEyebrow": "Ready to preserve?",
     "ctaH2": "Reserve your date",
     "ctaEm": "and we handle the rest",
-    "ctaDesc": "Fill in the form and we will get in touch to arrange all the details. The artisanal process takes up to 6 months after we receive the flowers.",
+    "ctaDesc": "Fill in the form and we will get in touch to arrange all the details. The artisanal process takes around 6 months after we receive the flowers.",
     "ctaReservar": "Reserve My Date",
     "ctaComoFunciona": "How It Works",
     "ctaLinks": [
@@ -1515,7 +1515,7 @@
     "infoLink": "How the process works",
     "comoFuncionaLabel": "How the booking works",
     "formTitle": "Pre-booking form",
-    "formSub": "To request your booking, fill in the form with your event details and preferences. Within the next 3 working days, you will receive a quote confirmation and deposit payment instructions.",
+    "formSub": "To request your booking, fill in the form with your event details and preferences. Within the next 3 working days, you will receive a quote confirmation and deposit payment instructions. If your event is 6 months or more away, it may take a little longer: we reply first to those whose date is closest.",
     "provaSocial": "★★★★★ 5.0 in reviews on <g>Google</g> and <c>casamentos.pt</c>",
     "duvidaPre": "Have a question before booking?",
     "duvidaCTA": "Chat with us on WhatsApp",
@@ -1528,7 +1528,7 @@
       {
         "n": "02",
         "titulo": "Confirmation and quote",
-        "texto": "Within the next 3 working days, you will receive the total service cost and deposit payment details."
+        "texto": "Within the next 3 working days, you will receive the total service cost and deposit payment details. If your event is 6 months or more away, it may take a little longer: we reply in order of how close the date is."
       },
       {
         "n": "03",
@@ -1910,7 +1910,68 @@
     "successP2": "Your booking is only confirmed after the deposit is paid. If you do not hear from us within the timeframe, please contact us.",
     "successClosing": "We are so happy to be able to preserve your flowers and memories.",
     "successAssinatura": "With love, Flores à Beira-Rio",
-    "camposObrigatorios": "Fields marked with"
+    "camposObrigatorios": "Fields marked with",
+    "resumo": {
+      "titulo": "Your order summary",
+      "vazio": "As you choose the size, background and extras, the summary appears here with the price of each choice.",
+      "quadro": "{tamanho} cm frame",
+      "quadroSecas": "{tamanho} cm frame (dried flowers)",
+      "quadroPorDefinir": "Frame (size still to choose)",
+      "aPartirDe": "from {valor}",
+      "fundoFotografia": "Photo background (professional print)",
+      "fundoIncluido": "{fundo} background",
+      "fundoADefinir": "Background: to be decided with you",
+      "fundoNomes": {
+        "transparente": "Transparent (glass on glass)",
+        "preto": "Black",
+        "branco": "White",
+        "cor": "Coloured"
+      },
+      "aDefinir": "to be decided",
+      "vidroMuseu": "Anti-UV museum glass ({tamanho})",
+      "vidroPorDecidir": "Anti-UV museum glass (still to decide)",
+      "seEscolher": "+{valor} if chosen",
+      "seEscolherPorQuadro": "+{valor} per frame if chosen",
+      "minis": "{n, plural, one {# extra 20×25 cm frame} other {# extra 20×25 cm frames}} ({n} × {unit})",
+      "minisSemQty": "Extra 20×25 cm frames ({unit} each)",
+      "minisInfo": "Extra 20×25 cm frames",
+      "fotoMinis": "Photo in the extra frames ({n} × {unit})",
+      "vidroMinis": "Museum glass in the extra frames ({n} × {unit})",
+      "vidroMinisPorDecidir": "Museum glass in the extra frames (still to decide)",
+      "ornamentos": "{n, plural, one {# Christmas ornament} other {# Christmas ornaments}} ({n} × {unit})",
+      "ornamentosSemQty": "Christmas ornaments ({unit} each)",
+      "ornamentosInfo": "Christmas ornaments",
+      "pendentes": "{n, plural, one {# necklace pendant} other {# necklace pendants}} ({n} × {unit})",
+      "pendentesSemQty": "Necklace pendants ({unit} each)",
+      "pendentesInfo": "Necklace pendants",
+      "indiqueQuantidade": "enter the quantity",
+      "aConfirmar": "to confirm ({unit} each)",
+      "elementos": "Elements in the frame: {lista}",
+      "incluido": "included",
+      "semCusto": "no cost",
+      "custosSeuCargo": "costs borne by you",
+      "orcamentoAParte": "quoted separately, depending on distance",
+      "envioFloresMaos": "Flowers dropped off in person, in Coimbra",
+      "envioFloresCtt": "Flowers sent by post or courier",
+      "envioFloresRecolha": "Flowers collected at the venue",
+      "receberQuadroMaos": "Frame picked up in Coimbra",
+      "receberQuadroCtt": "Frame sent by post or courier",
+      "total": "Estimated total",
+      "totalAPartirDe": "Estimated total, from",
+      "pagamentoTitulo": "How you pay",
+      "fase1": "To book your date, after our confirmation (within 24 hours)",
+      "fase1Secas": "To confirm the order, after our confirmation (within 24 hours)",
+      "fase2": "When the flowers arrive at the studio",
+      "fase3": "Before the frame is shipped or picked up",
+      "previsaoTitulo": "Estimated frame delivery",
+      "previsaoData": "around {mes}",
+      "previsaoNota": "around {meses} months after we receive the flowers. It is an artisanal process that cannot be rushed, so the timeline may extend.",
+      "previsaoSemData": "around {meses} months after we receive the flowers. It is an artisanal process that cannot be rushed, so the timeline may extend.",
+      "previsaoIntervalo": "around {min} to {max} months after we receive the flowers, depending on the approach. It is an artisanal process that cannot be rushed, so the timeline may extend.",
+      "nota": "<b>This amount is an estimate.</b> Within the next 3 working days we confirm the final quote by message, after reading your notes and special requests.",
+      "notaDistante": "As your event is 6 months or more away, our reply may take longer than 3 working days: we reply in order of how close the event date is. Your request is registered all the same."
+    },
+    "successPrioridade": "As your event is 6 months or more away, our reply may take longer than 3 working days: we reply in order of how close the event date is. Your request is registered all the same."
   },
   "vale": {
     "meta": {

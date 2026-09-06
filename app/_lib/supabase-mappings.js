@@ -10,59 +10,24 @@
 // Server-only (não importar do browser).
 // ============================================================
 
+// Os mapas partilhados com o resumo da encomenda do formulário (tamanho,
+// fundo, vidro, extras, envio) vivem em form-enums.js, que é puro e vai
+// para o browser. Aqui só ficam os que a API usa em exclusivo.
+import {
+  COMO_ENVIAR_FLORES,
+  COMO_RECEBER_QUADRO,
+  TAMANHO_MOLDURA,
+  TIPO_FUNDO,
+  VIDRO_MUSEU,
+  SIM_NAO_INFO,
+  DRIED_APPROACH,
+} from "./form-enums";
+
 // ── Reserva de Preservação ──────────────────────────────────
 
 const MEIO_CONTACTO = {
   "E-mail":   "email",
   "WhatsApp": "whatsapp",
-};
-
-const COMO_ENVIAR_FLORES = {
-  "Entrega em mãos em Coimbra":                                                                 "maos",
-  "Envio por CTT/transportadora para o estúdio (custos a cargo do cliente)":                    "ctt",
-  "Recolha no local por parte da Flores à Beira-Rio - mediante orçamento e disponibilidade":    "recolha_evento",
-  "Ainda não sei":                                                                              "nao_sei",
-};
-
-const COMO_RECEBER_QUADRO = {
-  "Recolha em mãos em Coimbra":                                            "maos",
-  "Envio por transportadora/CTT para morada (custos a cargo do cliente)":  "ctt",
-  "Ainda não sei":                                                         "nao_sei",
-};
-
-const TAMANHO_MOLDURA = {
-  "30x40cm":         "30x40",
-  "40x50cm":         "40x50",
-  "50x70cm":         "50x70",
-  "Ainda não sei":   "nao_sei",
-};
-
-const TIPO_FUNDO = {
-  "Transparente (vidro sobre vidro)":                  "transparente",
-  "Preto":                                             "preto",
-  "Branco":                                            "branco",
-  "Fotografia (custo adicional da impressão profissional)": "fotografia",
-  "Cor":                                               "cor",
-  "Gostaria que fossem vocês a escolher":              "voces_a_escolher",
-  "Ainda não sei":                                     "nao_sei",
-};
-
-// Vidro museu (mig 104 do admin). O estado 'incluido' NÃO existe aqui de
-// propósito: é exclusivo das encomendas anteriores a 26/08/2026, que
-// levaram o vidro dentro do preço-base. Um pedido novo só pode dizer
-// sim/nao/nao_sei.
-const VIDRO_MUSEU = {
-  "Sim, com vidro museu anti-UV":   "sim",
-  "Não, vidro normal":              "nao",
-  "Ainda não sei":                  "nao_sei",
-};
-
-const SIM_NAO_INFO = {
-  "Não, apenas o quadro principal":              "nao",
-  "Sim, quero acrescentar quadros extra":        "sim",
-  "Sim, gostaria de acrescentar ornamentos de natal": "sim",
-  "Sim, gostaria de acrescentar pendentes":      "sim",
-  "Gostava de receber mais informações":         "mais_info",
 };
 
 const COMO_CONHECEU_RESERVA = {
@@ -87,14 +52,6 @@ const TIPO_EVENTO = {
 };
 
 // ── Emoldurar Flores Secas ──────────────────────────────────
-// A abordagem escolhida (as 3 opções da página do serviço + "não sei").
-const DRIED_APPROACH = {
-  "Emoldurar o ramo original seco":         "ramo_original",
-  "Recriar o ramo com flores frescas":      "recriacao",
-  "Combinação das duas":                    "combinacao",
-  "Não sei, prefiro aconselhamento":        "nao_sei",
-};
-
 // Estado actual das flores já secas.
 const DRIED_CONDITION = {
   "Em bom estado, mantêm a forma e a cor":                 "bom_estado",

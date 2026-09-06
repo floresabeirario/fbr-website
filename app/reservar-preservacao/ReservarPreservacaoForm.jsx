@@ -12,6 +12,8 @@ import { suggestEmail, cleanEmail } from "../_lib/email-suggest";
 import AddressAutocomplete from "../_components/AddressAutocomplete";
 import PickupMap from "../_components/PickupMap";
 import { PRECOS_FALLBACK } from "../_lib/precos-valores";
+import ResumoEncomenda from "../_components/ResumoEncomenda";
+import { eventoDistante } from "../_lib/orcamento";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
@@ -492,6 +494,9 @@ export default function ReservarPreservacaoForm({ precos = PRECOS_FALLBACK }) {
         <p className="pf-success-text">
           {t("successP1", { dias: 3, sinal: "sinal de 30%", horas })}
         </p>
+        {eventoDistante(form.dataEvento) && (
+          <p className="pf-success-text">{t("successPrioridade")}</p>
+        )}
         <p className="pf-success-text">
           {t("successP2")}
         </p>
@@ -1075,7 +1080,23 @@ export default function ReservarPreservacaoForm({ precos = PRECOS_FALLBACK }) {
         <Field label={t("notasLabel")} hint={t("notasHint")}>
           <textarea {...inp("notasAdicionais")} rows={4} placeholder={t("notasPlaceholder")} />
         </Field>
+      </div>
 
+      {/* ── RESUMO DA ENCOMENDA ──
+          Ao vivo: cada escolha lá em cima aparece aqui com o seu valor, as
+          três fases de pagamento e a previsão de entrega. A aceitação dos
+          Termos fica aqui, mesmo antes de submeter, para a pessoa ler o
+          total e o prazo antes de aceitar. */}
+      <div className="pf-section" role="group" aria-labelledby="sec-resumo" onFocus={() => marcaSeccao("resumo")}>
+        <h2 className="pf-section-title" id="sec-resumo">{t("resumo.titulo")}</h2>
+        <ResumoEncomenda
+          form={form}
+          precos={precos}
+          locale={locale}
+          serviceType="preservacao"
+          dataEvento={form.dataEvento}
+        />
+        <div className="pf-resumo-termos">
         <div className="pf-group" data-field="termosCondicoes">
           <label className="pf-check-label pf-termos-label">
             <input
@@ -1098,6 +1119,7 @@ export default function ReservarPreservacaoForm({ precos = PRECOS_FALLBACK }) {
           {errors.termosCondicoes && (
             <p className="pf-error" role="alert">{errors.termosCondicoes}</p>
           )}
+        </div>
         </div>
       </div>
 

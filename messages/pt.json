@@ -300,9 +300,9 @@
   "comoFunciona": {
     "meta": {
       "title": "Como Funciona a Preservação de Flores",
-      "description": "Os 5 passos da preservação artesanal: reserva, entrega em 6 dias, prensagem, aprovação da composição e envio do quadro emoldurado. Até 6 meses.",
+      "description": "Os 5 passos da preservação artesanal: reserva, entrega em 6 dias, prensagem, aprovação da composição e envio do quadro emoldurado. Cerca de 6 meses.",
       "ogTitle": "Como Funciona: Preservar Flores em 5 Passos | Flores à Beira-Rio",
-      "ogDescription": "Os 5 passos da preservação artesanal: reserva, entrega, prensagem, aprovação e envio do quadro emoldurado. Até 6 meses.",
+      "ogDescription": "Os 5 passos da preservação artesanal: reserva, entrega, prensagem, aprovação e envio do quadro emoldurado. Cerca de 6 meses.",
       "ogImageAlt": "Processo de preservação botânica de flores, Flores à Beira-Rio",
       "keywords": "como funciona preservação de flores, processo preservação botânica, passos preservar bouquet, quanto tempo demora preservação flores, prazo preservar flores, processo prensagem bouquet"
     },
@@ -368,7 +368,7 @@
       },
       {
         "titulo": "Prensagem pétala a pétala",
-        "tag": "Até 6 meses",
+        "tag": "Cerca de 6 meses",
         "corpo": "É aqui que acontece a magia e também a parte que não pode ser apressada. Cada pétala, folha e raminho é prensado individualmente em condições controladas de temperatura e humidade.",
         "nota": "Após estarem preservadas, as flores são também congeladas para eliminar qualquer inseto que possa ainda estar presente.",
         "opcoes": []
@@ -611,7 +611,7 @@
     "ctaWA": "WhatsApp",
     "floresTitle": "Flores que contam a sua história",
     "floresP1": "Na Flores à Beira-Rio, transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Cada pétala é prensada individualmente e emoldurada num quadro feito à mão no nosso atelier em Coimbra, com a opção de vidro museu anti-UV.",
-    "floresP2": "Preços a partir de {quadro30x40}€, com pagamento em três fases. O processo demora até 6 meses e enviamos para todo o mundo.",
+    "floresP2": "Preços a partir de {quadro30x40}€, com pagamento em três fases. O processo demora cerca de 6 meses e enviamos para todo o mundo.",
     "floresP3": "Chegam-nos flores de todos os capítulos da vida: o ramo de noiva do casamento, as flores do batizado ou do nascimento de um filho, o raminho de um pedido de casamento, as flores de um aniversário redondo, e também as flores de uma homenagem fúnebre, preservadas como memória serena de quem partiu. As flores podem chegar até nós em mãos, por correio de qualquer ponto do país, ou com recolha no local do evento. E se as suas vêm de um momento que não está nesta lista, fale connosco na mesma: se têm história, nós preservamo-las.",
     "envioGuiaLink": "Como enviar as suas flores por correio →",
     "saberMais": "Saber mais →",
@@ -774,7 +774,7 @@
       },
       {
         "q": "Quanto tempo demora o processo?",
-        "a": "O nosso tempo médio é de até 6 meses desde a recepção das flores até ao quadro emoldurado. A prensagem é um processo delicado que não pode ser apressado, e nunca sacrificamos a qualidade em favor da rapidez. Quando a composição estiver pronta, recebe fotografias por email e tem 72 horas para aprovar ou pedir alterações."
+        "a": "O nosso tempo médio é de cerca de 6 meses desde a recepção das flores até ao quadro emoldurado. A prensagem é um processo delicado que não pode ser apressado, e nunca sacrificamos a qualidade em favor da rapidez. Quando a composição estiver pronta, recebe fotografias por email e tem 72 horas para aprovar ou pedir alterações."
       },
       {
         "q": "Qual o preço e como funciona o pagamento?",
@@ -1054,7 +1054,7 @@
         "titulo": "Emoldurar ramo original seco",
         "desc": "Se secou as suas flores ao ar, ou o seu ramo já era composto de flores secas, podemos emoldurá-lo. Quer em forma de bouquet, quer desconstruído numa composição com as flores à volta de uma fotografia, por exemplo.",
         "detalhe": "Moldura profunda com 4,5 cm de altura útil.",
-        "time": "até 3 meses"
+        "time": "cerca de 3 meses"
       },
       {
         "n": "Opção 2",
@@ -1062,7 +1062,7 @@
         "titulo": "Recriação do bouquet",
         "desc": "Caso já não tenha as suas flores ou se já não estão em bom estado, recriamos o ramo com flores frescas e eternizamo-lo num quadro emoldurado. As cores são preservadas e ficam mais próximas do dia original. Composição bidimensional, moldura pouco funda.",
         "detalhe": "Visita a nossa página da recriação para mais detalhes.",
-        "time": "até 6 meses",
+        "time": "cerca de 6 meses",
         "linkLabel": "Saber mais sobre recriação",
         "linkHref": "/recriacao"
       },
@@ -1072,7 +1072,7 @@
         "titulo": "Combinação mista",
         "desc": "Se ainda tem flores originais do dia especial, mas algumas não ficaram bem depois de secas, esta é a solução perfeita para si: aproveitamos as flores originais que ainda estão bem e substituímos as restantes. O quadro combina elementos do ramo original com réplicas de flores prensadas numa composição equilibrada.",
         "detalhe": "Aplicam-se os preços de preservação de flores.",
-        "time": "até 6 meses",
+        "time": "cerca de 6 meses",
         "linkLabel": "Ver preços de preservação",
         "linkHref": "/opcoes-e-precos"
       }
@@ -1488,7 +1488,7 @@
     "ctaEyebrow": "Pronto para preservar?",
     "ctaH2": "Reserve a sua data",
     "ctaEm": "e tratamos do resto",
-    "ctaDesc": "Preencha o formulário e entramos em contacto para combinar todos os detalhes. O processo artesanal demora até 6 meses após recebermos as flores.",
+    "ctaDesc": "Preencha o formulário e entramos em contacto para combinar todos os detalhes. O processo artesanal demora cerca de 6 meses após recebermos as flores.",
     "ctaReservar": "Reservar a Minha Data",
     "ctaComoFunciona": "Ver Como Funciona",
     "ctaLinks": [
@@ -1523,7 +1523,7 @@
     "infoLink": "Como funciona o processo",
     "comoFuncionaLabel": "Como funciona a reserva",
     "formTitle": "Formulário de pré-reserva",
-    "formSub": "Para pedir a sua reserva, preencha o formulário com os dados do evento e as suas preferências. Nos próximos 3 dias úteis, receberá a confirmação do orçamento e as instruções para o pagamento do sinal.",
+    "formSub": "Para pedir a sua reserva, preencha o formulário com os dados do evento e as suas preferências. Nos próximos 3 dias úteis, receberá a confirmação do orçamento e as instruções para o pagamento do sinal. Se o evento for daqui a 6 meses ou mais, pode demorar um pouco mais: respondemos primeiro a quem tem a data mais próxima.",
     "provaSocial": "★★★★★ 5,0 nas avaliações no <g>Google</g> e no <c>casamentos.pt</c>",
     "duvidaPre": "Tem alguma dúvida antes de reservar?",
     "duvidaCTA": "Fale connosco no WhatsApp",
@@ -1536,7 +1536,7 @@
       {
         "n": "02",
         "titulo": "Confirmação e orçamento",
-        "texto": "Nos próximos 3 dias úteis, receberá o valor total do serviço e os dados para pagamento do sinal."
+        "texto": "Nos próximos 3 dias úteis, receberá o valor total do serviço e os dados para pagamento do sinal. Se o evento for daqui a 6 meses ou mais, pode demorar um pouco mais: respondemos por ordem de proximidade da data."
       },
       {
         "n": "03",
@@ -1918,7 +1918,68 @@
     "successP2": "A sua reserva só fica confirmada após o pagamento do sinal. Caso não receba a nossa mensagem dentro do prazo, entre em contacto connosco.",
     "successClosing": "Estamos muito felizes por poder preservar as suas flores e memórias.",
     "successAssinatura": "Com carinho, Flores à Beira-Rio",
-    "camposObrigatorios": "Campos assinalados com"
+    "camposObrigatorios": "Campos assinalados com",
+    "resumo": {
+      "titulo": "Resumo da sua encomenda",
+      "vazio": "À medida que escolher o tamanho, o fundo e os extras, o resumo aparece aqui com o valor de cada escolha.",
+      "quadro": "Quadro {tamanho} cm",
+      "quadroSecas": "Quadro {tamanho} cm (flores secas)",
+      "quadroPorDefinir": "Quadro (tamanho por escolher)",
+      "aPartirDe": "a partir de {valor}",
+      "fundoFotografia": "Fundo fotografia (impressão profissional)",
+      "fundoIncluido": "Fundo {fundo}",
+      "fundoADefinir": "Fundo: a definir consigo",
+      "fundoNomes": {
+        "transparente": "transparente (vidro sobre vidro)",
+        "preto": "preto",
+        "branco": "branco",
+        "cor": "de cor"
+      },
+      "aDefinir": "a definir",
+      "vidroMuseu": "Vidro museu anti-UV ({tamanho})",
+      "vidroPorDecidir": "Vidro museu anti-UV (ainda por decidir)",
+      "seEscolher": "+{valor} se escolher",
+      "seEscolherPorQuadro": "+{valor} por quadro se escolher",
+      "minis": "{n, plural, one {# quadro extra 20×25 cm} other {# quadros extra 20×25 cm}} ({n} × {unit})",
+      "minisSemQty": "Quadros extra 20×25 cm ({unit} cada)",
+      "minisInfo": "Quadros extra 20×25 cm",
+      "fotoMinis": "Fotografia nos quadros extra ({n} × {unit})",
+      "vidroMinis": "Vidro museu nos quadros extra ({n} × {unit})",
+      "vidroMinisPorDecidir": "Vidro museu nos quadros extra (ainda por decidir)",
+      "ornamentos": "{n, plural, one {# ornamento de Natal} other {# ornamentos de Natal}} ({n} × {unit})",
+      "ornamentosSemQty": "Ornamentos de Natal ({unit} cada)",
+      "ornamentosInfo": "Ornamentos de Natal",
+      "pendentes": "{n, plural, one {# pendente para colar} other {# pendentes para colar}} ({n} × {unit})",
+      "pendentesSemQty": "Pendentes para colar ({unit} cada)",
+      "pendentesInfo": "Pendentes para colar",
+      "indiqueQuantidade": "indique a quantidade",
+      "aConfirmar": "a confirmar ({unit} cada)",
+      "elementos": "Elementos no quadro: {lista}",
+      "incluido": "incluído",
+      "semCusto": "sem custo",
+      "custosSeuCargo": "custos a seu cargo",
+      "orcamentoAParte": "orçamento à parte, consoante a distância",
+      "envioFloresMaos": "Entrega das flores em mãos, em Coimbra",
+      "envioFloresCtt": "Envio das flores por CTT ou transportadora",
+      "envioFloresRecolha": "Recolha das flores no local",
+      "receberQuadroMaos": "Levantamento do quadro em Coimbra",
+      "receberQuadroCtt": "Envio do quadro por CTT ou transportadora",
+      "total": "Total estimado",
+      "totalAPartirDe": "Total estimado, a partir de",
+      "pagamentoTitulo": "Como se paga",
+      "fase1": "Para reservar a data, depois da nossa confirmação (em 24 horas)",
+      "fase1Secas": "Para confirmar o pedido, depois da nossa confirmação (em 24 horas)",
+      "fase2": "Quando as flores chegam ao atelier",
+      "fase3": "Antes de o quadro ser enviado ou levantado",
+      "previsaoTitulo": "Previsão de entrega do quadro",
+      "previsaoData": "por volta de {mes}",
+      "previsaoNota": "cerca de {meses} meses depois de recebermos as flores. É um processo artesanal que não se apressa, por isso o prazo pode alongar-se.",
+      "previsaoSemData": "cerca de {meses} meses depois de recebermos as flores. É um processo artesanal que não se apressa, por isso o prazo pode alongar-se.",
+      "previsaoIntervalo": "cerca de {min} a {max} meses depois de recebermos as flores, consoante a abordagem. É um processo artesanal que não se apressa, por isso o prazo pode alongar-se.",
+      "nota": "<b>Este valor é uma estimativa.</b> Nos próximos 3 dias úteis confirmamos o orçamento final por mensagem, depois de lermos as suas notas e pedidos especiais.",
+      "notaDistante": "Como o seu evento é daqui a 6 meses ou mais, a nossa resposta pode demorar mais do que 3 dias úteis: respondemos por ordem de proximidade da data do evento. O seu pedido fica registado na mesma."
+    },
+    "successPrioridade": "Como o seu evento é daqui a 6 meses ou mais, a nossa resposta pode demorar mais do que 3 dias úteis: respondemos por ordem de proximidade da data do evento. O seu pedido fica registado na mesma."
   },
   "vale": {
     "meta": {

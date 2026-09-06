@@ -23,6 +23,7 @@ import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget"
 import { phoneLengthError, normalizePhone, formatPhoneInput } from "../_lib/phone-validation";
 import { suggestEmail, cleanEmail } from "../_lib/email-suggest";
 import { PRECOS_FALLBACK } from "../_lib/precos-valores";
+import ResumoEncomenda from "../_components/ResumoEncomenda";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 const MAX_FOTOS = 5;
@@ -137,6 +138,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
   const termosHref       = locale === "en" ? "/en/terms-and-conditions" : "/termos-e-condicoes";
 
   const [form, setForm] = useState(INIT);
+  const marcaSeccao = () => {};
   const [fotos, setFotos] = useState([]); // { file, url }
   const [errors, setErrors] = useState({});
   // Modal "Ver a diferença" do vidro museu (mesma imagem e mesmo CSS do
@@ -769,7 +771,23 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
         <Field label={t("notasLabel")} hint={te("notasHint")}>
           <textarea {...inp("notasAdicionais")} rows={4} placeholder={t("notasPlaceholder")} />
         </Field>
+      </div>
 
+      {/* ── RESUMO DA ENCOMENDA ──
+          Ao vivo: cada escolha lá em cima aparece aqui com o seu valor, as
+          três fases de pagamento e a previsão de entrega. A aceitação dos
+          Termos fica aqui, mesmo antes de submeter, para a pessoa ler o
+          total e o prazo antes de aceitar. */}
+      <div className="pf-section" role="group" aria-labelledby="sec-resumo" onFocus={() => marcaSeccao("resumo")}>
+        <h2 className="pf-section-title" id="sec-resumo">{t("resumo.titulo")}</h2>
+        <ResumoEncomenda
+          form={form}
+          precos={precos}
+          locale={locale}
+          serviceType="emoldurar_secas"
+          dataEvento={""}
+        />
+        <div className="pf-resumo-termos">
         <div className="pf-group" data-field="termosCondicoes">
           <label className="pf-check-label pf-termos-label">
             <input
@@ -788,6 +806,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
             </span>
           </label>
           {errors.termosCondicoes && <p className="pf-error" role="alert">{errors.termosCondicoes}</p>}
+        </div>
         </div>
       </div>
 
