@@ -46,8 +46,9 @@ function temConteudo(form, init) {
 }
 
 /**
- * useRascunho(chave, form, setForm, INIT) → { recuperado, limpar, apagar }
+ * useRascunho(chave, form, setForm, INIT) → { recuperado, manter, limpar, apagar }
  *  - recuperado: true quando o formulário foi reposto a partir do rascunho
+ *  - manter(): "Continuar onde parei" (fica com os dados, só fecha o aviso)
  *  - limpar(): "Começar de novo" (repõe INIT e apaga o rascunho)
  *  - apagar(): só apaga o rascunho (usar depois de submeter com sucesso)
  */
@@ -107,6 +108,10 @@ export function useRascunho(chave, form, setForm, INIT) {
     try { localStorage.removeItem(chave); } catch { /* sem localStorage */ }
   };
 
+  // "Continuar onde parei": os dados já estão no formulário, só se fecha
+  // o aviso.
+  const manter = () => setRecuperado(false);
+
   const limpar = () => {
     apagar();
     paradoRef.current = false;
@@ -115,5 +120,5 @@ export function useRascunho(chave, form, setForm, INIT) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  return { recuperado, limpar, apagar };
+  return { recuperado, manter, limpar, apagar };
 }
