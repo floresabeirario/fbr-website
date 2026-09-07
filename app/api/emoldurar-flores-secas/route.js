@@ -218,12 +218,12 @@ export async function POST(request) {
         .map(([size, n]) => `${n}× ${size.replace("x", "×")}`)
         .join(", ");
 
-      // Assunto: "Flores secas · Casamento 12/06/2027 · Maria Silva".
-      // Os segmentos vazios caem, por isso um pedido sem tipo de evento
-      // fica só "Flores secas · Maria Silva".
+      // Assunto: "Flores secas · Casamento · Maria Silva". Sem data: este
+      // formulário não pergunta a data do evento (as flores já estão secas).
+      // Os segmentos vazios caem.
       const assunto = [
         "Flores secas",
-        [data.tipoEvento, null].filter(Boolean).join(" "),
+        data.tipoEvento,
         (data.nome || "").trim(),
       ].filter(Boolean).join(" · ");
 
