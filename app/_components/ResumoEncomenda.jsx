@@ -159,8 +159,8 @@ function BarraTotal({ resumoRef, activa, texto, valor, sub }) {
         <span className="re-barra-ver">{texto.ver}</span>
       </span>
       <span className="re-barra-valor">
-        <span className="re-muda" key={valor}>{valor}</span>
         {sub && <small>{sub}</small>}
+        <span className="re-muda" key={valor}>{valor}</span>
       </span>
     </button>
   );
@@ -476,7 +476,7 @@ export default function ResumoEncomenda({
           activa={temEscolhas && Boolean(snap)}
           texto={{ total: temVale ? t("barraAPagar") : t("barraTotal"), ver: t("barraVer") }}
           valor={temVale ? aPagarTxt : totalTxt}
-          sub={snap?.provisional ? t("totalAPartirDe") : null}
+          sub={snap?.provisional ? t("barraAPartirDe") : null}
         />
       )}
     </div>
