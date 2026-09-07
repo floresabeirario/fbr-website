@@ -190,6 +190,15 @@ export async function POST(request) {
         escapeHtml(!v || (Array.isArray(v) && !v.length) ? "—" : Array.isArray(v) ? v.join(", ") : v);
 
       const idiomaLabel = data.locale === "en" ? "Inglês" : "Português";
+      // Assunto: "Preservação · Casamento 12/06/2027 · Maria Silva".
+      // Os segmentos vazios caem, por isso um pedido sem tipo de evento
+      // fica só "Preservação · Maria Silva".
+      const assunto = [
+        "Preservação",
+        [data.tipoEvento, formatDatePT(data.dataEvento)].filter(Boolean).join(" "),
+        (data.nome || "").trim(),
+      ].filter(Boolean).join(" · ");
+
 
       // Quadros principais adicionais (mig 107): "1× 30×40, 2× 50×70".
       const adicionaisTexto = Object.entries(payload.additional_main_frames ?? {})
@@ -267,7 +276,7 @@ export async function POST(request) {
           body: JSON.stringify({
             from: "Flores à Beira-Rio <noreply@floresabeirario.pt>",
             to: [EMAIL],
-            subject: `Nova pré-reserva de preservação | ${data.nome}`,
+            subject: assunto,
             html: `<h2 style="font-family:sans-serif;color:#5A1E38;">Nova pré-reserva de preservação</h2>
 <p style="font-family:sans-serif;font-size:13px;color:#666;">
   Veja no admin: <a href="https://admin.floresabeirario.pt/preservacao/${escapeHtml(inserted.order_id)}">${escapeHtml(inserted.order_id)}</a>
