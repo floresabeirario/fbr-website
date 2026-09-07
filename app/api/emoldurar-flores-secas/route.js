@@ -218,6 +218,15 @@ export async function POST(request) {
         .map(([size, n]) => `${n}× ${size.replace("x", "×")}`)
         .join(", ");
 
+      // Assunto: "Flores secas · Casamento 12/06/2027 · Maria Silva".
+      // Os segmentos vazios caem, por isso um pedido sem tipo de evento
+      // fica só "Flores secas · Maria Silva".
+      const assunto = [
+        "Flores secas",
+        [data.tipoEvento, null].filter(Boolean).join(" "),
+        (data.nome || "").trim(),
+      ].filter(Boolean).join(" · ");
+
       const linhas = [
         `<tr><td><strong>ID</strong></td><td><code>${escapeHtml(inserted.order_id)}</code></td></tr>`,
         `<tr><td><strong>Serviço</strong></td><td>Emoldurar flores secas</td></tr>`,
@@ -255,7 +264,7 @@ export async function POST(request) {
           body: JSON.stringify({
             from: "Flores à Beira-Rio <noreply@floresabeirario.pt>",
             to: [EMAIL],
-            subject: `Novo pedido: emoldurar flores secas | ${data.nome}`,
+            subject: assunto,
             html: `<h2 style="font-family:sans-serif;color:#5A1E38;">Novo pedido de emoldurar flores secas</h2>
 <p style="font-family:sans-serif;font-size:13px;color:#666;">
   Veja no admin: <a href="https://admin.floresabeirario.pt/preservacao/${escapeHtml(inserted.order_id)}">${escapeHtml(inserted.order_id)}</a>

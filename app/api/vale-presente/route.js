@@ -209,7 +209,7 @@ export async function POST(request) {
           body: JSON.stringify({
             from: "Flores à Beira-Rio <noreply@floresabeirario.pt>",
             to: [EMAIL],
-            subject: `Novo pedido de vale presente | ${data.nome}`,
+            subject: `Vale-presente · ${(data.nome || "").trim()}`,
             html: `<h2 style="font-family:sans-serif;color:#3A4A78;">Novo pedido de vale presente</h2>
 <p style="font-family:sans-serif;font-size:13px;color:#666;">
   Veja no admin: <a href="https://admin.floresabeirario.pt/vale-presente/${escapeHtml(inserted.code)}">${escapeHtml(inserted.code)}</a>
