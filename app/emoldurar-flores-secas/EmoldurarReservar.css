@@ -134,3 +134,25 @@
   color: #b23b3b;
   background: rgba(178, 59, 59, 0.08);
 }
+
+/* Cabeçalhos numerados, cartão do resumo e pílulas a condizer com o verde */
+.emoldurar-theme .pf-section-n { color: #5E7D68; }
+.emoldurar-theme .pf-section-lead { color: #4A6552; }
+.emoldurar-theme .pf-section-resumo {
+  background: linear-gradient(180deg, #F6FAF6 0%, #E9F1EB 100%);
+  border-color: rgba(94, 125, 104, 0.40);
+}
+.emoldurar-theme .pf-section-resumo .pf-section-head { border-bottom-color: rgba(94, 125, 104, 0.35); }
+.emoldurar-theme .pf-pill {
+  background: #F4F8F4;
+  border-color: #C6D6C8;
+  color: #1C2A20;
+}
+.emoldurar-theme .pf-pill:hover { border-color: #A9C3AE; background: #fff; }
+.emoldurar-theme .pf-pill:focus-within { box-shadow: 0 0 0 3px rgba(61, 90, 72, 0.16); }
+.emoldurar-theme .pf-pill-on,
+.emoldurar-theme .pf-pill-on:hover {
+  background: #22382C;
+  border-color: #22382C;
+  color: #fff;
+}
