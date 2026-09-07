@@ -1692,10 +1692,10 @@
       }
     ],
     "maisQuadrosLabel": "Would you like more than one main frame?",
-    "maisQuadrosHint": "Some clients order two large frames, for example two 30×40 cm, or one 30×40 cm and one 50×70 cm. <b>Each frame needs its own flowers:</b> for more than one main frame you will need to send us considerably more flowers than just the bouquet (for example, flowers from the arrangements, the decoration or the boutonnieres). If you are not sure you will have enough flowers, talk to us before booking.",
+    "maisQuadrosHint": "You can order more than one main frame. For this, you will usually need to send us more flowers than just the bouquet (for example, from the arrangements, the tables or the decoration). If in doubt, talk to us before booking. <b>Please note: these are not the small extra frames (20×25 cm), those are requested further down, under the optional extras.</b>",
     "maisQuadrosOpcoes": [
-      { "valor": "Não, apenas um quadro principal", "label": "No, just one frame" },
-      { "valor": "Sim, quero mais do que um quadro principal", "label": "Yes, I want more frames" }
+      { "valor": "Não, apenas um quadro principal", "label": "No, just one main frame" },
+      { "valor": "Sim, quero mais do que um quadro principal", "label": "Yes, more than one main frame" }
     ],
     "adicionaisTitulo": "Additional frames",
     "adicionaisIntro": "Tell us how many frames you would like of each size, in addition to the main frame chosen above. Each one is priced by its size, with the same background and glass as the main frame.",
