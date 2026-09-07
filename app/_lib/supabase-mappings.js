@@ -172,6 +172,23 @@ function mapPickupDetails(data, flowerDeliveryMethod) {
   };
 }
 
+// Quadros principais ADICIONAIS (mig 107): o formulário pergunta "quer
+// mais do que um quadro principal?" e, se sim, a quantidade por tamanho.
+// Devolve { '30x40': n, ... } só com quantidades > 0; {} quando "Não".
+// Valores fora de 0..99 ou não inteiros entram em `errors`.
+function mapAdicionais(data, errors) {
+  if (!/^sim/i.test(data.maisQuadros || "")) return {};
+  const out = {};
+  for (const size of ["30x40", "40x50", "50x70"]) {
+    const raw = data[`adicional${size}`];
+    if (raw === "" || raw === null || raw === undefined) continue;
+    const n = Number(raw);
+    if (!Number.isInteger(n) || n < 0 || n > 99) { errors.push(`adicional${size}`); continue; }
+    if (n > 0) out[size] = n;
+  }
+  return out;
+}
+
 /**
  * Constrói o payload para INSERT em `orders` a partir do body do form
  * de Reserva de Preservação. Devolve `{ payload, errors }` onde
@@ -284,6 +301,7 @@ export function mapReservaToOrder(data, { ip } = {}) {
     extras_in_frame,
     extra_small_frames,
     extra_small_frames_qty:    toIntOrNull(data.quantosQuadros),
+    additional_main_frames:    mapAdicionais(data, errors),
     christmas_ornaments,
     christmas_ornaments_qty:   toIntOrNull(data.quantosOrnamentos),
     necklace_pendants,

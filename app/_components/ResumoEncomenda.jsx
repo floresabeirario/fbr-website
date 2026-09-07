@@ -45,6 +45,8 @@ import {
   mesPrevisaoEntrega,
   formatMesAno,
   eventoDistante,
+  additionalFramesEntries,
+  MAIN_FRAME_SIZES,
 } from "../_lib/orcamento";
 
 const TAMANHO_LABEL = { "30x40": "30×40", "40x50": "40×50", "50x70": "50×70" };
@@ -54,9 +56,22 @@ function toQty(v) {
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 
+// Quadros principais adicionais (mig 107), a partir dos 3 campos de
+// quantidade do formulário. Só conta quando a pergunta está em "Sim".
+function adicionaisDoForm(form) {
+  if (!/^sim/i.test(form.maisQuadros || "")) return {};
+  const out = {};
+  for (const size of MAIN_FRAME_SIZES) {
+    const n = toQty(form[`adicional${size}`]);
+    if (n) out[size] = n;
+  }
+  return out;
+}
+
 /** Converte o estado do formulário (valores PT) nos enums da BD. */
 export function formToPricingInput(form, serviceType) {
   return {
+    additional_main_frames: adicionaisDoForm(form),
     service_type: serviceType,
     frame_size: lookupEnum(TAMANHO_MOLDURA, form.tamanhoMoldura),
     frame_background: lookupEnum(TIPO_FUNDO, form.tipoFundo),
@@ -174,7 +189,7 @@ export default function ResumoEncomenda({
   const snap = computePricingSnapshot(input, items);
 
   const temEscolhas = Boolean(
-    form.tamanhoMoldura || form.tipoFundo || form.vidroMuseu ||
+    form.tamanhoMoldura || form.maisQuadros || form.tipoFundo || form.vidroMuseu ||
     form.quadrosExtra || form.ornamentosNatal || form.pendentes,
   );
 
@@ -218,6 +233,22 @@ export default function ResumoEncomenda({
       linhas.push({ k: "vidro", label: t("vidroMuseu", { tamanho: sizeLabel }), ...euros(l?.subtotal ?? precoNumero(precos[vidroKey])) });
     } else if (form.vidroMuseu && input.museum_glass === "nao_sei") {
       linhas.push({ k: "vidro", label: t("vidroPorDecidir"), ...nota(t("seEscolher", { valor: p(vidroKey) })) });
+    }
+
+    // Quadros principais adicionais (mig 107): uma linha por tamanho com
+    // o preço-base, e os suplementos (fotografia, vidro museu) agregados.
+    const adicionais = additionalFramesEntries(input.additional_main_frames);
+    if (adicionais.length) {
+      const extraLines = snap.lines.filter((x) => x.variant === "additional");
+      for (const [size, qty] of adicionais) {
+        const l = extraLines.find((x) => x.category === "base_frame" && x.key.endsWith(size));
+        const unit = l ? l.unit_price : precoNumero(precos[(secas ? "secas" : "quadro") + size]);
+        linhas.push({ k: `adic-${size}`, label: t("adicional", { n: qty, tamanho: TAMANHO_LABEL[size], unit: formatEuro(unit) }), ...euros(l?.subtotal ?? unit * qty) });
+      }
+      const fotoAdic = extraLines.filter((x) => x.category === "background_supplement");
+      if (fotoAdic.length) linhas.push({ k: "fotoAdic", label: t("fotoAdicionais"), ...euros(fotoAdic.reduce((s, x) => s + x.subtotal, 0)) });
+      const vidroAdic = extraLines.filter((x) => x.category === "glass_supplement");
+      if (vidroAdic.length) linhas.push({ k: "vidroAdic", label: t("vidroAdicionais"), ...euros(vidroAdic.reduce((s, x) => s + x.subtotal, 0)) });
     }
 
     // Quadros extra (minis)

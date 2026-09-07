@@ -1691,6 +1691,17 @@
         "label": "Not sure yet"
       }
     ],
+    "maisQuadrosLabel": "Would you like more than one main frame?",
+    "maisQuadrosHint": "You can order more than one main frame. For this, you will usually need to send us more flowers than just the bouquet (for example, from the arrangements, the tables or the decoration). If in doubt, talk to us before booking. <b>Please note: these are not the small extra frames (20×25 cm), those are requested further down, under the optional extras.</b>",
+    "maisQuadrosOpcoes": [
+      { "valor": "Não, apenas um quadro principal", "label": "No, just one main frame" },
+      { "valor": "Sim, quero mais do que um quadro principal", "label": "Yes, more than one main frame" }
+    ],
+    "adicionaisTitulo": "Additional frames",
+    "adicionaisIntro": "Tell us how many frames you would like of each size, in addition to the main frame chosen above. Each one is priced by its size, with the same background and glass as the main frame. If you would like each frame customised differently (another background, another glass), write it in the additional notes at the end of this form.",
+    "adicionaisLabel": "How many of each size?",
+    "erroAdicionaisPeloMenosUm": "Enter at least one additional frame, or answer \"No\" to the previous question.",
+    "erroQuantidadeInvalida": "Enter a whole number between 0 and 99.",
     "tamanhoOpcoes": [
       {
         "valor": "30x40cm",
@@ -1914,6 +1925,9 @@
     "successAssinatura": "With love, Flores à Beira-Rio",
     "camposObrigatorios": "Fields marked with",
     "resumo": {
+      "adicional": "{n, plural, one {# additional {tamanho} cm frame} other {# additional {tamanho} cm frames}} ({n} × {unit})",
+      "fotoAdicionais": "Photo background on the additional frames",
+      "vidroAdicionais": "Anti-UV museum glass on the additional frames",
       "titulo": "Your order summary",
       "vazio": "As you choose the size, background and extras, the summary appears here with the price of each choice.",
       "quadro": "{tamanho} cm frame",

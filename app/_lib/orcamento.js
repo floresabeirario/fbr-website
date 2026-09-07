@@ -26,6 +26,8 @@
 //   christmas_ornaments   idem (+ _qty)
 //   necklace_pendants     idem (+ _qty)
 //   pyramid_frame         boolean (nunca vem do site; fica false)
+//   additional_main_frames { '30x40': n, '40x50': n, '50x70': n } (mig 107)
+//                         quadros grandes ALÉM do principal; {} = nenhum
 //
 // Itens de preço: [{ category, key, label, price }] — as linhas de
 // `pricing_items`, ou o equivalente construído a partir do mapa `precos`
@@ -37,6 +39,21 @@ import { PRICE_KEYS } from "./precos-valores.js";
 // Tamanho de referência quando o cliente ainda não escolheu a moldura:
 // a mais barata (30x40). O orçamento fica marcado `provisional`.
 const PROVISIONAL_FRAME_SIZE = "30x40";
+
+// Tamanhos de quadro principal (os mesmos do admin, lib/additional-frames.ts).
+export const MAIN_FRAME_SIZES = ["30x40", "40x50", "50x70"];
+
+/** Pares [tamanho, quantidade] válidos de additional_main_frames (espelho do admin). */
+export function additionalFramesEntries(value) {
+  if (!value || typeof value !== "object") return [];
+  const out = [];
+  for (const size of MAIN_FRAME_SIZES) {
+    const raw = value[size];
+    const n = typeof raw === "number" ? raw : Number(raw);
+    if (Number.isInteger(n) && n > 0) out.push([size, n]);
+  }
+  return out;
+}
 
 function findItem(items, category, key) {
   return items.find(
@@ -82,6 +99,24 @@ export function computePricingSnapshot(order, items) {
   if (order.museum_glass === "sim") {
     const glass = findItem(items, "glass_supplement", `museum_glass_${effectiveSize}`);
     if (glass) lines.push(line(glass, 1));
+  }
+
+  // 2c. Quadros principais ADICIONAIS (mig 107): preço cheio de cada
+  //     tamanho, com o mesmo fundo e vidro do principal. Linhas com
+  //     variant: "additional"; suplementos só quando custam alguma coisa.
+  for (const [size, qty] of additionalFramesEntries(order.additional_main_frames)) {
+    const b = findItem(items, "base_frame", `${baseKeyPrefix}${size}`);
+    if (b) lines.push(line(b, qty, "additional"));
+    if (order.frame_background === "fotografia") {
+      const s =
+        findItem(items, "background_supplement", `fotografia_${size}`) ??
+        findItem(items, "background_supplement", "fotografia");
+      if (s && s.price > 0) lines.push(line(s, qty, "additional"));
+    }
+    if (order.museum_glass === "sim") {
+      const g = findItem(items, "glass_supplement", `museum_glass_${size}`);
+      if (g && g.price > 0) lines.push(line(g, qty, "additional"));
+    }
   }
 
   // 3. Extras por unidade — só conta se 'sim' E qty > 0.
@@ -132,7 +167,7 @@ export function computePricingSnapshot(order, items) {
   };
 }
 
-function line(item, qty) {
+function line(item, qty, variant) {
   return {
     category: item.category,
     key: item.key,
@@ -140,6 +175,7 @@ function line(item, qty) {
     qty,
     unit_price: item.price,
     subtotal: item.price * qty,
+    ...(variant ? { variant } : {}),
   };
 }
 

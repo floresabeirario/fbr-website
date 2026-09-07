@@ -28,6 +28,7 @@ import { useRascunho } from "../_lib/use-rascunho";
 import AvisoRascunho from "../_components/AvisoRascunho";
 import { formatEuro, formatDataCurta } from "../_lib/orcamento";
 import ResumoEncomenda from "../_components/ResumoEncomenda";
+import PillGroup from "../_components/PillGroup";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 const MAX_FOTOS = 5;
@@ -485,11 +486,8 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
           <input type="text" {...inp("nome")} placeholder={t("nomePlaceholder")} autoComplete="name" />
         </Field>
 
-        <Field name="meioContacto" label={t("contactoLabel")} required error={errors.meioContacto} hint={t("contactoHint")}>
-          <select {...inp("meioContacto")}>
-            <option value="">{t("escolha")}</option>
-            {meioContactoOpcoes.map((o) => <option key={o.valor} value={o.valor}>{o.label}</option>)}
-          </select>
+        <Field name="meioContacto" label={t("contactoLabel")} required error={errors.meioContacto} hint={t("contactoHint")} as="fieldset">
+          <PillGroup name="meioContacto" options={meioContactoOpcoes} value={form.meioContacto} onChange={(v) => set("meioContacto", v)} error={Boolean(errors.meioContacto)} />
         </Field>
 
         <Field name="email" label={t("emailLabel")} required error={errors.email} hint={t("emailHint")}>
@@ -553,11 +551,8 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
       <div className="pf-section" role="group" aria-labelledby="sec-flores">
         <h2 className="pf-section-title" id="sec-flores">{te("secFlores")}</h2>
 
-        <Field name="tipoEvento" label={t("tipoEventoLabel")} required error={errors.tipoEvento} hint={te("tipoEventoHint")}>
-          <select {...inp("tipoEvento")}>
-            <option value="">{t("escolha")}</option>
-            {tipoEventoOpcoes.map((o) => <option key={o.valor} value={o.valor}>{o.label}</option>)}
-          </select>
+        <Field name="tipoEvento" label={t("tipoEventoLabel")} required error={errors.tipoEvento} hint={te("tipoEventoHint")} as="fieldset">
+          <PillGroup name="tipoEvento" options={tipoEventoOpcoes} value={form.tipoEvento} onChange={(v) => set("tipoEvento", v)} error={Boolean(errors.tipoEvento)} />
         </Field>
 
         {showTipoEventoOutro && (
@@ -681,6 +676,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
 
         <Field
           name="tamanhoMoldura"
+          as="fieldset"
           label={t("tamanhoLabel")}
           required
           error={errors.tamanhoMoldura}
@@ -689,10 +685,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
             <Link href={servicoHref} className="pf-link" target="_blank" rel="noopener noreferrer">{te("tamanhoHintLink")}</Link>.
           </>}
         >
-          <select {...inp("tamanhoMoldura")}>
-            <option value="">{t("escolha")}</option>
-            {tamanhoOpcoes.map((o) => <option key={o.valor} value={o.valor}>{o.label}</option>)}
-          </select>
+          <PillGroup name="tamanhoMoldura" options={tamanhoOpcoes} value={form.tamanhoMoldura} onChange={(v) => set("tamanhoMoldura", v)} error={Boolean(errors.tamanhoMoldura)} />
         </Field>
 
         {/* TODO (Maria, lembrar mais tarde): re-adicionar link para exemplos de
@@ -761,7 +754,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
       </div>
 
       {/* ── EXTRAS OPCIONAIS ── */}
-      <div className="pf-section" role="group" aria-labelledby="sec-extras">
+      <div className="pf-section pf-section-leve" role="group" aria-labelledby="sec-extras">
         <h2 className="pf-section-title" id="sec-extras">{t("secExtras")}</h2>
 
         <Field name="quadrosExtra" label={t("quadrosExtraLabel")} required error={errors.quadrosExtra} hint={<>{t("quadrosExtraHint", { mini20x25: precos.mini20x25 })} {botaoExemplo("minis")}</>}>
@@ -885,7 +878,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
           três fases de pagamento e a previsão de entrega. A aceitação dos
           Termos fica aqui, mesmo antes de submeter, para a pessoa ler o
           total e o prazo antes de aceitar. */}
-      <div className="pf-section" role="group" aria-labelledby="sec-resumo" onFocus={() => marcaSeccao("resumo")}>
+      <div className="pf-section pf-section-resumo" role="group" aria-labelledby="sec-resumo" onFocus={() => marcaSeccao("resumo")}>
         <h2 className="pf-section-title" id="sec-resumo">{t("resumo.titulo")}</h2>
         <ResumoEncomenda
           form={form}

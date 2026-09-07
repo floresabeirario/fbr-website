@@ -49,6 +49,7 @@ export async function camposOrcamento(supabase, payload) {
         pyramid_frame: false,
         extra_small_frames: payload.extra_small_frames ?? null,
         extra_small_frames_qty: payload.extra_small_frames_qty ?? null,
+        additional_main_frames: payload.additional_main_frames ?? {},
         christmas_ornaments: payload.christmas_ornaments ?? null,
         christmas_ornaments_qty: payload.christmas_ornaments_qty ?? null,
         necklace_pendants: payload.necklace_pendants ?? null,

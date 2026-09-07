@@ -1699,6 +1699,17 @@
         "label": "Ainda não sei"
       }
     ],
+    "maisQuadrosLabel": "Quer mais do que um quadro principal?",
+    "maisQuadrosHint": "Pode pedir mais do que um quadro principal. Para isto, normalmente, terá de nos entregar mais flores do que só o bouquet (por exemplo, as dos arranjos, das mesas ou da decoração). Na dúvida, fale connosco antes de reservar. <b>Atenção: não são os quadros extra pequenos (20×25 cm), esses pedem-se mais abaixo, nos extras opcionais.</b>",
+    "maisQuadrosOpcoes": [
+      { "valor": "Não, apenas um quadro principal", "label": "Não, só um quadro principal" },
+      { "valor": "Sim, quero mais do que um quadro principal", "label": "Sim, mais do que um principal" }
+    ],
+    "adicionaisTitulo": "Quadros adicionais",
+    "adicionaisIntro": "Indique quantos quadros quer de cada tamanho, além do quadro principal escolhido acima. Cada um tem o preço do seu tamanho, com o mesmo fundo e o mesmo vidro do principal. Se quiser personalizar cada quadro de forma diferente (outro fundo, outro vidro), escreva-o nas notas adicionais, no fim deste formulário.",
+    "adicionaisLabel": "Quantos de cada tamanho?",
+    "erroAdicionaisPeloMenosUm": "Indique pelo menos um quadro adicional, ou responda \"Não\" na pergunta anterior.",
+    "erroQuantidadeInvalida": "Indique um número inteiro entre 0 e 99.",
     "tamanhoOpcoes": [
       {
         "valor": "30x40cm",
@@ -1922,6 +1933,9 @@
     "successAssinatura": "Com carinho, Flores à Beira-Rio",
     "camposObrigatorios": "Campos assinalados com",
     "resumo": {
+      "adicional": "{n, plural, one {# quadro adicional {tamanho} cm} other {# quadros adicionais {tamanho} cm}} ({n} × {unit})",
+      "fotoAdicionais": "Fundo fotografia nos quadros adicionais",
+      "vidroAdicionais": "Vidro museu anti-UV nos quadros adicionais",
       "titulo": "Resumo da sua encomenda",
       "vazio": "À medida que escolher o tamanho, o fundo e os extras, o resumo aparece aqui com o valor de cada escolha.",
       "quadro": "Quadro {tamanho} cm",
