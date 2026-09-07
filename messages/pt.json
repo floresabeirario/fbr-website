@@ -1700,7 +1700,7 @@
       }
     ],
     "maisQuadrosLabel": "Quer mais do que um quadro principal?",
-    "maisQuadrosHint": "Alguns clientes fazem dois quadros grandes, por exemplo dois de 30×40 cm, ou um de 30×40 cm e outro de 50×70 cm. <b>Cada quadro precisa das suas próprias flores:</b> para mais do que um quadro principal terá de nos entregar bastante mais flores do que só o bouquet (por exemplo, as flores dos arranjos, da decoração ou das lapelas). Se não tiver a certeza de ter flores suficientes, fale connosco antes de reservar.",
+    "maisQuadrosHint": "Alguns clientes pedem dois quadros grandes, por exemplo dois de 30×40 cm, ou um de 30×40 cm e outro de 50×70 cm. <b>Cada quadro precisa das suas próprias flores:</b> para mais do que um quadro principal terá de nos entregar bastante mais flores do que só o bouquet (por exemplo, as flores dos arranjos, da decoração ou das lapelas). Se não tiver a certeza de ter flores suficientes, fale connosco antes de reservar.",
     "maisQuadrosOpcoes": [
       { "valor": "Não, apenas um quadro principal", "label": "Não, só um quadro" },
       { "valor": "Sim, quero mais do que um quadro principal", "label": "Sim, quero mais quadros" }
