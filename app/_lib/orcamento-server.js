@@ -18,7 +18,7 @@
 // ============================================================
 
 import { getPrecos } from "./precos";
-import { computePricingSnapshot, itemsFromPrecos } from "./orcamento";
+import { formatEuro, computePricingSnapshot, itemsFromPrecos } from "./orcamento";
 
 /**
  * Devolve `{ budget, pricing_snapshot }` para juntar ao payload de
@@ -63,4 +63,29 @@ export async function camposOrcamento(supabase, payload) {
     console.warn("[orcamento] não foi possível calcular o orçamento:", err?.message);
     return {};
   }
+}
+
+/**
+ * Bloco HTML com o orçamento estimado para o email de notificação à FBR:
+ * total + uma linha por item do snapshot (a mesma decomposição que o
+ * cliente viu no resumo). Devolve "" quando não há snapshot. Pedido da
+ * Maria (07/09/2026): o email listava os campos todos mas não o total.
+ */
+export function orcamentoEmailHtml(payload) {
+  const snap = payload?.pricing_snapshot;
+  if (!snap || !Array.isArray(snap.lines)) return "";
+  const esc = (v) => String(v).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const itens = snap.lines
+    .filter((l) => l.subtotal > 0)
+    .map((l) => {
+      const rotulo = esc(l.label) + (l.variant === "additional" ? " (quadro adicional)" : "");
+      const conta = l.qty > 1 ? `${l.qty} × ${formatEuro(l.unit_price)} = ` : "";
+      return `<li>${rotulo}: ${conta}${formatEuro(l.subtotal)}</li>`;
+    })
+    .join("");
+  const titulo = snap.provisional
+    ? `Orçamento provisório: ${formatEuro(snap.total)} <span style="font-weight:400;color:#666;">(tamanho por decidir, calculado com a 30x40)</span>`
+    : `Orçamento estimado: ${formatEuro(snap.total)}`;
+  return `<p style="font-family:sans-serif;font-size:15px;margin:14px 0 4px;"><strong>${titulo}</strong></p>`
+    + `<ul style="font-family:sans-serif;font-size:13px;color:#444;margin:0 0 16px;padding-left:18px;line-height:1.6;">${itens}</ul>`;
 }

@@ -26,7 +26,7 @@ import {
 } from "@/app/_lib/api-helpers";
 import { EMAIL } from "@/app/_lib/constants";
 import { mapEmoldurarToOrder } from "@/app/_lib/supabase-mappings";
-import { camposOrcamento } from "@/app/_lib/orcamento-server";
+import { camposOrcamento, orcamentoEmailHtml } from "@/app/_lib/orcamento-server";
 import { verifyTurnstile } from "@/app/_lib/turnstile";
 
 const isRateLimited = createRateLimiter();
@@ -213,6 +213,11 @@ export async function POST(request) {
       const e = (v) =>
         escapeHtml(!v || (Array.isArray(v) && !v.length) ? "—" : Array.isArray(v) ? v.join(", ") : v);
       const idiomaLabel = data.locale === "en" ? "Inglês" : "Português";
+      // Quadros principais adicionais (mig 107): "1× 30×40, 2× 50×70".
+      const adicionaisTexto = Object.entries(payload.additional_main_frames ?? {})
+        .map(([size, n]) => `${n}× ${size.replace("x", "×")}`)
+        .join(", ");
+
       const linhas = [
         `<tr><td><strong>ID</strong></td><td><code>${escapeHtml(inserted.order_id)}</code></td></tr>`,
         `<tr><td><strong>Serviço</strong></td><td>Emoldurar flores secas</td></tr>`,
@@ -230,6 +235,8 @@ export async function POST(request) {
         `<tr><td><strong>Como enviar flores</strong></td><td>${e(data.comoEnviarFlores)}</td></tr>`,
         `<tr><td><strong>Como receber quadro</strong></td><td>${e(data.comoReceberQuadro)}</td></tr>`,
         `<tr><td><strong>Tamanho da moldura</strong></td><td>${e(data.tamanhoMoldura)}</td></tr>`,
+        data.maisQuadros ? `<tr><td><strong>Mais do que um quadro principal</strong></td><td>${e(data.maisQuadros)}</td></tr>` : "",
+        adicionaisTexto ? `<tr><td><strong>Quadros principais adicionais</strong></td><td>${e(adicionaisTexto)}</td></tr>` : "",
         `<tr><td><strong>Tipo de fundo</strong></td><td>${e(data.tipoFundo)}</td></tr>`,
         `<tr><td><strong>Vidro museu</strong></td><td>${e(data.vidroMuseu)}</td></tr>`,
         data.vidroMuseuMini ? `<tr><td><strong>Vidro museu (quadros pequenos)</strong></td><td>${e(data.vidroMuseuMini)}</td></tr>` : "",
@@ -253,6 +260,7 @@ export async function POST(request) {
 <p style="font-family:sans-serif;font-size:13px;color:#666;">
   Veja no admin: <a href="https://admin.floresabeirario.pt/preservacao/${escapeHtml(inserted.order_id)}">${escapeHtml(inserted.order_id)}</a>
 </p>
+${orcamentoEmailHtml(payload)}
 <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse;width:100%;max-width:600px;">
   <tbody style="line-height:1.7;">${linhas}</tbody>
 </table>`,

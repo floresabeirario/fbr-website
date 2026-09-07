@@ -49,6 +49,11 @@ const INIT = {
   comoEnviarFlores: "",
   comoReceberQuadro: "",
   tamanhoMoldura: "",
+  // Quadros principais adicionais (mig 107): "Sim/Não" + quantidade por tamanho.
+  maisQuadros: "",
+  adicional30x40: "",
+  adicional40x50: "",
+  adicional50x70: "",
   tipoFundo: "",
   vidroMuseu: "",
   vidroMuseuMini: "",
@@ -118,6 +123,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
   const meioContactoOpcoes  = t.raw("meioContactoOpcoes");
   const comoReceberOpcoes   = t.raw("comoReceberOpcoes");
   const tamanhoOpcoes       = t.raw("tamanhoOpcoes");
+  const maisQuadrosOpcoes   = t.raw("maisQuadrosOpcoes");
   const fundoOpcoes         = t.raw("fundoOpcoes");
   const vidroMuseuOpcoes    = t.raw("vidroMuseuOpcoes");
   const tipoEventoOpcoes    = t.raw("tipoEventoOpcoes");
@@ -137,6 +143,8 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
   const OUTRO_VALOR    = comoConheceuOpcoes.find((o) => o.valor === "Outro (especificar abaixo)")?.valor ?? "Outro (especificar abaixo)";
   const VALE_VALOR     = comoConheceuOpcoes.find((o) => o.valor === "Ofereceram-me um Vale-Presente para preservação")?.valor ?? "Ofereceram-me um Vale-Presente para preservação";
   const CASAMENTO_VALOR = tipoEventoOpcoes.find((o) => o.valor === "Casamento")?.valor ?? "Casamento";
+  const MAIS_QUADROS_SIM = maisQuadrosOpcoes[1].valor;
+  const TAMANHOS_ADICIONAIS = [["30x40", "30×40"], ["40x50", "40×50"], ["50x70", "50×70"]];
 
   // Só a página do próprio serviço é relevante aqui. As páginas "Como
   // Funciona" e "Opções e Preços" são da preservação de flores frescas.
@@ -211,6 +219,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
       tamanhoMoldura: "tamanhoLabel", tipoFundo: "fundoLabel", vidroMuseu: "vidroMuseuLabel", vidroMuseuMini: "vidroMuseuMiniLabel", elementosExtra: "elementosLabel",
       elementosExtraOutro: "elementosOutroLabel", quadrosExtra: "quadrosExtraLabel",
       quantosQuadros: "quantosQuadrosLabel", ornamentosNatal: "ornamentosLabel",
+      maisQuadros: "maisQuadrosLabel", adicionais: "adicionaisLabel",
       quantosOrnamentos: "quantosOrnamentosLabel", pendentes: "pendentesLabel",
       quantosPendentes: "quantosPendentesLabel", comoConheceu: "comoConheceuLabel",
       nomeFlorista: "nomeFlorista", comoConheceuOutro: "comoConheceuOutroLabel",
@@ -236,6 +245,11 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
       if (key === "ornamentosNatal" && val !== ORNAMENTOS_SIM) next.quantosOrnamentos = "";
       if (key === "pendentes"       && val !== PENDENTES_SIM)  next.quantosPendentes  = "";
       if (key === "tipoEvento"      && val !== CASAMENTO_VALOR) next.nomeNoivos        = "";
+      if (key === "maisQuadros"     && val !== MAIS_QUADROS_SIM) {
+        next.adicional30x40 = "";
+        next.adicional40x50 = "";
+        next.adicional50x70 = "";
+      }
       if (key === "tipoEvento"      && val !== "Outro")           next.tipoEventoOutro  = "";
       if (key === "comoConheceu") {
         next.comoConheceuOutro = "";
@@ -245,6 +259,8 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
       return next;
     });
     if (errors[key]) setErrors((e) => { const n = { ...e }; delete n[key]; return n; });
+    // As 3 quantidades dos quadros adicionais partilham um único erro ("adicionais").
+    if (key.startsWith("adicional") && errors.adicionais) setErrors((e) => { const n = { ...e }; delete n.adicionais; return n; });
   };
 
   const toggleElemento = (opcao) => {
@@ -305,6 +321,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
   const showCodigoVale        = form.comoConheceu    === VALE_VALOR;
   const valeAplicavel = showCodigoVale && valeInfo && Number.isFinite(valeInfo.valor) && !valeInfo.expirado ? valeInfo.valor : null;
   const showNomeNoivos        = form.tipoEvento      === CASAMENTO_VALOR;
+  const showAdicionais        = form.maisQuadros     === MAIS_QUADROS_SIM;
   const showTipoEventoOutro   = form.tipoEvento      === "Outro";
   const showElementosExtraOutro = form.elementosExtra.includes(ELEM_OUTRO);
 
@@ -328,6 +345,19 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
     if (!form.comoEnviarFlores)   e.comoEnviarFlores = t("erroCampoObrigatorio");
     if (!form.comoReceberQuadro)  e.comoReceberQuadro = t("erroCampoObrigatorio");
     if (!form.tamanhoMoldura)     e.tamanhoMoldura = t("erroCampoObrigatorio");
+    if (!form.maisQuadros)        e.maisQuadros = t("erroCampoObrigatorio");
+    if (showAdicionais) {
+      let total = 0, invalido = false;
+      for (const [size] of TAMANHOS_ADICIONAIS) {
+        const raw = String(form[`adicional${size}`] ?? "").trim();
+        if (!raw) continue;
+        const n = Number(raw);
+        if (!Number.isInteger(n) || n < 0 || n > 99) invalido = true;
+        else total += n;
+      }
+      if (invalido) e.adicionais = t("erroQuantidadeInvalida");
+      else if (total === 0) e.adicionais = t("erroAdicionaisPeloMenosUm");
+    }
     if (!form.tipoFundo)          e.tipoFundo = t("erroCampoObrigatorio");
     if (!form.vidroMuseu)         e.vidroMuseu = t("erroCampoObrigatorio");
     // Só obrigatório quando há mini-quadros: o vidro deles é escolha à parte.
@@ -687,6 +717,46 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
         >
           <PillGroup name="tamanhoMoldura" options={tamanhoOpcoes} value={form.tamanhoMoldura} onChange={(v) => set("tamanhoMoldura", v)} error={Boolean(errors.tamanhoMoldura)} />
         </Field>
+
+        {/* Mais do que um quadro principal (mig 107). Igual ao formulário de
+            preservação; só o aviso muda (aqui as flores já estão secas e o
+            que conta é haver material para todos os quadros). */}
+        <Field
+          name="maisQuadros"
+          as="fieldset"
+          label={t("maisQuadrosLabel")}
+          required
+          error={errors.maisQuadros}
+          hint={te.rich("maisQuadrosHint", { b: (chunks) => <strong>{chunks}</strong> })}
+        >
+          <PillGroup name="maisQuadros" options={maisQuadrosOpcoes} value={form.maisQuadros} onChange={(v) => set("maisQuadros", v)} error={Boolean(errors.maisQuadros)} />
+        </Field>
+
+        {showAdicionais && (
+          <div className="pf-subblock">
+            <h3 className="pf-subblock-title">{t("adicionaisTitulo")}</h3>
+            <p className="pf-hint">{t("adicionaisIntro")}</p>
+            <Field name="adicionais" as="fieldset" label={t("adicionaisLabel")} error={errors.adicionais}>
+              <div className="pf-qty-grid">
+                {TAMANHOS_ADICIONAIS.map(([size, rotulo]) => (
+                  <label key={size} className="pf-qty-item">
+                    <span className="pf-qty-label">{rotulo} cm</span>
+                    <input
+                      type="number"
+                      min={0}
+                      max={99}
+                      inputMode="numeric"
+                      value={form[`adicional${size}`]}
+                      onChange={(e) => set(`adicional${size}`, e.target.value)}
+                      className={`pf-input${errors.adicionais ? " pf-input-err" : ""}`}
+                      placeholder="0"
+                    />
+                  </label>
+                ))}
+              </div>
+            </Field>
+          </div>
+        )}
 
         {/* TODO (Maria, lembrar mais tarde): re-adicionar link para exemplos de
             fundos no Instagram quando houver mais publicações lá. */}

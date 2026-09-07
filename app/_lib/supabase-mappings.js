@@ -430,6 +430,7 @@ export function mapEmoldurarToOrder(data, { ip, clientPhotos = [] } = {}) {
     extras_in_frame,
     extra_small_frames,
     extra_small_frames_qty:    toIntOrNull(data.quantosQuadros),
+    additional_main_frames:    mapAdicionais(data, errors),
     christmas_ornaments,
     christmas_ornaments_qty:   toIntOrNull(data.quantosOrnamentos),
     necklace_pendants,

@@ -33,7 +33,7 @@ import {
 import { EMAIL } from "@/app/_lib/constants";
 import { mapReservaToOrder } from "@/app/_lib/supabase-mappings";
 import { verifyTurnstile } from "@/app/_lib/turnstile";
-import { camposOrcamento } from "@/app/_lib/orcamento-server";
+import { camposOrcamento, orcamentoEmailHtml } from "@/app/_lib/orcamento-server";
 
 const isRateLimited = createRateLimiter();
 
@@ -272,6 +272,7 @@ export async function POST(request) {
 <p style="font-family:sans-serif;font-size:13px;color:#666;">
   Veja no admin: <a href="https://admin.floresabeirario.pt/preservacao/${escapeHtml(inserted.order_id)}">${escapeHtml(inserted.order_id)}</a>
 </p>
+${orcamentoEmailHtml(payload)}
 <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse;width:100%;max-width:600px;">
   <tbody style="line-height:1.7;">${linhas}</tbody>
 </table>`,
