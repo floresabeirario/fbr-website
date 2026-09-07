@@ -191,6 +191,11 @@ export async function POST(request) {
 
       const idiomaLabel = data.locale === "en" ? "Inglês" : "Português";
 
+      // Quadros principais adicionais (mig 107): "1× 30×40, 2× 50×70".
+      const adicionaisTexto = Object.entries(payload.additional_main_frames ?? {})
+        .map(([size, n]) => `${n}× ${size.replace("x", "×")}`)
+        .join(", ");
+
       // Detalhes da recolha no local — só aparecem no email quando é essa
       // a opção de envio. "Ainda não sabe" é informação útil, por isso
       // mostra-se em vez de um traço.
@@ -232,6 +237,8 @@ export async function POST(request) {
         ...linhasRecolha,
         `<tr><td><strong>Como receber quadro</strong></td><td>${e(data.comoReceberQuadro)}</td></tr>`,
         `<tr><td><strong>Tamanho da moldura</strong></td><td>${e(data.tamanhoMoldura)}</td></tr>`,
+        data.maisQuadros ? `<tr><td><strong>Mais do que um quadro principal</strong></td><td>${e(data.maisQuadros)}</td></tr>` : "",
+        adicionaisTexto ? `<tr><td><strong>Quadros principais adicionais</strong></td><td>${e(adicionaisTexto)}</td></tr>` : "",
         `<tr><td><strong>Tipo de fundo</strong></td><td>${e(data.tipoFundo)}</td></tr>`,
         `<tr><td><strong>Vidro museu</strong></td><td>${e(data.vidroMuseu)}</td></tr>`,
         data.vidroMuseuMini ? `<tr><td><strong>Vidro museu (quadros pequenos)</strong></td><td>${e(data.vidroMuseuMini)}</td></tr>` : "",

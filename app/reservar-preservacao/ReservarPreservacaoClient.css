@@ -1425,3 +1425,33 @@ input[type="date"].pf-input {
 .pf-legend {
   padding-inline: 0;
 }
+
+/* ── Quadros principais adicionais: 3 quantidades lado a lado ──
+   Uma coluna por tamanho; cabe a 360px porque cada caixa só leva 2
+   algarismos. */
+.pf-qty-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.pf-qty-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.pf-qty-label {
+  font-family: var(--font-google-sans), "Google Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1C1008;
+}
+
+.pf-qty-grid .pf-input {
+  text-align: center;
+  padding-left: 8px;
+  padding-right: 8px;
+}

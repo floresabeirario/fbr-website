@@ -48,6 +48,11 @@ const INIT = {
   recolhaNotas: "",
   comoReceberQuadro: "",
   tamanhoMoldura: "",
+  // Quadros principais adicionais (mig 107): "Sim/Não" + quantidade por tamanho.
+  maisQuadros: "",
+  adicional30x40: "",
+  adicional40x50: "",
+  adicional50x70: "",
   tipoFundo: "",
   vidroMuseu: "",
   vidroMuseuMini: "",
@@ -121,6 +126,7 @@ export default function ReservarPreservacaoForm({ precos = PRECOS_FALLBACK }) {
   const comoEnviarOpcoes    = t.raw("comoEnviarOpcoes");
   const comoReceberOpcoes   = t.raw("comoReceberOpcoes");
   const tamanhoOpcoes       = t.raw("tamanhoOpcoes");
+  const maisQuadrosOpcoes   = t.raw("maisQuadrosOpcoes");
   const fundoOpcoes         = t.raw("fundoOpcoes");
   const vidroMuseuOpcoes    = t.raw("vidroMuseuOpcoes");
   const tipoEventoOpcoes    = t.raw("tipoEventoOpcoes");
@@ -138,6 +144,8 @@ export default function ReservarPreservacaoForm({ precos = PRECOS_FALLBACK }) {
   const OUTRO_VALOR    = comoConheceuOpcoes.find((o) => o.valor === "Outro (especificar abaixo)")?.valor ?? "Outro (especificar abaixo)";
   const VALE_VALOR     = comoConheceuOpcoes.find((o) => o.valor === "Ofereceram-me um Vale-Presente para preservação")?.valor ?? "Ofereceram-me um Vale-Presente para preservação";
   const CASAMENTO_VALOR = tipoEventoOpcoes.find((o) => o.valor === "Casamento")?.valor ?? "Casamento";
+  const MAIS_QUADROS_SIM = maisQuadrosOpcoes[1].valor;
+  const TAMANHOS_ADICIONAIS = [["30x40", "30×40"], ["40x50", "40×50"], ["50x70", "50×70"]];
   // Identificado por padrão e não por posição — o texto da opção já mudou
   // uma vez e a posição na lista não é garantida.
   const RECOLHA_VALOR   = comoEnviarOpcoes.find((o) => /recolha no local/i.test(o.valor))?.valor ?? "";
@@ -279,6 +287,8 @@ export default function ReservarPreservacaoForm({ precos = PRECOS_FALLBACK }) {
     elementosExtraOutro: "elementosOutroLabel",
     quadrosExtra: "quadrosExtraLabel",
     quantosQuadros: "quantosQuadrosLabel",
+    maisQuadros: "maisQuadrosLabel",
+    adicionais: "adicionaisLabel",
     ornamentosNatal: "ornamentosLabel",
     quantosOrnamentos: "quantosOrnamentosLabel",
     pendentes: "pendentesLabel",
@@ -305,6 +315,11 @@ export default function ReservarPreservacaoForm({ precos = PRECOS_FALLBACK }) {
       if (key === "ornamentosNatal" && val !== ORNAMENTOS_SIM) next.quantosOrnamentos = "";
       if (key === "pendentes"       && val !== PENDENTES_SIM)  next.quantosPendentes  = "";
       if (key === "tipoEvento"      && val !== CASAMENTO_VALOR) next.nomeNoivos       = "";
+      if (key === "maisQuadros"     && val !== MAIS_QUADROS_SIM) {
+        next.adicional30x40 = "";
+        next.adicional40x50 = "";
+        next.adicional50x70 = "";
+      }
       if (key === "tipoEvento"      && val !== "Outro")           next.tipoEventoOutro  = "";
       // Trocar o método de envio limpa os detalhes da recolha — nunca
       // enviamos dados de uma opção que já não está escolhida.
@@ -333,6 +348,8 @@ export default function ReservarPreservacaoForm({ precos = PRECOS_FALLBACK }) {
       return next;
     });
     if (errors[key]) setErrors((e) => { const n = { ...e }; delete n[key]; return n; });
+    // As 3 quantidades dos quadros adicionais partilham um único erro ("adicionais").
+    if (key.startsWith("adicional") && errors.adicionais) setErrors((e) => { const n = { ...e }; delete n.adicionais; return n; });
     // Assinalar "Ainda não sei" resolve por si o erro do campo respectivo.
     if (key === "recolhaDataNaoSei" && val) setErrors((e) => { const n = { ...e }; delete n.recolhaData; return n; });
     if (key === "recolhaHoraNaoSei" && val) setErrors((e) => { const n = { ...e }; delete n.recolhaHora; return n; });
@@ -375,6 +392,7 @@ export default function ReservarPreservacaoForm({ precos = PRECOS_FALLBACK }) {
   const showCodigoVale        = form.comoConheceu    === VALE_VALOR;
   const valeAplicavel = showCodigoVale && valeInfo && Number.isFinite(valeInfo.valor) && !valeInfo.expirado ? valeInfo.valor : null;
   const showNomeNoivos        = form.tipoEvento      === CASAMENTO_VALOR;
+  const showAdicionais        = form.maisQuadros     === MAIS_QUADROS_SIM;
   const showTipoEventoOutro   = form.tipoEvento      === "Outro";
   const showElementosExtraOutro = form.elementosExtra.includes(ELEM_OUTRO);
   const showRecolha           = Boolean(RECOLHA_VALOR) && form.comoEnviarFlores === RECOLHA_VALOR;
@@ -415,6 +433,19 @@ export default function ReservarPreservacaoForm({ precos = PRECOS_FALLBACK }) {
     }
     if (!form.comoReceberQuadro)  e.comoReceberQuadro = t("erroCampoObrigatorio");
     if (!form.tamanhoMoldura)     e.tamanhoMoldura = t("erroCampoObrigatorio");
+    if (!form.maisQuadros)        e.maisQuadros = t("erroCampoObrigatorio");
+    if (showAdicionais) {
+      let total = 0, invalido = false;
+      for (const [size] of TAMANHOS_ADICIONAIS) {
+        const raw = String(form[`adicional${size}`] ?? "").trim();
+        if (!raw) continue;
+        const n = Number(raw);
+        if (!Number.isInteger(n) || n < 0 || n > 99) invalido = true;
+        else total += n;
+      }
+      if (invalido) e.adicionais = t("erroQuantidadeInvalida");
+      else if (total === 0) e.adicionais = t("erroAdicionaisPeloMenosUm");
+    }
     if (!form.tipoFundo)          e.tipoFundo = t("erroCampoObrigatorio");
     if (!form.vidroMuseu)         e.vidroMuseu = t("erroCampoObrigatorio");
     // Só obrigatório quando há mini-quadros: o vidro deles é escolha à parte.
@@ -900,6 +931,47 @@ export default function ReservarPreservacaoForm({ precos = PRECOS_FALLBACK }) {
         >
           <PillGroup name="tamanhoMoldura" options={tamanhoOpcoes} value={form.tamanhoMoldura} onChange={(v) => set("tamanhoMoldura", v)} error={Boolean(errors.tamanhoMoldura)} />
         </Field>
+
+        {/* Mais do que um quadro principal (mig 107). Alguns clientes
+            fazem dois quadros grandes; cada um entra pelo preço cheio do
+            seu tamanho e precisa das suas próprias flores, por isso o
+            aviso vai já na pergunta, antes de responderem. */}
+        <Field
+          name="maisQuadros"
+          as="fieldset"
+          label={t("maisQuadrosLabel")}
+          required
+          error={errors.maisQuadros}
+          hint={t.rich("maisQuadrosHint", { b: (chunks) => <strong>{chunks}</strong> })}
+        >
+          <PillGroup name="maisQuadros" options={maisQuadrosOpcoes} value={form.maisQuadros} onChange={(v) => set("maisQuadros", v)} error={Boolean(errors.maisQuadros)} />
+        </Field>
+
+        {showAdicionais && (
+          <div className="pf-subblock">
+            <h3 className="pf-subblock-title">{t("adicionaisTitulo")}</h3>
+            <p className="pf-hint">{t("adicionaisIntro")}</p>
+            <Field name="adicionais" as="fieldset" label={t("adicionaisLabel")} error={errors.adicionais}>
+              <div className="pf-qty-grid">
+                {TAMANHOS_ADICIONAIS.map(([size, rotulo]) => (
+                  <label key={size} className="pf-qty-item">
+                    <span className="pf-qty-label">{rotulo} cm</span>
+                    <input
+                      type="number"
+                      min={0}
+                      max={99}
+                      inputMode="numeric"
+                      value={form[`adicional${size}`]}
+                      onChange={(e) => set(`adicional${size}`, e.target.value)}
+                      className={`pf-input${errors.adicionais ? " pf-input-err" : ""}`}
+                      placeholder="0"
+                    />
+                  </label>
+                ))}
+              </div>
+            </Field>
+          </div>
+        )}
 
         <Field
           name="tipoFundo"

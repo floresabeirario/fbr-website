@@ -1691,6 +1691,17 @@
         "label": "Not sure yet"
       }
     ],
+    "maisQuadrosLabel": "Would you like more than one main frame?",
+    "maisQuadrosHint": "Some clients make two large frames, for example two 30×40 cm, or one 30×40 cm and one 50×70 cm. <b>Each frame needs its own flowers:</b> for more than one main frame you will need to send us considerably more flowers than just the bouquet (for example, flowers from the arrangements, the decoration or the boutonnieres). If you are not sure you will have enough flowers, talk to us before booking.",
+    "maisQuadrosOpcoes": [
+      { "valor": "Não, apenas um quadro principal", "label": "No, just one frame" },
+      { "valor": "Sim, quero mais do que um quadro principal", "label": "Yes, I want more frames" }
+    ],
+    "adicionaisTitulo": "Additional frames",
+    "adicionaisIntro": "Tell us how many frames you would like of each size, in addition to the main frame chosen above. Each one is priced by its size, with the same background and glass as the main frame.",
+    "adicionaisLabel": "How many of each size?",
+    "erroAdicionaisPeloMenosUm": "Enter at least one additional frame, or answer \"No\" to the previous question.",
+    "erroQuantidadeInvalida": "Enter a whole number between 0 and 99.",
     "tamanhoOpcoes": [
       {
         "valor": "30x40cm",
@@ -1914,6 +1925,9 @@
     "successAssinatura": "With love, Flores à Beira-Rio",
     "camposObrigatorios": "Fields marked with",
     "resumo": {
+      "adicional": "{n, plural, one {# additional {tamanho} cm frame} other {# additional {tamanho} cm frames}} ({n} × {unit})",
+      "fotoAdicionais": "Photo background on the additional frames",
+      "vidroAdicionais": "Anti-UV museum glass on the additional frames",
       "titulo": "Your order summary",
       "vazio": "As you choose the size, background and extras, the summary appears here with the price of each choice.",
       "quadro": "{tamanho} cm frame",
