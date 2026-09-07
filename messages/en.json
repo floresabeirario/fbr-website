@@ -1698,7 +1698,7 @@
       { "valor": "Sim, quero mais do que um quadro principal", "label": "Yes, more than one main frame" }
     ],
     "adicionaisTitulo": "Additional frames",
-    "adicionaisIntro": "Tell us how many frames you would like of each size, in addition to the main frame chosen above. Each one is priced by its size, with the same background and glass as the main frame.",
+    "adicionaisIntro": "Tell us how many frames you would like of each size, in addition to the main frame chosen above. Each one is priced by its size, with the same background and glass as the main frame. If you would like each frame customised differently (another background, another glass), write it in the additional notes at the end of this form.",
     "adicionaisLabel": "How many of each size?",
     "erroAdicionaisPeloMenosUm": "Enter at least one additional frame, or answer \"No\" to the previous question.",
     "erroQuantidadeInvalida": "Enter a whole number between 0 and 99.",

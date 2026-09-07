@@ -1706,7 +1706,7 @@
       { "valor": "Sim, quero mais do que um quadro principal", "label": "Sim, mais do que um principal" }
     ],
     "adicionaisTitulo": "Quadros adicionais",
-    "adicionaisIntro": "Indique quantos quadros quer de cada tamanho, além do quadro principal escolhido acima. Cada um tem o preço do seu tamanho, com o mesmo fundo e o mesmo vidro do principal.",
+    "adicionaisIntro": "Indique quantos quadros quer de cada tamanho, além do quadro principal escolhido acima. Cada um tem o preço do seu tamanho, com o mesmo fundo e o mesmo vidro do principal. Se quiser personalizar cada quadro de forma diferente (outro fundo, outro vidro), escreva-o nas notas adicionais, no fim deste formulário.",
     "adicionaisLabel": "Quantos de cada tamanho?",
     "erroAdicionaisPeloMenosUm": "Indique pelo menos um quadro adicional, ou responda \"Não\" na pergunta anterior.",
     "erroQuantidadeInvalida": "Indique um número inteiro entre 0 e 99.",
