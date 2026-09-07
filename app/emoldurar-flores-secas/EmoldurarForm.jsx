@@ -28,7 +28,6 @@ import { useRascunho } from "../_lib/use-rascunho";
 import AvisoRascunho from "../_components/AvisoRascunho";
 import { formatEuro, formatDataCurta } from "../_lib/orcamento";
 import ResumoEncomenda from "../_components/ResumoEncomenda";
-import SeccaoTitulo from "../_components/SeccaoTitulo";
 import PillGroup from "../_components/PillGroup";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
@@ -481,7 +480,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
 
       {/* ── DADOS PESSOAIS ── */}
       <div className="pf-section" role="group" aria-labelledby="sec-pessoais">
-        <SeccaoTitulo n={1} id="sec-pessoais" titulo={t("secDadosPessoais")} lead={t("secLead.pessoais")} />
+        <h2 className="pf-section-title" id="sec-pessoais">{t("secDadosPessoais")}</h2>
 
         <Field name="nome" label={t("nomeLabel")} required error={errors.nome} hint={t("nomeHint")}>
           <input type="text" {...inp("nome")} placeholder={t("nomePlaceholder")} autoComplete="name" />
@@ -550,7 +549,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
 
       {/* ── AS SUAS FLORES ── */}
       <div className="pf-section" role="group" aria-labelledby="sec-flores">
-        <SeccaoTitulo n={2} id="sec-flores" titulo={te("secFlores")} lead={te("secLead.flores")} />
+        <h2 className="pf-section-title" id="sec-flores">{te("secFlores")}</h2>
 
         <Field name="tipoEvento" label={t("tipoEventoLabel")} required error={errors.tipoEvento} hint={te("tipoEventoHint")} as="fieldset">
           <PillGroup name="tipoEvento" options={tipoEventoOpcoes} value={form.tipoEvento} onChange={(v) => set("tipoEvento", v)} error={Boolean(errors.tipoEvento)} />
@@ -611,7 +610,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
 
       {/* ── A ABORDAGEM ── */}
       <div className="pf-section" role="group" aria-labelledby="sec-abordagem">
-        <SeccaoTitulo n={3} id="sec-abordagem" titulo={te("secAbordagem")} lead={te("secLead.abordagem")} />
+        <h2 className="pf-section-title" id="sec-abordagem">{te("secAbordagem")}</h2>
 
         <Field
           name="abordagem"
@@ -636,7 +635,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
 
       {/* ── ENVIO E RECEPÇÃO ── */}
       <div className="pf-section" role="group" aria-labelledby="sec-logistica">
-        <SeccaoTitulo n={4} id="sec-logistica" titulo={t("secLogistica")} lead={t("secLead.logistica")} />
+        <h2 className="pf-section-title" id="sec-logistica">{t("secLogistica")}</h2>
 
         <Field
           name="comoEnviarFlores"
@@ -673,7 +672,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
 
       {/* ── O QUADRO ── */}
       <div className="pf-section" role="group" aria-labelledby="sec-quadro">
-        <SeccaoTitulo n={5} id="sec-quadro" titulo={t("secQuadro")} lead={t("secLead.quadro")} />
+        <h2 className="pf-section-title" id="sec-quadro">{t("secQuadro")}</h2>
 
         <Field
           name="tamanhoMoldura"
@@ -756,7 +755,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
 
       {/* ── EXTRAS OPCIONAIS ── */}
       <div className="pf-section pf-section-leve" role="group" aria-labelledby="sec-extras">
-        <SeccaoTitulo n={6} id="sec-extras" titulo={t("secExtras")} lead={t("secLead.extras")} />
+        <h2 className="pf-section-title" id="sec-extras">{t("secExtras")}</h2>
 
         <Field name="quadrosExtra" label={t("quadrosExtraLabel")} required error={errors.quadrosExtra} hint={<>{t("quadrosExtraHint", { mini20x25: precos.mini20x25 })} {botaoExemplo("minis")}</>}>
           <select {...inp("quadrosExtra")}>
@@ -817,7 +816,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
 
       {/* ── OUTROS ── */}
       <div className="pf-section" role="group" aria-labelledby="sec-outros">
-        <SeccaoTitulo n={7} id="sec-outros" titulo={t("secOutros")} lead={t("secLead.outros")} />
+        <h2 className="pf-section-title" id="sec-outros">{t("secOutros")}</h2>
 
         <Field name="comoConheceu" label={t("comoConheceuLabel")} required error={errors.comoConheceu}>
           <select {...inp("comoConheceu")}>
@@ -880,7 +879,7 @@ export default function EmoldurarForm({ precos = PRECOS_FALLBACK }) {
           Termos fica aqui, mesmo antes de submeter, para a pessoa ler o
           total e o prazo antes de aceitar. */}
       <div className="pf-section pf-section-resumo" role="group" aria-labelledby="sec-resumo" onFocus={() => marcaSeccao("resumo")}>
-        <SeccaoTitulo id="sec-resumo" titulo={t("resumo.titulo")} />
+        <h2 className="pf-section-title" id="sec-resumo">{t("resumo.titulo")}</h2>
         <ResumoEncomenda
           form={form}
           precos={precos}

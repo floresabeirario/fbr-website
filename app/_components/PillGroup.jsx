@@ -24,6 +24,7 @@ export default function PillGroup({ name, options, value, onChange, error }) {
               checked={on}
               onChange={() => onChange(o.valor)}
             />
+            <span className="pf-pill-dot" aria-hidden="true" />
             <span className="pf-pill-texto">{o.label}</span>
           </label>
         );

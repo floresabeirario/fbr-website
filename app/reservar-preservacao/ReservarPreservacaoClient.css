@@ -1273,54 +1273,6 @@ input[type="date"].pf-input {
 .pf-success-passos li { margin: 6px 0; padding-left: 4px; }
 .pf-success-passos li::marker { color: #B8954A; font-weight: 700; }
 
-/* ═══════════════════════════════════════════════
-   CABEÇALHO DE SECÇÃO — numeral + título + linha de contexto
-   (SeccaoTitulo.jsx). O numeral dourado em TAN Memories repete a barra
-   "01 02 03" do topo da página; a linha de contexto dá voz a cada bloco.
-═══════════════════════════════════════════════ */
-.pf-section-head {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin: 0 0 clamp(18px, 3vw, 24px);
-  padding-bottom: 14px;
-  border-bottom: 1px solid rgba(90, 64, 40, 0.10);
-}
-
-.pf-section-n {
-  font-family: "TAN-MEMORIES", serif;
-  font-size: 2.1rem;
-  line-height: 0.9;
-  color: #D4B060;
-  flex-shrink: 0;
-  margin-top: 1px;
-  letter-spacing: -0.01em;
-}
-
-.pf-section-head-texto {
-  flex: 1;
-  min-width: 0;
-}
-
-/* Dentro do cabeçalho o título perde o risco próprio (passa para o
-   cabeçalho todo) e cresce um pouco para segurar o numeral ao lado. */
-.pf-section-head .pf-section-title {
-  margin: 0;
-  padding: 0;
-  border: none;
-  font-size: clamp(1.15rem, 2vw, 1.35rem);
-  line-height: 1.2;
-}
-
-.pf-section-lead {
-  font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.82rem;
-  font-weight: 300;
-  color: #7A5838;
-  line-height: 1.6;
-  margin: 6px 0 0;
-}
-
 /* ── Variantes de cartão ──
    "leve": os extras são opcionais e o cartão diz isso sem palavras
    (translúcido, sem sombra). "resumo": é o resultado dos outros passos,
@@ -1339,7 +1291,7 @@ input[type="date"].pf-input {
     0 12px 40px rgba(42, 28, 16, 0.10);
 }
 
-.pf-section-resumo .pf-section-head {
+.pf-section-resumo .pf-section-title {
   border-bottom-color: rgba(212, 176, 96, 0.45);
 }
 
@@ -1370,7 +1322,8 @@ input[type="date"].pf-input {
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  padding: 10px 18px;
+  gap: 9px;
+  padding: 10px 18px 10px 12px;
   border-radius: 999px;
   border: 1.5px solid #DEC8A0;
   background: #FAF6EE;
@@ -1416,18 +1369,41 @@ input[type="date"].pf-input {
   background: rgba(196, 132, 107, 0.04);
 }
 
-/* ── Mobile: numeral e pílulas um pouco mais compactos ── */
+/* Indicador de rádio dentro da pílula: círculo vazio quando não está
+   escolhida, preenchido com visto quando está. Sem ele, quem não conhece a
+   interface não percebia qual era a escolha activa (pedido da Maria). */
+.pf-pill-dot {
+  position: relative;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid #C4A878;
+  background: #fff;
+  transition: border-color 0.18s, background 0.18s;
+}
+
+.pf-pill-on .pf-pill-dot {
+  border-color: #fff;
+  background: #fff;
+}
+
+.pf-pill-on .pf-pill-dot::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid #2A2018;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* ── Mobile: pílulas um pouco mais compactas ── */
 @media (max-width: 540px) {
-  .pf-section-head {
-    gap: 12px;
-  }
-
-  .pf-section-n {
-    font-size: 1.9rem;
-  }
-
   .pf-pill {
-    padding: 10px 15px;
+    padding: 10px 14px 10px 10px;
     font-size: 0.86rem;
   }
 }

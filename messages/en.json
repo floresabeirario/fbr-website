@@ -1547,14 +1547,6 @@
     "secQuadro": "The frame",
     "secExtras": "Optional extras",
     "secOutros": "Other",
-    "secLead": {
-      "pessoais": "So we know who you are and how to reach you.",
-      "evento": "The date and type of event help us book your slot.",
-      "logistica": "How the flowers get to us, and how the frame gets back to you.",
-      "quadro": "Size, background and glass. If in doubt, choose \"Not sure yet\".",
-      "extras": "Extra pieces made with the same flowers. If you'd rather not, just say no.",
-      "outros": "How you found us, and anything else you'd like to add."
-    },
     "nomePlaceholder": "Your full name",
     "nomeLabel": "Full name",
     "nomeHint": "To correctly identify your booking.",
@@ -2505,10 +2497,6 @@
   "formEmoldurar": {
     "secFlores": "Your flowers",
     "secAbordagem": "The approach",
-    "secLead": {
-      "flores": "Which flowers you have, what state they are in and, if you can, a few photos.",
-      "abordagem": "Frame the originals, recreate them with fresh flowers, or combine both."
-    },
     "tipoEventoHint": "What occasion are the flowers from?",
     "tipoFloresLabel": "Type of flowers in the arrangement",
     "tipoFloresHint": "Indicate the types of flowers (roses, orchids, wildflowers, etc.) and the type of arrangement (bouquet, boutonnière, centrepiece, crown, etc.).",

@@ -1555,14 +1555,6 @@
     "secQuadro": "O quadro",
     "secExtras": "Extras opcionais",
     "secOutros": "Outros",
-    "secLead": {
-      "pessoais": "Para sabermos quem é e por onde falar consigo.",
-      "evento": "A data e o tipo de evento ajudam-nos a reservar a sua vaga.",
-      "logistica": "Como as flores chegam até nós e como o quadro chega até si.",
-      "quadro": "O tamanho, o fundo e o vidro. Em caso de dúvida, escolha \"Ainda não sei\".",
-      "extras": "Peças a mais feitas com as mesmas flores. Se não quiser nenhuma, basta dizer que não.",
-      "outros": "Como chegou até nós e tudo o que quiser acrescentar."
-    },
     "nomePlaceholder": "O seu nome completo",
     "nomeLabel": "Nome completo",
     "nomeHint": "Para identificarmos correctamente a sua reserva.",
@@ -2513,10 +2505,6 @@
   "formEmoldurar": {
     "secFlores": "As suas flores",
     "secAbordagem": "A abordagem",
-    "secLead": {
-      "flores": "Que flores tem, em que estado estão e, se puder, umas fotografias.",
-      "abordagem": "Emoldurar as originais, recriar com flores frescas ou combinar as duas."
-    },
     "tipoEventoHint": "De que ocasião são as flores?",
     "tipoFloresLabel": "Tipo de flores no arranjo",
     "tipoFloresHint": "Indique o tipo de flores (rosas, orquídeas, flores do campo, etc.) e o tipo de arranjo (bouquet, flores de lapela, centro de mesa, coroa, etc.).",
