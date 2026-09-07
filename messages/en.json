@@ -1993,6 +1993,7 @@
       "notaTitulo": "Note",
       "barraTotal": "Estimated total",
       "barraVer": "View summary",
+      "barraAPartirDe": "from",
       "valeLinha": "Gift voucher {codigo}",
       "aPagar": "To pay",
       "aPagarAPartirDe": "To pay, from",
