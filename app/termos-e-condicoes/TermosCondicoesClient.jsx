@@ -22,6 +22,8 @@ export default function TermosCondicoesClient() {
             </section>
           ))}
         </div>
+
+        <p className="legal-version">{t("versao")}</p>
       </div>
     </div>
   );

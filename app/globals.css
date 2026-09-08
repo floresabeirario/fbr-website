@@ -1490,6 +1490,14 @@ button:focus-visible {
   font-weight: 300;
   margin: 0;
 }
+.legal-version {
+  color: var(--mid);
+  opacity: 0.6;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  margin: 48px 0 0;
+}
 
 /* ── onMouseEnter replacement classes ────────────────── */
 .hover-lift:hover,
