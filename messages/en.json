@@ -2400,7 +2400,8 @@
       "ogImageAlt": "Terms and conditions, Flores à Beira-Rio"
     },
     "h1": "Terms and Conditions",
-    "intro": "By requesting a booking from Flores à Beira-Rio, the client declares having read, understood and accepted these Terms and Conditions. The version accepted is the one published on the date of the request. These Terms apply to the preservation of fresh flowers, the framing of dried flowers, bouquet recreation, and gift vouchers. Version 2.0.",
+    "versao": "Version 2.0, September 2026",
+    "intro": "By requesting a booking from Flores à Beira-Rio, the client declares having read, understood and accepted these Terms and Conditions. The version accepted is the one published on the date of the request. These Terms apply to the preservation of fresh flowers, the framing of dried flowers, bouquet recreation, and gift vouchers.",
     "sections": [
       {
         "title": "1. Nature of the service",
@@ -2492,7 +2493,7 @@
       },
       {
         "title": "23. Changes to these Terms",
-        "content": "We may update these Terms at any time. Each version has a number and date. Each order is governed by the version in force on the date of the booking request, which is recorded together with the request.\nVersion 2.0, September 2026."
+        "content": "We may update these Terms at any time. Each version has a number and date. Each order is governed by the version in force on the date of the booking request, which is recorded together with the request."
       }
     ]
   },

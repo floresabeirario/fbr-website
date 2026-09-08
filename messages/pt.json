@@ -2408,7 +2408,8 @@
       "ogImageAlt": "Termos e condições, Flores à Beira-Rio"
     },
     "h1": "Termos e Condições",
-    "intro": "Ao pedir uma reserva à Flores à Beira-Rio, o cliente declara ter lido, compreendido e aceite os presentes Termos e Condições. A versão aceite é a que estiver publicada na data do pedido. Estes Termos aplicam-se aos serviços de preservação de flores frescas, emolduramento de flores secas e recriação de bouquets, e aos vales-presente. Versão 2.0.",
+    "versao": "Versão 2.0, Setembro de 2026",
+    "intro": "Ao pedir uma reserva à Flores à Beira-Rio, o cliente declara ter lido, compreendido e aceite os presentes Termos e Condições. A versão aceite é a que estiver publicada na data do pedido. Estes Termos aplicam-se aos serviços de preservação de flores frescas, emolduramento de flores secas e recriação de bouquets, e aos vales-presente.",
     "sections": [
       {
         "title": "1. Natureza do serviço",
@@ -2500,7 +2501,7 @@
       },
       {
         "title": "23. Alterações a estes Termos",
-        "content": "Podemos actualizar estes Termos a qualquer momento. Cada versão tem número e data. A cada encomenda aplica-se a versão em vigor na data do pedido de reserva, que fica registada juntamente com o pedido.\nVersão 2.0, Setembro de 2026."
+        "content": "Podemos actualizar estes Termos a qualquer momento. Cada versão tem número e data. A cada encomenda aplica-se a versão em vigor na data do pedido de reserva, que fica registada juntamente com o pedido."
       }
     ]
   },
