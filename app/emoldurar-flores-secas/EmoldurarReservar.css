@@ -156,3 +156,11 @@
 }
 .emoldurar-theme .pf-pill-dot { border-color: #93AC98; }
 .emoldurar-theme .pf-pill-on .pf-pill-dot::after { border-color: #22382C; }
+.emoldurar-theme .pf-pill-selo {
+  background: rgba(94, 125, 104, 0.18);
+  color: #3D6650;
+}
+.emoldurar-theme .pf-pill-on .pf-pill-selo {
+  background: rgba(255, 255, 255, 0.18);
+  color: #D9E8DC;
+}

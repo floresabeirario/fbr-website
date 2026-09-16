@@ -1364,6 +1364,27 @@ input[type="date"].pf-input {
   pointer-events: none;
 }
 
+/* Selo "Recomendado" dentro da pílula (opções com `nota`). Sinaliza o meio
+   de contacto que preferimos sem o impor: as duas opções continuam iguais. */
+.pf-pill-selo {
+  flex-shrink: 0;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(212, 176, 96, 0.26);
+  color: #7A5838;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  transition: background 0.18s, color 0.18s;
+}
+
+.pf-pill-on .pf-pill-selo {
+  background: rgba(255, 255, 255, 0.2);
+  color: #F2E3C2;
+}
+
 .pf-pills-err .pf-pill:not(.pf-pill-on) {
   border-color: rgba(196, 132, 107, 0.6);
   background: rgba(196, 132, 107, 0.04);
