@@ -140,7 +140,23 @@
     },
     "oQueFazemos": "What we do",
     "heroTitle": "Your flowers, forever",
-    "heroDesc": "We transform emotionally meaningful flowers into botanical art frames that last decades. We receive flowers from Portugal and all across Europe at our studio in Coimbra.",
+    "heroDesc": "We transform emotionally meaningful flowers into botanical art frames that last decades. The atelier is in Coimbra, but you never have to travel here: we collect the flowers wherever you are, or you send them by post and they reach us the next working day.",
+    "alcanceEyebrow": "Wherever your flowers are",
+    "alcanceTitulo": "You do not have to come to Coimbra",
+    "alcance": [
+      {
+        "titulo": "We collect wherever you are",
+        "desc": "We pick the flowers up at the venue or at your door, anywhere in mainland Portugal."
+      },
+      {
+        "titulo": "Or you send them by post",
+        "desc": "Fragile express post: from within Portugal the flowers reach us the next working day."
+      },
+      {
+        "titulo": "The atelier is in Coimbra",
+        "desc": "This is where we press and frame every piece by hand. Most of our clients have never been here."
+      }
+    ],
     "transparencia": "Full transparency",
     "acompanheTitle": "Track your order live",
     "acompanheDesc": "Once your booking is confirmed, we share every stage of the process with you, from flower arrival to the final composition. You can follow everything in real time, without having to ask.",
@@ -180,7 +196,7 @@
     "step1Link": "Book my date",
     "step1ImgAlt": "Booking calendar for flower preservation reservation",
     "step2Title": "Deliver your flowers",
-    "step2Desc": "Drop off in person in Coimbra, send by post, or arrange collection at the venue.",
+    "step2Desc": "We collect them wherever you are, you send them by post and they arrive the next working day, or you drop them off in Coimbra.",
     "step2Link": "How it works",
     "step2ImgAlt": "Fresh flower bouquet for botanical preservation",
     "step3Title": "Receive your work of art",
@@ -214,10 +230,10 @@
       "ogImageAlt": "Pressed flower frame in wooden mount, Flores à Beira-Rio",
       "keywords": "flower preservation Portugal, flower preservation Coimbra, preserved flowers Portugal, bouquet preservation Portugal, botanical art, pressed flower frame, museum glass, worldwide flower preservation"
     },
-    "eyebrow": "Artisan Botanical Art · Coimbra",
+    "eyebrow": "Artisan Botanical Art · from Coimbra to the whole country",
     "h1": "Flower Preservation",
     "h1Em": "Preservation",
-    "heroDesc": "We transform emotionally meaningful flowers into botanical art frames that last decades. Wedding bouquets, baptism flowers, memorial tributes, each piece is unique, handmade and professionally framed, with the option of anti-UV museum glass. We receive flowers in person in Coimbra, by post, or with collection at your venue.",
+    "heroDesc": "We transform emotionally meaningful flowers into botanical art frames that last decades. Wedding bouquets, baptism flowers, memorial tributes, each piece is unique, handmade and professionally framed, with the option of anti-UV museum glass. We collect the flowers at your venue, receive them by post the next working day, or in person at the atelier in Coimbra.",
     "ctaPrecos": "Pricing",
     "ctaComoFunciona": "How it works",
     "ctaFloresSedcas": "Already-dried flowers",
@@ -258,8 +274,8 @@
         "desc": "30% on booking, 40% when flowers arrive, 30% before delivery. Easy on the budget."
       },
       {
-        "titulo": "Atelier in Coimbra",
-        "desc": "We work with clients across Europe. We receive flowers by post or in person and ship the frame anywhere."
+        "titulo": "Clients across the country",
+        "desc": "The atelier is in Coimbra, but most of our clients are somewhere else in Portugal or in Europe. We collect the flowers wherever you are or receive them by post, and ship the frame to any address."
       },
       {
         "titulo": "Real-time tracking",
@@ -349,16 +365,16 @@
         "nota": "",
         "opcoes": [
           {
-            "titulo": "Drop off in person",
-            "desc": "Free of charge at our atelier in Coimbra, by appointment."
+            "titulo": "Collection at your location",
+            "desc": "We pick the flowers up at the venue or at the address you give us, subject to quote and availability."
           },
           {
             "titulo": "Post via courier",
-            "desc": "Fragile and urgent post; shipping costs are the client's responsibility."
+            "desc": "Fragile and urgent post: from within Portugal it reaches us the next working day. Shipping costs are the client's responsibility."
           },
           {
-            "titulo": "Event pick-up",
-            "desc": "We travel to the venue, subject to quote and availability."
+            "titulo": "Drop off in person",
+            "desc": "Free of charge at our atelier in Coimbra, by appointment."
           }
         ]
       },
@@ -655,9 +671,9 @@
     "heroDesc": "We transform your wedding bouquet into a botanical work of art that lasts decades. Artisan pressing and handmade framing in Coimbra, with shipping across Portugal and Europe.",
     "heroPrice": "From €{quadro30x40} · payment in 3 stages",
     "heroDelivery": [
-      "In person",
-      "By post",
-      "Collection of your choice"
+      "Collection of your choice",
+      "By post, arrives next day",
+      "In person in Coimbra"
     ],
     "sliderAntes": "Before",
     "sliderDepois": "After",
@@ -737,16 +753,16 @@
     "faqEm": "asked questions",
     "faqItems": [
       {
+        "q": "Do you receive bouquets from outside Coimbra? I'm in Porto / Lisbon / the Algarve.",
+        "a": "Yes. We receive bouquets from across mainland Portugal and the islands, and most of our clients are based outside Coimbra. The most convenient option is collection at a location of your choice by our team: we arrange the date and time with you and handle transport back to the studio. Alternatively, you can send the bouquet by express courier (CTT, MRW, DHL) with insurance: from within Portugal it reaches us the next working day. We regularly work with brides from Lisbon, Porto, Braga, the Algarve and Madeira."
+      },
+      {
         "q": "What does preserving a wedding bouquet actually mean?",
         "a": "Preserving a wedding bouquet means turning the fresh flowers from your wedding into a piece that lasts for decades. At our studio we do it through botanical pressing: each flower is pressed and recomposed petal by petal, and the final composition is framed, and can be glazed with anti-UV museum glass. The frame holds the real flowers from your bouquet, not a replica."
       },
       {
         "q": "How can I hand in the bouquet?",
-        "a": "You can drop it off in person in Coimbra, send it by express courier, or request collection from a location by our team (subject to availability). We receive bouquets Monday to Sunday, including weekends."
-      },
-      {
-        "q": "Do you receive bouquets from outside Coimbra? I'm in Porto / Lisbon / the Algarve.",
-        "a": "Yes. We receive bouquets from across mainland Portugal and the islands, and most of our clients are based outside Coimbra. The most convenient option is collection at a location of your choice by our team: we arrange the date and time with you and handle transport back to the studio. Alternatively, you can send the bouquet by express courier (CTT, MRW, DHL) with insurance. We regularly work with brides from Lisbon, Porto, Braga, the Algarve and Madeira."
+        "a": "In three ways, in the order our clients most often choose: collection at a location of your choice by our team (subject to availability), express courier, which reaches us the next working day, or dropping it off in person in Coimbra. We receive bouquets Monday to Sunday, including weekends."
       },
       {
         "q": "Do you receive bouquets at the weekend, including Sunday?",
@@ -1893,7 +1909,8 @@
       },
       {
         "valor": "WhatsApp",
-        "label": "WhatsApp"
+        "label": "WhatsApp",
+        "nota": "Recommended"
       }
     ],
     "erroCampoObrigatorio": "Required field.",
@@ -2128,7 +2145,7 @@
       },
       {
         "valor": "WhatsApp",
-        "label": "WhatsApp"
+        "label": "WhatsApp (recommended)"
       }
     ],
     "entregueAOpcoes": [

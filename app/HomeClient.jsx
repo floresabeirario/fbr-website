@@ -44,6 +44,7 @@ import { FORM_URL, SOCIAL_CASAMENTOS } from "./_lib/constants";
 import { waUrl } from "./_lib/wa";
 import HomeHero from "./HomeHero";
 import HomeSteps from "./HomeSteps";
+import HomeReach from "./HomeReach";
 import BeforeAfterSlider from "./BeforeAfterSlider";
 import "./HomeClient.css";
 
@@ -187,6 +188,9 @@ export default function HomeClient() {
       <div ref={mainRef} style={{ overflowX: "clip", position: "relative", zIndex: 1, background: "transparent" }}>
 
         <HomeHero />
+
+        {/* ════ 1b. ALCANCE: nao precisa de vir a Coimbra ════ */}
+        <HomeReach />
 
         {/* ════ 2. O QUE FAZEMOS + SLIDER ════ */}
         <section
