@@ -189,9 +189,6 @@ export default function HomeClient() {
 
         <HomeHero />
 
-        {/* ════ 1b. ALCANCE: nao precisa de vir a Coimbra ════ */}
-        <HomeReach />
-
         {/* ════ 2. O QUE FAZEMOS + SLIDER ════ */}
         <section
           aria-label={t("oQueFazemos")}
@@ -209,6 +206,9 @@ export default function HomeClient() {
             </m.div>
           </div>
         </section>
+
+        {/* ════ 2b. ALCANCE: nao precisa de vir a Coimbra ════ */}
+        <HomeReach />
 
         <HomeSteps />
 

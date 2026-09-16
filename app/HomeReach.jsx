@@ -6,8 +6,8 @@ import { useTranslations } from "next-intl";
 /* Faixa de alcance geográfico.
    Existe por uma razão concreta e medida: muitos clientes liam "Coimbra" no
    hero e desistiam, convencidos de que teriam de trazer as flores em mãos.
-   Aparece imediatamente a seguir ao hero, que é o primeiro scroll no
-   telemóvel (95% do tráfego), e responde à objecção antes que ela se forme.
+   Fica logo a seguir a "As suas flores, para sempre" (decisao da Maria):
+   primeiro o site diz o que faz, e so depois desfaz a objeccao geografica.
    A ordem das três colunas é deliberada: recolha, correio e só depois o
    atelier, para que a barreira caia antes de Coimbra ser mencionada. */
 
