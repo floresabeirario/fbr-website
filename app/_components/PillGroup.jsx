@@ -8,6 +8,10 @@
 // de ecrã anunciam o grupo pela <legend> do Field que o envolve, e o
 // focusField() do formulário continua a encontrar um input para focar.
 //
+// Uma opção pode trazer `nota` (ex.: "Recomendado"): sai como selo dentro da
+// pílula, a seguir ao texto. Serve só para sinalizar a escolha preferida;
+// não muda o valor guardado.
+//
 // Usar sempre dentro de <Field as="fieldset">.
 export default function PillGroup({ name, options, value, onChange, error }) {
   return (
@@ -26,6 +30,7 @@ export default function PillGroup({ name, options, value, onChange, error }) {
             />
             <span className="pf-pill-dot" aria-hidden="true" />
             <span className="pf-pill-texto">{o.label}</span>
+            {o.nota && <span className="pf-pill-selo">{o.nota}</span>}
           </label>
         );
       })}

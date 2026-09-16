@@ -44,6 +44,7 @@ import { FORM_URL, SOCIAL_CASAMENTOS } from "./_lib/constants";
 import { waUrl } from "./_lib/wa";
 import HomeHero from "./HomeHero";
 import HomeSteps from "./HomeSteps";
+import HomeReach from "./HomeReach";
 import BeforeAfterSlider from "./BeforeAfterSlider";
 import "./HomeClient.css";
 
@@ -205,6 +206,9 @@ export default function HomeClient() {
             </m.div>
           </div>
         </section>
+
+        {/* ════ 2b. ALCANCE: nao precisa de vir a Coimbra ════ */}
+        <HomeReach />
 
         <HomeSteps />
 

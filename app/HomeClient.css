@@ -383,3 +383,97 @@ main .eyebrow { color: var(--section-accent, var(--green)); }
   color: var(--green-d);
   border-color: var(--green);
 }
+
+/* ── Faixa de alcance (HomeReach) ───────────────────────────────────────────
+   Mobile-first: no telemóvel (95% do tráfego) é uma lista vertical compacta,
+   ícone à esquerda, para se ler de relance no primeiro scroll depois do hero.
+   A partir de 768px abre em três colunas centradas. */
+.reach-section {
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  padding: clamp(4px, 1vw, 8px) 20px clamp(16px, 3vw, 24px);
+}
+.reach-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+.reach-eyebrow { display: block; margin-bottom: 10px; }
+.reach-title {
+  font-family: 'TAN-MEMORIES', serif;
+  font-size: clamp(1.75rem, 6vw, 2.6rem);
+  color: var(--green-d);
+  line-height: 1.15;
+  /* equilibra as linhas do titulo: sem isto o PT parte em
+     "Recebemos flores de todo / o pais", com a segunda linha orfa. */
+  text-wrap: balance;
+  margin: 0 0 clamp(24px, 5vw, 36px);
+}
+.reach-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  text-align: left;
+}
+.reach-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+.reach-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--section-accent);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+.reach-text { display: block; }
+.reach-item-title {
+  display: block;
+  font-family: 'Google Sans', Roboto, sans-serif;
+  font-weight: 700;
+  color: var(--green-d);
+  font-size: 1rem;
+  line-height: 1.35;
+  margin-bottom: 3px;
+}
+.reach-item-desc {
+  display: block;
+  color: var(--mid);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .reach-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: center;
+  }
+  .reach-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 28px 22px;
+  }
+  .reach-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.75);
+  }
+  .reach-icon svg { width: 27px; height: 27px; }
+  .reach-item-desc { font-size: 0.95rem; }
+}

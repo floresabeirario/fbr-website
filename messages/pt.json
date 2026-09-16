@@ -144,7 +144,23 @@
     },
     "oQueFazemos": "O que fazemos",
     "heroTitle": "As suas flores, para sempre",
-    "heroDesc": "Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Recebemos flores de Portugal e de toda a Europa no nosso estúdio em Coimbra.",
+    "heroDesc": "Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. O atelier é em Coimbra, mas não precisa de lá ir: recolhemos as flores onde estiver, ou envia-as por correio e chegam-nos no dia útil seguinte.",
+    "alcanceEyebrow": "Como as flores chegam cá",
+    "alcanceTitulo": "Recebemos flores de todo o país",
+    "alcance": [
+      {
+        "titulo": "Recolhemos onde estiver",
+        "desc": "Vamos buscar as flores ao local do evento ou à sua porta, em qualquer ponto do país."
+      },
+      {
+        "titulo": "Ou envia por correio",
+        "desc": "Correio frágil e urgente: as flores chegam-nos no dia útil seguinte."
+      },
+      {
+        "titulo": "O atelier é em Coimbra",
+        "desc": "É aqui que prensamos e emolduramos, à mão. A maioria dos nossos clientes nunca cá veio."
+      }
+    ],
     "transparencia": "Transparência total",
     "acompanheTitle": "Acompanhe a sua encomenda ao vivo",
     "acompanheDesc": "Após a reserva estar confirmada, partilhamos consigo cada etapa do processo, da receção das flores à composição final. Pode acompanhar tudo em tempo real, sem ter de perguntar.",
@@ -184,7 +200,7 @@
     "step1Link": "Reservar a minha data",
     "step1ImgAlt": "Calendário de marcação de reserva de preservação de flores",
     "step2Title": "Entregue as flores",
-    "step2Desc": "Entrega em mãos em Coimbra, envio por correio ou recolha no local do evento.",
+    "step2Desc": "Vamos recolhê-las onde estiver, envia-as por correio e chegam no dia útil seguinte, ou entrega em mãos em Coimbra.",
     "step2Link": "Como funciona",
     "step2ImgAlt": "Ramo de flores frescas para preservação botânica",
     "step3Title": "Recebe a sua obra de arte",
@@ -218,10 +234,10 @@
       "ogImageAlt": "Quadro de flores prensadas em moldura de madeira, Flores à Beira-Rio",
       "keywords": "preservação de flores Portugal, preservação de flores Coimbra, flores preservadas Portugal, preservação de bouquet, eternização de flores, arte botânica, prensagem botânica, vidro museu anti-UV, quadro flores prensadas"
     },
-    "eyebrow": "Arte Botânica Artesanal · Coimbra",
+    "eyebrow": "Arte Botânica Artesanal · de Coimbra para todo o país",
     "h1": "Preservação de Flores",
     "h1Em": "Flores",
-    "heroDesc": "Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Bouquets de casamento, flores de batizado, homenagens, cada peça é única, feita à mão e emoldurada profissionalmente, com a opção de vidro museu anti-UV. Recebemos flores em mãos em Coimbra, por correio ou com recolha no local do evento.",
+    "heroDesc": "Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Bouquets de casamento, flores de batizado, homenagens, cada peça é única, feita à mão e emoldurada profissionalmente, com a opção de vidro museu anti-UV. Recolhemos as flores no local do evento, recebemo-las por correio no dia útil seguinte, ou em mãos no atelier em Coimbra.",
     "ctaPrecos": "Preços",
     "ctaComoFunciona": "Como funciona",
     "ctaFloresSedcas": "Flores já secas",
@@ -262,8 +278,8 @@
         "desc": "30% na reserva, 40% quando as flores chegam, 30% antes da entrega. Sem pesar no orçamento."
       },
       {
-        "titulo": "Atelier em Coimbra",
-        "desc": "Trabalhamos com clientes de toda a Europa. Recebemos flores por correio ou em mãos e enviamos o quadro para qualquer morada."
+        "titulo": "Clientes em todo o país",
+        "desc": "O atelier é em Coimbra, mas a maioria dos nossos clientes está noutro ponto do país ou da Europa. Recolhemos as flores onde estiver ou recebemo-las por correio, e enviamos o quadro para qualquer morada."
       },
       {
         "titulo": "Rastreio em tempo real",
@@ -353,16 +369,16 @@
         "nota": "",
         "opcoes": [
           {
+            "titulo": "Recolha no local",
+            "desc": "Vamos buscar as flores ao local do evento ou à morada que indicar, mediante orçamento e disponibilidade."
+          },
+          {
+            "titulo": "Envio por correio",
+            "desc": "Correio frágil e urgente: chegam-nos no dia útil seguinte. Os custos de envio são a cargo do cliente."
+          },
+          {
             "titulo": "Entrega em mãos",
             "desc": "Gratuitamente no nosso atelier em Coimbra, mediante agendamento."
-          },
-          {
-            "titulo": "Envio por CTT",
-            "desc": "Correio frágil e urgente; os custos de envio são a cargo do cliente."
-          },
-          {
-            "titulo": "Recolha no evento",
-            "desc": "Deslocamo-nos ao local do evento, mediante orçamento e disponibilidade."
           }
         ]
       },
@@ -659,9 +675,9 @@
     "heroDesc": "Eternizamos o bouquet do seu casamento numa obra de arte botânica que dura décadas. Prensagem artesanal e emolduramento feito à mão em Coimbra, com envio para todo o mundo.",
     "heroPrice": "A partir de {quadro30x40}€ · pagamento em 3 fases",
     "heroDelivery": [
-      "Em mãos",
-      "Por correio",
-      "Recolha em local à escolha"
+      "Recolha em local à escolha",
+      "Por correio, chega no dia seguinte",
+      "Em mãos em Coimbra"
     ],
     "sliderAntes": "Antes",
     "sliderDepois": "Depois",
@@ -741,6 +757,10 @@
     "faqEm": "frequentes",
     "faqItems": [
       {
+        "q": "Recebem bouquets de fora de Coimbra? Estou no Porto / Lisboa / Algarve.",
+        "a": "Sim. Recebemos bouquets de todo o Portugal continental e ilhas, e a maioria dos nossos clientes está fora de Coimbra. A forma mais confortável é a recolha num local à sua escolha pela nossa equipa: combinamos data e hora consigo e tratamos do transporte até ao atelier. Em alternativa, pode enviar por correio expresso (CTT, MRW, DHL) com seguro: as flores chegam-nos no dia útil seguinte. Trabalhamos regularmente com noivas de Lisboa, Porto, Braga, Algarve e Madeira."
+      },
+      {
         "q": "O que significa eternizar o bouquet de noiva?",
         "a": "Eternizar (ou preservar) o bouquet de noiva é transformar as flores frescas do casamento numa peça que dura décadas. No nosso atelier fazemo-lo por prensagem botânica: cada flor é prensada e recomposta pétala a pétala, e a composição final é emoldurada, podendo levar vidro museu anti-UV. O quadro guarda as flores verdadeiras do seu ramo, não uma réplica."
       },
@@ -750,11 +770,7 @@
       },
       {
         "q": "Como posso entregar o bouquet?",
-        "a": "Pode entregar em mãos em Coimbra, enviar por correio expresso, ou solicitar recolha num local por parte da nossa equipa (consulte disponibilidade). Recebemos de segunda a domingo, incluindo fins de semana."
-      },
-      {
-        "q": "Recebem bouquets de fora de Coimbra? Estou no Porto / Lisboa / Algarve.",
-        "a": "Sim. Recebemos bouquets de todo o Portugal continental e ilhas, e a maioria dos nossos clientes está fora de Coimbra. A forma mais confortável é a recolha num local à sua escolha pela nossa equipa: combinamos data e hora consigo e tratamos do transporte até ao atelier. Em alternativa, pode enviar por correio expresso (CTT, MRW, DHL) com seguro. Trabalhamos regularmente com noivas de Lisboa, Porto, Braga, Algarve e Madeira."
+        "a": "De três formas, pela ordem que os nossos clientes mais escolhem: recolha num local à sua escolha pela nossa equipa (consulte disponibilidade), envio por correio expresso, que nos chega no dia útil seguinte, ou entrega em mãos em Coimbra. Recebemos de segunda a domingo, incluindo fins de semana."
       },
       {
         "q": "Recebem bouquets ao fim de semana, incluindo ao domingo?",
@@ -1901,7 +1917,8 @@
       },
       {
         "valor": "WhatsApp",
-        "label": "WhatsApp"
+        "label": "WhatsApp",
+        "nota": "Recomendado"
       }
     ],
     "erroCampoObrigatorio": "Campo obrigatório.",
@@ -2136,7 +2153,7 @@
       },
       {
         "valor": "WhatsApp",
-        "label": "WhatsApp"
+        "label": "WhatsApp (recomendado)"
       }
     ],
     "entregueAOpcoes": [
