@@ -117,6 +117,13 @@ export function computePricingSnapshot(order, items) {
       const g = findItem(items, "glass_supplement", `museum_glass_${size}`);
       if (g && g.price > 0) lines.push(line(g, qty, "additional"));
     }
+    // Pirâmide por tamanho também nos adicionais (decisão Maria, sessão 174).
+    if (order.pyramid_frame) {
+      const p =
+        findItem(items, "extra", `pyramid_frame_${size}`) ??
+        findItem(items, "extra", "pyramid_frame");
+      if (p && p.price > 0) lines.push(line(p, qty, "additional"));
+    }
   }
 
   // 3. Extras por unidade — só conta se 'sim' E qty > 0.
@@ -151,9 +158,13 @@ export function computePricingSnapshot(order, items) {
     if (miniGlass && miniGlass.price > 0) lines.push(line(miniGlass, minis));
   }
 
-  // 4. Moldura pirâmide (nunca vem do site; mantido pela paridade).
+  // 4. Moldura pirâmide (nunca vem do site; mantido pela paridade). Por
+  //    tamanho desde a mig 110 do admin (pyramid_frame_<size>), com o item
+  //    genérico como fallback.
   if (order.pyramid_frame) {
-    const pyr = findItem(items, "extra", "pyramid_frame");
+    const pyr =
+      findItem(items, "extra", `pyramid_frame_${effectiveSize}`) ??
+      findItem(items, "extra", "pyramid_frame");
     if (pyr) lines.push(line(pyr, 1));
   }
 
