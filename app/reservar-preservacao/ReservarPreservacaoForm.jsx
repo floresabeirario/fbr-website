@@ -13,7 +13,8 @@ import AddressAutocomplete from "../_components/AddressAutocomplete";
 import PickupMap from "../_components/PickupMap";
 import { PRECOS_FALLBACK } from "../_lib/precos-valores";
 import ExemploModal from "../_components/ExemploModal";
-import { useRascunho } from "../_lib/use-rascunho";
+import { useRascunho, temConteudo } from "../_lib/use-rascunho";
+import { useAvisoAoSair } from "../_lib/use-aviso-ao-sair";
 import AvisoRascunho from "../_components/AvisoRascunho";
 import { formatEuro, formatDataCurta } from "../_lib/orcamento";
 import ResumoEncomenda from "../_components/ResumoEncomenda";
@@ -175,6 +176,9 @@ export default function ReservarPreservacaoForm({ precos = PRECOS_FALLBACK }) {
   const [valeNaoEncontrado, setValeNaoEncontrado] = useState(false);
   const valeVerificadoRef = useRef("");
   const [status, setStatus] = useState("idle");
+  // Aviso do browser ao fechar/recarregar a página com dados por enviar
+  // (o texto é do browser; ver use-aviso-ao-sair.js).
+  useAvisoAoSair(status !== "success" && temConteudo(form, INIT));
 
   // Funil de abandono (Umami): 1 evento na 1ª interacção com cada secção.
   // Comparar as contagens secção a secção (e com "reserva-enviada") mostra

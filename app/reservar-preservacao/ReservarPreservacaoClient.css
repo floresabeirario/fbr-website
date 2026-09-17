@@ -337,21 +337,54 @@
   box-shadow: 0 0 0 3px rgba(90, 64, 48, 0.12);
 }
 
+/* ── Erros de validação ──
+   Vermelho vivo e ícone "!" de propósito: em tom terra e letra pequena os
+   erros passavam por notas, e quem vê menos bem não os distinguia (pedido
+   da Maria, 17/09/2026). A sombra de 1px engrossa a borda sem mudar o
+   tamanho da caixa (a borda base tem 1.5px). */
 .pf-input-err {
-  border-color: rgba(196, 132, 107, 0.6);
-  background: rgba(196, 132, 107, 0.04);
+  border-color: var(--erro);
+  box-shadow: 0 0 0 1px var(--erro);
+  background: var(--erro-fundo);
+}
+
+.pf-input-err:hover {
+  border-color: var(--erro);
+  background: var(--erro-fundo);
 }
 
 .pf-input-err:focus-visible {
-  border-color: var(--terra);
-  box-shadow: 0 0 0 3px rgba(196, 132, 107, 0.12);
+  border-color: var(--erro);
+  box-shadow: 0 0 0 1px var(--erro), 0 0 0 4px rgba(179, 38, 30, 0.18);
 }
 
 .pf-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.75rem;
-  color: var(--terra);
-  margin: 5px 0 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--erro);
+  margin: 6px 0 0;
+}
+
+.pf-error::before {
+  content: "!";
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--erro);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
 /* Sugestão de gralha no email ("Quis dizer …?") — clicável, nunca bloqueia */
@@ -765,10 +798,11 @@ input[type="date"].pf-input {
 /* ── Resumo de erros de validação ── */
 .pf-errors-summary {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.84rem;
-  color: #9A4A30;
-  background: rgba(196, 132, 107, 0.08);
-  border: 1px solid rgba(196, 132, 107, 0.3);
+  font-size: 0.92rem;
+  color: var(--erro-escuro);
+  background: var(--erro-fundo);
+  border: 1.5px solid var(--erro);
+  border-left-width: 6px;
   border-radius: 12px;
   padding: 16px 20px;
   margin: 0 0 24px;
@@ -781,13 +815,32 @@ input[type="date"].pf-input {
 }
 
 .pf-errors-summary:focus-visible {
-  outline: 2px solid var(--terra);
+  outline: 2px solid var(--erro);
   outline-offset: 2px;
 }
 
 .pf-errors-summary-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
   margin: 0 0 10px;
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.pf-errors-summary-title::before {
+  content: "!";
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--erro);
+  color: #fff;
+  font-size: 0.78rem;
+  line-height: 1;
 }
 
 .pf-errors-summary-list {
@@ -803,7 +856,8 @@ input[type="date"].pf-input {
   border: none;
   padding: 0;
   font: inherit;
-  color: #9A4A30;
+  font-weight: 500;
+  color: var(--erro);
   text-decoration: underline;
   text-underline-offset: 2px;
   cursor: pointer;
@@ -812,12 +866,12 @@ input[type="date"].pf-input {
 
 .pf-errors-summary-link:hover,
 .pf-errors-summary-link:focus-visible {
-  color: var(--terra);
+  color: var(--erro-escuro);
   text-decoration-thickness: 2px;
 }
 
 .pf-errors-summary-link:focus-visible {
-  outline: 2px solid var(--terra);
+  outline: 2px solid var(--erro);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -873,10 +927,12 @@ input[type="date"].pf-input {
 /* ── Erro submit ── */
 .pf-submit-error {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.84rem;
-  color: #9A4A30;
-  background: rgba(196, 132, 107, 0.08);
-  border: 1px solid rgba(196, 132, 107, 0.25);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--erro-escuro);
+  background: var(--erro-fundo);
+  border: 1.5px solid var(--erro);
+  border-left-width: 6px;
   border-radius: 12px;
   padding: 14px 16px;
   margin-bottom: 14px;
@@ -884,8 +940,8 @@ input[type="date"].pf-input {
 }
 
 .pf-submit-error a {
-  color: #9A4A30;
-  font-weight: 600;
+  color: var(--erro-escuro);
+  font-weight: 700;
   text-underline-offset: 3px;
 }
 
@@ -1391,8 +1447,9 @@ input[type="date"].pf-input {
 }
 
 .pf-pills-err .pf-pill:not(.pf-pill-on) {
-  border-color: rgba(196, 132, 107, 0.6);
-  background: rgba(196, 132, 107, 0.04);
+  border-color: var(--erro);
+  box-shadow: 0 0 0 1px var(--erro);
+  background: var(--erro-fundo);
 }
 
 /* Indicador de rádio dentro da pílula: círculo vazio quando não está

@@ -9,6 +9,8 @@ import TurnstileWidget, { resetTurnstile } from "../_components/TurnstileWidget"
 import { phoneLengthError, normalizePhone, formatPhoneInput } from "../_lib/phone-validation";
 import { suggestEmail, cleanEmail } from "../_lib/email-suggest";
 import { usePrecos } from "../_components/PrecosProvider";
+import { temConteudo } from "../_lib/use-rascunho";
+import { useAvisoAoSair } from "../_lib/use-aviso-ao-sair";
 
 const TURNSTILE_ENABLED = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
@@ -109,6 +111,9 @@ export default function ValeApresenteForm() {
   const [emailSugestao, setEmailSugestao] = useState(null);
   const [emailDestSugestao, setEmailDestSugestao] = useState(null);
   const [status, setStatus] = useState("idle");
+  // Aviso do browser ao fechar/recarregar a página com dados por enviar
+  // (o texto é do browser; ver use-aviso-ao-sair.js).
+  useAvisoAoSair(status !== "success" && temConteudo(form, INIT));
   const [submitError, setSubmitError] = useState("");
   const [turnstileToken, setTurnstileToken] = useState(null);
   const successRef = useRef(null);

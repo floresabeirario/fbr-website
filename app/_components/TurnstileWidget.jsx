@@ -10,8 +10,13 @@
 // se `TURNSTILE_SECRET` também não estiver definida.
 //
 // Quando ambas as env vars estiverem definidas (site key no
-// front-end + secret no servidor), o widget aparece, o token é
-// gerado e validado em cada submit.
+// front-end + secret no servidor), o token é gerado e validado em
+// cada submit. O widget em si só se mostra quando a Cloudflare
+// precisa mesmo que a pessoa carregue na caixa (appearance
+// "interaction-only"): antes ficava sempre visível, com um visto
+// verde e a palavra "Sucesso" mesmo por cima do botão de enviar, e
+// uma cliente de mais idade leu-o como "pedido enviado" e fechou a
+// página sem submeter (17/09/2026).
 // ============================================================
 
 import { useEffect, useRef, useState } from "react";
@@ -54,6 +59,9 @@ export default function TurnstileWidget({ onToken, language = "auto" }) {
       // No admin é "auto" porque tem dark mode toggle.
       theme: "light",
       language,
+      // Invisível até a Cloudflare pedir interação (ver nota no topo).
+      // A verificação no servidor não muda.
+      appearance: "interaction-only",
     });
 
     return () => {

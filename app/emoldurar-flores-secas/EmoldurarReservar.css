@@ -156,3 +156,17 @@
 }
 .emoldurar-theme .pf-pill-dot { border-color: #93AC98; }
 .emoldurar-theme .pf-pill-on .pf-pill-dot::after { border-color: #22382C; }
+
+/* ── Erros: o vermelho de erro ganha ao verde do tema ──
+   (.emoldurar-theme .pf-input e os seus :hover/:focus-visible têm mais
+   especificidade do que .pf-input-err em ReservarPreservacaoClient.css) */
+.emoldurar-theme .pf-input-err,
+.emoldurar-theme .pf-input-err:hover {
+  border-color: var(--erro);
+  background: var(--erro-fundo);
+}
+.emoldurar-theme .pf-input-err:focus-visible {
+  border-color: var(--erro);
+  background: var(--erro-fundo);
+  box-shadow: 0 0 0 1px var(--erro), 0 0 0 4px rgba(179, 38, 30, 0.18);
+}

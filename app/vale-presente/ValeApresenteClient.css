@@ -340,21 +340,52 @@
   box-shadow: 0 0 0 3px rgba(91, 107, 158, 0.14);
 }
 
+/* ── Erros de validação (espelha ReservarPreservacaoClient.css) ──
+   Vermelho vivo e ícone "!": em tom terra e letra pequena passavam por
+   notas (pedido da Maria, 17/09/2026). */
 .vf-input-err {
-  border-color: rgba(196, 132, 107, 0.6);
-  background: rgba(196, 132, 107, 0.04);
+  border-color: var(--erro);
+  box-shadow: 0 0 0 1px var(--erro);
+  background: var(--erro-fundo);
+}
+
+.vf-input-err:hover {
+  border-color: var(--erro);
+  background: var(--erro-fundo);
 }
 
 .vf-input-err:focus-visible {
-  border-color: var(--terra);
-  box-shadow: 0 0 0 3px rgba(196, 132, 107, 0.12);
+  border-color: var(--erro);
+  box-shadow: 0 0 0 1px var(--erro), 0 0 0 4px rgba(179, 38, 30, 0.18);
 }
 
 .vf-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.75rem;
-  color: var(--terra);
-  margin: 5px 0 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--erro);
+  margin: 6px 0 0;
+}
+
+.vf-error::before {
+  content: "!";
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--erro);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
 /* Sugestão de gralha no email ("Quis dizer …?") — clicável, nunca bloqueia */
@@ -517,10 +548,11 @@ input[type="date"].vf-input {
 /* ── Resumo de erros de validação ── */
 .vf-errors-summary {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.84rem;
-  color: #9A4A30;
-  background: rgba(196, 132, 107, 0.08);
-  border: 1px solid rgba(196, 132, 107, 0.25);
+  font-size: 0.92rem;
+  color: var(--erro-escuro);
+  background: var(--erro-fundo);
+  border: 1.5px solid var(--erro);
+  border-left-width: 6px;
   border-radius: 12px;
   padding: 14px 16px;
   margin-bottom: 0;
@@ -531,10 +563,12 @@ input[type="date"].vf-input {
 /* ── Erro submit ── */
 .vf-submit-error {
   font-family: var(--font-google-sans), "Google Sans", sans-serif;
-  font-size: 0.84rem;
-  color: #9A4A30;
-  background: rgba(196, 132, 107, 0.08);
-  border: 1px solid rgba(196, 132, 107, 0.25);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--erro-escuro);
+  background: var(--erro-fundo);
+  border: 1.5px solid var(--erro);
+  border-left-width: 6px;
   border-radius: 12px;
   padding: 14px 16px;
   margin-bottom: 14px;
@@ -695,13 +729,32 @@ input[type="date"].vf-input {
 }
 
 .vf-errors-summary:focus-visible {
-  outline: 2px solid var(--terra);
+  outline: 2px solid var(--erro);
   outline-offset: 2px;
 }
 
 .vf-errors-summary-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
   margin: 0 0 10px;
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.vf-errors-summary-title::before {
+  content: "!";
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--erro);
+  color: #fff;
+  font-size: 0.78rem;
+  line-height: 1;
 }
 
 .vf-errors-summary-list {
@@ -717,7 +770,8 @@ input[type="date"].vf-input {
   border: none;
   padding: 0;
   font: inherit;
-  color: #9A4A30;
+  font-weight: 500;
+  color: var(--erro);
   text-decoration: underline;
   text-underline-offset: 2px;
   cursor: pointer;
@@ -726,12 +780,12 @@ input[type="date"].vf-input {
 
 .vf-errors-summary-link:hover,
 .vf-errors-summary-link:focus-visible {
-  color: var(--terra);
+  color: var(--erro-escuro);
   text-decoration-thickness: 2px;
 }
 
 .vf-errors-summary-link:focus-visible {
-  outline: 2px solid var(--terra);
+  outline: 2px solid var(--erro);
   outline-offset: 3px;
   border-radius: 2px;
 }

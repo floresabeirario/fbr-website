@@ -17,6 +17,12 @@
   --sage:    #D4DECC;
   --rust:    #C8522A;
 
+  /* Erros de formulário: um vermelho próprio, fora da paleta decorativa,
+     para se distinguir à primeira vista das notas em tom terra. */
+  --erro:        #B3261E;
+  --erro-escuro: #8C1D14;
+  --erro-fundo:  #FBEBE9;
+
   /* Homepage blue palette */
   --navy-d:  #0C1929;
   --navy:    #122338;

@@ -35,7 +35,8 @@ function ler(chave) {
   }
 }
 
-function temConteudo(form, init) {
+// Também usado pelo aviso ao sair da página (use-aviso-ao-sair.js).
+export function temConteudo(form, init) {
   return Object.keys(form).some((k) => {
     if (IGNORAR.has(k)) return false;
     const v = form[k];
