@@ -140,13 +140,13 @@
     },
     "oQueFazemos": "What we do",
     "heroTitle": "Your flowers, forever",
-    "heroDesc": "We transform emotionally meaningful flowers into botanical art frames that last decades. The atelier is in Coimbra, but you never have to travel here: we collect the flowers wherever you are, or you send them by post and they reach us the next working day.",
+    "heroDesc": "We transform emotionally meaningful flowers into botanical art frames that last decades. The atelier is in Coimbra, but you never have to travel here: we can collect the flowers wherever you are, or you send them by post and they reach us the next working day.",
     "alcanceEyebrow": "How the flowers reach us",
     "alcanceTitulo": "We receive flowers from anywhere",
     "alcance": [
       {
         "titulo": "We collect wherever you are",
-        "desc": "We pick the flowers up at the venue or at your door, anywhere in mainland Portugal."
+        "desc": "We pick the flowers up at the venue or at the address you give us, subject to availability."
       },
       {
         "titulo": "Or you send them by post",
@@ -154,7 +154,7 @@
       },
       {
         "titulo": "The atelier is in Coimbra",
-        "desc": "This is where we press and frame every piece by hand. Most of our clients have never been here."
+        "desc": "This is where we take care of your flowers, from start to finish."
       }
     ],
     "transparencia": "Full transparency",
@@ -196,7 +196,7 @@
     "step1Link": "Book my date",
     "step1ImgAlt": "Booking calendar for flower preservation reservation",
     "step2Title": "Deliver your flowers",
-    "step2Desc": "We collect them wherever you are, you send them by post and they arrive the next working day, or you drop them off in Coimbra.",
+    "step2Desc": "We can collect them wherever you are, you send them by post and they arrive the next working day, or you drop them off in Coimbra.",
     "step2Link": "How it works",
     "step2ImgAlt": "Fresh flower bouquet for botanical preservation",
     "step3Title": "Receive your work of art",
@@ -233,7 +233,7 @@
     "eyebrow": "Artisan Botanical Art · from Coimbra to the whole country",
     "h1": "Flower Preservation",
     "h1Em": "Preservation",
-    "heroDesc": "We transform emotionally meaningful flowers into botanical art frames that last decades. Wedding bouquets, baptism flowers, memorial tributes, each piece is unique, handmade and professionally framed, with the option of anti-UV museum glass. We collect the flowers at your venue, receive them by post the next working day, or in person at the atelier in Coimbra.",
+    "heroDesc": "We transform emotionally meaningful flowers into botanical art frames that last decades. Wedding bouquets, baptism flowers, memorial tributes, each piece is unique, handmade and professionally framed, with the option of anti-UV museum glass. We can collect the flowers at your venue, receive them by post the next working day, or in person at the atelier in Coimbra.",
     "ctaPrecos": "Pricing",
     "ctaComoFunciona": "How it works",
     "ctaFloresSedcas": "Already-dried flowers",
@@ -275,7 +275,7 @@
       },
       {
         "titulo": "Clients across the country",
-        "desc": "The atelier is in Coimbra, but most of our clients are somewhere else in Portugal or in Europe. We collect the flowers wherever you are or receive them by post, and ship the frame to any address."
+        "desc": "The atelier is in Coimbra, but most of our clients are somewhere else in Portugal or in Europe. We can collect the flowers wherever you are or receive them by post, and ship the frame to any address."
       },
       {
         "titulo": "Real-time tracking",
@@ -762,7 +762,7 @@
       },
       {
         "q": "How can I hand in the bouquet?",
-        "a": "In three ways, in the order our clients most often choose: collection at a location of your choice by our team (subject to availability), express courier, which reaches us the next working day, or dropping it off in person in Coimbra. We receive bouquets Monday to Sunday, including weekends."
+        "a": "In three ways: collection at a location of your choice by our team (subject to availability), express courier, which reaches us the next working day, or dropping it off in person in Coimbra. We receive bouquets Monday to Sunday, including weekends."
       },
       {
         "q": "Do you receive bouquets at the weekend, including Sunday?",

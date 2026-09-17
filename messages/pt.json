@@ -144,13 +144,13 @@
     },
     "oQueFazemos": "O que fazemos",
     "heroTitle": "As suas flores, para sempre",
-    "heroDesc": "Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. O atelier é em Coimbra, mas não precisa de lá ir: recolhemos as flores onde estiver, ou envia-as por correio e chegam-nos no dia útil seguinte.",
+    "heroDesc": "Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. O atelier é em Coimbra, mas não precisa de lá ir: podemos recolher as flores onde estiver, ou envia-as por correio e chegam-nos no dia útil seguinte.",
     "alcanceEyebrow": "Como as flores chegam cá",
     "alcanceTitulo": "Recebemos flores de todo o país",
     "alcance": [
       {
         "titulo": "Recolhemos onde estiver",
-        "desc": "Vamos buscar as flores ao local do evento ou à sua porta, em qualquer ponto do país."
+        "desc": "Vamos buscar as flores ao local do evento ou à morada que indicar, mediante disponibilidade."
       },
       {
         "titulo": "Ou envia por correio",
@@ -158,7 +158,7 @@
       },
       {
         "titulo": "O atelier é em Coimbra",
-        "desc": "É aqui que prensamos e emolduramos, à mão. A maioria dos nossos clientes nunca cá veio."
+        "desc": "É aqui que cuidamos das suas flores, do princípio ao fim."
       }
     ],
     "transparencia": "Transparência total",
@@ -200,7 +200,7 @@
     "step1Link": "Reservar a minha data",
     "step1ImgAlt": "Calendário de marcação de reserva de preservação de flores",
     "step2Title": "Entregue as flores",
-    "step2Desc": "Vamos recolhê-las onde estiver, envia-as por correio e chegam no dia útil seguinte, ou entrega em mãos em Coimbra.",
+    "step2Desc": "Podemos ir buscá-las onde estiver, envia-as por correio e chegam no dia útil seguinte, ou entrega em mãos em Coimbra.",
     "step2Link": "Como funciona",
     "step2ImgAlt": "Ramo de flores frescas para preservação botânica",
     "step3Title": "Recebe a sua obra de arte",
@@ -237,7 +237,7 @@
     "eyebrow": "Arte Botânica Artesanal · de Coimbra para todo o país",
     "h1": "Preservação de Flores",
     "h1Em": "Flores",
-    "heroDesc": "Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Bouquets de casamento, flores de batizado, homenagens, cada peça é única, feita à mão e emoldurada profissionalmente, com a opção de vidro museu anti-UV. Recolhemos as flores no local do evento, recebemo-las por correio no dia útil seguinte, ou em mãos no atelier em Coimbra.",
+    "heroDesc": "Transformamos flores com valor emocional em quadros de arte botânica que duram décadas. Bouquets de casamento, flores de batizado, homenagens, cada peça é única, feita à mão e emoldurada profissionalmente, com a opção de vidro museu anti-UV. Podemos recolher as flores no local do evento, recebê-las por correio no dia útil seguinte, ou em mãos no atelier em Coimbra.",
     "ctaPrecos": "Preços",
     "ctaComoFunciona": "Como funciona",
     "ctaFloresSedcas": "Flores já secas",
@@ -279,7 +279,7 @@
       },
       {
         "titulo": "Clientes em todo o país",
-        "desc": "O atelier é em Coimbra, mas a maioria dos nossos clientes está noutro ponto do país ou da Europa. Recolhemos as flores onde estiver ou recebemo-las por correio, e enviamos o quadro para qualquer morada."
+        "desc": "O atelier é em Coimbra, mas a maioria dos nossos clientes está noutro ponto do país ou da Europa. Podemos recolher as flores onde estiver ou recebê-las por correio, e enviamos o quadro para qualquer morada."
       },
       {
         "titulo": "Rastreio em tempo real",
@@ -770,7 +770,7 @@
       },
       {
         "q": "Como posso entregar o bouquet?",
-        "a": "De três formas, pela ordem que os nossos clientes mais escolhem: recolha num local à sua escolha pela nossa equipa (consulte disponibilidade), envio por correio expresso, que nos chega no dia útil seguinte, ou entrega em mãos em Coimbra. Recebemos de segunda a domingo, incluindo fins de semana."
+        "a": "De três formas: recolha num local à sua escolha pela nossa equipa (consulte disponibilidade), envio por correio expresso, que nos chega no dia útil seguinte, ou entrega em mãos em Coimbra. Recebemos de segunda a domingo, incluindo fins de semana."
       },
       {
         "q": "Recebem bouquets ao fim de semana, incluindo ao domingo?",
